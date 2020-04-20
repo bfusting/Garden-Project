@@ -1,3 +1,5 @@
+import javafx.stage.Stage;
+
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
 *  Class Section: 011
@@ -26,5 +28,19 @@ public class Controller {
 	public Controller() {
 		model = new Model();
 		view = new View();
+	}//Controller
+	
+	/**
+	 * 
+	 * @param tofu
+	 */
+	public static void main(String[] tofu) {
+		System.out.println("Hello World");
+		//launch();
+	}//main
+	
+	public static void start(Stage stage) {
+		
 	}
-}
+	
+}//Controller
