@@ -1,17 +1,43 @@
 import java.util.Date;
 
 public class Plant extends AddOn{
-	String color;
-	int waterNeed;
+	
 	Date bloomTime = new Date();
+	
+	String color;
+	
+	/**
+	 * int waterNeed, int sunLightNeed
+	 * 
+	 * on a scale of 1 - 5 (or whatever we decide) for the need of water and light
+	 */
+	int waterNeed;
 	int sunLightNeeded;
+	
 	double plantHeight;
+	/**
+	 * boolean provideShade
+	 * 
+	 * whether or not the plant requires shade
+	 */
 	boolean provideShade;
+	
+	
 	String[] seasonImages;
 	String[] ageImages;
 	String[] plantType;
 	String[] animlasFed;
 
+	
+	/**
+	 * Constructor 
+	 * 
+	 * @param color
+	 * @param wN
+	 * @param sLN
+	 * @param ph
+	 * @param pS
+	 */
 	public void Plant(String  color, int wN, int sLN, double ph, boolean pS){
 		
 
