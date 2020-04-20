@@ -6,10 +6,10 @@ import javafx.stage.Stage;
 
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
-*  Class Section: 011
-*  Lab Section: 031L
+*  Class Section: foo11
+*  Lab Section: foo31L
 *  TA: Vineeth Gutta
-*  Due: May 18th, 2020 (5/18/20)
+*  Due: May 18th, 2foo2foo (5/18/2foo)
 *
 *  This file contains the contents for the project for CISC275. The project for the 
 *  class is to make gardening software for the township of Arden, DE to help
@@ -25,6 +25,8 @@ import javafx.stage.Stage;
 public class Controller {
 	private Model model;
 	private View view;
+	//used to compile stub code will delete later
+	EventHandler foo;
 	
 	/**
 	 * 
@@ -64,7 +66,7 @@ public class Controller {
 	 * @return
 	 */
 	public EventHandler getCreateNewGarden() {
-		return 0;
+		return foo;
 	}//getCreateNewGarden
 	
 	/**
@@ -80,7 +82,7 @@ public class Controller {
 	 * @return
 	 */
 	public EventHandler getLoadGarden() {
-		return 0;
+		return foo;
 	}//getCreateNewGarden
 	
 	/**
@@ -96,7 +98,7 @@ public class Controller {
 	 * @return
 	 */
 	public EventHandler getExit() {
-		return 0;
+		return foo;
 	}//getCreateNewGarden
 	
 	
@@ -113,7 +115,7 @@ public class Controller {
 	 * @return
 	 */
 	public EventHandler getInstructionShow() {
-		return 0;
+		return foo;
 	}//getCreateNewGarden
 	
 	
@@ -130,7 +132,7 @@ public class Controller {
 	 * @return
 	 */
 	public EventHandler getBackBTN() {
-		return 0;
+		return foo;
 	}//getCreateNewGarden
 	
 	/**
@@ -146,7 +148,7 @@ public class Controller {
 	 * @return
 	 */
 	public EventHandler getChooseDesign() {
-		return 0;
+		return foo;
 	}//getCreateNewGarden
 	
 	
@@ -163,7 +165,7 @@ public class Controller {
 	 * @return
 	 */
 	public EventHandler getComboCheckBox() {
-		return 0;
+		return foo;
 	}//getCreateNewGarden
 	
 	
@@ -180,7 +182,7 @@ public class Controller {
 	 * @return
 	 */
 	public EventHandler getRecommendationsBTN() {
-		return 0;
+		return foo;
 	}//getCreateNewGarden
 	
 	
@@ -197,7 +199,7 @@ public class Controller {
 	 * @return
 	 */
 	public EventHandler getChangeSeasonsBTN() {
-		return 0;
+		return foo;
 	}//getCreateNewGarden
 	
 	
@@ -215,7 +217,7 @@ public class Controller {
 	 * @return
 	 */
 	public EventHandler getMainMenuBTN() {
-		return 0;
+		return foo;
 	}//getCreateNewGarden
 	
 	/**
@@ -231,7 +233,7 @@ public class Controller {
 	 * @return
 	 */
 	public EventHandler getChangeTab() {
-		return 0;
+		return foo;
 	}//getCreateNewGarden
 	
 	
@@ -248,7 +250,7 @@ public class Controller {
 	 * @return
 	 */
 	public EventHandler getStartDrag() {
-		return 0;
+		return foo;
 	}//getCreateNewGarden
 	
 	
@@ -265,7 +267,7 @@ public class Controller {
 	 * @return
 	 */
 	public EventHandler getDetectDrag() {
-		return 0;
+		return foo;
 	}//getCreateNewGarden
 	
 	/**
@@ -281,7 +283,7 @@ public class Controller {
 	 * @return
 	 */
 	public EventHandler getOkayToDrop() {
-		return 0;
+		return foo;
 	}//getCreateNewGarden
 	
 	
@@ -298,7 +300,7 @@ public class Controller {
 	 * @return
 	 */
 	public EventHandler getDetectDragDrop() {
-		return 0;
+		return foo;
 	}//getCreateNewGarden
 	
 	
@@ -315,7 +317,7 @@ public class Controller {
 	 * @return
 	 */
 	public EventHandler getScrollPage() {
-		return 0;
+		return foo;
 	}//getCreateNewGarden
 	
 	
@@ -332,7 +334,7 @@ public class Controller {
 	 * @return
 	 */
 	public EventHandler getEditBTN() {
-		return 0;
+		return foo;
 	}//getCreateNewGarden
 	
 	
@@ -349,7 +351,7 @@ public class Controller {
 	 * @return
 	 */
 	public EventHandler getSaveBTN() {
-		return 0;
+		return foo;
 	}//getCreateNewGarden
 	
 	
@@ -366,7 +368,7 @@ public class Controller {
 	 * @return
 	 */
 	public EventHandler getInfoTipsBTN() {
-		return 0;
+		return foo;
 	}//getCreateNewGarden
 	
 	/**
@@ -382,7 +384,7 @@ public class Controller {
 	 * @return
 	 */
 	public EventHandler getViewSeasonsBTN() {
-		return 0;
+		return foo;
 	}//getCreateNewGarden
 	
 	

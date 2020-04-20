@@ -1,3 +1,7 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
 *  Class Section: foo11
@@ -11,7 +15,26 @@
 *  
 */
 
-public enum Seasons{
-	SPRING, SUMMER, AUTUMN, WINTER;
-}
+class SeasonViewTest {
 
+	@Test
+	void testSeasonView() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetCurrSeason() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetSeasonView() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetSeasonWindow() {
+		fail("Not yet implemented");
+	}
+
+}

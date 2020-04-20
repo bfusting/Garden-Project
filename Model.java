@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /*
@@ -17,7 +18,7 @@ import java.util.ArrayList;
  * 
  */
 
-public class Model{
+public class Model implements Serializable{
 	
 	private GardenPlot userPlot;
 	private ArrayList<AddOn> selectionArr;
