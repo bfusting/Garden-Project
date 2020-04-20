@@ -1,27 +1,12 @@
 /*
-*  Edited on: April 14th, 2020 (4/14/20)
-*  Author: T Harvey
-*  Editors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
+*  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
 *  Class Section: 011
 *  Lab Section: 031L
 *  TA: Vineeth Gutta
-*  Due: April 19th, 2020 (4/19/20)
+*  Due: May 18th, 2020 (5/18/20)
 *
 *  This file contains the contents for lab 8. Lab 8 consists of adding comments 
 *  to above each method then generating a javaDoc for the reader of the program. 
-*  
-*  All edits were made in the V2 of the model, controller and view
-*  
-*  Goals of lab 8:
-*  
-*  Modify the scene to hold a TilePane and a FlowPane. Put the milkweed ImageView in the TilePane. Edit the drag-n-drop behavior so that:
-*  1) only a copy of the object moves
-*  2) after dragging to the new pane there are two ImageViews, one in each pane.
-*  3) you can drag repeatedly and make more.
-*  4) Upload a zip to Canvas.
-*  
-*  Check out the Node documentation at
-*  https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html
 *  
 */
 
@@ -39,13 +24,63 @@ public class Model{
 	
 	
 	/**
-	 * 
+	 * @see
 	 */
 	public void Model() {
 		userPlot = new GardenPlot();
 		selectionArr = new ArrayList<AddOn>();
 		shrubArr = new ArrayList<AddOn>();
+		treeArr = new ArrayList<AddOn>();
+		underGrowth = new ArrayList<AddOn>();
+	}//Model()
+	
+	/**
+	 * 
+	 */
+	public void update() {
+		System.out.println("Updates What");
+	}//update
+	
+	/**
+	 * 
+	 */
+	public void createGardenPlotAlts() {
+		System.out.println("Creating alternate gardens for final view");
+	}//createGardenPlotAlts
+	
+	/**
+	 * 
+	 */
+	public void fillSeclectionArr() {
+		System.out.println("Fill after preferences, more desirable in front");
 	}
 	
+	/**
+	 * 
+	 */
+	public void fillSeclectionArr() {
+		System.out.println("Fill after preferences, more desirable in front");
+	}
+	
+	/**
+	 * 
+	 */
+	public void fillShrubArr() {
+		System.out.println("Fill after preferences, more desirable in front");
+	}
+	
+	/**
+	 * 
+	 */
+	public void fillTreeArr() {
+		System.out.println("Fill after preferences, more desirable in front");
+	}
+	
+	/**
+	 * 
+	 */
+	public void fillUnderGrowthArr() {
+		System.out.println("Fill after preferences, more desirable in front");
+	}
 	
 }//Model
