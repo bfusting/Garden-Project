@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
 *  Class Section: 011
@@ -5,8 +7,9 @@
 *  TA: Vineeth Gutta
 *  Due: May 18th, 2020 (5/18/20)
 *
-*  This file contains the contents for lab 8. Lab 8 consists of adding comments 
-*  to above each method then generating a javaDoc for the reader of the program. 
+*  This file contains the contents for the project for CISC275. The project for the 
+*  class is to make gardening software for the township of Arden, DE to help
+*  promote forest edge preservation. 
 *  
 */
 
@@ -20,7 +23,7 @@ public class Model{
 	private ArrayList<AddOn> selectionArr;
 	private ArrayList<AddOn> shrubArr;
 	private ArrayList<AddOn> treeArr;
-	private ArrayList<AddOn> underGrowth;
+	private ArrayList<AddOn> underGrowthArr;
 	
 	
 	/**
@@ -31,7 +34,7 @@ public class Model{
 		selectionArr = new ArrayList<AddOn>();
 		shrubArr = new ArrayList<AddOn>();
 		treeArr = new ArrayList<AddOn>();
-		underGrowth = new ArrayList<AddOn>();
+		underGrowthArr = new ArrayList<AddOn>();
 	}//Model()
 	
 	/**
@@ -55,12 +58,6 @@ public class Model{
 		System.out.println("Fill after preferences, more desirable in front");
 	}
 	
-	/**
-	 * 
-	 */
-	public void fillSeclectionArr() {
-		System.out.println("Fill after preferences, more desirable in front");
-	}
 	
 	/**
 	 * 
@@ -83,4 +80,79 @@ public class Model{
 		System.out.println("Fill after preferences, more desirable in front");
 	}
 	
+	
+	////////////////////////////		GETTERS UNDERNEATH			////////////////////////////
+	
+	/**
+	 * 
+	 */
+	public GardenPlot getUserPlot() {
+		return userPlot;
+	}
+	
+	/**
+	 *
+	 * @return
+	 */
+	public ArrayList<AddOn> getSelectionArr() {
+		return selectionArr;
+	}
+	
+	/**
+	 *
+	 * @return
+	 */
+	public ArrayList<Plant> getShrubArr() {
+		return shrubArr;
+	}
+	
+	/**
+	 *
+	 * @return
+	 */
+	public ArrayList<Plant> getTreeArr() {
+		return treeArr;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public ArrayList<Plant> getUnderGrowth(){
+		return underGrowthArr;
+	}
+	
+	////////////////////////////		SETTERS			////////////////////////////
+	
+	/**
+	 * 
+	 * @param a
+	 */
+	public void setSelectionArr(ArrayList<AddOn> a) {
+		System.out.println("Setter Info Here");
+	}
+	
+	/**
+	 * 
+	 * @param a
+	 */
+	public void setShrubArr(ArrayList<Plant> a) {
+		System.out.println("Setter Info Here");
+	}
+	
+	/**
+	 * 
+	 * @param a
+	 */
+	public void setTreeArr(ArrayList<Plant> a) {
+		System.out.println("Setter Info Here");
+	}
+	
+	/**
+	 * 
+	 * @param a
+	 */
+	public void setUnderGrowthArr(ArrayList<Plant> a) {
+		System.out.println("Setter Info Here");
+	}
 }//Model
