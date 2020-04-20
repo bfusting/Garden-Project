@@ -11,7 +11,28 @@
 *  
 */
 
+/**
+ * 
+ * Seasons for different pictures
+ */
 public enum Seasons{
-	SPRING, SUMMER, AUTUMN, WINTER;
+	/**
+	 * SPRING season
+	 */
+	SPRING, 
+	/**
+	 * SUMMER season
+	 * */
+	  SUMMER,
+	  /**
+	   * AUTUMN season
+	   */
+	  AUTUMN,
+	  /** 
+	   * WINTER season
+	   */
+	  WINTER;
+	 
+	
 }
 
