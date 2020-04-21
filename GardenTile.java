@@ -28,6 +28,17 @@ public class GardenTile implements Comparable<T>,Serializable {
 	private AddOn addOn = null;
 	
 	/**
+	 * 
+	 */
+	public GardenTile() {
+		isActive = true;
+		isEmpty = true;
+		soilType = "";
+		waterLevel = 0;
+		sunLightLevel = 0;
+	}
+	
+	/**
 	 * Removes the AddOn that occupies the GardenTile
 	 * <p>
 	 */
