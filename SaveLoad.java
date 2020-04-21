@@ -4,15 +4,30 @@ import javafx.stage.Stage;
 
 public class SaveLoad extends View {
 	FileChooser fileChooser;
+	Stage SaveLoadStage;
+	Scene SaveLoadScene;
 	
 	/**
 	 * 
 	 * @param theStage
 	 */
-	public SaveLoad(Stage theStage) {
-		primaryStage= theStage;
-		
+	public SaveLoad() {
+		SaveLoadStage = new Stage();
 		fileChooser = new FileChooser();
+	}
+	
+	/**
+	 * 
+	 */
+	public void showSaveWindow() {
+		
+	}
+	
+	/**
+	 * 
+	 */
+	public void showLoadWindow() {
+		
 	}
 	
 	
