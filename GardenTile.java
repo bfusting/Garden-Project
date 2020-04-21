@@ -1,6 +1,8 @@
 import java.io.Serializable;
 
 public class GardenTile implements Comparable<T>,Serializable {
+	
+	//Don't forget the constructor and getters/setters
 
 	private boolean isActive;
 	private boolean isEmpty;

@@ -47,20 +47,19 @@ public class Controller {
 	
 	/**
 	 * 
-	 * @param stage
-	 */
-	public static void start(Stage stage) {
-		System.out.println("Do Something");
-	}//start
-	
-	/**
-	 * 
 	 * @param event
 	 */
 	public void createNewGarden(MouseEvent event) {
 		System.out.println("NEW GARDEN HAHAHAHAHAH");
 	}//createNewGarden
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public Model getModel() {
+		return model;
+	}
 	/**
 	 * 
 	 * @return
@@ -386,6 +385,20 @@ public class Controller {
 	public EventHandler getViewSeasonsBTN() {
 		return foo;
 	}//getCreateNewGarden
+	
+	/**
+	 * 
+	 */
+	public void saveGarden() {
+		System.out.println("Open fileChooser and Save file");
+	}
+	
+	/**
+	 * 
+	 */
+	public void loadGarden() {
+		System.out.println("Loads using fileChooser");
+	}
 	
 	
 }//Controller
