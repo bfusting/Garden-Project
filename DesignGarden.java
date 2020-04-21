@@ -27,6 +27,7 @@ public class DesignGarden extends View{
 	
 	
 	
+	
 	public void updateSelectionIndex() {
 		
 	}
@@ -40,7 +41,7 @@ public class DesignGarden extends View{
 	}
 	
 //	@Override
-	public void start(Stage stage) {
+	public void showDesignGarden(Stage stage) {
 
 			stage.setTitle("Design Garden");
 			AnchorPane root = new AnchorPane();
