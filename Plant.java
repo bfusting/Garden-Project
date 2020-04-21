@@ -1,4 +1,9 @@
 import java.util.Date;
+/**
+ * 
+ * @author Bradley
+ *
+ */
 
 public class Plant extends AddOn{
 	
@@ -13,6 +18,7 @@ public class Plant extends AddOn{
 	 */
 	int waterNeed;
 	int sunLightNeeded;
+	int locationPref;
 	
 	double plantHeight;
 	/**

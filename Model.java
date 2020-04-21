@@ -22,9 +22,9 @@ public class Model implements Serializable{
 	
 	private GardenPlot userPlot;
 	private ArrayList<AddOn> selectionArr;
-	private ArrayList<AddOn> shrubArr;
-	private ArrayList<AddOn> treeArr;
-	private ArrayList<AddOn> underGrowthArr;
+	private ArrayList<Plant> shrubArr;
+	private ArrayList<Plant> treeArr;
+	private ArrayList<Plant> underGrowthArr;
 	
 	
 	/**
@@ -33,9 +33,9 @@ public class Model implements Serializable{
 	public void Model() {
 		userPlot = new GardenPlot();
 		selectionArr = new ArrayList<AddOn>();
-		shrubArr = new ArrayList<AddOn>();
-		treeArr = new ArrayList<AddOn>();
-		underGrowthArr = new ArrayList<AddOn>();
+		shrubArr = new ArrayList<Plant>();
+		treeArr = new ArrayList<Plant>();
+		underGrowthArr = new ArrayList<Plant>();
 	}//Model()
 	
 	/**
@@ -55,7 +55,7 @@ public class Model implements Serializable{
 	/**
 	 * 
 	 */
-	public void fillSeclectionArr() {
+	public void updateSeclectionArr() {
 		System.out.println("Fill after preferences, more desirable in front");
 	}
 	
@@ -63,21 +63,21 @@ public class Model implements Serializable{
 	/**
 	 * 
 	 */
-	public void fillShrubArr() {
+	public void updateShrubArr() {
 		System.out.println("Fill after preferences, more desirable in front");
 	}
 	
 	/**
 	 * 
 	 */
-	public void fillTreeArr() {
+	public void updateTreeArr() {
 		System.out.println("Fill after preferences, more desirable in front");
 	}
 	
 	/**
 	 * 
 	 */
-	public void fillUnderGrowthArr() {
+	public void updateUnderGrowthArr() {
 		System.out.println("Fill after preferences, more desirable in front");
 	}
 	

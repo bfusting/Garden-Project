@@ -7,5 +7,12 @@
 /RecommendatinosTest.class
 /SeasonView.class
 /SeasonViewTest.class
+/AddOn.class
+/ChooseTemplate.class
+/GardenTile.class
+/Instructions.class
+/MainMenu.class
+/Plant.class
+/SaveLoad.class
+/View.class
 /*.class
-*.class

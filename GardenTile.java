@@ -1,28 +1,46 @@
-
-public class GardenTile implements Comparable<T> {
-
-	boolean isActive;
-	boolean isEmpty;
+import java.io.Serializable;
+/**
+ * 
+ * @author Bradley
+ *
+ */
+public class GardenTile implements Comparable<T>,Serializable {
 	
-	String soilType;
+	//Don't forget the constructor and getters/setters
+
+	private boolean isActive;
+	private boolean isEmpty;
+	
+	private String soilType;
 	
 	/**
 	 * int waterLevel, int sunLightLevel
 	 * 
 	 * on a scale of 1 - 5 the level of water and light on the GardenTile
 	 */
-	int waterLevel;
-	int sunLightLevel;
+	private int waterLevel;
+	private int sunLightLevel;
 	
 	/**
 	 * AddOn addON 
 	 * the AddOn that occupies this GardenTile
 	 */
-	AddOn addOn = null;
+	private AddOn addOn = null;
+	
+	/**
+	 * 
+	 */
+	public GardenTile() {
+		isActive = true;
+		isEmpty = true;
+		soilType = "";
+		waterLevel = 0;
+		sunLightLevel = 0;
+	}
 	
 	/**
 	 * Removes the AddOn that occupies the GardenTile
-	 * 
+	 * <p>
 	 */
 	public void remove() {
 		
@@ -68,6 +86,7 @@ public class GardenTile implements Comparable<T> {
 		
 	}
 	
+
 	public int compareTo(AddOn a) {
 		
 	}
@@ -79,5 +98,21 @@ public class GardenTile implements Comparable<T> {
 	 */
 	public boolean validPlacement(AddOn a) {
 		
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean isActive(){
+		return true;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean isEmpty() {
+		return true;
 	}
 }
