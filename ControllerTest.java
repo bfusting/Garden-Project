@@ -124,8 +124,18 @@ class ControllerTest {
 	}
 
 	@Test
+	/*
+	 * Makes a new instance of a controller, runs the ChooseDesign()
+	 * method on c and checks to see if the userPlot is empty. 
+	 * If the userplot is not empty checks to see if all the array of tiles are not null
+	 */
 	void testChooseDesign() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		c.chooseDesign(null);
+		assertTrue(c.getModel().getUnderGrowth() != null);
+		for(int row=0; row<c.getModel().getUserPlot().getLayout().length; row++) {
+			assertTrue(c.getModel().getUserPlot().getLayout()[row] != null);
+		}
 	}
 
 	@Test
