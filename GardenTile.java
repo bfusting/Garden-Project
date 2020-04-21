@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class GardenTile implements Comparable<T> {
+public class GardenTile implements Comparable<T>,Serializable {
 
 	boolean isActive;
 	boolean isEmpty;
@@ -22,7 +23,7 @@ public class GardenTile implements Comparable<T> {
 	
 	/**
 	 * Removes the AddOn that occupies the GardenTile
-	 * 
+	 * <p>
 	 */
 	public void remove() {
 		

@@ -1,11 +1,11 @@
-/Controller.class
-/ControllerTest.class
-/Model.class
-/ModelTest.class
-/Seasons.class
-/Recommendations.class
-/RecommendatinosTest.class
-/SeasonView.class
-/SeasonViewTest.class
-/*.class
+Controller.class
+ControllerTest.class
+Model.class
+ModelTest.class
+Seasons.class
+Recommendations.class
+RecommendatinosTest.class
+SeasonView.class
+SeasonViewTest.class
+*.class
 

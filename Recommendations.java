@@ -2,14 +2,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
 *  Class Section: foo11
 *  Lab Section: foo31L
 *  TA: Vineeth Gutta
-*  Due: May 18th, 2foo2foo (5/18/2foo)
+*  Due: May 18th, 2foo2foo (5/18/2020)
 *
 *  This file contains the contents for the project for CISC275. The project for the 
 *  class is to make gardening software for the township of Arden, DE to help
@@ -24,12 +28,15 @@ import javafx.scene.image.Image;
  */
 public class Recommendations extends View{
 	private String weRecommendMessage;
+	private Label recommendationMessage;
 	private Image plantImage;
 	private String name;
 	private Date bloomTime;
 	private int light;
 	private int water;
 	private ArrayList<String> animalsFed;
+	private final int HEIGHT = 500;
+	private final int WIDTH = 250;
 	
 	/**
 	 * 
@@ -38,8 +45,11 @@ public class Recommendations extends View{
 	 * @param lightNeed
 	 * @param waterNeed
 	 */
-	public Recommendations(Image i, String givenName, int lightNeed, int waterNeed) {
+	public Recommendations(Image i, String givenName, Date date, int lightNeed, int waterNeed) {
+		weRecommendMessage = "Hello World";
+		recommendationMessage = new Label(weRecommendMessage);
 		plantImage = i;
+		bloomTime = date;
 		name = givenName;
 		light = lightNeed;
 		water = waterNeed;
@@ -50,8 +60,24 @@ public class Recommendations extends View{
 	 * 
 	 * @return
 	 */
+	public String getWeRecommendationMessage() {
+		return "HELLO WORLD";
+	}
+	
+	/**
+	 * 
+	 * @param s
+	 */
+	public void setWeRecommendationMessage(String s) {
+		weRecommendMessage = s;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public Image getPlantImage() {
-		return plantImage;
+		return new Image("Hello World");
 	}
 	
 	/**
@@ -59,7 +85,7 @@ public class Recommendations extends View{
 	 * @return
 	 */
 	public String getName() {
-		return name;
+		return "hi";
 	}
 	
 	/**
@@ -67,7 +93,7 @@ public class Recommendations extends View{
 	 * @return
 	 */
 	public Date getBloomTime() {
-		return bloomTime;
+		return new Date(06,11,2020);
 	}
 	
 	/**
@@ -75,7 +101,7 @@ public class Recommendations extends View{
 	 * @return
 	 */
 	public int getLightReq() {
-		return light;
+		return 0;
 	}
 	
 	/**
@@ -83,7 +109,7 @@ public class Recommendations extends View{
 	 * @return
 	 */
 	public int getWaterReq() {
-		return water;
+		return 0;
 	}
 	
 	/**
@@ -91,6 +117,22 @@ public class Recommendations extends View{
 	 * @return
 	 */
 	public ArrayList<String> getAnimalsFed(){
-		return animalsFed;
+		ArrayList<String> aList = new ArrayList<String>();
+		aList.add("Dog");
+		aList.add("Cat");
+		return aList;
+	}
+	
+	/**
+	 * 
+	 * @param stage
+	 */
+	public void start(Stage stage) {
+    	stage.setTitle("Recommendations");
+    	BorderPane bPane = new BorderPane();
+    	bPane.setCenter(recommendationMessage);
+    	Scene scene = new Scene(bPane, WIDTH, HEIGHT);
+    	stage.setScene(scene);
+        stage.show();
 	}
 }
