@@ -83,17 +83,7 @@ class ControllerTest {
 	}
 
 	@Test
-	void testExit() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	void testGetExit() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testInstructionsShow() {
 		fail("Not yet implemented");
 	}
 
