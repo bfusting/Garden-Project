@@ -1,21 +1,25 @@
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class MainMenu extends View {
-	Button createNewGarden;
-	Button loadGarden;
-	Image backgroundImage;
-	Instructions instructions;
+	private Button createNewGarden;
+	private Button loadGarden;
+	private Image backgroundImage;
+	private Stage mainMenuStage;
+	private Scene mainMenuScene;
+	
 	
 	/**
 	 * 
 	 * @param theStage
 	 */
-	public MainMenu(Stage theStage) {
-		primaryStage = theStage;
+	public MainMenu() {
 		createNewGarden = new Button("Create New Garden");
 		loadGarden = new Button("Load Garden");
+		
+		backgroundImage = new Image("no images");
 	}
 	
 	/**
@@ -23,5 +27,13 @@ public class MainMenu extends View {
 	 */
 	public void templatePopUp() {
 		System.out.println("construct instructions popup");
+	}
+	
+	/**
+	 * 
+	 * @param theStage
+	 */
+	public void showMainMenu(Stage theStage) {
+		
 	}
 }

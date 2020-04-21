@@ -4,9 +4,9 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class Instructions extends View {
-	Label instructions;
-	Scene instructionsScene;
-	Stage instructionsStage;
+	private Label instructions;
+	private Scene instructionsScene;
+	private Stage instructionsStage;
 	private String text;
 	
 	

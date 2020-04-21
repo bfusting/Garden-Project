@@ -1,4 +1,5 @@
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -16,14 +17,13 @@ public class ChooseTemplate extends View {
 	 * 
 	 * @param theStage
 	 */
-	public ChooseTemplate(Stage theStage) {
+	public ChooseTemplate() {
 	
-		primaryStage= theStage;
 		
-		squareTemplate = new ImageView(createImg("no image"));
-		circleTemplate = new ImageView(createImg("no image"));
-		triangleTemplate = new ImageView(createImg("no image"));
-		designYourOwn = new ImageView(createImg("no image"));
+		squareTemplate = new ImageView(new Image("no image"));
+		circleTemplate = new ImageView(new Image("no image"));
+		triangleTemplate = new ImageView(new Image("no image"));
+		designYourOwn = new ImageView(new Image("no image"));
 	}
 	
 	/**
@@ -44,6 +44,13 @@ public class ChooseTemplate extends View {
 	 * 
 	 */
 	public void preferencesPopUp() {
+		
+	}
+	
+	/**
+	 * 
+	 */
+	public void showChooseTemplate() {
 		
 	}
 	
