@@ -47,6 +47,14 @@ public class Controller {
 	
 	/**
 	 * 
+	 * @param theStage
+	 */
+	public void start(Stage theStage) {
+		System.out.println("Set the stage for el Main Menu");
+	}
+	
+	/**
+	 * 
 	 * @param event
 	 */
 	public void createNewGarden(MouseEvent event) {
