@@ -6,9 +6,72 @@ import java.io.Serializable;
  */
 public class GardenTile implements Comparable<T>,Serializable {
 	
+	
+	private int xLoc;
+	private int yLoc;
 	//Don't forget the constructor and getters/setters
 
 	private boolean isActive;
+	public String getSoilType() {
+		return soilType;
+	}
+
+	public void setSoilType(String soilType) {
+		this.soilType = soilType;
+	}
+
+	public int getWaterLevel() {
+		return waterLevel;
+	}
+
+	public void setWaterLevel(int waterLevel) {
+		this.waterLevel = waterLevel;
+	}
+
+	public int getSunLightLevel() {
+		return sunLightLevel;
+	}
+
+	public void setSunLightLevel(int sunLightLevel) {
+		this.sunLightLevel = sunLightLevel;
+	}
+
+	public AddOn getAddOn() {
+		return addOn;
+	}
+
+	public void setAddOn(AddOn addOn) {
+		this.addOn = addOn;
+	}
+
+	public void setIsActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+	
+	public boolean getIsActive() {
+		return this.isActive;
+	}
+
+	public void setEmpty(boolean isEmpty) {
+		this.isEmpty = isEmpty;
+	}
+
+	public int getxLoc() {
+		return xLoc;
+	}
+
+	public void setxLoc(int xLoc) {
+		this.xLoc = xLoc;
+	}
+
+	public int getyLoc() {
+		return yLoc;
+	}
+
+	public void setyLoc(int yLoc) {
+		this.yLoc = yLoc;
+	}
+
 	private boolean isEmpty;
 	
 	private String soilType;
