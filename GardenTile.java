@@ -1,5 +1,9 @@
 import java.io.Serializable;
-
+/**
+ * 
+ * @author Bradley
+ *
+ */
 public class GardenTile implements Comparable<T>,Serializable {
 	
 	//Don't forget the constructor and getters/setters
@@ -71,6 +75,7 @@ public class GardenTile implements Comparable<T>,Serializable {
 		
 	}
 	
+
 	public int compareTo(AddOn a) {
 		
 	}
