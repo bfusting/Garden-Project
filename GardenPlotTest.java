@@ -18,7 +18,7 @@ public class GardenPlotTest {
 	}
 	
 	@Test
-	void testGillEmpty() {
+	void testFillEmpty() {
 		fail("not yet implemented");
 	}
 }

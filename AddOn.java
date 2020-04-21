@@ -24,4 +24,29 @@ public class AddOn{
 		this.tileSize= tS;
 		this.description = d;
 	}
+
+
+	public void setName(String n){
+		this.name = n;
+	}
+	
+	public String getName(){
+		return this.name;
+	}
+
+	public void setTileSize(int ts){
+		this.tileSize = ts;
+	}
+
+	public int getTileSize(){
+		return this.tileSize;
+	}
+	
+	public void setDescription(String d){
+		this.description = d;
+	}
+
+	public String getDescription(){
+		return this.description;
+	}
 }
