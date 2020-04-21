@@ -17,6 +17,16 @@ import javafx.event.EventHandler;
 *  
 */
 
+/**
+ * 
+ * @author Malachi Parks
+ *
+ * Methods which are not tested from the Controller class deal with 
+ * making new windows pop up in view and so forth. Each of those methods
+ * cannot be junit tested since they deal with GUI implementation.
+ * <p>
+ * A test file to test event Handlers from the Controller class
+ */
 class ControllerTest {
 
 	@Test
@@ -83,23 +93,34 @@ class ControllerTest {
 	}
 
 	@Test
+	/*
+	 * Creates new Controller and checks to see if the getExit
+	 * returns type eventHandler
+	 */
 	void testGetExit() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		assertTrue(c.getExit() instanceof EventHandler);
 	}
 
 	@Test
+	/*
+	 * Creates new Controller and checks to see if the getInstructionShow
+	 * returns type eventHandler
+	 */
 	void testGetInstructionShow() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		assertTrue(c.getInstructionShow() instanceof EventHandler);
 	}
 
-	@Test
-	void testBackBTN() {
-		fail("Not yet implemented");
-	}
 
 	@Test
+	/*
+	 * Creates new Controller and checks to see if the getBackBTN
+	 * returns type eventHandler
+	 */
 	void testGetBackBTN() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		assertTrue(c.getBackBTN() instanceof EventHandler);
 	}
 
 	@Test
@@ -108,18 +129,24 @@ class ControllerTest {
 	}
 
 	@Test
+	/*
+	 * Creates new Controller and checks to see if the getChooseDesign
+	 * returns type eventHandler
+	 */
 	void testGetChooseDesign() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		assertTrue(c.getChooseDesign() instanceof EventHandler);
 	}
 
-	@Test
-	void testComboCheckBox() {
-		fail("Not yet implemented");
-	}
 
 	@Test
+	/*
+	 * Creates new Controller and checks to see if the getComboCheckBox
+	 * returns type eventHandler
+	 */
 	void testGetComboCheckBox() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		assertTrue(c.getComboCheckBox() instanceof EventHandler);
 	}
 
 	@Test
@@ -128,8 +155,13 @@ class ControllerTest {
 	}
 
 	@Test
+	/*
+	 * Creates new Controller and checks to see if the getRecommendationsBTN
+	 * returns type eventHandler
+	 */
 	void testGetRecommendationsBTN() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		assertTrue(c.getRecommendationsBTN() instanceof EventHandler);
 	}
 
 	@Test
@@ -138,28 +170,34 @@ class ControllerTest {
 	}
 
 	@Test
+	/*
+	 * Creates new Controller and checks to see if the getChangeSeasonsBTN
+	 * returns type eventHandler
+	 */
 	void testGetChangeSeasonsBTN() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		assertTrue(c.getChangeSeasonsBTN() instanceof EventHandler);
 	}
 
 	@Test
-	void testMainMenuBTN() {
-		fail("Not yet implemented");
-	}
-
-	@Test
+	/*
+	 * Creates new Controller and checks to see if the  getMainMenuBTN
+	 * returns type eventHandler
+	 */
 	void testGetMainMenuBTN() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		assertTrue(c.getMainMenuBTN() instanceof EventHandler);
 	}
+	
 
 	@Test
-	void testChangeTab() {
-		fail("Not yet implemented");
-	}
-
-	@Test
+	/*
+	 * Creates new Controller and checks to see if the getChangeTab
+	 * returns type eventHandler
+	 */
 	void testGetChangeTab() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		assertTrue(c.getChangeTab() instanceof EventHandler);
 	}
 
 	@Test
@@ -168,8 +206,13 @@ class ControllerTest {
 	}
 
 	@Test
+	/*
+	 * Creates new Controller and checks to see if the getStartDrag
+	 * returns type eventHandler
+	 */
 	void testGetStartDrag() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		assertTrue(c.getStartDrag() instanceof EventHandler);
 	}
 
 	@Test
@@ -178,8 +221,13 @@ class ControllerTest {
 	}
 
 	@Test
+	/*
+	 * Creates new Controller and checks to see if the getDetectDrag
+	 * returns type eventHandler
+	 */
 	void testGetDetectDrag() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		assertTrue(c.getDetectDrag() instanceof EventHandler);
 	}
 
 	@Test
@@ -188,8 +236,13 @@ class ControllerTest {
 	}
 
 	@Test
+	/*
+	 * Creates new Controller and checks to see if the getOkayToDrop
+	 * returns type eventHandler
+	 */
 	void testGetOkayToDrop() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		assertTrue(c.getOkayToDrop() instanceof EventHandler);
 	}
 
 	@Test
@@ -198,48 +251,55 @@ class ControllerTest {
 	}
 
 	@Test
+	/*
+	 * Creates new Controller and checks to see if the getDetectDragDrop
+	 * returns type eventHandler
+	 */
 	void testGetDetectDragDrop() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		assertTrue(c.getDetectDragDrop() instanceof EventHandler);
 	}
 
 	@Test
-	void testScrollPage() {
-		fail("Not yet implemented");
-	}
-
-	@Test
+	/*
+	 * Creates new Controller and checks to see if the getScrollPage
+	 * returns type eventHandler
+	 */
 	void testGetScrollPage() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		assertTrue(c.getScrollPage() instanceof EventHandler);
 	}
 
-	@Test
-	void testEditBTN() {
-		fail("Not yet implemented");
-	}
 
 	@Test
+	/*
+	 * Creates new Controller and checks to see if the getEditBTN
+	 * returns type eventHandler
+	 */
 	void testGetEditBTN() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		assertTrue(c.getEditBTN() instanceof EventHandler);
 	}
 
 	@Test
-	void testSaveBTN() {
-		fail("Not yet implemented");
-	}
-
-	@Test
+	/*
+	 * Creates new Controller and checks to see if the getSaveBTN
+	 * returns type eventHandler
+	 */
 	void testGetSaveBTN() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		assertTrue(c.getSaveBTN() instanceof EventHandler);
 	}
+	
 
 	@Test
-	void testInfoTipsBTN() {
-		fail("Not yet implemented");
-	}
-
-	@Test
+	/*
+	 * Creates new Controller and checks to see if the getInfoTipsBTN
+	 * returns type eventHandler
+	 */
 	void testGetInfoTipsBTN() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		assertTrue(c.getInfoTipsBTN() instanceof EventHandler);
 	}
 
 	@Test
@@ -248,8 +308,13 @@ class ControllerTest {
 	}
 
 	@Test
+	/*
+	 * Creates new Controller and checks to see if the getViewSeasonsBTN
+	 * returns type eventHandler
+	 */
 	void testGetViewSeasonsBTN() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		assertTrue(c.getViewSeasonsBTN() instanceof EventHandler);
 	}
 
 	@Test
