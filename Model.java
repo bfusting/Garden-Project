@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class Model implements Serializable{
 	
 	private GardenPlot userPlot;
-	private ArrayList<Plant> selectionArr;
+	private ArrayList<AddOn> selectionArr;
 	private ArrayList<Plant> shrubArr;
 	private ArrayList<Plant> treeArr;
 	private ArrayList<Plant> underGrowthArr;
@@ -95,7 +95,7 @@ public class Model implements Serializable{
 	 *
 	 * @return
 	 */
-	public ArrayList<Plant> getSelectionArr() {
+	public ArrayList<AddOn> getSelectionArr() {
 		return selectionArr;
 	}
 	
