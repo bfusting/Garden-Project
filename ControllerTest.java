@@ -3,6 +3,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import javafx.event.EventHandler;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
@@ -175,8 +177,16 @@ class ControllerTest {
 	}
 
 	@Test
+	/*
+	 * Creates a new controller, a new mouseEvent and then uses changeSeasons.
+	 * Should change the new enumeration value to SUMMER since default starting is 
+	 * SPRING
+	 */
 	void testChangeSeasonsBTN() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		MouseEvent event = new MouseEvent(null, 0, 0, 0, 0, null, 0, false, false, false, false, false, false, false, false, false, false, false, false, null);
+		c.changeSeasonsBTN(event);
+		assertEquals(c.getModel().getUserPlot().getSeason(), "SUMMER");
 	}
 
 	@Test
@@ -211,8 +221,19 @@ class ControllerTest {
 	}
 
 	@Test
+	/*
+	 * Creates a new controller, new plant instance with image and all,
+	 * makes a ImageView tied to that image and sees if the Node where the 
+	 * event originated copied the img into the dragboard
+	 */
 	void testStartDrag() {
-		fail("Not yet implemented");
+		/*
+		Controller c = new Controller();
+		Plant p = 
+		ImageView tempImg = new ImageView();
+		tempImg.setImage();
+		 */
+		fail("Not written yet");
 	}
 
 	@Test
