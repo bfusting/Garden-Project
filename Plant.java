@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.Date;
 /**
  * 
@@ -5,7 +6,7 @@ import java.util.Date;
  *
  */
 
-public class Plant extends AddOn{
+public class Plant extends AddOn implements Serializable{
 	
 	Date bloomTime = new Date();
 	

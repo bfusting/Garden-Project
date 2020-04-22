@@ -1,10 +1,19 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import org.junit.jupiter.api.Test;
 
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.TilePane;
 
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
@@ -229,7 +238,7 @@ class ControllerTest {
 	void testStartDrag() {
 		/*
 		Controller c = new Controller();
-		Plant p = 
+		Plant p = new Plant();
 		ImageView tempImg = new ImageView();
 		tempImg.setImage();
 		 */
@@ -247,8 +256,16 @@ class ControllerTest {
 	}
 
 	@Test
+	/*
+	 * Create new controller and node. Set the drag event controller and then 
+	 * check the coordinates to see after the drag event if the imageView has moved
+	 */
 	void testDetectDrag() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		ImageView n = new ImageView();
+		n.setOnDragDetected(c.getDetectDrag());
+		assertEquals(n.getX(),125);
+		assertEquals(n.getY(),50);
 	}
 
 	@Test
@@ -262,8 +279,18 @@ class ControllerTest {
 	}
 
 	@Test
+	/*
+	 * Makes a new controller and node and checks if the drag event is over it
+	 * If so the background of the gridPane tile should be green. Checks to see if the color
+	 * is green. Else the background Color is grey
+	 */
 	void testOkayToDrop() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		TilePane tpane = new TilePane();
+		FlowPane fpane = new FlowPane();
+		fpane.setOnDragEntered(c.getOkayToDrop());
+		assertEquals(fpane.getStyle(), "-fx-background-color: GREEN");
+		assertTrue(!fpane.getStyle().equals("-fx-background-color:GREY"));
 	}
 
 	@Test
@@ -277,8 +304,16 @@ class ControllerTest {
 	}
 
 	@Test
+	/*
+	 * Creates new Controller and new view, then checks if the model at the 
+	 * first row and column is not empty, if it's not empty it passes the test
+	 * Emulation drop into 0,0
+	 */
 	void testDetectDragDrop() {
-		fail("Not yet implemented");
+		Controller c = new Controller();
+		ImageView i = new ImageView();
+		i.setOnDragDropped(c.getDetectDragDrop());
+		assertTrue(!c.getModel().getUserPlot().getLayout()[0][0].isEmpty());
 	}
 
 	@Test
@@ -334,11 +369,6 @@ class ControllerTest {
 	}
 
 	@Test
-	void testViewSeasonsBTN() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	/*
 	 * Creates new Controller and checks to see if the getViewSeasonsBTN
 	 * returns type eventHandler
@@ -349,9 +379,44 @@ class ControllerTest {
 	}
 
 	@Test
+	/*
+	 * Creating a new Controller and setting the first tile up with a new GardenTile
+	 * and then serializing them to see if it writes out to file and if the objects 
+	 * within the file stay linked
+	 */
 	void testSaveGarden() {
-		fail("Not yet implemented");
-	}
+		try
+			{
+			Controller c = new Controller();
+			c.getModel().getUserPlot().getLayout()[0][0] = new GardenTile();
+		    FileOutputStream fos = new FileOutputStream("tempdata.ser");
+		    ObjectOutputStream oos = new ObjectOutputStream(fos);
+		    oos.writeObject(c);
+		    oos.close();
+		        }
+		        catch (Exception ex)
+		        {
+		            fail("Exception thrown during test: " + ex.toString());
+		        }
+
+		        try
+		        {
+		            FileInputStream fis = new FileInputStream("tempdata.ser");
+		            ObjectInputStream ois = new ObjectInputStream(fis);
+		            Controller c = (Controller) ois.readObject();
+		            ois.close();
+
+		            assertTrue(c.getModel().getUserPlot().getLayout()[0][0].isActive());
+		            assertTrue(!c.getModel().equals(null));
+
+		            // Clean up the file
+		            new File("tempdata.ser").delete();
+		        }
+		        catch (Exception ex)
+		        {
+		            fail("Exception thrown during test: " + ex.toString());
+		        }
+		    }
 
 	@Test
 	void testLoadGarden() {
