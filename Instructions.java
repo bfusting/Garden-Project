@@ -19,6 +19,10 @@ import javafx.stage.Stage;
 /**
  * 
  * @author takiyah
+ * 
+ * View that handles the creation and presentation of the instructions screen, where the user can
+ * read a detailed explanation of the program controls from the main menu or view them in a
+ * separate window while editing. 
  *
  */
 
@@ -43,9 +47,22 @@ public class Instructions extends View {
 	
 	/**
 	 * 
-	 * @return text
+	 * @return text the instructions detailing how to use this program
 	 */
 	public String getText() {
 		return text;
 	}
+	
+	/**
+	 * 
+	 */
+	public void showInstructions(Stage theStage) {
+		
+	}
+	
+	public Stage getInstructionsStage() {
+		return instructionsStage;
+	}
+	
+	
 }
