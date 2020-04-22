@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -20,15 +21,15 @@ import javafx.stage.Stage;
 
 
 
-public class View {
-	Button instructionsButton;
-	Button exitButton;
-	Button backButton;
-	Button mainMenu;
-	int gardenLength;
-	int gardenWidth;
-	Stage primaryStage;
-	Scene primaryScene;
+public class View  {
+	private Button instructionsButton;
+	private Button exitButton;
+	private Button backButton;
+	private Button mainMenu;
+	private int gardenLength;
+	private int gardenWidth;
+	private Stage primaryStage;
+	private Scene primaryScene;
 	
 	
 	public View() {
@@ -46,6 +47,38 @@ public class View {
 		this.primaryStage = theStage;
 	}
 	
+	
+	
+	/**
+	 * 
+	 */
+	public void exit() {
+		System.out.println("create window to ask user to save before exiting");
+	}
+	
+	/**
+	 * 
+	 */
+	public void close() {
+		
+	}
+	
+	/**
+	 * 
+	 */
+	public void returnToMain() {
+		System.out.println("switch primary scene back to main menu");
+	}
+	
+	/**
+	 * 
+	 */
+	public void update() {
+		
+	}
+	
+	//GETTERS AND SETTERS
+	
 	/**
 	 * 
 	 */
@@ -61,45 +94,5 @@ public class View {
 		gardenWidth = width;
 	}
 	
-	/**
-	 * 
-	 */
-	public void showInstruction() {
-		System.out.println("show instructions in a separate window");
-	}
 	
-	/**
-	 * 
-	 */
-	public void saveGarden() {
-		System.out.println("create window for user to enter file info and select location");
-	}
-	
-	/**
-	 * 
-	 * @param plot
-	 */
-	public void runLoadGarden(GardenPlot plot) {
-		System.out.println("draw garden with attributes of existing plot");
-	}
-	
-	/**
-	 * 
-	 */
-	public void exit() {
-		System.out.println("create window to ask user to save before exiting");
-	}
-	/**
-	 * 
-	 */
-	public void returnToMain() {
-		System.out.println("switch primary scene back to main menu");
-	}
-	
-	/*
-	 * 
-	 */
-	public Image createImg(String url) {
-		return null;
-	}
 }
