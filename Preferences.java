@@ -1,7 +1,6 @@
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
-<<<<<<< HEAD
-=======
+
 
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
@@ -17,7 +16,6 @@ import javafx.stage.Stage;
 */
 
 
->>>>>>> 9a48492c29f42fdf9aeedc4924220edede64cb83
 
 public class Preferences extends View{
 	private ComboBox<String> bloomTime;

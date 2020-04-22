@@ -19,6 +19,10 @@ import javafx.stage.Stage;
 /**
  * 
  * @author takiyah
+ * 
+ * View that handles the creation and presentation of the main menu screen. Contains 
+ * the visual components for the main menu window that will be made visible at the start
+ * of the program and whenever the user returns to the main menu.
  *
  */
 
@@ -29,13 +33,9 @@ public class MainMenu extends View {
 	private Stage mainMenuStage;
 	private Scene mainMenuScene;
 	
-	/**
-	 * 
-	 */
 	
 	/**
 	 * 
-	 * @param theStage
 	 */
 	public MainMenu() {
 		createNewGarden = new Button("Create New Garden");
@@ -44,12 +44,6 @@ public class MainMenu extends View {
 		backgroundImage = new Image("no images");
 	}
 	
-	/**
-	 * 
-	 */
-	public void templatePopUp() {
-		System.out.println("construct instructions popup");
-	}
 	
 	/**
 	 * 
