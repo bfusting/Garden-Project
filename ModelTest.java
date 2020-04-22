@@ -1,5 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 /*
@@ -15,86 +17,109 @@ import org.junit.jupiter.api.Test;
 *  
 */
 
+/**
+ * 
+ * @author Malachi Parks
+ * 
+ * Used to test the Model class from the constructor to updating the arrays of trees
+ * and plant arrays. Getters and Setters are not tested in this file yet but 
+ * will be in next version
+ *
+ */
 class ModelTest {
 
 	@Test
 	void testModel() {
-		fail("Not yet implemented");
+		Model m = new Model();
+		assertTrue(m instanceof Model);
 	}
 
 	@Test
-	void testUpdate() {
-		fail("Not yet implemented");
-	}
-
-	@Test
+	/*
+	 * When called with event handler should just create a new gardenPlot
+	 * thus just generates a new GardenPlot, need to rewrite equals method
+	 * to see what makes a Model equal
+	 */
 	void testCreateGardenPlotAlts() {
-		fail("Not yet implemented");
+		Model m1 = new Model();
+		Model m2 = new Model();
+		m1.equals(m2);
 	}
 
 	@Test
+	/*
+	 * Should update the index of the selection arrayList and only show the current
+	 * 6 items in the array
+	 */
 	void testUpdateSeclectionArr() {
-		fail("Not yet implemented");
+		Model m = new Model();
+		//checking if array is empty
+		assertTrue(m.getSelectionArr().isEmpty());
+		
+		// It calls the AddOn default constructor no idea why fix in next push
+		AddOn a = new AddOn();
+		ArrayList<AddOn> newSelection = new ArrayList<AddOn>();
+		newSelection.add(a);
+		
+		// Calling method then comparing to newSelection ArrayList
+		m.updateSeclectionArr();
+		assertTrue(m.getSelectionArr().equals(newSelection));
 	}
 
 	@Test
+	/*
+	 * Should update the index of the Shrub arrayList and only show the current
+	 * 6 items in the array
+	 */
 	void testUpdateShrubArr() {
-		fail("Not yet implemented");
+		Model m = new Model();
+		//checking if array is empty
+		assertTrue(m.getSelectionArr().isEmpty());
+		
+		// It calls the AddOn default constructor no idea why fix in next push
+		Plant p = new Plant();
+		ArrayList<Plant> newShrub = new ArrayList<Plant>();
+		newShrub.add(p);
+		
+		// Calling method then comparing to newSelection ArrayList
+		m.updateSeclectionArr();
+		assertTrue(m.getSelectionArr().equals(newShrub));
 	}
 
 	@Test
+	/*
+	 * Should update the index of the Tree arrayList and only show the current
+	 * 6 items in the array
+	 */
 	void testUpdateTreeArr() {
-		fail("Not yet implemented");
+		Model m = new Model();
+		//checking if array is empty
+		assertTrue(m.getSelectionArr().isEmpty());
+		
+		// It calls the AddOn default constructor no idea why fix in next push
+		Plant p = new Plant();
+		ArrayList<Plant> newTree = new ArrayList<Plant>();
+		newTree.add(p);
+		
+		// Calling method then comparing to newSelection ArrayList
+		m.updateSeclectionArr();
+		assertTrue(m.getSelectionArr().equals(newTree));
 	}
 
 	@Test
 	void testUpdateUnderGrowthArr() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetUserPlot() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetSelectionArr() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetShrubArr() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetTreeArr() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetUnderGrowth() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSetSelectionArr() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSetShrubArr() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSetTreeArr() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSetUnderGrowthArr() {
-		fail("Not yet implemented");
+		Model m = new Model();
+		//checking if array is empty
+		assertTrue(m.getSelectionArr().isEmpty());
+		
+		// It calls the AddOn default constructor no idea why fix in next push
+		Plant p = new Plant();
+		ArrayList<Plant> newUnderGrowth = new ArrayList<Plant>();
+		newUnderGrowth.add(p);
+		
+		// Calling method then comparing to newSelection ArrayList
+		m.updateSeclectionArr();
+		assertTrue(m.getSelectionArr().equals(newUnderGrowth));
 	}
 
 }

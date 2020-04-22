@@ -41,13 +41,6 @@ public class Model implements Serializable{
 	/**
 	 * 
 	 */
-	public void update() {
-		System.out.println("Updates What");
-	}//update
-	
-	/**
-	 * 
-	 */
 	public void createGardenPlotAlts() {
 		System.out.println("Creating alternate gardens for final view");
 	}//createGardenPlotAlts
@@ -155,5 +148,17 @@ public class Model implements Serializable{
 	 */
 	public void setUnderGrowthArr(ArrayList<Plant> a) {
 		System.out.println("Setter Info Here");
+	}
+	
+	/**
+	 * 
+	 * @param Object
+	 */
+	public boolean equals(Object o) {
+		if(o != this && o != null) {
+			Model m = (Model)o;
+			return m.selectionArr.equals(this.selectionArr);
+		}
+		return false;
 	}
 }//Model

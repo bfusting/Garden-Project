@@ -1,5 +1,9 @@
+import java.util.ArrayList;
+import java.util.Date;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 public class InfoTips extends View{
 	private Scene contentHolder;

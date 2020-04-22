@@ -20,7 +20,11 @@ import javafx.stage.Stage;
 /**
  * 
  * @author Malachi Parks
- *
+ * <p>
+ * Controller class handles the bulk of the program and communicates between the Model
+ * and the View of the program and their respective subclasses. Most of the methods
+ * are event handlers and getters to set the event handlers for the items in View and 
+ * its subclasses.
  */
 public class Controller {
 	private Model model;
@@ -29,7 +33,7 @@ public class Controller {
 	EventHandler foo;
 	
 	/**
-	 * 
+	 * Constructor for the Controller class
 	 */
 	public Controller() {
 		model = new Model();

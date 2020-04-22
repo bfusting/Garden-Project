@@ -1,4 +1,5 @@
 import javafx.scene.control.ComboBox;
+import javafx.stage.Stage;
 
 public class Preferences extends View{
 	private ComboBox<String> bloomTime;
