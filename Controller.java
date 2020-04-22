@@ -26,7 +26,7 @@ import javafx.stage.Stage;
  * are event handlers and getters to set the event handlers for the items in View and 
  * its subclasses.
  */
-public class Controller {
+public class Controller{
 	private Model model;
 	private View view;
 	//used to compile stub code will delete later
