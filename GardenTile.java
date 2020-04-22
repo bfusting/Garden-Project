@@ -4,7 +4,7 @@ import java.io.Serializable;
  * @author Bradley
  *
  */
-public class GardenTile implements Comparable<T>,Serializable {
+public class GardenTile implements Comparable<AddOn>,Serializable {
 	
 	
 	private int xLoc;
@@ -66,7 +66,7 @@ public class GardenTile implements Comparable<T>,Serializable {
 	 * Returns the description of the AddOn in the Tile
 	 */
 	public String getHighlightedTileInfo() {
-		
+		return null;
 	}
 	
 	/**\
@@ -75,7 +75,7 @@ public class GardenTile implements Comparable<T>,Serializable {
 	 * Returns an array of Plants that should be used around this GardenTile
 	 */
 	public Plant[] getRecommendations() {
-		
+		return null;
 	}
 	
 	/**
@@ -84,16 +84,16 @@ public class GardenTile implements Comparable<T>,Serializable {
 	 * Returns an array of AddOns that are in the surrounding GardenTiles
 	 */
 	public AddOn[] getSurroundingInfo() {
-		
+		return null;
 	}
 	
 	public boolean equals(AddOn a) {
-		
+		return false;
 	}
 	
 
 	public int compareTo(AddOn a) {
-		
+		return 0;
 	}
 	
 	/**
@@ -102,7 +102,7 @@ public class GardenTile implements Comparable<T>,Serializable {
 	 * @return
 	 */
 	public boolean validPlacement(AddOn a) {
-		
+		return false;
 	}
 	
 	/**

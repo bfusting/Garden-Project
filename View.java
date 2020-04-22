@@ -23,8 +23,8 @@ import javafx.stage.Stage;
  * 
  * @author takiyah
  *
- * General view that handles the visual components of navigating through and exiting from
- * the program. Contains the Buttons that are used on multiple screens and manages the primary
+ * General view that handles the visual components of the program. Contains 
+ * the Buttons that are used on multiple screens and manages the primary
  * screen that the user is viewing at any point as well as secondary windows.
  */
 
@@ -79,18 +79,7 @@ public class View  {
 		System.out.println("close application (meaning close all open windows)");
 	}
 	
-	/**
-	 * Switches the window that the user is currently viewing. This will set the
-	 * primary scene to the scene passed in and update the primary stage accordingly.
-	 * 
-	 * @param scene the scene to be shown to the user
-	 * 
-	 * @see View#primaryScene
-	 * 
-	 */
-	public void changeWindow(Scene scene) {
-		System.out.println("switch primary scene back to main menu");
-	}
+	
 	
 		
 	

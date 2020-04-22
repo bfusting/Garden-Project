@@ -34,7 +34,9 @@ public class Instructions extends View {
 	
 	
 	/**
-	 * 
+	 * Constructor for the Instructions class. Initializes the instructions and the label holding them,
+	 * and creates a new Scene to present the screen as well as a new stage so the instructions can be
+	 * viewed simultaneously as the main screen.
 	 */
 	public Instructions() {
 		text = "instructions undefined";
@@ -46,7 +48,7 @@ public class Instructions extends View {
 	}
 	
 	/**
-	 * 
+	 * Gets the String text detailing how to use the program
 	 * @return text the instructions detailing how to use this program
 	 */
 	public String getText() {
@@ -54,15 +56,17 @@ public class Instructions extends View {
 	}
 	
 	/**
+	 * Makes the instructions screen visible to the user. Will appear on the main screen or
+	 * in a separate smaller window depending on whether the primary stage or a separate stage
+	 * has been passed in.
 	 * 
+	 * @param theStage the Stage that will be set to instructionsStage and shown to the user
 	 */
 	public void showInstructions(Stage theStage) {
 		
 	}
 	
-	public Stage getInstructionsStage() {
-		return instructionsStage;
-	}
+	
 	
 	
 }

@@ -20,6 +20,7 @@ import javafx.stage.Stage;
  * 
  * @author takiyah
  *
+ * 
  */
 
 public class ChooseTemplate extends View {
@@ -34,7 +35,7 @@ public class ChooseTemplate extends View {
 	
 	/**
 	 * 
-	 * @param theStage
+	 * 
 	 */
 	public ChooseTemplate() {
 	
@@ -43,27 +44,6 @@ public class ChooseTemplate extends View {
 		circleTemplate = new ImageView(new Image("no image"));
 		triangleTemplate = new ImageView(new Image("no image"));
 		designYourOwn = new ImageView(new Image("no image"));
-	}
-	
-	/**
-	 * 
-	 */
-	public void showDesignWindow() {
-		
-	}
-	
-	/*
-	 * 
-	 */
-	public void showGardenPlot() {
-		
-	}
-	
-	/**
-	 * 
-	 */
-	public void preferencesPopUp() {
-		
 	}
 	
 	/**
