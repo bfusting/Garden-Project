@@ -1,9 +1,5 @@
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
-<<<<<<< HEAD
-=======
-
->>>>>>> 9469459a463319b9ddbd70b8faaf17fd566ca9d0
 
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
@@ -18,11 +14,6 @@ import javafx.stage.Stage;
 *  
 */
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 9469459a463319b9ddbd70b8faaf17fd566ca9d0
 public class Preferences extends View{
 	private ComboBox<String> bloomTime;
 	private ComboBox<String> waterReq;

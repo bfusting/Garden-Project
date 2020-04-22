@@ -1,11 +1,6 @@
 import java.util.ArrayList;
-<<<<<<< HEAD
-
 import java.util.Date;
-
-=======
 import java.util.Date;
->>>>>>> 9469459a463319b9ddbd70b8faaf17fd566ca9d0
 import java.util.*;
 
 
