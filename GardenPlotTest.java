@@ -8,7 +8,11 @@ import org.junit.jupiter.api.Test;
  */
 public class GardenPlotTest {
 
+	
 	@Test
+	/**
+	 * tests to see if the tile selected is set to active when selectActiveGardenTiles() is called
+	 */
 	void testSelectActiveGardenTiles() {
 		GardenPlot gP = new GardenPlot();
 		GardenTile gT = new GardenTile();
@@ -20,6 +24,11 @@ public class GardenPlotTest {
 	}
 	
 	@Test
+	/**
+	 * tests to see if isSurroundingEmpty() returns true if the surrounding is empty and false when its not empty
+	 * @param x
+	 * @param y
+	 */
 	void testIsSurroundingEmpty(int x, int y) {
 		GardenPlot gP = new GardenPlot();
 		GardenTile gT = new GardenTile();
@@ -42,6 +51,9 @@ public class GardenPlotTest {
 	}
 	
 	@Test
+	/**
+	 * Tests to see if empty gardenTiles get filled
+	 */
 	void testFillEmpty() {
 		GardenPlot gP = new GardenPlot();
 		GardenTile gT = new GardenTile();

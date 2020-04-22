@@ -26,15 +26,14 @@ public class GardenPlot {
 	
 	Seasons season;
 	
-	public void GardenPlot() {
-		
-	}
+
 	
 	/**
+	 * Constructor that sets shape, length and width
 	 * 
-	 * @param s
-	 * @param l
-	 * @param w
+	 * @param s shape
+	 * @param l length
+	 * @param w width
 	 */
 	public void GardenPlot(String s, int l, int w) { 
 		this.shape = s;
@@ -46,13 +45,14 @@ public class GardenPlot {
 	/**
 	 * 
 	 * @return
+	 * returns shape
 	 */
 	public String getShape() {
 		return shape;
 	}
 	
 	/**
-	 * 
+	 * sets shape
 	 * @param shape
 	 */
 	public void setShape(String shape) {
@@ -62,6 +62,7 @@ public class GardenPlot {
 	/**
 	 * 
 	 * @return
+	 * returns layout
 	 */
 	public GardenTile[][] getLayout() {
 		return layout;
@@ -69,7 +70,7 @@ public class GardenPlot {
 
 	
 	/**
-	 * 
+	 * sets layout
 	 * @param layout
 	 */
 	public void setLayout(GardenTile[][] layout) {
@@ -79,13 +80,14 @@ public class GardenPlot {
 	/**
 	 * 
 	 * @return
+	 * returns length
 	 */
 	public int getLength() {
 		return length;
 	}
 
 	/**
-	 * 
+	 * sets length
 	 * @param length
 	 */
 	public void setLength(int length) {
@@ -95,13 +97,14 @@ public class GardenPlot {
 	/**
 	 * 
 	 * @return
+	 * returns width
 	 */
 	public int getWidth() {
 		return width;
 	}
 
 	/**
-	 * 
+	 * sets width
 	 * @param width
 	 */
 	public void setWidth(int width) {
@@ -111,13 +114,14 @@ public class GardenPlot {
 	/**
 	 * 
 	 * @return
+	 * returns currentPlants
 	 */
 	public HashSet<Plant> getCurrentPlants() {
 		return currentPlants;
 	}
 
 	/**
-	 * 
+	 * sets currentPlants
 	 * @param currentPlants
 	 */
 	public void setCurrentPlants(HashSet<Plant> currentPlants) {
@@ -127,13 +131,14 @@ public class GardenPlot {
 	/**
 	 * 
 	 * @return
+	 * returns season
 	 */
 	public Seasons getSeason() {
 		return season;
 	}
 
 	/**
-	 * 
+	 * sets season
 	 * @param season
 	 */
 	public void setSeason(Seasons season) {
@@ -141,13 +146,14 @@ public class GardenPlot {
 	}
 		
 	/**
-	 * 
+	 * sets GardenTile attribute isActive to true
 	 */
 	public void selectActiveGardenTiles() {
 		
 	}
 	
 	/**
+	 * Checks if surrounding tiles are empty
 	 * 
 	 * @param x
 	 * @param y
@@ -158,7 +164,7 @@ public class GardenPlot {
 	}
 	
 	/**
-	 * 
+	 * Fills empty tiles in the layout with AddOns
 	 */
 	public void fillEmpty() {
 		

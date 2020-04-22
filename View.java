@@ -23,6 +23,9 @@ import javafx.stage.Stage;
  * 
  * @author takiyah
  *
+ * General view that handles the visual components of navigating through and exiting from
+ * the program. Contains the Buttons that are used on multiple screens and manages the primary
+ * screen that the user is viewing at any point as well as secondary windows.
  */
 
 
@@ -32,76 +35,63 @@ public class View  {
 	private Button saveButton;
 	private Button backButton;
 	private Button mainMenu;
-	private int gardenLength;
-	private int gardenWidth;
 	private Stage primaryStage;
 	private Scene primaryScene;
 	private Stage exitStage;
 	private Scene exitScene;
 	
-	
+	/**
+	 * Empty constructor for the View to be overridden by subclass views
+	 */
 	public View() {
 	}
 	
+	/**
+	 * Constructor for the View. Creates the instructions, exit, back and main menu buttons
+	 * and sets the primary stage to the stage created at the start of the program.
+	 * 
+	 * @param theStage the Stage created automatically at the start of the program
+	 */
 	public View(Stage theStage) {
 		instructionsButton = new Button("Instructions");
 		exitButton = new Button("Exit");
 		backButton = new Button("Back");
 		mainMenu = new Button("Main Menu");
-		gardenLength = -1;
-		gardenWidth = -1;
-		
-		
-		
+
+			
 		this.primaryStage = theStage;
 	}
 	
 	
-	
 	/**
+	 * Creates the window to ask the user if they would like to save before exiting.
 	 * 
+	 * @see View#exitStage
 	 */
 	public void exit() {
 		System.out.println("create window to ask user to save before exiting");
 	}
 	
 	/**
-	 * 
+	 * Closes all open windows after the user saves or quits without saving.
 	 */
 	public void close() {
-		
+		System.out.println("close application (meaning close all open windows)");
 	}
 	
 	/**
+	 * Switches the window that the user is currently viewing. This will set the
+	 * primary scene to the scene passed in and update the primary stage accordingly.
+	 * 
+	 * @param scene the scene to be shown to the user
+	 * 
+	 * @see View#primaryScene
 	 * 
 	 */
-	public void returnToMain() {
+	public void changeWindow(Scene scene) {
 		System.out.println("switch primary scene back to main menu");
 	}
 	
-	/**
-	 * 
-	 */
-	public void update() {
 		
-	}
-	
-	//GETTERS AND SETTERS
-	
-	/**
-	 * 
-	 */
-	public void setGardenLength(int length) {
-		gardenLength = length;
-	}
-	
-	/**
-	 * 
-	 * @param width
-	 */
-	public void setGardenWidth(int width) {
-		gardenWidth = width;
-	}
-	
 	
 }

@@ -1,5 +1,23 @@
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
+<<<<<<< HEAD
+=======
+
+/*
+*  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
+*  Class Section: 011
+*  Lab Section: 031L
+*  TA: Vineeth Gutta
+*  Due: May 18th, 2020 (5/18/20)
+*
+*  This file contains the contents for the project for CISC275. The project for the 
+*  class is to make gardening software for the township of Arden, DE to help
+*  promote forest edge preservation. 
+*  
+*/
+
+
+>>>>>>> 9a48492c29f42fdf9aeedc4924220edede64cb83
 
 public class Preferences extends View{
 	private ComboBox<String> bloomTime;
@@ -14,6 +32,9 @@ public class Preferences extends View{
 		
 	}
 	
+	/*
+	 *  Gets the ComboBox for 
+	 */
 	public ComboBox<String> getBloomTime() {
 		return bloomTime;
 	}
