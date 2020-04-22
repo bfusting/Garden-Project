@@ -1,5 +1,6 @@
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 public class FinalView extends View{
 	private Button edit;
