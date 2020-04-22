@@ -19,17 +19,25 @@ import javafx.stage.Stage;
 *  
 */
 
+/**
+ * 
+ * @author takiyah
+ *
+ */
 
 
 public class View  {
 	private Button instructionsButton;
 	private Button exitButton;
+	private Button saveButton;
 	private Button backButton;
 	private Button mainMenu;
 	private int gardenLength;
 	private int gardenWidth;
 	private Stage primaryStage;
 	private Scene primaryScene;
+	private Stage exitStage;
+	private Scene exitScene;
 	
 	
 	public View() {
@@ -42,6 +50,7 @@ public class View  {
 		mainMenu = new Button("Main Menu");
 		gardenLength = -1;
 		gardenWidth = -1;
+		
 		
 		
 		this.primaryStage = theStage;
