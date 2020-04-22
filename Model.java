@@ -15,7 +15,11 @@ import java.util.ArrayList;
 */
 
 /**
+ * @author Malachi Parks
  * 
+ * Where all the raw data of the program goes from the GardenPlot which holds 
+ * GardenTiles which have attributes such as sunlight received and soil wetness. Furthermore
+ * the GardenTiles hold an AddOn or Plant with their own attributes. 
  */
 
 public class Model implements Serializable{
@@ -28,7 +32,10 @@ public class Model implements Serializable{
 	
 	
 	/**
-	 * @see
+	 * Constructor where the ArrayLists are initialized for space and
+	 * a new GardenPlot is created
+	 * 
+	 * @see GardenPlot
 	 */
 	public void Model() {
 		userPlot = new GardenPlot();
@@ -39,13 +46,19 @@ public class Model implements Serializable{
 	}//Model()
 	
 	/**
-	 * 
+	 * Used to generate alternate GardenPlots for the Final View
+	 * since they are generated. Calls the GardenPlot constructor
+	 * then fills it by copying original array over. From there will 
+	 * autofill the rest of the spaces
 	 */
 	public void createGardenPlotAlts() {
 		System.out.println("Creating alternate gardens for final view");
 	}//createGardenPlotAlts
 	
 	/**
+	 * From preferences updates the array. However changes the current index 
+	 * variable which is in that scope only and adds 6 to it to get the next 
+	 * items in the arrayList
 	 * 
 	 */
 	public void updateSeclectionArr() {
@@ -54,21 +67,27 @@ public class Model implements Serializable{
 	
 	
 	/**
-	 * 
+	 * From preferences updates the array. However changes the current index 
+	 * variable which is in that scope only and adds 6 to it to get the next 
+	 * items in the arrayList
 	 */
 	public void updateShrubArr() {
 		System.out.println("Fill after preferences, more desirable in front");
 	}
 	
 	/**
-	 * 
+	 * From preferences updates the array. However changes the current index 
+	 * variable which is in that scope only and adds 6 to it to get the next 
+	 * items in the arrayList
 	 */
 	public void updateTreeArr() {
 		System.out.println("Fill after preferences, more desirable in front");
 	}
 	
 	/**
-	 * 
+	 * From preferences updates the array. However changes the current index 
+	 * variable which is in that scope only and adds 6 to it to get the next 
+	 * items in the arrayList
 	 */
 	public void updateUnderGrowthArr() {
 		System.out.println("Fill after preferences, more desirable in front");
@@ -78,39 +97,55 @@ public class Model implements Serializable{
 	////////////////////////////		GETTERS UNDERNEATH			////////////////////////////
 	
 	/**
+	 * Returns a GardenPlot
+	 * <p>
+	 * Getter for attribute userPlot
 	 * 
+	 * @return userPlot the GardenPlot the user created
 	 */
 	public GardenPlot getUserPlot() {
 		return userPlot;
 	}
 	
 	/**
+	 *Returns a arrayList of AddOns
+	 *<p>
+	 *getter for SelectionArray List
 	 *
-	 * @return
+	 * @return selectionArr Addon List of what the user is currently seeing
 	 */
 	public ArrayList<AddOn> getSelectionArr() {
 		return selectionArr;
 	}
 	
 	/**
+	 *Returns a arrayList of Plants
+	 *<p>
+	 *getter for Shrub Array List
 	 *
-	 * @return
+	 * @return shrubArr Shrub List of what the user is currently seeing
 	 */
 	public ArrayList<Plant> getShrubArr() {
 		return shrubArr;
 	}
 	
 	/**
+	 *Returns a arrayList of Plants
+	 *<p>
+	 *getter for Tree Array List
 	 *
-	 * @return
+	 * @return TreeArr Tree List of what the user is currently seeing
 	 */
 	public ArrayList<Plant> getTreeArr() {
 		return treeArr;
 	}
 	
 	/**
-	 * 
-	 * @return
+	 *Returns a arrayList of Plants
+	 *<p>
+	 *getter for UnderGrowth Array List
+	 *
+	 * @return UnderGrowth UnderGrowth List of what the user is currently seeing
 	 */
 	public ArrayList<Plant> getUnderGrowth(){
 		return underGrowthArr;
