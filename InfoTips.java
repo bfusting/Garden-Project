@@ -1,5 +1,9 @@
+import java.util.ArrayList;
+import java.util.Date;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 public class InfoTips extends View{
 	private Scene contentHolder;
@@ -12,7 +16,7 @@ public class InfoTips extends View{
 	private Label plantType;
 	private Label animalsFed;
 	
-	public void InfoTips(String col, int water, Date bloom, int sun, double height, boolean shade, String type, ArrayList<String> animals) {
+	public InfoTips(String col, int water, Date bloom, int sun, double height, boolean shade, String type, ArrayList<String> animals) {
 		color = new Label(col);
 		waterNeed = new Label(String.valueOf(water));
 		bloomTime = new Label(bloom.toString());
