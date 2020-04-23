@@ -24,6 +24,10 @@ import javafx.stage.Stage;
 /**
  * 
  * @author Malachi Parks
+ * 
+ * Used in the Design Garden tab, by clicking the recommendations button
+ * reviews what plants the users should place in their garden based upon
+ * the garden requirements and plant preferences
  *
  */
 public class Recommendations extends View{
@@ -39,14 +43,22 @@ public class Recommendations extends View{
 	private final int WIDTH = 250;
 	
 	/**
+	 * Takes in an image i which is the image of a plant
+	 * date which is a date of when the plant comes into bloom
+	 * lightNeed which is rated on a scale of 0-5 where 0 means no light where 5 needs a lot of light
+	 * waterNeed which is rated on a scale of 0-5 where 0 means no water where 5 needs a lot of water
+	 * <p>
+	 * The constructor to create the Recommendations view
 	 * 
-	 * @param i
-	 * @param givenName
-	 * @param lightNeed
-	 * @param waterNeed
+	 * @param i Image of the plant recommended
+	 * @param givenName name of the plant
+	 * @param lightNeed light need of the plant recommended
+	 * @param waterNeed water need of the plant recommended
+	 * @see Recommendations
 	 */
 	public Recommendations(Image i, String givenName, Date date, int lightNeed, int waterNeed) {
 		weRecommendMessage = "Hello World";
+		// Chanege message above
 		recommendationMessage = new Label(weRecommendMessage);
 		plantImage = i;
 		bloomTime = date;
