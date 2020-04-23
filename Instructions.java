@@ -18,12 +18,11 @@ import javafx.stage.Stage;
 
 /**
  * 
- * @author takiyah
- * 
- * View that handles the creation and presentation of the instructions screen, where the user can
+ *  View that handles the creation and presentation of the instructions screen, where the user can
  * read a detailed explanation of the program controls from the main menu or view them in a
  * separate window while editing. 
- *
+ * 
+ * @author Takiyah Price
  */
 
 public class Instructions extends View {
@@ -34,9 +33,9 @@ public class Instructions extends View {
 	
 	
 	/**
-	 * Constructor for the Instructions class. Initializes the instructions and the label holding them,
-	 * and creates a new Scene to present the screen as well as a new stage so the instructions can be
-	 * viewed simultaneously as the main screen.
+	 * Constructor for the Instructions class that creates the String text and the Label holding them,
+	 * and creates a new Scene to present the screen and a new Stage to be viewed simultaneously as the 
+	 * main screen.
 	 */
 	public Instructions() {
 		text = "instructions undefined";
@@ -57,10 +56,10 @@ public class Instructions extends View {
 	
 	/**
 	 * Makes the instructions screen visible to the user. Will appear on the main screen or
-	 * in a separate smaller window depending on whether the primary stage or a separate stage
+	 * in a separate smaller window depending on whether the primary Stage or a separate Stage
 	 * has been passed in.
 	 * 
-	 * @param theStage the Stage that will be set to instructionsStage and shown to the user
+	 * @param theStage the Stage that will be set with instructionsStage and shown to the user
 	 */
 	public void showInstructions(Stage theStage) {
 		
