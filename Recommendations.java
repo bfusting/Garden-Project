@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 *  Class Section: foo11
 *  Lab Section: foo31L
 *  TA: Vineeth Gutta
-*  Due: May 18th, 2foo2foo (5/18/2020)
+*  Due: May 18th, 2020 (5/18/2020)
 *
 *  This file contains the contents for the project for CISC275. The project for the 
 *  class is to make gardening software for the township of Arden, DE to help
