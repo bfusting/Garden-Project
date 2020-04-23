@@ -18,9 +18,11 @@ import javafx.stage.Stage;
 
 /**
  * 
- * @author takiyah
- *
+ * View that handles the creation and presentation of the screen giving the user options 
+ * for choosing a square, circular or triangular garden layout or drawing 
  * 
+ * @author Takiyah Price
+ *
  */
 
 public class ChooseTemplate extends View {

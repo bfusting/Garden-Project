@@ -18,12 +18,13 @@ import javafx.stage.Stage;
 
 /**
  * 
- * @author takiyah
- * 
  * View that handles the creation and presentation of the main menu screen. Contains 
  * the visual components for the main menu window that will be made visible at the start
- * of the program and whenever the user returns to the main menu.
+ * of the program, including options for creating a new garden, loading an existing garden,
+ * viewing the instructions and exiting the program.
  *
+ *
+ * @author Takiyah Price
  */
 
 public class MainMenu extends View {
@@ -35,7 +36,8 @@ public class MainMenu extends View {
 	
 	
 	/**
-	 * 
+	 * Constructor for the Main Menu that creates new Buttons for creating or loading a garden and 
+	 * the background Image for the window, then sets a new Stage with a Scene containing these components.
 	 */
 	public MainMenu() {
 		createNewGarden = new Button("Create New Garden");
@@ -46,8 +48,9 @@ public class MainMenu extends View {
 	
 	
 	/**
+	 * Makes the MainMenu Stage visible to the user.
 	 * 
-	 * @param theStage
+	 * @param theStage the Stage that will be set to mainMenuStage and shown to the user
 	 */
 	public void showMainMenu(Stage theStage) {
 		
