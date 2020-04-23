@@ -21,11 +21,12 @@ import javafx.stage.Stage;
 
 /**
  * 
- * @author takiyah
- *
  * General view that handles the visual components of the program. Contains 
  * the Buttons that are used on multiple screens and manages the primary
- * screen that the user is viewing at any point as well as secondary windows.
+ * screen that the user is viewing at any point as well as a secondary window 
+ * for saving before quitting to be shown when the user presses the exit button.
+ * 
+ * @author Takiyah Price 
  */
 
 
@@ -41,14 +42,14 @@ public class View  {
 	private Scene exitScene;
 	
 	/**
-	 * Empty constructor for the View to be overridden by subclass views
+	 * Empty constructor for the View to be overridden by subclasses.
 	 */
 	public View() {
 	}
 	
 	/**
-	 * Constructor for the View. Creates the instructions, exit, back and main menu buttons
-	 * and sets the primary stage to the stage created at the start of the program.
+	 * Constructor for the View that creates the instructions, exit, back and main menu Buttons
+	 * and sets primaryStage to the Stage created at the start of the program. 
 	 * 
 	 * @param theStage the Stage created automatically at the start of the program
 	 */
@@ -64,9 +65,13 @@ public class View  {
 	
 	
 	/**
-	 * Creates the window to ask the user if they would like to save before exiting.
+	 * Creates a window to ask if the user would like to save before exiting by
+	 * creating a new Stage with a Scene containing the save Button and a Button for closing
+	 * the program, then sets the new Stage to exitStage and makes it visible to the user.
 	 * 
 	 * @see View#exitStage
+	 * @see View#exitScene
+	 * @see View#saveButton
 	 */
 	public void exit() {
 		System.out.println("create window to ask user to save before exiting");
