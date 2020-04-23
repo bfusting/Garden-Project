@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 
 /**
  * 
- * @author Malachi Parks
+ * @author Malachi Parks 
  * 
  * Used in the Design Garden tab, by clicking the recommendations button
  * reviews what plants the users should place in their garden based upon
