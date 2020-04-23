@@ -48,7 +48,7 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	 * <p>
 	 */
 	public void remove() {
-		
+		this.addOn = null;
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	 * @param a 
 	 */
 	public void add(AddOn a) {
-		
+		this.addOn = a;
 	}
 	
 	/**
@@ -66,7 +66,7 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	 * Returns the description of the AddOn in the Tile
 	 */
 	public String getHighlightedTileInfo() {
-		return null;
+		return this.addOn.getDescription();
 	}
 	
 	/**\
@@ -87,11 +87,18 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 		return null;
 	}
 	
+	/**
+	 * 
+	 * @param a
+	 * @return
+	 */
 	public boolean equals(AddOn a) {
 		return false;
 	}
 	
-
+	/**
+	 * 
+	 */
 	public int compareTo(AddOn a) {
 		return 0;
 	}
@@ -120,62 +127,123 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	public boolean isEmpty() {
 		return true;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getSoilType() {
 		return soilType;
 	}
 
+	/**
+	 * 
+	 * @param soilType
+	 */
 	public void setSoilType(String soilType) {
 		this.soilType = soilType;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int getWaterLevel() {
 		return waterLevel;
 	}
 
+	/**
+	 * 
+	 * @param waterLevel
+	 */
 	public void setWaterLevel(int waterLevel) {
 		this.waterLevel = waterLevel;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int getSunLightLevel() {
 		return sunLightLevel;
 	}
 
+	/**
+	 * 
+	 * @param sunLightLevel
+	 */
 	public void setSunLightLevel(int sunLightLevel) {
 		this.sunLightLevel = sunLightLevel;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public AddOn getAddOn() {
 		return addOn;
 	}
 
+	/**
+	 * 
+	 * @param addOn
+	 */
 	public void setAddOn(AddOn addOn) {
 		this.addOn = addOn;
 	}
 
+	/**
+	 * 
+	 * @param isActive
+	 */
 	public void setIsActive(boolean isActive) {
 		this.isActive = isActive;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean getIsActive() {
 		return this.isActive;
 	}
 
+	/**
+	 * 
+	 * @param isEmpty
+	 */
 	public void setEmpty(boolean isEmpty) {
 		this.isEmpty = isEmpty;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int getxLoc() {
 		return xLoc;
 	}
 
+	/**
+	 * 
+	 * @param xLoc
+	 */
 	public void setxLoc(int xLoc) {
 		this.xLoc = xLoc;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int getyLoc() {
 		return yLoc;
 	}
 
+	/**
+	 * 
+	 * @param yLoc
+	 */
 	public void setyLoc(int yLoc) {
 		this.yLoc = yLoc;
 	}
