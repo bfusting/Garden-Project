@@ -1,3 +1,4 @@
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,25 +19,29 @@ import javafx.stage.Stage;
 
 /**
  * 
- * View that handles the creation and presentation of the screen giving the user options 
- * for choosing a square, circular or triangular garden layout or drawing 
+ * View that handles the creation and presentation of the screen containing Buttons
+ * for choosing a square, circular or triangular garden layout or drawing the perimeter
+ * manually. 
  * 
  * @author Takiyah Price
  *
  */
 
 public class ChooseTemplate extends View {
-	ImageView squareTemplate;
-	ImageView circleTemplate;
-	ImageView triangleTemplate;
-	ImageView designYourOwn;
-	Button chooseSquare;
-	Button chooseCircle;
-	Button chooseTriangle;
-	Button chooseDesign;
+	private Scene chooseTemplateScene;
+	private ImageView squareTemplate;
+	private ImageView circleTemplate;
+	private ImageView triangleTemplate;
+	private ImageView designYourOwn;
+	private Button chooseSquare;
+	private Button chooseCircle;
+	private Button chooseTriangle;
+	private Button chooseDesign;
 	
 	/**
-	 * 
+	 * Constructor for ChooseTemplate that creates Buttons for choosing the shape of the 
+	 * garden and puts them on a new Scene. Each Button has an ImageView indicating its 
+	 * respective layout that will be created on click.
 	 * 
 	 */
 	public ChooseTemplate() {
@@ -49,9 +54,15 @@ public class ChooseTemplate extends View {
 	}
 	
 	/**
+	 * Sets the given Stage with the chooseTemplate Scene containing the Buttons for choosing
+	 * the garden shape and makes it visible to the user.
 	 * 
+	 * @param theStage the Stage that will be set with the chooseTemplate Scene and shown to
+	 * the user
+	 * 
+	 * @see ChooseTemplate#chooseTemplateScene
 	 */
-	public void showChooseTemplate() {
+	public void showChooseTemplate(Stage theStage) {
 		
 	}
 	

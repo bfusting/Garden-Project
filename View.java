@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 
 /**
  * 
- * General view that handles the visual components of the program. Contains 
+ * General class for handling the visual components of the program. Contains 
  * the Buttons that are used on multiple screens and manages the primary
  * screen that the user is viewing at any point as well as a secondary window 
  * for saving before quitting to be shown when the user presses the exit button.
@@ -89,3 +89,4 @@ public class View  {
 		
 	
 }
+
