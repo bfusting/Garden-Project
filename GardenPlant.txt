@@ -1,0 +1,28 @@
+Used in Alpha for genric plant implementation
+
+SweetFern:
+	Latin Name: Comptonia peregerina
+	Leaf: Green
+	Autumn Foliage: Yes
+	Fruit: Green, Brown
+	Bloom Color: White, Green
+	Bloom Time: May, June, July, August
+	Habit: Shrub
+	Size: 3-6ft
+	Light Requirement: Part Shade
+	Soil Moisture: Dry
+	Attracks: Birds, Butterflies
+	Feeds: Butterflies
+
+Orange MilkWeed:
+	Latin Name: Asclepias Tuberosa
+	Leaf Retention: Deciduous
+	Flower: Corlla, hoods, and horns are orange
+	Habit: Herb
+	Size: 1-3ft
+	Bloom Color: Orange, Yellow
+	Bloom Time: May-Sept
+	Water Use: Low
+	Light Req: Sun
+	Soil Moisture: Dry, Moist
+	Benefit: Butterflies + Honey + BumbleBees + 
