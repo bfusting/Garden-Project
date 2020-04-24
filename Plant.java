@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Date;
 import java.util.*;
 
 
@@ -11,7 +10,7 @@ public class Plant extends AddOn {
 	private int sunLightNeed;
 	private double plantHeight;
 	private int locationPref;
-	private Date bloomTime;
+	private Seasons bloomTime;
 	private boolean provideShade;
 	
 	private String[] ageImages;
@@ -28,7 +27,7 @@ public class Plant extends AddOn {
 	 * different seasons.
 	 */
 	public void Plant(String color, int waterNeed, int sunLightNeed, double plantHeight, int locationPref,
-			Date bloomTime, boolean provideShade, String[] ageImages, String[] season, String plantType, 
+			Seasons bloomTime, boolean provideShade, String[] ageImages, String[] season, String plantType, 
 			ArrayList<String> animalsFed, ArrayList<String> compatiblePlants) {
 		
 		this.color = color;
@@ -138,7 +137,7 @@ public class Plant extends AddOn {
  * Returns the bloom period of the plant as a Date object.
  * @return bloomTime the bloom period of the plant
  */
-	public Date getBloomTime() {
+	public Seasons getBloomTime() {
 		return bloomTime;
 	}
 	
@@ -146,7 +145,7 @@ public class Plant extends AddOn {
 	 * Sets the bloom period of the plant as a Date object.
 	 * @param bloomTime the bloom period of the plant
 	 */
-	public void setBloomTime(Date bloomTime) {
+	public void setBloomTime(Seasons bloomTime) {
 		this.bloomTime = bloomTime;
 	}
 

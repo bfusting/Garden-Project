@@ -1,0 +1,20 @@
+Pale Purple ConeFlower:
+	latin name: Chenacea Pallida
+	leaf: green
+	Flower: 3-5 inches across
+	fruit: dark
+	bloom color: pink/purple
+	bloom time: may, june, july
+	water use: medium
+	light required: sun
+	soil moisture: dry/moist
+
+
+Seaside Goldenrod:
+	Latin name: Solidago Sempervirens
+	leaf: dark green
+	bloom color: yellow
+	bloom time: aug, sept, oct
+	soil moisture: moist
+	soil type: sandy
+	light required: sun
