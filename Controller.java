@@ -29,8 +29,6 @@ import javafx.stage.Stage;
 public class Controller{
 	private Model model;
 	private View view;
-	//used to compile stub code will delete later
-	EventHandler foo;
 	
 	/**
 	 * Constructor for the Controller class where the 
@@ -105,8 +103,8 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see createNewGarden
 	 */
-	public EventHandler getCreateNewGarden() {
-		return foo;
+	public EventHandler<MouseEvent> getCreateNewGarden() {
+		return event -> createNewGarden((MouseEvent) event);
 	}//getCreateNewGarden
 	
 	/**
@@ -133,9 +131,9 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see loadGarden
 	 */
-	public EventHandler getLoadGarden() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getLoadGarden() {
+		return event -> loadGarden((MouseEvent)event);
+	}//getLoadGarden
 	
 	/**
 	 * Takes in MouseEvent to know when the exit button is closed on the 
@@ -161,9 +159,9 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see exit
 	 */
-	public EventHandler getExit() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getExit() {
+		return event -> exit((MouseEvent)event);
+	}//getExit
 	
 	
 	/**
@@ -189,8 +187,8 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see instructionsShow
 	 */
-	public EventHandler getInstructionShow() {
-		return foo;
+	public EventHandler<MouseEvent> getInstructionShow() {
+		return event -> instructionsShow((MouseEvent)event);
 	}//getCreateNewGarden
 	
 	
@@ -219,9 +217,9 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see backBTN
 	 */
-	public EventHandler getBackBTN() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getBackBTN() {
+		return event -> backBTN((MouseEvent) event);
+	}//getBackBTN
 	
 	/**
 	 * Takes in a MouseEvent to determine when any of the ImageViews
@@ -250,9 +248,9 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see chooseDesign
 	 */
-	public EventHandler getChooseDesign() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getChooseDesign() {
+		return event -> chooseDesign((MouseEvent)event);
+	}//getChooseDesign
 	
 	
 	/**
@@ -279,9 +277,9 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see comboBoxCheck
 	 */
-	public EventHandler getComboCheckBox() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getComboCheckBox() {
+		return event -> comboCheckBox((MouseEvent)event);
+	}//getComboCheckBox
 	
 	
 	/**
@@ -309,9 +307,9 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see recommendationsBTN
 	 */
-	public EventHandler getRecommendationsBTN() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getRecommendationsBTN() {
+		return event -> recommendationsBTN((MouseEvent)event);
+	}//getRecommendationsBTN
 	
 	
 	/**
@@ -338,9 +336,9 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see changeSeasonsBTN
 	 */
-	public EventHandler getChangeSeasonsBTN() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getChangeSeasonsBTN() {
+		return event -> changeSeasonsBTN((MouseEvent)event);
+	}//getChangeSeasons
 	
 	
 	/**
@@ -370,9 +368,9 @@ public class Controller{
 	 * @see MainMenu
 	 * @see mainMenuBTN
 	 */
-	public EventHandler getMainMenuBTN() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getMainMenuBTN() {
+		return event -> mainMenuBTN((MouseEvent)event);
+	}//getMainMenuBTN
 	
 	/**
 	 * Takes in a MouseEvent to know when the changeTab is clicked on the 
@@ -399,9 +397,9 @@ public class Controller{
 	 * @see DesignGarden
 	 * @see changeTab
 	 */
-	public EventHandler getChangeTab() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getChangeTab() {
+		return event -> changeTab((MouseEvent)event);
+	}//getChangeTab
 	
 	
 	/**
@@ -429,9 +427,9 @@ public class Controller{
 	 * @see DesignGarden
 	 * @see startDrag
 	 */
-	public EventHandler getStartDrag() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getStartDrag() {
+		return event -> startDrag((MouseEvent)event);
+	}//getStartDrag
 	
 	
 	/**
@@ -460,9 +458,9 @@ public class Controller{
 	 * @see DesignGarden
 	 * @see DetectDrag
 	 */
-	public EventHandler getDetectDrag() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<DragEvent> getDetectDrag() {
+		return event -> detectDrag((DragEvent)event);
+	}//getDetectDrag
 	
 	/**
 	 * Takes in a DragEvent to know when the target drag of an ImageView on the 
@@ -490,9 +488,9 @@ public class Controller{
 	 * @see DesignGarden
 	 * @see okayToDrop
 	 */
-	public EventHandler getOkayToDrop() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<DragEvent> getOkayToDrop() {
+		return event -> okayToDrop((DragEvent)event);
+	}//getOkayToDrop
 	
 	
 	/**
@@ -519,9 +517,9 @@ public class Controller{
 	 * @see DesignGarden
 	 * @see DetectDragDrop
 	 */
-	public EventHandler getDetectDragDrop() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<DragEvent> getDetectDragDrop() {
+		return event -> detectDragDrop((DragEvent)event);
+	}//getDetectDragDrop
 	
 	
 	/**
@@ -549,9 +547,9 @@ public class Controller{
 	 * @see InfoTips
 	 * @see scrollPage
 	 */
-	public EventHandler getScrollPage() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<ScrollEvent> getScrollPage() {
+		return event -> scrollPage((ScrollEvent)event);
+	}//getScrollPage
 	
 	
 	/**
@@ -579,9 +577,9 @@ public class Controller{
 	 * @see FinalView
 	 * @see editBTN
 	 */
-	public EventHandler getEditBTN() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getEditBTN() {
+		return event -> editBTN((MouseEvent)event);
+	}//getEditBTN
 	
 	
 	/**
@@ -609,9 +607,9 @@ public class Controller{
 	 * @see FinalView
 	 * @see saveBTN
 	 */
-	public EventHandler getSaveBTN() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getSaveBTN() {
+		return event -> saveBTN((MouseEvent)event);
+	}//getSaveBTN
 	
 	
 	/**
@@ -638,9 +636,9 @@ public class Controller{
 	 * @see DesignGarden
 	 * @see InfoTips
 	 */
-	public EventHandler getInfoTipsBTN() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getInfoTipsBTN() {
+		return event -> infoTipsBTN((MouseEvent)event);
+	}//getInfoTipsBTN
 	
 	/**
 	 * Takes in a MouseEvent to know when the viewSeasons is clicked on the 
@@ -667,9 +665,9 @@ public class Controller{
 	 * @see DesignGarden
 	 * @see viewSesonsBTN
 	 */
-	public EventHandler getViewSeasonsBTN() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getViewSeasonsBTN() {
+		return event -> viewSeasonsBTN((MouseEvent)event);
+	}//getViewSeasonsBTN
 	
 	/**
 	 * Filechooser to choose where the user wants to save the information
