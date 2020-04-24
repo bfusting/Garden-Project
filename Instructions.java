@@ -22,6 +22,7 @@ import javafx.stage.Stage;
  * read a detailed explanation of the program controls from the main menu or view them in a
  * separate window while editing. 
  * 
+ * @see View
  * @author Takiyah Price
  */
 

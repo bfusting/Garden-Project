@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 *  Class Section: foo11
 *  Lab Section: foo31L
 *  TA: Vineeth Gutta
-*  Due: May 18th, 2foo2foo (5/18/2020)
+*  Due: May 18th, 2020 (5/18/2020)
 *
 *  This file contains the contents for the project for CISC275. The project for the 
 *  class is to make gardening software for the township of Arden, DE to help
@@ -23,7 +23,11 @@ import javafx.stage.Stage;
 
 /**
  * 
- * @author Malachi Parks
+ * @author Malachi Parks 
+ * 
+ * Used in the Design Garden tab, by clicking the recommendations button
+ * reviews what plants the users should place in their garden based upon
+ * the garden requirements and plant preferences
  *
  */
 public class Recommendations extends View{
@@ -39,14 +43,22 @@ public class Recommendations extends View{
 	private final int WIDTH = 250;
 	
 	/**
+	 * Takes in an image i which is the image of a plant
+	 * date which is a date of when the plant comes into bloom
+	 * lightNeed which is rated on a scale of 0-5 where 0 means no light where 5 needs a lot of light
+	 * waterNeed which is rated on a scale of 0-5 where 0 means no water where 5 needs a lot of water
+	 * <p>
+	 * The constructor to create the Recommendations view
 	 * 
-	 * @param i
-	 * @param givenName
-	 * @param lightNeed
-	 * @param waterNeed
+	 * @param i Image of the plant recommended
+	 * @param givenName name of the plant
+	 * @param lightNeed light need of the plant recommended
+	 * @param waterNeed water need of the plant recommended
+	 * @see Recommendations
 	 */
 	public Recommendations(Image i, String givenName, Date date, int lightNeed, int waterNeed) {
 		weRecommendMessage = "Hello World";
+		// Chanege message above
 		recommendationMessage = new Label(weRecommendMessage);
 		plantImage = i;
 		bloomTime = date;
@@ -57,64 +69,106 @@ public class Recommendations extends View{
 	}//Recommendations
 	
 	/**
+	 * Returns the message used to set the label in the Recommendations View
+	 * <p>
+	 * Getter for Recommendation Message
 	 * 
-	 * @return
+	 * @return String representing the static message saying "We recommend the user
+	 * chooses these plants based upon preferences and gardenType"
+	 * @see recommendationMessaage
 	 */
 	public String getWeRecommendationMessage() {
 		return "HELLO WORLD";
 	}
 	
 	/**
+	 * Takes in a new string which is the new Recommendations message for the 
+	 * Recommendations Page
+	 * <p>
+	 * Setter for WeRecommendationMessage
 	 * 
-	 * @param s
+	 * @param s new string to set the Recommendations view message
+	 * @see recommendationMessage
 	 */
 	public void setWeRecommendationMessage(String s) {
 		weRecommendMessage = s;
 	}
 	
 	/**
+	 * Returns the image of the plant in recommendations - would return the 
+	 * plantImage attribute. PlantImage will be used in an ImageView
+	 * <p>
+	 * Getter for plantImage Attribute
 	 * 
-	 * @return
+	 * @return plantImage which is the image of a plant used in recommendations
+	 * @see ImageView
+	 * @see Image
 	 */
 	public Image getPlantImage() {
 		return new Image("Hello World");
 	}
 	
 	/**
+	 * Returns a string representing the latin name of the plant
+	 * <p>
+	 * Getter for name attribute
 	 * 
-	 * @return
+	 * @return string representing the name of the plant recommended
+	 * @Plant
 	 */
 	public String getName() {
 		return "hi";
 	}
 	
 	/**
+	 * Returns a date representing when the bloom time of the plant begins
+	 * <p>
+	 * Getter for bloomTime attribute
 	 * 
-	 * @return
+	 * @return date representing the beginning bloom time of the plant
+	 * @see Plant
 	 */
 	public Date getBloomTime() {
 		return new Date(06,11,2020);
 	}
 	
 	/**
+	 * Returns a int representing the light amount the plant requires to function.
+	 * The range is from 0 which is minimal light to 5 which is max light. All information
+	 * should correlate to a plant
+	 * <p>
+	 * Getter for light attribute
 	 * 
-	 * @return
+	 * @return int representing light requirement
+	 * @see Plant
 	 */
 	public int getLightReq() {
 		return 0;
 	}
 	
 	/**
+	 * Returns a int representing the water amount the plant requires to function.
+	 * The range is from 0 which is minimal water to 5 which is max water. All information
+	 * should correlate to a plant
+	 * <p>
+	 * Getter for water attribute
 	 * 
-	 * @return
+	 * @return int representing water requirement
+	 * @see Plant
 	 */
 	public int getWaterReq() {
 		return 0;
 	}
 	
 	/**
+	 * Returns a ArrayList of Strings representing the animals the plant feeds
+	 * in the ecosystem. Correlates to the animals feed by a specific plant within 
+	 * the plant class
+	 * <p>
+	 * Getter for animalsFed attribute
 	 * 
-	 * @return
+	 * @return ArrayList of animals feed by plant
+	 * @see Plant
 	 */
 	public ArrayList<String> getAnimalsFed(){
 		ArrayList<String> aList = new ArrayList<String>();
@@ -124,10 +178,17 @@ public class Recommendations extends View{
 	}
 	
 	/**
+	 * Takes in a stage which is used to create the Recommendations window in JavaFX.
+	 * <p>
+	 * showRecommendations is used to pop open a new window in JavaFX and then sets the 
+	 * center of the border pane to the recommendation message (may swap to the top later on)
+	 * and then shows the scene
 	 * 
-	 * @param stage
+	 * @param stage primary stage used of the window view
+	 * @see Stage
+	 * @see Scene
 	 */
-	public void start(Stage stage) {
+	public void showRecommendations(Stage stage) {
     	stage.setTitle("Recommendations");
     	BorderPane bPane = new BorderPane();
     	bPane.setCenter(recommendationMessage);

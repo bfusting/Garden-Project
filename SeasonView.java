@@ -1,4 +1,5 @@
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -34,40 +35,80 @@ public class SeasonView extends View{
 	private BorderPane currView;
 	private Scene seasonView;
 	private Stage seasonWindow;
+	private Button backBTN;
 	
 	/**
-	 * 
+	 * Basic default constructor for the SeasonView when trying 
+	 * to be created by any other class
 	 */
 	public SeasonView() {
 		yourGarden = new Label("Your Garden");
 		currSeason = new Label("Spring");
 		currView = new BorderPane();
-		seasonView = new Scene(currView,HEIGHT,WIDTH);
+		seasonView = null;
 		seasonWindow = new Stage();
-		seasonWindow.setScene(seasonView);
+		
 	}
 	
 	/**
+	 * Returns type Label which displays the current season name in the SeasonsView
+	 * pane.
+	 * <p>
+	 * Getter for CurrSeason attribute
 	 * 
-	 * @return
+	 * @return Label which represents the scenes current seasons
+	 * @see currSeason
 	 */
 	public Label getCurrSeason() {
 		return currSeason;
 	}
 
 	/**
+	 * Returns type Scene which displays the current season of the SeasonsView
+	 * pane.
+	 * <p>
+	 * Getter for seasonView attribute
 	 * 
-	 * @return
-	 */
+	 * @return scene which represents the current season on the screen
+	 * @see seasonView
+	 * 
 	public Scene getSeasonView() {
 		return seasonView;
 	}
 	
 	/**
+	 * Returns type Stage which displays the window for the SeasonView
+	 * <p>
+	 * Getter for seasonWindow attribute
 	 * 
-	 * @return
+	 * @return stage which represents the current window of SeasonView
+	 * @see seasonWindow
+	 * 
 	 */
 	public Stage getSeasonWindow() {
 		return seasonWindow;
+	}
+	
+	/**
+	 * Returns the back button to bind an event listener to
+	 * <p>
+	 * Getter for backBTN
+	 * 
+	 * @return back button on the screen
+	 */
+	public Button getbackBTN() {
+		return backBTN;
+	}
+	
+	/**
+	 * Used to create a new popup window of the stage and adds the
+	 * features such as the back button and a pane within the borderpane center
+	 * to the currentView
+	 */
+	public void ShowSeasonView(){
+		System.out.println("Creates the new window");
+		//seasonView = new Scene(currView,HEIGHT,WIDTH);
+		//seasonWindow.setScene(seasonView);
+		//backBTN = new Button("Back");
 	}
 }

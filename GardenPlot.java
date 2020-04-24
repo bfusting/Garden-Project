@@ -155,13 +155,46 @@ public class GardenPlot {
 	/**
 	 * Checks if surrounding tiles are empty
 	 * 
-	 * @param x
+	 * @param x 
 	 * @param y
 	 * @return
+	 * Returns true if there are no AddOns in surrounding tiles
 	 */
 	public boolean isSurroundingEmpty(int x, int y){
+		//Finding the desired tile
+		for(int k = 0; k < layout.length;k++) {
+			for(int i = 0; i < layout[k].length; i++) {
+				if(layout[k][i].getxLoc() == x && layout[k][i].getyLoc() == y) {
+					
+					//Testing Tiles to the left and right
+					if(layout[k][i-1].getAddOn() != null || layout[k][i+1].getAddOn() != null) {
+						return false;
+					}
+					
+					//Testing Tiles above and below
+					if(layout[k-1][i].getAddOn() != null || layout[k+1][i] != null) {
+						return false;
+					}
+					
+					//Its empty if it made it here
+					else {
+						return true;
+					}
+				}
+				
+			
+			
+			}
+		}
+		
 		return true;
-	}
+}
+		
+		
+		
+		
+		
+	
 	
 	/**
 	 * Fills empty tiles in the layout with AddOns
