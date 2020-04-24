@@ -1,7 +1,23 @@
 import java.io.Serializable;
+/*
+*  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
+*  Class Section: 011
+*  Lab Section: 031L
+*  TA: Vineeth Gutta
+*  Due: May 18th, 2020 (5/18/20)
+*
+*  This file contains the contents for the project for CISC275. The project for the 
+*  class is to make gardening software for the township of Arden, DE to help
+*  promote forest edge preservation. 
+*  
+*/
+
 /**
  * 
  * @author Bradley
+ * The GardenTile Object which makes up the individual squares on the GardenPlot.
+ * They can hold AddOns and contain properties like water and light level as well as soil type 
+ *
  *
  */
 public class GardenTile implements Comparable<AddOn>,Serializable {
@@ -33,7 +49,7 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	private AddOn addOn = null;
 	
 	/**
-	 * 
+	 * Constructor setting variables to default settings
 	 */
 	public GardenTile() {
 		isActive = true;
@@ -41,6 +57,16 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 		soilType = "";
 		waterLevel = 0;
 		sunLightLevel = 0;
+	}
+	
+	public GardenTile(int x, int y) {
+		isActive = true;
+		isEmpty = true;
+		soilType = "";
+		waterLevel = 0;
+		sunLightLevel = 0;
+		this.xLoc = x;
+		this.yLoc = y;
 	}
 	
 	/**
@@ -72,20 +98,16 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	/**\
 	 * 
 	 * @return
-	 * Returns an array of Plants that should be used around this GardenTile
+	 * Returns an array of Plants that should be used in this GardenTile
 	 */
-	public Plant[] getRecommendations() {
+	public AddOn[] getRecommendations(AddOn[] arr) {
+		//TODO:
+		//Have to test for each type of AddOn
+		//Order of AddOn's in arr are Tile to the left, then right, then above, then below
 		return null;
 	}
 	
-	/**
-	 * 
-	 * @return
-	 * Returns an array of AddOns that are in the surrounding GardenTiles
-	 */
-	public AddOn[] getSurroundingInfo() {
-		return null;
-	}
+	
 	
 	/**
 	 * 
@@ -123,6 +145,8 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	/**
 	 * 
 	 * @return
+	 * 
+	 * 
 	 */
 	public boolean isEmpty() {
 		return true;
@@ -235,6 +259,7 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	/**
 	 * 
 	 * @return
+	 * 
 	 */
 	public int getyLoc() {
 		return yLoc;
@@ -243,6 +268,8 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	/**
 	 * 
 	 * @param yLoc
+	 * sets the y position of the tile
+	 * 
 	 */
 	public void setyLoc(int yLoc) {
 		this.yLoc = yLoc;

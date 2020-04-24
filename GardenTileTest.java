@@ -45,27 +45,16 @@ public class GardenTileTest {
 
 		GardenTile gT = new GardenTile();
 		AddOn a = new AddOn();
+		AddOn b = new AddOn();
+		AddOn[] arr = {b};
 		gT.add(a);
 		Plant[] p = {};
-		assertTrue(gT.getRecommendations() == p);
+		assertTrue(gT.getRecommendations(arr) == p);
 		
 		
 	}
 	
-	@Test
-	/**
-	 * Creates a GardenPlot and four GardenTiles to test if getSurroundingInfo() returns an array list of surrounding tiles AddOns
-	 */
-	void testGetSurroundingInfo() {
-		GardenPlot gP = new GardenPlot();
-		GardenTile g1 = new GardenTile();
-		GardenTile g2 = new GardenTile();
-		GardenTile g3 = new GardenTile();
-		GardenTile[][] gB = {{g1, g2, g3}};
-		gP.setLayout(gB);
-		AddOn[] aA = {g1.getAddOn(), g3.getAddOn()};
-		assertTrue(g2.getSurroundingInfo() == aA);
-	}
+	
 	
 	@Test
 	/**
