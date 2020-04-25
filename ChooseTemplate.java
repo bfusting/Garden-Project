@@ -47,10 +47,10 @@ public class ChooseTemplate extends View {
 	public ChooseTemplate() {
 	
 		
-		squareTemplate = new ImageView(new Image("no image"));
-		circleTemplate = new ImageView(new Image("no image"));
-		triangleTemplate = new ImageView(new Image("no image"));
-		designYourOwn = new ImageView(new Image("no image"));
+		//squareTemplate = new ImageView(new Image("no image"));
+		//circleTemplate = new ImageView(new Image("no image"));
+		//triangleTemplate = new ImageView(new Image("no image"));
+		//designYourOwn = new ImageView(new Image("no image"));
 	}
 	
 	/**
