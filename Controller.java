@@ -35,16 +35,6 @@ import javafx.stage.Stage;
 public class Controller{
 	private Model model;
 	private View view;
-	private MainMenu mainMenu;
-	private Instructions instructions;
-	private SaveLoad saveLoad;
-	private ChooseTemplate chooseTemplate;
-	private Preferences preferences;
-	private DesignGarden designGarden;
-	private FinalView finalView;
-	private InfoTips infoTips;
-	private SeasonView seasonView;
-	private Recommendations recommendations;
 	private boolean DEBUG;
 	/**
 	 * Constructor for the Controller class where the 
@@ -57,17 +47,6 @@ public class Controller{
 	public Controller() {
 		model = new Model();
 		view = new View();
-		mainMenu = new MainMenu();
-		instructions = new Instructions();
-		saveLoad = new SaveLoad();
-		chooseTemplate = new ChooseTemplate();
-		designGarden = new DesignGarden();
-		finalView = new FinalView(model.getUserPlot());
-		// InfoTips should take in a plant from model
-		infoTips = new InfoTips(null, 0, null, 0, 0, false, null, null);
-		seasonView = new SeasonView();
-		// InfoTips should take in a plant from model
-		recommendations = new Recommendations(null, null, null, 0, 0);
 	}//Controller
 	
 	/**
@@ -355,7 +334,7 @@ public class Controller{
 	 * @see FinalView
 	 */
 	public void mainMenuBTN(MouseEvent event) {
-		System.out.println("Take Me Home");
+		
 	}//mainMenuBTN
 	
 	
@@ -373,36 +352,6 @@ public class Controller{
 	public EventHandler<MouseEvent> getMainMenuBTN() {
 		return event -> mainMenuBTN((MouseEvent)event);
 	}//getMainMenuBTN
-	
-	/**
-	 * Takes in a MouseEvent to know when the changeTab is clicked on the 
-	 * FinalView screen
-	 * <p>
-	 * When clicking another tab uses the update array is the Model
-	 * then in the view updates those arrays to show the updated pictures
-	 * 
-	 * @param event MouseEvent to know when the changeTab Btn is clicked
-	 * @see DesignGarden
-	 */
-	public void changeTab(MouseEvent event) {
-		System.out.println("change tabbbbb");
-	}//changeTab
-	
-	/**
-	 * Returns an Event Handler to bind to an eventListener for the
-	 * changeTab button on the Main Menu
-	 * <p>
-	 * Used to access the changeTab method and bind it using a
-	 * lambda function to an eventListner
-	 * 
-	 * @return EventHandler used to bind to listeners
-	 * @see DesignGarden
-	 * @see changeTab
-	 */
-	public EventHandler<MouseEvent> getChangeTab() {
-		return event -> changeTab((MouseEvent)event);
-	}//getChangeTab
-	
 	
 	/**
 	 * Takes in a MouseEvent to know when the startDrag of an ImageView on the 
@@ -423,7 +372,7 @@ public class Controller{
         //Use clipboard to copy data the add to Dragboard
         ClipboardContent content = new ClipboardContent();
         //Need to edit to pull in right plant from model when dragging
-       // content.putImage(;
+        content.putImage(new Image(event.getSource().toString()));
         dBoard.setContent(content);
         
         event.consume();
@@ -457,7 +406,13 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void detectDrag(DragEvent event) {
-		System.out.println("Tiles should be detecting drag events");
+        if (event.getGestureSource() != view. &&
+                event.getDragboard().hasImage()) {
+            event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+        }
+        
+        event.consume();
+		//System.out.println("Tiles should be detecting drag events");
 	}//detectDrag
 	
 	/**

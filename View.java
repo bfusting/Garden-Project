@@ -64,24 +64,18 @@ public class View extends Application{
 	public View() {
 		//imc = new Controller();
 		
-		instructionsButton = new Button("Instructions");
-		exitButton = new Button("Exit");
-		saveButton = new Button("Save");
-		backButton = new Button("Back");
-		mainMenu = new Button("Main Menu");
-		
 		mainMenuScreen = new MainMenu();
 		instructionsScreen = new Instructions();
-		/*chooseTemplateView = new ChooseTemplate();
-		designGardenView = new DesignGarden();
-		saveLoadView = new SaveLoad();
-		finalView = new FinalView(null);
+		chooseTemplateScreen = new ChooseTemplate();
+		//designGardenScreen = new DesignGarden();
+		saveLoadScreen = new SaveLoad();
+		//finalViewScreen = new FinalView(null);
 		// InfoTips should take in a plant from model
-		infoTipsView = new InfoTips(null, 0, null, 0, 0, false, null, null);
-		seasonView = new SeasonView();
+		//infoTipsScreen = new InfoTips(null, 0, null, 0, 0, false, null, null);
+		//seasonViewScreen = new SeasonView();
 		// InfoTips should take in a plant from model
-		recommendationsView = new Recommendations(null, null, null, 0, 0);
-		*/
+		//recommendationsScreen = new Recommendations(null, null, null, 0, 0);
+		
 		
 		
 	}
@@ -112,7 +106,15 @@ public class View extends Application{
 	 * @param theStage primary stage that is the mainmenu
 	 */
 	public void start(Stage theStage) {
+		//Initializing Buttons, Stages, and Scenes
 		primaryStage = theStage;
+		
+		instructionsButton = new Button("Instructions");
+		exitButton = new Button("Exit");
+		saveButton = new Button("Save");
+		backButton = new Button("Back");
+		mainMenu = new Button("Main Menu");
+		//
 		
 		System.out.println("Set the stage for el Main Menu");
 	}
@@ -129,6 +131,7 @@ public class View extends Application{
 	 */
 	public void exit() {
 		System.out.println("create window to ask user to save before exiting");
+		
 	}
 	
 	/**
@@ -142,9 +145,9 @@ public class View extends Application{
 	 * Makes the MainMenu Stage visible to the user.
 	 * 
 	 */
-	public void showMainMenu() {
+	public void showMainMenuScreen() {
 		//primaryStage.setScene(mainMenuView.getScene());
-		mainMenuView.showMainMenu(primaryStage);
+		mainMenuScreen.showMainMenu(primaryStage);
 	}
 	
 	/**
@@ -153,8 +156,8 @@ public class View extends Application{
 	 * has been passed in.
 	 * 
 	 */
-	public void showInstructions() {
-		instructionsView.showInstructions();
+	public void showInstructionsScreen() {
+		instructionsScreen.showInstructions();
 	}
 	
 	/**
@@ -165,21 +168,39 @@ public class View extends Application{
 	 * 
 	 * @see ChooseTemplate#chooseTemplateScene
 	 */
-	public void showChooseTemplate() {
-		chooseTemplateView.showChooseTemplate(primaryStage);
+	public void showChooseTemplateScreen() {
+		chooseTemplateScreen.showChooseTemplate(primaryStage);
 		
 	}
 	
-	public void showDesignGarden() {
-		designGardenView.showDesignGarden(primaryStage);
+	public void showDesignGardenScreen() {
+		designGardenScreen.showDesignGarden(primaryStage);
 	}
 	
-	public void showSaveGarden() {
-		saveLoadView.showSaveWindow();
+	public void showSaveGardenScreen() {
+		saveLoadScreen.showSaveWindow();
 	}
 	
-	public void showLoadGarden() {
-		saveLoadView.showSaveWindow();
+	public void showLoadGardenScreen() {
+		saveLoadScreen.showSaveWindow();
+	}
+	
+	public void showFinalViewScreen() {
+		finalViewScreen.showFinalView(primaryStage);;
+	}
+	
+	public void showInfoTipsScreen() {
+		//should have two show methods with one that takes a Stage?
+		infoTipsScreen.showInfoTips(primaryStage);
+	}
+	
+	public void showPreferencesScreen() {
+		preferencesScreen.showPreferences(primaryStage);
+	}
+	
+	public void showSeasonViewScreen() {
+		//should take in a Stage
+		seasonViewScreen.ShowSeasonView();
 	}
 	
 	

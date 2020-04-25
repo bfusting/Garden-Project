@@ -27,7 +27,7 @@ import javafx.stage.Stage;
  *
  */
 
-public class ChooseTemplate extends View {
+public class ChooseTemplate {
 	private Scene chooseTemplateScene;
 	private ImageView squareTemplate;
 	private ImageView circleTemplate;
