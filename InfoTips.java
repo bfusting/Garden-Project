@@ -5,6 +5,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * @author Kelsey McRae
+ * 
+ * <br> 
+ * <br> Takes the attributes of the plant and shows them to the user when hovered over or clicked on.
+ *
+ */
+
 public class InfoTips extends View{
 	private Scene contentHolder;
 	private Label color;
@@ -15,6 +24,19 @@ public class InfoTips extends View{
 	private Label provideShade;
 	private Label plantType;
 	private Label animalsFed;
+	
+	/**
+	 * Constructor that takes properties of the plant
+	 * 
+	 * @param col Color of the plant
+	 * @param water Amount of water needed by the plant
+	 * @param bloom Date of the plant's specific bloom time
+	 * @param sun Amount of sun needed
+	 * @param height Height of the plant in bloom
+	 * @param shade Amount of shade needed by the plant
+	 * @param type Type of plant
+	 * @param animals List of animals that feed off this plant
+	 */
 	
 	public InfoTips(String col, int water, Date bloom, int sun, double height, boolean shade, String type, ArrayList<String> animals) {
 		color = new Label(col);
@@ -43,6 +65,12 @@ public class InfoTips extends View{
 		animalsFed = new Label(b);
 				
 	}
+	
+	/**
+	 * Organizes all of the labels of plant attributes
+	 * 
+	 * @param stage The stage of InfoTips' scene
+	 */
 	
 	public void showInfoTips(Stage stage) {
 		
