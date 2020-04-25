@@ -43,7 +43,7 @@ public class MainMenu extends View {
 		createNewGarden = new Button("Create New Garden");
 		loadGarden = new Button("Load Garden");
 		
-		backgroundImage = new Image("no images");
+		
 	}
 	
 	
