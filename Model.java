@@ -25,6 +25,7 @@ import java.util.ArrayList;
 public class Model implements Serializable{
 	
 	private GardenPlot userPlot;
+	private ArrayList<GardenPlot> altPlots;
 	private ArrayList<AddOn> selectionArr;
 	private ArrayList<Plant> shrubArr;
 	private ArrayList<Plant> treeArr;
@@ -151,6 +152,18 @@ public class Model implements Serializable{
 		return underGrowthArr;
 	}
 	
+	/**
+	 * Returns the altPlots attribute from model, which will be used
+	 * to add new gardenPlots to the Array
+	 * <p>
+	 * Returns the altPlots attribute
+	 * 
+	 * @return altPlots used in the final view generation
+	 */
+	public ArrayList<GardenPlot> getAltPlots(){
+		return altPlots;
+	}
+	
 	////////////////////////////		SETTERS			////////////////////////////
 	
 	/**
@@ -197,6 +210,17 @@ public class Model implements Serializable{
 		System.out.println("Setter Info Here");
 	}
 	
+	/**
+	 * Takes in a GardenPlot p and sets userPlot to the new plot.
+	 * <p>
+	 * Setter for userPlot
+	 * 
+	 * @param p new Gardenplot to set userPlot to
+	 */
+	public void setUserPlot(GardenPlot p) {
+		userPlot = p;
+	}
+	
 	/**Takes in type of object which is determine if the object is not the one being
 	 * called on and isn't empty. 
 	 * <p>
@@ -212,4 +236,7 @@ public class Model implements Serializable{
 		}
 		return false;
 	}
+	
+	
+	
 }//Model

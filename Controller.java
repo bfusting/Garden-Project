@@ -1,7 +1,13 @@
+import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.input.TransferMode;
 import javafx.stage.Stage;
 
 /*
@@ -29,47 +35,40 @@ import javafx.stage.Stage;
 public class Controller{
 	private Model model;
 	private View view;
-	//used to compile stub code will delete later
-	EventHandler foo;
-	
+	private MainMenu mainMenu;
+	private Instructions instructions;
+	private SaveLoad saveLoad;
+	private ChooseTemplate chooseTemplate;
+	private Preferences preferences;
+	private DesignGarden designGarden;
+	private FinalView finalView;
+	private InfoTips infoTips;
+	private SeasonView seasonView;
+	private Recommendations recommendations;
+	private boolean DEBUG;
 	/**
 	 * Constructor for the Controller class where the 
-	 * model attribute and view attribute are initialized
+	 * model attribute and view attribute are initialized. 
+	 * Creates new view for each of the View subclassses 
+	 * to access their methods
 	 * 
 	 * @see Controller
 	 */
 	public Controller() {
 		model = new Model();
 		view = new View();
+		mainMenu = new MainMenu();
+		instructions = new Instructions();
+		saveLoad = new SaveLoad();
+		chooseTemplate = new ChooseTemplate();
+		designGarden = new DesignGarden();
+		finalView = new FinalView(model.getUserPlot());
+		// InfoTips should take in a plant from model
+		infoTips = new InfoTips(null, 0, null, 0, 0, false, null, null);
+		seasonView = new SeasonView();
+		// InfoTips should take in a plant from model
+		recommendations = new Recommendations(null, null, null, 0, 0);
 	}//Controller
-	
-	/**
-	 * Takes in the parameter tofu which is a Array of strings passed into the main 
-	 * method and used within the program
-	 * <p>
-	 * Main runs the whole program, usually launchs everything however for now just prints 
-	 * a simple statement.
-	 * 
-	 * @param tofu string array of arguments
-	 * @see main
-	 */
-	public static void main(String[] tofu) {
-		System.out.println("Hello World");
-		//launch();
-	}//main
-	
-	/**
-	 * Takes in parameter theStage and creates a new scene
-	 * for the main menu and sets the stage with that scene
-	 * and then shows the stage.
-	 * <p>
-	 * Start is used to for the start of the program where it starts with the main menu
-	 * 
-	 * @param theStage primary stage that is the mainmenu
-	 */
-	public void start(Stage theStage) {
-		System.out.println("Set the stage for el Main Menu");
-	}
 	
 	/**
 	 * Takes in a MouseEvent which will be bounded to the Main Menus
@@ -81,7 +80,8 @@ public class Controller{
 	 * @param event When button is clicked to create new garden
 	 */
 	public void createNewGarden(MouseEvent event) {
-		System.out.println("NEW GARDEN HAHAHAHAHAH");
+		if(DEBUG) { System.out.println("Created new Garden Plot");};
+		model.setUserPlot(new GardenPlot());
 	}//createNewGarden
 	
 	/**
@@ -105,8 +105,8 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see createNewGarden
 	 */
-	public EventHandler getCreateNewGarden() {
-		return foo;
+	public EventHandler<MouseEvent> getCreateNewGarden() {
+		return event -> createNewGarden((MouseEvent) event);
 	}//getCreateNewGarden
 	
 	/**
@@ -133,9 +133,9 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see loadGarden
 	 */
-	public EventHandler getLoadGarden() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getLoadGarden() {
+		return event -> loadGarden((MouseEvent)event);
+	}//getLoadGarden
 	
 	/**
 	 * Takes in MouseEvent to know when the exit button is closed on the 
@@ -161,9 +161,9 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see exit
 	 */
-	public EventHandler getExit() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getExit() {
+		return event -> exit((MouseEvent)event);
+	}//getExit
 	
 	
 	/**
@@ -189,8 +189,8 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see instructionsShow
 	 */
-	public EventHandler getInstructionShow() {
-		return foo;
+	public EventHandler<MouseEvent> getInstructionShow() {
+		return event -> instructionsShow((MouseEvent)event);
 	}//getCreateNewGarden
 	
 	
@@ -219,9 +219,9 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see backBTN
 	 */
-	public EventHandler getBackBTN() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getBackBTN() {
+		return event -> backBTN((MouseEvent) event);
+	}//getBackBTN
 	
 	/**
 	 * Takes in a MouseEvent to determine when any of the ImageViews
@@ -250,9 +250,9 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see chooseDesign
 	 */
-	public EventHandler getChooseDesign() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getChooseDesign() {
+		return event -> chooseDesign((MouseEvent)event);
+	}//getChooseDesign
 	
 	
 	/**
@@ -279,9 +279,9 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see comboBoxCheck
 	 */
-	public EventHandler getComboCheckBox() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getComboCheckBox() {
+		return event -> comboCheckBox((MouseEvent)event);
+	}//getComboCheckBox
 	
 	
 	/**
@@ -309,9 +309,9 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see recommendationsBTN
 	 */
-	public EventHandler getRecommendationsBTN() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getRecommendationsBTN() {
+		return event -> recommendationsBTN((MouseEvent)event);
+	}//getRecommendationsBTN
 	
 	
 	/**
@@ -338,9 +338,9 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see changeSeasonsBTN
 	 */
-	public EventHandler getChangeSeasonsBTN() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getChangeSeasonsBTN() {
+		return event -> changeSeasonsBTN((MouseEvent)event);
+	}//getChangeSeasons
 	
 	
 	/**
@@ -370,9 +370,9 @@ public class Controller{
 	 * @see MainMenu
 	 * @see mainMenuBTN
 	 */
-	public EventHandler getMainMenuBTN() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getMainMenuBTN() {
+		return event -> mainMenuBTN((MouseEvent)event);
+	}//getMainMenuBTN
 	
 	/**
 	 * Takes in a MouseEvent to know when the changeTab is clicked on the 
@@ -399,9 +399,9 @@ public class Controller{
 	 * @see DesignGarden
 	 * @see changeTab
 	 */
-	public EventHandler getChangeTab() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getChangeTab() {
+		return event -> changeTab((MouseEvent)event);
+	}//getChangeTab
 	
 	
 	/**
@@ -415,7 +415,18 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void startDrag(MouseEvent event) {
-		System.out.println("Starting to drag my soul out of my bodddyyyyyy");
+		Node n = (Node)event.getSource();
+
+		//Create dragboard to hold data
+        Dragboard dBoard = n.startDragAndDrop(TransferMode.ANY);
+
+        //Use clipboard to copy data the add to Dragboard
+        ClipboardContent content = new ClipboardContent();
+        //Need to edit to pull in right plant from model when dragging
+       // content.putImage(;
+        dBoard.setContent(content);
+        
+        event.consume();
 	}//startDrag
 	
 	/**
@@ -429,9 +440,9 @@ public class Controller{
 	 * @see DesignGarden
 	 * @see startDrag
 	 */
-	public EventHandler getStartDrag() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getStartDrag() {
+		return event -> startDrag((MouseEvent)event);
+	}//getStartDrag
 	
 	
 	/**
@@ -461,8 +472,8 @@ public class Controller{
 	 * @see DetectDrag
 	 */
 	public EventHandler getDetectDrag() {
-		return foo;
-	}//getCreateNewGarden
+		return event -> detectDrag((DragEvent)event);
+	}//getDetectDrag
 	
 	/**
 	 * Takes in a DragEvent to know when the target drag of an ImageView on the 
@@ -490,9 +501,9 @@ public class Controller{
 	 * @see DesignGarden
 	 * @see okayToDrop
 	 */
-	public EventHandler getOkayToDrop() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<DragEvent> getOkayToDrop() {
+		return event -> okayToDrop((DragEvent)event);
+	}//getOkayToDrop
 	
 	
 	/**
@@ -519,9 +530,9 @@ public class Controller{
 	 * @see DesignGarden
 	 * @see DetectDragDrop
 	 */
-	public EventHandler getDetectDragDrop() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<DragEvent> getDetectDragDrop() {
+		return event -> detectDragDrop((DragEvent)event);
+	}//getDetectDragDrop
 	
 	
 	/**
@@ -549,9 +560,9 @@ public class Controller{
 	 * @see InfoTips
 	 * @see scrollPage
 	 */
-	public EventHandler getScrollPage() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<ScrollEvent> getScrollPage() {
+		return event -> scrollPage((ScrollEvent)event);
+	}//getScrollPage
 	
 	
 	/**
@@ -579,9 +590,9 @@ public class Controller{
 	 * @see FinalView
 	 * @see editBTN
 	 */
-	public EventHandler getEditBTN() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getEditBTN() {
+		return event -> editBTN((MouseEvent)event);
+	}//getEditBTN
 	
 	
 	/**
@@ -609,9 +620,9 @@ public class Controller{
 	 * @see FinalView
 	 * @see saveBTN
 	 */
-	public EventHandler getSaveBTN() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getSaveBTN() {
+		return event -> saveBTN((MouseEvent)event);
+	}//getSaveBTN
 	
 	
 	/**
@@ -638,9 +649,9 @@ public class Controller{
 	 * @see DesignGarden
 	 * @see InfoTips
 	 */
-	public EventHandler getInfoTipsBTN() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getInfoTipsBTN() {
+		return event -> infoTipsBTN((MouseEvent)event);
+	}//getInfoTipsBTN
 	
 	/**
 	 * Takes in a MouseEvent to know when the viewSeasons is clicked on the 
@@ -667,9 +678,9 @@ public class Controller{
 	 * @see DesignGarden
 	 * @see viewSesonsBTN
 	 */
-	public EventHandler getViewSeasonsBTN() {
-		return foo;
-	}//getCreateNewGarden
+	public EventHandler<MouseEvent> getViewSeasonsBTN() {
+		return event -> viewSeasonsBTN((MouseEvent)event);
+	}//getViewSeasonsBTN
 	
 	/**
 	 * Filechooser to choose where the user wants to save the information
