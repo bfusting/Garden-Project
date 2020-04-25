@@ -63,9 +63,9 @@ public class GardenTileTest {
 	void testValidPlacement() {
 		GardenTile gT = new GardenTile();
 		AddOn a = new AddOn();
-		assertTrue(gT.validPlacement(a)== true);
+		assertTrue(gT.validPlacement()== true);
 		gT.add(a);
-		assertTrue(gT.validPlacement(a)== false);
+		assertTrue(gT.validPlacement()== false);
 		
 	}
 }

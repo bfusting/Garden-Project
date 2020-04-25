@@ -227,6 +227,8 @@ public class GardenPlot implements Serializable{
 		
 	/**
 	 * sets GardenTile attribute isActive to true
+	 * TODO:
+	 * Must move this method into model as eventhandlers are needed for this method
 	 */
 	public void selectActiveGardenTiles() {
 		
@@ -284,9 +286,9 @@ public class GardenPlot implements Serializable{
 		for(GardenTile[] arr : layout) {
 			for(GardenTile gT : arr){
 		
-		//Checks if the tile is empty
+		//Checks if the tile is empty and fills it
 				if(gT.isEmpty()) {
-					gT.add(gT.getRecommendations(this.getSurroundingInfo(gT.getxLoc(), gT.getyLoc()))[0]);
+					gT.add( gT.getRecommendations (this.getSurroundingInfo(gT.getxLoc(), gT.getyLoc()))[0]);
 				}
 			}
 		}

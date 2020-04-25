@@ -1,4 +1,5 @@
 import java.io.Serializable;
+
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
 *  Class Section: 011
@@ -26,7 +27,7 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	private int xLoc;
 	private int yLoc;
 
-
+	private String blankImage;
 	
 	private boolean isActive;
 	
@@ -58,8 +59,12 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 		waterLevel = 0;
 		sunLightLevel = 0;
 	}
-	
-	public GardenTile(int x, int y) {
+		/**
+		 * Constructor With x and y parameters
+		 * @param x
+		 * @param y
+		 */
+		public GardenTile(int x, int y) {
 		isActive = true;
 		isEmpty = true;
 		soilType = "";
@@ -68,6 +73,23 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 		this.xLoc = x;
 		this.yLoc = y;
 	}
+		
+		/**
+		 * Constructor With x and y parameters and a Soil type parameter
+		 * @param x
+		 * @param y
+		 * @param sT soil type
+		 */
+		public GardenTile(int x, int y, String sT) {
+			isActive = true;
+			isEmpty = true;
+			soilType = sT;
+			waterLevel = 0;
+			sunLightLevel = 0;
+			this.xLoc = x;
+			this.yLoc = y;
+		}
+		
 	
 	/**
 	 * Removes the AddOn that occupies the GardenTile
@@ -104,18 +126,35 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 		//TODO:
 		//Have to test for each type of AddOn
 		//Order of AddOn's in arr are Tile to the left, then right, then above, then below
+		//Also have to make this work with the .csv of plants when we get that in
+		for(AddOn ad : arr) {
+			if(ad.getClass() == Plant.class) {
+				//returns 
+				
+			}
+			
+			if(ad.getName() == "Forest Edge") {
+				
+			}
+			
+			else {
+				
+			}
+		}
+		
+		
 		return null;
 	}
 	
 	
 	
 	/**
-	 * 
+	 * Checks if the AddOn's are the same
 	 * @param a
 	 * @return
 	 */
 	public boolean equals(AddOn a) {
-		return false;
+		return a == this.getAddOn();
 	}
 	
 	/**
@@ -126,12 +165,15 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	}
 	
 	/**
+	 * Tests to see if the AddOn was placed in a valid spot.
 	 * 
-	 * @param a
 	 * @return
 	 */
-	public boolean validPlacement(AddOn a) {
-		return false;
+	public boolean validPlacement() {
+		if(this.addOn != null) {
+			return false;
+		}
+		else return true;
 	}
 	
 	/**
@@ -139,7 +181,7 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	 * @return
 	 */
 	public boolean isActive(){
-		return true;
+		return this.isActive;
 	}
 	
 	/**
@@ -149,7 +191,7 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	 * 
 	 */
 	public boolean isEmpty() {
-		return true;
+		return this.isEmpty;
 	}
 	
 	/**
