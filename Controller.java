@@ -52,8 +52,9 @@ public class Controller{
 	 * @see main
 	 */
 	public static void main(String[] tofu) {
-		System.out.println("Hello World");
+		//System.out.println("Hello World");
 		//launch();
+		start(null);
 	}//main
 	
 	/**
@@ -458,7 +459,7 @@ public class Controller{
 	 * @see DesignGarden
 	 * @see DetectDrag
 	 */
-	public EventHandler<DragEvent> getDetectDrag() {
+	public EventHandler getDetectDrag() {
 		return event -> detectDrag((DragEvent)event);
 	}//getDetectDrag
 	
