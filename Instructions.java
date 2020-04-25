@@ -26,7 +26,7 @@ import javafx.stage.Stage;
  * @author Takiyah Price
  */
 
-public class Instructions extends View {
+public class Instructions {
 	private Label instructions;
 	private Scene instructionsScene;
 	private Stage instructionsStage;
@@ -55,15 +55,9 @@ public class Instructions extends View {
 		return text;
 	}
 	
-	/**
-	 * Makes the instructions screen visible to the user. Will appear on the main screen or
-	 * in a separate smaller window depending on whether the primary Stage or a separate Stage
-	 * has been passed in.
-	 * 
-	 * @param theStage the Stage that will be set with instructionsStage and shown to the user
-	 */
-	public void showInstructions(Stage theStage) {
-		
+	
+	public void showInstructions() {
+		instructionsStage.show();
 	}
 	
 	

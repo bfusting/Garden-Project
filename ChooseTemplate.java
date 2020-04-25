@@ -27,7 +27,7 @@ import javafx.stage.Stage;
  *
  */
 
-public class ChooseTemplate extends View {
+public class ChooseTemplate {
 	private Scene chooseTemplateScene;
 	private ImageView squareTemplate;
 	private ImageView circleTemplate;
@@ -53,15 +53,6 @@ public class ChooseTemplate extends View {
 		//designYourOwn = new ImageView(new Image("no image"));
 	}
 	
-	/**
-	 * Sets the given Stage with the chooseTemplate Scene containing the Buttons for choosing
-	 * the garden shape and makes it visible to the user.
-	 * 
-	 * @param theStage the Stage that will be set with the chooseTemplate Scene and shown to
-	 * the user
-	 * 
-	 * @see ChooseTemplate#chooseTemplateScene
-	 */
 	public void showChooseTemplate(Stage theStage) {
 		
 	}
