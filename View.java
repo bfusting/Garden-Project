@@ -61,6 +61,7 @@ public class View extends Application{
 	 * and sets primaryStage to the Stage created at the start of the program. 
 	 * 
 	 */
+
 	public View() {
 		//imc = new Controller();
 		
@@ -78,6 +79,7 @@ public class View extends Application{
 		
 		
 		
+
 	}
 	
 	/**
@@ -106,6 +108,7 @@ public class View extends Application{
 	 * @param theStage primary stage that is the mainmenu
 	 */
 	public void start(Stage theStage) {
+
 		//Initializing Buttons, Stages, and Scenes
 		primaryStage = theStage;
 		
@@ -115,7 +118,8 @@ public class View extends Application{
 		backButton = new Button("Back");
 		mainMenu = new Button("Main Menu");
 		//
-		
+	       
+
 		System.out.println("Set the stage for el Main Menu");
 	}
 	
@@ -131,7 +135,8 @@ public class View extends Application{
 	 */
 	public void exit() {
 		System.out.println("create window to ask user to save before exiting");
-		
+
+
 	}
 	
 	/**
@@ -141,6 +146,7 @@ public class View extends Application{
 		System.out.println("close application (meaning close all open windows)");
 	}
 	
+
 	/**
 	 * Makes the MainMenu Stage visible to the user.
 	 * 
@@ -204,6 +210,7 @@ public class View extends Application{
 	}
 	
 	
+
 	
 	
 		
