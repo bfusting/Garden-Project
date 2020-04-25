@@ -1,7 +1,13 @@
+import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.input.TransferMode;
 import javafx.stage.Stage;
 
 /*
@@ -26,19 +32,41 @@ import javafx.stage.Stage;
  * are event handlers and getters to set the event handlers for the items in View and 
  * its subclasses.
  */
-public class Controller{
+public class Controller extends Application{
 	private Model model;
 	private View view;
-	
+	private MainMenu mainMenu;
+	private Instructions instructions;
+	private SaveLoad saveLoad;
+	private ChooseTemplate chooseTemplate;
+	private Preferences preferences;
+	private DesignGarden designGarden;
+	private FinalView finalView;
+	private InfoTips infoTips;
+	private SeasonView seasonView;
+	private Recommendations recommendations;
 	/**
 	 * Constructor for the Controller class where the 
-	 * model attribute and view attribute are initialized
+	 * model attribute and view attribute are initialized. 
+	 * Creates new view for each of the View subclassses 
+	 * to access their methods
 	 * 
 	 * @see Controller
 	 */
 	public Controller() {
 		model = new Model();
 		view = new View();
+		mainMenu = new MainMenu();
+		instructions = new Instructions();
+		saveLoad = new SaveLoad();
+		chooseTemplate = new ChooseTemplate();
+		designGarden = new DesignGarden();
+		finalView = new FinalView(model.getUserPlot());
+		// InfoTips should take in a plant from model
+		infoTips = new InfoTips(null, 0, null, 0, 0, false, null, null);
+		seasonView = new SeasonView();
+		// InfoTips should take in a plant from model
+		recommendations = new Recommendations(null, null, null, 0, 0);
 	}//Controller
 	
 	/**
@@ -53,8 +81,7 @@ public class Controller{
 	 */
 	public static void main(String[] tofu) {
 		//System.out.println("Hello World");
-		//launch();
-		start(null);
+		launch();
 	}//main
 	
 	/**
@@ -80,7 +107,7 @@ public class Controller{
 	 * @param event When button is clicked to create new garden
 	 */
 	public void createNewGarden(MouseEvent event) {
-		System.out.println("NEW GARDEN HAHAHAHAHAH");
+		model.setUserPlot(new GardenPlot());
 	}//createNewGarden
 	
 	/**
@@ -414,7 +441,18 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void startDrag(MouseEvent event) {
-		System.out.println("Starting to drag my soul out of my bodddyyyyyy");
+		Node n = (Node)event.getSource();
+
+		//Create dragboard to hold data
+        Dragboard dBoard = n.startDragAndDrop(TransferMode.ANY);
+
+        //Use clipboard to copy data the add to Dragboard
+        ClipboardContent content = new ClipboardContent();
+        //Need to edit to pull in right plant from model when dragging
+       // content.putImage(;
+        dBoard.setContent(content);
+        
+        event.consume();
 	}//startDrag
 	
 	/**
