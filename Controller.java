@@ -45,6 +45,7 @@ public class Controller extends Application{
 	private InfoTips infoTips;
 	private SeasonView seasonView;
 	private Recommendations recommendations;
+	private boolean DEBUG;
 	/**
 	 * Constructor for the Controller class where the 
 	 * model attribute and view attribute are initialized. 
@@ -107,6 +108,7 @@ public class Controller extends Application{
 	 * @param event When button is clicked to create new garden
 	 */
 	public void createNewGarden(MouseEvent event) {
+		if(DEBUG) { System.out.println("Created new Garden Plot");};
 		model.setUserPlot(new GardenPlot());
 	}//createNewGarden
 	
