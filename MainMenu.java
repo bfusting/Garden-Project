@@ -27,32 +27,35 @@ import javafx.stage.Stage;
  * @author Takiyah Price
  */
 
-public class MainMenu extends View {
+public class MainMenu  {
 	private Button createNewGarden;
 	private Button loadGarden;
 	private Image backgroundImage;
-	private Stage mainMenuStage;
+	//private Stage mainMenuStage;
 	private Scene mainMenuScene;
 	
 	
 	/**
 	 * Constructor for the Main Menu that creates new Buttons for creating or loading a garden and 
 	 * the background Image for the window, then sets a new Stage with a Scene containing these components.
+	 * 
 	 */
 	public MainMenu() {
 		createNewGarden = new Button("Create New Garden");
 		loadGarden = new Button("Load Garden");
 		
+		backgroundImage = null;
+		mainMenuScene = null;
 		
 	}
+	
 	
 	
 	/**
 	 * Makes the MainMenu Stage visible to the user.
 	 * 
-	 * @param theStage the Stage that will be set to mainMenuStage and shown to the user
 	 */
 	public void showMainMenu(Stage theStage) {
-		
+		theStage.setScene(mainMenuScene);
 	}
 }

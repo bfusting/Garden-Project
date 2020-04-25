@@ -37,30 +37,53 @@ public class View extends Application{
 	private Button backButton;
 	private Button mainMenu;
 	private Stage primaryStage;
-	private Scene primaryScene;
 	private Stage exitStage;
 	private Scene exitScene;
 	
-	/**
-	 * Empty constructor for the View to be overridden by subclasses.
-	 */
-	public View() {
-	}
+	private Controller imc;
+	private MainMenu mainMenuScreen;
+	private Instructions instructionsScreen;
+	private ChooseTemplate chooseTemplateScreen;
+	private DesignGarden designGardenScreen;
+	private FinalView finalViewScreen;
+	private InfoTips infoTipsScreen;
+	private Preferences preferencesScreen;
+	private SaveLoad saveLoadScreen;
+	private SeasonView seasonViewScreen;
+	private Recommendations recommendationsScreen;
+	
+	
+		
+	
 	
 	/**
 	 * Constructor for the View that creates the instructions, exit, back and main menu Buttons
 	 * and sets primaryStage to the Stage created at the start of the program. 
 	 * 
-	 * @param theStage the Stage created automatically at the start of the program
 	 */
-	public View(Stage theStage) {
+	public View() {
+		//imc = new Controller();
+		
 		instructionsButton = new Button("Instructions");
 		exitButton = new Button("Exit");
+		saveButton = new Button("Save");
 		backButton = new Button("Back");
 		mainMenu = new Button("Main Menu");
-
-			
-		this.primaryStage = theStage;
+		
+		mainMenuScreen = new MainMenu();
+		instructionsScreen = new Instructions();
+		/*chooseTemplateView = new ChooseTemplate();
+		designGardenView = new DesignGarden();
+		saveLoadView = new SaveLoad();
+		finalView = new FinalView(null);
+		// InfoTips should take in a plant from model
+		infoTipsView = new InfoTips(null, 0, null, 0, 0, false, null, null);
+		seasonView = new SeasonView();
+		// InfoTips should take in a plant from model
+		recommendationsView = new Recommendations(null, null, null, 0, 0);
+		*/
+		
+		
 	}
 	
 	/**
@@ -78,6 +101,7 @@ public class View extends Application{
 		launch();
 	}//main
 	
+	@Override
 	/**
 	 * Takes in parameter theStage and creates a new scene
 	 * for the main menu and sets the stage with that scene
@@ -88,6 +112,8 @@ public class View extends Application{
 	 * @param theStage primary stage that is the mainmenu
 	 */
 	public void start(Stage theStage) {
+		primaryStage = theStage;
+		
 		System.out.println("Set the stage for el Main Menu");
 	}
 	
@@ -111,6 +137,51 @@ public class View extends Application{
 	public void close() {
 		System.out.println("close application (meaning close all open windows)");
 	}
+	
+	/**
+	 * Makes the MainMenu Stage visible to the user.
+	 * 
+	 */
+	public void showMainMenu() {
+		//primaryStage.setScene(mainMenuView.getScene());
+		mainMenuView.showMainMenu(primaryStage);
+	}
+	
+	/**
+	 * Makes the instructions screen visible to the user. Will appear on the main screen or
+	 * in a separate smaller window depending on whether the primary Stage or a separate Stage
+	 * has been passed in.
+	 * 
+	 */
+	public void showInstructions() {
+		instructionsView.showInstructions();
+	}
+	
+	/**
+	 * Sets the given Stage with the chooseTemplate Scene containing the Buttons for choosing
+	 * the garden shape and makes it visible to the user.
+	 * 
+	 * 
+	 * 
+	 * @see ChooseTemplate#chooseTemplateScene
+	 */
+	public void showChooseTemplate() {
+		chooseTemplateView.showChooseTemplate(primaryStage);
+		
+	}
+	
+	public void showDesignGarden() {
+		designGardenView.showDesignGarden(primaryStage);
+	}
+	
+	public void showSaveGarden() {
+		saveLoadView.showSaveWindow();
+	}
+	
+	public void showLoadGarden() {
+		saveLoadView.showSaveWindow();
+	}
+	
 	
 	
 	
