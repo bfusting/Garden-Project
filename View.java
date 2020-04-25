@@ -30,7 +30,7 @@ import javafx.stage.Stage;
  */
 
 
-public class View  {
+public class View extends Application{
 	private Button instructionsButton;
 	private Button exitButton;
 	private Button saveButton;
@@ -61,6 +61,34 @@ public class View  {
 
 			
 		this.primaryStage = theStage;
+	}
+	
+	/**
+	 * Takes in the parameter tofu which is a Array of strings passed into the main 
+	 * method and used within the program
+	 * <p>
+	 * Main runs the whole program, usually launchs everything however for now just prints 
+	 * a simple statement.
+	 * 
+	 * @param tofu string array of arguments
+	 * @see main
+	 */
+	public static void main(String[] tofu) {
+		//System.out.println("Hello World");
+		launch();
+	}//main
+	
+	/**
+	 * Takes in parameter theStage and creates a new scene
+	 * for the main menu and sets the stage with that scene
+	 * and then shows the stage.
+	 * <p>
+	 * Start is used to for the start of the program where it starts with the main menu
+	 * 
+	 * @param theStage primary stage that is the mainmenu
+	 */
+	public void start(Stage theStage) {
+		System.out.println("Set the stage for el Main Menu");
 	}
 	
 	

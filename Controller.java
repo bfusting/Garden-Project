@@ -32,7 +32,7 @@ import javafx.stage.Stage;
  * are event handlers and getters to set the event handlers for the items in View and 
  * its subclasses.
  */
-public class Controller extends Application{
+public class Controller{
 	private Model model;
 	private View view;
 	private MainMenu mainMenu;
@@ -69,34 +69,6 @@ public class Controller extends Application{
 		// InfoTips should take in a plant from model
 		recommendations = new Recommendations(null, null, null, 0, 0);
 	}//Controller
-	
-	/**
-	 * Takes in the parameter tofu which is a Array of strings passed into the main 
-	 * method and used within the program
-	 * <p>
-	 * Main runs the whole program, usually launchs everything however for now just prints 
-	 * a simple statement.
-	 * 
-	 * @param tofu string array of arguments
-	 * @see main
-	 */
-	public static void main(String[] tofu) {
-		//System.out.println("Hello World");
-		launch();
-	}//main
-	
-	/**
-	 * Takes in parameter theStage and creates a new scene
-	 * for the main menu and sets the stage with that scene
-	 * and then shows the stage.
-	 * <p>
-	 * Start is used to for the start of the program where it starts with the main menu
-	 * 
-	 * @param theStage primary stage that is the mainmenu
-	 */
-	public void start(Stage theStage) {
-		System.out.println("Set the stage for el Main Menu");
-	}
 	
 	/**
 	 * Takes in a MouseEvent which will be bounded to the Main Menus
