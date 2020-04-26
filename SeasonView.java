@@ -25,7 +25,7 @@ import javafx.stage.Stage;
  * in different seasons such as SUMMER, WINTER, FALL
  *
  */
-public class SeasonView extends View{
+public class SeasonView{
 	// make it so one label which changes depending on season?
 	// full screen season view?
 	private final static int HEIGHT = 600;

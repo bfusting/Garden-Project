@@ -209,10 +209,5 @@ public class View extends Application{
 		recommendationsScreen.showRecommendations(primaryStage);
 	}
 	
-	
-	
-	
-		
-	
 }
 

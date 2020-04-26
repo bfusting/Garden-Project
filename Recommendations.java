@@ -30,19 +30,19 @@ import javafx.stage.Stage;
  * the garden requirements and plant preferences
  *
  */
-public class Recommendations extends View{
+public class Recommendations{
 	private String weRecommendMessage;
 	private Label recommendationMessage;
 	private Image plantImage;
 	private String name;
-	private Date bloomTime;
+	private Seasons bloomTime;
 	private int light;
 	private int water;
 	private ArrayList<String> animalsFed;
 	private final int HEIGHT = 500;
 	private final int WIDTH = 250;
 	
-	/**
+	/** USE THIS ONE AFTER ALPHA
 	 * Takes in an image i which is the image of a plant
 	 * date which is a date of when the plant comes into bloom
 	 * lightNeed which is rated on a scale of 0-5 where 0 means no light where 5 needs a lot of light
@@ -56,6 +56,7 @@ public class Recommendations extends View{
 	 * @param waterNeed water need of the plant recommended
 	 * @see Recommendations
 	 */
+	/*
 	public Recommendations(Image i, String givenName, Date date, int lightNeed, int waterNeed) {
 		weRecommendMessage = "Hello World";
 		// Chanege message above
@@ -65,6 +66,32 @@ public class Recommendations extends View{
 		name = givenName;
 		light = lightNeed;
 		water = waterNeed;
+		animalsFed = new ArrayList<String>();
+	}//Recommendations
+	
+	/** USE THIS ONE AFTER ALPHA
+	 * Takes in an image i which is the image of a plant
+	 * date which is a date of when the plant comes into bloom
+	 * lightNeed which is rated on a scale of 0-5 where 0 means no light where 5 needs a lot of light
+	 * waterNeed which is rated on a scale of 0-5 where 0 means no water where 5 needs a lot of water
+	 * <p>
+	 * The constructor to create the Recommendations view
+	 * 
+	 * @param i Image of the plant recommended
+	 * @param givenName name of the plant
+	 * @param lightNeed light need of the plant recommended
+	 * @param waterNeed water need of the plant recommended
+	 * @see Recommendations
+	 */
+	public Recommendations() {
+		weRecommendMessage = "This is where Recommendations will go based on plant";
+		// Chanege message above
+		recommendationMessage = new Label(weRecommendMessage);
+		plantImage = null;
+		bloomTime = null;
+		name = null;
+		light = 0;
+		water = 0;
 		animalsFed = new ArrayList<String>();
 	}//Recommendations
 	
@@ -78,7 +105,7 @@ public class Recommendations extends View{
 	 * @see recommendationMessaage
 	 */
 	public String getWeRecommendationMessage() {
-		return "HELLO WORLD";
+		return weRecommendMessage;
 	}
 	
 	/**
@@ -105,7 +132,7 @@ public class Recommendations extends View{
 	 * @see Image
 	 */
 	public Image getPlantImage() {
-		return new Image("Hello World");
+		return plantImage;
 	}
 	
 	/**
