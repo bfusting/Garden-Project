@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.ArrayList;
 
 import javafx.application.Application;
@@ -71,7 +72,7 @@ public class View extends Application{
 		exitScreen = new Exit(imc);
 		chooseTemplateScreen = new ChooseTemplate(imc);
 		designGardenScreen = new DesignGarden(imc);
-		//saveLoadScreen = new SaveLoad();
+		saveLoadScreen = new SaveLoad();
 		//finalViewScreen = new FinalView(null);
 		// InfoTips should take in a plant from model
 		//infoTipsScreen = new InfoTips(null, 0, null, 0, 0, false, null, null);
@@ -205,12 +206,12 @@ public class View extends Application{
 		designGardenScreen.showDesignGarden(primaryStage);
 	}
 	
-	public void showSaveGardenScreen() {
-		saveLoadScreen.showSaveWindow();
+	public File showSaveGardenScreen() {
+		return saveLoadScreen.showSaveWindow();
 	}
 	
-	public void showLoadGardenScreen() {
-		saveLoadScreen.showSaveWindow();
+	public File showLoadGardenScreen() {
+		return saveLoadScreen.showLoadWindow();
 	}
 	
 	public void showFinalViewScreen() {

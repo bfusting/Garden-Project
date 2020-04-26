@@ -1,3 +1,5 @@
+import java.io.File;
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -107,6 +109,7 @@ public class Controller{
 	 */
 	public void loadGarden(MouseEvent event) {
 		System.out.println("Load Garden Here");
+		File file = view.showLoadGardenScreen();
 	}//loadGarden
 	
 	/**
@@ -591,6 +594,7 @@ public class Controller{
 	 */
 	public void saveBTN(MouseEvent event) {
 		System.out.println("SAVE OFTEN");
+		File file = view.showSaveGardenScreen();
 	}//saveBTN
 	
 	/**
@@ -674,6 +678,7 @@ public class Controller{
 	 */
 	public void saveGarden() {
 		System.out.println("Open fileChooser and Save file");
+		
 	}
 	
 	/**
@@ -684,6 +689,7 @@ public class Controller{
 	 */
 	public void loadGarden() {
 		System.out.println("Loads using fileChooser");
+		
 	}
 	
 	
