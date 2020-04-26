@@ -2,6 +2,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /*
@@ -34,8 +36,9 @@ public class SeasonView{
 	private Label currSeason;
 	private BorderPane currView;
 	private Scene seasonView;
-	private Stage seasonWindow;
 	private Button backBTN;
+	private Button exitBTN;
+	private Button nextBTN;
 	
 	/**
 	 * Basic default constructor for the SeasonView when trying 
@@ -46,8 +49,6 @@ public class SeasonView{
 		currSeason = new Label("Spring");
 		currView = new BorderPane();
 		seasonView = null;
-		seasonWindow = new Stage();
-		
 	}
 	
 	/**
@@ -77,19 +78,6 @@ public class SeasonView{
 	}
 	
 	/**
-	 * Returns type Stage which displays the window for the SeasonView
-	 * <p>
-	 * Getter for seasonWindow attribute
-	 * 
-	 * @return stage which represents the current window of SeasonView
-	 * @see seasonWindow
-	 * 
-	 */
-	public Stage getSeasonWindow() {
-		return seasonWindow;
-	}
-	
-	/**
 	 * Returns the back button to bind an event listener to
 	 * <p>
 	 * Getter for backBTN
@@ -105,10 +93,31 @@ public class SeasonView{
 	 * features such as the back button and a pane within the borderpane center
 	 * to the currentView
 	 */
+	//Use after alpha
+	//public void ShowSeasonView(Stage primaryStage){
 	public void ShowSeasonView(){
-		System.out.println("Creates the new window");
+		//Creating new instances of images
+		Stage stage = new Stage();
+		BorderPane bPane = new BorderPane();
+		FlowPane fPane = new FlowPane();
+		HBox hPane = new HBox();
+		backBTN = new Button("Back a Season");
+		nextBTN = new Button("Next Season");
+		exitBTN = new Button("Close Window");
+		
+		// Stacking items within items buttons -> HBox --> Bottom of bpane
+		hPane.getChildren().add(backBTN);
+		hPane.getChildren().add(exitBTN);
+		hPane.getChildren().add(nextBTN);
+		bPane.setBottom(hPane);
+		bPane.setCenter(fPane);
+		
+		// Setting the Scene with bPane
+		Scene scene = new Scene(bPane,500,500);
+		stage.setTitle("SeasonView");
+		stage.setScene(scene);
+		stage.show();
 		//seasonView = new Scene(currView,HEIGHT,WIDTH);
 		//seasonWindow.setScene(seasonView);
-		//backBTN = new Button("Back");
 	}
 }

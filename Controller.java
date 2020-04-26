@@ -44,9 +44,9 @@ public class Controller{
 	 * 
 	 * @see Controller
 	 */
-	public Controller() {
+	public Controller(View passedInView) {
 		model = new Model();
-		view = new View();
+		this.view = passedInView;
 	}//Controller
 	
 	/**
