@@ -1,9 +1,12 @@
+import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /*
@@ -89,6 +92,28 @@ public class SeasonView{
 	}
 	
 	/**
+	 * Returns the next button to bind an event listener to
+	 * <p>
+	 * Getter for nextBTN
+	 * 
+	 * @return next button on the screen
+	 */
+	public Button getNextBTN() {
+		return nextBTN;
+	}
+	
+	/**
+	 * Returns the exit button to bind an event listener to
+	 * <p>
+	 * Getter for exitBTN
+	 * 
+	 * @return the exit button on screen
+	 */
+	public Button getExitBTN() {
+		return exitBTN;
+	}
+	
+	/**
 	 * Used to create a new popup window of the stage and adds the
 	 * features such as the back button and a pane within the borderpane center
 	 * to the currentView
@@ -99,25 +124,30 @@ public class SeasonView{
 		//Creating new instances of images
 		Stage stage = new Stage();
 		BorderPane bPane = new BorderPane();
+		Text texInFlow = new Text("Here will be the season presentation of the Garden"
+				+ " in various seasons. Buttons will change the title of the scene" );
 		FlowPane fPane = new FlowPane();
 		HBox hPane = new HBox();
 		backBTN = new Button("Back a Season");
 		nextBTN = new Button("Next Season");
 		exitBTN = new Button("Close Window");
+		Pane spacer = new Pane();
+		spacer.setMinSize(500, 1);
 		
 		// Stacking items within items buttons -> HBox --> Bottom of bpane
+		hPane.getChildren().add(spacer);
 		hPane.getChildren().add(backBTN);
 		hPane.getChildren().add(exitBTN);
 		hPane.getChildren().add(nextBTN);
+		fPane.getChildren().add(texInFlow);
 		bPane.setBottom(hPane);
 		bPane.setCenter(fPane);
+		bPane.setTop(currSeason);
 		
 		// Setting the Scene with bPane
-		Scene scene = new Scene(bPane,500,500);
+		Scene scene = new Scene(bPane,HEIGHT,WIDTH);
 		stage.setTitle("SeasonView");
 		stage.setScene(scene);
 		stage.show();
-		//seasonView = new Scene(currView,HEIGHT,WIDTH);
-		//seasonWindow.setScene(seasonView);
 	}
 }
