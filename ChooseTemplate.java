@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 *  
 */
 
+//Last edited 4-26-20 3:41PM
+
 /**
  * 
  * View that handles the creation and presentation of the screen containing Buttons
