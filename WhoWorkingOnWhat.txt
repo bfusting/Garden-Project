@@ -1,0 +1,5 @@
+These are the files that each person is working on for Alpha:
+	Kelsey: DesignGarden, Preferences, InfoTips, FinalView
+	Malachi: Model, Controller, Recommendations, SeasonView
+	TJ: View, MainMenu, Instructions, ChooseTemplate, SaveLoad, Exit
+	Bradley: GardenPlot, GardenTile,AddOn,Plant

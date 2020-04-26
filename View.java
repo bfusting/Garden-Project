@@ -206,7 +206,7 @@ public class View extends Application{
 	
 	public void showRecommendationsScreen() {
 		//shouldn't take in a Stage
-		recommendationsScreen.showRecommendations(primaryStage);
+		recommendationsScreen.showRecommendations();
 	}
 	
 }
