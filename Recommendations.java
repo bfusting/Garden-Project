@@ -34,7 +34,6 @@ import javafx.stage.Stage;
 public class Recommendations{
 	private String weRecommendMessage;
 	private Label recommendationMessage;
-	private Button closeWindow;
 	private Image plantImage;
 	private String name;
 	private Seasons bloomTime;
@@ -43,6 +42,8 @@ public class Recommendations{
 	private ArrayList<String> animalsFed;
 	private final int HEIGHT = 500;
 	private final int WIDTH = 250;
+	private Controller c;
+	private Stage stage;
 	
 	/** USE THIS ONE AFTER ALPHA
 	 * Takes in an image i which is the image of a plant
@@ -85,7 +86,7 @@ public class Recommendations{
 	 * @param waterNeed water need of the plant recommended
 	 * @see Recommendations
 	 */
-	public Recommendations() {
+	public Recommendations(Controller controller) {
 		weRecommendMessage = "This is where Recommendations will go based on GardenPlot";
 		// Chanege message above
 		recommendationMessage = new Label(weRecommendMessage);
@@ -95,6 +96,7 @@ public class Recommendations{
 		light = 0;
 		water = 0;
 		animalsFed = new ArrayList<String>();
+		c = controller;
 	}//Recommendations
 	
 	/**
@@ -218,12 +220,10 @@ public class Recommendations{
 	 * @see Scene
 	 */
 	public void showRecommendations() {
-		Stage stage = new Stage();
-		closeWindow = new Button("Close Window");
+		stage = new Stage();
     	stage.setTitle("Recommendations");
     	BorderPane bPane = new BorderPane();
     	bPane.setCenter(recommendationMessage);
-    	bPane.setBottom(closeWindow);
     	Scene scene = new Scene(bPane, WIDTH, HEIGHT);
     	stage.setScene(scene);
         stage.show();
