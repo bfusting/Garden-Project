@@ -1,6 +1,12 @@
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Label;
+import javafx.scene.Scene;
+
+//Updated: 4/25 9:52
+
 /**
  * 
  * @author Kelsey McRae
@@ -16,6 +22,8 @@ public class Preferences{
 	
 	private int gardenLength;
 	private int gardenWidth;
+	
+	private Scene preferencesScene;
 	
 	/**
 	 * 
@@ -78,8 +86,17 @@ public class Preferences{
 	 * 
 	 * @param stage The stage for Preferences' scene
 	 */
-/*	public void showPreferences(Stage stage) {
+	public void showPreferences(Stage stage) {
+		
+		AnchorPane root = new AnchorPane();
+		Label pref = new Label ("This is preferences");
+		AnchorPane.setTopAnchor(pref, 100.0);
+		root.getChildren().add(pref);
+		preferencesScene = new Scene(root, 500.0, 500.0);
+		
+		stage.setTitle("Preferences");
+		stage.setScene(preferencesScene);
+		stage.show();
 		
 	}
-	*/
 }

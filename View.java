@@ -62,19 +62,19 @@ public class View extends Application{
 	 * 
 	 */
 	public View() {
-		//imc = new Controller();
+		imc = new Controller(this);
 		
 		mainMenuScreen = new MainMenu();
 		instructionsScreen = new Instructions();
 		chooseTemplateScreen = new ChooseTemplate();
-		//designGardenScreen = new DesignGarden();
-		saveLoadScreen = new SaveLoad();
+		designGardenScreen = new DesignGarden(imc);
+		//saveLoadScreen = new SaveLoad();
 		//finalViewScreen = new FinalView(null);
 		// InfoTips should take in a plant from model
 		//infoTipsScreen = new InfoTips(null, 0, null, 0, 0, false, null, null);
 		//seasonViewScreen = new SeasonView();
 		// InfoTips should take in a plant from model
-		//recommendationsScreen = new Recommendations(null, null, null, 0, 0);
+		//recommendationsScreen = new Recommendations();
 		
 		
 		
@@ -120,7 +120,8 @@ public class View extends Application{
 		System.out.println("Set the stage for el Main Menu");
 		mainMenuScreen.showMainMenu(primaryStage);
 		
-		instructionsScreen.showInstructions();
+		//designGardenScreen.showDesignGarden(primaryStage);
+		
 	}
 	
 	
@@ -150,7 +151,6 @@ public class View extends Application{
 	 * 
 	 */
 	public void showMainMenuScreen() {
-		//primaryStage.setScene(mainMenuView.getScene());
 		mainMenuScreen.showMainMenu(primaryStage);
 	}
 	
@@ -178,8 +178,7 @@ public class View extends Application{
 	}
 	
 	public void showDesignGardenScreen() {
-		//designGardenScreen.showDesignGarden(primaryStage);
-		//primaryStage.setScene(designGardenScreen.getScene());
+		designGardenScreen.showDesignGarden(primaryStage);
 	}
 	
 	public void showSaveGardenScreen() {
@@ -191,12 +190,12 @@ public class View extends Application{
 	}
 	
 	public void showFinalViewScreen() {
-		//finalViewScreen.showFinalView(primaryStage);
+		finalViewScreen.showFinalView(primaryStage);
 	}
 	
 	public void showInfoTipsScreen() {
 		//should have two show methods with one that takes a Stage?
-		//infoTipsScreen.showInfoTips(primaryStage);
+		infoTipsScreen.showInfoTips(primaryStage);
 	}
 	
 	public void showPreferencesScreen() {
@@ -210,7 +209,7 @@ public class View extends Application{
 	
 	public void showRecommendationsScreen() {
 		//shouldn't take in a Stage
-		recommendationsScreen.showRecommendations(primaryStage);
+		recommendationsScreen.showRecommendations();
 	}
 	
 	

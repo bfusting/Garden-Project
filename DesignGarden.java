@@ -23,7 +23,7 @@ import javafx.scene.shape.CubicCurve;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
-
+import javafx.stage.Stage;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
@@ -32,6 +32,10 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.CornerRadii;
 
 //import javafx.scene.shape.Shape.*;
+
+
+//Updated: 4/25 9:52
+
 /**
  * 
  * @author Kelsey McRae
@@ -73,6 +77,12 @@ private ArrayList<ImageView> selectionArr;
 	GridPane pathsGP = new GridPane();
 	GridPane otherGP = new GridPane();
 	
+	private Controller c;
+	
+	public DesignGarden(Controller controller) {
+		this.c = controller;
+	}
+	
 	//2d array 5x5 of GardenTile using GridPane
 
 	
@@ -86,8 +96,42 @@ private ArrayList<ImageView> selectionArr;
 		
 	}
 */	
+
 	
-	public DesignGarden() {
+	public Scene getDesignGardenScene() {
+		return designGardenScene;
+	}
+
+
+	/**
+	 * Creates the array of plants/trees/etc for the user to choose from based on local requirements and user preferences.
+	 */
+	public void createImageArray() {
+		
+	}
+	
+	public GridPane getPlot() {
+		return plot;
+	}
+	
+	
+	
+/*	/**
+	 * Opens the recommendations 
+	 *
+	public void openRecommendations() {
+		
+	}
+*/
+	
+	/**
+	 * Contains the buttons, panes, and other features that will enable the user to edit their garden view.
+	 * 
+	 * @param stage The stage for DesignGarden's scene.
+	 */
+	
+	public void showDesignGarden(Stage stage) {
+
 		//root AnchorPane
 		AnchorPane root = new AnchorPane();
 		
@@ -95,32 +139,7 @@ private ArrayList<ImageView> selectionArr;
 		selectGardenType = new TabPane();
 		selectGardenType.setMinSize(800.0,400.0);
 		selectGardenType.setMaxSize(800.0, 400.0);
-		
-/*
-		//temporary shapes until plant images decided
-		Circle circle = new Circle();
-		plantsGP.add(circle,0,0);
-		plantsGP.add(circle,0,1);
-		plantsGP.add(circle,0,2);
-		
-		Arc arc = new Arc();
-		treesGP.add(arc,0, 0);
-		treesGP.add(arc,0, 1);
-		treesGP.add(arc,0, 2);
-		
-		CubicCurve cc = new CubicCurve();
-		pathsGP.add(cc, 0, 0);
-		pathsGP.add(cc, 0, 1);
-		pathsGP.add(cc, 0, 2);
-		
-		Rectangle rect = new Rectangle();
-		otherGP.add(rect, 0, 0);
-		otherGP.add(rect, 0, 1);
-		otherGP.add(rect, 0, 2);
-		
-*/
-		
-		
+	
 		
 		//creating GridPanes for tab content
 		
@@ -160,12 +179,7 @@ private ArrayList<ImageView> selectionArr;
 		otherOptions = new Tab("Other");
 		otherOptions.setContent(otherGP);
 		
-/*		plants = new Tab("Plants", new Label("this is where the plant images will be"));
-		trees = new Tab("Trees", new Label("this is where the tree images will be"));
-		pathways = new Tab("Pathways", new Label("this is where the pathway images will be"));
-		otherOptions = new Tab("Other", new Label("this is where the other option images will be"));
-*/		
-        selectGardenType.getTabs().addAll( plants, trees, pathways, otherOptions);
+		selectGardenType.getTabs().addAll( plants, trees, pathways, otherOptions);
 
 		AnchorPane.setTopAnchor(selectGardenType, 40.0);
 		AnchorPane.setLeftAnchor(selectGardenType, 40.0);
@@ -180,8 +194,12 @@ private ArrayList<ImageView> selectionArr;
 		changeSeasons.setMinSize(200.0,40.0);
 		infoTips.setMinSize(200.0,40.0);
 		
+		//click recommendations button
+		
+		recommendations.setOnMouseClicked(c.getRecommendationsBTN());
+		
 		AnchorPane apButtons = new AnchorPane();
-//				apButtons.setMaxWidth(100.0);
+
 		Label otherFeaturesLabel = new Label("Other Features: ");
 		apButtons.setTopAnchor(otherFeaturesLabel, 60.0);
 		apButtons.setTopAnchor(recommendations, 120.0);
@@ -216,18 +234,6 @@ private ArrayList<ImageView> selectionArr;
 	         plot.getRowConstraints().add(row);
 	     }
 	 
-		
-/*		BackgroundImage myBI= new BackgroundImage(new Image("testingAnchorPane/gridImg.png",32,32,false,true),
-		        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-		          BackgroundSize.DEFAULT);
-		//then you set to your node
-		plot.setBackground(new Background(myBI));
-
-*/
-		
-/*		plot.setBackground(
-        		new Background(new BackgroundFill(Color.GRAY, new CornerRadii(0.1), null)));
-*/
 
 		plot.setGridLinesVisible(true);
 		
@@ -238,63 +244,13 @@ private ArrayList<ImageView> selectionArr;
 		root.getChildren().addAll(apButtons, selectGardenType, plot);
 		
 		designGardenScene = new Scene(root,1200,800);
-	}
-	
-	public Scene getDesignGardenScene() {
-		return designGardenScene;
-	}
-
-
-	/**
-	 * Creates the array of plants/trees/etc for the user to choose from based on local requirements and user preferences.
-	 */
-	public void createImageArray() {
 		
+		stage.setTitle("Design Garden");
+		stage.setScene(designGardenScene);
+		stage.show();
 	}
-	
-	public GridPane getPlot() {
-		return plot;
-	}
-	
-	
-	
-/*	/**
-	 * Opens the recommendations 
-	 *
-	public void openRecommendations() {
-		
-	}
-*/
-	
-	/**
-	 * Contains the buttons, panes, and other features that will enable the user to edit their garden view.
-	 * 
-	 * @param stage The stage for DesignGarden's scene.
-	 */
-	
-/*	@Override
-	public void start(Stage stage) {
 
-			stage.setTitle("Design Garden");
-			AnchorPane root = new AnchorPane();
-			
-			recommendations = new Button("Recommendations");
-			changeSeasons = new Button("Change Seasons");
-			
-			AnchorPane.setTopAnchor(recommendations, 40.0);
-			AnchorPane.setRightAnchor(recommendations, 40.0);
-			
-			AnchorPane.setTopAnchor(changeSeasons, 70.0);
-			AnchorPane.setRightAnchor(changeSeasons, 40.0);
-			
-			root.getChildren().addAll(recommendations,changeSeasons);
-			
-			Scene scene = new Scene(root,600,300);
-			
-			stage.setTitle("Design Garden");
-			stage.setScene(scene);
-			stage.show();
-	}
-*/	
+
+	
 	
 }
