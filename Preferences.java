@@ -1,8 +1,14 @@
+import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.control.Label;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 
 //Updated: 4/25 9:52
@@ -18,12 +24,21 @@ public class Preferences{
 	private ComboBox<String> bloomTime;
 	private ComboBox<String> waterReq;
 	private ComboBox<String> lightReq;
-	private ComboBox<String> color;
+	private ColorPicker color;
 	
 	private int gardenLength;
 	private int gardenWidth;
 	
 	private Scene preferencesScene;
+	
+	Button startCreating;
+	
+	private Controller c;
+	
+	public Preferences(Controller controller) {
+		this.c = controller;
+	}
+	
 	
 	/**
 	 * 
@@ -61,7 +76,7 @@ public class Preferences{
 	 * 
 	 * @return color The color of the plant
 	 */
-	public ComboBox<String> getColor() {
+	public ColorPicker getColor() {
 		return color;
 	}
 	
@@ -89,14 +104,51 @@ public class Preferences{
 	public void showPreferences(Stage stage) {
 		
 		AnchorPane root = new AnchorPane();
-		Label pref = new Label ("This is preferences");
-		AnchorPane.setTopAnchor(pref, 100.0);
-		root.getChildren().add(pref);
+		
+		Label pref = new Label("Select Your Plant Preferences and Requirements");
+		AnchorPane.setTopAnchor(pref, 40.0);
+		AnchorPane.setLeftAnchor(pref,100.0);
+		
+		Rectangle r1 = new Rectangle(30, 65, 430, 3);
+		r1.setStroke(Color.DARKGREEN);
+		r1.setStrokeWidth(1);
+		
+		
+		bloomTime = new ComboBox<String>();
+		bloomTime.getItems().addAll("Fall","Winter","Spring","Summer");
+		
+		Label btLabel = new Label("Bloom time:	");
+		AnchorPane.setLeftAnchor(btLabel,120.0);
+		AnchorPane.setTopAnchor(btLabel,100.0);
+		
+		AnchorPane.setTopAnchor(bloomTime,100.0);
+		AnchorPane.setLeftAnchor(bloomTime, 200.0);
+		
+		waterReq = new ComboBox<String>();
+		
+		Label colorLabel = new Label("Plant Color:	");
+		AnchorPane.setLeftAnchor(colorLabel, 120.0);
+		AnchorPane.setTopAnchor(colorLabel, 180.0);
+		color = new ColorPicker(Color.DARKGREEN);
+		AnchorPane.setLeftAnchor(color, 200.0);
+		AnchorPane.setTopAnchor(color, 180.0);
+		
+		startCreating = new Button("Start Creating");
+		AnchorPane.setBottomAnchor(startCreating, 40.0);
+		AnchorPane.setRightAnchor(startCreating, 40.0);
+		
+//		Label pref = new Label ("This is preferences");
+//		AnchorPane.setTopAnchor(pref, 100.0);
+		root.getChildren().addAll(bloomTime, pref, btLabel, r1, colorLabel, color, startCreating);
 		preferencesScene = new Scene(root, 500.0, 500.0);
 		
 		stage.setTitle("Preferences");
 		stage.setScene(preferencesScene);
 		stage.show();
 		
+	}
+	
+	public Button getStartCreating() {
+		return startCreating;
 	}
 }

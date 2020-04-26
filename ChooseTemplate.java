@@ -1,5 +1,6 @@
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -27,7 +28,7 @@ import javafx.stage.Stage;
  *
  */
 
-public class ChooseTemplate {
+public class ChooseTemplate extends Screen {
 	private Scene chooseTemplateScene;
 	private ImageView squareTemplate;
 	private ImageView circleTemplate;
@@ -44,8 +45,15 @@ public class ChooseTemplate {
 	 * respective layout that will be created on click.
 	 * 
 	 */
-	public ChooseTemplate() {
-	
+	public ChooseTemplate(Controller c) {
+		Label label = new Label("choose a template");
+		Button button = new Button("Exit");
+		button.setMinSize(200,60);
+		
+		button.setOnMouseClicked(c.getExit());
+		chooseTemplateScene = new Scene(button,1200,800);
+		
+		
 		
 		//squareTemplate = new ImageView(new Image("no image"));
 		//circleTemplate = new ImageView(new Image("no image"));
@@ -54,7 +62,11 @@ public class ChooseTemplate {
 	}
 	
 	public void showChooseTemplate(Stage theStage) {
+		theStage.setTitle("Choose a Template");
+		theStage.setScene(chooseTemplateScene);
 		
 	}
 	
 }
+
+

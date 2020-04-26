@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -31,14 +32,14 @@ import javafx.stage.Stage;
 
 
 public class View extends Application{
-	private Button instructionsButton;
-	private Button exitButton;
-	private Button saveButton;
-	private Button backButton;
-	private Button mainMenu;
+	//private static Button instructionsButton = new Button("instructions");
+	//private static Button exitButton;
+	//private static Button saveButton;
+	//private static Button backButton;
+	//private static Button mainMenuButton;
 	private Stage primaryStage;
-	private Stage exitStage;
-	private Scene exitScene;
+	//private Stage exitStage;
+	//private Scene exitScene;
 	
 	private Controller imc;
 	private MainMenu mainMenuScreen;
@@ -52,7 +53,8 @@ public class View extends Application{
 	private SeasonView seasonViewScreen;
 	private Recommendations recommendationsScreen;
 	
-	
+	private Exit exitScreen;
+	private Screen currentPrimaryScreen;
 		
 	
 	
@@ -64,9 +66,10 @@ public class View extends Application{
 	public View() {
 		imc = new Controller(this);
 		
-		mainMenuScreen = new MainMenu();
+		mainMenuScreen = new MainMenu(imc);
 		instructionsScreen = new Instructions();
-		chooseTemplateScreen = new ChooseTemplate();
+		exitScreen = new Exit(imc);
+		chooseTemplateScreen = new ChooseTemplate(imc);
 		designGardenScreen = new DesignGarden(imc);
 		//saveLoadScreen = new SaveLoad();
 		//finalViewScreen = new FinalView(null);
@@ -78,6 +81,7 @@ public class View extends Application{
 		
 		
 		
+		currentPrimaryScreen = mainMenuScreen;
 	}
 	
 	/**
@@ -109,16 +113,18 @@ public class View extends Application{
 		//Initializing Buttons, Stages, and Scenes
 		primaryStage = theStage;
 		
-		instructionsButton = new Button("Instructions");
-		exitButton = new Button("Exit");
-		saveButton = new Button("Save");
-		backButton = new Button("Back");
-		mainMenu = new Button("Main Menu");
+		//instructionsButton = new Button("Instructions");
+		//exitButton = new Button("Exit");
+		//saveButton = new Button("Save");
+		//backButton = new Button("Back");
+		//mainMenuButton = new Button("Main Menu");
 		//
 		
 		
 		System.out.println("Set the stage for el Main Menu");
 		mainMenuScreen.showMainMenu(primaryStage);
+		primaryStage.show();
+		
 		
 		//designGardenScreen.showDesignGarden(primaryStage);
 		
@@ -144,6 +150,21 @@ public class View extends Application{
 	 */
 	public void close() {
 		System.out.println("close application (meaning close all open windows)");
+		
+		if (currentPrimaryScreen.equals(designGardenScreen)) {
+			exitScreen.showExitWithSave();
+		}
+		else {
+			exitScreen.showExitWithoutSave();
+		}
+		/*Label label = new Label("are you sure?");
+		Stage exit = new Stage();
+		Scene exitscene = new Scene(label,400,200);
+		exit.setScene(exitscene);
+		exit.setAlwaysOnTop(true);
+		
+		exit.show();
+		//primaryStage.close();*/
 	}
 	
 	/**
@@ -151,7 +172,9 @@ public class View extends Application{
 	 * 
 	 */
 	public void showMainMenuScreen() {
+		currentPrimaryScreen = mainMenuScreen;
 		mainMenuScreen.showMainMenu(primaryStage);
+		
 	}
 	
 	/**
@@ -173,6 +196,7 @@ public class View extends Application{
 	 * @see ChooseTemplate#chooseTemplateScene
 	 */
 	public void showChooseTemplateScreen() {
+		currentPrimaryScreen = chooseTemplateScreen;
 		chooseTemplateScreen.showChooseTemplate(primaryStage);
 		
 	}
@@ -208,14 +232,35 @@ public class View extends Application{
 	}
 	
 	public void showRecommendationsScreen() {
-		//shouldn't take in a Stage
 		recommendationsScreen.showRecommendations();
 	}
 	
 	
 	
+	//GETTERS
+	/*public Controller getController() {
+		return imc;
+	}
 	
+	public static Button getInstructionsButton() {
+		return instructionsButton;
+	}
+	
+	public static Button getExitButton() {
+		return exitButton;
+	}
+	
+	public static Button getMainMenuButton() {
+		return mainMenuButton;
+	}
+	
+	public static Button getSaveButton() {
+		return saveButton;
+	}
+	
+	public static Button getBackButton() {
+		return backButton;
+	}*/
 		
 	
 }
-
