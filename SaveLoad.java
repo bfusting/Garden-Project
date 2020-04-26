@@ -1,3 +1,5 @@
+import java.io.File;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
@@ -51,8 +53,8 @@ public class SaveLoad {
 	/**
 	 * Displays the fileChooser's save dialog when the user clicks the save Button.
 	 */
-	public void showSaveWindow() {
-		fileChooser.showSaveDialog(SaveLoadStage);
+	public File showSaveWindow() {
+		return fileChooser.showSaveDialog(SaveLoadStage);
 	}
 	
 	/**
@@ -61,8 +63,8 @@ public class SaveLoad {
 	 * 
 	 * @see MainMenu
 	 */
-	public void showLoadWindow() {
-		fileChooser.showOpenDialog(SaveLoadStage);
+	public File showLoadWindow() {
+		return fileChooser.showOpenDialog(SaveLoadStage);
 	}
 	
 	
