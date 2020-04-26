@@ -16,6 +16,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
@@ -46,9 +47,14 @@ import javafx.scene.layout.CornerRadii;
  */
 
 public class DesignGarden{
-//	private int selectionArrLen;
-//	private int selectionArrWid;
-private ArrayList<ImageView> selectionArr;
+	//	private int selectionArrLen;
+	//	private int selectionArrWid;
+
+	private ArrayList<Label> otherArr;
+	private ArrayList<ImageView> pSelectionArr;
+	
+	private int otherArrInd = 0;
+	private int pSelectionArrInd = 0;
 	
 	private TabPane selectGardenType;
 	private Tab plants;
@@ -84,10 +90,37 @@ private ArrayList<ImageView> selectionArr;
 	}
 	
 	//2d array 5x5 of GardenTile using GridPane
+	
+	private Controller c;
+	
+	public DesignGarden(Controller controller) {
+		this.c = controller;
+	}
 
 	
+	public int increaseSelectionArrInd(int currentInd) {
+		int newIndex = currentInd + 1;
+		return newIndex;
+	}
 	
-
+	public int decreaseSelectionArrInd(int currentInd) {
+		int newIndex = currentInd - 1;
+		return newIndex;
+	}
+	
+	public int getOtherArrInd(){
+		return otherArrInd;
+	}
+	public void setOtherArrInd(int newInd) {
+		this.otherArrInd = newInd;
+	}
+	public int getPSelectionArrInd(){
+		return pSelectionArrInd;
+	}
+	public void setPSelectionArrInd(int newInd) {
+		this.pSelectionArrInd = newInd;
+	}
+	
 	
 /*	/**
 	 * Updates the viewable array of plants, trees, etc able to be dragged into the garden.
@@ -97,6 +130,7 @@ private ArrayList<ImageView> selectionArr;
 	}
 */	
 
+<<<<<<< HEAD
 	
 	public Scene getDesignGardenScene() {
 		return designGardenScene;
@@ -124,6 +158,35 @@ private ArrayList<ImageView> selectionArr;
 	}
 */
 	
+=======
+	
+	public Scene getDesignGardenScene() {
+		return designGardenScene;
+	}
+
+
+	/**
+	 * Creates the array of plants/trees/etc for the user to choose from based on local requirements and user preferences.
+	 */
+	public void createImageArray() {
+		
+	}
+	
+	public GridPane getPlot() {
+		return plot;
+	}
+	
+	
+	
+/*	/**
+	 * Opens the recommendations 
+	 *
+	public void openRecommendations() {
+		
+	}
+*/
+	
+>>>>>>> master
 	/**
 	 * Contains the buttons, panes, and other features that will enable the user to edit their garden view.
 	 * 
@@ -142,7 +205,7 @@ private ArrayList<ImageView> selectionArr;
 	
 		
 		//creating GridPanes for tab content
-		
+/*		
 		Label p1 = new Label("Milkweed		");
 		plantsGP.add(p1,0,1);
 		Label p2 = new Label("Plant2	");
@@ -166,24 +229,116 @@ private ArrayList<ImageView> selectionArr;
 		otherGP.add(other1, 0, 1);
 		otherGP.add(other2, 1, 1);
 		otherGP.add(other3, 2, 1);
-	
+*/	
 		plants = new Tab("Plants");
-		plants.setContent(plantsGP);
+//		plants.setContent(plantsGP);
 		
 		trees = new Tab("Trees");
-		trees.setContent(treesGP);
+//		trees.setContent(treesGP);
 		
 		pathways = new Tab("Pathways");
-		pathways.setContent(pathsGP);
+//		pathways.setContent(pathsGP);
 		
 		otherOptions = new Tab("Other");
+<<<<<<< HEAD
 		otherOptions.setContent(otherGP);
 		
+=======
+//		otherOptions.setContent(otherGP);
+		
+		
+		ImageView iv1 = new ImageView();
+		Image im1 = new Image(getClass().getResourceAsStream("/commonMilkweed copy.png"));
+		
+		ImageView iv2 = new ImageView();
+		Image im2 = new Image(getClass().getResourceAsStream("/commonMilkweed copy.png"));
+		
+		ArrayList<ImageView> pSelectionArr = new ArrayList<ImageView>();
+		
+		iv1.setImage(im1);
+    	iv1.setPreserveRatio(true);
+    	iv1.setFitHeight(100);
+    	
+    	pSelectionArr.add(iv1);
+    	
+    	iv2.setImage(im2);
+    	iv2.setPreserveRatio(true);
+    	iv2.setFitHeight(100);
+    	
+    	pSelectionArr.add(iv2);
+		
+		
+		TilePane plantTP = new TilePane();
+		plantTP.setHgap(8);
+		plantTP.setPrefColumns(5);
+		for (ImageView iv : pSelectionArr) {
+	        plantTP.getChildren().add(iv);
+	   	}
+		
+	    plants.setContent(plantTP);
+	    
+	    ImageView ivt1 = new ImageView();
+		Image imt1 = new Image(getClass().getResourceAsStream("/BlackGumTree copy.png"));
+		
+		ImageView ivt2 = new ImageView();
+		Image imt2 = new Image(getClass().getResourceAsStream("/BlackGumTree copy.png"));
+		
+		ArrayList<ImageView> tSelectionArr = new ArrayList<ImageView>();
+		
+		ivt1.setImage(imt1);
+    	ivt1.setPreserveRatio(true);
+    	ivt1.setFitHeight(100);
+    	
+    	tSelectionArr.add(ivt1);
+    	
+    	ivt2.setImage(imt2);
+    	ivt2.setPreserveRatio(true);
+    	ivt2.setFitHeight(100);
+    	
+    	tSelectionArr.add(ivt2);
+		
+		
+		TilePane treesTP = new TilePane();
+		treesTP.setHgap(8);
+		treesTP.setPrefColumns(5);
+		for (ImageView iv : tSelectionArr) {
+	        treesTP.getChildren().add(iv);
+	   	}
+		
+	    trees.setContent(treesTP);
+    
+	    TilePane pathsTP = new TilePane();
+	    pathsTP.setHgap(8);
+	    pathsTP.setPrefColumns(5);
+	    pathsTP.getChildren().addAll(new Label("Stone path"), new Label("Brick Path"), new Label("Straight up dirt"));
+	    
+	    pathways.setContent(pathsTP);
+	    
+	    otherArr = new ArrayList<Label>();
+	    otherArr.add(new Label("Rock"));
+	    otherArr.add(new Label("Tiki hut"));
+	    otherArr.add(new Label("She-shed"));
+	    otherArr.add(new Label("Bright pink flamingo"));
+	    otherArr.add(new Label("Fountain"));
+	    otherArr.add(new Label("General Building"));
+	    
+	    TilePane otherTP = new TilePane();
+	    otherTP.setHgap(8);
+	    otherTP.setPrefColumns(5);
+	    
+	    for (int i = (0 + otherArrInd); i<(5+otherArrInd); i++) {
+	    	otherTP.getChildren().add(otherArr.get(i));
+	    }
+//	    otherTP.getChildren().addAll(new Label("Rock"), new Label("Tiki hut"), new Label("She-shed"), new Label("Bright pink flamingo"), new Label("Fountain"), new Label("General Building"));
+		
+	    otherOptions.setContent(otherTP);
+	    
+>>>>>>> master
 		selectGardenType.getTabs().addAll( plants, trees, pathways, otherOptions);
 
 		AnchorPane.setTopAnchor(selectGardenType, 40.0);
 		AnchorPane.setLeftAnchor(selectGardenType, 40.0);
-		AnchorPane.setBottomAnchor(selectGardenType, 40.0);
+
 		
 		// Other features buttons (recs and seasons) in AnchorPane
 		recommendations = new Button("Recommendations");
@@ -249,8 +404,22 @@ private ArrayList<ImageView> selectionArr;
 		stage.setScene(designGardenScene);
 		stage.show();
 	}
+<<<<<<< HEAD
 
 
+=======
+
+	public Button getRecommendationsBTTN() {
+		return recommendations;
+	}
+	public Button getChangeSeasonsBTTN() {
+		return changeSeasons;
+	}
+	public Button getInfoTipsBTTN() {
+		return infoTips;
+	}
+
+>>>>>>> master
 	
 	
 }

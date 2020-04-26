@@ -3,6 +3,7 @@ import java.util.Date;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.scene.layout.AnchorPane;
 
@@ -80,8 +81,14 @@ public class InfoTips{
 	public void showInfoTips(Stage stage) {
 		
 		AnchorPane root = new AnchorPane();
+<<<<<<< HEAD
 		Label it = new Label ("This is Info and Tips");
 		AnchorPane.setTopAnchor(it, 100.0);
+=======
+		Label it = new Label ("Info and Tips");
+		AnchorPane.setTopAnchor(it, 100.0);
+		AnchorPane.setLeftAnchor(it, 235.0);
+>>>>>>> master
 		root.getChildren().add(it);
 		infoTipsScene = new Scene(root, 500.0, 500.0);
 		
