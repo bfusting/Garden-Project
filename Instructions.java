@@ -1,8 +1,11 @@
+import java.util.ArrayList;
+
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -25,6 +28,8 @@ import javafx.stage.Stage;
 *  
 */
 
+//Last edited: 4-26-20 3:42PM
+
 /**
  * 
  *  View that handles the creation and presentation of the instructions screen, where the user can
@@ -36,17 +41,9 @@ import javafx.stage.Stage;
  */
 
 public class Instructions {
-	private Label instructions;
-	private Text instructionsText;
 	private Scene instructionsScene;
 	private Stage instructionsStage;
-	//private String text;
-	private String choosingTemplateText;
-	private String enteringPreferencesText;
-	private String designModeText;
-	private String alternateVersionsText;
-	private String infoTipsText;
-	private String loadingGardenText;
+	
 	
 	
 	
@@ -56,31 +53,74 @@ public class Instructions {
 	 * main screen.
 	 */
 	public Instructions() {
-		//text = "instructions undefined";
-		//instructions = new Label(text);
-		choosingTemplateText= "Here is where it will explain how to choose a template. You can choose a preset rectangular, square or circular plot or draw the parameters yourself.";
-		enteringPreferencesText = "Here is where it will explain how to enter land characteristics and the meaning of each one, as well as personal preferences.";
-		designModeText= "Here is where it will explain how the add plants to the garden and the other features available in editing mode, such as viewing information on the selected plant.";
-		alternateVersionsText = "Here is where it will explain how to view, edit and save generated alternate versions of an unfinished garden design.";
-		infoTipsText = "Here is where it will explain where to find info and maintenance tips on the plants currently in the garden design.";
-		loadingGardenText= "Here is where it will explain how to load in an exisiting Garden and how to save a design after editing.";
+		ArrayList<Text> texts = new ArrayList<Text>();
 		
+		Text chooseTemplateText = new Text("Here is where it will explain how to choose a template. You can choose a \npreset rectangular, square or circular plot or draw the parameters yourself.");
+		texts.add(chooseTemplateText);
+		
+		
+		Text enteringPreferencesText= new Text("Here is where it will explain how to enter land characteristics and the meaning\nof each one, as well as personal preferences.");
+		texts.add(enteringPreferencesText);
+		
+		Text designModeText = new Text("Here is where it will explain how the add plants to the garden and the other\nfeatures available in editing mode, such as viewing information on the\nselected plant.");
+		texts.add(designModeText);
+		
+		Text alternateVersionsText = new Text("Here is where it will explain how to view, edit and save generated alternate versions\nof an unfinished garden design.");
+		texts.add(alternateVersionsText);
+		
+		Text infoTipsText = new Text("Here is where it will explain where to find info and maintenance tips on the plants currently in the garden design.");
+		texts.add(infoTipsText);
+		
+		Text loadGardenText = new Text("Here is where it will explain how to load in an exisiting Garden and how to save a design after editing.");
+		texts.add(loadGardenText);
+		
+		
+		//AnchorPane textAP = new AnchorPane();
+		
+		for (Text t: texts) {
+			AnchorPane.setLeftAnchor(t, 5.0);
+			AnchorPane.setRightAnchor(t, 5.0);
+			AnchorPane.setTopAnchor(t, 5.0);
+		}
+		AnchorPane chooseTemplateAP = new AnchorPane(chooseTemplateText);
+		AnchorPane enterPrefsAP = new AnchorPane(enteringPreferencesText);
+		AnchorPane designModeAP = new AnchorPane(designModeText);
+		AnchorPane altVersionsAP = new AnchorPane(alternateVersionsText);
+		AnchorPane infoTipsAP = new AnchorPane(infoTipsText);
+		AnchorPane loadGardenAP = new AnchorPane(loadGardenText);
+		
+		
+		
+		/*/AnchorPane.setLeftAnchor(chooseTemplateText, 5.0);
+		//AnchorPane.setLeftAnchor(enteringPreferencesText,5.0);
+		AnchorPane.setLeftAnchor(designModeText,5.0);
+		AnchorPane.setLeftAnchor(alternateVersionsText, 5.0);
+		AnchorPane.setLeftAnchor(infoTipsText, 5.0);
+		AnchorPane.setLeftAnchor(loadGardenText, 5.0);
+		
+		AnchorPane.setLeftAnchor(infoTipsText, 5.0);
+		AnchorPane.setRightAnchor(chooseTemplateText, 5.0);
+		AnchorPane.setTopAnchor(chooseTemplateText, 5.0);*/
+		
+		//textAP.getChildren().add(chooseTemplateText);
 		
 		Accordion accord = new Accordion();
 		VBox root = new VBox(accord);
 		root.setBackground(new Background(new BackgroundFill(Color.DARKOLIVEGREEN,CornerRadii.EMPTY,Insets.EMPTY)));
 		
-		TitledPane choosingTemplatePane = new TitledPane("Choosing a Template or Drawing a Custom Plot",new Label(choosingTemplateText));
-		TitledPane enteringPreferencesPane = new TitledPane("Entering Garden Characteristics and Preferences", new Label(enteringPreferencesText));
-		TitledPane designModePane = new TitledPane("Editing Your Garden Design",new Label(designModeText));
-		TitledPane alternateVersionsPane = new TitledPane("Saving and Editing Alternate Versions",new Label(alternateVersionsText));
-		TitledPane infoTipsPane = new TitledPane("Viewing Plant Info and Maintenance Tips",new Label(infoTipsText));
-		TitledPane loadingGardenPane = new TitledPane("Loading an Existing Garden Design", new Label(loadingGardenText));
+		
+		TitledPane choosingTemplatePane = new TitledPane("Choosing a Template or Drawing a Custom Plot",chooseTemplateAP);
+		//chooseTemplateText.wrappingWidthProperty().bind(choosingTemplatePane.widthProperty());
+		TitledPane enteringPreferencesPane = new TitledPane("Entering Garden Characteristics and Preferences", enterPrefsAP);
+		TitledPane designModePane = new TitledPane("Editing Your Garden Design",designModeAP);
+		TitledPane alternateVersionsPane = new TitledPane("Saving and Editing Alternate Versions",altVersionsAP);
+		TitledPane infoTipsPane = new TitledPane("Viewing Plant Info and Maintenance Tips",infoTipsAP);
+		TitledPane loadingGardenPane = new TitledPane("Loading an Existing Garden Design", loadGardenAP);
 		
 		accord.getPanes().addAll(choosingTemplatePane,enteringPreferencesPane,designModePane,alternateVersionsPane,infoTipsPane,loadingGardenPane);
 		
 		
-		//instructionsScene = new Scene(instructions,500,500);
+		
 		instructionsScene = new Scene(root,500,500);
 		instructionsStage = new Stage();
 		instructionsStage.setScene(instructionsScene);
@@ -98,6 +138,7 @@ public class Instructions {
 	
 	public void showInstructions() {
 		instructionsStage.show();
+		instructionsStage.toFront();
 		
 	}
 	
