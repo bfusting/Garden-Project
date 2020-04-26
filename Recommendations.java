@@ -3,6 +3,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -33,6 +34,7 @@ import javafx.stage.Stage;
 public class Recommendations{
 	private String weRecommendMessage;
 	private Label recommendationMessage;
+	private Button closeWindow;
 	private Image plantImage;
 	private String name;
 	private Seasons bloomTime;
@@ -84,7 +86,7 @@ public class Recommendations{
 	 * @see Recommendations
 	 */
 	public Recommendations() {
-		weRecommendMessage = "This is where Recommendations will go based on plant";
+		weRecommendMessage = "This is where Recommendations will go based on GardenPlot";
 		// Chanege message above
 		recommendationMessage = new Label(weRecommendMessage);
 		plantImage = null;
@@ -148,15 +150,15 @@ public class Recommendations{
 	}
 	
 	/**
-	 * Returns a date representing when the bloom time of the plant begins
+	 * Returns a Seasons Enumeration representing when the bloom time of the plant begins
 	 * <p>
 	 * Getter for bloomTime attribute
 	 * 
 	 * @return date representing the beginning bloom time of the plant
 	 * @see Plant
 	 */
-	public Date getBloomTime() {
-		return new Date(06,11,2020);
+	public Seasons getBloomTime() {
+		return bloomTime;
 	}
 	
 	/**
@@ -170,7 +172,7 @@ public class Recommendations{
 	 * @see Plant
 	 */
 	public int getLightReq() {
-		return 0;
+		return light;
 	}
 	
 	/**
@@ -184,7 +186,7 @@ public class Recommendations{
 	 * @see Plant
 	 */
 	public int getWaterReq() {
-		return 0;
+		return water;
 	}
 	
 	/**
@@ -215,10 +217,13 @@ public class Recommendations{
 	 * @see Stage
 	 * @see Scene
 	 */
-	public void showRecommendations(Stage stage) {
+	public void showRecommendations() {
+		Stage stage = new Stage();
+		closeWindow = new Button("Close Window");
     	stage.setTitle("Recommendations");
     	BorderPane bPane = new BorderPane();
     	bPane.setCenter(recommendationMessage);
+    	bPane.setBottom(closeWindow);
     	Scene scene = new Scene(bPane, WIDTH, HEIGHT);
     	stage.setScene(scene);
         stage.show();
