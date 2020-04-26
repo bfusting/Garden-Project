@@ -16,6 +16,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
@@ -48,7 +49,7 @@ import javafx.scene.layout.CornerRadii;
 public class DesignGarden{
 	//	private int selectionArrLen;
 	//	private int selectionArrWid;
-	private ArrayList<ImageView> selectionArr;
+	private ArrayList<ImageView> pSelectionArr;
 	
 	private TabPane selectGardenType;
 	private Tab plants;
@@ -140,7 +141,7 @@ public class DesignGarden{
 	
 		
 		//creating GridPanes for tab content
-		
+/*		
 		Label p1 = new Label("Milkweed		");
 		plantsGP.add(p1,0,1);
 		Label p2 = new Label("Plant2	");
@@ -164,24 +165,99 @@ public class DesignGarden{
 		otherGP.add(other1, 0, 1);
 		otherGP.add(other2, 1, 1);
 		otherGP.add(other3, 2, 1);
-	
+*/	
 		plants = new Tab("Plants");
-		plants.setContent(plantsGP);
+//		plants.setContent(plantsGP);
 		
 		trees = new Tab("Trees");
-		trees.setContent(treesGP);
+//		trees.setContent(treesGP);
 		
 		pathways = new Tab("Pathways");
-		pathways.setContent(pathsGP);
+//		pathways.setContent(pathsGP);
 		
 		otherOptions = new Tab("Other");
-		otherOptions.setContent(otherGP);
+//		otherOptions.setContent(otherGP);
 		
+		
+		ImageView iv1 = new ImageView();
+		Image im1 = new Image(getClass().getResourceAsStream("/commonMilkweed copy.png"));
+		
+		ImageView iv2 = new ImageView();
+		Image im2 = new Image(getClass().getResourceAsStream("/commonMilkweed copy.png"));
+		
+		ArrayList<ImageView> pSelectionArr = new ArrayList<ImageView>();
+		
+		iv1.setImage(im1);
+    	iv1.setPreserveRatio(true);
+    	iv1.setFitHeight(100);
+    	
+    	pSelectionArr.add(iv1);
+    	
+    	iv2.setImage(im2);
+    	iv2.setPreserveRatio(true);
+    	iv2.setFitHeight(100);
+    	
+    	pSelectionArr.add(iv2);
+		
+		
+		TilePane plantTP = new TilePane();
+		plantTP.setHgap(8);
+		plantTP.setPrefColumns(5);
+		for (ImageView iv : pSelectionArr) {
+	        plantTP.getChildren().add(iv);
+	   	}
+		
+	    plants.setContent(plantTP);
+	    
+	    ImageView ivt1 = new ImageView();
+		Image imt1 = new Image(getClass().getResourceAsStream("/BlackGumTree copy.png"));
+		
+		ImageView ivt2 = new ImageView();
+		Image imt2 = new Image(getClass().getResourceAsStream("/BlackGumTree copy.png"));
+		
+		ArrayList<ImageView> tSelectionArr = new ArrayList<ImageView>();
+		
+		ivt1.setImage(imt1);
+    	ivt1.setPreserveRatio(true);
+    	ivt1.setFitHeight(100);
+    	
+    	tSelectionArr.add(ivt1);
+    	
+    	ivt2.setImage(imt2);
+    	ivt2.setPreserveRatio(true);
+    	ivt2.setFitHeight(100);
+    	
+    	tSelectionArr.add(ivt2);
+		
+		
+		TilePane treesTP = new TilePane();
+		treesTP.setHgap(8);
+		treesTP.setPrefColumns(5);
+		for (ImageView iv : tSelectionArr) {
+	        treesTP.getChildren().add(iv);
+	   	}
+		
+	    trees.setContent(treesTP);
+    
+	    TilePane pathsTP = new TilePane();
+	    pathsTP.setHgap(8);
+	    pathsTP.setPrefColumns(5);
+	    pathsTP.getChildren().addAll(new Label("Stone path"), new Label("Brick Path"), new Label("Straight up dirt"));
+	    
+	    pathways.setContent(pathsTP);
+	    
+	    TilePane otherTP = new TilePane();
+	    otherTP.setHgap(8);
+	    otherTP.setPrefColumns(5);
+	    otherTP.getChildren().addAll(new Label("Rock"), new Label("Tiki hut"), new Label("She-shed"), new Label("Bright pink flamingo"), new Label("Fountain"), new Label("General Building"));
+		
+	    otherOptions.setContent(otherTP);
+	    
 		selectGardenType.getTabs().addAll( plants, trees, pathways, otherOptions);
 
 		AnchorPane.setTopAnchor(selectGardenType, 40.0);
 		AnchorPane.setLeftAnchor(selectGardenType, 40.0);
-		AnchorPane.setBottomAnchor(selectGardenType, 40.0);
+
 		
 		// Other features buttons (recs and seasons) in AnchorPane
 		recommendations = new Button("Recommendations");
