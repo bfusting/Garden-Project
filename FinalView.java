@@ -1,7 +1,10 @@
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Label;
 
+//Updated: 4/25 9:52
 /**
  * 
  * @author Kelsey McRae
@@ -19,6 +22,8 @@ public class FinalView{
 	private GardenPlot plotIdea1;
 	private GardenPlot plotIdea2;
 	private GardenPlot plotIdea3;
+	
+	private Scene finalViewScene;
 	
 	/**
 	 * The constructor of FinalView
@@ -86,9 +91,21 @@ public class FinalView{
 	 * 
 	 * @param stage The stage for finalView's scene.
 	 */
-/*	public void showFinalView(Stage stage) {
+	public void showFinalView(Stage stage) {
+		
+		
+		AnchorPane root = new AnchorPane();
+		Label fv = new Label ("This is final view");
+		AnchorPane.setTopAnchor(fv, 100.0);
+		root.getChildren().add(fv);
+		finalViewScene = new Scene(root, 500.0, 500.0);
+		
+		stage.setTitle("Final View");
+		stage.setScene(finalViewScene);
+		stage.show();
+		
 		
 	}
-*/
+
 
 }

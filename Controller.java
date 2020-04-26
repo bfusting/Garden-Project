@@ -44,9 +44,9 @@ public class Controller{
 	 * 
 	 * @see Controller
 	 */
-	public Controller() {
+	public Controller(View passedInView) {
 		model = new Model();
-		view = new View();
+		this.view = passedInView;
 	}//Controller
 	
 	/**
@@ -275,7 +275,8 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void recommendationsBTN(MouseEvent event) {
-		System.out.println("WE RECOMMEND COVID19");
+		Recommendations r = new Recommendations();
+		r.showRecommendations();
 	}//recommendationsBTN
 	
 	/**
