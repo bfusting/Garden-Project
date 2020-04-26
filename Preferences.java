@@ -1,3 +1,4 @@
+import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
@@ -29,6 +30,8 @@ public class Preferences{
 	private int gardenWidth;
 	
 	private Scene preferencesScene;
+	
+	Button startCreating;
 	
 	private Controller c;
 	
@@ -130,15 +133,22 @@ public class Preferences{
 		AnchorPane.setLeftAnchor(color, 200.0);
 		AnchorPane.setTopAnchor(color, 180.0);
 		
+		startCreating = new Button("Start Creating");
+		AnchorPane.setBottomAnchor(startCreating, 40.0);
+		AnchorPane.setRightAnchor(startCreating, 40.0);
 		
 //		Label pref = new Label ("This is preferences");
 //		AnchorPane.setTopAnchor(pref, 100.0);
-		root.getChildren().addAll(bloomTime, pref, btLabel, r1, colorLabel, color);
+		root.getChildren().addAll(bloomTime, pref, btLabel, r1, colorLabel, color, startCreating);
 		preferencesScene = new Scene(root, 500.0, 500.0);
 		
 		stage.setTitle("Preferences");
 		stage.setScene(preferencesScene);
 		stage.show();
 		
+	}
+	
+	public Button getStartCreating() {
+		return startCreating;
 	}
 }

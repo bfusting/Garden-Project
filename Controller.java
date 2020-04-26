@@ -1,7 +1,6 @@
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
@@ -9,8 +8,6 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /*
@@ -311,34 +308,7 @@ public class Controller{
 	 * @see FinalView
 	 */
 	public void changeSeasonsBTN(MouseEvent event) {
-		String currSeason = "";
-		Text t = new Text(currSeason);
-		FlowPane fPane = new FlowPane();
-		Stage stage = new Stage();
-		int clickCount = event.getClickCount();
-		switch(clickCount%4) {
-		case 0:
-			currSeason = "Spring";
-			t.setText(currSeason);
-			break;
-		case 1:
-			currSeason = "Summer";
-			t.setText(currSeason);
-			break;
-		case 2:
-			currSeason = "Fall";
-			t.setText(currSeason);
-			break;
-		case 3:
-			currSeason = "Winter";
-			t.setText(currSeason);
-			break;
-		}//switch statement which checks
-		// addint text to flow Pane
-		fPane.getChildren().add(t);
-		Scene scene = new Scene(fPane, 500, 500);
-		stage.setScene(scene);
-		stage.show();
+		System.out.println("Now is FAAAAAAAAAAAALLLLLLLLLLLLLLLLLL");
 	}//changeSeasonsBTN
 	
 	/**

@@ -46,7 +46,7 @@ import javafx.scene.layout.CornerRadii;
  *
  */
 
-public class DesignGarden{
+public class DesignGarden extends Screen{
 	//	private int selectionArrLen;
 	//	private int selectionArrWid;
 

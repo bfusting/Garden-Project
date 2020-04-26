@@ -1,28 +1,46 @@
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
-/*
-*  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
-*  Class Section: 011
-*  Lab Section: 031L
-*  TA: Vineeth Gutta
-*  Due: May 18th, 2020 (5/18/20)
-*
-*  This file contains the contents for the project for CISC275. The project for the 
-*  class is to make gardening software for the township of Arden, DE to help
-*  promote forest edge preservation. 
-*  
-*/
-
 /**
  * 
  * @author Takiyah Price
  *
  */
 
-public class Exit {
+public class Exit extends Screen {
 	private Stage exitStage;
-	private Scene exitScene;
+	private Scene exitWithSave;
+	private Scene exitWithoutSave;
+	Button saveButton;
+	Button quitButton;
+	Button yesButton;
+	Button goBackButton;
+	
+	public Exit(Controller c) {
+		saveButton = new Button("Save");
+		quitButton = new Button("Quit");
+		yesButton = new Button("Yes");
+		goBackButton = new Button("Go Back");
+		
+		//HBox hbox = new HBox();
+		//hbox.getChildren().addAll(saveButton,quitButton);
+		exitStage = new Stage();
+		exitStage.setAlwaysOnTop(true);
+		//exitWithSave = new Scene(hbox,300,200);
+	}
+	
+	public void showExitWithSave() {
+		HBox hbox = new HBox();
+		hbox.getChildren().addAll(saveButton,quitButton);
+		exitWithSave = new Scene(hbox,300,200);
+		exitStage.setScene(exitWithSave);
+		exitStage.show();
+	}
+	
+	public void showExitWithoutSave() {
+		HBox hbox = new HBox();
+		hbox.getChildren().addAll(yesButton,goBackButton);
+		exitWithoutSave = new Scene(hbox,300,200);
+		exitStage.setScene(exitWithoutSave);
+		exitStage.show();
+	}
 	
 	
 }
