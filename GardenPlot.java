@@ -249,23 +249,45 @@ public class GardenPlot implements Serializable{
 				if(layout[k][i].getxLoc() == x && layout[k][i].getyLoc() == y) {
 					
 					//Testing Tiles to the left and right
-					if(layout[k][i-1].getAddOn() != null || layout[k][i+1].getAddOn() != null) {
+				try {
+					if(layout[k][i-1].getAddOn() != null) {
 						return false;
-					}
-					
-					//Testing Tiles above and below
-					if(layout[k-1][i].getAddOn() != null || layout[k+1][i] != null) {
-						return false;
-					}
-					
-					//Its empty if it made it here
-					else {
-						return true;
 					}
 				}
+				catch(ArrayIndexOutOfBoundsException e){
+					
+				}
+				try {
+					if(layout[k][i+1].getAddOn() != null) {
+						return false;
+					}
+				}
+				catch(ArrayIndexOutOfBoundsException e){
+					
+				}
 				
-			
-			
+				
+				//Testing Tiles above and below
+				try {	
+					if(layout[k+1][i] != null) {
+						return false;
+					}
+				}
+				catch(ArrayIndexOutOfBoundsException e) {
+					
+				}
+				try {
+					//Testing Tiles above and below
+						if(layout[k-1][i].getAddOn() != null ) {
+							return false;
+						}
+					}
+				catch(ArrayIndexOutOfBoundsException e) {
+						
+					}
+					//Its empty if it made it here
+					return true;
+				}
 			}
 		}
 		
@@ -309,10 +331,32 @@ public class GardenPlot implements Serializable{
 					for(int i = 0; i < layout[k].length; i++) {
 						if(layout[k][i].getxLoc() == x && layout[k][i].getyLoc() == y) {
 							//Adding surrounding AddOns to the array
+							try {
+							
 							arr[0] = layout[k][i-1].getAddOn();
+							}
+							catch(ArrayIndexOutOfBoundsException e) {
+								arr[0] = null;
+							}
+							try {
 							arr[1] = layout[k][i+1].getAddOn();
+							}
+							catch(ArrayIndexOutOfBoundsException e) {
+								arr[1] = null;
+							}
+							try {
 							arr[2] = layout[k-1][i].getAddOn();
+							}
+							catch(ArrayIndexOutOfBoundsException e) {
+								arr[2] = null;
+							}
+							try {
 							arr[3] = layout[k+1][i].getAddOn();
+							}
+							catch(ArrayIndexOutOfBoundsException e) {
+								arr[3] = null;
+							}
+							
 							
 							return arr;
 							
