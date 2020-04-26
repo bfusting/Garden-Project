@@ -4,6 +4,10 @@ import java.util.Date;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.scene.layout.AnchorPane;
+
+
+//Updated: 4/25 9:52
 
 /**
  * 
@@ -15,7 +19,7 @@ import javafx.stage.Stage;
  */
 
 public class InfoTips{
-	private Scene contentHolder;
+	private Scene infoTipsScene;
 	private Label color;
 	private Label waterNeed;
 	private Label bloomTime;
@@ -24,6 +28,7 @@ public class InfoTips{
 	private Label provideShade;
 	private Label plantType;
 	private Label animalsFed;
+	
 	
 	/**
 	 * Constructor that takes properties of the plant
@@ -72,8 +77,18 @@ public class InfoTips{
 	 * @param stage The stage of InfoTips' scene
 	 */
 	
-/*	public void showInfoTips(Stage stage) {
+	public void showInfoTips(Stage stage) {
+		
+		AnchorPane root = new AnchorPane();
+		Label it = new Label ("This is Info and Tips");
+		AnchorPane.setTopAnchor(it, 100.0);
+		root.getChildren().add(it);
+		infoTipsScene = new Scene(root, 500 500);
+		
+		stage.setTitle("InfoTips");
+		stage.setScene(infoTipsScene);
+		stage.show();
 		
 	}
-	*/
+	
 }
