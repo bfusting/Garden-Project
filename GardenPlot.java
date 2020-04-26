@@ -50,7 +50,7 @@ public class GardenPlot implements Serializable{
 	 * @param l length
 	 * @param w width
 	 */
-	public void GardenPlot(String s, int l, int w) { 
+	public GardenPlot(String s, int l, int w) { 
 		this.shape = s;
 		this.length = l;
 		this.width = w;
@@ -59,7 +59,7 @@ public class GardenPlot implements Serializable{
 		
 	}
 	
-	public void GardenPlot() {
+	public GardenPlot() {
 		this.makeSquare();
 	}
 	
