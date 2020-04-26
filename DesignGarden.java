@@ -77,6 +77,8 @@ private ArrayList<ImageView> selectionArr;
 	GridPane pathsGP = new GridPane();
 	GridPane otherGP = new GridPane();
 	
+	private Controller c = new Controller();
+	
 	//2d array 5x5 of GardenTile using GridPane
 
 	
