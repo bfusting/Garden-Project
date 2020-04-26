@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -440,8 +441,8 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void detectDrag(DragEvent event) {
-		// copy in Kelsey's DesignGarden thigny
-        if (event.getDragboard().hasImage()) {
+		// copy in Kelsey's DesignGarden thingy
+        if (event.getGestureSource() != this && event.getDragboard().hasImage()) {
             event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
         }
         event.consume();
@@ -475,7 +476,14 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void okayToDrop(DragEvent event) {
-		System.out.println("Highlight Green if Okay");
+		if(event.getGestureSource() != this && 
+				event.getDragboard().hasImage()) {
+			//Visual Indicator that drag n drop is valid, spaces are currently
+			//labels so didn't know how to handle
+			//(Label)this.setFill(Color.DARKGREEN);
+		}
+		
+		event.consume();
 	}//okayToDrop
 	
 	/**
