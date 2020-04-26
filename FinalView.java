@@ -9,7 +9,7 @@ import javafx.stage.Stage;
  * <br> The View that allow the user to see their final garden they created as well as alternate possible versions.
  *
  */
-public class FinalView extends View{
+public class FinalView{
 	private Button edit;
 	private Button infoTips;
 	private Button viewSeasons;
@@ -86,8 +86,9 @@ public class FinalView extends View{
 	 * 
 	 * @param stage The stage for finalView's scene.
 	 */
-	public void showFinalView(Stage stage) {
+/*	public void showFinalView(Stage stage) {
 		
 	}
+*/
 
 }

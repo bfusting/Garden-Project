@@ -31,7 +31,7 @@ import javafx.stage.Stage;
  */
 
 
-public class SaveLoad extends View {
+public class SaveLoad {
 	private FileChooser fileChooser;
 	private Stage SaveLoadStage;
 	//private Scene SaveLoadScene;

@@ -55,6 +55,8 @@ public class View extends Application{
 	
 		
 	
+<<<<<<< HEAD
+=======
 	
 	/**
 	 * Constructor for the View that creates the instructions, exit, back and main menu Buttons
@@ -64,11 +66,64 @@ public class View extends Application{
 	public View() {
 		//imc = new Controller();
 		
+		mainMenuScreen = new MainMenu();
+		instructionsScreen = new Instructions();
+		chooseTemplateScreen = new ChooseTemplate();
+		//designGardenScreen = new DesignGarden();
+		saveLoadScreen = new SaveLoad();
+		//finalViewScreen = new FinalView(null);
+		// InfoTips should take in a plant from model
+		//infoTipsScreen = new InfoTips(null, 0, null, 0, 0, false, null, null);
+		//seasonViewScreen = new SeasonView();
+		// InfoTips should take in a plant from model
+		//recommendationsScreen = new Recommendations(null, null, null, 0, 0);
+		
+		
+		
+	}
+>>>>>>> master
+	
+	/**
+	 * Takes in the parameter tofu which is a Array of strings passed into the main 
+	 * method and used within the program
+	 * <p>
+	 * Main runs the whole program, usually launchs everything however for now just prints 
+	 * a simple statement.
+	 * 
+<<<<<<< HEAD
+	 */
+	public View() {
+		//imc = new Controller();
+=======
+	 * @param tofu string array of arguments
+	 * @see main
+	 */
+	public static void main(String[] tofu) {
+		//System.out.println("Hello World");
+		launch();
+	}//main
+	
+	@Override
+	/**
+	 * Takes in parameter theStage and creates a new scene
+	 * for the main menu and sets the stage with that scene
+	 * and then shows the stage.
+	 * <p>
+	 * Start is used to for the start of the program where it starts with the main menu
+	 * 
+	 * @param theStage primary stage that is the mainmenu
+	 */
+	public void start(Stage theStage) {
+		//Initializing Buttons, Stages, and Scenes
+		primaryStage = theStage;
+>>>>>>> master
+		
 		instructionsButton = new Button("Instructions");
 		exitButton = new Button("Exit");
 		saveButton = new Button("Save");
 		backButton = new Button("Back");
 		mainMenu = new Button("Main Menu");
+<<<<<<< HEAD
 		
 		mainMenuScreen = new MainMenu();
 		instructionsScreen = new Instructions();
@@ -113,6 +168,9 @@ public class View extends Application{
 	 */
 	public void start(Stage theStage) {
 		primaryStage = theStage;
+=======
+		//
+>>>>>>> master
 		
 		System.out.println("Set the stage for el Main Menu");
 	}
@@ -129,6 +187,7 @@ public class View extends Application{
 	 */
 	public void exit() {
 		System.out.println("create window to ask user to save before exiting");
+		
 	}
 	
 	/**
@@ -142,9 +201,15 @@ public class View extends Application{
 	 * Makes the MainMenu Stage visible to the user.
 	 * 
 	 */
+<<<<<<< HEAD
 	public void showMainMenu() {
 		//primaryStage.setScene(mainMenuView.getScene());
 		mainMenuView.showMainMenu(primaryStage);
+=======
+	public void showMainMenuScreen() {
+		//primaryStage.setScene(mainMenuView.getScene());
+		mainMenuScreen.showMainMenu(primaryStage);
+>>>>>>> master
 	}
 	
 	/**
@@ -153,8 +218,13 @@ public class View extends Application{
 	 * has been passed in.
 	 * 
 	 */
+<<<<<<< HEAD
 	public void showInstructions() {
 		instructionsView.showInstructions();
+=======
+	public void showInstructionsScreen() {
+		instructionsScreen.showInstructions();
+>>>>>>> master
 	}
 	
 	/**
@@ -165,6 +235,7 @@ public class View extends Application{
 	 * 
 	 * @see ChooseTemplate#chooseTemplateScene
 	 */
+<<<<<<< HEAD
 	public void showChooseTemplate() {
 		chooseTemplateView.showChooseTemplate(primaryStage);
 		
@@ -180,6 +251,41 @@ public class View extends Application{
 	
 	public void showLoadGarden() {
 		saveLoadView.showSaveWindow();
+=======
+	public void showChooseTemplateScreen() {
+		chooseTemplateScreen.showChooseTemplate(primaryStage);
+		
+	}
+	
+	public void showDesignGardenScreen() {
+		designGardenScreen.showDesignGarden(primaryStage);
+	}
+	
+	public void showSaveGardenScreen() {
+		saveLoadScreen.showSaveWindow();
+	}
+	
+	public void showLoadGardenScreen() {
+		saveLoadScreen.showSaveWindow();
+	}
+	
+	public void showFinalViewScreen() {
+		finalViewScreen.showFinalView(primaryStage);;
+	}
+	
+	public void showInfoTipsScreen() {
+		//should have two show methods with one that takes a Stage?
+		infoTipsScreen.showInfoTips(primaryStage);
+	}
+	
+	public void showPreferencesScreen() {
+		preferencesScreen.showPreferences(primaryStage);
+	}
+	
+	public void showSeasonViewScreen() {
+		//should take in a Stage
+		seasonViewScreen.ShowSeasonView();
+>>>>>>> master
 	}
 	
 	

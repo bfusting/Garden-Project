@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  *
  */
 
-public class InfoTips extends View{
+public class InfoTips{
 	private Scene contentHolder;
 	private Label color;
 	private Label waterNeed;
@@ -72,7 +72,8 @@ public class InfoTips extends View{
 	 * @param stage The stage of InfoTips' scene
 	 */
 	
-	public void showInfoTips(Stage stage) {
+/*	public void showInfoTips(Stage stage) {
 		
 	}
+	*/
 }

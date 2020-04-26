@@ -406,8 +406,12 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void detectDrag(DragEvent event) {
+<<<<<<< HEAD
 		// copy in Kelsey's DesignGarden thigny
         if (event.getGestureSource() != DesignGarden.getPlot() &&
+=======
+        if (event.getGestureSource() != view. &&
+>>>>>>> master
                 event.getDragboard().hasImage()) {
             event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
         }
