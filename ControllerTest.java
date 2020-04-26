@@ -222,16 +222,6 @@ class ControllerTest {
 
 	@Test
 	/*
-	 * Creates new Controller and checks to see if the getChangeTab
-	 * returns type eventHandler
-	 */
-	void testGetChangeTab() {
-		Controller c = new Controller();
-		assertTrue(c.getChangeTab() instanceof EventHandler);
-	}
-
-	@Test
-	/*
 	 * Creates a new controller, new plant instance with image and all,
 	 * makes a ImageView tied to that image and sees if the Node where the 
 	 * event originated copied the img into the dragboard
