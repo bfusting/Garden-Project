@@ -70,6 +70,7 @@ public class Controller{
 		if(DEBUG) { System.out.println("Created new Garden Plot");};
 		model.setUserPlot(new GardenPlot());
 		view.showChooseTemplateScreen();
+		System.out.println("CHOOSE YOUR FIGHTER");
 	}//createNewGarden
 	
 	/**
@@ -229,6 +230,7 @@ public class Controller{
 	 */
 	public void chooseDesign(MouseEvent event) {
 		System.out.println("Choose Templatttteeeeee");
+		view.showDesignGardenScreen();
 	}//choseDesign
 	
 	/**

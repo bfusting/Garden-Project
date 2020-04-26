@@ -203,6 +203,7 @@ public class View extends Application{
 	}
 	
 	public void showDesignGardenScreen() {
+		currentPrimaryScreen = designGardenScreen;
 		designGardenScreen.showDesignGarden(primaryStage);
 	}
 	
@@ -235,6 +236,8 @@ public class View extends Application{
 	public void showRecommendationsScreen() {
 		recommendationsScreen.showRecommendations();
 	}
+	
+	
 	
 	
 	
