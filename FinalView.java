@@ -2,6 +2,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.control.Label;
 
 //Updated: 4/25 9:52
@@ -17,7 +19,6 @@ public class FinalView{
 	private Button infoTips;
 	private Button viewSeasons;
 	private Button save;
-	private Scene finalView;
 	private GardenPlot originalPlot;
 	private GardenPlot plotIdea1;
 	private GardenPlot plotIdea2;
@@ -25,14 +26,20 @@ public class FinalView{
 	
 	private Scene finalViewScene;
 	
+	private Controller c;
+	
 	/**
 	 * The constructor of FinalView
 	 * 
 	 * @param: ogPlot The original garden plot that was designed by the user.
 	 */
 	
-	public FinalView(GardenPlot ogPlot) {
-		originalPlot = ogPlot;
+	public FinalView(Controller controller) {
+		this.c = controller;
+	}
+	
+	public void setOriginalPlot(GardenPlot ogPlot) {
+		this.originalPlot = ogPlot;
 	}
 	
 	/**
@@ -91,20 +98,63 @@ public class FinalView{
 	 * 
 	 * @param stage The stage for finalView's scene.
 	 */
-	public void showFinalView(Stage stage) {
+public void showFinalView(Stage stage) {
 		
 		
 		AnchorPane root = new AnchorPane();
-		Label fv = new Label ("This is final view");
-		AnchorPane.setTopAnchor(fv, 100.0);
-		root.getChildren().add(fv);
+		
+
+		Rectangle r1 = new Rectangle(100, 100, 300, 250);
+		r1.setStroke(Color.LIGHTGRAY);
+		r1.setFill(Color.LIGHTGRAY);
+		r1.setStrokeWidth(1);
+		
+//		AnchorPane buttons = new AnchorPane();
+		
+		edit = new Button("Edit");
+		infoTips = new Button("Info and Tips");
+		viewSeasons = new Button("View Seasons");
+		save = new Button("Save");
+		
+
+		root.setTopAnchor(edit, 400.0);
+		root.setTopAnchor(viewSeasons, 400.0);
+		root.setTopAnchor(infoTips, 400.0);
+		root.setTopAnchor(save, 400.0);
+		
+		root.setLeftAnchor(edit, 85.0);
+		root.setLeftAnchor(viewSeasons, 140.0);
+		root.setLeftAnchor(infoTips, 260.0);
+		root.setLeftAnchor(save, 370.0);
+		
+		
+		root.getChildren().addAll(edit, viewSeasons, infoTips, save);
+
+		
+//		Label fv = new Label ("This is final view");
+//		AnchorPane.setTopAnchor(fv, 100.0);
+		
+		
+		root.getChildren().add(r1);
 		finalViewScene = new Scene(root, 500.0, 500.0);
 		
 		stage.setTitle("Final View");
 		stage.setScene(finalViewScene);
 		stage.show();
 		
-		
+	}
+
+	public Button getEditBTTN() {
+		return edit;
+	}
+	public Button getInfoTipsBTTN() {
+		return infoTips;
+	}
+	public Button getViewSeasonsBTTN() {
+		return viewSeasons;
+	}
+	public Button getSaveBTTN() {
+		return save;
 	}
 
 

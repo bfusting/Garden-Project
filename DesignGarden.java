@@ -46,9 +46,9 @@ import javafx.scene.layout.CornerRadii;
  */
 
 public class DesignGarden{
-//	private int selectionArrLen;
-//	private int selectionArrWid;
-private ArrayList<ImageView> selectionArr;
+	//	private int selectionArrLen;
+	//	private int selectionArrWid;
+	private ArrayList<ImageView> selectionArr;
 	
 	private TabPane selectGardenType;
 	private Tab plants;
@@ -77,17 +77,15 @@ private ArrayList<ImageView> selectionArr;
 	GridPane pathsGP = new GridPane();
 	GridPane otherGP = new GridPane();
 	
+	//2d array 5x5 of GardenTile using GridPane
+	
 	private Controller c;
 	
 	public DesignGarden(Controller controller) {
 		this.c = controller;
 	}
-	
-	//2d array 5x5 of GardenTile using GridPane
 
 	
-	
-
 	
 /*	/**
 	 * Updates the viewable array of plants, trees, etc able to be dragged into the garden.
@@ -250,6 +248,15 @@ private ArrayList<ImageView> selectionArr;
 		stage.show();
 	}
 
+	public Button getRecommendationsBTTN() {
+		return recommendations;
+	}
+	public Button getChangeSeasonsBTTN() {
+		return changeSeasons;
+	}
+	public Button getInfoTipsBTTN() {
+		return infoTips;
+	}
 
 	
 	
