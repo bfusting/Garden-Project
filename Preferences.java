@@ -92,7 +92,7 @@ public class Preferences{
 		Label pref = new Label ("This is preferences");
 		AnchorPane.setTopAnchor(pref, 100.0);
 		root.getChildren().add(pref);
-		preferencesScene = new Scene(root, 500 500);
+		preferencesScene = new Scene(root, 500.0, 500.0);
 		
 		stage.setTitle("Preferences");
 		stage.setScene(preferencesScene);

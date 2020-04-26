@@ -83,7 +83,7 @@ public class InfoTips{
 		Label it = new Label ("This is Info and Tips");
 		AnchorPane.setTopAnchor(it, 100.0);
 		root.getChildren().add(it);
-		infoTipsScene = new Scene(root, 500 500);
+		infoTipsScene = new Scene(root, 500.0, 500.0);
 		
 		stage.setTitle("InfoTips");
 		stage.setScene(infoTipsScene);
