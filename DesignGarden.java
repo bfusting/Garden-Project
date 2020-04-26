@@ -49,7 +49,12 @@ import javafx.scene.layout.CornerRadii;
 public class DesignGarden{
 	//	private int selectionArrLen;
 	//	private int selectionArrWid;
+
+	private ArrayList<Label> otherArr;
 	private ArrayList<ImageView> pSelectionArr;
+	
+	private int otherArrInd = 0;
+	private int pSelectionArrInd = 0;
 	
 	private TabPane selectGardenType;
 	private Tab plants;
@@ -86,6 +91,29 @@ public class DesignGarden{
 		this.c = controller;
 	}
 
+	
+	public int increaseSelectionArrInd(int currentInd) {
+		int newIndex = currentInd + 1;
+		return newIndex;
+	}
+	
+	public int decreaseSelectionArrInd(int currentInd) {
+		int newIndex = currentInd - 1;
+		return newIndex;
+	}
+	
+	public int getOtherArrInd(){
+		return otherArrInd;
+	}
+	public void setOtherArrInd(int newInd) {
+		this.otherArrInd = newInd;
+	}
+	public int getPSelectionArrInd(){
+		return pSelectionArrInd;
+	}
+	public void setPSelectionArrInd(int newInd) {
+		this.pSelectionArrInd = newInd;
+	}
 	
 	
 /*	/**
@@ -246,10 +274,22 @@ public class DesignGarden{
 	    
 	    pathways.setContent(pathsTP);
 	    
+	    otherArr = new ArrayList<Label>();
+	    otherArr.add(new Label("Rock"));
+	    otherArr.add(new Label("Tiki hut"));
+	    otherArr.add(new Label("She-shed"));
+	    otherArr.add(new Label("Bright pink flamingo"));
+	    otherArr.add(new Label("Fountain"));
+	    otherArr.add(new Label("General Building"));
+	    
 	    TilePane otherTP = new TilePane();
 	    otherTP.setHgap(8);
 	    otherTP.setPrefColumns(5);
-	    otherTP.getChildren().addAll(new Label("Rock"), new Label("Tiki hut"), new Label("She-shed"), new Label("Bright pink flamingo"), new Label("Fountain"), new Label("General Building"));
+	    
+	    for (int i = (0 + otherArrInd); i<(5+otherArrInd); i++) {
+	    	otherTP.getChildren().add(otherArr.get(i));
+	    }
+//	    otherTP.getChildren().addAll(new Label("Rock"), new Label("Tiki hut"), new Label("She-shed"), new Label("Bright pink flamingo"), new Label("Fountain"), new Label("General Building"));
 		
 	    otherOptions.setContent(otherTP);
 	    
