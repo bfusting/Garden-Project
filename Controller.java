@@ -284,7 +284,7 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void recommendationsBTN(MouseEvent event) {
-		Recommendations r = new Recommendations();
+		Recommendations r = new Recommendations(this);
 		r.showRecommendations();
 	}//recommendationsBTN
 	
