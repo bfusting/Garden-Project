@@ -275,7 +275,8 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void recommendationsBTN(MouseEvent event) {
-		System.out.println("WE RECOMMEND COVID19");
+		Recommendations r = new Recommendations();
+		r.showRecommendations();
 	}//recommendationsBTN
 	
 	/**
