@@ -26,9 +26,10 @@ public class Plant extends AddOn {
 	 * and the arrays of Strings containing the urls for the images of the plant at different ages and in
 	 * different seasons.
 	 */
-	public void Plant(String color, int waterNeed, int sunLightNeed, double plantHeight, int locationPref,
+	public Plant(String color, int waterNeed, int sunLightNeed, double plantHeight, int locationPref,
 			Seasons bloomTime, boolean provideShade, String[] ageImages, String[] season, String plantType, 
 			ArrayList<String> animalsFed, ArrayList<String> compatiblePlants) {
+		this.super();
 		
 		this.color = color;
 		this.waterNeed = waterNeed;
