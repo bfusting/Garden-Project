@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 
-//Updated: 4/25 9:52
+//Updated: 4/26 5:08
 
 /**
  * 
@@ -26,12 +26,13 @@ public class Preferences{
 	private ComboBox<String> lightReq;
 	private ColorPicker color;
 	
-	private int gardenLength;
-	private int gardenWidth;
+	private ComboBox<Integer> gardenLength;
+	private ComboBox<Integer> gardenWidth;
+	
 	
 	private Scene preferencesScene;
 	
-	Button startCreating;
+	private Button startCreating;
 	
 	private Controller c;
 	
@@ -80,10 +81,10 @@ public class Preferences{
 		return color;
 	}
 	
-	/**
+/*	/**
 	 * 
 	 * @return gardenLength The length of the garden space
-	 */
+	 *
 	public int getGardenLength() {
 		return gardenLength;
 	}
@@ -91,11 +92,11 @@ public class Preferences{
 	/**
 	 * 
 	 * @return gardenWidth The width of the garden space
-	 */
+	 *
 	public int getGardenWidth() {
 		return gardenWidth;
 	}
-	
+*/	
 	/**
 	 * Uses all of the combo boxes the user will use to select preferences
 	 * 
@@ -124,14 +125,37 @@ public class Preferences{
 		AnchorPane.setTopAnchor(bloomTime,100.0);
 		AnchorPane.setLeftAnchor(bloomTime, 200.0);
 		
+		gardenLength = new ComboBox<Integer>();
+		gardenLength.setEditable(true);
+		gardenWidth = new ComboBox<Integer>();
+		gardenWidth.setEditable(true);
+		
+		AnchorPane.setLeftAnchor(gardenLength,230.0);
+		AnchorPane.setTopAnchor(gardenLength,310.0);
+		AnchorPane.setLeftAnchor(gardenWidth,230.0);
+		AnchorPane.setTopAnchor(gardenWidth,360.0);
+		
+		Label getGardenDim = new Label("What is the size of your available garden space? ");
+		AnchorPane.setLeftAnchor(getGardenDim,100.0);
+		AnchorPane.setTopAnchor(getGardenDim,265.0);
+		
+		Label glLabel = new Label("Garden length (ft): ");
+		AnchorPane.setLeftAnchor(glLabel,100.0);
+		AnchorPane.setTopAnchor(glLabel,310.0);
+		
+		Label gwLabel = new Label("Garden width (ft): ");
+		AnchorPane.setLeftAnchor(gwLabel,100.0);
+		AnchorPane.setTopAnchor(gwLabel,360.0);
+		
+		
 		waterReq = new ComboBox<String>();
 		
 		Label colorLabel = new Label("Plant Color:	");
 		AnchorPane.setLeftAnchor(colorLabel, 120.0);
-		AnchorPane.setTopAnchor(colorLabel, 180.0);
+		AnchorPane.setTopAnchor(colorLabel, 160.0);
 		color = new ColorPicker(Color.DARKGREEN);
 		AnchorPane.setLeftAnchor(color, 200.0);
-		AnchorPane.setTopAnchor(color, 180.0);
+		AnchorPane.setTopAnchor(color, 160.0);
 		
 		startCreating = new Button("Start Creating");
 		AnchorPane.setBottomAnchor(startCreating, 40.0);
@@ -139,7 +163,7 @@ public class Preferences{
 		
 //		Label pref = new Label ("This is preferences");
 //		AnchorPane.setTopAnchor(pref, 100.0);
-		root.getChildren().addAll(bloomTime, pref, btLabel, r1, colorLabel, color, startCreating);
+		root.getChildren().addAll(bloomTime, pref, btLabel, r1, colorLabel, color, startCreating, glLabel, gwLabel, gardenLength, gardenWidth, getGardenDim);
 		preferencesScene = new Scene(root, 500.0, 500.0);
 		
 		stage.setTitle("Preferences");
@@ -152,3 +176,4 @@ public class Preferences{
 		return startCreating;
 	}
 }
+
