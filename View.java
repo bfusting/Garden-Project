@@ -55,8 +55,6 @@ public class View extends Application{
 	
 		
 	
-<<<<<<< HEAD
-=======
 	
 	/**
 	 * Constructor for the View that creates the instructions, exit, back and main menu Buttons
@@ -64,7 +62,7 @@ public class View extends Application{
 	 * 
 	 */
 	public View() {
-		//imc = new Controller();
+		imc = new Controller();
 		
 		mainMenuScreen = new MainMenu();
 		instructionsScreen = new Instructions();
@@ -81,7 +79,6 @@ public class View extends Application{
 		
 		
 	}
->>>>>>> master
 	
 	/**
 	 * Takes in the parameter tofu which is a Array of strings passed into the main 
@@ -90,11 +87,6 @@ public class View extends Application{
 	 * Main runs the whole program, usually launchs everything however for now just prints 
 	 * a simple statement.
 	 * 
-<<<<<<< HEAD
-	 */
-	public View() {
-		//imc = new Controller();
-=======
 	 * @param tofu string array of arguments
 	 * @see main
 	 */
@@ -116,61 +108,13 @@ public class View extends Application{
 	public void start(Stage theStage) {
 		//Initializing Buttons, Stages, and Scenes
 		primaryStage = theStage;
->>>>>>> master
 		
 		instructionsButton = new Button("Instructions");
 		exitButton = new Button("Exit");
 		saveButton = new Button("Save");
 		backButton = new Button("Back");
 		mainMenu = new Button("Main Menu");
-<<<<<<< HEAD
-		
-		mainMenuScreen = new MainMenu();
-		instructionsScreen = new Instructions();
-		/*chooseTemplateView = new ChooseTemplate();
-		designGardenView = new DesignGarden();
-		saveLoadView = new SaveLoad();
-		finalView = new FinalView(null);
-		// InfoTips should take in a plant from model
-		infoTipsView = new InfoTips(null, 0, null, 0, 0, false, null, null);
-		seasonView = new SeasonView();
-		// InfoTips should take in a plant from model
-		recommendationsView = new Recommendations(null, null, null, 0, 0);
-		*/
-		
-		
-	}
-	
-	/**
-	 * Takes in the parameter tofu which is a Array of strings passed into the main 
-	 * method and used within the program
-	 * <p>
-	 * Main runs the whole program, usually launchs everything however for now just prints 
-	 * a simple statement.
-	 * 
-	 * @param tofu string array of arguments
-	 * @see main
-	 */
-	public static void main(String[] tofu) {
-		//System.out.println("Hello World");
-		launch();
-	}//main
-	
-	@Override
-	/**
-	 * Takes in parameter theStage and creates a new scene
-	 * for the main menu and sets the stage with that scene
-	 * and then shows the stage.
-	 * <p>
-	 * Start is used to for the start of the program where it starts with the main menu
-	 * 
-	 * @param theStage primary stage that is the mainmenu
-	 */
-	public void start(Stage theStage) {
-		primaryStage = theStage;
-=======
 		//
->>>>>>> master
 		
 		System.out.println("Set the stage for el Main Menu");
 	}
@@ -201,15 +145,9 @@ public class View extends Application{
 	 * Makes the MainMenu Stage visible to the user.
 	 * 
 	 */
-<<<<<<< HEAD
-	public void showMainMenu() {
-		//primaryStage.setScene(mainMenuView.getScene());
-		mainMenuView.showMainMenu(primaryStage);
-=======
 	public void showMainMenuScreen() {
 		//primaryStage.setScene(mainMenuView.getScene());
 		mainMenuScreen.showMainMenu(primaryStage);
->>>>>>> master
 	}
 	
 	/**
@@ -218,13 +156,8 @@ public class View extends Application{
 	 * has been passed in.
 	 * 
 	 */
-<<<<<<< HEAD
-	public void showInstructions() {
-		instructionsView.showInstructions();
-=======
 	public void showInstructionsScreen() {
 		instructionsScreen.showInstructions();
->>>>>>> master
 	}
 	
 	/**
@@ -235,23 +168,6 @@ public class View extends Application{
 	 * 
 	 * @see ChooseTemplate#chooseTemplateScene
 	 */
-<<<<<<< HEAD
-	public void showChooseTemplate() {
-		chooseTemplateView.showChooseTemplate(primaryStage);
-		
-	}
-	
-	public void showDesignGarden() {
-		designGardenView.showDesignGarden(primaryStage);
-	}
-	
-	public void showSaveGarden() {
-		saveLoadView.showSaveWindow();
-	}
-	
-	public void showLoadGarden() {
-		saveLoadView.showSaveWindow();
-=======
 	public void showChooseTemplateScreen() {
 		chooseTemplateScreen.showChooseTemplate(primaryStage);
 		
@@ -259,6 +175,7 @@ public class View extends Application{
 	
 	public void showDesignGardenScreen() {
 		designGardenScreen.showDesignGarden(primaryStage);
+		//primaryStage.setScene(designGardenScreen.getScene());
 	}
 	
 	public void showSaveGardenScreen() {
@@ -270,7 +187,7 @@ public class View extends Application{
 	}
 	
 	public void showFinalViewScreen() {
-		finalViewScreen.showFinalView(primaryStage);;
+		finalViewScreen.showFinalView(primaryStage);
 	}
 	
 	public void showInfoTipsScreen() {
@@ -285,7 +202,11 @@ public class View extends Application{
 	public void showSeasonViewScreen() {
 		//should take in a Stage
 		seasonViewScreen.ShowSeasonView();
->>>>>>> master
+	}
+	
+	public void showRecommendationsScreen() {
+		//shouldn't take in a Stage
+		recommendationsScreen.showRecommendations(primaryStage);
 	}
 	
 	
