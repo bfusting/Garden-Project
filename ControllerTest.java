@@ -46,7 +46,8 @@ class ControllerTest {
 	 * Creates a new instance of a controller and asserts to see if it is a controller
 	 */
 	void testController() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c instanceof Controller);
 	}
 	
@@ -55,7 +56,8 @@ class ControllerTest {
 	 * 
 	 */
 	void testGetModel() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c.getModel() instanceof Model);
 	}
 	
@@ -67,7 +69,8 @@ class ControllerTest {
 	 * the gardenPlot is not null
 	 */
 	void testCreateNewGarden() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		//c.createNewGarden(event);
 		assertTrue(c.getModel().getUserPlot() != null);
 	}
@@ -78,7 +81,8 @@ class ControllerTest {
 	 * returns type eventHandler
 	 */
 	void testGetCreateNewGarden() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c.getCreateNewGarden() instanceof EventHandler);
 	}
 
@@ -89,7 +93,8 @@ class ControllerTest {
 	 * the gardenPlot is not null
 	 */
 	void testLoadGardenMouseEvent() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		//c.loadGarden(event);
 		assertTrue(c.getModel().getUserPlot() != null);
 	}
@@ -100,7 +105,8 @@ class ControllerTest {
 	 * returns type eventHandler
 	 */
 	void testGetLoadGarden() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c.getLoadGarden() instanceof EventHandler);
 	}
 
@@ -110,7 +116,8 @@ class ControllerTest {
 	 * returns type eventHandler
 	 */
 	void testGetExit() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c.getExit() instanceof EventHandler);
 	}
 
@@ -120,7 +127,8 @@ class ControllerTest {
 	 * returns type eventHandler
 	 */
 	void testGetInstructionShow() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c.getInstructionShow() instanceof EventHandler);
 	}
 
@@ -131,7 +139,8 @@ class ControllerTest {
 	 * returns type eventHandler
 	 */
 	void testGetBackBTN() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c.getBackBTN() instanceof EventHandler);
 	}
 
@@ -142,7 +151,8 @@ class ControllerTest {
 	 * If the userplot is not empty checks to see if all the array of tiles are not null
 	 */
 	void testChooseDesign() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		c.chooseDesign(null);
 		assertTrue(c.getModel().getUnderGrowth() != null);
 		for(int row=0; row<c.getModel().getUserPlot().getLayout().length; row++) {
@@ -156,7 +166,8 @@ class ControllerTest {
 	 * returns type eventHandler
 	 */
 	void testGetChooseDesign() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c.getChooseDesign() instanceof EventHandler);
 	}
 
@@ -167,7 +178,8 @@ class ControllerTest {
 	 * returns type eventHandler
 	 */
 	void testGetComboCheckBox() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c.getComboCheckBox() instanceof EventHandler);
 	}
 
@@ -182,7 +194,8 @@ class ControllerTest {
 	 * returns type eventHandler
 	 */
 	void testGetRecommendationsBTN() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c.getRecommendationsBTN() instanceof EventHandler);
 	}
 
@@ -193,7 +206,8 @@ class ControllerTest {
 	 * SPRING
 	 */
 	void testChangeSeasonsBTN() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		//MouseEvent event = new MouseEvent(null, 0, 0, 0, 0, null, 0, false, false, false, false, false, false, false, false, false, false, false, false, null);
 		//c.changeSeasonsBTN(event);
 		assertEquals(c.getModel().getUserPlot().getSeason(), "SUMMER");
@@ -205,7 +219,8 @@ class ControllerTest {
 	 * returns type eventHandler
 	 */
 	void testGetChangeSeasonsBTN() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c.getChangeSeasonsBTN() instanceof EventHandler);
 	}
 
@@ -215,7 +230,8 @@ class ControllerTest {
 	 * returns type eventHandler
 	 */
 	void testGetMainMenuBTN() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c.getMainMenuBTN() instanceof EventHandler);
 	}
 	
@@ -242,7 +258,8 @@ class ControllerTest {
 	 * returns type eventHandler
 	 */
 	void testGetStartDrag() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c.getStartDrag() instanceof EventHandler);
 	}
 
@@ -252,7 +269,8 @@ class ControllerTest {
 	 * check the coordinates to see after the drag event if the imageView has moved
 	 */
 	void testDetectDrag() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		ImageView n = new ImageView();
 		n.setOnDragDetected(c.getDetectDrag());
 		assertEquals(n.getX(),125);
@@ -265,7 +283,8 @@ class ControllerTest {
 	 * returns type eventHandler
 	 */
 	void testGetDetectDrag() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c.getDetectDrag() instanceof EventHandler);
 	}
 
@@ -276,7 +295,8 @@ class ControllerTest {
 	 * is green. Else the background Color is grey
 	 */
 	void testOkayToDrop() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		TilePane tpane = new TilePane();
 		FlowPane fpane = new FlowPane();
 		fpane.setOnDragEntered(c.getOkayToDrop());
@@ -290,7 +310,8 @@ class ControllerTest {
 	 * returns type eventHandler
 	 */
 	void testGetOkayToDrop() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c.getOkayToDrop() instanceof EventHandler);
 	}
 
@@ -301,7 +322,8 @@ class ControllerTest {
 	 * Emulation drop into 0,0
 	 */
 	void testDetectDragDrop() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		ImageView i = new ImageView();
 		i.setOnDragDropped(c.getDetectDragDrop());
 		assertTrue(!c.getModel().getUserPlot().getLayout()[0][0].isEmpty());
@@ -313,7 +335,8 @@ class ControllerTest {
 	 * returns type eventHandler
 	 */
 	void testGetDetectDragDrop() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c.getDetectDragDrop() instanceof EventHandler);
 	}
 
@@ -323,7 +346,8 @@ class ControllerTest {
 	 * returns type eventHandler
 	 */
 	void testGetScrollPage() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c.getScrollPage() instanceof EventHandler);
 	}
 
@@ -334,7 +358,8 @@ class ControllerTest {
 	 * returns type eventHandler
 	 */
 	void testGetEditBTN() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c.getEditBTN() instanceof EventHandler);
 	}
 
@@ -344,7 +369,8 @@ class ControllerTest {
 	 * returns type eventHandler
 	 */
 	void testGetSaveBTN() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c.getSaveBTN() instanceof EventHandler);
 	}
 	
@@ -355,7 +381,8 @@ class ControllerTest {
 	 * returns type eventHandler
 	 */
 	void testGetInfoTipsBTN() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c.getInfoTipsBTN() instanceof EventHandler);
 	}
 
@@ -365,7 +392,8 @@ class ControllerTest {
 	 * returns type eventHandler
 	 */
 	void testGetViewSeasonsBTN() {
-		Controller c = new Controller();
+		View view = new View();
+		Controller c = new Controller(view);
 		assertTrue(c.getViewSeasonsBTN() instanceof EventHandler);
 	}
 
@@ -378,7 +406,8 @@ class ControllerTest {
 	void testSaveGarden() {
 		try
 			{
-			Controller c = new Controller();
+			View view = new View();
+			Controller c = new Controller(view);
 			c.getModel().getUserPlot().getLayout()[0][0] = new GardenTile();
 		    FileOutputStream fos = new FileOutputStream("tempdata.ser");
 		    ObjectOutputStream oos = new ObjectOutputStream(fos);
