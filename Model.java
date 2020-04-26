@@ -26,10 +26,11 @@ public class Model implements Serializable{
 	
 	private GardenPlot userPlot;
 	private ArrayList<GardenPlot> altPlots;
-	private ArrayList<AddOn> selectionArr;
+	private ArrayList<Plant> selectionArr;
 	private ArrayList<Plant> shrubArr;
 	private ArrayList<Plant> treeArr;
 	private ArrayList<Plant> underGrowthArr;
+	private ArrayList<AddOn> sceneryArr;
 	
 	
 	/**
@@ -40,10 +41,29 @@ public class Model implements Serializable{
 	 */
 	public void Model() {
 		userPlot = new GardenPlot();
-		selectionArr = new ArrayList<AddOn>();
+		// Creating temp Plants for Bradley to use in methods
+		Plant purpleConeFlower = new Plant("Purple",0,5,5.00,0,Seasons.AUTUMN,
+				false,null,null,"Flower",null,null);
+		Plant sugarMaple = new Plant("Yellow",3,3,36.00,0, Seasons.SPRING,true,null,null,
+				"Tree",null,null);
+		Plant sweetFern = new Plant("White",3,3,3.00,0,Seasons.SPRING,false,null,
+				null,"Shrub",null,null);
+		Plant milkWeed = new Plant("Orange",1,3,2.00,0, Seasons.SUMMER,false,null,
+				null, "UnderGrowth",null,null);
+		
+		selectionArr = new ArrayList<Plant>();
+		selectionArr.add(purpleConeFlower);
+		
 		shrubArr = new ArrayList<Plant>();
+		shrubArr.add(sweetFern);
+		
 		treeArr = new ArrayList<Plant>();
+		treeArr.add(sugarMaple);
+		
 		underGrowthArr = new ArrayList<Plant>();
+		underGrowthArr.add(milkWeed);
+		
+		sceneryArr = new ArrayList<AddOn>();
 	}//Model()
 	
 	/**
@@ -94,6 +114,15 @@ public class Model implements Serializable{
 		System.out.println("Fill after preferences, more desirable in front");
 	}
 	
+	/**
+	 * Changes the current index 
+	 * variable which is in that scope only and adds 6 to it to get the next 
+	 * items in the arrayList
+	 */
+	public void updateSceneryArr() {
+		System.out.println("Fill after preferences, more desirable in front");
+	}
+	
 	
 	////////////////////////////		GETTERS UNDERNEATH			////////////////////////////
 	
@@ -115,7 +144,7 @@ public class Model implements Serializable{
 	 *
 	 * @return selectionArr Addon List of what the user is currently seeing
 	 */
-	public ArrayList<AddOn> getSelectionArr() {
+	public ArrayList<Plant> getSelectionArr() {
 		return selectionArr;
 	}
 	
@@ -162,6 +191,18 @@ public class Model implements Serializable{
 	 */
 	public ArrayList<GardenPlot> getAltPlots(){
 		return altPlots;
+	}
+	
+	/**
+	 * Returns the sceneryArr attribute from model, which will be used
+	 * to add Addons to the Array
+	 * <p>
+	 * Returns the sceneryArr attribute
+	 * 
+	 * @return Holds items such as benchs, path, etc
+	 */
+	public ArrayList<AddOn> getSceneryArr(){
+		return sceneryArr;
 	}
 	
 	////////////////////////////		SETTERS			////////////////////////////
@@ -219,6 +260,17 @@ public class Model implements Serializable{
 	 */
 	public void setUserPlot(GardenPlot p) {
 		userPlot = p;
+	}
+	
+	/**
+	 * Takes in a ArrayList and sets scenery to the new list.
+	 * <p>
+	 * Setter for sceneryArr
+	 * 
+	 * @param a is a new arrayList of addons to take in
+	 */
+	public void setSceneryArr(ArrayList<AddOn> a) {
+		sceneryArr = a;
 	}
 	
 	/**Takes in type of object which is determine if the object is not the one being

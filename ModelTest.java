@@ -77,7 +77,7 @@ class ModelTest {
 		assertTrue(m.getSelectionArr().isEmpty());
 		
 		// It calls the AddOn default constructor no idea why fix in next push
-		Plant p = new Plant();
+		Plant p = new Plant(null, 0, 0, 0, 0, null, false, null, null, null, null, null);
 		ArrayList<Plant> newShrub = new ArrayList<Plant>();
 		newShrub.add(p);
 		
@@ -97,7 +97,7 @@ class ModelTest {
 		assertTrue(m.getSelectionArr().isEmpty());
 		
 		// It calls the AddOn default constructor no idea why fix in next push
-		Plant p = new Plant();
+		Plant p = new Plant(null, 0, 0, 0, 0, null, false, null, null, null, null, null);
 		ArrayList<Plant> newTree = new ArrayList<Plant>();
 		newTree.add(p);
 		
@@ -113,7 +113,7 @@ class ModelTest {
 		assertTrue(m.getSelectionArr().isEmpty());
 		
 		// It calls the AddOn default constructor no idea why fix in next push
-		Plant p = new Plant();
+		Plant p = new Plant(null, 0, 0, 0, 0, null, false, null, null, null, null, null);
 		ArrayList<Plant> newUnderGrowth = new ArrayList<Plant>();
 		newUnderGrowth.add(p);
 		

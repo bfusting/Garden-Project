@@ -35,7 +35,7 @@ import javafx.scene.layout.CornerRadii;
 //import javafx.scene.shape.Shape.*;
 
 
-//Updated: 4/25 9:52
+//Updated: 4.26 508
 
 /**
  * 
@@ -311,6 +311,10 @@ public class DesignGarden extends Screen{
 		//click recommendations button
 		
 		recommendations.setOnMouseClicked(c.getRecommendationsBTN());
+		
+		//Change Seasons Button
+		
+		changeSeasons.setOnMouseClicked(c.getChangeSeasonsBTN());
 		
 		AnchorPane apButtons = new AnchorPane();
 
