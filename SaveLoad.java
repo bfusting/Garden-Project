@@ -43,6 +43,8 @@ public class SaveLoad {
 	 */
 	public SaveLoad() {
 		SaveLoadStage = new Stage();
+		SaveLoadStage.setWidth(600);
+		SaveLoadStage.setHeight(400);
 		fileChooser = new FileChooser();
 	}
 	
@@ -50,7 +52,7 @@ public class SaveLoad {
 	 * Displays the fileChooser's save dialog when the user clicks the save Button.
 	 */
 	public void showSaveWindow() {
-		
+		fileChooser.showSaveDialog(SaveLoadStage);
 	}
 	
 	/**
@@ -60,7 +62,7 @@ public class SaveLoad {
 	 * @see MainMenu
 	 */
 	public void showLoadWindow() {
-		
+		fileChooser.showOpenDialog(SaveLoadStage);
 	}
 	
 	

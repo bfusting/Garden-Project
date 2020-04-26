@@ -1,13 +1,19 @@
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /*
@@ -278,7 +284,7 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void recommendationsBTN(MouseEvent event) {
-		Recommendations r = new Recommendations();
+		Recommendations r = new Recommendations(this);
 		r.showRecommendations();
 	}//recommendationsBTN
 	
@@ -308,7 +314,7 @@ public class Controller{
 	 * @see FinalView
 	 */
 	public void changeSeasonsBTN(MouseEvent event) {
-		System.out.println("Now is FAAAAAAAAAAAALLLLLLLLLLLLLLLLLL");
+		view.showSeasonViewScreen();
 	}//changeSeasonsBTN
 	
 	/**
@@ -368,7 +374,7 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void startDrag(MouseEvent event) {
-		Node n = (Node)event.getSource();
+		ImageView n = (ImageView)event.getSource();
 
 		//Create dragboard to hold data
         Dragboard dBoard = n.startDragAndDrop(TransferMode.ANY);
@@ -376,7 +382,7 @@ public class Controller{
         //Use clipboard to copy data the add to Dragboard
         ClipboardContent content = new ClipboardContent();
         //Need to edit to pull in right plant from model when dragging
-        content.putImage(new Image(event.getSource().toString()));
+        content.putImage(n.getImage());
         dBoard.setContent(content);
         
         event.consume();
@@ -410,8 +416,9 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void detectDrag(DragEvent event) {
-		// copy in Kelsey's DesignGarden thigny
-        if (event.getDragboard().hasImage()) {
+		// copy in Kelsey's DesignGarden thingy
+        if (event.getGestureSource() != event.getTarget()
+        		&& event.getDragboard().hasImage()) {
             event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
         }
         event.consume();
@@ -445,7 +452,14 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void okayToDrop(DragEvent event) {
-		System.out.println("Highlight Green if Okay");
+		if(event.getGestureSource() != event.getTarget() && 
+				event.getDragboard().hasImage()) {
+			//Visual Indicator that drag n drop is valid, spaces are currently
+			//labels so didn't know how to handle
+			//(Label)this.setFill(Color.DARKGREEN);
+		}
+		
+		event.consume();
 	}//okayToDrop
 	
 	/**
@@ -468,13 +482,25 @@ public class Controller{
 	 * Takes in a DragEvent to know when the target has the mouse released over it.
 	 * <p>
 	 * Once dropped creates a copy of the plant from the selection Array then overlays 
-	 * the image from view on top of it with correct seaons
+	 * the image from view on top of it with correct seasons
 	 * 
 	 * @param event DragEvent to know when the drag finished
 	 * @see DesignGarden
 	 */
 	public void detectDragDrop(DragEvent event) {
-		System.out.println("Tiles should detect drag and add that plant");
+		Dragboard db = event.getDragboard();
+		boolean worked = false;
+		Node n = event.getPickResult().getIntersectedNode();
+		if(n != event.getTarget() && db.hasImage()) {
+			ImageView iv = new ImageView(db.getImage());
+			Integer colIndex = GridPane.getColumnIndex(n);
+			Integer rowIndex = GridPane.getRowIndex(n);
+			//GardenTile tile = model.getUserPlot().getLayout()[colIndex][rowIndex];
+			//tile.add(new );
+			GridPane.setColumnIndex(iv, colIndex);
+			GridPane.setRowIndex(iv, rowIndex);
+			worked = true;
+		}
 	}//detectDragDrop
 	
 	/**
@@ -593,7 +619,7 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void infoTipsBTN(MouseEvent event) {
-		System.out.println("Displays tips");
+		view.showInfoTipsScreen();
 	}//infoTipsBTN
 	
 	/**
