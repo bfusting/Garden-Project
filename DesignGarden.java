@@ -77,6 +77,12 @@ private ArrayList<ImageView> selectionArr;
 	GridPane pathsGP = new GridPane();
 	GridPane otherGP = new GridPane();
 	
+	private Controller c;
+	
+	public DesignGarden(Controller controller) {
+		this.c = controller;
+	}
+	
 	//2d array 5x5 of GardenTile using GridPane
 
 	
@@ -188,6 +194,10 @@ private ArrayList<ImageView> selectionArr;
 		changeSeasons.setMinSize(200.0,40.0);
 		infoTips.setMinSize(200.0,40.0);
 		
+		//click recommendations button
+		
+		recommendations.setOnMouseClicked(c.getRecommendationsBTN());
+		
 		AnchorPane apButtons = new AnchorPane();
 
 		Label otherFeaturesLabel = new Label("Other Features: ");
@@ -239,6 +249,7 @@ private ArrayList<ImageView> selectionArr;
 		stage.setScene(designGardenScene);
 		stage.show();
 	}
+
 
 	
 	

@@ -98,7 +98,7 @@ public class FinalView{
 		Label fv = new Label ("This is final view");
 		AnchorPane.setTopAnchor(fv, 100.0);
 		root.getChildren().add(fv);
-		finalViewScene = new Scene(root, 500, 500);
+		finalViewScene = new Scene(root, 500.0, 500.0);
 		
 		stage.setTitle("Final View");
 		stage.setScene(finalViewScene);
