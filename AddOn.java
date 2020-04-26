@@ -9,7 +9,7 @@ public class AddOn{
 	
 	String description;
 
-	public void AddOn(){
+	public AddOn(){
 		
 	}
 	
@@ -19,7 +19,7 @@ public class AddOn{
 	 * @param tS tileSize
 	 * @param d description
 	 */
-	public void AddOn(String n, int tS, String d) {
+	public AddOn(String n, int tS, String d) {
 		this.name = n;
 		this.tileSize= tS;
 		this.description = d;
