@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -313,33 +314,7 @@ public class Controller{
 	 * @see FinalView
 	 */
 	public void changeSeasonsBTN(MouseEvent event) {
-		Stage stage = new Stage();
-		String currSeason = "";
-		Text t = new Text(currSeason);
-		FlowPane fPane = new FlowPane();
-		int numClicks = event.getClickCount();
-		switch(numClicks%4) {
-		case 0:
-			currSeason = "Spring";
-			t.setText(currSeason);
-			break;
-		case 1:
-			currSeason = "Summer";
-			t.setText(currSeason);
-			break;
-		case 2:
-			currSeason = "Fall";
-			t.setText(currSeason);
-			break;
-		case 3:
-			currSeason = "Winter";
-			t.setText(currSeason);
-			break;
-		}
-		fPane.getChildren().add(fPane);
-		Scene scene = new Scene(fPane,500,500);
-		stage.setScene(scene);
-		stage.show();
+		view.showSeasonViewScreen();
 	}//changeSeasonsBTN
 	
 	/**
@@ -442,7 +417,8 @@ public class Controller{
 	 */
 	public void detectDrag(DragEvent event) {
 		// copy in Kelsey's DesignGarden thingy
-        if (event.getGestureSource() != this && event.getDragboard().hasImage()) {
+        if (event.getGestureSource() != event.getTarget()
+        		&& event.getDragboard().hasImage()) {
             event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
         }
         event.consume();
@@ -476,7 +452,7 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void okayToDrop(DragEvent event) {
-		if(event.getGestureSource() != this && 
+		if(event.getGestureSource() != event.getTarget() && 
 				event.getDragboard().hasImage()) {
 			//Visual Indicator that drag n drop is valid, spaces are currently
 			//labels so didn't know how to handle
@@ -506,13 +482,25 @@ public class Controller{
 	 * Takes in a DragEvent to know when the target has the mouse released over it.
 	 * <p>
 	 * Once dropped creates a copy of the plant from the selection Array then overlays 
-	 * the image from view on top of it with correct seaons
+	 * the image from view on top of it with correct seasons
 	 * 
 	 * @param event DragEvent to know when the drag finished
 	 * @see DesignGarden
 	 */
 	public void detectDragDrop(DragEvent event) {
-		System.out.println("Tiles should detect drag and add that plant");
+		Dragboard db = event.getDragboard();
+		boolean worked = false;
+		Node n = event.getPickResult().getIntersectedNode();
+		if(n != event.getTarget() && db.hasImage()) {
+			ImageView iv = new ImageView(db.getImage());
+			Integer colIndex = GridPane.getColumnIndex(n);
+			Integer rowIndex = GridPane.getRowIndex(n);
+			//GardenTile tile = model.getUserPlot().getLayout()[colIndex][rowIndex];
+			//tile.add(new );
+			GridPane.setColumnIndex(iv, colIndex);
+			GridPane.setRowIndex(iv, rowIndex);
+			worked = true;
+		}
 	}//detectDragDrop
 	
 	/**
@@ -631,7 +619,7 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void infoTipsBTN(MouseEvent event) {
-		System.out.println("Displays tips");
+		view.showInfoTipsScreen();
 	}//infoTipsBTN
 	
 	/**
