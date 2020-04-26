@@ -1,3 +1,4 @@
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -31,7 +32,6 @@ public class MainMenu  {
 	private Button createNewGarden;
 	private Button loadGarden;
 	private Image backgroundImage;
-	//private Stage mainMenuStage;
 	private Scene mainMenuScene;
 	
 	
@@ -43,9 +43,10 @@ public class MainMenu  {
 	public MainMenu() {
 		createNewGarden = new Button("Create New Garden");
 		loadGarden = new Button("Load Garden");
-		
 		backgroundImage = null;
-		mainMenuScene = null;
+		Group root = new Group();
+		
+		mainMenuScene = new Scene(root,500,500);
 		
 	}
 	
@@ -57,5 +58,6 @@ public class MainMenu  {
 	 */
 	public void showMainMenu(Stage theStage) {
 		theStage.setScene(mainMenuScene);
+		theStage.show();
 	}
 }

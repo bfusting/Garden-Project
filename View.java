@@ -116,7 +116,11 @@ public class View extends Application{
 		mainMenu = new Button("Main Menu");
 		//
 		
+		
 		System.out.println("Set the stage for el Main Menu");
+		mainMenuScreen.showMainMenu(primaryStage);
+		
+		instructionsScreen.showInstructions();
 	}
 	
 	
@@ -174,7 +178,8 @@ public class View extends Application{
 	}
 	
 	public void showDesignGardenScreen() {
-		designGardenScreen.showDesignGarden(primaryStage);
+		//designGardenScreen.showDesignGarden(primaryStage);
+		//primaryStage.setScene(designGardenScreen.getScene());
 	}
 	
 	public void showSaveGardenScreen() {
@@ -186,21 +191,26 @@ public class View extends Application{
 	}
 	
 	public void showFinalViewScreen() {
-		finalViewScreen.showFinalView(primaryStage);;
+		//finalViewScreen.showFinalView(primaryStage);
 	}
 	
 	public void showInfoTipsScreen() {
 		//should have two show methods with one that takes a Stage?
-		infoTipsScreen.showInfoTips(primaryStage);
+		//infoTipsScreen.showInfoTips(primaryStage);
 	}
 	
 	public void showPreferencesScreen() {
-		preferencesScreen.showPreferences(primaryStage);
+		//preferencesScreen.showPreferences(primaryStage);
 	}
 	
 	public void showSeasonViewScreen() {
 		//should take in a Stage
 		seasonViewScreen.ShowSeasonView();
+	}
+	
+	public void showRecommendationsScreen() {
+		//shouldn't take in a Stage
+		recommendationsScreen.showRecommendations(primaryStage);
 	}
 	
 	
