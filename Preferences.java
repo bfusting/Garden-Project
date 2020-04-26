@@ -8,7 +8,7 @@ import javafx.stage.Stage;
  * <br> The view that gets the user's preferences for plant selection
  *
  */
-public class Preferences extends View{
+public class Preferences{
 	private ComboBox<String> bloomTime;
 	private ComboBox<String> waterReq;
 	private ComboBox<String> lightReq;
@@ -78,7 +78,8 @@ public class Preferences extends View{
 	 * 
 	 * @param stage The stage for Preferences' scene
 	 */
-	public void showPreferences(Stage stage) {
+/*	public void showPreferences(Stage stage) {
 		
 	}
+	*/
 }

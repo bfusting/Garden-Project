@@ -42,7 +42,7 @@ public class Instructions {
 		text = "instructions undefined";
 		instructions = new Label(text);
 		
-		instructionsScene = new Scene(instructions);
+		instructionsScene = new Scene(instructions,500,500);
 		instructionsStage = new Stage();
 		instructionsStage.setScene(instructionsScene);
 	}
