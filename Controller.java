@@ -61,6 +61,7 @@ public class Controller{
 	public void createNewGarden(MouseEvent event) {
 		if(DEBUG) { System.out.println("Created new Garden Plot");};
 		model.setUserPlot(new GardenPlot());
+		view.showChooseTemplateScreen();
 	}//createNewGarden
 	
 	/**
@@ -128,6 +129,7 @@ public class Controller{
 	 */
 	public void exit(MouseEvent event) {
 		System.out.println("Exit by saving the closing");
+		view.close();
 	}//exit
 	
 	/**
@@ -156,6 +158,7 @@ public class Controller{
 	 */
 	public void instructionsShow(MouseEvent event) {
 		System.out.println("Show Instructions");
+		view.showInstructionsScreen();
 	}//instructionsShow
 	
 	/**
@@ -658,4 +661,11 @@ public class Controller{
 	}
 	
 	
+	
+	
+	
+	
 }//Controller
+
+
+
