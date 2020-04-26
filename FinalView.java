@@ -2,11 +2,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.layout.AnchorPane;
-<<<<<<< HEAD
-=======
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
->>>>>>> master
 import javafx.scene.control.Label;
 
 //Updated: 4/25 9:52
@@ -29,11 +26,8 @@ public class FinalView{
 	
 	private Scene finalViewScene;
 	
-<<<<<<< HEAD
-=======
 	private Controller c;
 	
->>>>>>> master
 	/**
 	 * The constructor of FinalView
 	 * 
@@ -104,15 +98,6 @@ public class FinalView{
 	 * 
 	 * @param stage The stage for finalView's scene.
 	 */
-<<<<<<< HEAD
-	public void showFinalView(Stage stage) {
-		
-		
-		AnchorPane root = new AnchorPane();
-		Label fv = new Label ("This is final view");
-		AnchorPane.setTopAnchor(fv, 100.0);
-		root.getChildren().add(fv);
-=======
 public void showFinalView(Stage stage) {
 		
 		
@@ -151,18 +136,11 @@ public void showFinalView(Stage stage) {
 		
 		
 		root.getChildren().add(r1);
->>>>>>> master
 		finalViewScene = new Scene(root, 500.0, 500.0);
 		
 		stage.setTitle("Final View");
 		stage.setScene(finalViewScene);
 		stage.show();
-<<<<<<< HEAD
-		
-		
-	}
-
-=======
 		
 	}
 
@@ -179,6 +157,5 @@ public void showFinalView(Stage stage) {
 		return save;
 	}
 
->>>>>>> master
 
 }

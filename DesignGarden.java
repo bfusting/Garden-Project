@@ -83,12 +83,6 @@ public class DesignGarden{
 	GridPane pathsGP = new GridPane();
 	GridPane otherGP = new GridPane();
 	
-	private Controller c;
-	
-	public DesignGarden(Controller controller) {
-		this.c = controller;
-	}
-	
 	//2d array 5x5 of GardenTile using GridPane
 	
 	private Controller c;
@@ -130,7 +124,6 @@ public class DesignGarden{
 	}
 */	
 
-<<<<<<< HEAD
 	
 	public Scene getDesignGardenScene() {
 		return designGardenScene;
@@ -158,35 +151,6 @@ public class DesignGarden{
 	}
 */
 	
-=======
-	
-	public Scene getDesignGardenScene() {
-		return designGardenScene;
-	}
-
-
-	/**
-	 * Creates the array of plants/trees/etc for the user to choose from based on local requirements and user preferences.
-	 */
-	public void createImageArray() {
-		
-	}
-	
-	public GridPane getPlot() {
-		return plot;
-	}
-	
-	
-	
-/*	/**
-	 * Opens the recommendations 
-	 *
-	public void openRecommendations() {
-		
-	}
-*/
-	
->>>>>>> master
 	/**
 	 * Contains the buttons, panes, and other features that will enable the user to edit their garden view.
 	 * 
@@ -240,10 +204,6 @@ public class DesignGarden{
 //		pathways.setContent(pathsGP);
 		
 		otherOptions = new Tab("Other");
-<<<<<<< HEAD
-		otherOptions.setContent(otherGP);
-		
-=======
 //		otherOptions.setContent(otherGP);
 		
 		
@@ -333,7 +293,6 @@ public class DesignGarden{
 		
 	    otherOptions.setContent(otherTP);
 	    
->>>>>>> master
 		selectGardenType.getTabs().addAll( plants, trees, pathways, otherOptions);
 
 		AnchorPane.setTopAnchor(selectGardenType, 40.0);
@@ -404,10 +363,6 @@ public class DesignGarden{
 		stage.setScene(designGardenScene);
 		stage.show();
 	}
-<<<<<<< HEAD
-
-
-=======
 
 	public Button getRecommendationsBTTN() {
 		return recommendations;
@@ -419,7 +374,6 @@ public class DesignGarden{
 		return infoTips;
 	}
 
->>>>>>> master
 	
 	
 }

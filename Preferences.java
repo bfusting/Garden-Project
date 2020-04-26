@@ -3,15 +3,11 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
 import javafx.scene.layout.AnchorPane;
-<<<<<<< HEAD
-import javafx.scene.control.Label;
-=======
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.control.Label;
 import javafx.scene.Group;
->>>>>>> master
 import javafx.scene.Scene;
 
 //Updated: 4/25 9:52
@@ -34,8 +30,6 @@ public class Preferences{
 	
 	private Scene preferencesScene;
 	
-<<<<<<< HEAD
-=======
 	private Controller c;
 	
 	public Preferences(Controller controller) {
@@ -43,7 +37,6 @@ public class Preferences{
 	}
 	
 	
->>>>>>> master
 	/**
 	 * 
 	 * Asks the user for the length and width of their future garden space
@@ -108,11 +101,6 @@ public class Preferences{
 	public void showPreferences(Stage stage) {
 		
 		AnchorPane root = new AnchorPane();
-<<<<<<< HEAD
-		Label pref = new Label ("This is preferences");
-		AnchorPane.setTopAnchor(pref, 100.0);
-		root.getChildren().add(pref);
-=======
 		
 		Label pref = new Label("Select Your Plant Preferences and Requirements");
 		AnchorPane.setTopAnchor(pref, 40.0);
@@ -146,7 +134,6 @@ public class Preferences{
 //		Label pref = new Label ("This is preferences");
 //		AnchorPane.setTopAnchor(pref, 100.0);
 		root.getChildren().addAll(bloomTime, pref, btLabel, r1, colorLabel, color);
->>>>>>> master
 		preferencesScene = new Scene(root, 500.0, 500.0);
 		
 		stage.setTitle("Preferences");
