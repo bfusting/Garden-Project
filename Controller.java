@@ -1,13 +1,18 @@
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /*
@@ -308,7 +313,33 @@ public class Controller{
 	 * @see FinalView
 	 */
 	public void changeSeasonsBTN(MouseEvent event) {
-		System.out.println("Now is FAAAAAAAAAAAALLLLLLLLLLLLLLLLLL");
+		Stage stage = new Stage();
+		String currSeason = "";
+		Text t = new Text(currSeason);
+		FlowPane fPane = new FlowPane();
+		int numClicks = event.getClickCount();
+		switch(numClicks%4) {
+		case 0:
+			currSeason = "Spring";
+			t.setText(currSeason);
+			break;
+		case 1:
+			currSeason = "Summer";
+			t.setText(currSeason);
+			break;
+		case 2:
+			currSeason = "Fall";
+			t.setText(currSeason);
+			break;
+		case 3:
+			currSeason = "Winter";
+			t.setText(currSeason);
+			break;
+		}
+		fPane.getChildren().add(fPane);
+		Scene scene = new Scene(fPane,500,500);
+		stage.setScene(scene);
+		stage.show();
 	}//changeSeasonsBTN
 	
 	/**
@@ -368,7 +399,7 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void startDrag(MouseEvent event) {
-		Node n = (Node)event.getSource();
+		ImageView n = (ImageView)event.getSource();
 
 		//Create dragboard to hold data
         Dragboard dBoard = n.startDragAndDrop(TransferMode.ANY);
@@ -376,7 +407,7 @@ public class Controller{
         //Use clipboard to copy data the add to Dragboard
         ClipboardContent content = new ClipboardContent();
         //Need to edit to pull in right plant from model when dragging
-        content.putImage(new Image(event.getSource().toString()));
+        content.putImage(n.getImage());
         dBoard.setContent(content);
         
         event.consume();
@@ -410,8 +441,8 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void detectDrag(DragEvent event) {
-		// copy in Kelsey's DesignGarden thigny
-        if (event.getDragboard().hasImage()) {
+		// copy in Kelsey's DesignGarden thingy
+        if (event.getGestureSource() != this && event.getDragboard().hasImage()) {
             event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
         }
         event.consume();
@@ -445,7 +476,14 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void okayToDrop(DragEvent event) {
-		System.out.println("Highlight Green if Okay");
+		if(event.getGestureSource() != this && 
+				event.getDragboard().hasImage()) {
+			//Visual Indicator that drag n drop is valid, spaces are currently
+			//labels so didn't know how to handle
+			//(Label)this.setFill(Color.DARKGREEN);
+		}
+		
+		event.consume();
 	}//okayToDrop
 	
 	/**
