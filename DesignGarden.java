@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -374,8 +375,8 @@ public class DesignGarden extends Screen{
 	         plot.getRowConstraints().add(row);
 	     }
 		
-		//plot.setOnDragOver(c.getDetectDrag());
-		//plot.setOnDragDropped(c.getDetectDragDrop());
+		plot.setOnDragOver(c.getDetectDrag());
+		plot.setOnDragDropped(c.getDetectDragDrop());
 
 		plot.setGridLinesVisible(true);
 		

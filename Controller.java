@@ -55,6 +55,7 @@ public class Controller{
 	public Controller(View passedInView) {
 		model = new Model();
 		this.view = passedInView;
+		DEBUG = true;
 	}//Controller
 	
 	/**
@@ -496,18 +497,23 @@ public class Controller{
 	public void detectDragDrop(DragEvent event) {
 		Dragboard db = event.getDragboard();
 		boolean worked = false;
+		//Node n = event.getPickResult().getIntersectedNode();
 		Node n = event.getPickResult().getIntersectedNode();
 		if(n != event.getTarget() && db.hasImage()) {
 			ImageView iv = new ImageView(db.getImage());
 			Integer colIndex = GridPane.getColumnIndex(n);
 			Integer rowIndex = GridPane.getRowIndex(n);
-			//GardenTile tile = model.getUserPlot().getLayout()[colIndex][rowIndex];
-			//tile.add(new );
-			
+			int column = colIndex;
+			int row = rowIndex;
+			//if(DEBUG) {System.out.println("Column: " + column + " Row: " + row);}
+			view.getDesignGardenScreen().getPlot().add(iv, column, row, 1, 1);
 			//GridPane.setColumnIndex(iv, colIndex);
 			//GridPane.setRowIndex(iv, rowIndex);
 			worked = true;
 		}
+		event.setDropCompleted(worked);
+		if(DEBUG) {System.out.println("Dropped Successfully");}
+		event.consume();
 	}//detectDragDrop
 	
 	/**
