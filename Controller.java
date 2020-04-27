@@ -766,6 +766,17 @@ public class Controller{
 		
 	}
 	
+	public EventHandler getSaveAndQuit() {
+		
+		return event -> saveAndQuit((MouseEvent) event);
+		
+	}
+	
+	public void saveAndQuit(MouseEvent event) {
+		saveBTN(event);
+		//closeAllWindows(event);
+	}
+	
 	
 	
 	

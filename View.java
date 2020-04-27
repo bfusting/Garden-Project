@@ -158,7 +158,7 @@ public class View extends Application{
 	public void close() {
 		System.out.println("leaving so soon? :(");
 		
-		if (currentPrimaryScreen.equals(designGardenScreen)) {
+		if (currentPrimaryScreen.equals(finalViewScreen)) {
 			exitScreen.showExitWithSave();
 		}
 		else {
@@ -214,6 +214,7 @@ public class View extends Application{
 	}
 	
 	public File showSaveGardenScreen() {
+		exitScreen.closeExit();
 		return saveLoadScreen.showSaveWindow();
 	}
 	
@@ -222,6 +223,7 @@ public class View extends Application{
 	}
 	
 	public void showFinalViewScreen() {
+		currentPrimaryScreen = finalViewScreen;
 		finalViewScreen.showFinalView(primaryStage);
 	}
 	
