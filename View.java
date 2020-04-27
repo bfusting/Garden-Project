@@ -73,12 +73,12 @@ public class View extends Application{
 		chooseTemplateScreen = new ChooseTemplate(imc);
 		designGardenScreen = new DesignGarden(imc);
 		saveLoadScreen = new SaveLoad();
-		//finalViewScreen = new FinalView(null);
-		// InfoTips should take in a plant from model
+		finalViewScreen = new FinalView(null);
+		//InfoTips should take in a plant from model
 		//infoTipsScreen = new InfoTips(null, 0, null, 0, 0, false, null, null);
-		//seasonViewScreen = new SeasonView();
-		// InfoTips should take in a plant from model
-		//recommendationsScreen = new Recommendations();
+		seasonViewScreen = new SeasonView(imc);
+		 //InfoTips should take in a plant from model
+		recommendationsScreen = new Recommendations(imc);
 		
 		
 		
