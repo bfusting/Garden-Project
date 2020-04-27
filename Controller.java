@@ -379,6 +379,7 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void startDrag(MouseEvent event) {
+		//Didn't use a node because can't call ImageView methods on it
 		ImageView n = (ImageView)event.getSource();
 
 		//Create dragboard to hold data
@@ -502,8 +503,9 @@ public class Controller{
 			Integer rowIndex = GridPane.getRowIndex(n);
 			//GardenTile tile = model.getUserPlot().getLayout()[colIndex][rowIndex];
 			//tile.add(new );
-			GridPane.setColumnIndex(iv, colIndex);
-			GridPane.setRowIndex(iv, rowIndex);
+			
+			//GridPane.setColumnIndex(iv, colIndex);
+			//GridPane.setRowIndex(iv, rowIndex);
 			worked = true;
 		}
 	}//detectDragDrop

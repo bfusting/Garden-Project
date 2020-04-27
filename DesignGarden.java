@@ -234,6 +234,7 @@ public class DesignGarden extends Screen{
 		plantTP.setHgap(8);
 		plantTP.setPrefColumns(5);
 		for (ImageView iv : pSelectionArr) {
+			iv.setOnDragDetected(c.getStartDrag());
 	        plantTP.getChildren().add(iv);
 	   	}
 		
@@ -264,6 +265,7 @@ public class DesignGarden extends Screen{
 		treesTP.setHgap(8);
 		treesTP.setPrefColumns(5);
 		for (ImageView iv : tSelectionArr) {
+			iv.setOnDragDetected(c.getStartDrag());
 	        treesTP.getChildren().add(iv);
 	   	}
 		
@@ -371,7 +373,9 @@ public class DesignGarden extends Screen{
 	         RowConstraints row = new RowConstraints(100);
 	         plot.getRowConstraints().add(row);
 	     }
-	 
+		
+		//plot.setOnDragOver(c.getDetectDrag());
+		//plot.setOnDragDropped(c.getDetectDragDrop());
 
 		plot.setGridLinesVisible(true);
 		
