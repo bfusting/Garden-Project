@@ -40,9 +40,13 @@ public class Exit extends Screen {
 	public Exit(Controller c) {
 		saveButton = new Button("Save and Quit");
 		saveButton.setMinSize(100, 50);
+		saveButton.setOnMouseClicked(c.getSaveAndQuit());
+		saveButton.setPrefWidth(140);
 		
 		quitButton = new Button("Quit without Saving");
 		quitButton.setMinSize(100, 50);
+		quitButton.setOnMouseClicked(c.getCloseAllWindows());
+		
 		yesButton = new Button("Yes");
 		yesButton.setOnMouseClicked(c.getCloseAllWindows());
 		
@@ -87,7 +91,28 @@ public class Exit extends Screen {
 	}
 	
 	public void showExitWithSave() {
+		TilePane tPane = new TilePane();
+		tPane.getChildren().addAll(saveButton,quitButton);
 		HBox hbox = new HBox();
+		tPane.setTileAlignment(Pos.CENTER);
+		tPane.setHgap(60);
+		tPane.setPrefColumns(2);
+		hbox.setBackground(new Background(new BackgroundFill(Color.LIGHTSLATEGREY,CornerRadii.EMPTY,Insets.EMPTY)));
+		hbox.setPadding(new Insets(60,40,60,25));
+		hbox.getChildren().setAll(tPane);
+		
+		tPane.setMargin(hbox, Insets.EMPTY);
+		root = new Group();
+		root.getChildren().addAll(hbox,exitAP);
+		
+		//
+		
+		
+		Scene exitScene = new Scene(root,400,120);
+		exitStage.setScene(exitScene);
+		exitStage.show();
+		
+		/*HBox hbox = new HBox();
 		hbox.getChildren().addAll(saveButton,quitButton);
 		Scene exitScene = new Scene(root,400,120);
 		exitStage.setScene(exitScene);
@@ -95,7 +120,9 @@ public class Exit extends Screen {
 		
 		exitWithSave = new Scene(hbox,400,120);
 		exitStage.setScene(exitWithSave);
-		exitStage.show();
+		exitStage.show();*/
+		
+		
 	}
 	
 	public void showExitWithoutSave() {
