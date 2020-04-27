@@ -68,6 +68,9 @@ public class DesignGarden extends Screen{
 	private Button save;
 	private Button finalView;
 	
+	private Button indexLeft;
+	private Button indexRight;
+	
 	private int seasonIndexer;
 	private Text plantInfo;
 	private ArrayList<Image> imagesUsed;
@@ -163,6 +166,14 @@ public class DesignGarden extends Screen{
 
 		//root AnchorPane
 		AnchorPane root = new AnchorPane();
+		
+		indexLeft = new Button("<<<");
+		indexRight = new Button(">>>");
+		
+		AnchorPane.setLeftAnchor(indexLeft, 10.0);
+		AnchorPane.setLeftAnchor(indexRight, 810.0);
+		AnchorPane.setTopAnchor(indexLeft, 120.0);
+		AnchorPane.setTopAnchor(indexRight, 120.0);
 		
 		//Tab Pane at top of screen to select plants/trees/paths/other
 		selectGardenType = new TabPane();
@@ -379,7 +390,7 @@ public class DesignGarden extends Screen{
 		root.setLeftAnchor(plot, 40.0);
 		
 		
-		root.getChildren().addAll(apButtons, selectGardenType, plot);
+		root.getChildren().addAll(apButtons, selectGardenType, plot, indexLeft, indexRight);
 		
 		designGardenScene = new Scene(root,1200,800);
 		
