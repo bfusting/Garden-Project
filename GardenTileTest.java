@@ -48,7 +48,7 @@ public class GardenTileTest {
 		AddOn b = new AddOn();
 		AddOn[] arr = {b};
 		gT.add(a);
-		Plant[] p = {};
+		Plant[] p = {null, null, null, null, null};
 		assertTrue(gT.getRecommendations(arr) == p);
 		
 		
