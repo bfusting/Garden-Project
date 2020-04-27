@@ -208,10 +208,10 @@ public class DesignGarden extends Screen{
 		
 		
 		ImageView iv1 = new ImageView();
-		Image im1 = new Image(getClass().getResourceAsStream("/commonMilkweed copy.png"));
+		Image im1 = new Image(getClass().getResourceAsStream("/commonMilkweedcopy.png"));
 		
 		ImageView iv2 = new ImageView();
-		Image im2 = new Image(getClass().getResourceAsStream("/commonMilkweed copy.png"));
+		Image im2 = new Image(getClass().getResourceAsStream("/commonMilkweedcopy.png"));
 		
 		ArrayList<ImageView> pSelectionArr = new ArrayList<ImageView>();
 		
