@@ -116,6 +116,13 @@ public void showFinalView(Stage stage) {
 		viewSeasons = new Button("View Seasons");
 		save = new Button("Save");
 		
+		//Binding Event handlers to buttons
+		
+		edit.setOnMouseClicked(c.getDesignTime());
+		infoTips.setOnMouseClicked(c.getInfoTipsBTN());
+		viewSeasons.setOnMouseClicked(c.getViewSeasonsBTN());
+		save.setOnMouseClicked(c.getSaveBTN());
+		
 
 		root.setTopAnchor(edit, 400.0);
 		root.setTopAnchor(viewSeasons, 400.0);

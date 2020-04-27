@@ -65,6 +65,8 @@ public class DesignGarden extends Screen{
 	private Button recommendations;
 	private Button changeSeasons;
 	private Button infoTips;
+	private Button save;
+	private Button finalView;
 	
 	private int seasonIndexer;
 	private Text plantInfo;
@@ -303,10 +305,14 @@ public class DesignGarden extends Screen{
 		recommendations = new Button("Recommendations");
 		changeSeasons = new Button("Change Seasons");
 		infoTips = new Button("Info and Tips");
+		save = new Button("Save Garden");
+		finalView = new Button("Finish");
 		
 		recommendations.setMinSize(200.0,40.0);
 		changeSeasons.setMinSize(200.0,40.0);
 		infoTips.setMinSize(200.0,40.0);
+		save.setMinSize(200.0, 40.0);
+		finalView.setMinSize(200.0, 40.0);
 		
 		//click recommendations button
 		
@@ -316,6 +322,18 @@ public class DesignGarden extends Screen{
 		
 		changeSeasons.setOnMouseClicked(c.getChangeSeasonsBTN());
 		
+		//InfoTips Button
+		
+		infoTips.setOnMouseClicked(c.getInfoTipsBTN());
+		
+		// Save Button
+		
+		save.setOnMouseClicked(c.getSaveBTN());
+		
+		// Finalview Button
+		
+		finalView.setOnMouseClicked(c.getFinalViewBTN());
+		
 		AnchorPane apButtons = new AnchorPane();
 
 		Label otherFeaturesLabel = new Label("Other Features: ");
@@ -323,8 +341,10 @@ public class DesignGarden extends Screen{
 		apButtons.setTopAnchor(recommendations, 120.0);
 		apButtons.setTopAnchor(changeSeasons, 180.0);
 		apButtons.setTopAnchor(infoTips, 240.0);
+		apButtons.setTopAnchor(save, 300.0);
+		apButtons.setTopAnchor(finalView, 360.0);
 		
-		apButtons.getChildren().addAll(recommendations, changeSeasons, otherFeaturesLabel, infoTips);
+		apButtons.getChildren().addAll(recommendations, changeSeasons, otherFeaturesLabel, infoTips, save, finalView);
 
 		
 		root.setTopAnchor(apButtons, 40.0);

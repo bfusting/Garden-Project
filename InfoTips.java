@@ -73,6 +73,22 @@ public class InfoTips{
 	}
 	
 	/**
+	 * Default constructor just to work in view for now
+	 * not used in real project after Alpha
+	 * Made by Malachi
+	 */
+	public InfoTips() {
+		color = null;
+		waterNeed = null;
+		bloomTime = null;
+		sunlightNeeded = null;
+		plantHeight = null;
+		provideShade = null;
+		plantType = null;
+		animalsFed = null;
+	}
+	
+	/**
 	 * Organizes all of the labels of plant attributes
 	 * 
 	 * @param stage The stage of InfoTips' scene

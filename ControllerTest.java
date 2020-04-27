@@ -153,7 +153,7 @@ class ControllerTest {
 	void testChooseDesign() {
 		View view = new View();
 		Controller c = new Controller(view);
-		c.chooseDesign(null);
+		c.designTime(null);
 		assertTrue(c.getModel().getUnderGrowth() != null);
 		for(int row=0; row<c.getModel().getUserPlot().getLayout().length; row++) {
 			assertTrue(c.getModel().getUserPlot().getLayout()[row] != null);
@@ -168,7 +168,7 @@ class ControllerTest {
 	void testGetChooseDesign() {
 		View view = new View();
 		Controller c = new Controller(view);
-		assertTrue(c.getChooseDesign() instanceof EventHandler);
+		assertTrue(c.getDesignTime() instanceof EventHandler);
 	}
 
 
