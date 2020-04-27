@@ -756,7 +756,15 @@ public class Controller{
 		
 	}
 	
+	public EventHandler getCloseAllWindows() {
+		return event -> closeAllWindows((MouseEvent) event);	
+	}
 	
+	public void closeAllWindows(MouseEvent event) {
+		System.out.println("Closing program...");
+		view.exit();
+		
+	}
 	
 	
 	

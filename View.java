@@ -31,6 +31,7 @@ import javafx.stage.Stage;
  * @author Takiyah Price 
  */
 
+//last edited: 4-27-20 12:54PM
 
 public class View extends Application{
 	//private static Button instructionsButton = new Button("instructions");
@@ -144,7 +145,10 @@ public class View extends Application{
 	 * @see View#saveButton
 	 */
 	public void exit() {
-		System.out.println("create window to ask user to save before exiting");
+		System.out.println("Close all the windows");
+		primaryStage.close();
+		exitScreen.closeExit();
+		instructionsScreen.closeInstructions();
 		
 	}
 	
@@ -152,7 +156,7 @@ public class View extends Application{
 	 * Closes all open windows after the user saves or quits without saving.
 	 */
 	public void close() {
-		System.out.println("close application (meaning close all open windows)");
+		System.out.println("leaving so soon? :(");
 		
 		if (currentPrimaryScreen.equals(designGardenScreen)) {
 			exitScreen.showExitWithSave();

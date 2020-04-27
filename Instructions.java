@@ -123,6 +123,9 @@ public class Instructions {
 		
 	}
 	
+	public void closeInstructions() {
+		instructionsStage.close();
+	}
 	
 	
 	
