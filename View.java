@@ -239,6 +239,10 @@ public class View extends Application{
 		recommendationsScreen.showRecommendations();
 	}
 	
+	public DesignGarden getDesignGardenScreen() {
+		return designGardenScreen;
+	}
+	
 	
 	
 	

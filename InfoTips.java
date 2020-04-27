@@ -4,7 +4,6 @@ import java.util.Date;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.layout.AnchorPane;
 
@@ -98,20 +97,11 @@ public class InfoTips{
 	public void showInfoTips(Stage stage) {
 		
 		AnchorPane root = new AnchorPane();
-		
-		ImageView iv1 = new ImageView();
-		Image im1 = new Image(getClass().getResourceAsStream("/image.png"));
-		iv1.setImage(im1);
-    	iv1.setPreserveRatio(true);
-
-    	AnchorPane.setTopAnchor(iv1, 100.0);
-		AnchorPane.setLeftAnchor(iv1, 15.0);
-		
 		Label it = new Label ("Info and Tips");
-		AnchorPane.setTopAnchor(it, 10.0);
+		AnchorPane.setTopAnchor(it, 100.0);
 		AnchorPane.setLeftAnchor(it, 235.0);
-		root.getChildren().addAll(it, iv1);
-		infoTipsScene = new Scene(root, 600.0, 500.0);
+		root.getChildren().add(it);
+		infoTipsScene = new Scene(root, 500.0, 500.0);
 		
 		stage.setTitle("InfoTips");
 		stage.setScene(infoTipsScene);

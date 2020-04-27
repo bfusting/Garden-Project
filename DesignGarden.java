@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -171,9 +172,9 @@ public class DesignGarden extends Screen{
 		indexRight = new Button(">>>");
 		
 		AnchorPane.setLeftAnchor(indexLeft, 10.0);
-		AnchorPane.setLeftAnchor(indexRight, 810.0);
+		AnchorPane.setLeftAnchor(indexRight, 810.00);
 		AnchorPane.setTopAnchor(indexLeft, 120.0);
-		AnchorPane.setTopAnchor(indexRight, 120.0);
+		AnchorPane.setTopAnchor(indexRight,120.0);
 		
 		//Tab Pane at top of screen to select plants/trees/paths/other
 		selectGardenType = new TabPane();
@@ -245,6 +246,7 @@ public class DesignGarden extends Screen{
 		plantTP.setHgap(8);
 		plantTP.setPrefColumns(5);
 		for (ImageView iv : pSelectionArr) {
+			iv.setOnDragDetected(c.getStartDrag());
 	        plantTP.getChildren().add(iv);
 	   	}
 		
@@ -275,6 +277,7 @@ public class DesignGarden extends Screen{
 		treesTP.setHgap(8);
 		treesTP.setPrefColumns(5);
 		for (ImageView iv : tSelectionArr) {
+			iv.setOnDragDetected(c.getStartDrag());
 	        treesTP.getChildren().add(iv);
 	   	}
 		
@@ -382,7 +385,9 @@ public class DesignGarden extends Screen{
 	         RowConstraints row = new RowConstraints(100);
 	         plot.getRowConstraints().add(row);
 	     }
-	 
+		
+		plot.setOnDragOver(c.getDetectDrag());
+		plot.setOnDragDropped(c.getDetectDragDrop());
 
 		plot.setGridLinesVisible(true);
 		
