@@ -161,6 +161,9 @@ public class Preferences{
 		AnchorPane.setBottomAnchor(startCreating, 40.0);
 		AnchorPane.setRightAnchor(startCreating, 40.0);
 		
+		// Binding to event Listener
+		startCreating.setOnMouseClicked(c.getDesignTime());
+		
 //		Label pref = new Label ("This is preferences");
 //		AnchorPane.setTopAnchor(pref, 100.0);
 		root.getChildren().addAll(bloomTime, pref, btLabel, r1, colorLabel, color, startCreating, glLabel, gwLabel, gardenLength, gardenWidth, getGardenDim);
