@@ -24,6 +24,7 @@ import java.io.Serializable;
 public class GardenTile implements Comparable<AddOn>,Serializable {
 	
 	
+	
 	private int xLoc;
 	private int yLoc;
 
@@ -117,6 +118,9 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 		return this.addOn.getDescription();
 	}
 	
+	//temp is being used while we have temporary plant objects in the Model class.  Will remove later
+	private Model temp = new Model();
+	
 	/**\
 	 * 
 	 * @return
@@ -127,19 +131,31 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 		//Have to test for each type of AddOn
 		//Order of AddOn's in arr are Tile to the left, then right, then above, then below
 		//Also have to make this work with the .csv of plants when we get that in
-		for(AddOn ad : arr) {
-			if(ad.getClass() == Plant.class) {
-				//returns 
+		AddOn[] result = new AddOn[5];
+		
+		for(int i = 0; i < arr.length; i++) {
+			if(arr[i].getClass() == Plant.class) {
+				Plant pA = (Plant) arr[i];
+				if(pA.getPlantType() == "Tree") {
+					result[i] = temp.getTreeArr().get(0);
+					
+				}
+				
+				if(pA.getPlantType() == "Flower") {
+					result[i] = temp.getSelectionArr().get(0);
+				}
+				
+				if(pA.getPlantType() == "Shrub") {
+					result[i] = temp.getShrubArr().get(0);
+				}
+				
+				if(pA.getPlantType() == "UnderGrowth") {
+					result[i] = temp.getUnderGrowth().get(0);
+				}
 				
 			}
 			
-			if(ad.getName() == "Forest Edge") {
-				
-			}
-			
-			else {
-				
-			}
+		
 		}
 		
 		
