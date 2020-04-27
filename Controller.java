@@ -228,23 +228,23 @@ public class Controller{
 	 * @param event MouseEvent to know when ImageViews are clicked
 	 * @see GardenPlot
 	 */
-	public void chooseDesign(MouseEvent event) {
-		System.out.println("Choose Templatttteeeeee");
+	public void designTime(MouseEvent event) {
+		System.out.println("Make Garden");
 		view.showDesignGardenScreen();
 	}//choseDesign
 	
 	/**
 	 * Returns an Event Handler to bind to an eventListener for the
-	 * ChooseDesign button on the Main Menu
+	 * DesignTime button on the Main Menu
 	 * <p>
-	 * Used to access the chooseDesign method and bind it using a
+	 * Used to access the DesignTime method and bind it using a
 	 * lambda function to an eventListner
 	 * 
 	 * @return EventHandler used to bind to listeners
-	 * @see chooseDesign
+	 * @see DesignTime
 	 */
-	public EventHandler<MouseEvent> getChooseDesign() {
-		return event -> chooseDesign((MouseEvent)event);
+	public EventHandler<MouseEvent> getDesignTime() {
+		return event -> designTime((MouseEvent)event);
 	}//getChooseDesign
 	
 	
@@ -654,8 +654,37 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void viewSeasonsBTN(MouseEvent event) {
-		System.out.println("Should be full season view");
+		view.showSeasonViewScreen();
 	}//viewSeasonsBTN
+	
+	/**
+	 * Takes in a MouseEvent to know when the a template in 
+	 * the template selection is clicked
+	 * <p>
+	 * Changes the screen to the preferences screen by popping up preferences
+	 * window when clicked
+	 * 
+	 * @param event MouseEvent to know when the a template is clicked
+	 * @see ChooseTemplate
+	 */
+	public void templateToPref(MouseEvent event) {
+		view.showPreferencesScreen();
+	}
+	
+	/**
+	 * Returns an Event Handler to bind to an eventListener for the
+	 * Mouse listener on chooseTemplate page
+	 * <p>
+	 * Used to access the templateBTNs method and bind it using a
+	 * lambda function to an eventListner
+	 * 
+	 * @return EventHandler used to bind to listeners
+	 * @see ChooseTemplate
+	 */
+	public EventHandler getTemplateToPref() {
+		return event -> templateToPref((MouseEvent)event);
+	}
+	
 	
 	/**
 	 * Returns an Event Handler to bind to an eventListener for the
@@ -681,6 +710,33 @@ public class Controller{
 	public void saveGarden() {
 		System.out.println("Open fileChooser and Save file");
 		
+	}
+	
+	/**
+	 * Takes in a MouseEvent to know when the a finalView button 
+	 * is clicked in DesignGarden
+	 * <p>
+	 * Changes the screen to the finalView when the button is clicked
+	 * 
+	 * @param event MouseEvent to know when the a finalView button is clicked
+	 * @see DesignGarden
+	 */
+	public void finalViewBTN(MouseEvent event) {
+		view.showFinalViewScreen();
+	}
+	
+	/**
+	 * Returns an Event Handler to bind to an eventListener for the
+	 * Mouse listener on DesignGarden page
+	 * <p>
+	 * Used to access the finalViewBTN method and bind it using a
+	 * lambda function to an eventListner
+	 * 
+	 * @return EventHandler used to bind to listeners
+	 * @see finalViewBTN
+	 */
+	public EventHandler getFinalViewBTN() {
+		return event -> finalViewBTN((MouseEvent)event);
 	}
 	
 	/**

@@ -31,6 +31,7 @@ import javafx.stage.Stage;
  * @author Takiyah Price 
  */
 
+//last edited 4-26-20 10:37PM
 
 public class View extends Application{
 	//private static Button instructionsButton = new Button("instructions");
@@ -73,12 +74,14 @@ public class View extends Application{
 		chooseTemplateScreen = new ChooseTemplate(imc);
 		designGardenScreen = new DesignGarden(imc);
 		saveLoadScreen = new SaveLoad();
-		//finalViewScreen = new FinalView(null);
+		finalViewScreen = new FinalView(imc);
 		// InfoTips should take in a plant from model
 		//infoTipsScreen = new InfoTips(null, 0, null, 0, 0, false, null, null);
-		//seasonViewScreen = new SeasonView();
+		infoTipsScreen = new InfoTips();
+		seasonViewScreen = new SeasonView(imc);
 		// InfoTips should take in a plant from model
-		//recommendationsScreen = new Recommendations();
+		recommendationsScreen = new Recommendations(imc);
+		preferencesScreen = new Preferences(imc);
 		
 		
 		
@@ -225,7 +228,7 @@ public class View extends Application{
 	}
 	
 	public void showPreferencesScreen() {
-		//preferencesScreen.showPreferences(primaryStage);
+		preferencesScreen.showPreferences(primaryStage);
 	}
 	
 	public void showSeasonViewScreen() {
