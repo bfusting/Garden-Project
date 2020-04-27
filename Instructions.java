@@ -28,7 +28,7 @@ import javafx.stage.Stage;
 *  
 */
 
-//Last edited: 4-26-20 3:42PM
+//Last edited: 4-26-20 5:42PM
 
 /**
  * 
@@ -65,17 +65,17 @@ public class Instructions {
 		Text designModeText = new Text("Here is where it will explain how the add plants to the garden and the other\nfeatures available in editing mode, such as viewing information on the\nselected plant.");
 		texts.add(designModeText);
 		
-		Text alternateVersionsText = new Text("Here is where it will explain how to view, edit and save generated alternate versions\nof an unfinished garden design.");
+		Text alternateVersionsText = new Text("Here is where it will explain how to view, edit and save generated alternate\nversions of an unfinished garden design.");
 		texts.add(alternateVersionsText);
 		
-		Text infoTipsText = new Text("Here is where it will explain where to find info and maintenance tips on the plants currently in the garden design.");
+		Text infoTipsText = new Text("Here is where it will explain where to find info and maintenance tips on the\nplants currently in the garden design.");
 		texts.add(infoTipsText);
 		
-		Text loadGardenText = new Text("Here is where it will explain how to load in an exisiting Garden and how to save a design after editing.");
+		Text loadGardenText = new Text("Here is where it will explain how to load in an exisiting Garden and how to\nsave a design after editing.");
 		texts.add(loadGardenText);
 		
 		
-		//AnchorPane textAP = new AnchorPane();
+		
 		
 		for (Text t: texts) {
 			AnchorPane.setLeftAnchor(t, 5.0);
@@ -90,19 +90,7 @@ public class Instructions {
 		AnchorPane loadGardenAP = new AnchorPane(loadGardenText);
 		
 		
-		
-		/*/AnchorPane.setLeftAnchor(chooseTemplateText, 5.0);
-		//AnchorPane.setLeftAnchor(enteringPreferencesText,5.0);
-		AnchorPane.setLeftAnchor(designModeText,5.0);
-		AnchorPane.setLeftAnchor(alternateVersionsText, 5.0);
-		AnchorPane.setLeftAnchor(infoTipsText, 5.0);
-		AnchorPane.setLeftAnchor(loadGardenText, 5.0);
-		
-		AnchorPane.setLeftAnchor(infoTipsText, 5.0);
-		AnchorPane.setRightAnchor(chooseTemplateText, 5.0);
-		AnchorPane.setTopAnchor(chooseTemplateText, 5.0);*/
-		
-		//textAP.getChildren().add(chooseTemplateText);
+	
 		
 		Accordion accord = new Accordion();
 		VBox root = new VBox(accord);
@@ -110,7 +98,6 @@ public class Instructions {
 		
 		
 		TitledPane choosingTemplatePane = new TitledPane("Choosing a Template or Drawing a Custom Plot",chooseTemplateAP);
-		//chooseTemplateText.wrappingWidthProperty().bind(choosingTemplatePane.widthProperty());
 		TitledPane enteringPreferencesPane = new TitledPane("Entering Garden Characteristics and Preferences", enterPrefsAP);
 		TitledPane designModePane = new TitledPane("Editing Your Garden Design",designModeAP);
 		TitledPane alternateVersionsPane = new TitledPane("Saving and Editing Alternate Versions",altVersionsAP);
@@ -127,13 +114,7 @@ public class Instructions {
 		instructionsStage.setTitle("Instructions");
 	}
 	
-	/**
-	 * Gets the String text detailing how to use the program
-	 * @return text the instructions detailing how to use this program
-	 */
-	/*public String getText() {
-		return text;
-	}*/
+	
 	
 	
 	public void showInstructions() {
@@ -142,6 +123,9 @@ public class Instructions {
 		
 	}
 	
+	public void closeInstructions() {
+		instructionsStage.close();
+	}
 	
 	
 	
