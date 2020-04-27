@@ -55,6 +55,7 @@ public class Controller{
 	public Controller(View passedInView) {
 		model = new Model();
 		this.view = passedInView;
+		DEBUG = true;
 	}//Controller
 	
 	/**
@@ -379,6 +380,7 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void startDrag(MouseEvent event) {
+		//Didn't use a node because can't call ImageView methods on it
 		ImageView n = (ImageView)event.getSource();
 
 		//Create dragboard to hold data
@@ -495,17 +497,21 @@ public class Controller{
 	public void detectDragDrop(DragEvent event) {
 		Dragboard db = event.getDragboard();
 		boolean worked = false;
+		//Node n = event.getPickResult().getIntersectedNode();
 		Node n = event.getPickResult().getIntersectedNode();
 		if(n != event.getTarget() && db.hasImage()) {
 			ImageView iv = new ImageView(db.getImage());
 			Integer colIndex = GridPane.getColumnIndex(n);
 			Integer rowIndex = GridPane.getRowIndex(n);
-			//GardenTile tile = model.getUserPlot().getLayout()[colIndex][rowIndex];
-			//tile.add(new );
-			GridPane.setColumnIndex(iv, colIndex);
-			GridPane.setRowIndex(iv, rowIndex);
+			int column = colIndex;
+			int row = rowIndex;
+			//if(DEBUG) {System.out.println("Column: " + column + " Row: " + row);}
+			view.getDesignGardenScreen().getPlot().add(iv, column, row);
 			worked = true;
 		}
+		event.setDropCompleted(worked);
+		if(DEBUG) {System.out.println("Dropped Successfully");}
+		event.consume();
 	}//detectDragDrop
 	
 	/**

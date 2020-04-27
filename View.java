@@ -31,7 +31,6 @@ import javafx.stage.Stage;
  * @author Takiyah Price 
  */
 
-//last edited 4-26-20 10:37PM
 
 public class View extends Application{
 	//private static Button instructionsButton = new Button("instructions");
@@ -238,6 +237,10 @@ public class View extends Application{
 	
 	public void showRecommendationsScreen() {
 		recommendationsScreen.showRecommendations();
+	}
+	
+	public DesignGarden getDesignGardenScreen() {
+		return designGardenScreen;
 	}
 	
 	
