@@ -73,12 +73,14 @@ public class View extends Application{
 		chooseTemplateScreen = new ChooseTemplate(imc);
 		designGardenScreen = new DesignGarden(imc);
 		saveLoadScreen = new SaveLoad();
-		finalViewScreen = new FinalView(null);
-		//InfoTips should take in a plant from model
+		finalViewScreen = new FinalView(imc);
+		// InfoTips should take in a plant from model
 		//infoTipsScreen = new InfoTips(null, 0, null, 0, 0, false, null, null);
+		infoTipsScreen = new InfoTips();
 		seasonViewScreen = new SeasonView(imc);
-		 //InfoTips should take in a plant from model
+		// InfoTips should take in a plant from model
 		recommendationsScreen = new Recommendations(imc);
+		preferencesScreen = new Preferences(imc);
 		
 		
 		
@@ -225,7 +227,7 @@ public class View extends Application{
 	}
 	
 	public void showPreferencesScreen() {
-		//preferencesScreen.showPreferences(primaryStage);
+		preferencesScreen.showPreferences(primaryStage);
 	}
 	
 	public void showSeasonViewScreen() {

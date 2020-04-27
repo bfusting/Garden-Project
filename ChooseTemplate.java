@@ -72,7 +72,7 @@ public class ChooseTemplate extends Screen {
 		ImageView designYourOwn = new ImageView(new Image("/img/DesignYourOwn.png"));
 		chooseSquare = new Button("Choose Square Garden",squareTemplate);
 		chooseSquare.setMaxSize(200, 60);
-		chooseSquare.setOnMouseClicked(c.getChooseDesign());
+		chooseSquare.setOnMouseClicked(c.getTemplateToPref());
 		
 		//HBox stHBox = new HBox();
 		//HBox tdHBox = new HBox();
