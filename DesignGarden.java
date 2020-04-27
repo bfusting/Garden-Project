@@ -238,10 +238,10 @@ public class DesignGarden extends Screen{
 	    plants.setContent(plantTP);
 	    
 	    ImageView ivt1 = new ImageView();
-		Image imt1 = new Image(getClass().getResourceAsStream("/BlackGumTree copy.png"));
+		Image imt1 = new Image(getClass().getResourceAsStream("/BlackGumTreecopy.png"));
 		
 		ImageView ivt2 = new ImageView();
-		Image imt2 = new Image(getClass().getResourceAsStream("/BlackGumTree copy.png"));
+		Image imt2 = new Image(getClass().getResourceAsStream("/BlackGumTreecopy.png"));
 		
 		ArrayList<ImageView> tSelectionArr = new ArrayList<ImageView>();
 		

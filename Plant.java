@@ -29,7 +29,7 @@ public class Plant extends AddOn {
 	public Plant(String color, int waterNeed, int sunLightNeed, double plantHeight, int locationPref,
 			Seasons bloomTime, boolean provideShade, String[] ageImages, String[] season, String plantType, 
 			ArrayList<String> animalsFed, ArrayList<String> compatiblePlants) {
-		this.super();
+		//this.super();
 		
 		this.color = color;
 		this.waterNeed = waterNeed;
