@@ -131,11 +131,11 @@ public void showFinalView(Stage stage) {
 		root.setTopAnchor(save, 400.0);
 		root.setTopAnchor(exit, 400.0);
 		
-		root.setLeftAnchor(edit, 85.0);
-		root.setLeftAnchor(viewSeasons, 140.0);
-		root.setLeftAnchor(infoTips, 260.0);
-		root.setLeftAnchor(save, 370.0);
-		root.setLeftAnchor(exit, 400.0);
+		root.setLeftAnchor(edit, 75.0);
+		root.setLeftAnchor(viewSeasons, 130.0);
+		root.setLeftAnchor(infoTips, 250.0);
+		root.setLeftAnchor(save, 360.0);
+		root.setLeftAnchor(exit, 420.0);
 		
 		root.getChildren().addAll(edit, viewSeasons, infoTips, save,exit);
 
