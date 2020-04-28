@@ -14,7 +14,7 @@ import javafx.scene.control.Label;
  * <br> The View that allow the user to see their final garden they created as well as alternate possible versions.
  *
  */
-public class FinalView{
+public class FinalView extends Screen {
 	private Button edit;
 	private Button infoTips;
 	private Button viewSeasons;
@@ -115,27 +115,29 @@ public void showFinalView(Stage stage) {
 		infoTips = new Button("Info and Tips");
 		viewSeasons = new Button("View Seasons");
 		save = new Button("Save");
-		
+		Button exit = new Button("Exit");
 		//Binding Event handlers to buttons
 		
 		edit.setOnMouseClicked(c.getDesignTime());
 		infoTips.setOnMouseClicked(c.getInfoTipsBTN());
 		viewSeasons.setOnMouseClicked(c.getViewSeasonsBTN());
 		save.setOnMouseClicked(c.getSaveBTN());
+		exit.setOnMouseClicked(c.getExit());
 		
 
 		root.setTopAnchor(edit, 400.0);
 		root.setTopAnchor(viewSeasons, 400.0);
 		root.setTopAnchor(infoTips, 400.0);
 		root.setTopAnchor(save, 400.0);
+		root.setTopAnchor(exit, 400.0);
 		
-		root.setLeftAnchor(edit, 85.0);
-		root.setLeftAnchor(viewSeasons, 140.0);
-		root.setLeftAnchor(infoTips, 260.0);
-		root.setLeftAnchor(save, 370.0);
+		root.setLeftAnchor(edit, 75.0);
+		root.setLeftAnchor(viewSeasons, 130.0);
+		root.setLeftAnchor(infoTips, 250.0);
+		root.setLeftAnchor(save, 360.0);
+		root.setLeftAnchor(exit, 420.0);
 		
-		
-		root.getChildren().addAll(edit, viewSeasons, infoTips, save);
+		root.getChildren().addAll(edit, viewSeasons, infoTips, save,exit);
 
 		
 //		Label fv = new Label ("This is final view");

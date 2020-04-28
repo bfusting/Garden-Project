@@ -370,9 +370,21 @@ public class DesignGarden extends Screen{
 		Label emptySpace4 = new Label("		");
 		Label emptySpace5 = new Label("		");
 		
+		ImageView soil1 = new ImageView();
+		soil1.setImage(new Image("img/soil.jpg"));
+		soil1.setPreserveRatio(true);
+		soil1.setFitHeight(150);
+		soil1.setFitWidth(100);
+		
+		ImageView soil2 = new ImageView();
+		soil1.setImage(new Image("img/soil.jpg"));
+		soil1.setPreserveRatio(true);
+		soil1.setFitHeight(150);
+		soil1.setFitWidth(100);
+		
 		plot = new GridPane();
-		plot.add(emptySpace, 0, 0);
-		plot.add(emptySpace2, 1, 1);
+		plot.add(soil2, 0, 0);
+		plot.add(soil1, 1, 1);
 		plot.add(emptySpace3, 2, 2);
 		plot.add(emptySpace4, 3, 3);
 		plot.add(emptySpace5, 4, 4);
