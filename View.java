@@ -31,17 +31,11 @@ import javafx.stage.Stage;
  * @author Takiyah Price 
  */
 
-//last edited: 4-27-20 12:54PM
+//last edited: 4-28-20 9:04PM
 
 public class View extends Application{
-	//private static Button instructionsButton = new Button("instructions");
-	//private static Button exitButton;
-	//private static Button saveButton;
-	//private static Button backButton;
-	//private static Button mainMenuButton;
 	private Stage primaryStage;
-	//private Stage exitStage;
-	//private Scene exitScene;
+	
 	
 	private Controller imc;
 	private MainMenu mainMenuScreen;
@@ -66,9 +60,38 @@ public class View extends Application{
 	 * 
 	 */
 	public View() {
+	
 		imc = new Controller(this);
+	}
+	
+	/**
+	 * Takes in the parameter tofu which is a Array of strings passed into the main 
+	 * method and used within the program
+	 * <p>
+	 * Main runs the whole program, usually launchs everything however for now just prints 
+	 * a simple statement.
+	 * 
+	 * @param tofu string array of arguments
+	 * @see main
+	 */
+	public static void main(String[] tofu) {
+		launch();
+	}//main
+	
+	@Override
+	/**
+	 * Takes in parameter theStage and creates a new scene
+	 * for the main menu and sets the stage with that scene
+	 * and then shows the stage.
+	 * <p>
+	 * Start is used to for the start of the program where it starts with the main menu
+	 * 
+	 * @param theStage primary stage that is the mainmenu
+	 */
+	public void start(Stage theStage) {
+		primaryStage = theStage;
 		
-		mainMenuScreen = new MainMenu(imc);
+		mainMenuScreen = new MainMenu(imc,primaryStage);
 		instructionsScreen = new Instructions();
 		exitScreen = new Exit(imc);
 		chooseTemplateScreen = new ChooseTemplate(imc);
@@ -86,43 +109,6 @@ public class View extends Application{
 		
 		
 		currentPrimaryScreen = mainMenuScreen;
-	}
-	
-	/**
-	 * Takes in the parameter tofu which is a Array of strings passed into the main 
-	 * method and used within the program
-	 * <p>
-	 * Main runs the whole program, usually launchs everything however for now just prints 
-	 * a simple statement.
-	 * 
-	 * @param tofu string array of arguments
-	 * @see main
-	 */
-	public static void main(String[] tofu) {
-		//System.out.println("Hello World");
-		launch();
-	}//main
-	
-	@Override
-	/**
-	 * Takes in parameter theStage and creates a new scene
-	 * for the main menu and sets the stage with that scene
-	 * and then shows the stage.
-	 * <p>
-	 * Start is used to for the start of the program where it starts with the main menu
-	 * 
-	 * @param theStage primary stage that is the mainmenu
-	 */
-	public void start(Stage theStage) {
-		//Initializing Buttons, Stages, and Scenes
-		primaryStage = theStage;
-		
-		//instructionsButton = new Button("Instructions");
-		//exitButton = new Button("Exit");
-		//saveButton = new Button("Save");
-		//backButton = new Button("Back");
-		//mainMenuButton = new Button("Main Menu");
-		//
 		
 		
 		System.out.println("Set the stage for el Main Menu");
@@ -130,7 +116,7 @@ public class View extends Application{
 		primaryStage.show();
 		
 		
-		//designGardenScreen.showDesignGarden(primaryStage);
+		
 		
 	}
 	
@@ -155,8 +141,10 @@ public class View extends Application{
 	/**
 	 * Closes all open windows after the user saves or quits without saving.
 	 */
-	public void close() {
+	public void showExitScreen() {
 		System.out.println("leaving so soon? :(");
+		exitScreen.setPreviousScreen(currentPrimaryScreen);
+		
 		
 		if (currentPrimaryScreen.equals(finalViewScreen)) {
 			exitScreen.showExitWithSave();
@@ -164,14 +152,9 @@ public class View extends Application{
 		else {
 			exitScreen.showExitWithoutSave();
 		}
-		/*Label label = new Label("are you sure?");
-		Stage exit = new Stage();
-		Scene exitscene = new Scene(label,400,200);
-		exit.setScene(exitscene);
-		exit.setAlwaysOnTop(true);
 		
-		exit.show();
-		//primaryStage.close();*/
+		currentPrimaryScreen = exitScreen;
+		
 	}
 	
 	/**
@@ -203,7 +186,9 @@ public class View extends Application{
 	 * @see ChooseTemplate#chooseTemplateScene
 	 */
 	public void showChooseTemplateScreen() {
+		chooseTemplateScreen.setPreviousScreen(currentPrimaryScreen);
 		currentPrimaryScreen = chooseTemplateScreen;
+		
 		chooseTemplateScreen.showChooseTemplate(primaryStage);
 		
 	}
@@ -249,34 +234,15 @@ public class View extends Application{
 		return designGardenScreen;
 	}
 	
-	
-	
-	
-	
-	//GETTERS
-	/*public Controller getController() {
-		return imc;
+	public void goToLastScreen() {
+		System.out.println("Was showing: "+currentPrimaryScreen);
+		currentPrimaryScreen.goToPreviousScreen();
+		currentPrimaryScreen = currentPrimaryScreen.getPreviousScreen();
 	}
 	
-	public static Button getInstructionsButton() {
-		return instructionsButton;
-	}
 	
-	public static Button getExitButton() {
-		return exitButton;
-	}
 	
-	public static Button getMainMenuButton() {
-		return mainMenuButton;
-	}
 	
-	public static Button getSaveButton() {
-		return saveButton;
-	}
-	
-	public static Button getBackButton() {
-		return backButton;
-	}*/
 		
 	
 }
