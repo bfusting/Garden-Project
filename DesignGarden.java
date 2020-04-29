@@ -414,6 +414,9 @@ public class DesignGarden extends Screen{
 		return infoTips;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Design Garden";
+	}
 	
 }

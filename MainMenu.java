@@ -151,7 +151,7 @@ public class MainMenu extends Screen {
 	@Override
 	public void show() {
 		primaryStage.setTitle("Garden Designer");
-		//bPane.setDisable(false);
+		bPane.setDisable(false);
 		primaryStage.setOpacity(1);
 		primaryStage.setScene(mainMenuScene);
 	}
@@ -163,7 +163,7 @@ public class MainMenu extends Screen {
 	
 	@Override
 	public void setUneditable() {
-		//bPane.setDisable(true);
+		bPane.setDisable(true);
 		primaryStage.setOpacity(0.9);
 	}
 }

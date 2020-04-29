@@ -31,7 +31,7 @@ import javafx.stage.Stage;
  * @author Takiyah Price 
  */
 
-//last edited: 4-29-20 12:30AM
+//last edited: 4-29-20 2:21PM
 
 public class View extends Application{
 	private Stage primaryStage;
@@ -197,20 +197,27 @@ public class View extends Application{
 	}
 	
 	public void showDesignGardenScreen() {
+		designGardenScreen.setPreviousScreen(currentPrimaryScreen);
 		currentPrimaryScreen = designGardenScreen;
 		designGardenScreen.showDesignGarden(primaryStage);
 	}
 	
 	public File showSaveGardenScreen() {
-		exitScreen.closeExit();
+		//exitScreen.closeExit();
+		saveLoadScreen.setPreviousScreen(currentPrimaryScreen);
+		currentPrimaryScreen = saveLoadScreen;
+		
 		return saveLoadScreen.showSaveWindow();
 	}
 	
 	public File showLoadGardenScreen() {
+		saveLoadScreen.setPreviousScreen(currentPrimaryScreen);
+		currentPrimaryScreen = saveLoadScreen;
 		return saveLoadScreen.showLoadWindow();
 	}
 	
 	public void showFinalViewScreen() {
+		finalViewScreen.setPreviousScreen(currentPrimaryScreen);
 		currentPrimaryScreen = finalViewScreen;
 		finalViewScreen.showFinalView(primaryStage);
 	}
@@ -221,6 +228,8 @@ public class View extends Application{
 	}
 	
 	public void showPreferencesScreen() {
+		preferencesScreen.setPreviousScreen(currentPrimaryScreen);
+		currentPrimaryScreen = preferencesScreen;
 		preferencesScreen.showPreferences(primaryStage);
 	}
 	
