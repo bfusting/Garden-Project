@@ -74,7 +74,30 @@ public class Model implements Serializable{
 	 */
 	public void createGardenPlotAlts() {
 		System.out.println("Creating alternate gardens for final view");
-	}//createGardenPlotAlts
+		
+	
+		
+		GardenPlot gP1 = new GardenPlot();
+		gP1.setLayout(userPlot.getLayout());
+		gP1.fillEmpty();
+		
+		GardenPlot gP2 = new GardenPlot();
+		gP2.setLayout(userPlot.getLayout());
+		gP2.fillEmpty();
+		
+		GardenPlot gP3 = new GardenPlot();
+		gP3.setLayout(userPlot.getLayout());
+		gP3.fillEmpty();
+		
+		this.altPlots.add(gP1);
+		this.altPlots.add(gP2);
+		this.altPlots.add(gP3);
+		
+		
+	}		
+		
+		
+		
 	
 	/**
 	 * From preferences updates the array. However changes the current index 
