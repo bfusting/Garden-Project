@@ -47,6 +47,7 @@ import javafx.stage.Stage;
  *
  * @author Takiyah Price
  */
+//last edited: 4-28-20 2:54PM
 
 public class MainMenu extends Screen {
 	private Button createNewGardenButton;
@@ -56,14 +57,16 @@ public class MainMenu extends Screen {
 	private Image backgroundImage;
 	private ImageView backgroundIV;
 	private Scene mainMenuScene;
+	private Stage primaryStage;
 	
+	private Screen previousScreen = this;
 	
 	/**
 	 * Constructor for the Main Menu that creates new Buttons for creating or loading a garden and 
 	 * the background Image for the window, then sets a new Stage with a Scene containing these components.
 	 * 
 	 */
-	public MainMenu(Controller c) {
+	public MainMenu(Controller c, Stage s) {
 		//Create Buttons and Background
 		createNewGardenButton = new Button("Create New Garden");
 		createNewGardenButton.setMinSize(200, 60);
@@ -89,6 +92,7 @@ public class MainMenu extends Screen {
 		backgroundIV.setPreserveRatio(true);
 		backgroundIV.setSmooth(true);
 		
+		primaryStage = s;
 		
 		
 		BorderPane bPane = new BorderPane();
@@ -140,6 +144,17 @@ public class MainMenu extends Screen {
 	public void showMainMenu(Stage theStage) {
 		theStage.setTitle("Garden Designer");
 		theStage.setScene(mainMenuScene);
+	}
+	
+	@Override
+	public void show() {
+		primaryStage.setTitle("Garden Designer");
+		primaryStage.setScene(mainMenuScene);
+	}
+	
+	@Override
+	public String toString() {
+		return "Main Menu";
 	}
 }
 

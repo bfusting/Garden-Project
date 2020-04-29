@@ -28,7 +28,7 @@ import javafx.stage.Stage;
 *  
 */
 
-//Last edited 4-26-20 6:46PM
+//Last edited 4-28-20 4:07PM
 
 /**
  * 
@@ -50,6 +50,7 @@ public class ChooseTemplate extends Screen {
 	private Button chooseCircle;
 	private Button chooseTriangle;
 	private Button chooseDesign;
+	private Button backButton;
 	
 	/**
 	 * Constructor for ChooseTemplate that creates Buttons for choosing the shape of the 
@@ -62,39 +63,50 @@ public class ChooseTemplate extends Screen {
 		//Button button = new Button("Exit");
 		//button.setMinSize(200,60);
 		
-		//need to get images
+		//getting images for buttons
 		AnchorPane chooseTemplateAP = new AnchorPane();
 		chooseTemplateAP.setBackground(new Background(new BackgroundFill(Color.DARKCYAN,CornerRadii.EMPTY,Insets.EMPTY)));
+		
+		TilePane tPane = new TilePane();
 		
 		ImageView squareTemplate = new ImageView(new Image("/img/Square.png"));
 		ImageView circleTemplate = new ImageView(new Image("/img/Circle.png"));
 		ImageView triangleTemplate = new ImageView(new Image("/img/Triangle.png"));
 		ImageView designYourOwn = new ImageView(new Image("/img/DesignYourOwn.png"));
+		
+		//setting up buttons
 		chooseSquare = new Button("Choose Square Garden",squareTemplate);
 		chooseSquare.setMaxSize(200, 60);
 		chooseSquare.setOnMouseClicked(c.getTemplateToPref());
 		
-		//HBox stHBox = new HBox();
-		//HBox tdHBox = new HBox();
-		TilePane tPane = new TilePane();
-		
-		
 		chooseCircle = new Button("Choose Circular Garden",circleTemplate);
-		
-		
 		chooseCircle.setMinSize(200, 60);
+		
 		chooseTriangle = new Button("Choose Triangular Garden",triangleTemplate);
 		chooseTriangle.setMinSize(200, 60);
+		
 		chooseDesign = new Button("Design Your Own",designYourOwn);
 		chooseDesign.setMinSize(200,60);
 		
-		//stHBox.getChildren().addAll(chooseSquare,chooseTriangle);
-		//tdHBox.getChildren().addAll(chooseTriangle,chooseDesign);
-		
-		
-		//tPane.getChildren().addAll(stHBox,tdHBox);
+		backButton = new Button("Back");
+		backButton.setMinSize(100,50);
+		backButton.setOnMouseClicked(c.getBackBTN());
 		
 		tPane.getChildren().addAll(chooseSquare, chooseCircle,chooseTriangle,chooseDesign);
+		tPane.setHgap(100);
+		tPane.setVgap(100);
+		tPane.setPrefColumns(2);
+		tPane.setAlignment(Pos.CENTER);
+		
+		TilePane rootPane = new TilePane();
+		rootPane.setPrefRows(2);
+		rootPane.setAlignment(Pos.CENTER);
+		rootPane.getChildren().addAll(tPane,backButton);
+		
+		chooseTemplateScene = new Scene(rootPane,1200,800);
+		
+		
+		/*tPane.getChildren().addAll(chooseSquare, chooseCircle,chooseTriangle,chooseDesign);
 		tPane.setHgap(100);
 		tPane.setVgap(100);
 		tPane.setPrefColumns(2);
@@ -107,21 +119,20 @@ public class ChooseTemplate extends Screen {
 		AnchorPane.setTopAnchor(tPane, 80.0);
 		chooseTemplateAP.getChildren().add(tPane);
 		
-		//button.setOnMouseClicked(c.getExit());
-		chooseTemplateScene = new Scene(chooseTemplateAP,1200,800);
+		chooseTemplateScene = new Scene(chooseTemplateAP,1200,800);*/
 		
 		
-		
-		//squareTemplate = new ImageView(new Image("no image"));
-		//circleTemplate = new ImageView(new Image("no image"));
-		//triangleTemplate = new ImageView(new Image("no image"));
-		//designYourOwn = new ImageView(new Image("no image"));
 	}
 	
 	public void showChooseTemplate(Stage theStage) {
 		theStage.setTitle("Choose a Template");
 		theStage.setScene(chooseTemplateScene);
 		
+	}
+	
+	@Override
+	public String toString() {
+		return "Choose Template";
 	}
 	
 }

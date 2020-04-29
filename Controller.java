@@ -140,7 +140,7 @@ public class Controller{
 	 */
 	public void exit(MouseEvent event) {
 		System.out.println("Exit by saving the closing");
-		view.close();
+		view.showExitScreen();
 	}//exit
 	
 	/**
@@ -200,6 +200,7 @@ public class Controller{
 	 */
 	public void backBTN(MouseEvent event) {
 		System.out.println("Go Back");
+		view.goToLastScreen();
 	}//backBTN
 	
 	/**
@@ -756,26 +757,45 @@ public class Controller{
 		
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public EventHandler getCloseAllWindows() {
 		return event -> closeAllWindows((MouseEvent) event);	
 	}
 	
+	/**
+	 * 
+	 * @param event
+	 */
 	public void closeAllWindows(MouseEvent event) {
 		System.out.println("Closing program...");
 		view.exit();
 		
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public EventHandler getSaveAndQuit() {
 		
 		return event -> saveAndQuit((MouseEvent) event);
 		
 	}
 	
+	/**
+	 * 
+	 * @param event
+	 */
 	public void saveAndQuit(MouseEvent event) {
 		saveBTN(event);
-		//closeAllWindows(event);
+		closeAllWindows(event);
 	}
+	
+	
+	
 	
 	
 	
