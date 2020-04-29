@@ -105,7 +105,6 @@ public class Exit extends Screen {
 		
 		Scene exitScene = new Scene(root,400,120);
 		exitStage.setScene(exitScene);
-		
 		exitStage.show();
 		
 		/*super.getPreviousScreen().setUneditable();
