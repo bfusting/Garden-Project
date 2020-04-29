@@ -3,7 +3,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -13,7 +12,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -26,12 +24,12 @@ import javafx.stage.Stage;
  *
  */
 
-//last edited: 4-28-20 8:43PM
+//last edited: 4-29-20 12:30AM
 
 public class Exit extends Screen {
 	private Stage exitStage;
-	private Scene exitWithSave;
-	private Scene exitWithoutSave;
+	//private Scene exitWithSave;
+	//private Scene exitWithoutSave;
 	private Button saveButton;
 	private Button quitButton;
 	private Button yesButton;
@@ -77,24 +75,13 @@ public class Exit extends Screen {
 		exitAP.getChildren().add(textBox);
 		exitAP.setBackground(new Background(new BackgroundFill(Color.LIGHTSLATEGREY,CornerRadii.EMPTY,Insets.EMPTY)));
 	
-		/*tPane.setTileAlignment(Pos.CENTER);
-		tPane.setHgap(100);
-		tPane.setPrefColumns(2);
-		hbox.setBackground(new Background(new BackgroundFill(Color.LIGHTSLATEGREY,CornerRadii.EMPTY,Insets.EMPTY)));
-		hbox.setPadding(new Insets(60,50,60,50));
-		hbox.getChildren().setAll(tPane);
 		
-		tPane.setMargin(hbox, Insets.EMPTY);
-		root = new Group();
-		root.getChildren().addAll(hbox,exitAP);*/
-		
-		
-		//exitStage.show();
 		
 		
 	}
 	
 	public void showExitWithSave() {
+		super.getPreviousScreen().setUneditable();
 		TilePane tPane = new TilePane();
 		tPane.getChildren().addAll(saveButton,quitButton);
 		HBox hbox = new HBox();
@@ -105,7 +92,7 @@ public class Exit extends Screen {
 		hbox.setPadding(new Insets(60,40,60,25));
 		hbox.getChildren().setAll(tPane);
 		
-		tPane.setMargin(hbox, Insets.EMPTY);
+		TilePane.setMargin(hbox, Insets.EMPTY);
 		root = new Group();
 		root.getChildren().addAll(hbox,exitAP);
 		
@@ -130,6 +117,8 @@ public class Exit extends Screen {
 	}
 	
 	public void showExitWithoutSave() {
+		super.getPreviousScreen().setUneditable();
+		
 		TilePane tPane = new TilePane();
 		HBox hbox = new HBox();
 		tPane.setTileAlignment(Pos.CENTER);

@@ -761,7 +761,7 @@ public class Controller{
 	 * 
 	 * @return
 	 */
-	public EventHandler getCloseAllWindows() {
+	public EventHandler<MouseEvent> getCloseAllWindows() {
 		return event -> closeAllWindows((MouseEvent) event);	
 	}
 	
@@ -779,7 +779,7 @@ public class Controller{
 	 * 
 	 * @return
 	 */
-	public EventHandler getSaveAndQuit() {
+	public EventHandler<MouseEvent> getSaveAndQuit() {
 		
 		return event -> saveAndQuit((MouseEvent) event);
 		
@@ -791,6 +791,7 @@ public class Controller{
 	 */
 	public void saveAndQuit(MouseEvent event) {
 		saveBTN(event);
+		//should return a boolean or something to make sure file was saved successfully first
 		closeAllWindows(event);
 	}
 	

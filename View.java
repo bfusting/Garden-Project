@@ -31,7 +31,7 @@ import javafx.stage.Stage;
  * @author Takiyah Price 
  */
 
-//last edited: 4-28-20 9:04PM
+//last edited: 4-29-20 12:30AM
 
 public class View extends Application{
 	private Stage primaryStage;
@@ -97,7 +97,7 @@ public class View extends Application{
 		chooseTemplateScreen = new ChooseTemplate(imc);
 		designGardenScreen = new DesignGarden(imc);
 		saveLoadScreen = new SaveLoad();
-		finalViewScreen = new FinalView(imc);
+		finalViewScreen = new FinalView(imc,primaryStage);
 		// InfoTips should take in a plant from model
 		//infoTipsScreen = new InfoTips(null, 0, null, 0, 0, false, null, null);
 		infoTipsScreen = new InfoTips();

@@ -58,6 +58,7 @@ public class MainMenu extends Screen {
 	private ImageView backgroundIV;
 	private Scene mainMenuScene;
 	private Stage primaryStage;
+	private BorderPane bPane;
 	
 	private Screen previousScreen = this;
 	
@@ -95,7 +96,7 @@ public class MainMenu extends Screen {
 		primaryStage = s;
 		
 		
-		BorderPane bPane = new BorderPane();
+		bPane = new BorderPane();
 		
 		//
 		
@@ -149,12 +150,18 @@ public class MainMenu extends Screen {
 	@Override
 	public void show() {
 		primaryStage.setTitle("Garden Designer");
+		bPane.setDisable(false);
 		primaryStage.setScene(mainMenuScene);
 	}
 	
 	@Override
 	public String toString() {
 		return "Main Menu";
+	}
+	
+	@Override
+	public void setUneditable() {
+		bPane.setDisable(true);
 	}
 }
 
