@@ -31,16 +31,11 @@ import javafx.stage.Stage;
  * @author Takiyah Price 
  */
 
+//last edited: 4-29-20 12:30AM
 
 public class View extends Application{
-	//private static Button instructionsButton = new Button("instructions");
-	//private static Button exitButton;
-	//private static Button saveButton;
-	//private static Button backButton;
-	//private static Button mainMenuButton;
 	private Stage primaryStage;
-	//private Stage exitStage;
-	//private Scene exitScene;
+	
 	
 	private Controller imc;
 	private MainMenu mainMenuScreen;
@@ -65,26 +60,8 @@ public class View extends Application{
 	 * 
 	 */
 	public View() {
+	
 		imc = new Controller(this);
-		
-		mainMenuScreen = new MainMenu(imc);
-		instructionsScreen = new Instructions();
-		exitScreen = new Exit(imc);
-		chooseTemplateScreen = new ChooseTemplate(imc);
-		designGardenScreen = new DesignGarden(imc);
-		saveLoadScreen = new SaveLoad();
-		finalViewScreen = new FinalView(imc);
-		// InfoTips should take in a plant from model
-		//infoTipsScreen = new InfoTips(null, 0, null, 0, 0, false, null, null);
-		infoTipsScreen = new InfoTips();
-		seasonViewScreen = new SeasonView(imc);
-		// InfoTips should take in a plant from model
-		recommendationsScreen = new Recommendations(imc);
-		preferencesScreen = new Preferences(imc);
-		
-		
-		
-		currentPrimaryScreen = mainMenuScreen;
 	}
 	
 	/**
@@ -98,7 +75,6 @@ public class View extends Application{
 	 * @see main
 	 */
 	public static void main(String[] tofu) {
-		//System.out.println("Hello World");
 		launch();
 	}//main
 	
@@ -113,23 +89,37 @@ public class View extends Application{
 	 * @param theStage primary stage that is the mainmenu
 	 */
 	public void start(Stage theStage) {
-		//Initializing Buttons, Stages, and Scenes
 		primaryStage = theStage;
 		
-		//instructionsButton = new Button("Instructions");
-		//exitButton = new Button("Exit");
-		//saveButton = new Button("Save");
-		//backButton = new Button("Back");
-		//mainMenuButton = new Button("Main Menu");
-		//
+		mainMenuScreen = new MainMenu(imc,primaryStage);
+		instructionsScreen = new Instructions();
+		exitScreen = new Exit(imc);
+		chooseTemplateScreen = new ChooseTemplate(imc);
+		designGardenScreen = new DesignGarden(imc);
+		saveLoadScreen = new SaveLoad();
+		finalViewScreen = new FinalView(imc,primaryStage);
+		// InfoTips should take in a plant from model
+		//infoTipsScreen = new InfoTips(null, 0, null, 0, 0, false, null, null);
+		infoTipsScreen = new InfoTips();
+		seasonViewScreen = new SeasonView(imc);
+		// InfoTips should take in a plant from model
+		recommendationsScreen = new Recommendations(imc);
+		preferencesScreen = new Preferences(imc);
+		
+		
+		
+		currentPrimaryScreen = mainMenuScreen;
 		
 		
 		System.out.println("Set the stage for el Main Menu");
 		mainMenuScreen.showMainMenu(primaryStage);
 		primaryStage.show();
 		
+		/*exitScreen.setPreviousScreen(currentPrimaryScreen);
+		exitScreen.showExitWithSave();
+		currentPrimaryScreen = exitScreen;*/
 		
-		//designGardenScreen.showDesignGarden(primaryStage);
+		
 		
 	}
 	
@@ -144,30 +134,30 @@ public class View extends Application{
 	 * @see View#saveButton
 	 */
 	public void exit() {
-		System.out.println("create window to ask user to save before exiting");
+		System.out.println("Close all the windows");
+		primaryStage.close();
+		exitScreen.closeExit();
+		instructionsScreen.closeInstructions();
 		
 	}
 	
 	/**
 	 * Closes all open windows after the user saves or quits without saving.
 	 */
-	public void close() {
-		System.out.println("close application (meaning close all open windows)");
+	public void showExitScreen() {
+		System.out.println("leaving so soon? :(");
+		exitScreen.setPreviousScreen(currentPrimaryScreen);
 		
-		if (currentPrimaryScreen.equals(designGardenScreen)) {
+		
+		if (currentPrimaryScreen.equals(finalViewScreen)) {
 			exitScreen.showExitWithSave();
 		}
 		else {
 			exitScreen.showExitWithoutSave();
 		}
-		/*Label label = new Label("are you sure?");
-		Stage exit = new Stage();
-		Scene exitscene = new Scene(label,400,200);
-		exit.setScene(exitscene);
-		exit.setAlwaysOnTop(true);
 		
-		exit.show();
-		//primaryStage.close();*/
+		currentPrimaryScreen = exitScreen;
+		
 	}
 	
 	/**
@@ -199,7 +189,9 @@ public class View extends Application{
 	 * @see ChooseTemplate#chooseTemplateScene
 	 */
 	public void showChooseTemplateScreen() {
+		chooseTemplateScreen.setPreviousScreen(currentPrimaryScreen);
 		currentPrimaryScreen = chooseTemplateScreen;
+		
 		chooseTemplateScreen.showChooseTemplate(primaryStage);
 		
 	}
@@ -210,6 +202,7 @@ public class View extends Application{
 	}
 	
 	public File showSaveGardenScreen() {
+		exitScreen.closeExit();
 		return saveLoadScreen.showSaveWindow();
 	}
 	
@@ -218,6 +211,7 @@ public class View extends Application{
 	}
 	
 	public void showFinalViewScreen() {
+		currentPrimaryScreen = finalViewScreen;
 		finalViewScreen.showFinalView(primaryStage);
 	}
 	
@@ -243,34 +237,15 @@ public class View extends Application{
 		return designGardenScreen;
 	}
 	
-	
-	
-	
-	
-	//GETTERS
-	/*public Controller getController() {
-		return imc;
+	public void goToLastScreen() {
+		System.out.println("Was showing: "+currentPrimaryScreen);
+		currentPrimaryScreen.goToPreviousScreen();
+		currentPrimaryScreen = currentPrimaryScreen.getPreviousScreen();
 	}
 	
-	public static Button getInstructionsButton() {
-		return instructionsButton;
-	}
 	
-	public static Button getExitButton() {
-		return exitButton;
-	}
 	
-	public static Button getMainMenuButton() {
-		return mainMenuButton;
-	}
 	
-	public static Button getSaveButton() {
-		return saveButton;
-	}
-	
-	public static Button getBackButton() {
-		return backButton;
-	}*/
 		
 	
 }
