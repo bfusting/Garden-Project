@@ -58,8 +58,9 @@ public class MainMenu extends Screen {
 	private ImageView backgroundIV;
 	private Scene mainMenuScene;
 	private Stage primaryStage;
+	private BorderPane bPane;
 	
-	private Screen previousScreen = this;
+	
 	
 	/**
 	 * Constructor for the Main Menu that creates new Buttons for creating or loading a garden and 
@@ -95,7 +96,7 @@ public class MainMenu extends Screen {
 		primaryStage = s;
 		
 		
-		BorderPane bPane = new BorderPane();
+		bPane = new BorderPane();
 		
 		//
 		
@@ -142,6 +143,7 @@ public class MainMenu extends Screen {
 	 * 
 	 */
 	public void showMainMenu(Stage theStage) {
+		super.setPreviousScreen(this);
 		theStage.setTitle("Garden Designer");
 		theStage.setScene(mainMenuScene);
 	}
@@ -149,12 +151,20 @@ public class MainMenu extends Screen {
 	@Override
 	public void show() {
 		primaryStage.setTitle("Garden Designer");
+		//bPane.setDisable(false);
+		primaryStage.setOpacity(1);
 		primaryStage.setScene(mainMenuScene);
 	}
 	
 	@Override
 	public String toString() {
 		return "Main Menu";
+	}
+	
+	@Override
+	public void setUneditable() {
+		//bPane.setDisable(true);
+		primaryStage.setOpacity(0.9);
 	}
 }
 
