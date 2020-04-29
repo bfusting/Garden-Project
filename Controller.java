@@ -113,7 +113,10 @@ public class Controller{
 		System.out.println("Load Garden Here");
 		File file = view.showLoadGardenScreen();
 		if (file!=null) {
+		//presumably update Model here with file contents and tell all the information to view
 		view.showDesignGardenScreen();
+		} else {
+			view.goToLastScreen();
 		}
 	}//loadGarden
 	
@@ -607,6 +610,12 @@ public class Controller{
 	public void saveBTN(MouseEvent event) {
 		System.out.println("SAVE OFTEN");
 		File file = view.showSaveGardenScreen();
+		if (file!=null) {
+			//write model and view stuff to the file
+		} else {
+			view.goToLastScreen();
+		}
+		
 	}//saveBTN
 	
 	/**

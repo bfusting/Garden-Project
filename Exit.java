@@ -173,7 +173,7 @@ public class Exit extends Screen {
 	@Override
 	public void goToPreviousScreen() {
 		exitStage.close();
-		
+		System.out.println("Exit overrides gotToPreviousScreen to close its stage first");
 		super.getPreviousScreen().show();
 	}
 	

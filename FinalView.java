@@ -174,7 +174,13 @@ public void showFinalView(Stage stage) {
 	
 	@Override
 	public void show() {
+		//should combine these into one show method
 		showFinalView(primaryStage);
+	}
+	
+	@Override
+	public String toString() {
+		return "Final View";
 	}
 
 }
