@@ -17,7 +17,7 @@
  *
  */
 
-//last edited: 4-28-20 8:43PM
+//last edited: 4-29-20 12:30PM
 
 public abstract class Screen {
 	
@@ -40,6 +40,10 @@ public abstract class Screen {
 	
 	public void show() {
 		System.out.println("every screen should probably override this");
+	}
+	
+	public void setUneditable() {
+		
 	}
 	
 	

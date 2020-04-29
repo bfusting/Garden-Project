@@ -28,7 +28,7 @@ import javafx.stage.Stage;
 *  
 */
 
-//Last edited: 4-26-20 5:42PM
+//Last edited: 4-29-20 12:43AM
 
 /**
  * 
@@ -41,7 +41,7 @@ import javafx.stage.Stage;
  */
 
 public class Instructions {
-	private Scene instructionsScene;
+	//private Scene instructionsScene;
 	private Stage instructionsStage;
 	
 	
@@ -108,10 +108,11 @@ public class Instructions {
 		
 		
 		
-		instructionsScene = new Scene(root,500,500);
+		//instructionsScene = new Scene(root,500,500);
 		instructionsStage = new Stage();
-		instructionsStage.setScene(instructionsScene);
+		instructionsStage.setScene(new Scene(root,500,500));
 		instructionsStage.setTitle("Instructions");
+		
 	}
 	
 	

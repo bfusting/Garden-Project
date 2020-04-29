@@ -112,6 +112,9 @@ public class Controller{
 	public void loadGarden(MouseEvent event) {
 		System.out.println("Load Garden Here");
 		File file = view.showLoadGardenScreen();
+		if (file!=null) {
+		view.showDesignGardenScreen();
+		}
 	}//loadGarden
 	
 	/**
@@ -761,7 +764,7 @@ public class Controller{
 	 * 
 	 * @return
 	 */
-	public EventHandler getCloseAllWindows() {
+	public EventHandler<MouseEvent> getCloseAllWindows() {
 		return event -> closeAllWindows((MouseEvent) event);	
 	}
 	
@@ -779,7 +782,7 @@ public class Controller{
 	 * 
 	 * @return
 	 */
-	public EventHandler getSaveAndQuit() {
+	public EventHandler<MouseEvent> getSaveAndQuit() {
 		
 		return event -> saveAndQuit((MouseEvent) event);
 		
@@ -791,6 +794,7 @@ public class Controller{
 	 */
 	public void saveAndQuit(MouseEvent event) {
 		saveBTN(event);
+		//should return a boolean or something to make sure file was saved successfully/isn't null
 		closeAllWindows(event);
 	}
 	

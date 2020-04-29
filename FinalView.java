@@ -23,9 +23,9 @@ public class FinalView extends Screen {
 	private GardenPlot plotIdea1;
 	private GardenPlot plotIdea2;
 	private GardenPlot plotIdea3;
-	
+	private AnchorPane root;
 	private Scene finalViewScene;
-	
+	private Stage primaryStage;
 	private Controller c;
 	
 	/**
@@ -34,8 +34,9 @@ public class FinalView extends Screen {
 	 * @param: ogPlot The original garden plot that was designed by the user.
 	 */
 	
-	public FinalView(Controller controller) {
+	public FinalView(Controller controller, Stage s) {
 		this.c = controller;
+		primaryStage = s;
 	}
 	
 	public void setOriginalPlot(GardenPlot ogPlot) {
@@ -101,7 +102,7 @@ public class FinalView extends Screen {
 public void showFinalView(Stage stage) {
 		
 		
-		AnchorPane root = new AnchorPane();
+		root = new AnchorPane();
 		
 
 		Rectangle r1 = new Rectangle(100, 100, 300, 250);
@@ -165,6 +166,15 @@ public void showFinalView(Stage stage) {
 	public Button getSaveBTTN() {
 		return save;
 	}
-
+	
+	@Override
+	public void setUneditable() {
+		root.setDisable(true);
+	}
+	
+	@Override
+	public void show() {
+		showFinalView(primaryStage);
+	}
 
 }
