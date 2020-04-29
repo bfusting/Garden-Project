@@ -36,7 +36,7 @@ import javafx.scene.layout.CornerRadii;
 //import javafx.scene.shape.Shape.*;
 
 
-//Updated: 4.26 508
+//Updated: 4.28 8:01pm
 
 /**
  * 
@@ -81,8 +81,11 @@ public class DesignGarden extends Screen{
 	
 	private Scene designGardenScene;
 	
+	// Why is this there
 	private GardenPlot gardenPlot;
 	private GridPane plot;
+	
+	private ImageView[][] soil;
 	
 	GridPane plantsGP = new GridPane();
 	GridPane treesGP = new GridPane();
@@ -370,6 +373,21 @@ public class DesignGarden extends Screen{
 		Label emptySpace4 = new Label("		");
 		Label emptySpace5 = new Label("		");
 		
+		// Replace with vars so works better
+		//FitHeight and FitWidth should take in var constraints
+		plot = new GridPane();
+		soil = new ImageView[5][5];
+		for(int i=0; i<5; i++) {
+			for(int j=0; j<5; j++) {
+				soil[i][j] = new ImageView(new Image("img/soil.jpg"));
+				soil[i][j].setPreserveRatio(true);
+				soil[i][j].setFitHeight(150);
+				soil[i][j].setFitWidth(99);
+				plot.add(soil[i][j], i, j,1,1);
+			}
+		}
+		
+		/*
 		ImageView soil1 = new ImageView();
 		soil1.setImage(new Image("img/soil.jpg"));
 		soil1.setPreserveRatio(true);
@@ -388,6 +406,8 @@ public class DesignGarden extends Screen{
 		plot.add(emptySpace3, 2, 2);
 		plot.add(emptySpace4, 3, 3);
 		plot.add(emptySpace5, 4, 4);
+		*/
+		
 		plot.setMinSize(600.0, 600.0);
 		for (int i = 0; i < 5; i++) {
 	         ColumnConstraints column = new ColumnConstraints(150);

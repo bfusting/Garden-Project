@@ -1,10 +1,12 @@
 import java.io.File;
 
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import java.awt.image.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
@@ -32,13 +34,13 @@ import javafx.stage.Stage;
 */
 
 /**
- * 
- * @author Malachi Parks
- * <p>
- * Controller class handles the bulk of the program and communicates between the Model
+ *  * Controller class handles the bulk of the program and communicates between the Model
  * and the View of the program and their respective subclasses. Most of the methods
  * are event handlers and getters to set the event handlers for the items in View and 
  * its subclasses.
+ * 
+ * @author Malachi Parks
+ * 
  */
 public class Controller{
 	private Model model;
@@ -389,6 +391,7 @@ public class Controller{
         //Use clipboard to copy data the add to Dragboard
         ClipboardContent content = new ClipboardContent();
         //Need to edit to pull in right plant from model when dragging
+        //Below edits the scale of the image so it's small when dragging image
         content.putImage(n.getImage());
         dBoard.setContent(content);
         
