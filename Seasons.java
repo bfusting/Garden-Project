@@ -13,26 +13,46 @@
 
 /**
  * 
- * Seasons for different pictures
+ * Seasons for different pictures linked to the plant arrayList in each Plant
+ * also represents the bloomTime within the Plant rather than a Date class
+ * 
+ * @author Bradley Fusting
  */
 public enum Seasons{
 	/**
-	 * SPRING season
+	 * SPRING season represented by a string "spring"
 	 */
-	SPRING, 
+	SPRING("spring"), 
 	/**
-	 * SUMMER season
+	 * SUMMER season represented by a string "summer"
 	 * */
-	  SUMMER,
+	  SUMMER("summer"),
 	  /**
-	   * AUTUMN season
+	   * AUTUMN season represented by a string "autumn"
 	   */
-	  AUTUMN,
+	  AUTUMN("autumn"),
 	  /** 
-	   * WINTER season
+	   * WINTER season represented by a string "winter"
 	   */
-	  WINTER;
-	 
+	  WINTER("winter");
 	
+	private String season = null;
+	
+	/**
+	 * Constructor for Seasons Enum
+	 * @param newSeason season to create Seasons
+	 */
+	private Seasons(String newSeason) {
+		season = newSeason;
+	}
+	
+	/**
+	 * Getter for season attribute which representes the current season
+	 * 
+	 * @return current season which is represented by a string
+	 */
+	public String getSeason() {
+		return season;
+	}
 }
 
