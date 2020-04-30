@@ -42,14 +42,18 @@ public class Model implements Serializable{
 	public void Model() {
 		userPlot = new GardenPlot();
 		// Creating temp Plants for Bradley to use in methods
-		Plant purpleConeFlower = new Plant("Purple",0,5,5.00,0,Seasons.AUTUMN,
-				false,null,null,"Flower",null,null);
-		Plant sugarMaple = new Plant("Yellow",3,3,36.00,0, Seasons.SPRING,true,null,null,
-				"Tree",null,null);
-		Plant sweetFern = new Plant("White",3,3,3.00,0,Seasons.SPRING,false,null,
-				null,"Shrub",null,null);
-		Plant milkWeed = new Plant("Orange",1,3,2.00,0, Seasons.SUMMER,false,null,
-				null, "UnderGrowth",null,null);
+		
+		Plant purpleConeFlower = new Plant("Purple Cone Flower", 1, "cone flower", 
+				"purple", 0, 0, 0, 0, Seasons.AUTUMN, false, null, null, null, null, null);
+		
+		Plant sugarMaple = new Plant("Sugar Maple", 4, "Maple Tree", "Yellow", 3, 0,
+				0, 0, Seasons.SUMMER, true, null, null, null, null, null);
+		
+		Plant sweetFern = new Plant("Sweet Fern", 1, "Fern Variant", "White",
+				3, 2, 3.0, 0, Seasons.SPRING, false, null, null, "Shrub", null, null);
+
+		Plant milkWeed = new Plant("Milkweed", 1, "Common Milkweed", "Orange", 4, 2, 
+				2.00, 0, Seasons.SUMMER, false, null, null, "UnderGrowth", null, null);
 		
 		selectionArr = new ArrayList<Plant>();
 		selectionArr.add(purpleConeFlower);
