@@ -77,9 +77,10 @@ class ModelTest {
 		assertTrue(m.getSelectionArr().isEmpty());
 		
 		// It calls the AddOn default constructor no idea why fix in next push
-		Plant p = new Plant(null, 0, 0, 0, 0, null, false, null, null, null, null, null);
+		Plant milkWeed = new Plant("Milkweed", 1, "Common Milkweed", "Orange", 4, 2, 
+				2.00, 0, Seasons.SUMMER, false, null, null, "UnderGrowth", null, null);
 		ArrayList<Plant> newShrub = new ArrayList<Plant>();
-		newShrub.add(p);
+		newShrub.add(milkWeed);
 		
 		// Calling method then comparing to newSelection ArrayList
 		m.updateSeclectionArr();
@@ -97,9 +98,10 @@ class ModelTest {
 		assertTrue(m.getSelectionArr().isEmpty());
 		
 		// It calls the AddOn default constructor no idea why fix in next push
-		Plant p = new Plant(null, 0, 0, 0, 0, null, false, null, null, null, null, null);
+		Plant milkWeed = new Plant("Milkweed", 1, "Common Milkweed", "Orange", 4, 2, 
+				2.00, 0, Seasons.SUMMER, false, null, null, "UnderGrowth", null, null);
 		ArrayList<Plant> newTree = new ArrayList<Plant>();
-		newTree.add(p);
+		newTree.add(milkWeed);
 		
 		// Calling method then comparing to newSelection ArrayList
 		m.updateSeclectionArr();
@@ -113,9 +115,10 @@ class ModelTest {
 		assertTrue(m.getSelectionArr().isEmpty());
 		
 		// It calls the AddOn default constructor no idea why fix in next push
-		Plant p = new Plant(null, 0, 0, 0, 0, null, false, null, null, null, null, null);
+		Plant milkWeed = new Plant("Milkweed", 1, "Common Milkweed", "Orange", 4, 2, 
+				2.00, 0, Seasons.SUMMER, false, null, null, "UnderGrowth", null, null);
 		ArrayList<Plant> newUnderGrowth = new ArrayList<Plant>();
-		newUnderGrowth.add(p);
+		newUnderGrowth.add(milkWeed);
 		
 		// Calling method then comparing to newSelection ArrayList
 		m.updateSeclectionArr();

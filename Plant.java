@@ -3,7 +3,7 @@ import java.util.Date;
 import java.util.*;
 
 
-public class Plant extends AddOn {
+public class Plant extends AddOn{
 
 	private String color;
 	private int waterNeed;
@@ -26,10 +26,10 @@ public class Plant extends AddOn {
 	 * and the arrays of Strings containing the urls for the images of the plant at different ages and in
 	 * different seasons.
 	 */
-	public Plant(String color, int waterNeed, int sunLightNeed, double plantHeight, int locationPref,
+	public Plant(String name, int tileSize, String description, String color, int waterNeed, int sunLightNeed, double plantHeight, int locationPref,
 			Seasons bloomTime, boolean provideShade, String[] ageImages, String[] season, String plantType, 
 			ArrayList<String> animalsFed, ArrayList<String> compatiblePlants) {
-		//this.super();
+		super(name,tileSize,description);
 		
 		this.color = color;
 		this.waterNeed = waterNeed;
@@ -45,6 +45,10 @@ public class Plant extends AddOn {
 		this.animalsFed = animalsFed;
 		this.compatiblePlants = compatiblePlants;
 		
+		
+	}
+	
+	public Plant() {
 		
 	}
 	
@@ -263,6 +267,90 @@ public class Plant extends AddOn {
 	public void setCompatiblePlants(ArrayList<String> enemyPlants) {
 		this.compatiblePlants = enemyPlants;
 	}
-
 	
-}
+	/**
+	 * Comparator class used to sort a collections of Plants by their type
+	 * attribute of their type by using the Comparator interface
+	 * 
+	 * @author Malachi Parks
+	 *
+	 */
+	class SortbyType implements Comparator<Plant> 
+	{ 
+	    // Used for sorting in ascending order of 
+	    // plant type ("Shrub", "UnderGrowth", "Tree", ...)
+	    public int compare(Plant a, Plant b) 
+	    { 
+	        return a.getPlantType().compareTo(b.getPlantType()); 
+	    } 
+	} 
+	
+	/**
+	 * Comparator class used to sort a collections of Plants by their 
+	 * attribute of their waterRequirement by using the Comparator interface
+	 * 
+	 * @author Malachi Parks
+	 *
+	 */
+	class SortbyWaterNeed implements Comparator<Plant> 
+	{ 
+	    // Used for sorting water requirement to live
+		// in ascending order
+	    public int compare(Plant a, Plant b) 
+	    { 
+	        return a.getWaterNeed() - b.getWaterNeed(); 
+	    } 
+	} 
+	
+	/**
+	 * Comparator class used to sort a collections of Plants by their 
+	 * attribute of their lightReq by using the Comparator interface
+	 * 
+	 * @author Malachi Parks
+	 *
+	 */
+	class SortbyLightNeed implements Comparator<Plant> 
+	{ 
+	    // Used for sorting Light requirement to live
+		// in ascending order
+	    public int compare(Plant a, Plant b) 
+	    { 
+	        return a.getSunLightNeed() - b.getSunLightNeed(); 
+	    } 
+	} 
+	  
+	/**
+	 * Comparator class used to sort a collections of Plants by their 
+	 * attribute of their Color by using the Comparator interface
+	 * 
+	 * @author Malachi Parks
+	 *
+	 */
+	class SortbyColor implements Comparator<Plant> 
+	{ 
+	    // Used for sorting Color requirement to live
+		// in lexical order
+	    public int compare(Plant a, Plant b) 
+	    { 
+	        return a.getColor().compareTo(b.getColor()); 
+	    } 
+	} 
+	
+	/**
+	 * Comparator class used to sort a collections of Plants by their 
+	 * attribute of their bloomTime by using the Comparator interface
+	 * 
+	 * @author Malachi Parks
+	 *
+	 */
+	class SortbyBloomTime implements Comparator<Plant> 
+	{ 
+	    // Used for sorting BloomTime where the enum
+		// is based off of string values
+	    public int compare(Plant a, Plant b) 
+	    { 
+	        return a.getBloomTime().compareTo(b.getBloomTime()); 
+	    } 
+	} 
+	
+}//Plant

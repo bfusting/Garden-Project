@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 
-//Updated: 4/26 5:08 >> updated 4/29 2:08 by TJ adding Screen functionality
+//Updated: 4/26 5:08 >>updated by TJ 4/30 made it extend Screen
 
 /**
  * 
