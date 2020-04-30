@@ -503,14 +503,16 @@ public class Controller{
 		boolean worked = false;
 		//Node n = event.getPickResult().getIntersectedNode();
 		Node n = event.getPickResult().getIntersectedNode();
-		if(n != event.getTarget() && db.hasImage()) {
+		if(DEBUG) {System.out.println(n.toString());}
+		if(n != view.getDesignGardenScreen().getPlot() && db.hasImage()) {
 			ImageView iv = new ImageView(db.getImage());
+			iv.setPreserveRatio(true);
+	    	iv.setFitHeight(100);
 			Integer colIndex = GridPane.getColumnIndex(n);
 			Integer rowIndex = GridPane.getRowIndex(n);
-			int column = colIndex;
-			int row = rowIndex;
+			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
+			view.getDesignGardenScreen().getPlot().add(iv, colIndex, rowIndex, 1, 1);//add(iv, column, row);
 			//if(DEBUG) {System.out.println("Column: " + column + " Row: " + row);}
-			view.getDesignGardenScreen().getPlot().add(iv, column, row);
 			worked = true;
 		}
 		event.setDropCompleted(worked);
@@ -797,13 +799,6 @@ public class Controller{
 		//should return a boolean or something to make sure file was saved successfully/isn't null
 		closeAllWindows(event);
 	}
-	
-	
-	
-	
-	
-	
-	
 }//Controller
 
 
