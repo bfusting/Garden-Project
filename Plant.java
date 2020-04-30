@@ -3,7 +3,7 @@ import java.util.Date;
 import java.util.*;
 
 
-public class Plant extends AddOn {
+public class Plant extends AddOn implements Comparator<Plant> {
 
 	private String color;
 	private int waterNeed;
@@ -26,10 +26,10 @@ public class Plant extends AddOn {
 	 * and the arrays of Strings containing the urls for the images of the plant at different ages and in
 	 * different seasons.
 	 */
-	public Plant(String color, int waterNeed, int sunLightNeed, double plantHeight, int locationPref,
+	public Plant(String name, int tileSize, String description, String color, int waterNeed, int sunLightNeed, double plantHeight, int locationPref,
 			Seasons bloomTime, boolean provideShade, String[] ageImages, String[] season, String plantType, 
 			ArrayList<String> animalsFed, ArrayList<String> compatiblePlants) {
-		super();
+		super(name,tileSize,description);
 		
 		this.color = color;
 		this.waterNeed = waterNeed;
@@ -267,6 +267,21 @@ public class Plant extends AddOn {
 	public void setCompatiblePlants(ArrayList<String> enemyPlants) {
 		this.compatiblePlants = enemyPlants;
 	}
+
+	@Override
+	public int compare(Plant p1, Plant p2) {
+		// Making c check the plant type first so they all group together
+		int c = p1.getPlantType().compareTo(p2.getPlantType());
+		//setting C to check the color first
+		if(c==0){c = p1.getWaterNeed() - p2.getWaterNeed();}
+		//checking to see light req next
+		if(c==0) {c = p1.getSunLightNeed() - p2.getSunLightNeed();}
+		//checking color of plant to see if they match
+		if(c==0) {c = p1.getColor().compareTo(p2.getColor());}
+		// Finally checking the seasons bloomTime
+		if(c==0) {c = p1.getBloomTime().compareTo(p2.getBloomTime());}
+		return c;
+	}//compare 
 
 	
 }
