@@ -445,6 +445,11 @@ public class DesignGarden extends Screen{
 	public Button getInfoTipsBTTN() {
 		return infoTips;
 	}
+	
+	@Override
+	public String toString() {
+		return "Design Garden";
+	}
 
 	
 	

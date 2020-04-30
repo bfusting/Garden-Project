@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 
-//Updated: 4/26 5:08
+//Updated: 4/26 5:08 >>updated by TJ 4/30 made it extend Screen
 
 /**
  * 
@@ -20,7 +20,7 @@ import javafx.scene.Scene;
  * <br> The view that gets the user's preferences for plant selection
  *
  */
-public class Preferences{
+public class Preferences extends Screen{
 	private ComboBox<String> bloomTime;
 	private ComboBox<String> waterReq;
 	private ComboBox<String> lightReq;
