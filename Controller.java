@@ -1,12 +1,10 @@
 import java.io.File;
 
-
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import java.awt.image.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
@@ -34,13 +32,13 @@ import javafx.stage.Stage;
 */
 
 /**
- *  * Controller class handles the bulk of the program and communicates between the Model
+ * 
+ * @author Malachi Parks
+ * <p>
+ * Controller class handles the bulk of the program and communicates between the Model
  * and the View of the program and their respective subclasses. Most of the methods
  * are event handlers and getters to set the event handlers for the items in View and 
  * its subclasses.
- * 
- * @author Malachi Parks
- * 
  */
 public class Controller{
 	private Model model;
@@ -114,6 +112,9 @@ public class Controller{
 	public void loadGarden(MouseEvent event) {
 		System.out.println("Load Garden Here");
 		File file = view.showLoadGardenScreen();
+		if (file!=null) {
+		view.showDesignGardenScreen();
+		}
 	}//loadGarden
 	
 	/**
@@ -142,7 +143,7 @@ public class Controller{
 	 */
 	public void exit(MouseEvent event) {
 		System.out.println("Exit by saving the closing");
-		view.close();
+		view.showExitScreen();
 	}//exit
 	
 	/**
@@ -202,6 +203,7 @@ public class Controller{
 	 */
 	public void backBTN(MouseEvent event) {
 		System.out.println("Go Back");
+		view.goToLastScreen();
 	}//backBTN
 	
 	/**
@@ -391,7 +393,6 @@ public class Controller{
         //Use clipboard to copy data the add to Dragboard
         ClipboardContent content = new ClipboardContent();
         //Need to edit to pull in right plant from model when dragging
-        //Below edits the scale of the image so it's small when dragging image
         content.putImage(n.getImage());
         dBoard.setContent(content);
         
@@ -504,20 +505,14 @@ public class Controller{
 		Node n = event.getPickResult().getIntersectedNode();
 		if(DEBUG) {System.out.println(n.toString());}
 		if(n != view.getDesignGardenScreen().getPlot() && db.hasImage()) {
-			//ImageView iv = new ImageView(db.getImage());
-			//Integer colIndex = GridPane.getColumnIndex(n);
-			//Integer rowIndex = GridPane.getRowIndex(n);
-			//int column = colIndex;
-			//int row = rowIndex;
 			ImageView iv = new ImageView(db.getImage());
 			iv.setPreserveRatio(true);
 	    	iv.setFitHeight(100);
 			Integer colIndex = GridPane.getColumnIndex(n);
 			Integer rowIndex = GridPane.getRowIndex(n);
-			int column = colIndex;
-			int row = rowIndex;
-			if(DEBUG) {System.out.println("Column: " + column + " Row: " + row);}
-			view.getDesignGardenScreen().getPlot().add(iv, column, row, 1, 1);//add(iv, column, row);
+			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
+			view.getDesignGardenScreen().getPlot().add(iv, colIndex, rowIndex, 1, 1);//add(iv, column, row);
+			//if(DEBUG) {System.out.println("Column: " + column + " Row: " + row);}
 			worked = true;
 		}
 		event.setDropCompleted(worked);
@@ -767,11 +762,43 @@ public class Controller{
 		
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public EventHandler<MouseEvent> getCloseAllWindows() {
+		return event -> closeAllWindows((MouseEvent) event);	
+	}
 	
+	/**
+	 * 
+	 * @param event
+	 */
+	public void closeAllWindows(MouseEvent event) {
+		System.out.println("Closing program...");
+		view.exit();
+		
+	}
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public EventHandler<MouseEvent> getSaveAndQuit() {
+		
+		return event -> saveAndQuit((MouseEvent) event);
+		
+	}
 	
-	
-	
+	/**
+	 * 
+	 * @param event
+	 */
+	public void saveAndQuit(MouseEvent event) {
+		saveBTN(event);
+		//should return a boolean or something to make sure file was saved successfully/isn't null
+		closeAllWindows(event);
+	}
 }//Controller
 
 
