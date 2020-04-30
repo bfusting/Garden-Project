@@ -19,7 +19,7 @@ import javafx.scene.layout.AnchorPane;
  *
  */
 
-public class InfoTips{
+public class InfoTips extends Screen{
 	private Scene infoTipsScene;
 	private Label color;
 	private Label waterNeed;

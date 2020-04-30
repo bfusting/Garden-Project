@@ -40,10 +40,9 @@ import javafx.stage.Stage;
  * @author Takiyah Price
  */
 
-public class Instructions {
-	//private Scene instructionsScene;
+public class Instructions extends Screen {
 	private Stage instructionsStage;
-	
+	private int dimension = 500;
 	
 	
 	
@@ -110,7 +109,7 @@ public class Instructions {
 		
 		//instructionsScene = new Scene(root,500,500);
 		instructionsStage = new Stage();
-		instructionsStage.setScene(new Scene(root,500,500));
+		instructionsStage.setScene(new Scene(root,dimension,dimension));
 		instructionsStage.setTitle("Instructions");
 		
 	}
@@ -125,10 +124,20 @@ public class Instructions {
 	}
 	
 	public void closeInstructions() {
+		//can delete
 		instructionsStage.close();
 	}
 	
+	@Override
+	public void showScreen() {
+		instructionsStage.show();
+		instructionsStage.toFront();
+	}
 	
+	@Override
+	public void closeScreen() {
+		instructionsStage.close();
+	}
 	
 	
 	

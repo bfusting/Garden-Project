@@ -79,5 +79,10 @@ public class SaveLoad extends Screen{
 	public String toString() {
 		return "Save/Load";
 	}
+	
+	@Override
+	public void goToPreviousScreen() {
+		super.getPreviousScreen().setEditable();
+	}
 }
 

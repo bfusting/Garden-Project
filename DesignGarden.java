@@ -94,10 +94,15 @@ public class DesignGarden extends Screen{
 	
 	//2d array 5x5 of GardenTile using GridPane
 	
+	private Stage theStage;
+	
+	private AnchorPane root;
+	
 	private Controller c;
 	
-	public DesignGarden(Controller controller) {
+	public DesignGarden(Controller controller,Stage s) {
 		this.c = controller;
+		theStage = s;
 	}
 
 	
@@ -169,7 +174,8 @@ public class DesignGarden extends Screen{
 	public void showDesignGarden(Stage stage) {
 
 		//root AnchorPane
-		AnchorPane root = new AnchorPane();
+		//AnchorPane root = new AnchorPane();
+		root = new AnchorPane();
 		
 		indexLeft = new Button("<<<");
 		indexRight = new Button(">>>");
@@ -449,6 +455,22 @@ public class DesignGarden extends Screen{
 	@Override
 	public String toString() {
 		return "Design Garden";
+	}
+	
+	@Override
+	public void showScreen() {
+		//showScreen should really just set the stage with the scene in whatever state it is in
+		showDesignGarden(theStage);
+	}
+	
+	@Override
+	public void setUneditable() {
+		root.setDisable(true);
+	}
+	
+	@Override
+	public void setEditable() {
+		root.setDisable(false);
 	}
 
 	

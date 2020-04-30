@@ -47,13 +47,14 @@ public class Exit extends Screen {
 		saveButton.setOnMouseClicked(c.getSaveAndQuit());
 		saveButton.setPrefWidth(140);
 		
-		quitButton = new Button("Quit without Saving");
+		//quitButton = new Button("Quit without Saving");
+		quitButton = new Button();
 		quitButton.setMinSize(100, 50);
 		quitButton.setOnMouseClicked(c.getCloseAllWindows());
 		
-		yesButton = new Button("Yes");
-		yesButton.setOnMouseClicked(c.getCloseAllWindows());
-		yesButton.setMinSize(100, 50);
+		//yesButton = new Button("Yes");
+		//yesButton.setOnMouseClicked(c.getCloseAllWindows());
+		//yesButton.setMinSize(100, 50);
 		
 		cancelButton = new Button("Cancel");
 		cancelButton.setMinSize(100,50);
@@ -87,6 +88,7 @@ public class Exit extends Screen {
 	public void showExitWithSave() {
 		super.getPreviousScreen().setUneditable();
 		TilePane tPane = new TilePane();
+		quitButton.setText("Quit without Saving");
 		tPane.getChildren().addAll(saveButton,quitButton,cancelButton);
 		HBox hbox = new HBox();
 		tPane.setTileAlignment(Pos.CENTER);
@@ -152,7 +154,9 @@ public class Exit extends Screen {
 		root.getChildren().addAll(hbox,exitAP);
 		
 		//
-		tPane.getChildren().addAll(yesButton,cancelButton);
+		//tPane.getChildren().addAll(yesButton,cancelButton);
+		quitButton.setText("Yes");
+		tPane.getChildren().addAll(quitButton,cancelButton);
 		
 		Scene exitScene = new Scene(root,400,120);
 		exitStage.setScene(exitScene);
@@ -165,6 +169,7 @@ public class Exit extends Screen {
 	 * 
 	 */
 	public void closeExit() {
+		//can delete
 		exitStage.close();
 	}
 	/**
@@ -174,13 +179,20 @@ public class Exit extends Screen {
 	public void goToPreviousScreen() {
 		exitStage.close();
 		System.out.println("Exit overrides gotToPreviousScreen to close its stage first");
-		super.getPreviousScreen().show();
+		super.getPreviousScreen().setEditable();
 	}
 	
 	@Override
 	public String toString() {
 		return "Exit Screen";
 	}
+	
+	@Override
+	public void closeScreen() {
+		exitStage.close();
+	}
+	
+	
 	
 	
 }
