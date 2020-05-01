@@ -1,5 +1,7 @@
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
@@ -116,7 +118,7 @@ public class Model implements Serializable{
 	 * 
 	 */
 	public void updateSeclectionArr() {
-		System.out.println("Fill after preferences, more desirable in front");
+		Collections.sort(allPlants);
 	}
 	
 	

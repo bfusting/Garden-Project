@@ -3,7 +3,7 @@ import java.util.Date;
 import java.util.*;
 
 
-public class Plant extends AddOn{
+public class Plant extends AddOn implements Comparator<Plant>{
 
 	private String color;
 	private int waterNeed;
@@ -351,6 +351,27 @@ public class Plant extends AddOn{
 	    { 
 	        return a.getBloomTime().compareTo(b.getBloomTime()); 
 	    } 
-	} 
+	}
+
+	/**
+	 * Used during the collections.sort method when sorting plants. 
+	 * First sorts alphabetically by plant type ("Shrub", "Tree",...)
+	 * then by water need and light from lowest needs to highest needs.
+	 * From there sorts
+	 */
+	@Override
+	public int compare(Plant p1, Plant p2) {
+		//setting c to compare types first
+		int c = p1.getPlantType().compareTo(p2.getPlantType());
+		// c now checks water requirements
+		if(c==0) { c = p1.getWaterNeed() - p2.getWaterNeed();}
+		// c now checks light requirements
+		if(c==0) { c = p1.getSunLightNeed() - p2.getSunLightNeed();}
+		// c now c checks colors against one another
+		if(c==0) { c = p1.getColor().compareTo(p2.getColor());}
+		// c now checks bloomTime against one another
+		if(c==0) { c = p1.getBloomTime().compareTo(p2.getBloomTime());}
+		return c;
+	}
 	
 }//Plant
