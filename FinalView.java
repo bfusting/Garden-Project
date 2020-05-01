@@ -23,9 +23,9 @@ public class FinalView extends Screen {
 	private GardenPlot plotIdea1;
 	private GardenPlot plotIdea2;
 	private GardenPlot plotIdea3;
-	private AnchorPane root;
+	
 	private Scene finalViewScene;
-	private Stage primaryStage;
+	
 	private Controller c;
 	
 	/**
@@ -34,9 +34,8 @@ public class FinalView extends Screen {
 	 * @param: ogPlot The original garden plot that was designed by the user.
 	 */
 	
-	public FinalView(Controller controller, Stage s) {
+	public FinalView(Controller controller) {
 		this.c = controller;
-		primaryStage = s;
 	}
 	
 	public void setOriginalPlot(GardenPlot ogPlot) {
@@ -95,14 +94,14 @@ public class FinalView extends Screen {
 	
 	/**
 	 * 
-	 * Contains the buttons, and views of the final garden options.
+	 * Contains the buttons and views of the final garden options.
 	 * 
 	 * @param stage The stage for finalView's scene.
 	 */
-public void showFinalView(Stage stage) {
+	public void showFinalView(Stage stage) {
 		
 		
-		root = new AnchorPane();
+		AnchorPane root = new AnchorPane();
 		
 
 		Rectangle r1 = new Rectangle(100, 100, 300, 250);
@@ -154,38 +153,34 @@ public void showFinalView(Stage stage) {
 		
 	}
 
+	/**
+	 * 
+	 * @return edit - The Edit button
+	 */
 	public Button getEditBTTN() {
 		return edit;
 	}
+	/**
+	 * 
+	 * @return infoTips - The Info and Tips button
+	 */
 	public Button getInfoTipsBTTN() {
 		return infoTips;
 	}
+	/**
+	 * 
+	 * @return viewSeasons - The View Seasons button
+	 */
 	public Button getViewSeasonsBTTN() {
 		return viewSeasons;
 	}
+	/**
+	 * 
+	 * @return save - The Save button
+	 */
 	public Button getSaveBTTN() {
 		return save;
 	}
-	
-	@Override
-	public void setUneditable() {
-		root.setDisable(true);
-	}
-	
-	@Override
-	public void setEditable() {
-		root.setDisable(false);
-	}
-	
-	@Override
-	public void showScreen() {
-		//should combine these into one show method
-		showFinalView(primaryStage);
-	}
-	
-	@Override
-	public String toString() {
-		return "Final View";
-	}
+
 
 }
