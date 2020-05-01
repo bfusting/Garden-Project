@@ -20,12 +20,13 @@
  *
  */
 
-//last edited: 5-1-20 3:23PM
+//last edited: 5-1-20 11:07AM
 
 public abstract class Screen {
 	
 	
 	private Screen previousScreen = this;
+
 	
 	/**
 	 * Goes back one screen by showing its previous screen.
@@ -82,6 +83,8 @@ public abstract class Screen {
 	public void closeScreen() {
 		System.out.println("close this Screen");
 	}
+	
+	
 	
 	
 	
