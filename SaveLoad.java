@@ -2,6 +2,8 @@ import java.io.File;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Popup;
@@ -23,25 +25,23 @@ import javafx.stage.Window;
 */
 
 /**
- * 
- * View that handles the creation and presentation of the saving and loading screens, which
+ * Screen that handles the creation and presentation of the saving and loading screens, which
  * allow the user to save the design they are working on or any of the generated designs from the
  * final view screen, or load an existing design to continue their progress. Contains a FileChooser 
  * that will be displayed on a separate window using the SaveLoad Stage with a save or load dialog 
  * depending on whether it has been accessed through the save Button or LoadGarden Button.
  * 
- * @see View
- * @see FinalView
+ * 
  * @author Takiyah Price
  *
  */
 
-//last edited: 4-29-20 2:21PM
+//last edited: 5-1-20 9:57PM
 
 public class SaveLoad extends Screen{
 	private FileChooser fileChooser;
-	private Window SaveLoadStage;
-	
+	private Stage SaveLoadStage;
+	private Stage blankStage;
 	
 	/**
 	 * Constructor for SaveLoad that creates the SaveLoad Stage that will be bound to
@@ -49,9 +49,18 @@ public class SaveLoad extends Screen{
 	 * 
 	 */
 	public SaveLoad() {
-		SaveLoadStage = new Stage();
-		//SaveLoadStage.setWidth(600);
-		//SaveLoadStage.setHeight(400);
+		SaveLoadStage = new Stage(StageStyle.UTILITY);
+		//SaveLoadStage.setOpacity(0);
+		//SaveLoadStage.setAlwaysOnTop(true);
+		//blankStage = new Stage(StageStyle.UTILITY);
+		//blankStage.setScene(new Scene(new HBox(),View.primarySceneWidth,View.primarySceneHeight));
+		//blankStage.setFullScreen(true);
+		//blankStage.setOpacity(0);
+		SaveLoadStage.setWidth(View.primarySceneWidth);
+		SaveLoadStage.setHeight(View.primarySceneHeight);
+		//blankStage.setWidth(View.primarySceneWidth);
+		//blankStage.setHeight(View.primarySceneHeight);
+		
 		fileChooser = new FileChooser();
 		
 	}
@@ -72,6 +81,8 @@ public class SaveLoad extends Screen{
 	 */
 	public File showLoadWindow() {
 		super.getPreviousScreen().setUneditable();
+		//blankStage.show();
+		SaveLoadStage.show();
 		return fileChooser.showOpenDialog(SaveLoadStage);
 	}
 	

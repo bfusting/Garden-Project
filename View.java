@@ -59,7 +59,7 @@ public class View extends Application{
 	 * @see Controller
 	 */
 	public View() {
-	
+		
 		con = new Controller(this);
 	}
 	

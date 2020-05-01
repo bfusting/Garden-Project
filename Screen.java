@@ -26,6 +26,8 @@ public abstract class Screen {
 	
 	
 	private Screen previousScreen = this;
+	private int stageWidth = View.primarySceneWidth;
+	private int stageHeight = View.primarySceneHeight;
 	
 	/**
 	 * Goes back one screen by showing its previous screen.
@@ -81,6 +83,14 @@ public abstract class Screen {
 	 */
 	public void closeScreen() {
 		System.out.println("close this Screen");
+	}
+	
+	public int getStageWidth() {
+		return stageWidth;
+	}
+	
+	public int getStageHeight() {
+		return stageHeight;
 	}
 	
 	
