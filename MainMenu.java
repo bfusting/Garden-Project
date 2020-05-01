@@ -34,7 +34,7 @@ import javafx.stage.Stage;
  * @see Screen
  * @author Takiyah Price
  */
-//last edited: 4-30-20 9:12PM
+//last edited: 5-1-20 2:29AM
 
 public class MainMenu extends Screen {
 	private Button createNewGardenButton;

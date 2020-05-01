@@ -28,7 +28,7 @@ import javafx.stage.Stage;
  * @author Takiyah Price 
  */
 
-//last edited: 4-30-20 8:34PM
+//last edited: 5-1-20 2:28AM
 
 
 public class View extends Application{
@@ -89,7 +89,6 @@ public class View extends Application{
 		primaryStage = theStage;
 		
 		mainMenuScreen = new MainMenu(con,primaryStage);
-		//mainMenuScreen.setPreviousScreen(mainMenuScreen);
 		
 		instructionsScreen = new Instructions();
 	
