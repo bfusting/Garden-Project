@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.*;
 
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
@@ -133,24 +134,29 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 		//Also have to make this work with the .csv of plants when we get that in
 		AddOn[] result = new AddOn[5];
 		
+		Random random = new Random();
+		
+		//The 0 in rand is temporary until more plant options are available
+		int rand = random.nextInt(0);
+		
 		for(int i = 0; i < arr.length; i++) {
 			if(arr[i].getClass() == Plant.class) {
 				Plant pA = (Plant) arr[i];
 				if(pA.getPlantType() == "Tree") {
-					result[i] = temp.getTreeArr().get(0);
+					result[i] = temp.getTreeArr().get(rand);
 					
 				}
 				
 				if(pA.getPlantType() == "Flower") {
-					result[i] = temp.getSelectionArr().get(0);
+					result[i] = temp.getSelectionArr().get(rand);
 				}
 				
 				if(pA.getPlantType() == "Shrub") {
-					result[i] = temp.getShrubArr().get(0);
+					result[i] = temp.getShrubArr().get(rand);
 				}
 				
 				if(pA.getPlantType() == "UnderGrowth") {
-					result[i] = temp.getUnderGrowth().get(0);
+					result[i] = temp.getUnderGrowth().get(rand);
 				}
 				
 			}

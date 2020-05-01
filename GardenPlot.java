@@ -228,7 +228,7 @@ public class GardenPlot implements Serializable{
 	/**
 	 * sets GardenTile attribute isActive to true
 	 * TODO:
-	 * Must move this method into model as eventhandlers are needed for this method
+	 * Must move this method into model as event handlers are needed for this method
 	 */
 	public void selectActiveGardenTiles() {
 		
