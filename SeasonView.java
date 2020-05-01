@@ -30,7 +30,7 @@ import javafx.stage.Stage;
  * in different seasons such as SUMMER, WINTER, FALL
  *
  */
-public class SeasonView{
+public class SeasonView extends Screen{
 	// make it so one label which changes depending on season?
 	// full screen season view?
 	private final static int HEIGHT = 600;
@@ -138,6 +138,17 @@ public class SeasonView{
 		stage.setTitle("SeasonView");
 		stage.setScene(scene);
 		stage.show();
+	}
+	
+	@Override
+	public void showScreen() {
+		//need to consolidate into one showScreen() method
+		ShowSeasonView();
+	}
+	
+	@Override
+	public void goToPreviousScreen() {
+		stage.close();
 	}
 	 
 }

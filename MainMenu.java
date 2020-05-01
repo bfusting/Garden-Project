@@ -143,16 +143,18 @@ public class MainMenu extends Screen {
 	 * 
 	 */
 	public void showMainMenu(Stage theStage) {
-		super.setPreviousScreen(this);
+		//can delete
+		
 		theStage.setTitle("Garden Designer");
 		theStage.setScene(mainMenuScene);
 	}
 	
 	@Override
-	public void show() {
+	public void showScreen() {
+		super.setPreviousScreen(this);
 		primaryStage.setTitle("Garden Designer");
-		bPane.setDisable(false);
-		primaryStage.setOpacity(1);
+		//bPane.setDisable(false);
+		//primaryStage.setOpacity(1);
 		primaryStage.setScene(mainMenuScene);
 	}
 	
@@ -165,6 +167,12 @@ public class MainMenu extends Screen {
 	public void setUneditable() {
 		bPane.setDisable(true);
 		primaryStage.setOpacity(0.9);
+	}
+	
+	@Override
+	public void setEditable() {
+		bPane.setDisable(false);
+		primaryStage.setOpacity(1);
 	}
 }
 

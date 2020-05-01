@@ -70,7 +70,8 @@ public class Controller{
 	public void createNewGarden(MouseEvent event) {
 		if(DEBUG) { System.out.println("Created new Garden Plot");};
 		model.setUserPlot(new GardenPlot());
-		view.showChooseTemplateScreen();
+		//view.showChooseTemplateScreen();
+		view.show("chooseTemplateScreen");
 		System.out.println("CHOOSE YOUR FIGHTER");
 	}//createNewGarden
 	
@@ -111,13 +112,15 @@ public class Controller{
 	 */
 	public void loadGarden(MouseEvent event) {
 		System.out.println("Load Garden Here");
-		File file = view.showLoadGardenScreen();
+		
+		view.show("loadGardenScreen");
+		/*File file = view.showLoadGardenScreen();
 		if (file!=null) {
 		//presumably update Model here with file contents and tell all the information to view
 		view.showDesignGardenScreen();
 		} else {
 			view.goToLastScreen();
-		}
+		}*/
 	}//loadGarden
 	
 	/**
@@ -146,7 +149,8 @@ public class Controller{
 	 */
 	public void exit(MouseEvent event) {
 		System.out.println("Exit by saving the closing");
-		view.showExitScreen();
+		//view.showExitScreen();
+		view.show("exitScreen");
 	}//exit
 	
 	/**
@@ -175,7 +179,8 @@ public class Controller{
 	 */
 	public void instructionsShow(MouseEvent event) {
 		System.out.println("Show Instructions");
-		view.showInstructionsScreen();
+		//view.showInstructionsScreen();
+		view.show("instructionsScreen");
 	}//instructionsShow
 	
 	/**
@@ -238,7 +243,8 @@ public class Controller{
 	 */
 	public void designTime(MouseEvent event) {
 		System.out.println("Make Garden");
-		view.showDesignGardenScreen();
+		//view.showDesignGardenScreen();
+		view.show("designGardenScreen");
 	}//choseDesign
 	
 	/**
@@ -297,8 +303,9 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void recommendationsBTN(MouseEvent event) {
-		Recommendations r = new Recommendations(this);
-		r.showRecommendations();
+		//Recommendations r = new Recommendations(this);
+		//r.showRecommendations();
+		view.show("recommendationsScreen");
 	}//recommendationsBTN
 	
 	/**
@@ -327,7 +334,8 @@ public class Controller{
 	 * @see FinalView
 	 */
 	public void changeSeasonsBTN(MouseEvent event) {
-		view.showSeasonViewScreen();
+		//view.showSeasonViewScreen();
+		view.show("seasonViewScreen");
 	}//changeSeasonsBTN
 	
 	/**
@@ -357,7 +365,7 @@ public class Controller{
 	 * @see FinalView
 	 */
 	public void mainMenuBTN(MouseEvent event) {
-		
+		view.show("mainMenuScreen");
 	}//mainMenuBTN
 	
 	
@@ -611,12 +619,14 @@ public class Controller{
 	 */
 	public void saveBTN(MouseEvent event) {
 		System.out.println("SAVE OFTEN");
-		File file = view.showSaveGardenScreen();
+		view.show("saveGardenScreen");
+		
+		/*File file = view.showSaveGardenScreen();
 		if (file!=null) {
 			//write model and view stuff to the file
 		} else {
 			view.goToLastScreen();
-		}
+		}*/
 
 	}//saveBTN
 	
@@ -646,7 +656,8 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void infoTipsBTN(MouseEvent event) {
-		view.showInfoTipsScreen();
+		//view.showInfoTipsScreen();
+		view.show("infoTipsScreen");
 	}//infoTipsBTN
 	
 	/**
@@ -675,7 +686,8 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void viewSeasonsBTN(MouseEvent event) {
-		view.showSeasonViewScreen();
+		//view.showSeasonViewScreen();
+		view.show("seasonViewScreen");
 	}//viewSeasonsBTN
 	
 	/**
@@ -689,7 +701,8 @@ public class Controller{
 	 * @see ChooseTemplate
 	 */
 	public void templateToPref(MouseEvent event) {
-		view.showPreferencesScreen();
+		//view.showPreferencesScreen();
+		view.show("preferencesScreen");
 	}
 	
 	/**
@@ -743,7 +756,8 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void finalViewBTN(MouseEvent event) {
-		view.showFinalViewScreen();
+		//view.showFinalViewScreen();
+		view.show("finalViewScreen");
 	}
 	
 	/**
@@ -808,6 +822,17 @@ public class Controller{
 		//should return a boolean or something to make sure file was saved successfully/isn't null
 		//closeAllWindows(event);
 	}
+	
+	public boolean saveGardenTemp(File file) {
+		//adding this with different method signature in case changing the other one causes issues with tests
+		//or something
+		if (file!=null) {
+			//do the saving here
+			return true;
+		}
+		return false;
+	}
+	
 }//Controller
 
 

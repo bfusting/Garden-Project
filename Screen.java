@@ -22,11 +22,11 @@
 public abstract class Screen {
 	
 	
-	private Screen previousScreen;
+	private Screen previousScreen = this;
 	
 	public void goToPreviousScreen() {
 		System.out.println("Going to: "+previousScreen);
-		previousScreen.show();
+		previousScreen.showScreen();
 	}
 	
 	public Screen getPreviousScreen() {
@@ -38,12 +38,20 @@ public abstract class Screen {
 		System.out.println("previous screen set to "+previousScreen);
 	}
 	
-	public void show() {
+	public void showScreen() {
 		System.out.println("most screens should probably override show");
 	}
 	
 	public void setUneditable() {
 		System.out.println("most screens should probably override setUneditable");
+	}
+	
+	public void setEditable() {
+		System.out.println("most screens should probably override setEditable");
+	}
+	
+	public void closeScreen() {
+		System.out.println("close this Screen");
 	}
 	
 	

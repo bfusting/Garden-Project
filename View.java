@@ -2,6 +2,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -33,11 +34,11 @@ import javafx.stage.Stage;
 
 //last edited: 4-29-20 2:21PM
 
+
 public class View extends Application{
 	private Stage primaryStage;
+	private Controller con;
 	
-	
-	private Controller imc;
 	private MainMenu mainMenuScreen;
 	private Instructions instructionsScreen;
 	private ChooseTemplate chooseTemplateScreen;
@@ -48,8 +49,8 @@ public class View extends Application{
 	private SaveLoad saveLoadScreen;
 	private SeasonView seasonViewScreen;
 	private Recommendations recommendationsScreen;
-	
 	private Exit exitScreen;
+	
 	private Screen currentPrimaryScreen;
 		
 	
@@ -61,7 +62,7 @@ public class View extends Application{
 	 */
 	public View() {
 	
-		imc = new Controller(this);
+		con = new Controller(this);
 	}
 	
 	/**
@@ -91,21 +92,36 @@ public class View extends Application{
 	public void start(Stage theStage) {
 		primaryStage = theStage;
 		
-		mainMenuScreen = new MainMenu(imc,primaryStage);
+		mainMenuScreen = new MainMenu(con,primaryStage);
+		//mainMenuScreen.setPreviousScreen(mainMenuScreen);
+		
 		instructionsScreen = new Instructions();
-		exitScreen = new Exit(imc);
-		chooseTemplateScreen = new ChooseTemplate(imc);
-		designGardenScreen = new DesignGarden(imc);
+	
+		exitScreen = new Exit(con);
+		
+		chooseTemplateScreen = new ChooseTemplate(con,primaryStage);
+		chooseTemplateScreen.setPreviousScreen(mainMenuScreen);
+		
+		designGardenScreen = new DesignGarden(con,primaryStage);
+		designGardenScreen.setPreviousScreen(chooseTemplateScreen);
+		
 		saveLoadScreen = new SaveLoad();
-		finalViewScreen = new FinalView(imc,primaryStage);
+		
+		finalViewScreen = new FinalView(con,primaryStage);
+		finalViewScreen.setPreviousScreen(designGardenScreen);
+		
 		// InfoTips should take in a plant from model
 		//infoTipsScreen = new InfoTips(null, 0, null, 0, 0, false, null, null);
 		infoTipsScreen = new InfoTips();
-		seasonViewScreen = new SeasonView(imc);
-		// InfoTips should take in a plant from model
-		recommendationsScreen = new Recommendations(imc);
-		preferencesScreen = new Preferences(imc);
 		
+		seasonViewScreen = new SeasonView(con);
+		// InfoTips should take in a plant from model
+		
+		recommendationsScreen = new Recommendations(con);
+		recommendationsScreen.setPreviousScreen(designGardenScreen);
+		
+		preferencesScreen = new Preferences(con);
+		preferencesScreen.setPreviousScreen(chooseTemplateScreen);
 		
 		
 		currentPrimaryScreen = mainMenuScreen;
@@ -135,9 +151,11 @@ public class View extends Application{
 	 */
 	public void exit() {
 		System.out.println("Close all the windows");
-		primaryStage.close();
-		exitScreen.closeExit();
-		instructionsScreen.closeInstructions();
+		//primaryStage.close();
+		//exitScreen.closeExit();
+		//instructionsScreen.closeInstructions();
+		//instructionsScreen.closeScreen();
+		Platform.exit();
 		
 	}
 	
@@ -189,6 +207,7 @@ public class View extends Application{
 	 * @see ChooseTemplate#chooseTemplateScene
 	 */
 	public void showChooseTemplateScreen() {
+		//can delete
 		chooseTemplateScreen.setPreviousScreen(currentPrimaryScreen);
 		currentPrimaryScreen = chooseTemplateScreen;
 		
@@ -234,6 +253,7 @@ public class View extends Application{
 	}
 	
 	public void showSeasonViewScreen() {
+		//can delete
 		//should take in a Stage
 		seasonViewScreen.ShowSeasonView();
 	}
@@ -250,6 +270,117 @@ public class View extends Application{
 		System.out.println("Was showing: "+currentPrimaryScreen);
 		currentPrimaryScreen.goToPreviousScreen();
 		currentPrimaryScreen = currentPrimaryScreen.getPreviousScreen();
+	}
+	
+	/**
+	 * Makes the Screen specified by the given String visible to the user by invoking
+	 * the necessary Screen's showScreen method.
+	 * 
+	 * @param screen the String representing the name of the Screen to be shown
+	 * 
+	 * @see Screen
+	 * @see Screen#showScreen()
+	 */
+	public void show(String screen) {
+		
+		
+		switch (screen) {
+		case "mainMenuScreen":
+			currentPrimaryScreen = mainMenuScreen;
+			mainMenuScreen.showScreen();
+			break;
+		case "instructionsScreen":
+			//instructionsScreen.setPreviousScreen(currentPrimaryScreen);
+			//currentPrimaryScreen = instructionsScreen;
+			instructionsScreen.showScreen();
+			break;
+		case "chooseTemplateScreen":
+			currentPrimaryScreen = chooseTemplateScreen;
+			chooseTemplateScreen.showScreen();
+			break;
+		case "designGardenScreen":
+			currentPrimaryScreen = designGardenScreen;
+			designGardenScreen.showScreen();
+			break;
+		case "finalViewScreen":
+			currentPrimaryScreen = finalViewScreen;
+			finalViewScreen.showScreen();
+			break;
+		case "infoTipsScreen":
+			infoTipsScreen.setPreviousScreen(currentPrimaryScreen);
+			//currentPrimaryScreen = infoTipsScreen;
+			//infoTipsScreen.showScreen();
+			infoTipsScreen.showInfoTips(primaryStage);
+			break;
+		case "preferencesScreen":
+			currentPrimaryScreen = preferencesScreen;
+			//preferencesScreen.showScreen();
+			preferencesScreen.showPreferences(primaryStage);
+			break;
+		case "saveGardenScreen":
+			//exitScreen.closeExit();
+			//saveLoadScreen.setPreviousScreen(currentPrimaryScreen);
+			//currentPrimaryScreen = saveLoadScreen;
+			
+			//con.saveGardenTemp(saveLoadScreen.showSaveWindow());
+			if (currentPrimaryScreen.equals(exitScreen)) {
+				exitScreen.closeScreen();
+				saveLoadScreen.setPreviousScreen(exitScreen.getPreviousScreen());
+				
+				
+				if (con.saveGardenTemp(saveLoadScreen.showSaveWindow())) {
+					exit();
+				}
+				/*else {
+					currentPrimaryScreen = exitScreen.getPreviousScreen();
+					
+				}*/
+			} else {
+				saveLoadScreen.setPreviousScreen(currentPrimaryScreen);
+				con.saveGardenTemp(saveLoadScreen.showSaveWindow());
+				//con.saveGardenTemp(saveLoadScreen.showSaveWindow());
+				//currentPrimaryScreen.setEditable();
+			}
+			currentPrimaryScreen = saveLoadScreen;
+			goToLastScreen();
+			
+			break;
+		case "loadGardenScreen":
+			saveLoadScreen.setPreviousScreen(currentPrimaryScreen);
+			currentPrimaryScreen = saveLoadScreen;
+			if (con.saveGardenTemp(saveLoadScreen.showLoadWindow())) {
+				show("designGardenScreen");
+			} else {
+				goToLastScreen();
+			}
+			break;
+		case "seasonViewScreen":
+			seasonViewScreen.setPreviousScreen(currentPrimaryScreen);
+			//currentPrimaryScreen = seasonViewScreen;
+			
+			seasonViewScreen.showScreen();
+			break;
+		case "recommendationsScreen":
+			//why is it like this? Why are you creating a new one?
+			recommendationsScreen = new Recommendations(con);
+			recommendationsScreen.showScreen();
+			break;
+		case "exitScreen":
+			System.out.println("leaving so soon? :(");
+			exitScreen.setPreviousScreen(currentPrimaryScreen);
+			
+			
+			if (currentPrimaryScreen.equals(finalViewScreen)) {
+				exitScreen.showExitWithSave();
+			}
+			else {
+				exitScreen.showExitWithoutSave();
+			}
+			
+			currentPrimaryScreen = exitScreen;
+		}
+		
+
 	}
 	
 	

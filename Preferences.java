@@ -178,5 +178,10 @@ public class Preferences extends Screen{
 	public Button getStartCreating() {
 		return startCreating;
 	}
+	
+	@Override
+	public String toString() {
+		return "Preferences";
+	}
 }
 

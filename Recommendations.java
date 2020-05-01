@@ -31,7 +31,7 @@ import javafx.stage.Stage;
  * the garden requirements and plant preferences
  *
  */
-public class Recommendations{
+public class Recommendations extends Screen{
 	private String weRecommendMessage;
 	private Label recommendationMessage;
 	private Image plantImage;
@@ -228,4 +228,12 @@ public class Recommendations{
     	stage.setScene(scene);
         stage.show();
 	}
+	
+	@Override
+	public void showScreen() {
+		//should consolidate into one showScreen method
+		showRecommendations();
+	}
+	
+	
 }
