@@ -42,6 +42,7 @@ import javafx.stage.Stage;
 
 public class ChooseTemplate extends Screen {
 	private Scene chooseTemplateScene;
+	private Stage theStage;
 	//private ImageView squareTemplate;
 	//private ImageView circleTemplate;
 	//private ImageView triangleTemplate;
@@ -58,7 +59,8 @@ public class ChooseTemplate extends Screen {
 	 * respective layout that will be created on click.
 	 * 
 	 */
-	public ChooseTemplate(Controller c) {
+	public ChooseTemplate(Controller c,Stage s) {
+		theStage = s;
 		//Label label = new Label("choose a template");
 		//Button button = new Button("Exit");
 		//button.setMinSize(200,60);
@@ -125,14 +127,20 @@ public class ChooseTemplate extends Screen {
 	}
 	
 	public void showChooseTemplate(Stage theStage) {
-		theStage.setTitle("Choose a Template");
-		theStage.setScene(chooseTemplateScene);
+		//can delete
 		
 	}
 	
 	@Override
 	public String toString() {
 		return "Choose Template";
+	}
+	
+	
+	@Override
+	public void showScreen() {
+		theStage.setTitle("Choose a Template");
+		theStage.setScene(chooseTemplateScene);
 	}
 	
 }

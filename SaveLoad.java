@@ -3,7 +3,11 @@ import java.io.File;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.Window;
 
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
@@ -32,11 +36,12 @@ import javafx.stage.Stage;
  *
  */
 
+//last edited: 4-29-20 2:21PM
 
-public class SaveLoad {
+public class SaveLoad extends Screen{
 	private FileChooser fileChooser;
-	private Stage SaveLoadStage;
-	//private Scene SaveLoadScene;
+	private Window SaveLoadStage;
+	
 	
 	/**
 	 * Constructor for SaveLoad that creates the SaveLoad Stage that will be bound to
@@ -45,15 +50,17 @@ public class SaveLoad {
 	 */
 	public SaveLoad() {
 		SaveLoadStage = new Stage();
-		SaveLoadStage.setWidth(600);
-		SaveLoadStage.setHeight(400);
+		//SaveLoadStage.setWidth(600);
+		//SaveLoadStage.setHeight(400);
 		fileChooser = new FileChooser();
+		
 	}
 	
 	/**
 	 * Displays the fileChooser's save dialog when the user clicks the save Button.
 	 */
 	public File showSaveWindow() {
+		super.getPreviousScreen().setUneditable();
 		return fileChooser.showSaveDialog(SaveLoadStage);
 	}
 	
@@ -64,9 +71,18 @@ public class SaveLoad {
 	 * @see MainMenu
 	 */
 	public File showLoadWindow() {
+		super.getPreviousScreen().setUneditable();
 		return fileChooser.showOpenDialog(SaveLoadStage);
 	}
 	
+	@Override
+	public String toString() {
+		return "Save/Load";
+	}
 	
+	@Override
+	public void goToPreviousScreen() {
+		super.getPreviousScreen().setEditable();
+	}
 }
 

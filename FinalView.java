@@ -173,8 +173,19 @@ public void showFinalView(Stage stage) {
 	}
 	
 	@Override
-	public void show() {
+	public void setEditable() {
+		root.setDisable(false);
+	}
+	
+	@Override
+	public void showScreen() {
+		//should combine these into one show method
 		showFinalView(primaryStage);
+	}
+	
+	@Override
+	public String toString() {
+		return "Final View";
 	}
 
 }
