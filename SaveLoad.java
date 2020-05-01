@@ -49,15 +49,16 @@ public class SaveLoad extends Screen{
 	 * 
 	 */
 	public SaveLoad() {
-		SaveLoadStage = new Stage(StageStyle.UTILITY);
+		//SaveLoadStage = new Stage(StageStyle.UTILITY);
+		SaveLoadStage = new Stage();
 		//SaveLoadStage.setOpacity(0);
 		//SaveLoadStage.setAlwaysOnTop(true);
 		//blankStage = new Stage(StageStyle.UTILITY);
 		//blankStage.setScene(new Scene(new HBox(),View.primarySceneWidth,View.primarySceneHeight));
 		//blankStage.setFullScreen(true);
 		//blankStage.setOpacity(0);
-		SaveLoadStage.setWidth(View.primarySceneWidth);
-		SaveLoadStage.setHeight(View.primarySceneHeight);
+		//SaveLoadStage.setWidth(View.primarySceneWidth);
+		//SaveLoadStage.setHeight(View.primarySceneHeight);
 		//blankStage.setWidth(View.primarySceneWidth);
 		//blankStage.setHeight(View.primarySceneHeight);
 		
@@ -82,7 +83,7 @@ public class SaveLoad extends Screen{
 	public File showLoadWindow() {
 		super.getPreviousScreen().setUneditable();
 		//blankStage.show();
-		SaveLoadStage.show();
+		//SaveLoadStage.show();
 		return fileChooser.showOpenDialog(SaveLoadStage);
 	}
 	
