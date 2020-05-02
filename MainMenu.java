@@ -34,7 +34,7 @@ import javafx.stage.Stage;
  * @see Screen
  * @author Takiyah Price
  */
-//last edited: 5-1-20 2:29AM
+//last edited: 5-2-20 5:38PM
 
 public class MainMenu extends Screen {
 	private Button createNewGardenButton;
@@ -150,13 +150,13 @@ public class MainMenu extends Screen {
 	@Override
 	public void setUneditable() {
 		bPane.setDisable(true);
-		primaryStage.setOpacity(0.9);
+		primaryStage.setOpacity(View.nonEditableOpacity);
 	}
 	
 	@Override
 	public void setEditable() {
 		bPane.setDisable(false);
-		primaryStage.setOpacity(1);
+		primaryStage.setOpacity(View.EditableOpacity);
 	}
 }
 

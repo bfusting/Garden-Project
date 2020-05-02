@@ -1,7 +1,8 @@
+import java.io.File;
+
 import javafx.application.Application;
 import javafx.application.Platform;
-
-
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /*
@@ -28,7 +29,7 @@ import javafx.stage.Stage;
  * @author Takiyah Price 
  */
 
-//last edited: 5-2-20 3:07PM
+//last edited: 5-2-20 5:37PM
 
 
 public class View extends Application{
@@ -43,7 +44,6 @@ public class View extends Application{
 	private FinalView finalViewScreen;
 	private InfoTips infoTipsScreen;
 	private Preferences preferencesScreen;
-	private SaveLoad saveLoadScreen;
 	private SeasonView seasonViewScreen;
 	private Recommendations recommendationsScreen;
 	private Exit exitScreen;
@@ -52,7 +52,11 @@ public class View extends Application{
 	
 	static final int primarySceneWidth = 1200;
 	static final int primarySceneHeight = 800;
+	static final double nonEditableOpacity = 0.85;
+	static final double EditableOpacity = 1.0;
 	
+	
+	private FileChooser fileChooser;
 	
 	/**
 	 * Constructor for the View that creates the Controller and passes itself into the Controller's constructor. 
@@ -61,6 +65,7 @@ public class View extends Application{
 	 */
 	public View() {
 		con = new Controller(this);
+		fileChooser = new FileChooser();
 	}
 	
 	/**
@@ -100,7 +105,7 @@ public class View extends Application{
 		designGardenScreen = new DesignGarden(con,primaryStage);
 		designGardenScreen.setPreviousScreen(chooseTemplateScreen);
 		
-		saveLoadScreen = new SaveLoad();
+		
 		
 		finalViewScreen = new FinalView(con,primaryStage);
 		finalViewScreen.setPreviousScreen(designGardenScreen);
@@ -209,43 +214,28 @@ public class View extends Application{
 			//preferencesScreen.showScreen();
 			preferencesScreen.showPreferences(primaryStage);
 			break;
-		case "saveGardenScreen":
-			//exitScreen.closeExit();
-			//saveLoadScreen.setPreviousScreen(currentPrimaryScreen);
-			//currentPrimaryScreen = saveLoadScreen;
+		case "saveGarden":
 			
-			//con.saveGardenTemp(saveLoadScreen.showSaveWindow());
 			if (currentPrimaryScreen.equals(exitScreen)) {
 				exitScreen.closeScreen();
-				saveLoadScreen.setPreviousScreen(exitScreen.getPreviousScreen());
 				
-				
-				if (con.saveGardenTemp(saveLoadScreen.showSaveWindow(primaryStage))) {
+				if (con.saveGarden(showSaveLoad(true))) {
 					exit();
+				} else {
+					goToLastScreen();
 				}
-				/*else {
-					currentPrimaryScreen = exitScreen.getPreviousScreen();
-					
-				}*/
-			} else {
-				saveLoadScreen.setPreviousScreen(currentPrimaryScreen);
-				con.saveGardenTemp(saveLoadScreen.showSaveWindow(primaryStage));
-				//con.saveGardenTemp(saveLoadScreen.showSaveWindow());
-				//currentPrimaryScreen.setEditable();
+			} 
+			else {
+				con.saveGarden(showSaveLoad(true));
 			}
-			currentPrimaryScreen = saveLoadScreen;
-			goToLastScreen();
+			break;
 			
-			break;
-		case "loadGardenScreen":
-			saveLoadScreen.setPreviousScreen(currentPrimaryScreen);
-			currentPrimaryScreen = saveLoadScreen;
-			if (con.saveGardenTemp(saveLoadScreen.showLoadWindow(primaryStage))) {
+		case "loadGarden":
+			if (con.loadGarden(showSaveLoad(false))) {
 				show("designGardenScreen");
-			} else {
-				goToLastScreen();
 			}
 			break;
+			
 		case "seasonViewScreen":
 			seasonViewScreen.setPreviousScreen(currentPrimaryScreen);
 			//currentPrimaryScreen = seasonViewScreen;
@@ -273,6 +263,29 @@ public class View extends Application{
 		}
 		
 
+	}
+	
+	/**
+	 * Shows a save or load dialog depending on whether the user pressed a save or load button,
+	 * momentarily lowering the opacity of the primaryStage behind it to visually communicate
+	 * that it cannot be accessed while the dialog is open.
+	 * 
+	 * @param isSaving a boolean specifying whether to open a save or load dialog; true for a 
+	 * save dialog and false for an open dialog.
+	 * @return the File returned by the FileChooser; null if the user cancelled the process,
+	 * a new File if the user is saving a design and an existing File if the user is loading an design.
+	 */
+	public File showSaveLoad(boolean isSaving) {
+		primaryStage.setOpacity(nonEditableOpacity);
+		File file = null;
+		if (isSaving) {
+			file = fileChooser.showSaveDialog(primaryStage);
+		} else {
+			file = fileChooser.showOpenDialog(primaryStage);
+		}
+		
+		primaryStage.setOpacity(EditableOpacity);
+		return file;
 	}
 	
 	
