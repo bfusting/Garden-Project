@@ -51,10 +51,10 @@ class ModelTest {
 	 * Should update the index of the selection arrayList and only show the current
 	 * 6 items in the array
 	 */
-	void testUpdateSeclectionArr() {
+	void testupdateFlowerArr() {
 		Model m = new Model();
 		//checking if array is empty
-		assertTrue(m.getSelectionArr().isEmpty());
+		assertTrue(m.getFlowerArr().isEmpty());
 		
 		// It calls the AddOn default constructor no idea why fix in next push
 		AddOn a = new AddOn();
@@ -62,8 +62,8 @@ class ModelTest {
 		newSelection.add(a);
 		
 		// Calling method then comparing to newSelection ArrayList
-		m.updateSeclectionArr();
-		assertTrue(m.getSelectionArr().equals(newSelection));
+		m.updateFlowerArr();
+		assertTrue(m.getFlowerArr().equals(newSelection));
 	}
 
 	@Test
@@ -74,7 +74,7 @@ class ModelTest {
 	void testUpdateShrubArr() {
 		Model m = new Model();
 		//checking if array is empty
-		assertTrue(m.getSelectionArr().isEmpty());
+		assertTrue(m.getFlowerArr().isEmpty());
 		
 		// It calls the AddOn default constructor no idea why fix in next push
 		Plant milkWeed = new Plant("Milkweed", 1, "Common Milkweed", "Orange", 4, 2, 
@@ -83,8 +83,8 @@ class ModelTest {
 		newShrub.add(milkWeed);
 		
 		// Calling method then comparing to newSelection ArrayList
-		m.updateSeclectionArr();
-		assertTrue(m.getSelectionArr().equals(newShrub));
+		m.updateFlowerArr();
+		assertTrue(m.getFlowerArr().equals(newShrub));
 	}
 
 	@Test
@@ -95,7 +95,7 @@ class ModelTest {
 	void testUpdateTreeArr() {
 		Model m = new Model();
 		//checking if array is empty
-		assertTrue(m.getSelectionArr().isEmpty());
+		assertTrue(m.getFlowerArr().isEmpty());
 		
 		// It calls the AddOn default constructor no idea why fix in next push
 		Plant milkWeed = new Plant("Milkweed", 1, "Common Milkweed", "Orange", 4, 2, 
@@ -104,15 +104,15 @@ class ModelTest {
 		newTree.add(milkWeed);
 		
 		// Calling method then comparing to newSelection ArrayList
-		m.updateSeclectionArr();
-		assertTrue(m.getSelectionArr().equals(newTree));
+		m.updateFlowerArr();
+		assertTrue(m.getFlowerArr().equals(newTree));
 	}
 
 	@Test
 	void testUpdateUnderGrowthArr() {
 		Model m = new Model();
 		//checking if array is empty
-		assertTrue(m.getSelectionArr().isEmpty());
+		assertTrue(m.getFlowerArr().isEmpty());
 		
 		// It calls the AddOn default constructor no idea why fix in next push
 		Plant milkWeed = new Plant("Milkweed", 1, "Common Milkweed", "Orange", 4, 2, 
@@ -121,8 +121,8 @@ class ModelTest {
 		newUnderGrowth.add(milkWeed);
 		
 		// Calling method then comparing to newSelection ArrayList
-		m.updateSeclectionArr();
-		assertTrue(m.getSelectionArr().equals(newUnderGrowth));
+		m.updateFlowerArr();
+		assertTrue(m.getFlowerArr().equals(newUnderGrowth));
 	}
 
 }
