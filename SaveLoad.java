@@ -36,12 +36,12 @@ import javafx.stage.Window;
  *
  */
 
-//last edited: 5-1-20 9:57PM
+//last edited: 5-2-20 3:08PM
 
 public class SaveLoad extends Screen{
 	private FileChooser fileChooser;
-	private Stage SaveLoadStage;
-	private Stage blankStage;
+	private double nonEditableOpacity = 0.85;
+	private double EditableOpacity = 1.0;
 	
 	/**
 	 * Constructor for SaveLoad that creates the SaveLoad Stage that will be bound to
@@ -49,18 +49,6 @@ public class SaveLoad extends Screen{
 	 * 
 	 */
 	public SaveLoad() {
-		//SaveLoadStage = new Stage(StageStyle.UTILITY);
-		SaveLoadStage = new Stage();
-		//SaveLoadStage.setOpacity(0);
-		//SaveLoadStage.setAlwaysOnTop(true);
-		//blankStage = new Stage(StageStyle.UTILITY);
-		//blankStage.setScene(new Scene(new HBox(),View.primarySceneWidth,View.primarySceneHeight));
-		//blankStage.setFullScreen(true);
-		//blankStage.setOpacity(0);
-		//SaveLoadStage.setWidth(View.primarySceneWidth);
-		//SaveLoadStage.setHeight(View.primarySceneHeight);
-		//blankStage.setWidth(View.primarySceneWidth);
-		//blankStage.setHeight(View.primarySceneHeight);
 		
 		fileChooser = new FileChooser();
 		
@@ -69,9 +57,14 @@ public class SaveLoad extends Screen{
 	/**
 	 * Displays the fileChooser's save dialog when the user clicks the save Button.
 	 */
-	public File showSaveWindow() {
-		super.getPreviousScreen().setUneditable();
-		return fileChooser.showSaveDialog(SaveLoadStage);
+	public File showSaveWindow(Stage s) {
+		//super.getPreviousScreen().setUneditable();
+		Stage z = new Stage();
+		//s.setAlwaysOnTop(true);
+		s.setOpacity(nonEditableOpacity);
+		File file = fileChooser.showSaveDialog(s);
+		s.setOpacity(EditableOpacity);
+		return file;
 	}
 	
 	/**
@@ -80,11 +73,13 @@ public class SaveLoad extends Screen{
 	 * 
 	 * @see MainMenu
 	 */
-	public File showLoadWindow() {
-		super.getPreviousScreen().setUneditable();
-		//blankStage.show();
-		//SaveLoadStage.show();
-		return fileChooser.showOpenDialog(SaveLoadStage);
+	public File showLoadWindow(Stage s) {
+		//super.getPreviousScreen().setUneditable();
+		s.setOpacity(nonEditableOpacity);
+		
+		File file = fileChooser.showOpenDialog(s);
+		s.setOpacity(EditableOpacity);
+		return file;
 	}
 	
 	@Override
@@ -94,7 +89,7 @@ public class SaveLoad extends Screen{
 	
 	@Override
 	public void goToPreviousScreen() {
-		super.getPreviousScreen().setEditable();
+		//super.getPreviousScreen().setEditable();
 	}
 }
 

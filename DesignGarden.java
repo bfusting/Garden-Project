@@ -100,6 +100,9 @@ public class DesignGarden extends Screen{
 	
 	private Controller c;
 	
+	private double EditableOpacity = 1.0;
+	private double nonEditableOpacity = 0.85;
+	
 	public DesignGarden(Controller controller,Stage s) {
 		this.c = controller;
 		theStage = s;
@@ -466,13 +469,13 @@ public class DesignGarden extends Screen{
 	@Override
 	public void setUneditable() {
 		root.setDisable(true);
-		theStage.setOpacity(0.8);
+		theStage.setOpacity(nonEditableOpacity);
 	}
 	
 	@Override
 	public void setEditable() {
 		root.setDisable(false);
-		theStage.setOpacity(1);
+		theStage.setOpacity(EditableOpacity);
 	}
 
 	

@@ -28,11 +28,12 @@ import javafx.stage.Stage;
  * @author Takiyah Price 
  */
 
-//last edited: 5-1-20 2:28AM
+//last edited: 5-2-20 3:07PM
 
 
 public class View extends Application{
 	private Stage primaryStage;
+	
 	private Controller con;
 	
 	private MainMenu mainMenuScreen;
@@ -59,7 +60,6 @@ public class View extends Application{
 	 * @see Controller
 	 */
 	public View() {
-		
 		con = new Controller(this);
 	}
 	
@@ -142,93 +142,7 @@ public class View extends Application{
 		
 	}
 	
-	/*
-	public void showExitScreen() {
-		System.out.println("leaving so soon? :(");
-		exitScreen.setPreviousScreen(currentPrimaryScreen);
-		
-		
-		if (currentPrimaryScreen.equals(finalViewScreen)) {
-			exitScreen.showExitWithSave();
-		}
-		else {
-			exitScreen.showExitWithoutSave();
-		}
-		
-		currentPrimaryScreen = exitScreen;
-		
-	}
 	
-	
-	public void showMainMenuScreen() {
-		currentPrimaryScreen = mainMenuScreen;
-		mainMenuScreen.showMainMenu(primaryStage);
-		
-	}
-	
-	
-	public void showInstructionsScreen() {
-		instructionsScreen.showInstructions();
-	}
-	
-	
-	public void showChooseTemplateScreen() {
-		//can delete
-		chooseTemplateScreen.setPreviousScreen(currentPrimaryScreen);
-		currentPrimaryScreen = chooseTemplateScreen;
-		
-		chooseTemplateScreen.showChooseTemplate(primaryStage);
-		
-	}
-	
-	public void showDesignGardenScreen() {
-		designGardenScreen.setPreviousScreen(currentPrimaryScreen);
-		currentPrimaryScreen = designGardenScreen;
-		designGardenScreen.showDesignGarden(primaryStage);
-	}
-	
-	public File showSaveGardenScreen() {
-		//exitScreen.closeExit();
-		saveLoadScreen.setPreviousScreen(currentPrimaryScreen);
-		currentPrimaryScreen = saveLoadScreen;
-		
-		return saveLoadScreen.showSaveWindow();
-	}
-	
-	public File showLoadGardenScreen() {
-		saveLoadScreen.setPreviousScreen(currentPrimaryScreen);
-		currentPrimaryScreen = saveLoadScreen;
-		return saveLoadScreen.showLoadWindow();
-	}
-	
-	public void showFinalViewScreen() {
-		finalViewScreen.setPreviousScreen(currentPrimaryScreen);
-		currentPrimaryScreen = finalViewScreen;
-		finalViewScreen.showFinalView(primaryStage);
-	}
-	
-	public void showInfoTipsScreen() {
-		//should have two show methods with one that takes a Stage?
-		infoTipsScreen.showInfoTips(primaryStage);
-	}
-	
-	public void showPreferencesScreen() {
-		preferencesScreen.setPreviousScreen(currentPrimaryScreen);
-		currentPrimaryScreen = preferencesScreen;
-		preferencesScreen.showPreferences(primaryStage);
-	}
-	
-	public void showSeasonViewScreen() {
-		//can delete
-		//should take in a Stage
-		seasonViewScreen.ShowSeasonView();
-	}
-	
-	public void showRecommendationsScreen() {
-		recommendationsScreen.showRecommendations();
-	}
-	
-	*/
 	
 	/**
 	 * Returns the designGardenScreen, which handles the screen for editing the garden.
@@ -306,7 +220,7 @@ public class View extends Application{
 				saveLoadScreen.setPreviousScreen(exitScreen.getPreviousScreen());
 				
 				
-				if (con.saveGardenTemp(saveLoadScreen.showSaveWindow())) {
+				if (con.saveGardenTemp(saveLoadScreen.showSaveWindow(primaryStage))) {
 					exit();
 				}
 				/*else {
@@ -315,7 +229,7 @@ public class View extends Application{
 				}*/
 			} else {
 				saveLoadScreen.setPreviousScreen(currentPrimaryScreen);
-				con.saveGardenTemp(saveLoadScreen.showSaveWindow());
+				con.saveGardenTemp(saveLoadScreen.showSaveWindow(primaryStage));
 				//con.saveGardenTemp(saveLoadScreen.showSaveWindow());
 				//currentPrimaryScreen.setEditable();
 			}
@@ -326,7 +240,7 @@ public class View extends Application{
 		case "loadGardenScreen":
 			saveLoadScreen.setPreviousScreen(currentPrimaryScreen);
 			currentPrimaryScreen = saveLoadScreen;
-			if (con.saveGardenTemp(saveLoadScreen.showLoadWindow())) {
+			if (con.saveGardenTemp(saveLoadScreen.showLoadWindow(primaryStage))) {
 				show("designGardenScreen");
 			} else {
 				goToLastScreen();
