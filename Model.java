@@ -143,18 +143,12 @@ public class Model implements Serializable{
 		for(Plant p: allPlants) {
 			if(p.getPlantType().equals(flower)) {
 				if(flowerArr != null){
-				flowerArr.add(p);
-				}
-			}
-		}
-		//sorting by Water Req
-		flowerArr.sort(new SortbyWaterNeed());
-		//sorting by Light Reg
-		flowerArr.sort(new SortbyLightNeed());
-		//sorting by Bloolm Req
-		flowerArr.sort(new SortbyBloomTime());
-		//sorting by color
-		flowerArr.sort(new SortbyColor());
+					flowerArr.add(p);
+				}//if
+			}//if
+		}//foreach
+		
+		setFlowerArr(filterByPlantColor(userPrefColor,flower));
 	}
 	
 	
@@ -505,12 +499,29 @@ public class Model implements Serializable{
 			if(p.getColor().equals(color) && (p.getPlantType().equals(plantType))) {
 				prefColorSet.add(p);
 			}//if
-			else {
+			else if(p.getPlantType().equals(plantType)){
 				otherColorSet.add(p);
 			}//else
 		}//for
-		//ArrayList of 
+		
+		//ArrayList of right colors which prefColor hashset is added to first
 		ArrayList<Plant> rightColors = new ArrayList<Plant>();
+		rightColors.addAll(prefColorSet);
+		
+		// Sorting by BloomTime
+		rightColors.sort(new SortbyBloomTime());
+		
+		//ArrayList for other colors to be sorted together form the hashset
+		ArrayList<Plant> otherColors = new ArrayList<Plant>();
+		
+		//Sorting other list by water to bloom time
+		otherColors.sort(new SortbyWaterNeed());
+		otherColors.sort(new SortbyLightNeed());
+		otherColors.sort(new SortbyColor());
+		otherColors.sort(new SortbyBloomTime());
+		
+		// Adding rest of the colors onto the end
+		rightColors.addAll(otherColorSet);
 		
 		return rightColors;
 	}
