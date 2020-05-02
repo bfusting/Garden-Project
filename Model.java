@@ -30,7 +30,7 @@ import java.util.List;
 
 public class Model implements Serializable{
 	
-	// For some reason
+	// Holds all the data for our plants
 	
 	private GardenPlot userPlot;
 	private ArrayList<GardenPlot> altPlots;
@@ -40,6 +40,12 @@ public class Model implements Serializable{
 	private ArrayList<Plant> underGrowthArr;
 	private ArrayList<AddOn> sceneryArr;
 	private ArrayList<Plant> allPlants;
+	
+	// Prefs given by user
+	private String userPrefColor;
+	private Seasons userPrefSeason;
+	private int userPrefLight;
+	private int userPrefWater;
 	
 	
 	/**
@@ -79,6 +85,11 @@ public class Model implements Serializable{
 		sceneryArr = new ArrayList<AddOn>();
 		
 		allPlants = new ArrayList<Plant>();
+		
+		userPrefColor = "";
+		userPrefSeason = null;
+		userPrefLight = 0;
+		userPrefWater = 0;
 		
 	}//Model()
 	
@@ -315,9 +326,10 @@ public class Model implements Serializable{
 	 * @return allPlants is an arrayList holding all the plants in the program
 	 */
 	//public ArrayList<Plant> getAllPlants(){
-	public Collection<Plant> getAllPlants(){
+	public ArrayList<Plant> getAllPlants(){
 		return allPlants;
 	}
+	
 	
 	////////////////////////////		SETTERS			////////////////////////////
 	
@@ -328,8 +340,8 @@ public class Model implements Serializable{
 	 * 
 	 * @param a new ArrayList used to set selectionArr
 	 */
-	public void setSelectionArr(ArrayList<AddOn> a) {
-		System.out.println("Setter Info Here");
+	public void setFlowerArr(ArrayList<Plant> a) {
+		flowerArr = a;
 	}
 	
 	/**
@@ -340,7 +352,7 @@ public class Model implements Serializable{
 	 * @param a new ArrayList used to set ShrubArr
 	 */
 	public void setShrubArr(ArrayList<Plant> a) {
-		System.out.println("Setter Info Here");
+		shrubArr = a;
 	}
 	
 	/**
@@ -351,7 +363,7 @@ public class Model implements Serializable{
 	 * @param a new ArrayList used to set TreeArr
 	 */
 	public void setTreeArr(ArrayList<Plant> a) {
-		System.out.println("Setter Info Here");
+		treeArr = a;
 	}
 	
 	/**
@@ -362,7 +374,7 @@ public class Model implements Serializable{
 	 * @param a new ArrayList used to set UnderGrowthArr
 	 */
 	public void setUnderGrowthArr(ArrayList<Plant> a) {
-		System.out.println("Setter Info Here");
+		underGrowthArr = a;
 	}
 	
 	/**
