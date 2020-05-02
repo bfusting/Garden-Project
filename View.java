@@ -1,12 +1,8 @@
 import java.io.File;
-import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /*
@@ -24,19 +20,21 @@ import javafx.stage.Stage;
 
 /**
  * 
- * General class for handling the visual components of the program. Contains 
- * the Buttons that are used on multiple screens and manages the primary
- * screen that the user is viewing at any point as well as a secondary window 
- * for saving before quitting to be shown when the user presses the exit button.
+ * General class for handling the navigation through the program. Contains 
+ * each Screen that will be shown to the user and defines how they interact by calling
+ * each Screen's methods accordingly.
+ * 
+ * @see Screen
  * 
  * @author Takiyah Price 
  */
 
-//last edited: 4-29-20 2:21PM
+//last edited: 5-2-20 5:37PM
 
 
 public class View extends Application{
 	private Stage primaryStage;
+	
 	private Controller con;
 	
 	private MainMenu mainMenuScreen;
@@ -46,23 +44,28 @@ public class View extends Application{
 	private FinalView finalViewScreen;
 	private InfoTips infoTipsScreen;
 	private Preferences preferencesScreen;
-	private SaveLoad saveLoadScreen;
 	private SeasonView seasonViewScreen;
 	private Recommendations recommendationsScreen;
 	private Exit exitScreen;
 	
 	private Screen currentPrimaryScreen;
-		
 	
+	static final int primarySceneWidth = 1200;
+	static final int primarySceneHeight = 800;
+	static final double nonEditableOpacity = 0.85;
+	static final double EditableOpacity = 1.0;
+	
+	
+	private FileChooser fileChooser;
 	
 	/**
-	 * Constructor for the View that creates the instructions, exit, back and main menu Buttons
-	 * and sets primaryStage to the Stage created at the start of the program. 
+	 * Constructor for the View that creates the Controller and passes itself into the Controller's constructor. 
 	 * 
+	 * @see Controller
 	 */
 	public View() {
-	
 		con = new Controller(this);
+		fileChooser = new FileChooser();
 	}
 	
 	/**
@@ -81,19 +84,16 @@ public class View extends Application{
 	
 	@Override
 	/**
-	 * Takes in parameter theStage and creates a new scene
-	 * for the main menu and sets the stage with that scene
-	 * and then shows the stage.
+	 * Takes in parameter theStage and uses it to initialize its reference to the primary Stage
 	 * <p>
 	 * Start is used to for the start of the program where it starts with the main menu
 	 * 
-	 * @param theStage primary stage that is the mainmenu
+	 * @param theStage primary stage which will be set with mainMenuScreen's scene
 	 */
 	public void start(Stage theStage) {
 		primaryStage = theStage;
 		
 		mainMenuScreen = new MainMenu(con,primaryStage);
-		//mainMenuScreen.setPreviousScreen(mainMenuScreen);
 		
 		instructionsScreen = new Instructions();
 	
@@ -105,7 +105,7 @@ public class View extends Application{
 		designGardenScreen = new DesignGarden(con,primaryStage);
 		designGardenScreen.setPreviousScreen(chooseTemplateScreen);
 		
-		saveLoadScreen = new SaveLoad();
+		
 		
 		finalViewScreen = new FinalView(con,primaryStage);
 		finalViewScreen.setPreviousScreen(designGardenScreen);
@@ -128,12 +128,9 @@ public class View extends Application{
 		
 		
 		System.out.println("Set the stage for el Main Menu");
-		mainMenuScreen.showMainMenu(primaryStage);
+		mainMenuScreen.showScreen();
 		primaryStage.show();
 		
-		/*exitScreen.setPreviousScreen(currentPrimaryScreen);
-		exitScreen.showExitWithSave();
-		currentPrimaryScreen = exitScreen;*/
 		
 		
 		
@@ -141,131 +138,31 @@ public class View extends Application{
 	
 	
 	/**
-	 * Creates a window to ask if the user would like to save before exiting by
-	 * creating a new Stage with a Scene containing the save Button and a Button for closing
-	 * the program, then sets the new Stage to exitStage and makes it visible to the user.
-	 * 
-	 * @see View#exitStage
-	 * @see View#exitScene
-	 * @see View#saveButton
+	 * Closes the application, meaning all windows are closed.
 	 */
 	public void exit() {
 		System.out.println("Close all the windows");
-		//primaryStage.close();
-		//exitScreen.closeExit();
-		//instructionsScreen.closeInstructions();
-		//instructionsScreen.closeScreen();
+		
 		Platform.exit();
 		
 	}
 	
-	/**
-	 * Closes all open windows after the user saves or quits without saving.
-	 */
-	public void showExitScreen() {
-		System.out.println("leaving so soon? :(");
-		exitScreen.setPreviousScreen(currentPrimaryScreen);
-		
-		
-		if (currentPrimaryScreen.equals(finalViewScreen)) {
-			exitScreen.showExitWithSave();
-		}
-		else {
-			exitScreen.showExitWithoutSave();
-		}
-		
-		currentPrimaryScreen = exitScreen;
-		
-	}
+	
 	
 	/**
-	 * Makes the MainMenu Stage visible to the user.
+	 * Returns the designGardenScreen, which handles the screen for editing the garden.
 	 * 
+	 * @return the Screen designGardenScreen, which handles the Scene and visual components of the screen
+	 * where the user can edit their garden
 	 */
-	public void showMainMenuScreen() {
-		currentPrimaryScreen = mainMenuScreen;
-		mainMenuScreen.showMainMenu(primaryStage);
-		
-	}
-	
-	/**
-	 * Makes the instructions screen visible to the user. Will appear on the main screen or
-	 * in a separate smaller window depending on whether the primary Stage or a separate Stage
-	 * has been passed in.
-	 * 
-	 */
-	public void showInstructionsScreen() {
-		instructionsScreen.showInstructions();
-	}
-	
-	/**
-	 * Sets the given Stage with the chooseTemplate Scene containing the Buttons for choosing
-	 * the garden shape and makes it visible to the user.
-	 * 
-	 * 
-	 * 
-	 * @see ChooseTemplate#chooseTemplateScene
-	 */
-	public void showChooseTemplateScreen() {
-		//can delete
-		chooseTemplateScreen.setPreviousScreen(currentPrimaryScreen);
-		currentPrimaryScreen = chooseTemplateScreen;
-		
-		chooseTemplateScreen.showChooseTemplate(primaryStage);
-		
-	}
-	
-	public void showDesignGardenScreen() {
-		designGardenScreen.setPreviousScreen(currentPrimaryScreen);
-		currentPrimaryScreen = designGardenScreen;
-		designGardenScreen.showDesignGarden(primaryStage);
-	}
-	
-	public File showSaveGardenScreen() {
-		//exitScreen.closeExit();
-		saveLoadScreen.setPreviousScreen(currentPrimaryScreen);
-		currentPrimaryScreen = saveLoadScreen;
-		
-		return saveLoadScreen.showSaveWindow();
-	}
-	
-	public File showLoadGardenScreen() {
-		saveLoadScreen.setPreviousScreen(currentPrimaryScreen);
-		currentPrimaryScreen = saveLoadScreen;
-		return saveLoadScreen.showLoadWindow();
-	}
-	
-	public void showFinalViewScreen() {
-		finalViewScreen.setPreviousScreen(currentPrimaryScreen);
-		currentPrimaryScreen = finalViewScreen;
-		finalViewScreen.showFinalView(primaryStage);
-	}
-	
-	public void showInfoTipsScreen() {
-		//should have two show methods with one that takes a Stage?
-		infoTipsScreen.showInfoTips(primaryStage);
-	}
-	
-	public void showPreferencesScreen() {
-		preferencesScreen.setPreviousScreen(currentPrimaryScreen);
-		currentPrimaryScreen = preferencesScreen;
-		preferencesScreen.showPreferences(primaryStage);
-	}
-	
-	public void showSeasonViewScreen() {
-		//can delete
-		//should take in a Stage
-		seasonViewScreen.ShowSeasonView();
-	}
-	
-	public void showRecommendationsScreen() {
-		recommendationsScreen.showRecommendations();
-	}
-	
 	public DesignGarden getDesignGardenScreen() {
 		return designGardenScreen;
 	}
 	
+	/**
+	 * Goes to the last Screen and sets currentPrimaryScreen back one Screen to reflect the change.
+	 *
+	 */
 	public void goToLastScreen() {
 		System.out.println("Was showing: "+currentPrimaryScreen);
 		currentPrimaryScreen.goToPreviousScreen();
@@ -317,43 +214,28 @@ public class View extends Application{
 			//preferencesScreen.showScreen();
 			preferencesScreen.showPreferences(primaryStage);
 			break;
-		case "saveGardenScreen":
-			//exitScreen.closeExit();
-			//saveLoadScreen.setPreviousScreen(currentPrimaryScreen);
-			//currentPrimaryScreen = saveLoadScreen;
+		case "saveGarden":
 			
-			//con.saveGardenTemp(saveLoadScreen.showSaveWindow());
 			if (currentPrimaryScreen.equals(exitScreen)) {
 				exitScreen.closeScreen();
-				saveLoadScreen.setPreviousScreen(exitScreen.getPreviousScreen());
 				
-				
-				if (con.saveGardenTemp(saveLoadScreen.showSaveWindow())) {
+				if (con.saveGarden(showSaveLoad(true))) {
 					exit();
+				} else {
+					goToLastScreen();
 				}
-				/*else {
-					currentPrimaryScreen = exitScreen.getPreviousScreen();
-					
-				}*/
-			} else {
-				saveLoadScreen.setPreviousScreen(currentPrimaryScreen);
-				con.saveGardenTemp(saveLoadScreen.showSaveWindow());
-				//con.saveGardenTemp(saveLoadScreen.showSaveWindow());
-				//currentPrimaryScreen.setEditable();
+			} 
+			else {
+				con.saveGarden(showSaveLoad(true));
 			}
-			currentPrimaryScreen = saveLoadScreen;
-			goToLastScreen();
+			break;
 			
-			break;
-		case "loadGardenScreen":
-			saveLoadScreen.setPreviousScreen(currentPrimaryScreen);
-			currentPrimaryScreen = saveLoadScreen;
-			if (con.saveGardenTemp(saveLoadScreen.showLoadWindow())) {
+		case "loadGarden":
+			if (con.loadGarden(showSaveLoad(false))) {
 				show("designGardenScreen");
-			} else {
-				goToLastScreen();
 			}
 			break;
+			
 		case "seasonViewScreen":
 			seasonViewScreen.setPreviousScreen(currentPrimaryScreen);
 			//currentPrimaryScreen = seasonViewScreen;
@@ -381,6 +263,29 @@ public class View extends Application{
 		}
 		
 
+	}
+	
+	/**
+	 * Shows a save or load dialog depending on whether the user pressed a save or load button,
+	 * momentarily lowering the opacity of the primaryStage behind it to visually communicate
+	 * that it cannot be accessed while the dialog is open.
+	 * 
+	 * @param isSaving a boolean specifying whether to open a save or load dialog; true for a 
+	 * save dialog and false for an open dialog.
+	 * @return the File returned by the FileChooser; null if the user cancelled the process,
+	 * a new File if the user is saving a design and an existing File if the user is loading an design.
+	 */
+	public File showSaveLoad(boolean isSaving) {
+		primaryStage.setOpacity(nonEditableOpacity);
+		File file = null;
+		if (isSaving) {
+			file = fileChooser.showSaveDialog(primaryStage);
+		} else {
+			file = fileChooser.showOpenDialog(primaryStage);
+		}
+		
+		primaryStage.setOpacity(EditableOpacity);
+		return file;
 	}
 	
 	
