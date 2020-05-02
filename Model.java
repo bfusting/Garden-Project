@@ -1,5 +1,9 @@
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
@@ -26,14 +30,22 @@ import java.util.ArrayList;
 
 public class Model implements Serializable{
 	
+	// Holds all the data for our plants
+	
 	private GardenPlot userPlot;
 	private ArrayList<GardenPlot> altPlots;
-	private ArrayList<Plant> selectionArr;
+	private ArrayList<Plant> flowerArr;
 	private ArrayList<Plant> shrubArr;
 	private ArrayList<Plant> treeArr;
 	private ArrayList<Plant> underGrowthArr;
 	private ArrayList<AddOn> sceneryArr;
 	private ArrayList<Plant> allPlants;
+	
+	// Prefs given by user
+	private String userPrefColor;
+	private Seasons userPrefSeason;
+	private int userPrefLight;
+	private int userPrefWater;
 	
 	
 	/**
@@ -44,7 +56,7 @@ public class Model implements Serializable{
 	 */
 	public void Model() {
 		userPlot = new GardenPlot();
-		// Creating temp Plants for Bradley to use in methods
+		// Creating temp Plants for Bradley to use in methods, remove later
 		
 		Plant purpleConeFlower = new Plant("Purple Cone Flower", 1, "cone flower", 
 				"purple", 0, 0, 0, 0, Seasons.AUTUMN, false, null, null, null, null, null);
@@ -58,8 +70,8 @@ public class Model implements Serializable{
 		Plant milkWeed = new Plant("Milkweed", 1, "Common Milkweed", "Orange", 4, 2, 
 				2.00, 0, Seasons.SUMMER, false, null, null, "UnderGrowth", null, null);
 		
-		selectionArr = new ArrayList<Plant>();
-		selectionArr.add(purpleConeFlower);
+		flowerArr = new ArrayList<Plant>();
+		flowerArr.add(purpleConeFlower);
 		
 		shrubArr = new ArrayList<Plant>();
 		shrubArr.add(sweetFern);
@@ -74,6 +86,11 @@ public class Model implements Serializable{
 		
 		allPlants = new ArrayList<Plant>();
 		
+		userPrefColor = "";
+		userPrefSeason = null;
+		userPrefLight = 0;
+		userPrefWater = 0;
+		
 	}//Model()
 	
 	/**
@@ -84,8 +101,6 @@ public class Model implements Serializable{
 	 */
 	public void createGardenPlotAlts() {
 		System.out.println("Creating alternate gardens for final view");
-		
-	
 		
 		GardenPlot gP1 = new GardenPlot();
 		gP1.setLayout(userPlot.getLayout());
@@ -115,8 +130,24 @@ public class Model implements Serializable{
 	 * items in the arrayList
 	 * 
 	 */
-	public void updateSeclectionArr() {
-		System.out.println("Fill after preferences, more desirable in front");
+	public void updateFlowerArr() {
+		allPlants.sort(new SortbyType());
+		// Traaverses through sorted list and addeds all shrubs
+		for(Plant p: allPlants) {
+			if(p.getPlantType().equals("Flower")) {
+				if(flowerArr != null){
+				flowerArr.add(p);
+				}
+			}
+		}
+		//sorting by Water Req
+		flowerArr.sort(new SortbyWaterNeed());
+		//sorting by Light Reg
+		flowerArr.sort(new SortbyLightNeed());
+		//sorting by Bloolm Req
+		flowerArr.sort(new SortbyBloomTime());
+		//sorting by color
+		flowerArr.sort(new SortbyColor());
 	}
 	
 	
@@ -126,7 +157,23 @@ public class Model implements Serializable{
 	 * items in the arrayList
 	 */
 	public void updateShrubArr() {
-		System.out.println("Fill after preferences, more desirable in front");
+		allPlants.sort(new SortbyType());
+		// Traaverses through sorted list and addeds all shrubs
+		for(Plant p: allPlants) {
+			if(p.getPlantType().equals("Shrub")) {
+				if(shrubArr != null){
+				shrubArr.add(p);
+				}
+			}
+		}
+		//sorting by Water Req
+		shrubArr.sort(new SortbyWaterNeed());
+		//sorting by Light Reg
+		shrubArr.sort(new SortbyLightNeed());
+		//sorting by Bloolm Req
+		shrubArr.sort(new SortbyBloomTime());
+		//sorting by color
+		shrubArr.sort(new SortbyColor());
 	}
 	
 	/**
@@ -135,7 +182,23 @@ public class Model implements Serializable{
 	 * items in the arrayList
 	 */
 	public void updateTreeArr() {
-		System.out.println("Fill after preferences, more desirable in front");
+		allPlants.sort(new SortbyType());
+		// Traaverses through sorted list and addeds all shrubs
+		for(Plant p: allPlants) {
+			if(p.getPlantType().equals("Tree")) {
+				if(treeArr != null){
+				treeArr.add(p);
+				}
+			}
+		}
+		//sorting by Water Req
+		treeArr.sort(new SortbyWaterNeed());
+		//sorting by Light Reg
+		treeArr.sort(new SortbyLightNeed());
+		//sorting by Bloolm Req
+		treeArr.sort(new SortbyBloomTime());
+		//sorting by color
+		treeArr.sort(new SortbyColor());
 	}
 	
 	/**
@@ -144,7 +207,23 @@ public class Model implements Serializable{
 	 * items in the arrayList
 	 */
 	public void updateUnderGrowthArr() {
-		System.out.println("Fill after preferences, more desirable in front");
+		allPlants.sort(new SortbyType());
+		// Traaverses through sorted list and addeds all shrubs
+		for(Plant p: allPlants) {
+			if(p.getPlantType().equals("UnderGrowth")) {
+				if(underGrowthArr != null){
+				underGrowthArr.add(p);
+				}
+			}
+		}
+		//sorting by Water Req
+		underGrowthArr.sort(new SortbyWaterNeed());
+		//sorting by Light Reg
+		underGrowthArr.sort(new SortbyLightNeed());
+		//sorting by Bloolm Req
+		underGrowthArr.sort(new SortbyBloomTime());
+		//sorting by color
+		underGrowthArr.sort(new SortbyColor());
 	}
 	
 	/**
@@ -153,7 +232,7 @@ public class Model implements Serializable{
 	 * items in the arrayList
 	 */
 	public void updateSceneryArr() {
-		System.out.println("Fill after preferences, more desirable in front");
+		// make it take in all the stuff that isn't plants
 	}
 	
 	
@@ -171,14 +250,14 @@ public class Model implements Serializable{
 	}
 	
 	/**
-	 *Returns a arrayList of AddOns
+	 *Returns a arrayList of Plants
 	 *<p>
-	 *getter for SelectionArray List
+	 *getter for flowerArr List
 	 *
-	 * @return selectionArr Addon List of what the user is currently seeing
+	 * @return flowerArr Plnat List of flowers 
 	 */
-	public ArrayList<Plant> getSelectionArr() {
-		return selectionArr;
+	public ArrayList<Plant> getFlowerArr() {
+		return flowerArr;
 	}
 	
 	/**
@@ -246,9 +325,11 @@ public class Model implements Serializable{
 	 * 
 	 * @return allPlants is an arrayList holding all the plants in the program
 	 */
+	//public ArrayList<Plant> getAllPlants(){
 	public ArrayList<Plant> getAllPlants(){
 		return allPlants;
 	}
+	
 	
 	////////////////////////////		SETTERS			////////////////////////////
 	
@@ -259,8 +340,8 @@ public class Model implements Serializable{
 	 * 
 	 * @param a new ArrayList used to set selectionArr
 	 */
-	public void setSelectionArr(ArrayList<AddOn> a) {
-		System.out.println("Setter Info Here");
+	public void setFlowerArr(ArrayList<Plant> a) {
+		flowerArr = a;
 	}
 	
 	/**
@@ -271,7 +352,7 @@ public class Model implements Serializable{
 	 * @param a new ArrayList used to set ShrubArr
 	 */
 	public void setShrubArr(ArrayList<Plant> a) {
-		System.out.println("Setter Info Here");
+		shrubArr = a;
 	}
 	
 	/**
@@ -282,7 +363,7 @@ public class Model implements Serializable{
 	 * @param a new ArrayList used to set TreeArr
 	 */
 	public void setTreeArr(ArrayList<Plant> a) {
-		System.out.println("Setter Info Here");
+		treeArr = a;
 	}
 	
 	/**
@@ -293,7 +374,7 @@ public class Model implements Serializable{
 	 * @param a new ArrayList used to set UnderGrowthArr
 	 */
 	public void setUnderGrowthArr(ArrayList<Plant> a) {
-		System.out.println("Setter Info Here");
+		underGrowthArr = a;
 	}
 	
 	/**
@@ -317,4 +398,91 @@ public class Model implements Serializable{
 	public void setSceneryArr(ArrayList<AddOn> a) {
 		sceneryArr = a;
 	}	
+	
+	//////////////////// Comparators ///////////////////////////////////
+	
+	/**
+	 * Comparator class used to sort a collections of Plants by their type
+	 * attribute of their type by using the Comparator interface
+	 * 
+	 * @author Malachi Parks
+	 *
+	 */
+	class SortbyType implements Comparator<Plant> 
+	{ 
+	    // Used for sorting in ascending order of 
+	    // plant type ("Shrub", "UnderGrowth", "Tree", ...)
+	    public int compare(Plant a, Plant b) 
+	    { 
+	        return a.getPlantType().compareTo(b.getPlantType()); 
+	    } 
+	} 
+	
+	/**
+	 * Comparator class used to sort a collections of Plants by their 
+	 * attribute of their waterRequirement by using the Comparator interface
+	 * 
+	 * @author Malachi Parks
+	 *
+	 */
+	class SortbyWaterNeed implements Comparator<Plant> 
+	{ 
+	    // Used for sorting water requirement to live
+		// in ascending order
+	    public int compare(Plant a, Plant b) 
+	    { 
+	        return a.getWaterNeed() - b.getWaterNeed(); 
+	    } 
+	} 
+	
+	/**
+	 * Comparator class used to sort a collections of Plants by their 
+	 * attribute of their lightReq by using the Comparator interface
+	 * 
+	 * @author Malachi Parks
+	 *
+	 */
+	class SortbyLightNeed implements Comparator<Plant> 
+	{ 
+	    // Used for sorting Light requirement to live
+		// in ascending order
+	    public int compare(Plant a, Plant b) 
+	    { 
+	        return a.getSunLightNeed() - b.getSunLightNeed(); 
+	    } 
+	} 
+	  
+	/**
+	 * Comparator class used to sort a collections of Plants by their 
+	 * attribute of their Color by using the Comparator interface
+	 * 
+	 * @author Malachi Parks
+	 *
+	 */
+	class SortbyColor implements Comparator<Plant> 
+	{ 
+	    // Used for sorting Color requirement to live
+		// in lexical order
+	    public int compare(Plant a, Plant b) 
+	    { 
+	        return a.getColor().compareTo(b.getColor()); 
+	    } 
+	} 
+	
+	/**
+	 * Comparator class used to sort a collections of Plants by their 
+	 * attribute of their bloomTime by using the Comparator interface
+	 * 
+	 * @author Malachi Parks
+	 *
+	 */
+	class SortbyBloomTime implements Comparator<Plant> 
+	{ 
+	    // Used for sorting BloomTime where the enum
+		// is based off of string values
+	    public int compare(Plant a, Plant b) 
+	    { 
+	        return a.getBloomTime().compareTo(b.getBloomTime()); 
+	    } 
+	}
 }//Model
