@@ -2,6 +2,7 @@ import java.io.File;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -54,6 +55,7 @@ public class View extends Application{
 	static final int primarySceneHeight = 800;
 	static final double nonEditableOpacity = 0.85;
 	static final double EditableOpacity = 1.0;
+	static final Color borderColor = Color.color(0.082, 0.533, 0.478);
 	
 	
 	private FileChooser fileChooser;
@@ -129,6 +131,7 @@ public class View extends Application{
 		
 		System.out.println("Set the stage for el Main Menu");
 		mainMenuScreen.showScreen();
+		//chooseTemplateScreen.showScreen();
 		primaryStage.show();
 		
 		
