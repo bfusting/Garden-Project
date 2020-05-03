@@ -22,6 +22,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
@@ -63,6 +64,7 @@ public class ChooseTemplate extends Screen {
 	private Button chooseTriangle;
 	private Button chooseDesign;
 	private Button backButton;
+	private Controller con;
 	
 	/**
 	 * Constructor for ChooseTemplate that creates Buttons for choosing the shape of the 
@@ -71,6 +73,7 @@ public class ChooseTemplate extends Screen {
 	 * 
 	 */
 	public ChooseTemplate(Controller c,Stage s) {
+		con = c;
 		theStage = s;
 		//Label label = new Label("choose a template");
 		//Button button = new Button("Exit");
@@ -168,22 +171,23 @@ public class ChooseTemplate extends Screen {
 	
 	public void drawScene() {
 		GridPane grid = new GridPane();
-		grid.setGridLinesVisible(true);
+		grid.setGridLinesVisible(false);
 		grid.setHgap(50);
 		grid.setVgap(50);
 		ColumnConstraints colcon = new ColumnConstraints(375);
-		grid.getColumnConstraints().addAll(colcon,colcon);
+		grid.getColumnConstraints().addAll(colcon,colcon,new ColumnConstraints(215));
 		RowConstraints rowcon = new RowConstraints(275);
 		grid.getRowConstraints().addAll(new RowConstraints(50), rowcon,rowcon);
+		
 		
 		Circle iCircle = new Circle(12,Color.web("#4e824a"));
 		iCircle.setCenterX(165);
 		iCircle.setCenterY(70);
 		iCircle.setStroke(Color.web("#2c471a"));
 		iCircle.setStrokeWidth(2);
-		//iCircle.setStroke(value);
 		
-		//Label label = new Label("Please select a shape for your garden.");
+		
+		
 		Text text = new Text("Please select a shape for the layout of your garden.");
 		text.setFont(Font.font("Verdana",FontPosture.ITALIC,20));
 		text.setTextAlignment(TextAlignment.CENTER);
@@ -195,24 +199,24 @@ public class ChooseTemplate extends Screen {
 		HBox squareBox = new HBox();
 		//squareBox.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 		squareBox.setAlignment(Pos.CENTER);
-		squareBox.setPadding(new Insets(50));
+		squareBox.setPadding(new Insets(39));
 		Border choiceBoxBorder = new Border(new BorderStroke(Color.web("#4e824a"),BorderStrokeStyle.DASHED,CornerRadii.EMPTY, new BorderWidths(2)));
 		
 		squareBox.setBorder(choiceBoxBorder);
 		HBox circleBox = new HBox();
 		circleBox.setAlignment(Pos.CENTER);
 		circleBox.setBorder(choiceBoxBorder);
-		circleBox.setPadding(new Insets(50));
+		circleBox.setPadding(new Insets(39));
 		HBox triangleBox = new HBox();
 		triangleBox.setAlignment(Pos.CENTER);
-		triangleBox.setPadding(new Insets(50));
+		triangleBox.setPadding(new Insets(39));
 		triangleBox.setBorder(choiceBoxBorder);
 		Polygon triangle = new Polygon(100.0, 0.0, 0.0,200.0, 200.0,200.0);
 		triangle.setFill(Color.web("#28461b"));
-		//triangle.setScaleX(1.2);
-		//triangle.setScaleY(1.2);
 		
-		///
+		
+		//this changes the background and borders of the choice box
+		
 		Background b = new Background(new BackgroundImage(new Image("img/v850-sasi-13.jpg"),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT));
 		triangleBox.setBackground(b);
 		triangle.setStroke(Color.BLACK);
@@ -225,7 +229,7 @@ public class ChooseTemplate extends Screen {
 		HBox customBox = new HBox();
 		customBox.setAlignment(Pos.CENTER);
 		customBox.setBorder(choiceBoxBorder);
-		customBox.setPadding(new Insets(50));
+		customBox.setPadding(new Insets(39));
 		customBox.getChildren().add(new Rectangle(200,200));
 		
 		squareBox.getChildren().add(new Rectangle(200,200,Color.web("#28461b")));
@@ -239,26 +243,47 @@ public class ChooseTemplate extends Screen {
 		//grid.setBorder(new Border(new BorderStroke(Color.color(.101,.254,.203),BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(20))));
 		grid.setBorder(new Border(new BorderStroke(Color.web("#4e824a"),BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(20))));
 		
-		HBox buttonBox = new HBox(10);
+		VBox buttonBox = new VBox(30);
 		//buttonBox.setPadding(new Insets(10));
-		buttonBox.setAlignment(Pos.CENTER_LEFT);
+		buttonBox.setAlignment(Pos.CENTER_RIGHT);
+		
 		
 		Button mainMenu = new Button("Main Menu");
-		mainMenu.setMinSize(150, 40);
+		mainMenu.setFont(Font.font("Verdana",15));
+		mainMenu.setMinSize(170, 65);
+		
+		//mainMenu.setBorder(new Border(new BorderStroke(Color.web("#4e824a"),BorderStrokeStyle.SOLID,CornerRadii.EMPTY, new BorderWidths(2))));
+		
 		Button exit = new Button("Exit");
-		exit.setMinSize(150, 40);
+		exit.setFont(Font.font("Verdana",15));
+		exit.setMinSize(170, 65);
+		exit.setOnMouseClicked(con.getExit());
+		
 		Button instructions = new Button("Instructions");
-		instructions.setMinSize(150, 40);
+		instructions.setFont(Font.font("Verdana",15));
+		instructions.setMinSize(170, 65);
+		instructions.setOnMouseClicked(con.getInstructionShow());
 		
 		Button next = new Button("To Preferences");
+		next.setFont(Font.font("Verdana",FontWeight.BOLD,FontPosture.ITALIC,20.0));
+		next.setMinSize(180, 70);
 		
 		buttonBox.getChildren().addAll(mainMenu,exit,instructions);
+		
+		 AnchorPane buttonAP = new AnchorPane();
+		 AnchorPane.setRightAnchor(buttonBox,0.0);
+		 AnchorPane.setRightAnchor(next,0.0);
+		 AnchorPane.setBottomAnchor(next, 20.0);
+		 
+		 buttonAP.getChildren().addAll(buttonBox,next);
+		 //buttonAP.setBackground(new Background(new BackgroundFill(Color.BLUE,CornerRadii.EMPTY,Insets.EMPTY)));
 		
 		GridPane.setConstraints(squareBox,0,1);
 		GridPane.setConstraints(circleBox,1,1);
 		GridPane.setConstraints(triangleBox,0,2);
 		GridPane.setConstraints(customBox,1,2);
-		//GridPane.setConstraints(text,0,0);
+		//GridPane.setConstraints(buttonBox,2,0);
+		grid.add(buttonAP, 2, 1,1,2);
 		
 		grid.add(labelBox,0,0,2,1);
 		//grid.setHalignment(child, value);
