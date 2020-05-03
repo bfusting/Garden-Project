@@ -20,6 +20,10 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.SVGPath;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.scene.layout.*;
 /*
@@ -35,7 +39,7 @@ import javafx.scene.layout.*;
 *  
 */
 
-//Last edited 4-28-20 4:07PM
+//Last edited 5-3-20 1:10PM
 
 /**
  * 
@@ -169,34 +173,71 @@ public class ChooseTemplate extends Screen {
 		grid.setVgap(50);
 		ColumnConstraints colcon = new ColumnConstraints(375);
 		grid.getColumnConstraints().addAll(colcon,colcon);
-		grid.getRowConstraints().add(new RowConstraints(300));
+		RowConstraints rowcon = new RowConstraints(275);
+		grid.getRowConstraints().addAll(new RowConstraints(50), rowcon,rowcon);
+		
+		Circle iCircle = new Circle(12,Color.web("#4e824a"));
+		iCircle.setCenterX(165);
+		iCircle.setCenterY(70);
+		iCircle.setStroke(Color.web("#2c471a"));
+		iCircle.setStrokeWidth(2);
+		//iCircle.setStroke(value);
+		
+		//Label label = new Label("Please select a shape for your garden.");
+		Text text = new Text("Please select a shape for the layout of your garden.");
+		text.setFont(Font.font("Verdana",FontPosture.ITALIC,20));
+		text.setTextAlignment(TextAlignment.CENTER);
+		HBox labelBox = new HBox(text);
+		
+		
+		labelBox.setAlignment(Pos.CENTER);
 		
 		HBox squareBox = new HBox();
 		//squareBox.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 		squareBox.setAlignment(Pos.CENTER);
 		squareBox.setPadding(new Insets(50));
+		Border choiceBoxBorder = new Border(new BorderStroke(Color.web("#4e824a"),BorderStrokeStyle.DASHED,CornerRadii.EMPTY, new BorderWidths(2)));
+		
+		squareBox.setBorder(choiceBoxBorder);
 		HBox circleBox = new HBox();
 		circleBox.setAlignment(Pos.CENTER);
+		circleBox.setBorder(choiceBoxBorder);
 		circleBox.setPadding(new Insets(50));
 		HBox triangleBox = new HBox();
 		triangleBox.setAlignment(Pos.CENTER);
 		triangleBox.setPadding(new Insets(50));
+		triangleBox.setBorder(choiceBoxBorder);
 		Polygon triangle = new Polygon(100.0, 0.0, 0.0,200.0, 200.0,200.0);
-		triangle.setFill(Color.DARKGREEN);
+		triangle.setFill(Color.web("#28461b"));
+		//triangle.setScaleX(1.2);
+		//triangle.setScaleY(1.2);
+		
+		///
+		Background b = new Background(new BackgroundImage(new Image("img/v850-sasi-13.jpg"),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT));
+		triangleBox.setBackground(b);
+		triangle.setStroke(Color.BLACK);
+		triangle.setStrokeWidth(2);
+		BorderStroke blackborderstroke = new BorderStroke(Color.BLACK,BorderStrokeStyle.DASHED,CornerRadii.EMPTY, new BorderWidths(4));
+		triangleBox.setBorder(new Border(blackborderstroke));
+		
+		///
 		triangleBox.getChildren().add(triangle);
 		HBox customBox = new HBox();
 		customBox.setAlignment(Pos.CENTER);
+		customBox.setBorder(choiceBoxBorder);
 		customBox.setPadding(new Insets(50));
 		customBox.getChildren().add(new Rectangle(200,200));
 		
-		squareBox.getChildren().add(new Rectangle(200,200,Color.DARKGREEN));
-		circleBox.getChildren().add(new Circle(100,Color.DARKGREEN));
+		squareBox.getChildren().add(new Rectangle(200,200,Color.web("#28461b")));
+		circleBox.getChildren().add(new Circle(100,Color.web("#28461b")));
 		
-		grid.setBackground(new Background(new BackgroundFill(Color.color(.686, .858, .733), CornerRadii.EMPTY, new Insets(20))));
+		
+		
+		grid.setBackground(new Background(new BackgroundFill(Color.web("#a5c96b"), CornerRadii.EMPTY, new Insets(20))));
 		//grid.setBackground(new Background(new BackgroundFill(Color.color(.411, .69, .564), CornerRadii.EMPTY, new Insets(20))));
 		//grid.setBackground(new Background(new BackgroundFill(Color.color(.486,, .69, .564), CornerRadii.EMPTY, new Insets(20))));
 		//grid.setBorder(new Border(new BorderStroke(Color.color(.101,.254,.203),BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(20))));
-		grid.setBorder(new Border(new BorderStroke(View.borderColor,BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(20))));
+		grid.setBorder(new Border(new BorderStroke(Color.web("#4e824a"),BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(20))));
 		
 		HBox buttonBox = new HBox(10);
 		//buttonBox.setPadding(new Insets(10));
@@ -213,17 +254,26 @@ public class ChooseTemplate extends Screen {
 		
 		buttonBox.getChildren().addAll(mainMenu,exit,instructions);
 		
-		GridPane.setConstraints(squareBox,0,0);
-		GridPane.setConstraints(circleBox,0,1);
-		GridPane.setConstraints(triangleBox,1,0);
-		GridPane.setConstraints(customBox,1,1);
+		GridPane.setConstraints(squareBox,0,1);
+		GridPane.setConstraints(circleBox,1,1);
+		GridPane.setConstraints(triangleBox,0,2);
+		GridPane.setConstraints(customBox,1,2);
+		//GridPane.setConstraints(text,0,0);
 		
+		grid.add(labelBox,0,0,2,1);
+		//grid.setHalignment(child, value);
 		grid.getChildren().addAll(squareBox,circleBox,triangleBox,customBox);
-		grid.setPadding(new Insets(50));
+		grid.setPadding(new Insets(25));
 		
-		Scene gridScene = new Scene(grid,View.primarySceneWidth,View.primarySceneHeight);
+		Group root = new Group(grid);
+		root.getChildren().add(iCircle);
+		grid.setMinSize(View.primarySceneWidth, View.primarySceneHeight);
+		Scene gridScene = new Scene(root,View.primarySceneWidth,View.primarySceneHeight);
 		theStage.setScene(gridScene);
 		
+		//this resets the triangle back to its original state
+		//triangleBox.setBackground(Background.EMPTY);
+		//triangle.setStrokeWidth(0);
 	}
 }
 

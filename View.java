@@ -30,7 +30,7 @@ import javafx.stage.Stage;
  * @author Takiyah Price 
  */
 
-//last edited: 5-2-20 5:37PM
+//last edited: 5-3-20 1:10PM
 
 
 public class View extends Application{
@@ -56,6 +56,7 @@ public class View extends Application{
 	static final double nonEditableOpacity = 0.85;
 	static final double EditableOpacity = 1.0;
 	static final Color borderColor = Color.color(0.082, 0.533, 0.478);
+	//static final Color borderColor2 = Color.color(red, green, blue)
 	
 	
 	private FileChooser fileChooser;
@@ -130,8 +131,8 @@ public class View extends Application{
 		
 		
 		System.out.println("Set the stage for el Main Menu");
-		mainMenuScreen.showScreen();
-		//chooseTemplateScreen.showScreen();
+		//mainMenuScreen.showScreen();
+		chooseTemplateScreen.showScreen();
 		primaryStage.show();
 		
 		
