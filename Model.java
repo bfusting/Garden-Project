@@ -1,9 +1,12 @@
+import static org.junit.jupiter.api.DynamicTest.stream;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
@@ -40,6 +43,13 @@ public class Model implements Serializable{
 	private ArrayList<Plant> underGrowthArr;
 	private ArrayList<AddOn> sceneryArr;
 	private ArrayList<Plant> allPlants;
+	
+	// Used to hold other "removed" plants while filtering
+	// Need getters and setters? only used in model
+	private ArrayList<Plant> otherColors;
+	private ArrayList<Plant> otherSeasons;
+	private ArrayList<Plant> otherLight;
+	private ArrayList<Plant> otherWater;
 	
 	// Prefs given by user
 	private String userPrefColor;
@@ -82,9 +92,17 @@ public class Model implements Serializable{
 		underGrowthArr = new ArrayList<Plant>();
 		underGrowthArr.add(milkWeed);
 		
+		// holds all scenery items like dirt to branchs
 		sceneryArr = new ArrayList<AddOn>();
 		
+		// holds all plants in program ---> Used on creation only
 		allPlants = new ArrayList<Plant>();
+		
+		//Used for filtering methods to hold other vars
+		otherColors = new ArrayList<Plant>();
+		otherSeasons = new ArrayList<Plant>();
+		otherLight = new ArrayList<Plant>();
+		otherWater = new ArrayList<Plant>();
 		
 		userPrefColor = "";
 		userPrefSeason = null;
@@ -483,6 +501,26 @@ public class Model implements Serializable{
 	    public int compare(Plant a, Plant b) 
 	    { 
 	        return a.getBloomTime().compareTo(b.getBloomTime()); 
-	    } 
+	    }
+	}
+	
+	/**
+	 * 
+	 * @param a
+	 * @param color
+	 * @return
+	 */
+	public ArrayList<Plant> filterByColor(ArrayList<Plant> a, String color){
+		//Iterate over list and if doesn't match color add to the otherColors Arr via getter
+		for(Plant p: a) {
+			if(p.getColor() != color) {
+				otherColors.add(p);
+			}
+		}
+		List<Plant> userColorPlants = a;
+		//streams the plants, filters by color, then adds them back to list
+		userColorPlants.stream().filter(p -> p.getColor().equals(color))
+		.collect(Collectors.toList());
+		return (ArrayList<Plant>) userColorPlants;
 	}
 }//Model
