@@ -705,8 +705,9 @@ public class Controller{
 	 */
 	public void templateToPref(MouseEvent event) {
 		String template = view.getSelectedTemplate();
-		System.out.println("Template selected: "+template);
+		
 		model.getUserPlot().setShape(template);
+		System.out.println("Template sent to model: "+template);
 		view.show("preferencesScreen");
 	}
 	

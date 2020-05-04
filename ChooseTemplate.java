@@ -55,11 +55,11 @@ import javafx.scene.layout.*;
 public class ChooseTemplate extends Screen {
 	private Scene chooseTemplateScene;
 	private Stage theStage;
-	private Button chooseSquare;
+	/*private Button chooseSquare;
 	private Button chooseCircle;
 	private Button chooseTriangle;
 	private Button chooseDesign;
-	private Button backButton;
+	private Button backButton;*/
 	
 	//from drawScene
 	private Controller con;
@@ -94,7 +94,139 @@ public class ChooseTemplate extends Screen {
 		con = c;
 		theStage = s;
 		
+		final int gridspacing = 50;
+		final int choiceBoxWidth = 375;
+		final int buttonBoxWidth = 215;
+		final int choiceBoxHeight = 275;
+		final int textBoxHeight = 50;
+		final int instructionCircleRadius = 12;
+		final int instructionCircleXPos = 165;
+		final int instructionCircleYPos = 70;
+		final Color instructionCircleStrokeColor = Color.web("#2c471a");
+		final Color templateColor = Color.web("#28461b");
+		final double instructionTextSize = 20;
+		final int templateDimension = 200;
+		final int sideButtonSpacing= 30;
+		final int sideButtonFontSize = 15;
+		final int sideButtonWidth = 170;
+		final int sideButtonHeight = 65;
+		final int nextButtonWidth = 180;
+		final int nextButtonHeight = 70;
+		final double nextButtonBottomDist = 20.0;
+		final int gridPaddingAmt = 25;
+		final int clickedBorderWidth = 4;
+		final Color templateBorderColor = Color.web("#4e824a");
 		
+		
+		selectedShapeName = "";
+		unclickedBorder = new Border(new BorderStroke(templateBorderColor,BorderStrokeStyle.DASHED,CornerRadii.EMPTY, new BorderWidths(mouseEnterOutline)));
+		clickedBorder = new Border(new BorderStroke(Color.BLACK,BorderStrokeStyle.DASHED,CornerRadii.EMPTY, new BorderWidths(clickedBorderWidth)));
+		hoverBG = new Background(new BackgroundImage(new Image("img/v850-sasi-13.jpg"),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT));
+		
+		grid = new GridPane();
+		grid.setGridLinesVisible(false);
+		grid.setHgap(gridspacing);
+		grid.setVgap(gridspacing);
+		ColumnConstraints choiceBoxColCon = new ColumnConstraints(choiceBoxWidth);
+		grid.getColumnConstraints().addAll(choiceBoxColCon,choiceBoxColCon,new ColumnConstraints(buttonBoxWidth));
+		RowConstraints rowcon = new RowConstraints(choiceBoxHeight);
+		grid.getRowConstraints().addAll(new RowConstraints(textBoxHeight), rowcon,rowcon);
+		grid.setMinSize(View.primarySceneWidth, View.primarySceneHeight);
+		grid.setBackground(new Background(new BackgroundFill(View.bgColor1, CornerRadii.EMPTY, new Insets(View.borderWidth))));
+		grid.setBorder(View.primarySceneBorder1);
+		grid.setPadding(new Insets(gridPaddingAmt));
+		
+		
+		triangle = new Polygon(100.0, 0.0, 0.0,200.0, 200.0,200.0);
+		triangle.setFill(templateColor);
+		initTemplate(triangle);
+		
+		square = new Rectangle(templateDimension,templateDimension,templateColor);
+		initTemplate(square);
+		
+		circle = new Circle(templateDimension/2,templateColor);
+		initTemplate(circle);
+		
+		//will be a custom shape, placeholder rectangle for now
+		custom = new Rectangle(templateDimension,templateDimension);
+		initTemplate(custom);
+		
+		Circle instructionCircle = new Circle(instructionCircleRadius,View.borderColor1);
+		instructionCircle.setCenterX(instructionCircleXPos);
+		instructionCircle.setCenterY(instructionCircleYPos);
+		instructionCircle.setStroke(instructionCircleStrokeColor);
+		instructionCircle.setStrokeWidth(mouseEnterOutline);
+		
+		Text text = new Text("Please select a shape for the layout of your garden.");
+		text.setFont(Font.font("Verdana",FontPosture.ITALIC,instructionTextSize));
+		text.setTextAlignment(TextAlignment.CENTER);
+		HBox textBox = new HBox(text);
+		textBox.setAlignment(Pos.CENTER);
+		
+		squareBox = new HBox();
+		initTemplateBox(squareBox);
+		squareBox.getChildren().add(square);
+		circleBox = new HBox();
+		initTemplateBox(circleBox);
+		circleBox.getChildren().add(circle);
+		triangleBox = new HBox();
+		initTemplateBox(triangleBox);
+		triangleBox.getChildren().add(triangle);
+		customBox = new HBox();
+		initTemplateBox(customBox);
+		customBox.getChildren().add(custom);
+	
+		
+		VBox buttonBox = new VBox(sideButtonSpacing);
+		buttonBox.setAlignment(Pos.CENTER_RIGHT);
+		
+		
+		Button mainMenu = new Button("Main Menu");
+		mainMenu.setFont(Font.font("Verdana",sideButtonFontSize));
+		mainMenu.setMinSize(sideButtonWidth, sideButtonHeight);
+		
+		Button exit = new Button("Exit");
+		exit.setFont(Font.font("Verdana",sideButtonFontSize));
+		exit.setMinSize(sideButtonWidth, sideButtonHeight);
+		exit.setOnMouseClicked(con.getExit());
+		
+		Button instructions = new Button("Instructions");
+		instructions.setFont(Font.font("Verdana",sideButtonFontSize));
+		instructions.setMinSize(sideButtonWidth, sideButtonHeight);
+		instructions.setOnMouseClicked(con.getInstructionShow());
+		
+		next = new Button("To Preferences");
+		next.setFont(Font.font("Verdana",FontWeight.BOLD,FontPosture.ITALIC,instructionTextSize));
+		next.setMinSize(nextButtonWidth, nextButtonHeight);
+		next.setDisable(true);
+		next.setOnMouseClicked(con.getTemplateToPref());
+		
+		buttonBox.getChildren().addAll(mainMenu,exit,instructions);
+		
+		 AnchorPane buttonAP = new AnchorPane();
+		 AnchorPane.setRightAnchor(buttonBox,0.0);
+		 AnchorPane.setRightAnchor(next,0.0);
+		 AnchorPane.setBottomAnchor(next, nextButtonBottomDist);
+		 
+		 buttonAP.getChildren().addAll(buttonBox,next);
+		
+		
+		GridPane.setConstraints(squareBox,0,1);
+		GridPane.setConstraints(circleBox,1,1);
+		GridPane.setConstraints(triangleBox,0,2);
+		GridPane.setConstraints(customBox,1,2);
+		grid.add(buttonAP, 2, 1,1,2);
+		
+		grid.add(textBox,0,0,2,1);
+		grid.getChildren().addAll(squareBox,circleBox,triangleBox,customBox);
+		
+		Group root = new Group(grid);
+		root.getChildren().add(instructionCircle);
+		
+		chooseTemplateScene = new Scene(root,View.primarySceneWidth,View.primarySceneHeight);
+		//theStage.setScene(gridScene);
+		
+		/*
 		//getting images for buttons
 		AnchorPane chooseTemplateAP = new AnchorPane();
 		chooseTemplateAP.setBackground(new Background(new BackgroundFill(Color.DARKCYAN,CornerRadii.EMPTY,Insets.EMPTY)));
@@ -167,8 +299,7 @@ public class ChooseTemplate extends Screen {
 	@Override
 	public void showScreen() {
 		theStage.setTitle("Choose a Template");
-		//theStage.setScene(chooseTemplateScene);
-		drawScene();
+		theStage.setScene(chooseTemplateScene);
 	}
 	
 	public void drawCircle() {
@@ -182,7 +313,7 @@ public class ChooseTemplate extends Screen {
 		theStage.setScene(circleScene);
 	}
 	
-	public void drawScene() {
+	/*public void drawScene() {
 		final int gridspacing = 50;
 		final int choiceBoxWidth = 375;
 		final int buttonBoxWidth = 215;
@@ -316,7 +447,7 @@ public class ChooseTemplate extends Screen {
 		theStage.setScene(gridScene);
 		
 		
-	}
+	}*/
 	
 	/**
 	 * Detects which template the mouse entered and changes its appearance by calling setHoverAffect() on
