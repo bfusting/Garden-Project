@@ -2,6 +2,7 @@ import java.io.File;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -15,8 +16,10 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
@@ -759,7 +762,6 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void finalViewBTN(MouseEvent event) {
-		//view.showFinalViewScreen();
 		view.show("finalViewScreen");
 	}
 	
@@ -846,6 +848,59 @@ public class Controller{
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public EventHandler<MouseEvent> getMouseEnter() {
+		return event -> mouseEnter((MouseEvent) event);
+	}
+	
+	/**
+	 * 
+	 * @param event
+	 */
+	public void mouseEnter(MouseEvent event) {
+		System.out.println("entered");
+		
+		view.mouseEntered(event.getSource());
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public EventHandler<MouseEvent> getMouseExit() {
+		return event -> mouseExit((MouseEvent)event);
+	}
+	
+	/**
+	 * 
+	 * @param event
+	 */
+	public void mouseExit(MouseEvent event) {
+		System.out.println("left");
+		
+		view.mouseExited(event.getSource());
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public EventHandler<WindowEvent> getExitStage() {
+		return event -> exitStage((WindowEvent)event);
+	}
+	
+	/**
+	 * 
+	 * @param event
+	 */
+	public void exitStage(WindowEvent event) {
+		event.consume();
+		view.show("exitScreen");
 	}
 	
 }//Controller

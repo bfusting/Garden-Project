@@ -20,6 +20,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.SVGPath;
+import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -40,7 +41,7 @@ import javafx.scene.layout.*;
 *  
 */
 
-//Last edited 5-3-20 1:10PM
+//Last edited 5-3-20 5:46PM
 
 /**
  * 
@@ -64,7 +65,21 @@ public class ChooseTemplate extends Screen {
 	private Button chooseTriangle;
 	private Button chooseDesign;
 	private Button backButton;
+	
+	//from drawScene
 	private Controller con;
+	GridPane grid;
+	private final int gridspacing = 50;
+	private final int choiceBoxWidth = 375;
+	private final int buttonBoxWidth = 215;
+	private final int choiceBoxHeight = 275;
+	private final int textBoxHeight = 50;
+	private Polygon triangle;
+	private HBox triangleBox;
+	private Button next;
+	private Background hoverBG;
+	private final int mouseEnterOutline = 2;
+	private final int mouseExitOutline = 0;
 	
 	/**
 	 * Constructor for ChooseTemplate that creates Buttons for choosing the shape of the 
@@ -140,10 +155,7 @@ public class ChooseTemplate extends Screen {
 		
 	}
 	
-	public void showChooseTemplate(Stage theStage) {
-		//can delete
-		
-	}
+	
 	
 	@Override
 	public String toString() {
@@ -170,31 +182,32 @@ public class ChooseTemplate extends Screen {
 	}
 	
 	public void drawScene() {
-		GridPane grid = new GridPane();
+		grid = new GridPane();
 		grid.setGridLinesVisible(false);
-		grid.setHgap(50);
-		grid.setVgap(50);
-		ColumnConstraints colcon = new ColumnConstraints(375);
-		grid.getColumnConstraints().addAll(colcon,colcon,new ColumnConstraints(215));
-		RowConstraints rowcon = new RowConstraints(275);
-		grid.getRowConstraints().addAll(new RowConstraints(50), rowcon,rowcon);
+		grid.setHgap(gridspacing);
+		grid.setVgap(gridspacing);
+		
+		ColumnConstraints choiceBoxColCon = new ColumnConstraints(choiceBoxWidth);
+		grid.getColumnConstraints().addAll(choiceBoxColCon,choiceBoxColCon,new ColumnConstraints(buttonBoxWidth));
+		RowConstraints rowcon = new RowConstraints(choiceBoxHeight);
+		grid.getRowConstraints().addAll(new RowConstraints(textBoxHeight), rowcon,rowcon);
 		
 		
-		Circle iCircle = new Circle(12,Color.web("#4e824a"));
-		iCircle.setCenterX(165);
-		iCircle.setCenterY(70);
-		iCircle.setStroke(Color.web("#2c471a"));
-		iCircle.setStrokeWidth(2);
+		Circle instructionCircle = new Circle(12,View.borderColor);
+		instructionCircle.setCenterX(165);
+		instructionCircle.setCenterY(70);
+		instructionCircle.setStroke(Color.web("#2c471a"));
+		instructionCircle.setStrokeWidth(mouseEnterOutline);
 		
 		
 		
 		Text text = new Text("Please select a shape for the layout of your garden.");
 		text.setFont(Font.font("Verdana",FontPosture.ITALIC,20));
 		text.setTextAlignment(TextAlignment.CENTER);
-		HBox labelBox = new HBox(text);
+		HBox textBox = new HBox(text);
 		
 		
-		labelBox.setAlignment(Pos.CENTER);
+		textBox.setAlignment(Pos.CENTER);
 		
 		HBox squareBox = new HBox();
 		//squareBox.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -207,22 +220,24 @@ public class ChooseTemplate extends Screen {
 		circleBox.setAlignment(Pos.CENTER);
 		circleBox.setBorder(choiceBoxBorder);
 		circleBox.setPadding(new Insets(39));
-		HBox triangleBox = new HBox();
+		triangleBox = new HBox();
 		triangleBox.setAlignment(Pos.CENTER);
 		triangleBox.setPadding(new Insets(39));
 		triangleBox.setBorder(choiceBoxBorder);
-		Polygon triangle = new Polygon(100.0, 0.0, 0.0,200.0, 200.0,200.0);
+		triangle = new Polygon(100.0, 0.0, 0.0,200.0, 200.0,200.0);
 		triangle.setFill(Color.web("#28461b"));
-		
+		triangle.setOnMouseEntered(con.getMouseEnter());
+		triangle.setOnMouseExited(con.getMouseExit());
 		
 		//this changes the background and borders of the choice box
+		hoverBG = new Background(new BackgroundImage(new Image("img/v850-sasi-13.jpg"),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT));
+		//Background b = new Background(new BackgroundImage(new Image("img/v850-sasi-13.jpg"),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT));
+		//triangleBox.setBackground(b);
+		//triangle.setStroke(Color.BLACK);
+		//triangle.setStrokeWidth(2);
+		//BorderStroke blackborderstroke = new BorderStroke(Color.BLACK,BorderStrokeStyle.DASHED,CornerRadii.EMPTY, new BorderWidths(4));
+		//triangleBox.setBorder(new Border(blackborderstroke));
 		
-		Background b = new Background(new BackgroundImage(new Image("img/v850-sasi-13.jpg"),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT));
-		triangleBox.setBackground(b);
-		triangle.setStroke(Color.BLACK);
-		triangle.setStrokeWidth(2);
-		BorderStroke blackborderstroke = new BorderStroke(Color.BLACK,BorderStrokeStyle.DASHED,CornerRadii.EMPTY, new BorderWidths(4));
-		triangleBox.setBorder(new Border(blackborderstroke));
 		
 		///
 		triangleBox.getChildren().add(triangle);
@@ -237,11 +252,8 @@ public class ChooseTemplate extends Screen {
 		
 		
 		
-		grid.setBackground(new Background(new BackgroundFill(Color.web("#a5c96b"), CornerRadii.EMPTY, new Insets(20))));
-		//grid.setBackground(new Background(new BackgroundFill(Color.color(.411, .69, .564), CornerRadii.EMPTY, new Insets(20))));
-		//grid.setBackground(new Background(new BackgroundFill(Color.color(.486,, .69, .564), CornerRadii.EMPTY, new Insets(20))));
-		//grid.setBorder(new Border(new BorderStroke(Color.color(.101,.254,.203),BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(20))));
-		grid.setBorder(new Border(new BorderStroke(Color.web("#4e824a"),BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(20))));
+		grid.setBackground(new Background(new BackgroundFill(Color.web("#a5c96b"), CornerRadii.EMPTY, new Insets(View.borderWidth))));
+		grid.setBorder(View.primarySceneBorder);
 		
 		VBox buttonBox = new VBox(30);
 		//buttonBox.setPadding(new Insets(10));
@@ -264,7 +276,7 @@ public class ChooseTemplate extends Screen {
 		instructions.setMinSize(170, 65);
 		instructions.setOnMouseClicked(con.getInstructionShow());
 		
-		Button next = new Button("To Preferences");
+		next = new Button("To Preferences");
 		next.setFont(Font.font("Verdana",FontWeight.BOLD,FontPosture.ITALIC,20.0));
 		next.setMinSize(180, 70);
 		
@@ -285,20 +297,43 @@ public class ChooseTemplate extends Screen {
 		//GridPane.setConstraints(buttonBox,2,0);
 		grid.add(buttonAP, 2, 1,1,2);
 		
-		grid.add(labelBox,0,0,2,1);
+		grid.add(textBox,0,0,2,1);
 		//grid.setHalignment(child, value);
 		grid.getChildren().addAll(squareBox,circleBox,triangleBox,customBox);
 		grid.setPadding(new Insets(25));
 		
 		Group root = new Group(grid);
-		root.getChildren().add(iCircle);
+		root.getChildren().add(instructionCircle);
 		grid.setMinSize(View.primarySceneWidth, View.primarySceneHeight);
 		Scene gridScene = new Scene(root,View.primarySceneWidth,View.primarySceneHeight);
 		theStage.setScene(gridScene);
 		
-		//this resets the triangle back to its original state
-		//triangleBox.setBackground(Background.EMPTY);
-		//triangle.setStrokeWidth(0);
+		
+	}
+	
+	public void mouseInside(Shape s) {
+		if (s.equals(triangle)) {
+			triangleBox.setBackground(hoverBG);
+			triangle.setStroke(Color.BLACK);
+			triangle.setStrokeWidth(mouseEnterOutline);
+		}
+	}
+	
+	public void mouseOutside(Shape s) {
+		if (s.equals(triangle)) {
+		triangleBox.setBackground(Background.EMPTY);
+		triangle.setStrokeWidth(mouseExitOutline);
+		}
+	}
+	
+	@Override
+	public void setUneditable() {
+		theStage.setOpacity(View.nonEditableOpacity);
+	}
+	
+	@Override
+	public void setEditable() {
+		theStage.setOpacity(View.EditableOpacity);
 	}
 }
 

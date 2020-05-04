@@ -2,7 +2,13 @@ import java.io.File;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Shape;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -55,8 +61,10 @@ public class View extends Application{
 	static final int primarySceneHeight = 800;
 	static final double nonEditableOpacity = 0.85;
 	static final double EditableOpacity = 1.0;
-	static final Color borderColor = Color.color(0.082, 0.533, 0.478);
-	//static final Color borderColor2 = Color.color(red, green, blue)
+	static final int borderWidth = 20;
+	static final Color borderColor = Color.web("#4e824a");
+	static final Border primarySceneBorder = new Border(new BorderStroke(borderColor,BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(borderWidth)));
+	
 	
 	
 	private FileChooser fileChooser;
@@ -95,6 +103,7 @@ public class View extends Application{
 	 */
 	public void start(Stage theStage) {
 		primaryStage = theStage;
+		primaryStage.setOnCloseRequest(con.getExitStage());
 		
 		mainMenuScreen = new MainMenu(con,primaryStage);
 		
@@ -132,8 +141,10 @@ public class View extends Application{
 		
 		System.out.println("Set the stage for el Main Menu");
 		//mainMenuScreen.showScreen();
+		currentPrimaryScreen = chooseTemplateScreen;
 		chooseTemplateScreen.showScreen();
 		primaryStage.show();
+		
 		
 		
 		
@@ -290,6 +301,19 @@ public class View extends Application{
 		
 		primaryStage.setOpacity(EditableOpacity);
 		return file;
+	}
+	
+	public void mouseEntered(Object o) {
+		if (currentPrimaryScreen.equals(chooseTemplateScreen)) {
+			chooseTemplateScreen.mouseInside((Shape) o);
+		}
+		
+	}
+	
+	public void mouseExited(Object o) {
+		if (currentPrimaryScreen.equals(chooseTemplateScreen)) {
+			chooseTemplateScreen.mouseOutside((Shape) o);
+		}
 	}
 	
 	
