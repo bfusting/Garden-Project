@@ -55,13 +55,7 @@ import javafx.scene.layout.*;
 public class ChooseTemplate extends Screen {
 	private Scene chooseTemplateScene;
 	private Stage theStage;
-	private Button chooseSquare;
-	private Button chooseCircle;
-	private Button chooseTriangle;
-	private Button chooseDesign;
-	private Button backButton;
 	
-	//from drawScene
 	private Controller con;
 	GridPane grid;
 	
@@ -94,95 +88,6 @@ public class ChooseTemplate extends Screen {
 		con = c;
 		theStage = s;
 		
-		
-		//getting images for buttons
-		AnchorPane chooseTemplateAP = new AnchorPane();
-		chooseTemplateAP.setBackground(new Background(new BackgroundFill(Color.DARKCYAN,CornerRadii.EMPTY,Insets.EMPTY)));
-		
-		TilePane tPane = new TilePane();
-		
-		ImageView squareTemplate = new ImageView(new Image("/img/Square.png"));
-		ImageView circleTemplate = new ImageView(new Image("/img/Circle.png"));
-		ImageView triangleTemplate = new ImageView(new Image("/img/Triangle.png"));
-		ImageView designYourOwn = new ImageView(new Image("/img/DesignYourOwn.png"));
-		
-		//setting up buttons
-		chooseSquare = new Button("Choose Square Garden",squareTemplate);
-		chooseSquare.setMaxSize(200, 60);
-		chooseSquare.setOnMouseClicked(c.getTemplateToPref());
-		
-		chooseCircle = new Button("Choose Circular Garden",circleTemplate);
-		chooseCircle.setMinSize(200, 60);
-		
-		chooseTriangle = new Button("Choose Triangular Garden",triangleTemplate);
-		chooseTriangle.setMinSize(200, 60);
-		
-		chooseDesign = new Button("Design Your Own",designYourOwn);
-		chooseDesign.setMinSize(200,60);
-		
-		backButton = new Button("Back");
-		backButton.setMinSize(100,50);
-		backButton.setOnMouseClicked(c.getBackBTN());
-		
-		tPane.getChildren().addAll(chooseSquare, chooseCircle,chooseTriangle,chooseDesign);
-		tPane.setHgap(100);
-		tPane.setVgap(100);
-		tPane.setPrefColumns(2);
-		tPane.setAlignment(Pos.CENTER);
-		
-		TilePane rootPane = new TilePane();
-		rootPane.setPrefRows(2);
-		rootPane.setAlignment(Pos.CENTER);
-		rootPane.getChildren().addAll(tPane,backButton);
-		
-		chooseTemplateScene = new Scene(rootPane,1200,800);
-		
-		
-		/*tPane.getChildren().addAll(chooseSquare, chooseCircle,chooseTriangle,chooseDesign);
-		tPane.setHgap(100);
-		tPane.setVgap(100);
-		tPane.setPrefColumns(2);
-		tPane.setAlignment(Pos.CENTER);
-		
-		
-		
-		AnchorPane.setLeftAnchor(tPane, 40.0);
-		AnchorPane.setRightAnchor(tPane, 40.0);
-		AnchorPane.setTopAnchor(tPane, 80.0);
-		chooseTemplateAP.getChildren().add(tPane);
-		
-		chooseTemplateScene = new Scene(chooseTemplateAP,1200,800);*/
-		
-		
-	}
-	
-	
-	
-	@Override
-	public String toString() {
-		return "Choose Template";
-	}
-	
-	
-	@Override
-	public void showScreen() {
-		theStage.setTitle("Choose a Template");
-		//theStage.setScene(chooseTemplateScene);
-		drawScene();
-	}
-	
-	public void drawCircle() {
-		SVGPath svg = new SVGPath();
-		Group root = new Group(svg);
-		
-		svg.setContent("M 600 400 A 50 50 0 1 1 725 400 A 50 50 0 1 1 600 400");
-		svg.setFill(Color.DARKOLIVEGREEN);
-		svg.setStroke(Color.BLACK);
-		Scene circleScene = new Scene(root,View.primarySceneWidth,View.primarySceneHeight);
-		theStage.setScene(circleScene);
-	}
-	
-	public void drawScene() {
 		final int gridspacing = 50;
 		final int choiceBoxWidth = 375;
 		final int buttonBoxWidth = 215;
@@ -273,6 +178,7 @@ public class ChooseTemplate extends Screen {
 		Button mainMenu = new Button("Main Menu");
 		mainMenu.setFont(Font.font("Verdana",sideButtonFontSize));
 		mainMenu.setMinSize(sideButtonWidth, sideButtonHeight);
+		mainMenu.setOnMouseClicked(con.getBackBTN());
 		
 		Button exit = new Button("Exit");
 		exit.setFont(Font.font("Verdana",sideButtonFontSize));
@@ -312,11 +218,40 @@ public class ChooseTemplate extends Screen {
 		Group root = new Group(grid);
 		root.getChildren().add(instructionCircle);
 		
-		Scene gridScene = new Scene(root,View.primarySceneWidth,View.primarySceneHeight);
-		theStage.setScene(gridScene);
+		chooseTemplateScene = new Scene(root,View.primarySceneWidth,View.primarySceneHeight);
+		
+		
+		
 		
 		
 	}
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Choose Template";
+	}
+	
+	
+	@Override
+	public void showScreen() {
+		theStage.setTitle("Choose a Template");
+		theStage.setScene(chooseTemplateScene);
+	}
+	
+	public void drawCircle() {
+		SVGPath svg = new SVGPath();
+		Group root = new Group(svg);
+		
+		svg.setContent("M 600 400 A 50 50 0 1 1 725 400 A 50 50 0 1 1 600 400");
+		svg.setFill(Color.DARKOLIVEGREEN);
+		svg.setStroke(Color.BLACK);
+		Scene circleScene = new Scene(root,View.primarySceneWidth,View.primarySceneHeight);
+		theStage.setScene(circleScene);
+	}
+	
+	
 	
 	/**
 	 * Detects which template the mouse entered and changes its appearance by calling setHoverAffect() on

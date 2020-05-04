@@ -142,8 +142,7 @@ public class View extends Application{
 		
 		System.out.println("Set the stage for el Main Menu");
 		mainMenuScreen.showScreen();
-		//currentPrimaryScreen = chooseTemplateScreen;
-		//chooseTemplateScreen.showScreen();
+		
 		primaryStage.show();
 		
 		
