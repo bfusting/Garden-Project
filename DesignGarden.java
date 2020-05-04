@@ -466,11 +466,13 @@ public class DesignGarden extends Screen{
 	@Override
 	public void setUneditable() {
 		root.setDisable(true);
+		theStage.setOpacity(View.nonEditableOpacity);
 	}
 	
 	@Override
 	public void setEditable() {
 		root.setDisable(false);
+		theStage.setOpacity(View.EditableOpacity);
 	}
 
 	

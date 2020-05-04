@@ -142,7 +142,7 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 				}
 				
 				if(pA.getPlantType() == "Flower") {
-					result[i] = temp.getSelectionArr().get(0);
+					result[i] = temp.getFlowerArr().get(0);
 				}
 				
 				if(pA.getPlantType() == "Shrub") {
