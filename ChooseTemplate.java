@@ -115,7 +115,7 @@ public class ChooseTemplate extends Screen {
 		selectedShapeName = "";
 		unclickedBorder = new Border(new BorderStroke(templateBorderColor,BorderStrokeStyle.DASHED,CornerRadii.EMPTY, new BorderWidths(mouseEnterOutline)));
 		clickedBorder = new Border(new BorderStroke(Color.BLACK,BorderStrokeStyle.DASHED,CornerRadii.EMPTY, new BorderWidths(clickedBorderWidth)));
-		hoverBG = new Background(new BackgroundImage(new Image("img/v850-sasi-13.jpg"),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT));
+		hoverBG = new Background(new BackgroundImage(new Image("/img/Beautiful_botanical_leaves_pattern_green_mint_shop_preview.png"),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT));
 		
 		grid = new GridPane();
 		grid.setGridLinesVisible(false);
