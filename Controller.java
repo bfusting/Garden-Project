@@ -704,7 +704,9 @@ public class Controller{
 	 * @see ChooseTemplate
 	 */
 	public void templateToPref(MouseEvent event) {
-		//view.showPreferencesScreen();
+		String template = view.getSelectedTemplate();
+		System.out.println("Template selected: "+template);
+		model.getUserPlot().setShape(template);
 		view.show("preferencesScreen");
 	}
 	
@@ -863,8 +865,6 @@ public class Controller{
 	 * @param event
 	 */
 	public void mouseEnter(MouseEvent event) {
-		System.out.println("entered");
-		
 		view.mouseEntered(event.getSource());
 	}
 	
@@ -881,7 +881,6 @@ public class Controller{
 	 * @param event
 	 */
 	public void mouseExit(MouseEvent event) {
-		System.out.println("left");
 		
 		view.mouseExited(event.getSource());
 	}
@@ -901,6 +900,22 @@ public class Controller{
 	public void exitStage(WindowEvent event) {
 		event.consume();
 		view.show("exitScreen");
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public EventHandler<MouseEvent> getMouseClicked() {
+		return event -> mouseClicked((MouseEvent)event);
+	}
+	
+	/**
+	 * 
+	 * @param event
+	 */
+	public void mouseClicked(MouseEvent event) {
+		view.mouseClicked(event.getSource());
 	}
 	
 }//Controller

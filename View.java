@@ -36,7 +36,7 @@ import javafx.stage.Stage;
  * @author Takiyah Price 
  */
 
-//last edited: 5-3-20 1:10PM
+//last edited: 5-4-20 12:58PM
 
 
 public class View extends Application{
@@ -62,8 +62,9 @@ public class View extends Application{
 	static final double nonEditableOpacity = 0.85;
 	static final double EditableOpacity = 1.0;
 	static final int borderWidth = 20;
-	static final Color borderColor = Color.web("#4e824a");
-	static final Border primarySceneBorder = new Border(new BorderStroke(borderColor,BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(borderWidth)));
+	static final Color borderColor1 = Color.web("#4e824a");
+	static final Color bgColor1 = Color.web("#a5c96b");
+	static final Border primarySceneBorder1 = new Border(new BorderStroke(borderColor1,BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(borderWidth)));
 	
 	
 	
@@ -140,9 +141,9 @@ public class View extends Application{
 		
 		
 		System.out.println("Set the stage for el Main Menu");
-		//mainMenuScreen.showScreen();
-		currentPrimaryScreen = chooseTemplateScreen;
-		chooseTemplateScreen.showScreen();
+		mainMenuScreen.showScreen();
+		//currentPrimaryScreen = chooseTemplateScreen;
+		//chooseTemplateScreen.showScreen();
 		primaryStage.show();
 		
 		
@@ -303,6 +304,14 @@ public class View extends Application{
 		return file;
 	}
 	
+	/**
+	 * Calls the appropriate Screen's methods to manage the mouse entering a Node belonging to that Screen. Behavior
+	 * is relative to the current primary Screen being shown to the user. To be called by the Controller.
+	 * 
+	 * @param o an Object, the source of the mouseEntered event being handled, which can be cast relative to the current Screen.
+	 * 
+	 * @see Controller#mouseClicked(javafx.scene.input.MouseEvent)
+	 */
 	public void mouseEntered(Object o) {
 		if (currentPrimaryScreen.equals(chooseTemplateScreen)) {
 			chooseTemplateScreen.mouseInside((Shape) o);
@@ -310,13 +319,46 @@ public class View extends Application{
 		
 	}
 	
+	/**
+	 * Calls the appropriate Screen's methods to manage the mouse exiting a Node belonging to that Screen. Behavior
+	 * is relative to the current primary Screen being shown to the user. To be called by the Controller.
+	 * 
+	 * @param o an Object, the source of the mouseExited event being handled, which can be cast relative to the current Screen.
+	 * 
+	 * @see Controller#mouseExit(javafx.scene.input.MouseEvent)
+	 */
 	public void mouseExited(Object o) {
 		if (currentPrimaryScreen.equals(chooseTemplateScreen)) {
 			chooseTemplateScreen.mouseOutside((Shape) o);
 		}
 	}
 	
+	/**
+	 * Calls the appropriate Screen's methods to manage the mouse clicking a Node belonging to that Screen. Behavior
+	 * is relative to the current primary Screen being shown to the user. To be called by the Controller.
+	 * 
+	 * @param o an Object, the source of the mouseClicked event being handled, which can be cast relative to the current Screen.
+	 * 
+	 * @see Controller#mouseClicked(javafx.scene.input.MouseEvent)
+	 */
+	public void mouseClicked(Object o) {
+		if (currentPrimaryScreen.equals(chooseTemplateScreen)) {
+			chooseTemplateScreen.mouseClicked((Shape) o);
+		}
+	}
 	
+	/**
+	 * Gets the String representation of the template selected by the user on the Choose Template Screen. To be
+	 * called by the Controller in order to update the model with the shape.
+	 * 
+	 * @return the name of the selected template as a String.
+	 * 
+	 * @see ChooseTemplate#getSelectedTemplate()
+	 * @see GardenPlot#shape
+	 */
+	public String getSelectedTemplate() {
+		return chooseTemplateScreen.getSelectedTemplate();
+	}
 	
 	
 		

@@ -3,7 +3,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -41,7 +40,7 @@ import javafx.scene.layout.*;
 *  
 */
 
-//Last edited 5-3-20 5:46PM
+//Last edited 5-4-20 12:58AM
 
 /**
  * 
@@ -56,10 +55,6 @@ import javafx.scene.layout.*;
 public class ChooseTemplate extends Screen {
 	private Scene chooseTemplateScene;
 	private Stage theStage;
-	//private ImageView squareTemplate;
-	//private ImageView circleTemplate;
-	//private ImageView triangleTemplate;
-	//private ImageView designYourOwn;
 	private Button chooseSquare;
 	private Button chooseCircle;
 	private Button chooseTriangle;
@@ -69,17 +64,25 @@ public class ChooseTemplate extends Screen {
 	//from drawScene
 	private Controller con;
 	GridPane grid;
-	private final int gridspacing = 50;
-	private final int choiceBoxWidth = 375;
-	private final int buttonBoxWidth = 215;
-	private final int choiceBoxHeight = 275;
-	private final int textBoxHeight = 50;
-	private Polygon triangle;
+	
+	
 	private HBox triangleBox;
+	private HBox squareBox;
+	private HBox circleBox;
+	private HBox customBox;
+	
 	private Button next;
 	private Background hoverBG;
 	private final int mouseEnterOutline = 2;
 	private final int mouseExitOutline = 0;
+	
+	private Polygon triangle;
+	private Rectangle square;
+	private Circle circle;
+	private Shape custom;
+	private Border unclickedBorder;
+	private Border clickedBorder;
+	private String selectedShapeName;
 	
 	/**
 	 * Constructor for ChooseTemplate that creates Buttons for choosing the shape of the 
@@ -90,9 +93,7 @@ public class ChooseTemplate extends Screen {
 	public ChooseTemplate(Controller c,Stage s) {
 		con = c;
 		theStage = s;
-		//Label label = new Label("choose a template");
-		//Button button = new Button("Exit");
-		//button.setMinSize(200,60);
+		
 		
 		//getting images for buttons
 		AnchorPane chooseTemplateAP = new AnchorPane();
@@ -182,147 +183,207 @@ public class ChooseTemplate extends Screen {
 	}
 	
 	public void drawScene() {
+		final int gridspacing = 50;
+		final int choiceBoxWidth = 375;
+		final int buttonBoxWidth = 215;
+		final int choiceBoxHeight = 275;
+		final int textBoxHeight = 50;
+		final int instructionCircleRadius = 12;
+		final int instructionCircleXPos = 165;
+		final int instructionCircleYPos = 70;
+		final Color instructionCircleStrokeColor = Color.web("#2c471a");
+		final Color templateColor = Color.web("#28461b");
+		final double instructionTextSize = 20;
+		final int templateDimension = 200;
+		final int sideButtonSpacing= 30;
+		final int sideButtonFontSize = 15;
+		final int sideButtonWidth = 170;
+		final int sideButtonHeight = 65;
+		final int nextButtonWidth = 180;
+		final int nextButtonHeight = 70;
+		final double nextButtonBottomDist = 20.0;
+		final int gridPaddingAmt = 25;
+		final int clickedBorderWidth = 4;
+		final Color templateBorderColor = Color.web("#4e824a");
+		
+		
+		selectedShapeName = "";
+		unclickedBorder = new Border(new BorderStroke(templateBorderColor,BorderStrokeStyle.DASHED,CornerRadii.EMPTY, new BorderWidths(mouseEnterOutline)));
+		clickedBorder = new Border(new BorderStroke(Color.BLACK,BorderStrokeStyle.DASHED,CornerRadii.EMPTY, new BorderWidths(clickedBorderWidth)));
+		hoverBG = new Background(new BackgroundImage(new Image("img/v850-sasi-13.jpg"),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT));
+		
 		grid = new GridPane();
 		grid.setGridLinesVisible(false);
 		grid.setHgap(gridspacing);
 		grid.setVgap(gridspacing);
-		
 		ColumnConstraints choiceBoxColCon = new ColumnConstraints(choiceBoxWidth);
 		grid.getColumnConstraints().addAll(choiceBoxColCon,choiceBoxColCon,new ColumnConstraints(buttonBoxWidth));
 		RowConstraints rowcon = new RowConstraints(choiceBoxHeight);
 		grid.getRowConstraints().addAll(new RowConstraints(textBoxHeight), rowcon,rowcon);
+		grid.setMinSize(View.primarySceneWidth, View.primarySceneHeight);
+		grid.setBackground(new Background(new BackgroundFill(View.bgColor1, CornerRadii.EMPTY, new Insets(View.borderWidth))));
+		grid.setBorder(View.primarySceneBorder1);
+		grid.setPadding(new Insets(gridPaddingAmt));
 		
 		
-		Circle instructionCircle = new Circle(12,View.borderColor);
-		instructionCircle.setCenterX(165);
-		instructionCircle.setCenterY(70);
-		instructionCircle.setStroke(Color.web("#2c471a"));
+		triangle = new Polygon(100.0, 0.0, 0.0,200.0, 200.0,200.0);
+		triangle.setFill(templateColor);
+		initTemplate(triangle);
+		
+		square = new Rectangle(templateDimension,templateDimension,templateColor);
+		initTemplate(square);
+		
+		circle = new Circle(templateDimension/2,templateColor);
+		initTemplate(circle);
+		
+		//will be a custom shape, placeholder rectangle for now
+		custom = new Rectangle(templateDimension,templateDimension);
+		initTemplate(custom);
+		
+		Circle instructionCircle = new Circle(instructionCircleRadius,View.borderColor1);
+		instructionCircle.setCenterX(instructionCircleXPos);
+		instructionCircle.setCenterY(instructionCircleYPos);
+		instructionCircle.setStroke(instructionCircleStrokeColor);
 		instructionCircle.setStrokeWidth(mouseEnterOutline);
 		
-		
-		
 		Text text = new Text("Please select a shape for the layout of your garden.");
-		text.setFont(Font.font("Verdana",FontPosture.ITALIC,20));
+		text.setFont(Font.font("Verdana",FontPosture.ITALIC,instructionTextSize));
 		text.setTextAlignment(TextAlignment.CENTER);
 		HBox textBox = new HBox(text);
-		
-		
 		textBox.setAlignment(Pos.CENTER);
 		
-		HBox squareBox = new HBox();
-		//squareBox.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-		squareBox.setAlignment(Pos.CENTER);
-		squareBox.setPadding(new Insets(39));
-		Border choiceBoxBorder = new Border(new BorderStroke(Color.web("#4e824a"),BorderStrokeStyle.DASHED,CornerRadii.EMPTY, new BorderWidths(2)));
-		
-		squareBox.setBorder(choiceBoxBorder);
-		HBox circleBox = new HBox();
-		circleBox.setAlignment(Pos.CENTER);
-		circleBox.setBorder(choiceBoxBorder);
-		circleBox.setPadding(new Insets(39));
+		squareBox = new HBox();
+		initTemplateBox(squareBox);
+		squareBox.getChildren().add(square);
+		circleBox = new HBox();
+		initTemplateBox(circleBox);
+		circleBox.getChildren().add(circle);
 		triangleBox = new HBox();
-		triangleBox.setAlignment(Pos.CENTER);
-		triangleBox.setPadding(new Insets(39));
-		triangleBox.setBorder(choiceBoxBorder);
-		triangle = new Polygon(100.0, 0.0, 0.0,200.0, 200.0,200.0);
-		triangle.setFill(Color.web("#28461b"));
-		triangle.setOnMouseEntered(con.getMouseEnter());
-		triangle.setOnMouseExited(con.getMouseExit());
-		
-		//this changes the background and borders of the choice box
-		hoverBG = new Background(new BackgroundImage(new Image("img/v850-sasi-13.jpg"),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT));
-		//Background b = new Background(new BackgroundImage(new Image("img/v850-sasi-13.jpg"),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT));
-		//triangleBox.setBackground(b);
-		//triangle.setStroke(Color.BLACK);
-		//triangle.setStrokeWidth(2);
-		//BorderStroke blackborderstroke = new BorderStroke(Color.BLACK,BorderStrokeStyle.DASHED,CornerRadii.EMPTY, new BorderWidths(4));
-		//triangleBox.setBorder(new Border(blackborderstroke));
-		
-		
-		///
+		initTemplateBox(triangleBox);
 		triangleBox.getChildren().add(triangle);
-		HBox customBox = new HBox();
-		customBox.setAlignment(Pos.CENTER);
-		customBox.setBorder(choiceBoxBorder);
-		customBox.setPadding(new Insets(39));
-		customBox.getChildren().add(new Rectangle(200,200));
+		customBox = new HBox();
+		initTemplateBox(customBox);
+		customBox.getChildren().add(custom);
+	
 		
-		squareBox.getChildren().add(new Rectangle(200,200,Color.web("#28461b")));
-		circleBox.getChildren().add(new Circle(100,Color.web("#28461b")));
-		
-		
-		
-		grid.setBackground(new Background(new BackgroundFill(Color.web("#a5c96b"), CornerRadii.EMPTY, new Insets(View.borderWidth))));
-		grid.setBorder(View.primarySceneBorder);
-		
-		VBox buttonBox = new VBox(30);
-		//buttonBox.setPadding(new Insets(10));
+		VBox buttonBox = new VBox(sideButtonSpacing);
 		buttonBox.setAlignment(Pos.CENTER_RIGHT);
 		
 		
 		Button mainMenu = new Button("Main Menu");
-		mainMenu.setFont(Font.font("Verdana",15));
-		mainMenu.setMinSize(170, 65);
-		
-		//mainMenu.setBorder(new Border(new BorderStroke(Color.web("#4e824a"),BorderStrokeStyle.SOLID,CornerRadii.EMPTY, new BorderWidths(2))));
+		mainMenu.setFont(Font.font("Verdana",sideButtonFontSize));
+		mainMenu.setMinSize(sideButtonWidth, sideButtonHeight);
 		
 		Button exit = new Button("Exit");
-		exit.setFont(Font.font("Verdana",15));
-		exit.setMinSize(170, 65);
+		exit.setFont(Font.font("Verdana",sideButtonFontSize));
+		exit.setMinSize(sideButtonWidth, sideButtonHeight);
 		exit.setOnMouseClicked(con.getExit());
 		
 		Button instructions = new Button("Instructions");
-		instructions.setFont(Font.font("Verdana",15));
-		instructions.setMinSize(170, 65);
+		instructions.setFont(Font.font("Verdana",sideButtonFontSize));
+		instructions.setMinSize(sideButtonWidth, sideButtonHeight);
 		instructions.setOnMouseClicked(con.getInstructionShow());
 		
 		next = new Button("To Preferences");
-		next.setFont(Font.font("Verdana",FontWeight.BOLD,FontPosture.ITALIC,20.0));
-		next.setMinSize(180, 70);
+		next.setFont(Font.font("Verdana",FontWeight.BOLD,FontPosture.ITALIC,instructionTextSize));
+		next.setMinSize(nextButtonWidth, nextButtonHeight);
+		next.setDisable(true);
+		next.setOnMouseClicked(con.getTemplateToPref());
 		
 		buttonBox.getChildren().addAll(mainMenu,exit,instructions);
 		
 		 AnchorPane buttonAP = new AnchorPane();
 		 AnchorPane.setRightAnchor(buttonBox,0.0);
 		 AnchorPane.setRightAnchor(next,0.0);
-		 AnchorPane.setBottomAnchor(next, 20.0);
+		 AnchorPane.setBottomAnchor(next, nextButtonBottomDist);
 		 
 		 buttonAP.getChildren().addAll(buttonBox,next);
-		 //buttonAP.setBackground(new Background(new BackgroundFill(Color.BLUE,CornerRadii.EMPTY,Insets.EMPTY)));
+		
 		
 		GridPane.setConstraints(squareBox,0,1);
 		GridPane.setConstraints(circleBox,1,1);
 		GridPane.setConstraints(triangleBox,0,2);
 		GridPane.setConstraints(customBox,1,2);
-		//GridPane.setConstraints(buttonBox,2,0);
 		grid.add(buttonAP, 2, 1,1,2);
 		
 		grid.add(textBox,0,0,2,1);
-		//grid.setHalignment(child, value);
 		grid.getChildren().addAll(squareBox,circleBox,triangleBox,customBox);
-		grid.setPadding(new Insets(25));
 		
 		Group root = new Group(grid);
 		root.getChildren().add(instructionCircle);
-		grid.setMinSize(View.primarySceneWidth, View.primarySceneHeight);
+		
 		Scene gridScene = new Scene(root,View.primarySceneWidth,View.primarySceneHeight);
 		theStage.setScene(gridScene);
 		
 		
 	}
 	
+	/**
+	 * Detects which template the mouse entered and changes its appearance by calling setHoverAffect() on
+	 * the required template Shape.
+	 * 
+	 * @param s the Shape that the mouse entered. Will be one of the square, triangle, circle,
+	 * or custom templates.
+	 * 
+	 * @see ChooseTemplate#setHoverEffect(HBox, Shape)
+	 */
 	public void mouseInside(Shape s) {
 		if (s.equals(triangle)) {
-			triangleBox.setBackground(hoverBG);
-			triangle.setStroke(Color.BLACK);
-			triangle.setStrokeWidth(mouseEnterOutline);
+			setHoverEffect(triangleBox,triangle);
+		} else if (s.equals(circle)) {
+			setHoverEffect(circleBox,circle);
+		} else if (s.equals(square)) {
+			setHoverEffect(squareBox,square);
+		} else if (s.equals(custom)) {
+			setHoverEffect(customBox,custom);
 		}
+		
 	}
 	
+	/**
+	 * Changes the background of the given HBox and the stroke color and width of the given Shape. To be called by
+	 * mouseInside to update the template when hovered over.
+	 * @param h the HBox containing the shape that the mouse entered.
+	 * @param s the Shape that the mouse entered.
+	 * 
+	 * @see ChooseTemplate#mouseInside(Shape s)
+	 */
+	public void setHoverEffect(HBox h,Shape s) {
+		h.setBackground(hoverBG);
+		s.setStroke(Color.BLACK);
+		s.setStrokeWidth(mouseEnterOutline);
+	}
+	
+	/**
+	 * Resets the background of the given HBox and removes the stroke color of the given Shape. To be called by
+	 * mouseOutside to update the template when the mouse exits the node.
+	 * @param h the HBox containing the shape that the mouse exited.
+	 * @param s the Shape that the mouse exited.
+	 * 
+	 * @see ChooseTemplate#mouseOutside(Shape)
+	 */
+	public void removeHoverEffect(HBox h, Shape s) {
+		h.setBackground(Background.EMPTY);
+		s.setStrokeWidth(mouseExitOutline);
+	}
+	
+	/**
+	 * Detects which template the mouse exited and resets its appearance by calling removeHoverEffect.
+	 * 
+	 * @param s the Shape that the mouse exited. Will be one of the square, triangle, circle,
+	 * or custom templates.
+	 * 
+	 * @see ChooseTemplate#removeHoverEffect(HBox, Shape)
+	 */
 	public void mouseOutside(Shape s) {
-		if (s.equals(triangle)) {
-		triangleBox.setBackground(Background.EMPTY);
-		triangle.setStrokeWidth(mouseExitOutline);
+		if (s.equals(triangle) && !selectedShapeName.equals("triangle")) {
+		removeHoverEffect(triangleBox,triangle);
+		} else if (s.equals(square) && !selectedShapeName.equals("square")) {
+			removeHoverEffect(squareBox,square);
+		} else if (s.equals(circle) && !selectedShapeName.equals("circle")) {
+			removeHoverEffect(circleBox,circle);
+		} else if (s.equals(custom) && !selectedShapeName.equals("custom")) {
+			removeHoverEffect(customBox,custom);
 		}
 	}
 	
@@ -334,6 +395,117 @@ public class ChooseTemplate extends Screen {
 	@Override
 	public void setEditable() {
 		theStage.setOpacity(View.EditableOpacity);
+	}
+	
+	/**
+	 * Sets the event handlers for the mouse entering and exiting the template Shapes.
+	 * @param s the Shape that will be set with the event handlers from the controller.
+	 * 
+	 * @see Controller#getMouseEnter()
+	 * @see Controller#getMouseExit()
+	 */
+	public void initTemplate(Shape s) {
+		s.setOnMouseEntered(con.getMouseEnter());
+		s.setOnMouseExited(con.getMouseExit());
+		s.setOnMouseClicked(con.getMouseClicked());
+	}
+	
+	/**
+	 * Sets the alignment, padding and border for the given HBox. Called to initialize the
+	 * boxes containing the four template Shapes.
+	 * 
+	 * @param h the HBox containing one of the four template Shapes.
+	 */
+	public void initTemplateBox(HBox h) {
+		final int templatePaddingAmt = 39;
+		
+		h.setAlignment(Pos.CENTER);
+		h.setPadding(new Insets(templatePaddingAmt));
+		h.setBorder(unclickedBorder);
+		
+	}
+	
+	/**
+	 * Updates the appearance of the HBox containing the template Shape that was clicked to
+	 * communicate that it has been selected, and calls removeMouseClickedEffect on all other 
+	 * Shapes to keep only the most recent selection.
+	 * @param s the Shape that the mouse has clicked.
+	 * 
+	 * @see ChooseTemplate#removeMouseClickedEffect(Shape)
+	 */
+	public void mouseClicked(Shape s) {
+		next.setDisable(false);
+		
+		if (!s.equals(triangle) && selectedShapeName.equals("triangle")) {
+			removeHoverEffect(triangleBox,triangle);
+		} 
+		else if (!s.equals(square) && selectedShapeName.equals("square")) {
+			removeHoverEffect(squareBox,square);
+		} 
+		else if (!s.equals(circle) && selectedShapeName.equals("circle")) {
+			removeHoverEffect(circleBox,circle);
+		}
+		else if (!s.equals(custom) && selectedShapeName.equals("custom")) {
+			removeHoverEffect(customBox,custom);
+		}
+		
+		
+		if (s.equals(triangle)) {
+			triangleBox.setBorder(clickedBorder);
+			selectedShapeName = "triangle";
+			removeMouseClickedEffect(triangle);
+		}
+		else if (s.equals(circle)) {
+			circleBox.setBorder(clickedBorder);
+			selectedShapeName = "circle";
+			removeMouseClickedEffect(circle);
+		} else if (s.equals(square)) {
+			squareBox.setBorder(clickedBorder);
+			selectedShapeName = "square";
+			removeMouseClickedEffect(square);
+		} else if (s.equals(custom)) {
+			customBox.setBorder(clickedBorder);
+			selectedShapeName = "custom";
+			removeMouseClickedEffect(custom);
+		}
+		System.out.println(selectedShapeName);
+	}
+	
+	
+	/**
+	 * Removes the background and border set for mouse clicked for all
+	 * other shapes besides the one passed in. To be called by mouseClicked to
+	 * ensure that only one template is selected.
+	 * 
+	 * @param s the template Shape that has been clicked.
+	 */
+	public void removeMouseClickedEffect(Shape s) {
+		if (s.equals(triangle)) {
+			circleBox.setBorder(unclickedBorder);
+			squareBox.setBorder(unclickedBorder);
+			customBox.setBorder(unclickedBorder);
+		} else if (s.equals(circle)) {
+			squareBox.setBorder(unclickedBorder);
+			triangleBox.setBorder(unclickedBorder);
+			customBox.setBorder(unclickedBorder);
+		} else if (s.equals(square)) {
+			circleBox.setBorder(unclickedBorder);
+			triangleBox.setBorder(unclickedBorder);
+			customBox.setBorder(unclickedBorder);
+		} else if (s.equals(custom)) {
+			triangleBox.setBorder(unclickedBorder);
+			circleBox.setBorder(unclickedBorder);
+			squareBox.setBorder(unclickedBorder);
+		}
+	}
+	
+	/**
+	 * Returns the name of the selected template.
+	 * 
+	 * @return a String representing the selected template Shape.
+	 */
+	public String getSelectedTemplate() {
+		return selectedShapeName;
 	}
 }
 
