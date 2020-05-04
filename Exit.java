@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
@@ -21,43 +20,57 @@ import javafx.stage.StageStyle;
 
 
 /**
+ * Screen that handles the creation and presentation of the exit screen, which asks the user if
+ * they are sure they want to quit the program, or gives the options of saving with or without quitting
+ * and canceling if the Screen currently in control of the primaryStage is one that has a save feature.
+ * 
+ * @see Screen
  * 
  * @author Takiyah Price
  *
  */
 
-//last edited: 4-29-20 12:30AM
+//last edited: 5-1-20 3:58AM
 
 public class Exit extends Screen {
-	private static final StageStyle StageStyle = null;
+	//private static final StageStyle StageStyle = null;
 	private Stage exitStage;
 	//private Scene exitWithSave;
 	//private Scene exitWithoutSave;
 	private Button saveButton;
 	private Button quitButton;
-	private Button yesButton;
+	//private Button yesButton;
 	private Button cancelButton;
 	private Group root;
 	private AnchorPane exitAP;
-
+	
+	private final int BtnMinWidth = 100;
+	private final int BtnMinHeight = 50;
+	private final int BtnPrefWidth = 140;
+	private final int fontSize = 16;
+	private final double distFromTop = 20.0;
+	private final double distFromSides = 80.0; 
+	private final int hGap = 100;
+	private final int columns = 2;
+	private final double offsetTopBottom = 60;
+	private final double offsetRightLeft = 50;
+	private final int exitStageWidth = 400;
+	private final int exitStageHeight = 120;
 	
 	public Exit(Controller c) {
 		saveButton = new Button("Save and Quit");
-		saveButton.setMinSize(100, 50);
-		saveButton.setOnMouseClicked(c.getSaveAndQuit());
-		saveButton.setPrefWidth(140);
+		saveButton.setMinSize(BtnMinWidth, BtnMinHeight);
+		saveButton.setOnMouseClicked(c.getSaveBTN());
+		saveButton.setPrefWidth(BtnPrefWidth);
 		
 		//quitButton = new Button("Quit without Saving");
 		quitButton = new Button();
-		quitButton.setMinSize(100, 50);
+		quitButton.setMinSize(BtnMinWidth, BtnMinHeight);
 		quitButton.setOnMouseClicked(c.getCloseAllWindows());
-		
-		//yesButton = new Button("Yes");
-		//yesButton.setOnMouseClicked(c.getCloseAllWindows());
-		//yesButton.setMinSize(100, 50);
+	
 		
 		cancelButton = new Button("Cancel");
-		cancelButton.setMinSize(100,50);
+		cancelButton.setMinSize(BtnMinWidth,BtnMinHeight);
 		cancelButton.setOnMouseClicked(c.getBackBTN());
 		
 		exitStage = new Stage(StageStyle.UNDECORATED);
@@ -72,10 +85,10 @@ public class Exit extends Screen {
 		textBox.getChildren().add(text);
 		textBox.setAlignment(Pos.CENTER);
 		text.setTextAlignment(TextAlignment.CENTER);
-		text.setFont(Font.font("Arial",FontWeight.BOLD,16));
-		AnchorPane.setTopAnchor(textBox, 20.0);
-		AnchorPane.setLeftAnchor(textBox,85.0);
-		AnchorPane.setRightAnchor(textBox, 85.0);
+		text.setFont(Font.font("Arial",FontWeight.BOLD,fontSize));
+		AnchorPane.setTopAnchor(textBox, distFromTop);
+		AnchorPane.setLeftAnchor(textBox,distFromSides);
+		AnchorPane.setRightAnchor(textBox, distFromSides);
 		
 		exitAP.getChildren().add(textBox);
 		exitAP.setBackground(new Background(new BackgroundFill(Color.LIGHTSLATEGREY,CornerRadii.EMPTY,Insets.EMPTY)));
@@ -85,7 +98,11 @@ public class Exit extends Screen {
 		
 	}
 	
+	/**
+	 * 
+	 */
 	public void showExitWithSave() {
+		//need to fix button positions
 		super.getPreviousScreen().setUneditable();
 		TilePane tPane = new TilePane();
 		quitButton.setText("Quit without Saving");
@@ -93,7 +110,7 @@ public class Exit extends Screen {
 		HBox hbox = new HBox();
 		tPane.setTileAlignment(Pos.CENTER);
 		tPane.setHgap(60);
-		tPane.setPrefColumns(2);
+		tPane.setPrefColumns(columns);
 		hbox.setBackground(new Background(new BackgroundFill(Color.LIGHTSLATEGREY,CornerRadii.EMPTY,Insets.EMPTY)));
 		hbox.setPadding(new Insets(60,40,60,25));
 		hbox.getChildren().setAll(tPane);
@@ -105,76 +122,49 @@ public class Exit extends Screen {
 		//
 		
 		
-		Scene exitScene = new Scene(root,400,120);
+		Scene exitScene = new Scene(root,exitStageWidth,exitStageHeight);
 		exitStage.setScene(exitScene);
 		exitStage.show();
 		
-		/*super.getPreviousScreen().setUneditable();
-		TilePane tPane = new TilePane();
-		tPane.getChildren().addAll(saveButton,quitButton);
-		HBox hbox = new HBox();
-		tPane.setTileAlignment(Pos.CENTER);
-		tPane.setHgap(60);
-		tPane.setPrefColumns(2);
-		hbox.setBackground(new Background(new BackgroundFill(Color.LIGHTSLATEGREY,CornerRadii.EMPTY,Insets.EMPTY)));
-		hbox.setPadding(new Insets(60,40,60,25));
-		hbox.getChildren().setAll(tPane);
 		
-		TilePane.setMargin(hbox, Insets.EMPTY);
-		root = new Group();
-		root.getChildren().addAll(hbox,exitAP);
-		
-		//
-		
-		
-		Scene exitScene = new Scene(root,400,120);
-		exitStage.setScene(exitScene);
-		
-		exitStage.show();*/
 		
 		
 		
 		
 	}
 	
+	/**
+	 * 
+	 */
 	public void showExitWithoutSave() {
 		super.getPreviousScreen().setUneditable();
 		
 		TilePane tPane = new TilePane();
 		HBox hbox = new HBox();
 		tPane.setTileAlignment(Pos.CENTER);
-		tPane.setHgap(100);
-		tPane.setPrefColumns(2);
+		tPane.setHgap(hGap);
+		tPane.setPrefColumns(columns);
 		hbox.setBackground(new Background(new BackgroundFill(Color.LIGHTSLATEGREY,CornerRadii.EMPTY,Insets.EMPTY)));
-		hbox.setPadding(new Insets(60,50,60,50));
+		hbox.setPadding(new Insets(offsetTopBottom,offsetRightLeft,offsetTopBottom,offsetRightLeft));
 		hbox.getChildren().setAll(tPane);
 		
-		tPane.setMargin(hbox, Insets.EMPTY);
+		TilePane.setMargin(hbox, Insets.EMPTY);
 		root = new Group();
 		root.getChildren().addAll(hbox,exitAP);
 		
-		//
-		//tPane.getChildren().addAll(yesButton,cancelButton);
+		
 		quitButton.setText("Yes");
 		tPane.getChildren().addAll(quitButton,cancelButton);
 		
-		Scene exitScene = new Scene(root,400,120);
+		Scene exitScene = new Scene(root,exitStageWidth,exitStageHeight);
 		exitStage.setScene(exitScene);
 		exitStage.show();
 		
 		
 	}
 	
-	/**
-	 * 
-	 */
-	public void closeExit() {
-		//can delete
-		exitStage.close();
-	}
-	/**
-	 * 
-	 */
+	
+	
 	@Override
 	public void goToPreviousScreen() {
 		exitStage.close();

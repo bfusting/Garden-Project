@@ -76,6 +76,7 @@ public class InfoTips extends Screen{
 	 * Default constructor just to work in view for now
 	 * not used in real project after Alpha
 	 * Made by Malachi
+	 * -Kelsey Approved
 	 */
 	public InfoTips() {
 		color = null;

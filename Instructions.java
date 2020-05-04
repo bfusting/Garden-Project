@@ -1,9 +1,7 @@
 import java.util.ArrayList;
-
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
-import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -12,7 +10,6 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 /*
@@ -28,28 +25,28 @@ import javafx.stage.Stage;
 *  
 */
 
-//Last edited: 4-29-20 12:43AM
+//Last edited: 5-1-20 2:29AM
 
 /**
  * 
- *  View that handles the creation and presentation of the instructions screen, where the user can
- * read a detailed explanation of the program controls from the main menu or view them in a
- * separate window while editing. 
+ *  Screen that handles the creation and presentation of the instructions screen, where the user can
+ * read a detailed explanation of the program controls in a separate window whenever they press an
+ * instructions Button.
  * 
- * @see View
+ * @see Screen
  * @author Takiyah Price
  */
 
 public class Instructions extends Screen {
 	private Stage instructionsStage;
-	private int dimension = 500;
+	private final int dimensions = 500;
+	private final double distFromSide = 5.0;
 	
 	
 	
 	/**
-	 * Constructor for the Instructions class that creates the String text and the Label holding them,
-	 * and creates a new Scene to present the screen and a new Stage to be viewed simultaneously as the 
-	 * main screen.
+	 * Constructor for the Instructions class, which creates the Texts containing the instructions for each component of the program,
+	 * anchors them to a new Scene and sets a new Stage with it.
 	 */
 	public Instructions() {
 		ArrayList<Text> texts = new ArrayList<Text>();
@@ -77,9 +74,9 @@ public class Instructions extends Screen {
 		
 		
 		for (Text t: texts) {
-			AnchorPane.setLeftAnchor(t, 5.0);
-			AnchorPane.setRightAnchor(t, 5.0);
-			AnchorPane.setTopAnchor(t, 5.0);
+			AnchorPane.setLeftAnchor(t, distFromSide);
+			AnchorPane.setRightAnchor(t, distFromSide);
+			AnchorPane.setTopAnchor(t, distFromSide);
 		}
 		AnchorPane chooseTemplateAP = new AnchorPane(chooseTemplateText);
 		AnchorPane enterPrefsAP = new AnchorPane(enteringPreferencesText);
@@ -107,26 +104,14 @@ public class Instructions extends Screen {
 		
 		
 		
-		//instructionsScene = new Scene(root,500,500);
+		
 		instructionsStage = new Stage();
-		instructionsStage.setScene(new Scene(root,dimension,dimension));
+		instructionsStage.setScene(new Scene(root,dimensions,dimensions));
 		instructionsStage.setTitle("Instructions");
 		
 	}
 	
 	
-	
-	
-	public void showInstructions() {
-		instructionsStage.show();
-		instructionsStage.toFront();
-		
-	}
-	
-	public void closeInstructions() {
-		//can delete
-		instructionsStage.close();
-	}
 	
 	@Override
 	public void showScreen() {

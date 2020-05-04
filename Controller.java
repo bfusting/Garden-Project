@@ -2,6 +2,7 @@ import java.io.File;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -15,8 +16,10 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
@@ -113,7 +116,7 @@ public class Controller{
 	public void loadGarden(MouseEvent event) {
 		System.out.println("Load Garden Here");
 		
-		view.show("loadGardenScreen");
+		view.show("loadGarden");
 		/*File file = view.showLoadGardenScreen();
 		if (file!=null) {
 		//presumably update Model here with file contents and tell all the information to view
@@ -619,7 +622,7 @@ public class Controller{
 	 */
 	public void saveBTN(MouseEvent event) {
 		System.out.println("SAVE OFTEN");
-		view.show("saveGardenScreen");
+		view.show("saveGarden");
 		
 		/*File file = view.showSaveGardenScreen();
 		if (file!=null) {
@@ -701,7 +704,10 @@ public class Controller{
 	 * @see ChooseTemplate
 	 */
 	public void templateToPref(MouseEvent event) {
-		//view.showPreferencesScreen();
+		String template = view.getSelectedTemplate();
+		
+		model.getUserPlot().setShape(template);
+		System.out.println("Template sent to model: "+template);
 		view.show("preferencesScreen");
 	}
 	
@@ -735,16 +741,19 @@ public class Controller{
 		return event -> viewSeasonsBTN((MouseEvent)event);
 	}//getViewSeasonsBTN
 	
-	/**
+	/*
+	 * 
+	 *
 	 * Filechooser to choose where the user wants to save the information
 	 * then using Serializable to save the information to a file
 	 * 
 	 * @see FinalView
-	 */
+	 
 	public void saveGarden() {
 		System.out.println("Open fileChooser and Save file");
+		//dont need this
 		
-	}
+	}*/
 	
 	/**
 	 * Takes in a MouseEvent to know when the a finalView button 
@@ -756,7 +765,6 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void finalViewBTN(MouseEvent event) {
-		//view.showFinalViewScreen();
 		view.show("finalViewScreen");
 	}
 	
@@ -775,14 +783,20 @@ public class Controller{
 	}
 	
 	/**
-	 * Filechooser to choose where the user wants to load the information from
-	 * then using Serializable to load the information from a file
+	 * Deserializes the Model from the contents of the File selected by the user in the open dialog.
 	 * 
-	 * @see FinalView
+	 * @param file The file selected by the user in an open dialog.
+	 * @return a boolean indicating whether the file had contents that were deserialized successfully
 	 */
-	public void loadGarden() {
-		System.out.println("Loads using fileChooser");
+	public boolean loadGarden(File file) {
 		
+		if (file!=null) {
+			System.out.println("File loaded. Time to design!!");
+			//Deserialize Model
+			return true;
+		}
+		System.out.println("File not loaded");
+		return false;
 	}
 	
 	/**
@@ -823,7 +837,13 @@ public class Controller{
 		//closeAllWindows(event);
 	}
 	
-	public boolean saveGardenTemp(File file) {
+	/**
+	 * Writes the contents of Model into the empty File chosen by the user from the save dialog.
+	 * 
+	 * @param file The empty File with the name specified by the user
+	 * @return a boolean specifying whether or not the File was written to and saved successfully
+	 */
+	public boolean saveGarden(File file) {
 		//adding this with different method signature in case changing the other one causes issues with tests
 		//or something
 		if (file!=null) {
@@ -831,6 +851,72 @@ public class Controller{
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public EventHandler<MouseEvent> getMouseEnter() {
+		return event -> mouseEnter((MouseEvent) event);
+	}
+	
+	/**
+	 * 
+	 * @param event
+	 */
+	public void mouseEnter(MouseEvent event) {
+		view.mouseEntered(event.getSource());
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public EventHandler<MouseEvent> getMouseExit() {
+		return event -> mouseExit((MouseEvent)event);
+	}
+	
+	/**
+	 * 
+	 * @param event
+	 */
+	public void mouseExit(MouseEvent event) {
+		
+		view.mouseExited(event.getSource());
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public EventHandler<WindowEvent> getExitStage() {
+		return event -> exitStage((WindowEvent)event);
+	}
+	
+	/**
+	 * 
+	 * @param event
+	 */
+	public void exitStage(WindowEvent event) {
+		event.consume();
+		view.show("exitScreen");
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public EventHandler<MouseEvent> getMouseClicked() {
+		return event -> mouseClicked((MouseEvent)event);
+	}
+	
+	/**
+	 * 
+	 * @param event
+	 */
+	public void mouseClicked(MouseEvent event) {
+		view.mouseClicked(event.getSource());
 	}
 	
 }//Controller

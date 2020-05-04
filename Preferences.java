@@ -33,6 +33,7 @@ public class Preferences extends Screen{
 	private Scene preferencesScene;
 	
 	private Button startCreating;
+	private Button back;
 	
 	private Controller c;
 	
@@ -103,6 +104,8 @@ public class Preferences extends Screen{
 	 * @param stage The stage for Preferences' scene
 	 */
 	public void showPreferences(Stage stage) {
+		back = new Button("Back to Templates");
+		back.setOnMouseClicked(c.getBackBTN());
 		
 		AnchorPane root = new AnchorPane();
 		
@@ -160,13 +163,15 @@ public class Preferences extends Screen{
 		startCreating = new Button("Start Creating");
 		AnchorPane.setBottomAnchor(startCreating, 40.0);
 		AnchorPane.setRightAnchor(startCreating, 40.0);
+		AnchorPane.setBottomAnchor(back, 40.0);
+		AnchorPane.setLeftAnchor(back, 40.0);
 		
 		// Binding to event Listener
 		startCreating.setOnMouseClicked(c.getDesignTime());
 		
 //		Label pref = new Label ("This is preferences");
 //		AnchorPane.setTopAnchor(pref, 100.0);
-		root.getChildren().addAll(bloomTime, pref, btLabel, r1, colorLabel, color, startCreating, glLabel, gwLabel, gardenLength, gardenWidth, getGardenDim);
+		root.getChildren().addAll(bloomTime, pref, btLabel, r1, colorLabel, color, startCreating, glLabel, gwLabel, gardenLength, gardenWidth, getGardenDim,back);
 		preferencesScene = new Scene(root, 500.0, 500.0);
 		
 		stage.setTitle("Preferences");
@@ -175,6 +180,10 @@ public class Preferences extends Screen{
 		
 	}
 	
+	/**
+	 * 
+	 * @return startCreating - The Start Creating button that takes you to DesignGarden
+	 */
 	public Button getStartCreating() {
 		return startCreating;
 	}
@@ -183,5 +192,7 @@ public class Preferences extends Screen{
 	public String toString() {
 		return "Preferences";
 	}
+	
+	
 }
 

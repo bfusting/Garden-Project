@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 /*
@@ -47,12 +46,6 @@ public class Model implements Serializable{
 	private Seasons userPrefSeason;
 	private int userPrefLight;
 	private int userPrefWater;
-	
-	// Constants for plant Types
-	private final String flower = "Flower";
-	private final String shrub = "Shrub";
-	private String tree = "Tree";
-	private String underGrowth = "Undergrowth";
 	
 	
 	/**
@@ -141,14 +134,20 @@ public class Model implements Serializable{
 		allPlants.sort(new SortbyType());
 		// Traaverses through sorted list and addeds all shrubs
 		for(Plant p: allPlants) {
-			if(p.getPlantType().equals(flower)) {
+			if(p.getPlantType().equals("Flower")) {
 				if(flowerArr != null){
-					flowerArr.add(p);
-				}//if
-			}//if
-		}//foreach
-		
-		setFlowerArr(filterByPlantColor(userPrefColor,flower));
+				flowerArr.add(p);
+				}
+			}
+		}
+		//sorting by Water Req
+		flowerArr.sort(new SortbyWaterNeed());
+		//sorting by Light Reg
+		flowerArr.sort(new SortbyLightNeed());
+		//sorting by Bloolm Req
+		flowerArr.sort(new SortbyBloomTime());
+		//sorting by color
+		flowerArr.sort(new SortbyColor());
 	}
 	
 	
@@ -161,7 +160,7 @@ public class Model implements Serializable{
 		allPlants.sort(new SortbyType());
 		// Traaverses through sorted list and addeds all shrubs
 		for(Plant p: allPlants) {
-			if(p.getPlantType().equals(shrub)) {
+			if(p.getPlantType().equals("Shrub")) {
 				if(shrubArr != null){
 				shrubArr.add(p);
 				}
@@ -186,7 +185,7 @@ public class Model implements Serializable{
 		allPlants.sort(new SortbyType());
 		// Traaverses through sorted list and addeds all shrubs
 		for(Plant p: allPlants) {
-			if(p.getPlantType().equals(tree)) {
+			if(p.getPlantType().equals("Tree")) {
 				if(treeArr != null){
 				treeArr.add(p);
 				}
@@ -211,7 +210,7 @@ public class Model implements Serializable{
 		allPlants.sort(new SortbyType());
 		// Traaverses through sorted list and addeds all shrubs
 		for(Plant p: allPlants) {
-			if(p.getPlantType().equals(underGrowth)) {
+			if(p.getPlantType().equals("UnderGrowth")) {
 				if(underGrowthArr != null){
 				underGrowthArr.add(p);
 				}
@@ -485,44 +484,5 @@ public class Model implements Serializable{
 	    { 
 	        return a.getBloomTime().compareTo(b.getBloomTime()); 
 	    } 
-	}
-	
-	
-	public ArrayList<Plant> filterByPlantColor(String color, String plantType){
-		// New hashset to hold plants of the right color
-		HashSet<Plant> prefColorSet = new HashSet<Plant>();
-		// hashSet to hold everything else not of that color
-		HashSet<Plant> otherColorSet = new HashSet<Plant>();
-		
-		// Iterate through and add to appropriate hashset
-		for(Plant p: this.getAllPlants()) {
-			if(p.getColor().equals(color) && (p.getPlantType().equals(plantType))) {
-				prefColorSet.add(p);
-			}//if
-			else if(p.getPlantType().equals(plantType)){
-				otherColorSet.add(p);
-			}//else
-		}//for
-		
-		//ArrayList of right colors which prefColor hashset is added to first
-		ArrayList<Plant> rightColors = new ArrayList<Plant>();
-		rightColors.addAll(prefColorSet);
-		
-		// Sorting by BloomTime
-		rightColors.sort(new SortbyBloomTime());
-		
-		//ArrayList for other colors to be sorted together form the hashset
-		ArrayList<Plant> otherColors = new ArrayList<Plant>();
-		
-		//Sorting other list by water to bloom time
-		otherColors.sort(new SortbyWaterNeed());
-		otherColors.sort(new SortbyLightNeed());
-		otherColors.sort(new SortbyColor());
-		otherColors.sort(new SortbyBloomTime());
-		
-		// Adding rest of the colors onto the end
-		rightColors.addAll(otherColorSet);
-		
-		return rightColors;
 	}
 }//Model

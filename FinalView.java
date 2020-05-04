@@ -28,6 +28,9 @@ public class FinalView extends Screen {
 	private Stage primaryStage;
 	private Controller c;
 	
+	private int canvasHeight = 800;
+	private int canvasWidth = 1200;
+	
 	/**
 	 * The constructor of FinalView
 	 * 
@@ -95,17 +98,17 @@ public class FinalView extends Screen {
 	
 	/**
 	 * 
-	 * Contains the buttons, and views of the final garden options.
+	 * Contains the buttons and views of the final garden options.
 	 * 
 	 * @param stage The stage for finalView's scene.
 	 */
-public void showFinalView(Stage stage) {
+	public void showFinalView(Stage stage) {
 		
 		
 		root = new AnchorPane();
 		
 
-		Rectangle r1 = new Rectangle(100, 100, 300, 250);
+		Rectangle r1 = new Rectangle(150, 100, 900, 500);
 		r1.setStroke(Color.LIGHTGRAY);
 		r1.setFill(Color.LIGHTGRAY);
 		r1.setStrokeWidth(1);
@@ -126,17 +129,17 @@ public void showFinalView(Stage stage) {
 		exit.setOnMouseClicked(c.getExit());
 		
 
-		root.setTopAnchor(edit, 400.0);
-		root.setTopAnchor(viewSeasons, 400.0);
-		root.setTopAnchor(infoTips, 400.0);
-		root.setTopAnchor(save, 400.0);
-		root.setTopAnchor(exit, 400.0);
+		root.setBottomAnchor(edit, 150.0);
+		root.setBottomAnchor(viewSeasons, 150.0);
+		root.setBottomAnchor(infoTips, 150.0);
+		root.setBottomAnchor(save, 150.0);
+		root.setBottomAnchor(exit, 150.0);
 		
-		root.setLeftAnchor(edit, 75.0);
-		root.setLeftAnchor(viewSeasons, 130.0);
-		root.setLeftAnchor(infoTips, 250.0);
-		root.setLeftAnchor(save, 360.0);
-		root.setLeftAnchor(exit, 420.0);
+		root.setLeftAnchor(edit, 200.0);
+		root.setLeftAnchor(viewSeasons, 350.0);
+		root.setLeftAnchor(infoTips, 550.0);
+		root.setLeftAnchor(save, 780.0);
+		root.setLeftAnchor(exit, 980.0);
 		
 		root.getChildren().addAll(edit, viewSeasons, infoTips, save,exit);
 
@@ -146,7 +149,7 @@ public void showFinalView(Stage stage) {
 		
 		
 		root.getChildren().add(r1);
-		finalViewScene = new Scene(root, 500.0, 500.0);
+		finalViewScene = new Scene(root, canvasWidth, canvasHeight);
 		
 		stage.setTitle("Final View");
 		stage.setScene(finalViewScene);
@@ -154,15 +157,31 @@ public void showFinalView(Stage stage) {
 		
 	}
 
+	/**
+	 * 
+	 * @return edit - The Edit button
+	 */
 	public Button getEditBTTN() {
 		return edit;
 	}
+	/**
+	 * 
+	 * @return infoTips - The Info and Tips button
+	 */
 	public Button getInfoTipsBTTN() {
 		return infoTips;
 	}
+	/**
+	 * 
+	 * @return viewSeasons - The View Seasons button
+	 */
 	public Button getViewSeasonsBTTN() {
 		return viewSeasons;
 	}
+	/**
+	 * 
+	 * @return save - The Save button
+	 */
 	public Button getSaveBTTN() {
 		return save;
 	}
