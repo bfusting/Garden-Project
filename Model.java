@@ -505,19 +505,31 @@ public class Model implements Serializable{
 	}
 	
 	/**
+	 * Takes in an ArrayList a, which represents the arrayList being sorted while
+	 * the color param is the usersColor pref attribute which was obtained from
+	 * the preferences of view passing in userinput.
+	 * <p>
+	 * Used to filter an array of plants by color. First iterates of the array and 
+	 * adds all the plants that don't match the otherColorArr then filters
+	 * using a stream, iterating over using a lambda then returning true items to the
+	 * stream.
 	 * 
-	 * @param a
-	 * @param color
-	 * @return
+	 * @param a is the arrayList to be sorted
+	 * @param color the users color preferenced passed in by Controller from Preferences
+	 * @return a filtered ArrayList by Plant color
 	 */
 	public ArrayList<Plant> filterByColor(ArrayList<Plant> a, String color){
 		//Iterate over list and if doesn't match color add to the otherColors Arr via getter
 		for(Plant p: a) {
-			if(p.getColor() != color) {
+			if(!p.getColor().equals(color)) {
 				otherColors.add(p);
 			}
 		}
-		List<Plant> userColorPlants = a;
+		// user getter for OtherColors Instead!
+		otherColors.sort(new SortbyColor());
+		
+		// filters the arrayList taken in
+		ArrayList<Plant> userColorPlants = a;
 		//streams the plants, filters by color, then adds them back to list
 		userColorPlants.stream().filter(p -> p.getColor().equals(color))
 		.collect(Collectors.toList());
