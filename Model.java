@@ -155,12 +155,14 @@ public class Model implements Serializable{
 		this.altPlots.add(gP1);
 		this.altPlots.add(gP2);
 		this.altPlots.add(gP3);
-	}		
-		
+	}
+	
 	/**
-	 * 
+	 * Runs only once once the preferences page is complete transmitting the information
+	 * such as color and light pref to model then filters by them and shifts 
+	 * the preferred plants up to the front
 	 */
-	public void updateFlowerArr() {
+	public void updateArrs() {
 		// sets up the array by filter to appropriate type then filtering to all of
 		// of flowerArr then
 		setFlowerArr(filterByType(flowerArr,flower));
@@ -168,92 +170,57 @@ public class Model implements Serializable{
 		flowerArr.addAll(filterByBloomTime(flowerArr,userPrefSeason));
 		flowerArr.addAll(filterByLight(flowerArr,userPrefLight));
 		flowerArr.addAll(filterByWater(flowerArr,userPrefWater));
-	}
+		
+		// Adding rest of the unsorted lists back into flowerArr
+		flowerArr.addAll(otherColors);
+		flowerArr.addAll(otherSeasons);
+		flowerArr.addAll(otherLight);
+		flowerArr.addAll(otherWater);
+		
+		// sets up the array by filter to appropriate type then filtering to all of
+		// of shrubArr
+		setShrubArr(filterByType(shrubArr,shrub));
+		shrubArr.addAll(filterByColor(shrubArr,userPrefColor));
+		shrubArr.addAll(filterByBloomTime(shrubArr,userPrefSeason));
+		shrubArr.addAll(filterByLight(shrubArr,userPrefLight));
+		shrubArr.addAll(filterByWater(shrubArr,userPrefWater));
+		
+		// Adding rest of the unsorted lists back into shrubArr
+		shrubArr.addAll(otherColors);
+		shrubArr.addAll(otherSeasons);
+		shrubArr.addAll(otherLight);
+		shrubArr.addAll(otherWater);
+		
+		// sets up the array by filter to appropriate type then filtering to all of
+		// of treeArr
+		setTreeArr(filterByType(treeArr,tree));
+		treeArr.addAll(filterByColor(treeArr,userPrefColor));
+		treeArr.addAll(filterByBloomTime(treeArr,userPrefSeason));
+		treeArr.addAll(filterByLight(treeArr,userPrefLight));
+		treeArr.addAll(filterByWater(treeArr,userPrefWater));
+		
+		// Adding rest of the unsorted lists back into treeArr
+		treeArr.addAll(otherColors);
+		treeArr.addAll(otherSeasons);
+		treeArr.addAll(otherLight);
+		treeArr.addAll(otherWater);
+		
+		// sets up the array by filter to appropriate type then filtering to all of
+		// of underGrowth Arr
+		setTreeArr(filterByType(treeArr,tree));
+		treeArr.addAll(filterByColor(treeArr,userPrefColor));
+		treeArr.addAll(filterByBloomTime(treeArr,userPrefSeason));
+		treeArr.addAll(filterByLight(treeArr,userPrefLight));
+		treeArr.addAll(filterByWater(treeArr,userPrefWater));
+		
+		// Adding rest of the unsorted lists back into underGrowthArr
+		treeArr.addAll(otherColors);
+		treeArr.addAll(otherSeasons);
+		treeArr.addAll(otherLight);
+		treeArr.addAll(otherWater);
+		
+	}//updateArrs
 	
-	
-	/**
-	 * From preferences updates the array. However changes the current index 
-	 * variable which is in that scope only and adds 6 to it to get the next 
-	 * items in the arrayList
-	 */
-	public void updateShrubArr() {
-		allPlants.sort(new SortbyType());
-		// Traaverses through sorted list and addeds all shrubs
-		for(Plant p: allPlants) {
-			if(p.getPlantType().equals("Shrub")) {
-				if(shrubArr != null){
-				shrubArr.add(p);
-				}
-			}
-		}
-		//sorting by Water Req
-		shrubArr.sort(new SortbyWaterNeed());
-		//sorting by Light Reg
-		shrubArr.sort(new SortbyLightNeed());
-		//sorting by Bloolm Req
-		shrubArr.sort(new SortbyBloomTime());
-		//sorting by color
-		shrubArr.sort(new SortbyColor());
-	}
-	
-	/**
-	 * From preferences updates the array. However changes the current index 
-	 * variable which is in that scope only and adds 6 to it to get the next 
-	 * items in the arrayList
-	 */
-	public void updateTreeArr() {
-		allPlants.sort(new SortbyType());
-		// Traaverses through sorted list and addeds all shrubs
-		for(Plant p: allPlants) {
-			if(p.getPlantType().equals("Tree")) {
-				if(treeArr != null){
-				treeArr.add(p);
-				}
-			}
-		}
-		//sorting by Water Req
-		treeArr.sort(new SortbyWaterNeed());
-		//sorting by Light Reg
-		treeArr.sort(new SortbyLightNeed());
-		//sorting by Bloolm Req
-		treeArr.sort(new SortbyBloomTime());
-		//sorting by color
-		treeArr.sort(new SortbyColor());
-	}
-	
-	/**
-	 * From preferences updates the array. However changes the current index 
-	 * variable which is in that scope only and adds 6 to it to get the next 
-	 * items in the arrayList
-	 */
-	public void updateUnderGrowthArr() {
-		allPlants.sort(new SortbyType());
-		// Traaverses through sorted list and addeds all shrubs
-		for(Plant p: allPlants) {
-			if(p.getPlantType().equals("UnderGrowth")) {
-				if(underGrowthArr != null){
-				underGrowthArr.add(p);
-				}
-			}
-		}
-		//sorting by Water Req
-		underGrowthArr.sort(new SortbyWaterNeed());
-		//sorting by Light Reg
-		underGrowthArr.sort(new SortbyLightNeed());
-		//sorting by Bloolm Req
-		underGrowthArr.sort(new SortbyBloomTime());
-		//sorting by color
-		underGrowthArr.sort(new SortbyColor());
-	}
-	
-	/**
-	 * Changes the current index 
-	 * variable which is in that scope only and adds 6 to it to get the next 
-	 * items in the arrayList
-	 */
-	public void updateSceneryArr() {
-		// make it take in all the stuff that isn't plants
-	}
 	
 	
 	////////////////////////////		GETTERS UNDERNEATH			////////////////////////////
@@ -660,5 +627,12 @@ public class Model implements Serializable{
 		return typeArr;
 	}//filterByType
 	
+	/**
+	 * Used to empty the otherArrays such as light/water/seasons and color between each
+	 * filter so no wrong types are in each list
+	 */
+	public void clearOthers() {
+		
+	}
 	// then getters and setters for new attributes
 }//Modeld
