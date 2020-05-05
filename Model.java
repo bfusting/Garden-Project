@@ -45,7 +45,6 @@ public class Model implements Serializable{
 	private ArrayList<Plant> allPlants;
 	
 	// Used to hold other "removed" plants while filtering
-	// Need getters and setters? only used in model
 	private ArrayList<Plant> otherColors;
 	private ArrayList<Plant> otherSeasons;
 	private ArrayList<Plant> otherLight;
@@ -64,6 +63,13 @@ public class Model implements Serializable{
 	// Range of values to filter by
 	private int lowBound;
 	private int highBound;
+	
+	// Constatns string reps to replace magic nums
+	private final String flower = "Flower";
+	private final String shrub = "Shrub";
+	private final String tree = "Tree";
+	private final String undergrowth = "UnderGrowth";
+	
 	/**
 	 * Constructor where the ArrayLists are initialized for space and
 	 * a new GardenPlot is created
@@ -151,33 +157,17 @@ public class Model implements Serializable{
 		this.altPlots.add(gP3);
 	}		
 		
-		
-		
-	
 	/**
-	 * From preferences updates the array. However changes the current index 
-	 * variable which is in that scope only and adds 6 to it to get the next 
-	 * items in the arrayList
 	 * 
 	 */
 	public void updateFlowerArr() {
-		allPlants.sort(new SortbyType());
-		// Traaverses through sorted list and addeds all shrubs
-		for(Plant p: allPlants) {
-			if(p.getPlantType().equals("Flower")) {
-				if(flowerArr != null){
-				flowerArr.add(p);
-				}
-			}
-		}
-		//sorting by Water Req
-		flowerArr.sort(new SortbyWaterNeed());
-		//sorting by Light Reg
-		flowerArr.sort(new SortbyLightNeed());
-		//sorting by Bloolm Req
-		flowerArr.sort(new SortbyBloomTime());
-		//sorting by color
-		flowerArr.sort(new SortbyColor());
+		// sets up the array by filter to appropriate type then filtering to all of
+		// of flowerArr then
+		setFlowerArr(filterByType(flowerArr,flower));
+		flowerArr.addAll(filterByColor(flowerArr,userPrefColor));
+		flowerArr.addAll(filterByBloomTime(flowerArr,userPrefSeason));
+		flowerArr.addAll(filterByLight(flowerArr,userPrefLight));
+		flowerArr.addAll(filterByWater(flowerArr,userPrefWater));
 	}
 	
 	
@@ -647,6 +637,7 @@ public class Model implements Serializable{
 	/**
 	 * Takes in an ArrayList a, which represents the arrayList being sorted while
 	 * the type param which is the kind of plant it is (Shrub, Tree, Flower, UnderGrowth)
+	 * Called in each of hte update methods to set up the inital arrays
 	 * <p>
 	 * Used to filter an array of plants by their types. Creates a new array list
 	 * checks if the streram of that array is plant type is equal to the type passed in
