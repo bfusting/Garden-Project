@@ -524,7 +524,7 @@ public class Model implements Serializable{
 		otherColors.sort(new SortbyColor());
 		
 		// filters the arrayList taken in, makes copy so a is not disturbed
-		ArrayList<Plant> userColorPlants = new ArrayList();
+		ArrayList<Plant> userColorPlants = new ArrayList<Plant>();
 		userColorPlants.addAll(a);
 		//streams the plants, filters by color, then adds them back to list
 		userColorPlants.stream().filter(p -> p.getColor().equals(color))
@@ -556,7 +556,7 @@ public class Model implements Serializable{
 		// user getter for otherSeasons Instead!
 		otherSeasons.sort(new SortbyBloomTime());
 		
-		ArrayList<Plant> userBloomPlants = new ArrayList();
+		ArrayList<Plant> userBloomPlants = new ArrayList<Plant>();
 		userBloomPlants.addAll(a);
 		//streams the plants, filters by BloomTime, then adds them back to list
 		userBloomPlants.stream().filter(p -> p.getBloomTime().equals(season))
@@ -583,7 +583,7 @@ public class Model implements Serializable{
 		switch(waterReq) {
 			case 0: lowBound = 0; highBound = 2; break;
 			case 5: lowBound = 3; highBound = 5; break;
-			default: lowBound = waterReq-1;highBound = waterReq+5;
+			default: lowBound = waterReq-1;highBound = waterReq+1;
 		}//switch
 		
 		//Iterate over list and if water int isn't
@@ -596,11 +596,78 @@ public class Model implements Serializable{
 		// user getter for otherWater Instead!
 		otherWater.sort(new SortbyWaterNeed());
 	
-		ArrayList<Plant> userWaterPlants = new ArrayList();
+		ArrayList<Plant> userWaterPlants = new ArrayList<Plant>();
 		userWaterPlants.addAll(a);
 		//streams the plants, filters by BloomTime, then adds them back to list
 		userWaterPlants.stream().filter(p -> p.getWaterNeed() >= lowBound
 				&& p.getWaterNeed() <= highBound).collect(Collectors.toList());
 		return userWaterPlants;
 	}//filterByWater
-}//Model
+	
+	/**
+	 * Takes in an ArrayList a, which represents the arrayList being sorted while
+	 * the lightRqq param is the usersLightPref attribute which was obtained from
+	 * the preferences of view passing in userinput.
+	 * <p>
+	 * Used to filter an array of plants by waterReq. First takes in the lightReq
+	 * into a switchStatement and creates a high and low bound to add to when filtering.
+	 * Then adds all the plants that don't meet the lightRange to the otherLight Arr
+	 * finally sorts the array by the range and returns it
+	 * 
+	 * @param a is the arrayList to be sorted
+	 * @param lightReq is the amount of light a plant needs
+	 * @return a filtered ArrayList by Plant waterReq
+	 */
+	public ArrayList<Plant> filterByLight(ArrayList<Plant> a, int lightReq){
+		// switch statement to setup range (if 0 range is 0-2, if five range is 3-5)
+		switch(lightReq) {
+			case 0: lowBound = 0; highBound = 2; break;
+			case 5: lowBound = 3; highBound = 5; break;
+			default: lowBound = lightReq-1;highBound = lightReq+1;
+		}//switch
+		
+		//Iterate over list and if light int isn't
+		//range add to the otherLight Arr via getter
+		for(Plant p: a) {
+			if(!(p.getSunLightNeed() >= lowBound) && !(p.getSunLightNeed() <= highBound)) {
+				otherLight.add(p);
+			}
+		}
+		// user getter for otherWater Instead!
+		otherLight.sort(new SortbyLightNeed());
+	
+		ArrayList<Plant> userLightPlants = new ArrayList<Plant>();
+		userLightPlants.addAll(a);
+		//streams the plants, filters by BloomTime, then adds them back to list
+		userLightPlants.stream().filter(p -> p.getSunLightNeed() >= lowBound
+				&& p.getSunLightNeed() <= highBound).collect(Collectors.toList());
+		return userLightPlants;
+	}//filterByLight
+	
+	/**
+	 * Takes in an ArrayList a, which represents the arrayList being sorted while
+	 * the type param which is the kind of plant it is (Shrub, Tree, Flower, UnderGrowth)
+	 * <p>
+	 * Used to filter an array of plants by their types. Creates a new array list
+	 * checks if the streram of that array is plant type is equal to the type passed in
+	 * if so added into array
+	 * 
+	 * @param a is the arrayList to be sorted
+	 * @param type is the category the plant is in (Shrub, Tree, Flower, UnderGrowth)
+	 * @return a filtered ArrayList of types
+	 * @see Model#updateFlowerArr()
+	 * @see Model#updateSceneryArr()
+	 * @see Model#updateShrubArr()
+	 * @see Model#updateTreeArr()
+	 * @see Model#updateUnderGrowthArr()
+	 */
+	public ArrayList<Plant> filterByType(ArrayList<Plant> a, String type){
+		ArrayList<Plant> typeArr = new ArrayList<Plant>();
+		typeArr.addAll(a);
+		//streams the plants, filters by BloomTime, then adds them back to list
+		typeArr.stream().filter(p -> p.getPlantType().equals(type)).collect(Collectors.toList());
+		return typeArr;
+	}//filterByType
+	
+	// then getters and setters for new attributes
+}//Modeld
