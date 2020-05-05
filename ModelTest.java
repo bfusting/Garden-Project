@@ -62,7 +62,7 @@ class ModelTest {
 		newSelection.add(a);
 		
 		// Calling method then comparing to newSelection ArrayList
-		m.updateFlowerArr();
+		m.updateArrs();
 		assertTrue(m.getFlowerArr().equals(newSelection));
 	}
 
@@ -83,7 +83,7 @@ class ModelTest {
 		newShrub.add(milkWeed);
 		
 		// Calling method then comparing to newSelection ArrayList
-		m.updateFlowerArr();
+		m.updateArrs();
 		assertTrue(m.getFlowerArr().equals(newShrub));
 	}
 
@@ -104,7 +104,7 @@ class ModelTest {
 		newTree.add(milkWeed);
 		
 		// Calling method then comparing to newSelection ArrayList
-		m.updateFlowerArr();
+		m.updateArrs();
 		assertTrue(m.getFlowerArr().equals(newTree));
 	}
 
@@ -121,7 +121,7 @@ class ModelTest {
 		newUnderGrowth.add(milkWeed);
 		
 		// Calling method then comparing to newSelection ArrayList
-		m.updateFlowerArr();
+		m.updateArrs();
 		assertTrue(m.getFlowerArr().equals(newUnderGrowth));
 	}
 
