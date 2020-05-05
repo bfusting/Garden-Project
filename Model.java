@@ -329,6 +329,35 @@ public class Model implements Serializable{
 		return allPlants;
 	}
 	
+	/**
+	 * Returns the userPrefColor attribute
+	 * <p>
+	 * Getter for userPrefColor attribute
+	 * @return userPrefColor is the color passed by preferences
+	 */
+	public String getUserPrefColor() {
+		return userPrefColor;
+	}
+	
+	public Seasons getUserPrefSeason() {
+		return userPrefSeason;
+	}
+	
+	public int getUserPrefLight() {
+		return userPrefLight;
+	}
+	
+	public int getUserPrefWater() {
+		return userPrefWater;
+	}
+	
+	public int getUserLength() {
+		return userLength;
+	}
+	
+	public int getUserWidth() {
+		return userWidth;
+	}
 	
 	////////////////////////////		SETTERS			////////////////////////////
 	
@@ -396,7 +425,31 @@ public class Model implements Serializable{
 	 */
 	public void setSceneryArr(ArrayList<AddOn> a) {
 		sceneryArr = a;
-	}	
+	}
+	
+	public void setUserPrefColor(String newColor) {
+		userPrefColor = newColor;
+	}
+	
+	public void setUserPrefSeason(Seasons newSeason) {
+		userPrefSeason = newSeason;
+	}
+	
+	public void setUserPrefLight(int newLight) {
+		userPrefLight = newLight;
+	}
+	
+	public void setUserPrefWater(int newWater) {
+		userPrefWater = newWater;
+	}
+	
+	public void setUserLength(int newLength) {
+		userLength = newLength;
+	}
+	
+	public void setUserWidth(int newWidth) {
+		userWidth = newWidth;
+	}
 	
 	//////////////////// Comparators ///////////////////////////////////
 	
