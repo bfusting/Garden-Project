@@ -57,7 +57,13 @@ public class Model implements Serializable{
 	private int userPrefLight;
 	private int userPrefWater;
 	
+	// Width and length given by user passed in by preferences
+	private int userLength;
+	private int userWidth;
 	
+	// Range of values to filter by
+	private int lowBound;
+	private int highBound;
 	/**
 	 * Constructor where the ArrayLists are initialized for space and
 	 * a new GardenPlot is created
@@ -104,11 +110,19 @@ public class Model implements Serializable{
 		otherLight = new ArrayList<Plant>();
 		otherWater = new ArrayList<Plant>();
 		
+		// Prefs passed in by user
 		userPrefColor = "";
 		userPrefSeason = null;
 		userPrefLight = 0;
 		userPrefWater = 0;
 		
+		// user defined length and width
+		userLength = 0;
+		userWidth = 0;
+		
+		// Range of values to filter functions thats it
+		lowBound = 0;
+		highBound = 0;
 	}//Model()
 	
 	/**
@@ -135,8 +149,6 @@ public class Model implements Serializable{
 		this.altPlots.add(gP1);
 		this.altPlots.add(gP2);
 		this.altPlots.add(gP3);
-		
-		
 	}		
 		
 		
@@ -420,23 +432,6 @@ public class Model implements Serializable{
 	//////////////////// Comparators ///////////////////////////////////
 	
 	/**
-	 * Comparator class used to sort a collections of Plants by their type
-	 * attribute of their type by using the Comparator interface
-	 * 
-	 * @author Malachi Parks
-	 *
-	 */
-	class SortbyType implements Comparator<Plant> 
-	{ 
-	    // Used for sorting in ascending order of 
-	    // plant type ("Shrub", "UnderGrowth", "Tree", ...)
-	    public int compare(Plant a, Plant b) 
-	    { 
-	        return a.getPlantType().compareTo(b.getPlantType()); 
-	    } 
-	} 
-	
-	/**
 	 * Comparator class used to sort a collections of Plants by their 
 	 * attribute of their waterRequirement by using the Comparator interface
 	 * 
@@ -528,11 +523,84 @@ public class Model implements Serializable{
 		// user getter for OtherColors Instead!
 		otherColors.sort(new SortbyColor());
 		
-		// filters the arrayList taken in
-		ArrayList<Plant> userColorPlants = a;
+		// filters the arrayList taken in, makes copy so a is not disturbed
+		ArrayList<Plant> userColorPlants = new ArrayList();
+		userColorPlants.addAll(a);
 		//streams the plants, filters by color, then adds them back to list
 		userColorPlants.stream().filter(p -> p.getColor().equals(color))
 		.collect(Collectors.toList());
-		return (ArrayList<Plant>) userColorPlants;
-	}
+		return userColorPlants;
+	}//filterByColor
+	
+	/**
+	 * Takes in an ArrayList a, which represents the arrayList being sorted while
+	 * the season param is the usersSeasons pref attribute which was obtained from
+	 * the preferences of view passing in userinput.
+	 * <p>
+	 * Used to filter an array of plants by season enum. First iterates of the array and 
+	 * adds all the plants that don't match the otherSeasonArr then filters
+	 * using a stream, iterating over using a lambda then returning true items to the
+	 * stream.
+	 * 
+	 * @param a is the arrayList to be sorted
+	 * @param season the users bloomTime preferenced passed in by Controller from Preferences
+	 * @return a filtered ArrayList by Plant arrayList
+	 */
+	public ArrayList<Plant> filterByBloomTime(ArrayList<Plant> a, Seasons season){
+		//Iterate over list and if doesn't match bloom add to the otherBloomTime Arr via getter
+		for(Plant p: a) {
+			if(!p.getBloomTime().equals(season)) {
+				otherSeasons.add(p);
+			}
+		}
+		// user getter for otherSeasons Instead!
+		otherSeasons.sort(new SortbyBloomTime());
+		
+		ArrayList<Plant> userBloomPlants = new ArrayList();
+		userBloomPlants.addAll(a);
+		//streams the plants, filters by BloomTime, then adds them back to list
+		userBloomPlants.stream().filter(p -> p.getBloomTime().equals(season))
+		.collect(Collectors.toList());
+		return userBloomPlants;
+	}//fliterByBloomTime
+	
+	/**
+	 * Takes in an ArrayList a, which represents the arrayList being sorted while
+	 * the waterReq param is the usersWaterPref attribute which was obtained from
+	 * the preferences of view passing in userinput.
+	 * <p>
+	 * Used to filter an array of plants by waterReq. First takes in the waterReq
+	 * into a switchStatement and creates a high and low bound to add to when filtering.
+	 * Then adds all the plants that don't meet the waterRange to the otherWater Arr
+	 * finally sorts the array by the range and returns it
+	 * 
+	 * @param a is the arrayList to be sorted
+	 * @param waterReq is the amount of water a plant needs
+	 * @return a filtered ArrayList by Plant waterReq
+	 */
+	public ArrayList<Plant> filterByWater(ArrayList<Plant> a, int waterReq){
+		// switch statement to setup range (if 0 range is 0-2, if five range is 3-5)
+		switch(waterReq) {
+			case 0: lowBound = 0; highBound = 2; break;
+			case 5: lowBound = 3; highBound = 5; break;
+			default: lowBound = waterReq-1;highBound = waterReq+5;
+		}//switch
+		
+		//Iterate over list and if water int isn't
+		//range add to the otherWater Arr via getter
+		for(Plant p: a) {
+			if(!(p.getWaterNeed() >= lowBound) && !(p.getWaterNeed() <= highBound)) {
+				otherWater.add(p);
+			}
+		}
+		// user getter for otherWater Instead!
+		otherWater.sort(new SortbyWaterNeed());
+	
+		ArrayList<Plant> userWaterPlants = new ArrayList();
+		userWaterPlants.addAll(a);
+		//streams the plants, filters by BloomTime, then adds them back to list
+		userWaterPlants.stream().filter(p -> p.getWaterNeed() >= lowBound
+				&& p.getWaterNeed() <= highBound).collect(Collectors.toList());
+		return userWaterPlants;
+	}//filterByWater
 }//Model
