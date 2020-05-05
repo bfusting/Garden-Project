@@ -177,6 +177,9 @@ public class Model implements Serializable{
 		flowerArr.addAll(otherLight);
 		flowerArr.addAll(otherWater);
 		
+		// clearing other arrays
+		clearOthers();
+		
 		// sets up the array by filter to appropriate type then filtering to all of
 		// of shrubArr
 		setShrubArr(filterByType(shrubArr,shrub));
@@ -190,6 +193,9 @@ public class Model implements Serializable{
 		shrubArr.addAll(otherSeasons);
 		shrubArr.addAll(otherLight);
 		shrubArr.addAll(otherWater);
+		
+		// clearing other arrays
+		clearOthers();
 		
 		// sets up the array by filter to appropriate type then filtering to all of
 		// of treeArr
@@ -205,19 +211,25 @@ public class Model implements Serializable{
 		treeArr.addAll(otherLight);
 		treeArr.addAll(otherWater);
 		
+		// clearing other arrays
+		clearOthers();
+		
 		// sets up the array by filter to appropriate type then filtering to all of
 		// of underGrowth Arr
-		setTreeArr(filterByType(treeArr,tree));
-		treeArr.addAll(filterByColor(treeArr,userPrefColor));
-		treeArr.addAll(filterByBloomTime(treeArr,userPrefSeason));
-		treeArr.addAll(filterByLight(treeArr,userPrefLight));
-		treeArr.addAll(filterByWater(treeArr,userPrefWater));
+		setUnderGrowthArr((filterByType(underGrowthArr,undergrowth)));
+		underGrowthArr.addAll(filterByColor(underGrowthArr,userPrefColor));
+		underGrowthArr.addAll(filterByBloomTime(underGrowthArr,userPrefSeason));
+		underGrowthArr.addAll(filterByLight(underGrowthArr,userPrefLight));
+		underGrowthArr.addAll(filterByWater(underGrowthArr,userPrefWater));
 		
 		// Adding rest of the unsorted lists back into underGrowthArr
-		treeArr.addAll(otherColors);
-		treeArr.addAll(otherSeasons);
-		treeArr.addAll(otherLight);
-		treeArr.addAll(otherWater);
+		underGrowthArr.addAll(otherColors);
+		underGrowthArr.addAll(otherSeasons);
+		underGrowthArr.addAll(otherLight);
+		underGrowthArr.addAll(otherWater);
+		
+		// clearing other arrays
+		clearOthers();
 		
 	}//updateArrs
 	
@@ -632,7 +644,10 @@ public class Model implements Serializable{
 	 * filter so no wrong types are in each list
 	 */
 	public void clearOthers() {
-		
+		otherColors.clear();
+		otherSeasons.clear();
+		otherLight.clear();
+		otherWater.clear();
 	}
 	// then getters and setters for new attributes
 }//Modeld
