@@ -10,6 +10,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 /*
@@ -293,9 +294,17 @@ public class View extends Application{
 	public File showSaveLoad(boolean isSaving) {
 		primaryStage.setOpacity(nonEditableOpacity);
 		File file = null;
+		ExtensionFilter npgFilter = new ExtensionFilter("Native Plant Garden Design files (.npgd)","*.npgd");
+		fileChooser.getExtensionFilters().add(npgFilter);
+		
 		if (isSaving) {
+			fileChooser.setInitialFileName("MyGarden");
+			
+			
+			
 			file = fileChooser.showSaveDialog(primaryStage);
 		} else {
+			
 			file = fileChooser.showOpenDialog(primaryStage);
 		}
 		
