@@ -919,6 +919,26 @@ public class Controller{
 		view.mouseClicked(event.getSource());
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public EventHandler<MouseEvent> getMouseEnteredPlantSelection(){
+		return event -> mouseEnteredPlantSelection((MouseEvent) event);
+	}
+	
+	/**
+	 * 
+	 * @param event
+	 */
+	public void mouseEnteredPlantSelection(MouseEvent event) {
+		Node n = (Node)event.getSource();
+		Integer rowIndex = GridPane.getRowIndex(n);
+		Integer colIndex = GridPane.getColumnIndex(n);
+		if(DEBUG) {System.out.println("colIndex: " + colIndex + " rowIndex: " + rowIndex);}
+	}
+		
+	
 }//Controller
 
 

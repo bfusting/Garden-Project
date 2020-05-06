@@ -357,6 +357,9 @@ public class DesignGarden extends Screen{
 		
 		finalView.setOnMouseClicked(c.getFinalViewBTN());
 		
+		// tells position of where the mouse is in each gridpane
+		//plantsGP.setOnMouseEntered(c.getMouseEnteredPlantSelection());
+		
 		AnchorPane apButtons = new AnchorPane();
 
 		Label otherFeaturesLabel = new Label("Other Features: ");
@@ -424,8 +427,12 @@ public class DesignGarden extends Screen{
 	         plot.getRowConstraints().add(row);
 	     }
 		
+		// setting info for drag n' drop for plot
 		plot.setOnDragOver(c.getDetectDrag());
 		plot.setOnDragDropped(c.getDetectDragDrop());
+		
+		// set for each tile in it to make it wor
+		plot.getChildren().forEach(t -> t.setOnMouseEntered(c.getMouseEnteredPlantSelection()));
 
 		plot.setGridLinesVisible(true);
 		
