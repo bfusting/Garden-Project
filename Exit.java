@@ -1,16 +1,29 @@
+import java.util.ArrayList;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -30,10 +43,9 @@ import javafx.stage.StageStyle;
  *
  */
 
-//last edited: 5-1-20 3:58AM
+//last edited: 5-7-20 6:40AM
 
 public class Exit extends Screen {
-	//private static final StageStyle StageStyle = null;
 	private Stage exitStage;
 	//private Scene exitWithSave;
 	//private Scene exitWithoutSave;
@@ -78,6 +90,7 @@ public class Exit extends Screen {
 		exitStage.setAlwaysOnTop(true);
 		//
 		
+		/*
 		HBox textBox = new HBox();
 		exitAP = new AnchorPane();
 		Text text = new Text("Are you sure you want to quit?");
@@ -93,7 +106,7 @@ public class Exit extends Screen {
 		exitAP.getChildren().add(textBox);
 		exitAP.setBackground(new Background(new BackgroundFill(Color.LIGHTSLATEGREY,CornerRadii.EMPTY,Insets.EMPTY)));
 	
-		
+		*/
 		
 		
 	}
@@ -102,7 +115,73 @@ public class Exit extends Screen {
 	 * 
 	 */
 	public void showExitWithSave() {
-		//need to fix button positions
+		super.getPreviousScreen().setUneditable();
+		
+		ImageView tools = new ImageView(new Image("/imageedit_1_3152080240.png",70,70,true,true));
+		tools.setX((500-70)/2);
+		tools.setY(0);
+		root = new Group();
+		GridPane gp = new GridPane();
+		Color bgColor = Color.web("#B2DCE0");
+		gp.setBackground(new Background(new BackgroundFill(bgColor, CornerRadii.EMPTY,new Insets(6))));
+		gp.setGridLinesVisible(false);
+		gp.setVgap(5);
+		gp.setMinSize(500, 200);
+		gp.setMaxSize(500,200);
+		gp.setAlignment(Pos.TOP_CENTER);
+		gp.setBorder(new Border(new BorderStroke(Color.web("#5a6453"),BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(4))));
+		
+		
+		Text exitMessage = new Text("Are you sure you want to quit?");
+		exitMessage.setTextAlignment(TextAlignment.CENTER);
+		exitMessage.setFont(Font.font("Verdana",FontWeight.BOLD,fontSize));
+		
+		Text warning = new Text("(Any unsaved changes may be lost.)");
+		warning.setTextAlignment(TextAlignment.CENTER);
+		warning.setFont(Font.font("Verdana",FontPosture.ITALIC,14));
+		warning.setFill(Color.web("#595e64"));
+		
+		Rectangle left = new Rectangle(220,4,Color.web("#5a6453"));
+		Rectangle right = new Rectangle(220,4,Color.web("#5a6453"));
+		TilePane toolsPane = new TilePane(left,right);
+		toolsPane.setMinHeight(70);
+		toolsPane.setAlignment(Pos.CENTER_LEFT);
+		toolsPane.setHgap(60);
+		
+		TilePane textPane = new TilePane(exitMessage,warning);
+		textPane.setVgap(5);
+		textPane.setHgap(200);
+		textPane.setAlignment(Pos.BASELINE_CENTER);
+		
+		quitButton.setText("Quit without Saving");
+		cancelButton.setMinWidth(140);
+		//TilePane buttonPane = new TilePane(saveButton,quitButton,cancelButton);
+		//buttonPane.setPadding(new Insets(15));
+		//buttonPane.setHgap(20);
+		GridPane buttonPane = new GridPane();
+		buttonPane.setMinWidth(500);
+		ColumnConstraints buttonW = new ColumnConstraints(140);
+		buttonPane.getColumnConstraints().addAll(buttonW,buttonW,buttonW);
+		buttonPane.setPadding(new Insets(10));
+		buttonPane.setHgap(20);
+		buttonPane.setAlignment(Pos.CENTER);
+		buttonPane.add(saveButton, 0, 2);
+		buttonPane.add(cancelButton, 1, 2 );
+		buttonPane.add(quitButton, 2, 2);
+		
+		
+		
+		
+		//gp.setHgap(30);
+		gp.add(toolsPane, 0, 0);
+		gp.add(textPane,0,1);
+		gp.add(buttonPane, 0, 2);
+		
+		root.getChildren().addAll(gp,tools);
+		Scene exitScene = new Scene(root,500,200);
+		exitStage.setScene(exitScene);
+		exitStage.show();
+		/*//need to fix button positions
 		super.getPreviousScreen().setUneditable();
 		TilePane tPane = new TilePane();
 		quitButton.setText("Quit without Saving");
@@ -124,7 +203,7 @@ public class Exit extends Screen {
 		
 		Scene exitScene = new Scene(root,exitStageWidth,exitStageHeight);
 		exitStage.setScene(exitScene);
-		exitStage.show();
+		exitStage.show();*/
 		
 		
 		
@@ -137,7 +216,7 @@ public class Exit extends Screen {
 	 * 
 	 */
 	public void showExitWithoutSave() {
-		super.getPreviousScreen().setUneditable();
+		/*super.getPreviousScreen().setUneditable();
 		
 		TilePane tPane = new TilePane();
 		HBox hbox = new HBox();
@@ -158,7 +237,7 @@ public class Exit extends Screen {
 		
 		Scene exitScene = new Scene(root,exitStageWidth,exitStageHeight);
 		exitStage.setScene(exitScene);
-		exitStage.show();
+		exitStage.show();*/
 		
 		
 	}
@@ -182,6 +261,7 @@ public class Exit extends Screen {
 		exitStage.close();
 	}
 	
+
 	
 	
 	
