@@ -1,4 +1,9 @@
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -791,8 +796,20 @@ public class Controller{
 	public boolean loadGarden(File file) {
 		
 		if (file!=null) {
+			try {
+				FileInputStream fis = new FileInputStream(file);
+				ObjectInputStream ois = new ObjectInputStream(fis);
+				
+				model = (Model) ois.readObject();
+				System.out.println(model.getUserPlot().getShape());
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			}
 			System.out.println("File loaded. Time to design!!");
-			//Deserialize Model
 			return true;
 		}
 		System.out.println("File not loaded");
@@ -848,6 +865,16 @@ public class Controller{
 		//or something
 		if (file!=null) {
 			//do the saving here
+			try {
+				FileOutputStream fos = new FileOutputStream(file);
+				ObjectOutputStream oos = new ObjectOutputStream(fos);
+				oos.writeObject(model);
+				oos.close();
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 			return true;
 		}
 		return false;
@@ -919,7 +946,11 @@ public class Controller{
 		view.mouseClicked(event.getSource());
 	}
 	
+	
+	
 }//Controller
+
+
 
 
 

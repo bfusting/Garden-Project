@@ -1,4 +1,6 @@
-public class AddOn{
+import java.io.Serializable;
+
+public class AddOn implements Serializable{
 	
 	String name;
 	/**
