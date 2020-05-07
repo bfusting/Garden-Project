@@ -100,6 +100,8 @@ public class DesignGarden extends Screen{
 	
 	private Controller c;
 	
+	private final int selectionSize = 6; 
+	
 	public DesignGarden(Controller controller,Stage s) {
 		this.c = controller;
 		theStage = s;
@@ -218,7 +220,55 @@ public class DesignGarden extends Screen{
 		otherGP.add(other3, 2, 1);
 */	
 		plants = new Tab("Plants");
-//		plants.setContent(plantsGP);
+		plantsGP.setMaxSize(100, 100);
+		
+		//used to set up the plantsGP with tiles
+		plantsGP.getRowConstraints().add(new RowConstraints(100));
+		for(int i=0;i < selectionSize; i++) {
+			ColumnConstraints column = new ColumnConstraints(100);
+			plantsGP.getColumnConstraints().add(column);
+		}
+		
+		//gets the index of the selection array row
+		plantsGP.getChildren().forEach(t -> t.setOnMouseEntered(c.getMouseEnteredPlantSelection()));
+		
+		/*
+		ImageView soil1[] = new ImageView[selectionSize];
+		for(int i=0; i<selectionSize; i++) {
+			soil1[i] = new ImageView(new Image("img/soil.jpg"));
+			soil1[i].setPreserveRatio(true);
+			soil1[i].setFitHeight(100);
+			soil1[i].setFitWidth(100);
+			//plantsGP.add(soil1[i],0,i,1,1);
+			plantsGP.add(soil1[i], i, 0,1,1);
+		}*/
+		
+		// Set so can see gridPane
+		plantsGP.setGridLinesVisible(true);
+		
+		/*
+		TilePane plantTP = new TilePane();
+		plantTP.setHgap(8);
+		plantTP.setPrefColumns(5);
+		for (ImageView iv : pSelectionArr) {
+			iv.setOnDragDetected(c.getStartDrag());
+	        plantTP.getChildren().add(iv);
+	   	}
+	   	
+		plot.setMinSize(600.0, 600.0);
+		for (int i = 0; i < 5; i++) {
+	         ColumnConstraints column = new ColumnConstraints(150);
+	         plot.getColumnConstraints().add(column);
+	     }
+		for (int i = 0; i < 5; i++) {
+	         RowConstraints row = new RowConstraints(100);
+	         plot.getRowConstraints().add(row);
+	     }
+		
+		// setting info for drag n' drop for plot
+		plot.setOnDragOver(c.getDetectDrag());
+		plot.setOnDragDropped(c.getDetectDragDrop());
+		*/
 		
 		trees = new Tab("Trees");
 //		trees.setContent(treesGP);
@@ -250,7 +300,7 @@ public class DesignGarden extends Screen{
     	
     	pSelectionArr.add(iv2);
 		
-		
+		/*
 		TilePane plantTP = new TilePane();
 		plantTP.setHgap(8);
 		plantTP.setPrefColumns(5);
@@ -258,8 +308,10 @@ public class DesignGarden extends Screen{
 			iv.setOnDragDetected(c.getStartDrag());
 	        plantTP.getChildren().add(iv);
 	   	}
+	   	*/
 		
-	    plants.setContent(plantTP);
+		
+	    //plants.setContent(plantTP);
 	    
 	    ImageView ivt1 = new ImageView();
 		Image imt1 = new Image(getClass().getResourceAsStream("/BlackGumTreecopy.png"));
@@ -432,7 +484,7 @@ public class DesignGarden extends Screen{
 		plot.setOnDragDropped(c.getDetectDragDrop());
 		
 		// set for each tile in it to make it wor
-		plot.getChildren().forEach(t -> t.setOnMouseEntered(c.getMouseEnteredPlantSelection()));
+		//plot.getChildren().forEach(t -> t.setOnMouseEntered(c.getMouseEnteredPlantSelection()));
 
 		plot.setGridLinesVisible(true);
 		

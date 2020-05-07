@@ -938,7 +938,6 @@ public class Controller{
 		if(DEBUG) {System.out.println("colIndex: " + colIndex + " rowIndex: " + rowIndex);}
 	}
 		
-	
 }//Controller
 
 
