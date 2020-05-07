@@ -24,7 +24,6 @@ import java.io.Serializable;
 public class GardenTile implements Comparable<AddOn>,Serializable {
 	
 	
-	
 	private int xLoc;
 	private int yLoc;
 
@@ -91,6 +90,22 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 			this.yLoc = y;
 		}
 		
+		/**
+		 * Constructor With x and y parameters and a Soil type parameter
+		 * @param x
+		 * @param y
+		 * @param active
+		 */
+		public GardenTile(int x, int y, boolean active) {
+			isActive = active;
+			isEmpty = true;
+			soilType = "";
+			waterLevel = 0;
+			sunLightLevel = 0;
+			this.xLoc = x;
+			this.yLoc = y;
+		}
+		
 	
 	/**
 	 * Removes the AddOn that occupies the GardenTile
@@ -98,6 +113,7 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	 */
 	public void remove() {
 		this.addOn = null;
+		this.isEmpty = true;
 	}
 	
 	/**
@@ -107,6 +123,7 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	 */
 	public void add(AddOn a) {
 		this.addOn = a;
+		this.isEmpty = false;
 	}
 	
 	/**
