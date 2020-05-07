@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
  */
 
 public class Model implements Serializable{
-	
+	private static final long serialVersionUID = 1558153956L;
 	// Holds all the data for our plants
 	
 	private GardenPlot userPlot;
@@ -76,8 +76,9 @@ public class Model implements Serializable{
 	 * 
 	 * @see GardenPlot
 	 */
-	public void Model() {
+	public Model() {
 		userPlot = new GardenPlot();
+		
 		// Creating temp Plants for Bradley to use in methods, remove later
 		
 		Plant purpleConeFlower = new Plant("Purple Cone Flower", 1, "cone flower", 

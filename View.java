@@ -78,7 +78,9 @@ public class View extends Application{
 	 */
 	public View() {
 		con = new Controller(this);
+		
 		fileChooser = new FileChooser();
+
 	}
 	
 	/**
@@ -104,6 +106,8 @@ public class View extends Application{
 	 * @param theStage primary stage which will be set with mainMenuScreen's scene
 	 */
 	public void start(Stage theStage) {
+		
+		
 		primaryStage = theStage;
 		primaryStage.setOnCloseRequest(con.getExitStage());
 		
@@ -138,14 +142,13 @@ public class View extends Application{
 		preferencesScreen.setPreviousScreen(chooseTemplateScreen);
 		
 		
-		currentPrimaryScreen = mainMenuScreen;
+		//currentPrimaryScreen = mainMenuScreen;
 		
 		
 		System.out.println("Set the stage for el Main Menu");
-		mainMenuScreen.showScreen();
-		
+		//mainMenuScreen.showScreen();
+		show("mainMenuScreen");
 		primaryStage.show();
-		
 		
 		
 		

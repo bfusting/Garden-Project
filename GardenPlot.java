@@ -19,6 +19,8 @@ import java.io.*;
  *
  */
 public class GardenPlot implements Serializable{
+	private static final long serialVersionUID = 1059128301L;
+	
 	String shape;
 	
 	/**
@@ -114,6 +116,7 @@ public class GardenPlot implements Serializable{
 								{gT21, gT22, gT23, gT24, gT25}};
 		
 		return layout;
+		
 								}
 		
 		

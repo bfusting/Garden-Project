@@ -22,7 +22,7 @@ import java.io.Serializable;
  *
  */
 public class GardenTile implements Comparable<AddOn>,Serializable {
-	
+	private static final long serialVersionUID = 1982591688L;
 	
 	
 	private int xLoc;
@@ -119,8 +119,8 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	}
 	
 	//temp is being used while we have temporary plant objects in the Model class.  Will remove later
-	private Model temp = new Model();
-	
+	//private Model temp = new Model();
+	private Model temp = null;
 	/**\
 	 * 
 	 * @return
