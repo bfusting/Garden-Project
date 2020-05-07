@@ -134,7 +134,7 @@ public class View extends Application{
 		recommendationsScreen = new Recommendations(con);
 		recommendationsScreen.setPreviousScreen(designGardenScreen);
 		
-		preferencesScreen = new Preferences(con);
+		preferencesScreen = new Preferences(con,primaryStage);
 		preferencesScreen.setPreviousScreen(chooseTemplateScreen);
 		
 		
@@ -227,8 +227,8 @@ public class View extends Application{
 			break;
 		case "preferencesScreen":
 			currentPrimaryScreen = preferencesScreen;
-			//preferencesScreen.showScreen();
-			preferencesScreen.showPreferences(primaryStage);
+			preferencesScreen.showScreen();
+			//preferencesScreen.showPreferences(primaryStage);
 			break;
 		case "saveGarden":
 			
