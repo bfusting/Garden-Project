@@ -1,11 +1,12 @@
 import java.util.ArrayList;
-
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
@@ -88,6 +89,8 @@ public class DesignGarden extends Screen{
 	private ImageView[][] soil;
 	
 	GridPane plantsGP = new GridPane();
+	//ListView<ImageView> plantsLV = new ListView<ImageView>();
+	
 	GridPane treesGP = new GridPane();
 	GridPane pathsGP = new GridPane();
 	GridPane otherGP = new GridPane();
