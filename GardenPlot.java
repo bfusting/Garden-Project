@@ -54,7 +54,7 @@ public class GardenPlot implements Serializable{
 		this.shape = s;
 		this.length = l;
 		this.width = w;
-		this.layout = this.makeSquare();
+		this.layout = this.makeSizeSquare(l, w);
 		
 		
 	}
@@ -136,6 +136,29 @@ public class GardenPlot implements Serializable{
 								}
 		
 		
+	
+	
+	/**
+	 * 
+	 * @param width
+	 * @param height
+	 * @return
+	 */
+	public GardenTile[][] makeSizeTriangle(int width, int height){
+		GardenTile[][] result = {};
+		
+		for(int i = 0; i < height; i++) {
+			for(int k = 0; k < width; k++) {
+				
+			}
+		}
+		
+		
+		
+		
+		
+		return result;
+	}
 	
 	/**
 	 * Creates a 2D array of garden tiles and deactivates specific tiles in order to create a triangle shape
