@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.*;
-import java.io.*;
 
 
-public class Plant extends AddOn implements Serializable{
-
+public class Plant extends AddOn{
+	private static final long serialVersionUID = 998480235L;
+	
 	private String color;
 	private int waterNeed;
 	private int sunLightNeed;

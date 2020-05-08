@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
@@ -78,7 +79,7 @@ public class Controller{
 	public void createNewGarden(MouseEvent event) {
 		if(DEBUG) { System.out.println("Created new Garden Plot");};
 		model.setUserPlot(new GardenPlot());
-		//view.showChooseTemplateScreen();
+		
 		view.show("chooseTemplateScreen");
 		System.out.println("CHOOSE YOUR FIGHTER");
 	}//createNewGarden
@@ -726,7 +727,7 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see ChooseTemplate
 	 */
-	public EventHandler getTemplateToPref() {
+	public EventHandler<MouseEvent> getTemplateToPref() {
 		return event -> templateToPref((MouseEvent)event);
 	}
 	
@@ -783,7 +784,7 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see finalViewBTN
 	 */
-	public EventHandler getFinalViewBTN() {
+	public EventHandler<MouseEvent> getFinalViewBTN() {
 		return event -> finalViewBTN((MouseEvent)event);
 	}
 	
@@ -796,12 +797,17 @@ public class Controller{
 	public boolean loadGarden(File file) {
 		
 		if (file!=null) {
-			try {
-				FileInputStream fis = new FileInputStream(file);
-				ObjectInputStream ois = new ObjectInputStream(fis);
+			try (FileInputStream fis = new FileInputStream(file);
+				ObjectInputStream ois = new ObjectInputStream(fis);) {
+				
 				
 				model = (Model) ois.readObject();
 				System.out.println(model.getUserPlot().getShape());
+				System.out.println("File loaded. Time to design!!");
+				return true;
+			}
+			catch (InvalidClassException e) {
+				e.printStackTrace();
 			}
 			catch (ClassNotFoundException e) {
 				e.printStackTrace();
@@ -809,8 +815,7 @@ public class Controller{
 			catch (IOException e) {
 				e.printStackTrace();
 			}
-			System.out.println("File loaded. Time to design!!");
-			return true;
+			
 		}
 		System.out.println("File not loaded");
 		return false;
@@ -861,21 +866,19 @@ public class Controller{
 	 * @return a boolean specifying whether or not the File was written to and saved successfully
 	 */
 	public boolean saveGarden(File file) {
-		//adding this with different method signature in case changing the other one causes issues with tests
-		//or something
 		if (file!=null) {
-			//do the saving here
+			
 			try {
 				FileOutputStream fos = new FileOutputStream(file);
 				ObjectOutputStream oos = new ObjectOutputStream(fos);
 				oos.writeObject(model);
 				oos.close();
+				return true;
 			}
 			catch (IOException e) {
 				e.printStackTrace();
 			}
 			
-			return true;
 		}
 		return false;
 	}
