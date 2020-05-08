@@ -229,10 +229,36 @@ public class Recommendations extends Screen{
         stage.show();
 	}
 	
+	
+	/**
+	 * Creates and returns a 2D array of recommended addons to be displayed on the Recommendations screen
+	 * @return
+	 * returns rec - the 2D array of recommended addOns
+	 */
+	public AddOn[][] getRecPlants() {
+		AddOn[][] rec= {};
+		int count = 0;
+		for(int i = 0; i < this.c.getModel().getUserPlot().getWidth(); i++) {
+			for(int k = 0; k < this.c.getModel().getUserPlot().getLength(); k++) {
+			
+				
+				//getting recommended plants from every gardenTile
+				//This might want to be changed to include fewer tiles, like every other tile or something
+				rec[count] = this.c.getModel().getUserPlot().getLayout()[i][k].getRecommendations(
+																				 this.c.getModel().getUserPlot().getSurroundingInfo(i, k));
+				count++;
+			}
+			
+		}
+		return rec;
+		
+	}
+	
 	@Override
 	public void showScreen() {
 		//should consolidate into one showScreen method
 		showRecommendations();
+		
 	}
 	
 	
