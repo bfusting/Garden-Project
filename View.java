@@ -37,7 +37,7 @@ import javafx.stage.Stage;
  * @author Takiyah Price 
  */
 
-//last edited: 5-4-20 12:58PM
+//last edited: 5-7-20 12:53PM
 
 
 public class View extends Application{
@@ -270,13 +270,8 @@ public class View extends Application{
 			System.out.println("leaving so soon? :(");
 			exitScreen.setPreviousScreen(currentPrimaryScreen);
 			
+			exitScreen.showScreen(currentPrimaryScreen.equals(finalViewScreen));
 			
-			if (currentPrimaryScreen.equals(finalViewScreen)) {
-				exitScreen.showExitWithSave();
-			}
-			else {
-				exitScreen.showExitWithoutSave();
-			}
 			
 			currentPrimaryScreen = exitScreen;
 		}
