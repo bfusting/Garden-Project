@@ -1,9 +1,12 @@
+import static org.junit.jupiter.api.DynamicTest.stream;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
@@ -29,7 +32,7 @@ import java.util.List;
  */
 
 public class Model implements Serializable{
-	
+	private static final long serialVersionUID = 1558153956L;
 	// Holds all the data for our plants
 	
 	private GardenPlot userPlot;
@@ -41,12 +44,31 @@ public class Model implements Serializable{
 	private ArrayList<AddOn> sceneryArr;
 	private ArrayList<Plant> allPlants;
 	
+	// Used to hold other "removed" plants while filtering
+	private ArrayList<Plant> otherColors;
+	private ArrayList<Plant> otherSeasons;
+	private ArrayList<Plant> otherLight;
+	private ArrayList<Plant> otherWater;
+	
 	// Prefs given by user
 	private String userPrefColor;
 	private Seasons userPrefSeason;
 	private int userPrefLight;
 	private int userPrefWater;
 	
+	// Width and length given by user passed in by preferences
+	private int userLength;
+	private int userWidth;
+	
+	// Range of values to filter by
+	private int lowBound;
+	private int highBound;
+	
+	// Constatns string reps to replace magic nums
+	private final String flower = "Flower";
+	private final String shrub = "Shrub";
+	private final String tree = "Tree";
+	private final String undergrowth = "UnderGrowth";
 	
 	/**
 	 * Constructor where the ArrayLists are initialized for space and
@@ -54,8 +76,9 @@ public class Model implements Serializable{
 	 * 
 	 * @see GardenPlot
 	 */
-	public void Model() {
+	public Model() {
 		userPlot = new GardenPlot();
+		
 		// Creating temp Plants for Bradley to use in methods, remove later
 		
 		Plant purpleConeFlower = new Plant("Purple Cone Flower", 1, "cone flower", 
@@ -82,15 +105,31 @@ public class Model implements Serializable{
 		underGrowthArr = new ArrayList<Plant>();
 		underGrowthArr.add(milkWeed);
 		
+		// holds all scenery items like dirt to branchs
 		sceneryArr = new ArrayList<AddOn>();
 		
+		// holds all plants in program ---> Used on creation only
 		allPlants = new ArrayList<Plant>();
 		
+		//Used for filtering methods to hold other vars
+		otherColors = new ArrayList<Plant>();
+		otherSeasons = new ArrayList<Plant>();
+		otherLight = new ArrayList<Plant>();
+		otherWater = new ArrayList<Plant>();
+		
+		// Prefs passed in by user
 		userPrefColor = "";
 		userPrefSeason = null;
 		userPrefLight = 0;
 		userPrefWater = 0;
 		
+		// user defined length and width
+		userLength = 0;
+		userWidth = 0;
+		
+		// Range of values to filter functions thats it
+		lowBound = 0;
+		highBound = 0;
 	}//Model()
 	
 	/**
@@ -117,123 +156,84 @@ public class Model implements Serializable{
 		this.altPlots.add(gP1);
 		this.altPlots.add(gP2);
 		this.altPlots.add(gP3);
-		
-		
-	}		
-		
-		
-		
-	
-	/**
-	 * From preferences updates the array. However changes the current index 
-	 * variable which is in that scope only and adds 6 to it to get the next 
-	 * items in the arrayList
-	 * 
-	 */
-	public void updateFlowerArr() {
-		allPlants.sort(new SortbyType());
-		// Traaverses through sorted list and addeds all shrubs
-		for(Plant p: allPlants) {
-			if(p.getPlantType().equals("Flower")) {
-				if(flowerArr != null){
-				flowerArr.add(p);
-				}
-			}
-		}
-		//sorting by Water Req
-		flowerArr.sort(new SortbyWaterNeed());
-		//sorting by Light Reg
-		flowerArr.sort(new SortbyLightNeed());
-		//sorting by Bloolm Req
-		flowerArr.sort(new SortbyBloomTime());
-		//sorting by color
-		flowerArr.sort(new SortbyColor());
-	}
-	
-	
-	/**
-	 * From preferences updates the array. However changes the current index 
-	 * variable which is in that scope only and adds 6 to it to get the next 
-	 * items in the arrayList
-	 */
-	public void updateShrubArr() {
-		allPlants.sort(new SortbyType());
-		// Traaverses through sorted list and addeds all shrubs
-		for(Plant p: allPlants) {
-			if(p.getPlantType().equals("Shrub")) {
-				if(shrubArr != null){
-				shrubArr.add(p);
-				}
-			}
-		}
-		//sorting by Water Req
-		shrubArr.sort(new SortbyWaterNeed());
-		//sorting by Light Reg
-		shrubArr.sort(new SortbyLightNeed());
-		//sorting by Bloolm Req
-		shrubArr.sort(new SortbyBloomTime());
-		//sorting by color
-		shrubArr.sort(new SortbyColor());
 	}
 	
 	/**
-	 * From preferences updates the array. However changes the current index 
-	 * variable which is in that scope only and adds 6 to it to get the next 
-	 * items in the arrayList
+	 * Runs only once once the preferences page is complete transmitting the information
+	 * such as color and light pref to model then filters by them and shifts 
+	 * the preferred plants up to the front
 	 */
-	public void updateTreeArr() {
-		allPlants.sort(new SortbyType());
-		// Traaverses through sorted list and addeds all shrubs
-		for(Plant p: allPlants) {
-			if(p.getPlantType().equals("Tree")) {
-				if(treeArr != null){
-				treeArr.add(p);
-				}
-			}
-		}
-		//sorting by Water Req
-		treeArr.sort(new SortbyWaterNeed());
-		//sorting by Light Reg
-		treeArr.sort(new SortbyLightNeed());
-		//sorting by Bloolm Req
-		treeArr.sort(new SortbyBloomTime());
-		//sorting by color
-		treeArr.sort(new SortbyColor());
-	}
+	public void updateArrs() {
+		// sets up the array by filter to appropriate type then filtering to all of
+		// of flowerArr then
+		setFlowerArr(filterByType(flowerArr,flower));
+		flowerArr.addAll(filterByColor(flowerArr,userPrefColor));
+		flowerArr.addAll(filterByBloomTime(flowerArr,userPrefSeason));
+		flowerArr.addAll(filterByLight(flowerArr,userPrefLight));
+		flowerArr.addAll(filterByWater(flowerArr,userPrefWater));
+		
+		// Adding rest of the unsorted lists back into flowerArr
+		flowerArr.addAll(otherColors);
+		flowerArr.addAll(otherSeasons);
+		flowerArr.addAll(otherLight);
+		flowerArr.addAll(otherWater);
+		
+		// clearing other arrays
+		clearOthers();
+		
+		// sets up the array by filter to appropriate type then filtering to all of
+		// of shrubArr
+		setShrubArr(filterByType(shrubArr,shrub));
+		shrubArr.addAll(filterByColor(shrubArr,userPrefColor));
+		shrubArr.addAll(filterByBloomTime(shrubArr,userPrefSeason));
+		shrubArr.addAll(filterByLight(shrubArr,userPrefLight));
+		shrubArr.addAll(filterByWater(shrubArr,userPrefWater));
+		
+		// Adding rest of the unsorted lists back into shrubArr
+		shrubArr.addAll(otherColors);
+		shrubArr.addAll(otherSeasons);
+		shrubArr.addAll(otherLight);
+		shrubArr.addAll(otherWater);
+		
+		// clearing other arrays
+		clearOthers();
+		
+		// sets up the array by filter to appropriate type then filtering to all of
+		// of treeArr
+		setTreeArr(filterByType(treeArr,tree));
+		treeArr.addAll(filterByColor(treeArr,userPrefColor));
+		treeArr.addAll(filterByBloomTime(treeArr,userPrefSeason));
+		treeArr.addAll(filterByLight(treeArr,userPrefLight));
+		treeArr.addAll(filterByWater(treeArr,userPrefWater));
+		
+		// Adding rest of the unsorted lists back into treeArr
+		treeArr.addAll(otherColors);
+		treeArr.addAll(otherSeasons);
+		treeArr.addAll(otherLight);
+		treeArr.addAll(otherWater);
+		
+		// clearing other arrays
+		clearOthers();
+		
+		// sets up the array by filter to appropriate type then filtering to all of
+		// of underGrowth Arr
+		setUnderGrowthArr((filterByType(underGrowthArr,undergrowth)));
+		underGrowthArr.addAll(filterByColor(underGrowthArr,userPrefColor));
+		underGrowthArr.addAll(filterByBloomTime(underGrowthArr,userPrefSeason));
+		underGrowthArr.addAll(filterByLight(underGrowthArr,userPrefLight));
+		underGrowthArr.addAll(filterByWater(underGrowthArr,userPrefWater));
+		
+		// Adding rest of the unsorted lists back into underGrowthArr
+		underGrowthArr.addAll(otherColors);
+		underGrowthArr.addAll(otherSeasons);
+		underGrowthArr.addAll(otherLight);
+		underGrowthArr.addAll(otherWater);
+		
+		// clearing other arrays
+		clearOthers();
+		
+	}//updateArrs
 	
-	/**
-	 * From preferences updates the array. However changes the current index 
-	 * variable which is in that scope only and adds 6 to it to get the next 
-	 * items in the arrayList
-	 */
-	public void updateUnderGrowthArr() {
-		allPlants.sort(new SortbyType());
-		// Traaverses through sorted list and addeds all shrubs
-		for(Plant p: allPlants) {
-			if(p.getPlantType().equals("UnderGrowth")) {
-				if(underGrowthArr != null){
-				underGrowthArr.add(p);
-				}
-			}
-		}
-		//sorting by Water Req
-		underGrowthArr.sort(new SortbyWaterNeed());
-		//sorting by Light Reg
-		underGrowthArr.sort(new SortbyLightNeed());
-		//sorting by Bloolm Req
-		underGrowthArr.sort(new SortbyBloomTime());
-		//sorting by color
-		underGrowthArr.sort(new SortbyColor());
-	}
-	
-	/**
-	 * Changes the current index 
-	 * variable which is in that scope only and adds 6 to it to get the next 
-	 * items in the arrayList
-	 */
-	public void updateSceneryArr() {
-		// make it take in all the stuff that isn't plants
-	}
 	
 	
 	////////////////////////////		GETTERS UNDERNEATH			////////////////////////////
@@ -330,6 +330,35 @@ public class Model implements Serializable{
 		return allPlants;
 	}
 	
+	/**
+	 * Returns the userPrefColor attribute
+	 * <p>
+	 * Getter for userPrefColor attribute
+	 * @return userPrefColor is the color passed by preferences
+	 */
+	public String getUserPrefColor() {
+		return userPrefColor;
+	}
+	
+	public Seasons getUserPrefSeason() {
+		return userPrefSeason;
+	}
+	
+	public int getUserPrefLight() {
+		return userPrefLight;
+	}
+	
+	public int getUserPrefWater() {
+		return userPrefWater;
+	}
+	
+	public int getUserLength() {
+		return userLength;
+	}
+	
+	public int getUserWidth() {
+		return userWidth;
+	}
 	
 	////////////////////////////		SETTERS			////////////////////////////
 	
@@ -397,26 +426,33 @@ public class Model implements Serializable{
 	 */
 	public void setSceneryArr(ArrayList<AddOn> a) {
 		sceneryArr = a;
-	}	
+	}
+	
+	public void setUserPrefColor(String newColor) {
+		userPrefColor = newColor;
+	}
+	
+	public void setUserPrefSeason(Seasons newSeason) {
+		userPrefSeason = newSeason;
+	}
+	
+	public void setUserPrefLight(int newLight) {
+		userPrefLight = newLight;
+	}
+	
+	public void setUserPrefWater(int newWater) {
+		userPrefWater = newWater;
+	}
+	
+	public void setUserLength(int newLength) {
+		userLength = newLength;
+	}
+	
+	public void setUserWidth(int newWidth) {
+		userWidth = newWidth;
+	}
 	
 	//////////////////// Comparators ///////////////////////////////////
-	
-	/**
-	 * Comparator class used to sort a collections of Plants by their type
-	 * attribute of their type by using the Comparator interface
-	 * 
-	 * @author Malachi Parks
-	 *
-	 */
-	class SortbyType implements Comparator<Plant> 
-	{ 
-	    // Used for sorting in ascending order of 
-	    // plant type ("Shrub", "UnderGrowth", "Tree", ...)
-	    public int compare(Plant a, Plant b) 
-	    { 
-	        return a.getPlantType().compareTo(b.getPlantType()); 
-	    } 
-	} 
 	
 	/**
 	 * Comparator class used to sort a collections of Plants by their 
@@ -483,6 +519,189 @@ public class Model implements Serializable{
 	    public int compare(Plant a, Plant b) 
 	    { 
 	        return a.getBloomTime().compareTo(b.getBloomTime()); 
-	    } 
+	    }
 	}
-}//Model
+	
+	/**
+	 * Takes in an ArrayList a, which represents the arrayList being sorted while
+	 * the color param is the usersColor pref attribute which was obtained from
+	 * the preferences of view passing in userinput.
+	 * <p>
+	 * Used to filter an array of plants by color. First iterates of the array and 
+	 * adds all the plants that don't match the otherColorArr then filters
+	 * using a stream, iterating over using a lambda then returning true items to the
+	 * stream.
+	 * 
+	 * @param a is the arrayList to be sorted
+	 * @param color the users color preferenced passed in by Controller from Preferences
+	 * @return a filtered ArrayList by Plant color
+	 */
+	public ArrayList<Plant> filterByColor(ArrayList<Plant> a, String color){
+		//Iterate over list and if doesn't match color add to the otherColors Arr via getter
+		for(Plant p: a) {
+			if(!p.getColor().equals(color)) {
+				otherColors.add(p);
+			}
+		}
+		// user getter for OtherColors Instead!
+		otherColors.sort(new SortbyColor());
+		
+		// filters the arrayList taken in, makes copy so a is not disturbed
+		ArrayList<Plant> userColorPlants = new ArrayList<Plant>();
+		userColorPlants.addAll(a);
+		//streams the plants, filters by color, then adds them back to list
+		userColorPlants.stream().filter(p -> p.getColor().equals(color))
+		.collect(Collectors.toList());
+		return userColorPlants;
+	}//filterByColor
+	
+	/**
+	 * Takes in an ArrayList a, which represents the arrayList being sorted while
+	 * the season param is the usersSeasons pref attribute which was obtained from
+	 * the preferences of view passing in userinput.
+	 * <p>
+	 * Used to filter an array of plants by season enum. First iterates of the array and 
+	 * adds all the plants that don't match the otherSeasonArr then filters
+	 * using a stream, iterating over using a lambda then returning true items to the
+	 * stream.
+	 * 
+	 * @param a is the arrayList to be sorted
+	 * @param season the users bloomTime preferenced passed in by Controller from Preferences
+	 * @return a filtered ArrayList by Plant arrayList
+	 */
+	public ArrayList<Plant> filterByBloomTime(ArrayList<Plant> a, Seasons season){
+		//Iterate over list and if doesn't match bloom add to the otherBloomTime Arr via getter
+		for(Plant p: a) {
+			if(!p.getBloomTime().equals(season)) {
+				otherSeasons.add(p);
+			}
+		}
+		// user getter for otherSeasons Instead!
+		otherSeasons.sort(new SortbyBloomTime());
+		
+		ArrayList<Plant> userBloomPlants = new ArrayList<Plant>();
+		userBloomPlants.addAll(a);
+		//streams the plants, filters by BloomTime, then adds them back to list
+		userBloomPlants.stream().filter(p -> p.getBloomTime().equals(season))
+		.collect(Collectors.toList());
+		return userBloomPlants;
+	}//fliterByBloomTime
+	
+	/**
+	 * Takes in an ArrayList a, which represents the arrayList being sorted while
+	 * the waterReq param is the usersWaterPref attribute which was obtained from
+	 * the preferences of view passing in userinput.
+	 * <p>
+	 * Used to filter an array of plants by waterReq. First takes in the waterReq
+	 * into a switchStatement and creates a high and low bound to add to when filtering.
+	 * Then adds all the plants that don't meet the waterRange to the otherWater Arr
+	 * finally sorts the array by the range and returns it
+	 * 
+	 * @param a is the arrayList to be sorted
+	 * @param waterReq is the amount of water a plant needs
+	 * @return a filtered ArrayList by Plant waterReq
+	 */
+	public ArrayList<Plant> filterByWater(ArrayList<Plant> a, int waterReq){
+		// switch statement to setup range (if 0 range is 0-2, if five range is 3-5)
+		switch(waterReq) {
+			case 0: lowBound = 0; highBound = 2; break;
+			case 5: lowBound = 3; highBound = 5; break;
+			default: lowBound = waterReq-1;highBound = waterReq+1;
+		}//switch
+		
+		//Iterate over list and if water int isn't
+		//range add to the otherWater Arr via getter
+		for(Plant p: a) {
+			if(!(p.getWaterNeed() >= lowBound) && !(p.getWaterNeed() <= highBound)) {
+				otherWater.add(p);
+			}
+		}
+		// user getter for otherWater Instead!
+		otherWater.sort(new SortbyWaterNeed());
+	
+		ArrayList<Plant> userWaterPlants = new ArrayList<Plant>();
+		userWaterPlants.addAll(a);
+		//streams the plants, filters by BloomTime, then adds them back to list
+		userWaterPlants.stream().filter(p -> p.getWaterNeed() >= lowBound
+				&& p.getWaterNeed() <= highBound).collect(Collectors.toList());
+		return userWaterPlants;
+	}//filterByWater
+	
+	/**
+	 * Takes in an ArrayList a, which represents the arrayList being sorted while
+	 * the lightRqq param is the usersLightPref attribute which was obtained from
+	 * the preferences of view passing in userinput.
+	 * <p>
+	 * Used to filter an array of plants by waterReq. First takes in the lightReq
+	 * into a switchStatement and creates a high and low bound to add to when filtering.
+	 * Then adds all the plants that don't meet the lightRange to the otherLight Arr
+	 * finally sorts the array by the range and returns it
+	 * 
+	 * @param a is the arrayList to be sorted
+	 * @param lightReq is the amount of light a plant needs
+	 * @return a filtered ArrayList by Plant waterReq
+	 */
+	public ArrayList<Plant> filterByLight(ArrayList<Plant> a, int lightReq){
+		// switch statement to setup range (if 0 range is 0-2, if five range is 3-5)
+		switch(lightReq) {
+			case 0: lowBound = 0; highBound = 2; break;
+			case 5: lowBound = 3; highBound = 5; break;
+			default: lowBound = lightReq-1;highBound = lightReq+1;
+		}//switch
+		
+		//Iterate over list and if light int isn't
+		//range add to the otherLight Arr via getter
+		for(Plant p: a) {
+			if(!(p.getSunLightNeed() >= lowBound) && !(p.getSunLightNeed() <= highBound)) {
+				otherLight.add(p);
+			}
+		}
+		// user getter for otherWater Instead!
+		otherLight.sort(new SortbyLightNeed());
+	
+		ArrayList<Plant> userLightPlants = new ArrayList<Plant>();
+		userLightPlants.addAll(a);
+		//streams the plants, filters by BloomTime, then adds them back to list
+		userLightPlants.stream().filter(p -> p.getSunLightNeed() >= lowBound
+				&& p.getSunLightNeed() <= highBound).collect(Collectors.toList());
+		return userLightPlants;
+	}//filterByLight
+	
+	/**
+	 * Takes in an ArrayList a, which represents the arrayList being sorted while
+	 * the type param which is the kind of plant it is (Shrub, Tree, Flower, UnderGrowth)
+	 * Called in each of hte update methods to set up the inital arrays
+	 * <p>
+	 * Used to filter an array of plants by their types. Creates a new array list
+	 * checks if the streram of that array is plant type is equal to the type passed in
+	 * if so added into array
+	 * 
+	 * @param a is the arrayList to be sorted
+	 * @param type is the category the plant is in (Shrub, Tree, Flower, UnderGrowth)
+	 * @return a filtered ArrayList of types
+	 * @see Model#updateFlowerArr()
+	 * @see Model#updateSceneryArr()
+	 * @see Model#updateShrubArr()
+	 * @see Model#updateTreeArr()
+	 * @see Model#updateUnderGrowthArr()
+	 */
+	public ArrayList<Plant> filterByType(ArrayList<Plant> a, String type){
+		ArrayList<Plant> typeArr = new ArrayList<Plant>();
+		typeArr.addAll(a);
+		//streams the plants, filters by BloomTime, then adds them back to list
+		typeArr.stream().filter(p -> p.getPlantType().equals(type)).collect(Collectors.toList());
+		return typeArr;
+	}//filterByType
+	
+	/**
+	 * Used to empty the otherArrays such as light/water/seasons and color between each
+	 * filter so no wrong types are in each list
+	 */
+	public void clearOthers() {
+		otherColors.clear();
+		otherSeasons.clear();
+		otherLight.clear();
+		otherWater.clear();
+	}
+	// then getters and setters for new attributes
+}//Modeld

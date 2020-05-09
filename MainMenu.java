@@ -124,8 +124,7 @@ public class MainMenu extends Screen {
 		bPane.setRight(backgroundIV);
 		
 		buttonAP.setMinWidth(APminWidth);
-		buttonAP.setBackground(new Background(new BackgroundFill(Color.DARKCYAN,CornerRadii.EMPTY,Insets.EMPTY)));
-		
+		buttonAP.setBackground(new Background(new BackgroundFill(View.borderColor1,CornerRadii.EMPTY,Insets.EMPTY)));
 		
 		mainMenuScene = new Scene(bPane,View.primarySceneWidth,View.primarySceneHeight);
 		

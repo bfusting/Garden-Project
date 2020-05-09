@@ -4,7 +4,8 @@ import java.util.*;
 
 
 public class Plant extends AddOn{
-
+	private static final long serialVersionUID = 998480235L;
+	
 	private String color;
 	private int waterNeed;
 	private int sunLightNeed;

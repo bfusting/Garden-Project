@@ -1,7 +1,14 @@
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InvalidClassException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -15,8 +22,10 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
@@ -70,7 +79,7 @@ public class Controller{
 	public void createNewGarden(MouseEvent event) {
 		if(DEBUG) { System.out.println("Created new Garden Plot");};
 		model.setUserPlot(new GardenPlot());
-		//view.showChooseTemplateScreen();
+		
 		view.show("chooseTemplateScreen");
 		System.out.println("CHOOSE YOUR FIGHTER");
 	}//createNewGarden
@@ -701,7 +710,10 @@ public class Controller{
 	 * @see ChooseTemplate
 	 */
 	public void templateToPref(MouseEvent event) {
-		//view.showPreferencesScreen();
+		String template = view.getSelectedTemplate();
+		
+		model.getUserPlot().setShape(template);
+		System.out.println("Template sent to model: "+template);
 		view.show("preferencesScreen");
 	}
 	
@@ -715,7 +727,7 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see ChooseTemplate
 	 */
-	public EventHandler getTemplateToPref() {
+	public EventHandler<MouseEvent> getTemplateToPref() {
 		return event -> templateToPref((MouseEvent)event);
 	}
 	
@@ -759,7 +771,6 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void finalViewBTN(MouseEvent event) {
-		//view.showFinalViewScreen();
 		view.show("finalViewScreen");
 	}
 	
@@ -773,7 +784,7 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see finalViewBTN
 	 */
-	public EventHandler getFinalViewBTN() {
+	public EventHandler<MouseEvent> getFinalViewBTN() {
 		return event -> finalViewBTN((MouseEvent)event);
 	}
 	
@@ -786,9 +797,25 @@ public class Controller{
 	public boolean loadGarden(File file) {
 		
 		if (file!=null) {
-			System.out.println("File loaded. Time to design!!");
-			//Deserialize Model
-			return true;
+			try (FileInputStream fis = new FileInputStream(file);
+				ObjectInputStream ois = new ObjectInputStream(fis);) {
+				
+				
+				model = (Model) ois.readObject();
+				System.out.println(model.getUserPlot().getShape());
+				System.out.println("File loaded. Time to design!!");
+				return true;
+			}
+			catch (InvalidClassException e) {
+				e.printStackTrace();
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 		}
 		System.out.println("File not loaded");
 		return false;
@@ -839,16 +866,94 @@ public class Controller{
 	 * @return a boolean specifying whether or not the File was written to and saved successfully
 	 */
 	public boolean saveGarden(File file) {
-		//adding this with different method signature in case changing the other one causes issues with tests
-		//or something
 		if (file!=null) {
-			//do the saving here
-			return true;
+			
+			try {
+				FileOutputStream fos = new FileOutputStream(file);
+				ObjectOutputStream oos = new ObjectOutputStream(fos);
+				oos.writeObject(model);
+				oos.close();
+				return true;
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 		}
 		return false;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public EventHandler<MouseEvent> getMouseEnter() {
+		return event -> mouseEnter((MouseEvent) event);
+	}
+	
+	/**
+	 * 
+	 * @param event
+	 */
+	public void mouseEnter(MouseEvent event) {
+		view.mouseEntered(event.getSource());
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public EventHandler<MouseEvent> getMouseExit() {
+		return event -> mouseExit((MouseEvent)event);
+	}
+	
+	/**
+	 * 
+	 * @param event
+	 */
+	public void mouseExit(MouseEvent event) {
+		
+		view.mouseExited(event.getSource());
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public EventHandler<WindowEvent> getExitStage() {
+		return event -> exitStage((WindowEvent)event);
+	}
+	
+	/**
+	 * 
+	 * @param event
+	 */
+	public void exitStage(WindowEvent event) {
+		event.consume();
+		view.show("exitScreen");
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public EventHandler<MouseEvent> getMouseClicked() {
+		return event -> mouseClicked((MouseEvent)event);
+	}
+	
+	/**
+	 * 
+	 * @param event
+	 */
+	public void mouseClicked(MouseEvent event) {
+		view.mouseClicked(event.getSource());
+	}
+	
+	
+	
 }//Controller
+
+
 
 
 

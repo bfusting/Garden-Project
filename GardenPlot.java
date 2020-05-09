@@ -19,6 +19,8 @@ import java.io.*;
  *
  */
 public class GardenPlot implements Serializable{
+	private static final long serialVersionUID = 1059128301L;
+	
 	String shape;
 	
 	/**
@@ -54,7 +56,7 @@ public class GardenPlot implements Serializable{
 		this.shape = s;
 		this.length = l;
 		this.width = w;
-		this.layout = this.makeSquare();
+		this.layout = this.makeSizeSquare(l, w);
 		
 		
 	}
@@ -64,6 +66,25 @@ public class GardenPlot implements Serializable{
 	}
 	
 	
+	/**
+	 * Creates a 2D GardenTile array with inputs for width and height of the plot
+	 * 
+	 * 
+	 * @param width
+	 * @param height
+	 * @return
+	 */
+	public GardenTile[][] makeSizeSquare(int width, int height){
+		GardenTile[][] result = {};
+		
+		for(int i = 0; i < height; i++) {
+			for(int k = 0; k < width; k++) {
+				result[i][k] = new GardenTile(i, k);
+			}
+		}
+		
+		return result;
+	}
 	
 	/**
 	 * Creates a square 5x5 2D GardenTile array for the layout.
@@ -112,11 +133,205 @@ public class GardenPlot implements Serializable{
 								{gT11, gT12, gT13, gT14, gT15},
 								{gT16, gT17, gT18, gT19, gT20},
 								{gT21, gT22, gT23, gT24, gT25}};
-		
+		this.shape = "square";
 		return layout;
+		
 								}
 		
 		
+	
+	
+	/**
+	 * 
+	 * @param width
+	 * @param height
+	 * @return
+	 */
+	public GardenTile[][] makeSizeTriangle(int width, int height){
+		GardenTile[][] result = {};
+		
+		for(int i = 0; i < height; i++) {
+			for(int k = 0; k < width; k++) {
+				
+			}
+		}
+		
+		
+		
+		
+		
+		return result;
+	}
+	
+	/**
+	 * Creates a 2D array of garden tiles and deactivates specific tiles in order to create a triangle shape
+	 * for the layout.
+	 * @return
+	 * returns a 2D gardenTIle array for this.layout
+	 */
+	public GardenTile[][] makeTriangle(){
+		
+			//Row 1
+				GardenTile gT1 = new GardenTile(0,0, false);
+				GardenTile gT2 = new GardenTile(1,0, false);
+				GardenTile gT3 = new GardenTile(2,0, false);
+				GardenTile gT4 = new GardenTile(3,0, false);
+				GardenTile gT5 = new GardenTile(4,0);
+				GardenTile gTa = new GardenTile(1,3, false);
+				GardenTile gTb = new GardenTile(2,3, false);
+				GardenTile gTc = new GardenTile(3,3, false);
+				GardenTile gTd = new GardenTile(4,3, false);
+				
+				
+				//Row 2
+				GardenTile gT6 = new GardenTile(0,1, false);
+				GardenTile gT7 = new GardenTile(1,1, false);
+				GardenTile gT8 = new GardenTile(2,1, false);
+				GardenTile gT9 = new GardenTile(3,1);
+				GardenTile gT10 = new GardenTile(4,1);
+				GardenTile gT0a = new GardenTile(1,3);
+				GardenTile gT0b = new GardenTile(2,3, false);
+				GardenTile gT0c = new GardenTile(3,3, false);
+				GardenTile gT0d = new GardenTile(4,3, false);
+				
+				
+				//Row 3
+				GardenTile gT11 = new GardenTile(0,2, false);
+				GardenTile gT12 = new GardenTile(1,2, false);
+				GardenTile gT13 = new GardenTile(2,2);
+				GardenTile gT14 = new GardenTile(3,2);
+				GardenTile gT15 = new GardenTile(4,2);
+				GardenTile gT1a = new GardenTile(1,3);
+				GardenTile gT1b = new GardenTile(2,3);
+				GardenTile gT1c = new GardenTile(3,3, false);
+				GardenTile gT1d = new GardenTile(4,3, false);
+				
+				
+				//Row 4
+				GardenTile gT16 = new GardenTile(0,3, false);
+				GardenTile gT17 = new GardenTile(1,3);
+				GardenTile gT18 = new GardenTile(2,3);
+				GardenTile gT19 = new GardenTile(3,3);
+				GardenTile gT20 = new GardenTile(4,3);
+				GardenTile gT2a = new GardenTile(1,3);
+				GardenTile gT2b = new GardenTile(2,3);
+				GardenTile gT2c = new GardenTile(3,3);
+				GardenTile gT2d = new GardenTile(4,3, false);
+				
+				
+				
+				//Row 5
+				GardenTile gT21 = new GardenTile(0,4);
+				GardenTile gT22 = new GardenTile(1,4);
+				GardenTile gT23 = new GardenTile(2,4);
+				GardenTile gT24 = new GardenTile(3,4);
+				GardenTile gT25 = new GardenTile(4,4);
+				GardenTile gT26 = new GardenTile(5,4);
+				GardenTile gT27 = new GardenTile(5,4);
+				GardenTile gT28 = new GardenTile(6,4);
+				GardenTile gT29 = new GardenTile(7,4);
+				
+		GardenTile[][] result = {{gT1, gT2, gT3, gT4, gT5, gTa, gTb, gTc, gTd},
+								 {gT6, gT7, gT8, gT9, gT10, gT0a, gT0b, gT0c, gT0d},
+								 {gT11, gT12, gT13, gT14, gT15, gT1a, gT1b, gT1c, gT1d},
+								 {gT16, gT17, gT18, gT19, gT20, gT2a, gT2b, gT2c, gT2d},
+								 {gT21, gT22, gT23, gT24, gT25, gT26, gT27, gT28, gT29}};
+		
+		this.shape = "triangle";
+		return result;
+		
+				
+		
+	}
+	
+	/**
+	 * Creates a 2D array of GardenTiles and activates them in a shape of a circle with 7 rows and 7 columns
+	 * 
+	 * 
+	 * @return
+	 * returns the 2D array of GardenTiles to be used in this.layout
+	 */
+	public GardenTile[][] makeCircle(){
+		
+		//Row 1
+		GardenTile gT1 = new GardenTile(0,0, false);
+		GardenTile gT2 = new GardenTile(1,0, false);
+		GardenTile gT3 = new GardenTile(2,0, false);
+		GardenTile gT4 = new GardenTile(3,0);
+		GardenTile gT5 = new GardenTile(4,0);
+		GardenTile gT6 = new GardenTile(1,3, false);
+		GardenTile gT7 = new GardenTile(2,3, false);
+		
+		//Row 2
+		GardenTile gT8 = new GardenTile(3,3, false);
+		GardenTile gT9 = new GardenTile(4,3);
+		GardenTile gT10 = new GardenTile(0,1);
+		GardenTile gT11 = new GardenTile(1,1);
+		GardenTile gT12 = new GardenTile(2,1);
+		GardenTile gT13 = new GardenTile(3,1);
+		GardenTile gT14 = new GardenTile(4,1, false);
+		
+		
+		
+		//Row 3
+		GardenTile gT15 = new GardenTile(1,3);
+		GardenTile gT16 = new GardenTile(2,3);
+		GardenTile gT17 = new GardenTile(3,3);
+		GardenTile gT18 = new GardenTile(4,3);
+		GardenTile gT19 = new GardenTile(0,2);
+		GardenTile gT20 = new GardenTile(1,2);
+		GardenTile gT21 = new GardenTile(2,2);
+		
+		
+		
+		//Row 4
+		GardenTile gT22 = new GardenTile(3,2);
+		GardenTile gT23 = new GardenTile(4,2);
+		GardenTile gT24 = new GardenTile(1,3);
+		GardenTile gT25 = new GardenTile(2,3);
+		GardenTile gT26 = new GardenTile(3,3);
+		GardenTile gT27 = new GardenTile(4,3);
+		GardenTile gT28 = new GardenTile(0,3);
+		
+		//Row 5
+		GardenTile gT29 = new GardenTile(1,3);
+		GardenTile gT30 = new GardenTile(2,3);
+		GardenTile gT31 = new GardenTile(3,3);
+		GardenTile gT32 = new GardenTile(4,3);
+		GardenTile gT33 = new GardenTile(1,3);
+		GardenTile gT34 = new GardenTile(2,3);
+		GardenTile gT35 = new GardenTile(3,3);
+		
+		//Row 6
+		GardenTile gT36 = new GardenTile(4,3, false);
+		GardenTile gT37 = new GardenTile(0,4);
+		GardenTile gT38 = new GardenTile(1,4);
+		GardenTile gT39 = new GardenTile(2,4);
+		GardenTile gT40 = new GardenTile(3,4);
+		GardenTile gT41 = new GardenTile(4,4);
+		GardenTile gT42 = new GardenTile(5,4, false);
+		
+		//Row 7
+		GardenTile gT43 = new GardenTile(5,4, false);
+		GardenTile gT44 = new GardenTile(6,4, false);
+		GardenTile gT45 = new GardenTile(7,4);
+		GardenTile gT46 = new GardenTile(5,4);
+		GardenTile gT47 = new GardenTile(6,4);
+		GardenTile gT48 = new GardenTile(7,4, false);
+		GardenTile gT49 = new GardenTile(7,4, false);
+		
+
+		GardenTile[][] result = {{gT1, gT2, gT3, gT4, gT5, gT6, gT7},
+								 {gT8, gT9, gT10, gT11, gT12, gT13, gT14},
+								 {gT15, gT16, gT17, gT18, gT19, gT20, gT21},
+								 {gT22, gT23, gT24, gT25, gT26, gT27, gT28},
+								 {gT29, gT30, gT31, gT32, gT33, gT34, gT35,},
+								 {gT36, gT37, gT38, gT39, gT40, gT41, gT42},
+								 {gT43, gT44, gT45, gT46, gT47, gT48, gT49}
+										};
+		
+		return result;
+	}
 	
 	
 	

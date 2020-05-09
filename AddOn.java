@@ -1,4 +1,7 @@
-public class AddOn{
+import java.io.Serializable;
+
+public class AddOn implements Serializable{
+	private static final long serialVersionUID = 38L;
 	
 	String name;
 	/**

@@ -1,5 +1,4 @@
 import java.io.Serializable;
-import java.util.*;
 
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
@@ -23,8 +22,7 @@ import java.util.*;
  *
  */
 public class GardenTile implements Comparable<AddOn>,Serializable {
-	
-	
+	private static final long serialVersionUID = 1982591688L;
 	
 	private int xLoc;
 	private int yLoc;
@@ -92,6 +90,22 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 			this.yLoc = y;
 		}
 		
+		/**
+		 * Constructor With x and y parameters and a Soil type parameter
+		 * @param x
+		 * @param y
+		 * @param active
+		 */
+		public GardenTile(int x, int y, boolean active) {
+			isActive = active;
+			isEmpty = true;
+			soilType = "";
+			waterLevel = 0;
+			sunLightLevel = 0;
+			this.xLoc = x;
+			this.yLoc = y;
+		}
+		
 	
 	/**
 	 * Removes the AddOn that occupies the GardenTile
@@ -99,6 +113,7 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	 */
 	public void remove() {
 		this.addOn = null;
+		this.isEmpty = true;
 	}
 	
 	/**
@@ -108,6 +123,7 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	 */
 	public void add(AddOn a) {
 		this.addOn = a;
+		this.isEmpty = false;
 	}
 	
 	/**
@@ -120,8 +136,8 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	}
 	
 	//temp is being used while we have temporary plant objects in the Model class.  Will remove later
-	private Model temp = new Model();
-	
+	//private Model temp = new Model();
+	private Model temp = null;
 	/**\
 	 * 
 	 * @return
@@ -134,29 +150,28 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 		//Also have to make this work with the .csv of plants when we get that in
 		AddOn[] result = new AddOn[5];
 		
-		Random random = new Random();
-		
-		//The 0 in rand is temporary until more plant options are available
-		int rand = random.nextInt(0);
-		
 		for(int i = 0; i < arr.length; i++) {
 			if(arr[i].getClass() == Plant.class) {
 				Plant pA = (Plant) arr[i];
 				if(pA.getPlantType() == "Tree") {
-					result[i] = temp.getTreeArr().get(rand);
+					result[i] = temp.getTreeArr().get(0);
 					
 				}
 				
 				if(pA.getPlantType() == "Flower") {
+<<<<<<< HEAD
 					result[i] = temp.getFlowerArr().get(rand);
+=======
+					result[i] = temp.getFlowerArr().get(0);
+>>>>>>> 00a800ffbc01cf889eef717913e90442651a5e81
 				}
 				
 				if(pA.getPlantType() == "Shrub") {
-					result[i] = temp.getShrubArr().get(rand);
+					result[i] = temp.getShrubArr().get(0);
 				}
 				
 				if(pA.getPlantType() == "UnderGrowth") {
-					result[i] = temp.getUnderGrowth().get(rand);
+					result[i] = temp.getUnderGrowth().get(0);
 				}
 				
 			}
