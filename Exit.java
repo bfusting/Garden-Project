@@ -148,7 +148,7 @@ public class Exit extends Screen {
 		textPane.setHgap(exitStageWidth);
 		textPane.setAlignment(Pos.BASELINE_CENTER);
 		
-		GridPane buttonPane = new GridPane();
+		buttonPane = new GridPane();
 		buttonPane.setMinWidth(exitStageWidth);
 		ColumnConstraints buttonW = new ColumnConstraints(BtnMinWidth);
 		buttonPane.getColumnConstraints().addAll(buttonW,buttonW,buttonW);
@@ -194,23 +194,35 @@ public class Exit extends Screen {
 	/**
 	 * Makes the exit screen visible to the user by showing the exitScreen Stage. Warns the user that changes may be lost
 	 * and gives the option of saving if they have reached a point that allows saving.
-	 * @param withSave boolean indicating whether or not to show a save option on the exit screen.
+	 * @param exitCase a String representing the exit condition: whether the user is closing the application from a point that may have
+	 * unsaved changes or going back to the main menu
 	 * @see Screen#showScreen()
 	 */
-	public void showScreen(boolean withSave) {
+	public void showScreen(String exitCase) {
 		super.getPreviousScreen().setUneditable();
-		if (withSave) {
-			saveButton.setVisible(true);
+		switch (exitCase){
+		case ("exitSave"):
+			
+			
+			/*saveButton.setVisible(true);
 			warning.setVisible(true);
 			quitButton.setText("Quit without Saving");
+			break;*/
 		
-		} else {
+		case ("exitNoSave"):
 			quitButton.setText("Proceed");
 			saveButton.setVisible(false);
 			warning.setVisible(false);
+			break;
+		case ("toMainMenu"):
+			
+			
 		}
+	
 		exitStage.show();
 	}
+	
+	
 
 	
 	

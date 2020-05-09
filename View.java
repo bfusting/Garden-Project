@@ -269,10 +269,12 @@ public class View extends Application{
 		case "exitScreen":
 			System.out.println("leaving so soon? :(");
 			exitScreen.setPreviousScreen(currentPrimaryScreen);
-			
-			exitScreen.showScreen(currentPrimaryScreen.equals(finalViewScreen));
-			
-			
+			if (currentPrimaryScreen.equals(finalViewScreen)) {
+				exitScreen.showScreen("exitSave");
+			} else {
+				exitScreen.showScreen("exitNoSave");
+			}
+		
 			currentPrimaryScreen = exitScreen;
 		}
 		
