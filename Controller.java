@@ -534,9 +534,9 @@ public class Controller{
 			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
 			view.getDesignGardenScreen().getPlot().add(iv, colIndex, rowIndex, 1, 1);//add(iv, column, row);
 			// Model side of plant drop
-			ArrayList tempArrayList = this.changeTabIndex();
+			ArrayList<Plant> tempArrayList = this.changeTabIndex();
 			int index = view.getDesignGardenScreen().getGridPaneInd();
-			model.getUserPlot().getLayout()[colIndex][rowIndex].setAddOn(tempArrayList.get(index));
+			model.getUserPlot().getLayout()[colIndex][rowIndex].setPlant(tempArrayList.get(index));
 			//int index = this.methodName; used to pull from designGarden array
 			worked = true;
 		}
