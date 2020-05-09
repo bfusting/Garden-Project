@@ -89,8 +89,6 @@ public class DesignGarden extends Screen{
 	private ImageView[][] soil;
 	
 	GridPane plantsGP = new GridPane();
-	//ListView<ImageView> plantsLV = new ListView<ImageView>();
-	
 	GridPane treesGP = new GridPane();
 	GridPane pathsGP = new GridPane();
 	GridPane otherGP = new GridPane();
@@ -102,6 +100,11 @@ public class DesignGarden extends Screen{
 	private AnchorPane root;
 	
 	private Controller c;
+	
+	// length/width taken in by user preference
+	private int length = 5;
+	private int width = 5;
+	private final int selectionSize = 6;
 	
 	public DesignGarden(Controller controller,Stage s) {
 		this.c = controller;
@@ -221,7 +224,21 @@ public class DesignGarden extends Screen{
 		otherGP.add(other3, 2, 1);
 */	
 		plants = new Tab("Plants");
-//		plants.setContent(plantsGP);
+		
+		//setting up the Plant selection gridPane
+		plants.setContent(plantsGP);
+		
+		plantsGP.setMaxSize(100.0, 100.0);
+		for (int i = 0; i < selectionSize; i++) {
+	         ColumnConstraints column = new ColumnConstraints(100);
+	         plantsGP.getColumnConstraints().add(column);
+		}
+		
+		plantsGP.getRowConstraints().add(new RowConstraints(100));
+		
+		plantsGP.setGridLinesVisible(true);
+		
+		/////////////////////////////////////////////////////////////////
 		
 		trees = new Tab("Trees");
 //		trees.setContent(treesGP);
@@ -252,8 +269,21 @@ public class DesignGarden extends Screen{
     	iv2.setFitHeight(100);
     	
     	pSelectionArr.add(iv2);
+    	
+    	// sets handlers for whole array
+    	for(ImageView i : pSelectionArr) {
+    		i.setOnDragDetected(c.getStartDrag());
+    	}//for
+    	
+		//first 6 elements in array
+		for(int i=0; i<selectionSize; i++) {
+			if(i < pSelectionArr.size()) {
+				PlantsGP.getChildren();
+				plantsGP.getChildren().add(pSelectionArr.get(i));
+			}
+		}
 		
-		
+		/*
 		TilePane plantTP = new TilePane();
 		plantTP.setHgap(8);
 		plantTP.setPrefColumns(5);
@@ -261,8 +291,8 @@ public class DesignGarden extends Screen{
 			iv.setOnDragDetected(c.getStartDrag());
 	        plantTP.getChildren().add(iv);
 	   	}
-		
 	    plants.setContent(plantTP);
+	    */
 	    
 	    ImageView ivt1 = new ImageView();
 		Image imt1 = new Image(getClass().getResourceAsStream("/BlackGumTreecopy.png"));
@@ -385,9 +415,9 @@ public class DesignGarden extends Screen{
 		// Replace with vars so works better
 		//FitHeight and FitWidth should take in var constraints
 		plot = new GridPane();
-		soil = new ImageView[5][5];
-		for(int i=0; i<5; i++) {
-			for(int j=0; j<5; j++) {
+		soil = new ImageView[length][width];
+		for(int i=0; i<length; i++) {
+			for(int j=0; j<width; j++) {
 				soil[i][j] = new ImageView(new Image("img/soil.jpg"));
 				soil[i][j].setPreserveRatio(true);
 				soil[i][j].setFitHeight(150);
@@ -418,11 +448,11 @@ public class DesignGarden extends Screen{
 		*/
 		
 		plot.setMinSize(600.0, 600.0);
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < length; i++) {
 	         ColumnConstraints column = new ColumnConstraints(150);
 	         plot.getColumnConstraints().add(column);
 	     }
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < width; i++) {
 	         RowConstraints row = new RowConstraints(100);
 	         plot.getRowConstraints().add(row);
 	     }
