@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -524,6 +525,7 @@ public class Controller{
 		Node n = event.getPickResult().getIntersectedNode();
 		if(DEBUG) {System.out.println(n.toString());}
 		if(n != view.getDesignGardenScreen().getPlot() && db.hasImage()) {
+			// View side of plant drop
 			ImageView iv = new ImageView(db.getImage());
 			iv.setPreserveRatio(true);
 	    	iv.setFitHeight(100);
@@ -531,7 +533,9 @@ public class Controller{
 			Integer rowIndex = GridPane.getRowIndex(n);
 			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
 			view.getDesignGardenScreen().getPlot().add(iv, colIndex, rowIndex, 1, 1);//add(iv, column, row);
-			//if(DEBUG) {System.out.println("Column: " + column + " Row: " + row);}
+			// Model side of plant drop
+			ArrayList tempArrayList = this.changeTabIndex();
+			//int index = this.methodName; used to pull from designGarden array
 			worked = true;
 		}
 		event.setDropCompleted(worked);
@@ -965,6 +969,28 @@ public class Controller{
 		return event -> mouseEnterPlantSelection((MouseEvent) event);
 	}
 	
+	/**
+	 * Returns an arrayList which is the arrayList of plants to choose from
+	 * based on the tab selected.
+	 * <p>
+	 * Used in the drag and drop method to select the plant in the correct location
+	 * to select the correct array to choose the plant from. 
+	 * 
+	 * @return arrayList of plants from model. If none are available returns null
+	 * @see Controller#detectDragDrop(DragEvent)
+	 */
+	public ArrayList<Plant> changeTabIndex() {
+		// get the current tab selected in design garden
+		int t = view.getDesignGardenScreen().getSelectGardenType().
+		getSelectionModel().getSelectedIndex();
+		switch(t) {
+			case 0: return model.getFlowerArr();
+			case 1: return model.getTreeArr();
+			case 2: return model.getShrubArr();
+			case 3: return model.getUnderGrowth();
+		}//switch
+		return null;
+	}
 }//Controller
 
 

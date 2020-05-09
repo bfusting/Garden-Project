@@ -54,6 +54,11 @@ public class DesignGarden extends Screen{
 
 	private ArrayList<Label> otherArr;
 	private ArrayList<ImageView> pSelectionArr;
+	// Kelsey I (Malachi Added these so each plant type has it's own picture array)
+	// need to make initlaize in show
+	private ArrayList<ImageView> shrubSelArr;
+	private ArrayList<ImageView> treeSelArr;
+	private ArrayList<ImageView> underSelArr;
 	
 	private int otherArrInd = 0;
 	private int pSelectionArrInd = 0;
@@ -191,6 +196,7 @@ public class DesignGarden extends Screen{
 			imv1.setPreserveRatio(false);
 			imv1.setFitHeight(100);
 			imv1.setFitWidth(100);
+			backdropColor.add(imv1);
 		}
 
 		//root AnchorPane
@@ -249,7 +255,7 @@ public class DesignGarden extends Screen{
 		for (int i = 0; i < selectionSize; i++) {
 	         ColumnConstraints column = new ColumnConstraints(100);
 	         plantsGP.getColumnConstraints().add(column);
-	         plantsGP.add(selectionColor, i, 0,1,1);
+	         plantsGP.add(backdropColor.get(i), i, 0,1,1);
 		}
 		
 		plantsGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
@@ -451,6 +457,8 @@ public class DesignGarden extends Screen{
 			}
 		}
 		
+		
+		
 		/*
 		ImageView soil1 = new ImageView();
 		soil1.setImage(new Image("img/soil.jpg"));
@@ -472,7 +480,7 @@ public class DesignGarden extends Screen{
 		plot.add(emptySpace5, 4, 4);
 		*/
 		
-		plot.setMinSize(600.0, 600.0);
+		plot.setMaxSize(600.0, 600.0);
 		for (int i = 0; i < length; i++) {
 	         ColumnConstraints column = new ColumnConstraints(150);
 	         plot.getColumnConstraints().add(column);
@@ -497,6 +505,10 @@ public class DesignGarden extends Screen{
 		
 		stage.setTitle("Design Garden");
 		stage.setScene(designGardenScene);
+		
+		int t = selectGardenType.getSelectionModel().getSelectedIndex();
+		System.out.println(t);
+		
 		stage.show();
 	}
 
@@ -508,6 +520,9 @@ public class DesignGarden extends Screen{
 	}
 	public Button getInfoTipsBTTN() {
 		return infoTips;
+	}
+	public TabPane getSelectGardenType() {
+		return selectGardenType;
 	}
 	
 	@Override
