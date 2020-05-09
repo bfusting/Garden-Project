@@ -958,6 +958,16 @@ public class Controller{
 		view.mouseClicked(event.getSource());
 	}
 	
+#ifdef NEW
+	public EventHandler<MouseEvent> getMainMenuWarning() {
+		return event -> mainMenuWarning((MouseEvent)event);
+	}
+	
+	public void mainMenuWarning(MouseEvent event) {
+		view.show("mainMenuWarning");
+	}
+	
+#else /* not NEW */
 	public EventHandler<ActionEvent> getPreferenceChanged() {
 		return event-> preferenceChanged((ActionEvent)event);
 	}
@@ -982,6 +992,7 @@ public class Controller{
 		model.setUserLength(length);
 		model.setUserWidth(width);
 	}
+#endif /* not NEW */
 	
 	
 }//Controller
