@@ -142,12 +142,12 @@ public class View extends Application{
 		preferencesScreen.setPreviousScreen(chooseTemplateScreen);
 		
 		
-		//currentPrimaryScreen = mainMenuScreen;
+		currentPrimaryScreen = mainMenuScreen;
 		
 		
 		System.out.println("Set the stage for el Main Menu");
-		//mainMenuScreen.showScreen();
-		show("mainMenuScreen");
+		mainMenuScreen.showScreen();
+		
 		primaryStage.show();
 		
 		
@@ -202,6 +202,9 @@ public class View extends Application{
 		
 		switch (screen) {
 		case "mainMenuScreen":
+			if (currentPrimaryScreen.equals(exitScreen)) {
+				exitScreen.goToPreviousScreen();
+			}
 			currentPrimaryScreen = mainMenuScreen;
 			mainMenuScreen.showScreen();
 			break;
@@ -231,7 +234,6 @@ public class View extends Application{
 		case "preferencesScreen":
 			currentPrimaryScreen = preferencesScreen;
 			preferencesScreen.showScreen();
-			//preferencesScreen.showPreferences(primaryStage);
 			break;
 		case "saveGarden":
 			
@@ -239,7 +241,12 @@ public class View extends Application{
 				exitScreen.closeScreen();
 				
 				if (con.saveGarden(showSaveLoad(true))) {
-					exit();
+					if (exitScreen.getExitCase().equals("mainMenuWarning")) {
+						show("mainMenuScreen");
+					}
+					else {
+						exit();
+					}
 				} else {
 					goToLastScreen();
 				}
@@ -257,7 +264,6 @@ public class View extends Application{
 			
 		case "seasonViewScreen":
 			seasonViewScreen.setPreviousScreen(currentPrimaryScreen);
-			//currentPrimaryScreen = seasonViewScreen;
 			
 			seasonViewScreen.showScreen();
 			break;
@@ -276,6 +282,12 @@ public class View extends Application{
 			}
 		
 			currentPrimaryScreen = exitScreen;
+			break;
+		case "mainMenuWarning":
+			exitScreen.setPreviousScreen(currentPrimaryScreen);
+			currentPrimaryScreen = exitScreen;
+			exitScreen.showScreen("mainMenuWarning");
+			
 		}
 		
 

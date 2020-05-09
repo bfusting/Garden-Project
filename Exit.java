@@ -1,5 +1,7 @@
 
 
+import com.sun.jndi.url.corbaname.corbanameURLContextFactory;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -44,6 +46,7 @@ import javafx.stage.StageStyle;
 
 public class Exit extends Screen {
 	private Stage exitStage;
+	private Controller con;
 	
 	private Button saveButton;
 	private Button quitButton;
@@ -51,11 +54,9 @@ public class Exit extends Screen {
 	private Button cancelButton;
 	private Group root;
 
-	
-	
-	
+	private String exitMessage;  
 	private GridPane gp;
-	private Text exitMessage;
+	private Text exitText;
 	private Text warning;
 	private Rectangle left;
 	private Rectangle right;
@@ -64,12 +65,18 @@ public class Exit extends Screen {
 	private GridPane buttonPane;
 	private Scene exitScene;
 	
+	private String exitCase;
 	/**
 	 * Constructor for the Exit Screen. Asks the user for confirmation of intent to close the application, with the option of saving
 	 * first if they have started creating or editing.
 	 * @param c the Controller, which manages the event handlers for the buttons on this screen.
 	 */
 	public Exit(Controller c) {
+		con= c;
+		exitCase ="";
+		
+		exitMessage = "Are you sure you want to quit?";
+		
 		final int BtnMinWidth = 140;
 		final int BtnMinHeight = 50;
 		final int exitStageWidth = 500;
@@ -87,17 +94,17 @@ public class Exit extends Screen {
 		
 		saveButton = new Button("Save and Quit");
 		saveButton.setMinSize(BtnMinWidth, BtnMinHeight);
-		saveButton.setOnMouseClicked(c.getSaveBTN());
+		saveButton.setOnMouseClicked(con.getSaveBTN());
 		
 		
 		quitButton = new Button();
 		quitButton.setMinSize(BtnMinWidth, BtnMinHeight);
-		quitButton.setOnMouseClicked(c.getCloseAllWindows());
+		//quitButton.setOnMouseClicked(con.getCloseAllWindows());
 	
 		
 		cancelButton = new Button("Cancel");
 		cancelButton.setMinSize(BtnMinWidth,BtnMinHeight);
-		cancelButton.setOnMouseClicked(c.getBackBTN());
+		cancelButton.setOnMouseClicked(con.getBackBTN());
 		
 		exitStage = new Stage(StageStyle.UNDECORATED);
 		exitStage.initModality(Modality.APPLICATION_MODAL);
@@ -127,11 +134,11 @@ public class Exit extends Screen {
 		gp.setAlignment(Pos.TOP_CENTER);
 		gp.setBorder(new Border(new BorderStroke(borderColor,BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(outsideBorder))));
 		
-		exitMessage = new Text("Are you sure you want to quit?");
-		exitMessage.setTextAlignment(TextAlignment.CENTER);
-		exitMessage.setFont(Font.font("Verdana",FontWeight.BOLD,headingFontSize));
+		exitText = new Text();
+		exitText.setTextAlignment(TextAlignment.CENTER);
+		exitText.setFont(Font.font("Verdana",FontWeight.BOLD,headingFontSize));
 		
-		warning = new Text("(Any unsaved changes may be lost.)");
+		warning = new Text("(Any unsaved changes will be lost.)");
 		warning.setTextAlignment(TextAlignment.CENTER);
 		warning.setFont(Font.font("Verdana",FontPosture.ITALIC,subheadingFontSize));
 		warning.setFill(warningTextColor);
@@ -143,7 +150,7 @@ public class Exit extends Screen {
 		toolsPane.setAlignment(Pos.CENTER_LEFT);
 		toolsPane.setHgap(lineDist);
 		
-		TilePane textPane = new TilePane(exitMessage,warning);
+		TilePane textPane = new TilePane(exitText,warning);
 		textPane.setVgap(rowDist);
 		textPane.setHgap(exitStageWidth);
 		textPane.setAlignment(Pos.BASELINE_CENTER);
@@ -200,29 +207,38 @@ public class Exit extends Screen {
 	 */
 	public void showScreen(String exitCase) {
 		super.getPreviousScreen().setUneditable();
+		this.exitCase = exitCase;
 		switch (exitCase){
 		case ("exitSave"):
-			
-			
-			/*saveButton.setVisible(true);
+			saveButton.setVisible(true);
+			exitText.setText(exitMessage);
 			warning.setVisible(true);
 			quitButton.setText("Quit without Saving");
-			break;*/
+			quitButton.setOnMouseClicked(con.getCloseAllWindows());
+			break;
 		
 		case ("exitNoSave"):
+			exitText.setText(exitMessage);
 			quitButton.setText("Proceed");
+			quitButton.setOnMouseClicked(con.getCloseAllWindows());
 			saveButton.setVisible(false);
 			warning.setVisible(false);
 			break;
-		case ("toMainMenu"):
-			
-			
+		case ("mainMenuWarning"):
+			exitText.setText("Are you sure you want to leave "+super.getPreviousScreen()+"?");
+			saveButton.setVisible(true);
+			saveButton.setText("Save First");
+			warning.setVisible(true);
+			quitButton.setText("Proceed");
+			quitButton.setOnMouseClicked(con.getMainMenuBTN());
 		}
 	
 		exitStage.show();
 	}
 	
-	
+	public String getExitCase() {
+		return exitCase;
+	}
 
 	
 	

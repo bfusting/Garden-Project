@@ -949,6 +949,14 @@ public class Controller{
 		view.mouseClicked(event.getSource());
 	}
 	
+	public EventHandler<MouseEvent> getMainMenuWarning() {
+		return event -> mainMenuWarning((MouseEvent)event);
+	}
+	
+	public void mainMenuWarning(MouseEvent event) {
+		view.show("mainMenuWarning");
+	}
+	
 	
 	
 }//Controller
