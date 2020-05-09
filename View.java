@@ -1,7 +1,9 @@
 import java.io.File;
+import java.util.HashSet;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.Node;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -67,6 +69,7 @@ public class View extends Application{
 	static final Color bgColor1 = Color.web("#a5c96b");
 	static final Border primarySceneBorder1 = new Border(new BorderStroke(borderColor1,BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(borderWidth)));
 	
+	private HashSet<Node> prefs;
 	
 	
 	private FileChooser fileChooser;
@@ -78,7 +81,7 @@ public class View extends Application{
 	 */
 	public View() {
 		con = new Controller(this);
-		
+		prefs = new HashSet<Node>();
 		fileChooser = new FileChooser();
 
 	}
@@ -351,6 +354,12 @@ public class View extends Application{
 		if (currentPrimaryScreen.equals(chooseTemplateScreen)) {
 			chooseTemplateScreen.mouseClicked((Shape) o);
 		}
+		else if (currentPrimaryScreen.equals(preferencesScreen)) {
+			prefs.add((Node) o);
+			if (prefs.size()==preferencesScreen.getTotalPrefs()) {
+				preferencesScreen.allowStartCreating();
+			}
+		}
 	}
 	
 	/**
@@ -364,6 +373,10 @@ public class View extends Application{
 	 */
 	public String getSelectedTemplate() {
 		return chooseTemplateScreen.getSelectedTemplate();
+	}
+	
+	public void sendPreferences() {
+			preferencesScreen.sendPreferences();
 	}
 	
 	

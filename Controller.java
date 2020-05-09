@@ -5,12 +5,15 @@ import java.io.IOException;
 import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.HashSet;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
@@ -251,6 +254,7 @@ public class Controller{
 	 * @see GardenPlot
 	 */
 	public void designTime(MouseEvent event) {
+		view.sendPreferences();
 		System.out.println("Make Garden");
 		//view.showDesignGardenScreen();
 		view.show("designGardenScreen");
@@ -803,6 +807,11 @@ public class Controller{
 				
 				model = (Model) ois.readObject();
 				System.out.println(model.getUserPlot().getShape());
+				System.out.println(model.getUserPrefColor());
+				System.out.println(model.getUserPrefSeason());
+				System.out.println(model.getUserPrefLight());
+				System.out.println(model.getUserPrefWater());
+				
 				System.out.println("File loaded. Time to design!!");
 				return true;
 			}
@@ -949,6 +958,30 @@ public class Controller{
 		view.mouseClicked(event.getSource());
 	}
 	
+	public EventHandler<ActionEvent> getPreferenceChanged() {
+		return event-> preferenceChanged((ActionEvent)event);
+	}
+	
+	public void preferenceChanged(ActionEvent event) {
+		view.mouseClicked(event.getSource());
+		/*HashSet<Node> prefs = new HashSet<Node>();
+		System.out.println("changed");
+		prefs.add((Node)event.getSource());
+		System.out.println(prefs.size());
+		if (prefs.size()==model.getPrefsAmt()) {
+			view.sendPreferences();
+		}*/
+		
+	}
+	
+	public void setPreferences(String color, Seasons season, int light,int water,int length, int width) {
+		
+		model.setUserPrefSeason(season);
+		model.setUserPrefColor(color);
+		model.setUserPrefLight(light);
+		model.setUserLength(length);
+		model.setUserWidth(width);
+	}
 	
 	
 }//Controller
