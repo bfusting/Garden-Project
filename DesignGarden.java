@@ -63,6 +63,9 @@ public class DesignGarden extends Screen{
 	private int otherArrInd = 0;
 	private int pSelectionArrInd = 0;
 	
+	// used by Controller to choose where in the array to pull plant from
+	private int gridPaneInd = 0;
+	
 	private TabPane selectGardenType;
 	private Tab plants;
 	private Tab trees;
@@ -523,6 +526,12 @@ public class DesignGarden extends Screen{
 	}
 	public TabPane getSelectGardenType() {
 		return selectGardenType;
+	}
+	public int getGridPaneInd() {
+		return gridPaneInd;
+	}
+	public void setGridPaneInd(int i) {
+		gridPaneInd = i;
 	}
 	
 	@Override
