@@ -508,10 +508,6 @@ public class DesignGarden extends Screen{
 		
 		stage.setTitle("Design Garden");
 		stage.setScene(designGardenScene);
-		
-		int t = selectGardenType.getSelectionModel().getSelectedIndex();
-		System.out.println(t);
-		
 		stage.show();
 	}
 

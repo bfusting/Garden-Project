@@ -535,6 +535,8 @@ public class Controller{
 			view.getDesignGardenScreen().getPlot().add(iv, colIndex, rowIndex, 1, 1);//add(iv, column, row);
 			// Model side of plant drop
 			ArrayList tempArrayList = this.changeTabIndex();
+			int index = view.getDesignGardenScreen().getGridPaneInd();
+			model.getUserPlot().getLayout()[colIndex][rowIndex].setAddOn(tempArrayList.get(index));
 			//int index = this.methodName; used to pull from designGarden array
 			worked = true;
 		}
@@ -959,6 +961,7 @@ public class Controller{
 		Integer row = GridPane.getRowIndex(n);
 		Integer col = GridPane.getColumnIndex(n);
 		if(DEBUG) {System.out.println("row " + row + " col " + col);}
+		view.getDesignGardenScreen().setGridPaneInd(col);
 	}
 	
 	/**
