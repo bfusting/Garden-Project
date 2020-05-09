@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.*;
+import java.io.*;
 
 
-public class Plant extends AddOn{
+public class Plant extends AddOn implements Serializable{
 
 	private String color;
 	private int waterNeed;

@@ -1,11 +1,12 @@
 import java.util.ArrayList;
-
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
@@ -53,13 +54,23 @@ public class DesignGarden extends Screen{
 
 	private ArrayList<Label> otherArr;
 	private ArrayList<ImageView> pSelectionArr;
+	// Kelsey I (Malachi Added these so each plant type has it's own picture array)
+	// need to make initlaize in show
+	private ArrayList<ImageView> shrubSelArr;
+	private ArrayList<ImageView> treeSelArr;
+	private ArrayList<ImageView> underSelArr;
 	
 	private int otherArrInd = 0;
 	private int pSelectionArrInd = 0;
 	
+	// used by Controller to choose where in the array to pull plant from
+	private int gridPaneInd = 0;
+	
 	private TabPane selectGardenType;
 	private Tab plants;
 	private Tab trees;
+	private Tab shrubs;
+	private Tab undergrowth;
 	private Tab pathways;
 	private Tab otherOptions;
 
@@ -89,6 +100,8 @@ public class DesignGarden extends Screen{
 	
 	GridPane plantsGP = new GridPane();
 	GridPane treesGP = new GridPane();
+	GridPane shrubsGP = new GridPane();
+	GridPane underGP = new GridPane();
 	GridPane pathsGP = new GridPane();
 	GridPane otherGP = new GridPane();
 	
@@ -100,7 +113,13 @@ public class DesignGarden extends Screen{
 	
 	private Controller c;
 	
-	private final int selectionSize = 6; 
+	// length/width taken in by user preference
+	private int length = 5;
+	private int width = 5;
+	private final int selectionSize = 6;
+	
+	// Used as backdrops colors for selection gridpanes
+	private ArrayList<ImageView> backdropColor = new ArrayList<ImageView>();
 	
 	public DesignGarden(Controller controller,Stage s) {
 		this.c = controller;
@@ -174,6 +193,14 @@ public class DesignGarden extends Screen{
 	 */
 	
 	public void showDesignGarden(Stage stage) {
+		// setting up backupDrop with 6 images since that is the size of each gridPane
+		for(int i=0; i<selectionSize;i++) {
+			ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
+			imv1.setPreserveRatio(false);
+			imv1.setFitHeight(100);
+			imv1.setFitWidth(100);
+			backdropColor.add(imv1);
+		}
 
 		//root AnchorPane
 		//AnchorPane root = new AnchorPane();
@@ -220,55 +247,33 @@ public class DesignGarden extends Screen{
 		otherGP.add(other3, 2, 1);
 */	
 		plants = new Tab("Plants");
-		plantsGP.setMaxSize(100, 100);
 		
-		//used to set up the plantsGP with tiles
+		//setting up the Plant selection gridPane
+		plants.setContent(plantsGP);
+		
+		// max size of items
+		plantsGP.setMaxSize(100.0, 100.0);
+		//adding row
 		plantsGP.getRowConstraints().add(new RowConstraints(100));
-		for(int i=0;i < selectionSize; i++) {
-			ColumnConstraints column = new ColumnConstraints(100);
-			plantsGP.getColumnConstraints().add(column);
+		for (int i = 0; i < selectionSize; i++) {
+	         ColumnConstraints column = new ColumnConstraints(100);
+	         plantsGP.getColumnConstraints().add(column);
+	         plantsGP.add(backdropColor.get(i), i, 0,1,1);
 		}
 		
-		//gets the index of the selection array row
-		plantsGP.getChildren().forEach(t -> t.setOnMouseEntered(c.getMouseEnteredPlantSelection()));
+		plantsGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
 		
-		/*
-		ImageView soil1[] = new ImageView[selectionSize];
-		for(int i=0; i<selectionSize; i++) {
-			soil1[i] = new ImageView(new Image("img/soil.jpg"));
-			soil1[i].setPreserveRatio(true);
-			soil1[i].setFitHeight(100);
-			soil1[i].setFitWidth(100);
-			//plantsGP.add(soil1[i],0,i,1,1);
-			plantsGP.add(soil1[i], i, 0,1,1);
-		}*/
 		
-		// Set so can see gridPane
+		//plantsGP.setOnMouseEntered(c.getMouseEnterPlantSelection());
+		
 		plantsGP.setGridLinesVisible(true);
 		
-		/*
-		TilePane plantTP = new TilePane();
-		plantTP.setHgap(8);
-		plantTP.setPrefColumns(5);
-		for (ImageView iv : pSelectionArr) {
-			iv.setOnDragDetected(c.getStartDrag());
-	        plantTP.getChildren().add(iv);
-	   	}
-	   	
-		plot.setMinSize(600.0, 600.0);
-		for (int i = 0; i < 5; i++) {
-	         ColumnConstraints column = new ColumnConstraints(150);
-	         plot.getColumnConstraints().add(column);
-	     }
-		for (int i = 0; i < 5; i++) {
-	         RowConstraints row = new RowConstraints(100);
-	         plot.getRowConstraints().add(row);
-	     }
+		/////////////////////////////////////////////////////////////////
+		shrubs = new Tab("Shrubs");
+//		shrubs.setContent(shrubsGP)
 		
-		// setting info for drag n' drop for plot
-		plot.setOnDragOver(c.getDetectDrag());
-		plot.setOnDragDropped(c.getDetectDragDrop());
-		*/
+		undergrowth = new Tab("Undergrowth");
+//		undergrowth.setContent
 		
 		trees = new Tab("Trees");
 //		trees.setContent(treesGP);
@@ -299,6 +304,18 @@ public class DesignGarden extends Screen{
     	iv2.setFitHeight(100);
     	
     	pSelectionArr.add(iv2);
+    	
+    	// sets handlers for whole array
+    	for(ImageView i : pSelectionArr) {
+    		i.setOnDragDetected(c.getStartDrag());
+    	}//for
+    	
+		//first 6 elements in array into gridPane
+		for(int i=0; i<selectionSize; i++) {
+			if(i < pSelectionArr.size()) {
+				plantsGP.getChildren().add(pSelectionArr.get(i));
+			}
+		}
 		
 		/*
 		TilePane plantTP = new TilePane();
@@ -308,10 +325,8 @@ public class DesignGarden extends Screen{
 			iv.setOnDragDetected(c.getStartDrag());
 	        plantTP.getChildren().add(iv);
 	   	}
-	   	*/
-		
-		
-	    //plants.setContent(plantTP);
+	    plants.setContent(plantTP);
+	    */
 	    
 	    ImageView ivt1 = new ImageView();
 		Image imt1 = new Image(getClass().getResourceAsStream("/BlackGumTreecopy.png"));
@@ -370,7 +385,7 @@ public class DesignGarden extends Screen{
 		
 	    otherOptions.setContent(otherTP);
 	    
-		selectGardenType.getTabs().addAll( plants, trees, pathways, otherOptions);
+		selectGardenType.getTabs().addAll( plants, trees, shrubs, undergrowth, pathways, otherOptions);
 
 		AnchorPane.setTopAnchor(selectGardenType, 40.0);
 		AnchorPane.setLeftAnchor(selectGardenType, 40.0);
@@ -409,9 +424,6 @@ public class DesignGarden extends Screen{
 		
 		finalView.setOnMouseClicked(c.getFinalViewBTN());
 		
-		// tells position of where the mouse is in each gridpane
-		//plantsGP.setOnMouseEntered(c.getMouseEnteredPlantSelection());
-		
 		AnchorPane apButtons = new AnchorPane();
 
 		Label otherFeaturesLabel = new Label("Other Features: ");
@@ -437,9 +449,9 @@ public class DesignGarden extends Screen{
 		// Replace with vars so works better
 		//FitHeight and FitWidth should take in var constraints
 		plot = new GridPane();
-		soil = new ImageView[5][5];
-		for(int i=0; i<5; i++) {
-			for(int j=0; j<5; j++) {
+		soil = new ImageView[length][width];
+		for(int i=0; i<length; i++) {
+			for(int j=0; j<width; j++) {
 				soil[i][j] = new ImageView(new Image("img/soil.jpg"));
 				soil[i][j].setPreserveRatio(true);
 				soil[i][j].setFitHeight(150);
@@ -447,6 +459,8 @@ public class DesignGarden extends Screen{
 				plot.add(soil[i][j], i, j,1,1);
 			}
 		}
+		
+		
 		
 		/*
 		ImageView soil1 = new ImageView();
@@ -469,22 +483,18 @@ public class DesignGarden extends Screen{
 		plot.add(emptySpace5, 4, 4);
 		*/
 		
-		plot.setMinSize(600.0, 600.0);
-		for (int i = 0; i < 5; i++) {
+		plot.setMaxSize(600.0, 600.0);
+		for (int i = 0; i < length; i++) {
 	         ColumnConstraints column = new ColumnConstraints(150);
 	         plot.getColumnConstraints().add(column);
 	     }
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < width; i++) {
 	         RowConstraints row = new RowConstraints(100);
 	         plot.getRowConstraints().add(row);
 	     }
 		
-		// setting info for drag n' drop for plot
 		plot.setOnDragOver(c.getDetectDrag());
 		plot.setOnDragDropped(c.getDetectDragDrop());
-		
-		// set for each tile in it to make it wor
-		//plot.getChildren().forEach(t -> t.setOnMouseEntered(c.getMouseEnteredPlantSelection()));
 
 		plot.setGridLinesVisible(true);
 		
@@ -509,6 +519,15 @@ public class DesignGarden extends Screen{
 	}
 	public Button getInfoTipsBTTN() {
 		return infoTips;
+	}
+	public TabPane getSelectGardenType() {
+		return selectGardenType;
+	}
+	public int getGridPaneInd() {
+		return gridPaneInd;
+	}
+	public void setGridPaneInd(int i) {
+		gridPaneInd = i;
 	}
 	
 	@Override
