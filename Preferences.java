@@ -11,6 +11,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 
+import java.util.ArrayList;
+
 import javax.swing.event.ChangeListener;
 
 import javafx.beans.value.ObservableValue;
@@ -34,6 +36,9 @@ public class Preferences extends Screen{
 	private ComboBox<String> color;
 	private ComboBox<String> season;
 	private Slider light;
+	private Slider water;
+	private Slider length;
+	private Slider width;
 	
 	private ComboBox<Integer> gardenLength;
 	private ComboBox<Integer> gardenWidth;
@@ -235,21 +240,31 @@ public class Preferences extends Screen{
 		season.getItems().addAll("Spring","Summer","Autumn","Winter");
 		season.setOnAction(c.getPreferenceChanged());
 		
-		light = new Slider();
 		
-		light.setMin(0);
-		light.setMax(5);
-		light.setShowTickMarks(true);
-		light.setMajorTickUnit(1);
-		light.setBlockIncrement(1);
-		light.setSnapToTicks(true);
-		light.setShowTickLabels(true);
+		light = new Slider();
+		water = new Slider();
+		width = new Slider();
+		length = new Slider();
+		
+		
+		
+		Slider[] sliders = new Slider[]{light,water,length,width};
+		for (Slider s : sliders) {
+			s.setMin(0);
+			s.setMax(5);
+			s.setShowTickMarks(true);
+			s.setMajorTickUnit(1);
+			s.setBlockIncrement(1);
+			s.setSnapToTicks(true);
+			s.setShowTickLabels(true);
+		}
+		
 		
 		
 		
 		tpane.setVgap(50);
 		
-		tpane.getChildren().addAll(color,season,light,back,startCreating);
+		tpane.getChildren().addAll(color,season,light,water,length,width,back,startCreating);
 		preferencesScene = new Scene(tpane,View.primarySceneWidth,View.primarySceneHeight);
 		stage.setScene(preferencesScene);
 		
@@ -266,8 +281,11 @@ public class Preferences extends Screen{
 		String colPref = color.getValue();
 		Seasons seasonPref = Seasons.valueOf(season.getValue().toUpperCase());
 		int lightPref = (int)light.getValue();
-		System.out.println("Sending to model:\nColor: "+colPref+", Season: "+seasonPref+", Light level: "+lightPref);
-		c.setPreferences(color.getValue(), seasonPref, (int)light.getValue());
+		int waterPref = (int)water.getValue();
+		int lengthPref = (int) length.getValue();
+		int widthPref = (int) width.getValue();
+		System.out.println("Sending to model:\nColor: "+colPref+", Season: "+seasonPref+", Light level: "+lightPref+"\nWater level: "+waterPref+", Length: "+ lengthPref+", Width: "+widthPref);
+		c.setPreferences(color.getValue(), seasonPref, lightPref,waterPref,lengthPref,widthPref);
 	}
 	
 	

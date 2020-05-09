@@ -974,10 +974,13 @@ public class Controller{
 		
 	}
 	
-	public void setPreferences(String color, Seasons season, int light) {
+	public void setPreferences(String color, Seasons season, int light,int water,int length, int width) {
+		
 		model.setUserPrefSeason(season);
 		model.setUserPrefColor(color);
 		model.setUserPrefLight(light);
+		model.setUserLength(length);
+		model.setUserWidth(width);
 	}
 	
 	
