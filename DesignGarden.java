@@ -61,6 +61,8 @@ public class DesignGarden extends Screen{
 	private TabPane selectGardenType;
 	private Tab plants;
 	private Tab trees;
+	private Tab shrubs;
+	private Tab undergrowth;
 	private Tab pathways;
 	private Tab otherOptions;
 
@@ -90,6 +92,8 @@ public class DesignGarden extends Screen{
 	
 	GridPane plantsGP = new GridPane();
 	GridPane treesGP = new GridPane();
+	GridPane shrubsGP = new GridPane();
+	GridPane underGP = new GridPane();
 	GridPane pathsGP = new GridPane();
 	GridPane otherGP = new GridPane();
 	
@@ -105,6 +109,9 @@ public class DesignGarden extends Screen{
 	private int length = 5;
 	private int width = 5;
 	private final int selectionSize = 6;
+	
+	// Used as backdrops colors for selection gridpanes
+	private ArrayList<ImageView> backdropColor = new ArrayList<ImageView>();
 	
 	public DesignGarden(Controller controller,Stage s) {
 		this.c = controller;
@@ -178,6 +185,13 @@ public class DesignGarden extends Screen{
 	 */
 	
 	public void showDesignGarden(Stage stage) {
+		// setting up backupDrop with 6 images since that is the size of each gridPane
+		for(int i=0; i<selectionSize;i++) {
+			ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
+			imv1.setPreserveRatio(false);
+			imv1.setFitHeight(100);
+			imv1.setFitWidth(100);
+		}
 
 		//root AnchorPane
 		//AnchorPane root = new AnchorPane();
@@ -228,17 +242,29 @@ public class DesignGarden extends Screen{
 		//setting up the Plant selection gridPane
 		plants.setContent(plantsGP);
 		
+		// max size of items
 		plantsGP.setMaxSize(100.0, 100.0);
+		//adding row
+		plantsGP.getRowConstraints().add(new RowConstraints(100));
 		for (int i = 0; i < selectionSize; i++) {
 	         ColumnConstraints column = new ColumnConstraints(100);
 	         plantsGP.getColumnConstraints().add(column);
+	         plantsGP.add(selectionColor, i, 0,1,1);
 		}
 		
-		plantsGP.getRowConstraints().add(new RowConstraints(100));
+		plantsGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
+		
+		
+		//plantsGP.setOnMouseEntered(c.getMouseEnterPlantSelection());
 		
 		plantsGP.setGridLinesVisible(true);
 		
 		/////////////////////////////////////////////////////////////////
+		shrubs = new Tab("Shrubs");
+//		shrubs.setContent(shrubsGP)
+		
+		undergrowth = new Tab("Undergrowth");
+//		undergrowth.setContent
 		
 		trees = new Tab("Trees");
 //		trees.setContent(treesGP);
@@ -275,10 +301,9 @@ public class DesignGarden extends Screen{
     		i.setOnDragDetected(c.getStartDrag());
     	}//for
     	
-		//first 6 elements in array
+		//first 6 elements in array into gridPane
 		for(int i=0; i<selectionSize; i++) {
 			if(i < pSelectionArr.size()) {
-				PlantsGP.getChildren();
 				plantsGP.getChildren().add(pSelectionArr.get(i));
 			}
 		}
@@ -351,7 +376,7 @@ public class DesignGarden extends Screen{
 		
 	    otherOptions.setContent(otherTP);
 	    
-		selectGardenType.getTabs().addAll( plants, trees, pathways, otherOptions);
+		selectGardenType.getTabs().addAll( plants, trees, shrubs, undergrowth, pathways, otherOptions);
 
 		AnchorPane.setTopAnchor(selectGardenType, 40.0);
 		AnchorPane.setLeftAnchor(selectGardenType, 40.0);
