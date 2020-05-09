@@ -278,7 +278,7 @@ public class View extends Application{
 		case "exitScreen":
 			System.out.println("leaving so soon? :(");
 			exitScreen.setPreviousScreen(currentPrimaryScreen);
-			if (currentPrimaryScreen.equals(finalViewScreen)) {
+			if (currentPrimaryScreen.equals(finalViewScreen) || currentPrimaryScreen.equals(designGardenScreen) || currentPrimaryScreen.equals(preferencesScreen)) {
 				exitScreen.showScreen("exitSave");
 			} else {
 				exitScreen.showScreen("exitNoSave");
@@ -393,6 +393,9 @@ public class View extends Application{
 			preferencesScreen.sendPreferences();
 	}
 	
+	public String getCurrentPrimaryScreen() {
+		return String.valueOf(currentPrimaryScreen);
+	}
 	
 		
 	

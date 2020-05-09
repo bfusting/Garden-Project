@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.HashSet;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -13,7 +12,6 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
@@ -160,9 +158,12 @@ public class Controller{
 	 * @see MainMenu
 	 */
 	public void exit(MouseEvent event) {
-		System.out.println("Exit by saving the closing");
-		//view.showExitScreen();
+		
+		if (view.getCurrentPrimaryScreen().equals("Main Menu")) {
+			view.exit();
+		} else {
 		view.show("exitScreen");
+		}
 	}//exit
 	
 	/**
@@ -806,11 +807,9 @@ public class Controller{
 				
 				
 				model = (Model) ois.readObject();
-				System.out.println(model.getUserPlot().getShape());
-				System.out.println(model.getUserPrefColor());
-				System.out.println(model.getUserPrefSeason());
-				System.out.println(model.getUserPrefLight());
-				System.out.println(model.getUserPrefWater());
+				
+				
+				System.out.println("Loading...Shape: "+ model.getUserPlot().getShape()+" Color:  "+model.getUserPrefColor()+", Season: "+model.getUserPrefSeason()+", Light level: "+model.getUserPrefLight()+"\nWater level: "+model.getUserPrefWater()+", Length: "+ model.getUserLength()+", Width: "+model.getUserWidth());
 				
 				System.out.println("File loaded. Time to design!!");
 				return true;
@@ -938,8 +937,10 @@ public class Controller{
 	 * @param event
 	 */
 	public void exitStage(WindowEvent event) {
-		event.consume();
-		view.show("exitScreen");
+		if (!view.getCurrentPrimaryScreen().equals("Main Menu")) {
+			event.consume();
+			view.show("exitScreen");
+		}
 	}
 	
 	/**
@@ -958,7 +959,6 @@ public class Controller{
 		view.mouseClicked(event.getSource());
 	}
 	
-#ifdef NEW
 	public EventHandler<MouseEvent> getMainMenuWarning() {
 		return event -> mainMenuWarning((MouseEvent)event);
 	}
@@ -967,20 +967,14 @@ public class Controller{
 		view.show("mainMenuWarning");
 	}
 	
-#else /* not NEW */
+
 	public EventHandler<ActionEvent> getPreferenceChanged() {
 		return event-> preferenceChanged((ActionEvent)event);
 	}
 	
 	public void preferenceChanged(ActionEvent event) {
 		view.mouseClicked(event.getSource());
-		/*HashSet<Node> prefs = new HashSet<Node>();
-		System.out.println("changed");
-		prefs.add((Node)event.getSource());
-		System.out.println(prefs.size());
-		if (prefs.size()==model.getPrefsAmt()) {
-			view.sendPreferences();
-		}*/
+		
 		
 	}
 	
@@ -992,7 +986,7 @@ public class Controller{
 		model.setUserLength(length);
 		model.setUserWidth(width);
 	}
-#endif /* not NEW */
+
 	
 	
 }//Controller
