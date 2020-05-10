@@ -143,12 +143,12 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	 * @return
 	 * Returns an array of Plants that should be used in this GardenTile
 	 */
-	public AddOn[] getRecommendations(AddOn[] arr) {
+	public Plant[] getRecommendations(AddOn[] arr) {
 		//TODO:
 		//Have to test for each type of AddOn
 		//Order of AddOn's in arr are Tile to the left, then right, then above, then below
 		//Also have to make this work with the .csv of plants when we get that in
-		AddOn[] result = new AddOn[5];
+		Plant[] result = new Plant[5];
 		
 		for(int i = 0; i < arr.length; i++) {
 			if(arr[i].getClass() == Plant.class) {

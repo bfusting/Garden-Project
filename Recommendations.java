@@ -2,12 +2,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.text.Text;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.*;
+import javafx.scene.control.TitledPane;
 
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
@@ -44,7 +50,7 @@ public class Recommendations extends Screen{
 	private final int WIDTH = 250;
 	private Controller c;
 	private Stage stage;
-	
+	private ArrayList<String> plantNames;
 	/** USE THIS ONE AFTER ALPHA
 	 * Takes in an image i which is the image of a plant
 	 * date which is a date of when the plant comes into bloom
@@ -97,6 +103,11 @@ public class Recommendations extends Screen{
 		water = 0;
 		animalsFed = new ArrayList<String>();
 		c = controller;
+		
+		
+			
+       
+		
 	}//Recommendations
 	
 	/**
@@ -220,13 +231,51 @@ public class Recommendations extends Screen{
 	 * @see Scene
 	 */
 	public void showRecommendations() {
-		stage = new Stage();
-    	stage.setTitle("Recommendations");
-    	BorderPane bPane = new BorderPane();
-    	bPane.setCenter(recommendationMessage);
-    	Scene scene = new Scene(bPane, WIDTH, HEIGHT);
-    	stage.setScene(scene);
-        stage.show();
+	
+		ArrayList<Text> texts = new ArrayList<Text>();
+		texts.add(new Text("Tree"));
+		texts.add(new Text("Shrub"));
+		texts.add(new Text("Flower"));
+		
+		TitledPane treeTest;
+		TitledPane shrubTest;
+		TitledPane flowerTest;
+	
+		for(Text t : texts) {
+			AnchorPane.setLeftAnchor(t, 5.0);
+			AnchorPane.setRightAnchor(t, 5.0);
+			AnchorPane.setTopAnchor(t, 5.0);
+		}
+	
+	AnchorPane treeAccord = new AnchorPane(new Text("Trees"));
+	AnchorPane shrubAccord = new AnchorPane(new Text("Shrubs"));
+	AnchorPane flowerAccord = new AnchorPane(new Text("Flowers"));
+	
+	Accordion accord = new Accordion();
+	VBox root = new VBox(accord);
+	root.setBackground(new Background(new BackgroundFill(Color.DARKOLIVEGREEN,CornerRadii.EMPTY,Insets.EMPTY)));
+	
+	try {
+		treeTest = new TitledPane("Trees", new Text(this.getRecPlants()[0].getName()));
+		shrubTest = new TitledPane("Shrubs", new Text(this.getRecPlants()[0].getName()));
+		flowerTest = new TitledPane("Flowers", new Text(this.getRecPlants()[0].getName()));
+		
+	}
+	catch(Exception e) {
+		treeTest = new TitledPane("Trees", new Text("No Recommendations"));
+		shrubTest = new TitledPane("Shrubs", new Text("No Recommendations"));
+		flowerTest = new TitledPane("Flowers", new Text("No Recommendations"));
+		
+	}
+	
+	accord.getPanes().addAll(treeTest, flowerTest, shrubTest);
+	
+	stage = new Stage();
+	stage.setTitle("Recommendations");
+	BorderPane bPane = new BorderPane();
+	bPane.setCenter(recommendationMessage);
+	Scene scene = new Scene(root, WIDTH, HEIGHT);
+	stage.setScene(scene);
 	}
 	
 
@@ -236,9 +285,16 @@ public class Recommendations extends Screen{
 	public void showScreen() {
 		//should consolidate into one showScreen method
 		showRecommendations();
+		stage.show();
+		stage.toFront();
+		
 
 	}
 	
+	@Override
+	public void closeScreen() {
+		stage.close();
+	}
 	
 
 	
@@ -249,8 +305,8 @@ public class Recommendations extends Screen{
 	 * @return
 	 * returns rec - the 2D array of recommended addOns
 	 */
-	public AddOn[][] getRecPlants() {
-		AddOn[][] rec= {};
+	public Plant[] getRecPlants() {
+		Plant[] rec= {};
 		int count = 0;
 		for(int i = 0; i < this.c.getModel().getUserPlot().getWidth(); i++) {
 			for(int k = 0; k < this.c.getModel().getUserPlot().getLength(); k++) {
@@ -259,13 +315,16 @@ public class Recommendations extends Screen{
 				//getting recommended plants from every gardenTile
 				//This might want to be changed to include fewer tiles, like every other tile or something
 				rec[count] = this.c.getModel().getUserPlot().getLayout()[i][k].getRecommendations(
-						this.c.getModel().getUserPlot().getSurroundingInfo(i, k));
+						this.c.getModel().getUserPlot().getSurroundingInfo(i, k))[1];
 				
+			
 				
 				count++;
 			}
 			
 		}
+		
+		
 		return rec;
 		
 	}
