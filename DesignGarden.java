@@ -212,13 +212,13 @@ public class DesignGarden extends Screen{
 			tileEdit.add(imgV);
 		}
 		
-		plantsGP.setMaxSize(100.0, 100.0);
+		tileEditingGP.setMaxSize(100.0, 100.0);
 		//adding row
-		plantsGP.getRowConstraints().add(new RowConstraints(100));
-		for (int i = 0; i < selectionSize; i++) {
+		tileEditingGP.getRowConstraints().add(new RowConstraints(100));
+		for (int i = 0; i < 4; i++) {
 	         ColumnConstraints column = new ColumnConstraints(100);
-	         plantsGP.getColumnConstraints().add(column);
-	         plantsGP.add(backdropColor.get(i), i, 0,1,1);
+	         tileEditingGP.getColumnConstraints().add(column);
+	         tileEditingGP.add(tileEdit.get(i), i, 0,1,1);
 		}
 		
 		// setting up backupDrop with 6 images since that is the size of each gridPane
@@ -461,8 +461,9 @@ public class DesignGarden extends Screen{
 		apButtons.setTopAnchor(infoTips, 240.0);
 		apButtons.setTopAnchor(save, 300.0);
 		apButtons.setTopAnchor(finalView, 360.0);
+		apButtons.setTopAnchor(tileEditingGP, 400.0);
 		
-		apButtons.getChildren().addAll(recommendations, changeSeasons, otherFeaturesLabel, infoTips, save, finalView);
+		apButtons.getChildren().addAll(recommendations, changeSeasons, otherFeaturesLabel, infoTips, save, finalView,tileEditingGP);
 
 		
 		root.setTopAnchor(apButtons, 40.0);
