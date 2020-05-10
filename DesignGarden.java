@@ -120,6 +120,7 @@ public class DesignGarden extends Screen{
 	private int width = 5;
 	private final int selectionSize = 6;
 	private final double maxTileEditSize = 50.0;
+	private final double selectionGPsize = 100.0;
 	
 	// Used as backdrops colors for selection gridpanes
 	private ArrayList<ImageView> backdropColor = new ArrayList<ImageView>();
@@ -301,15 +302,29 @@ public class DesignGarden extends Screen{
 		
 		plantsGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
 		
-		
-		//plantsGP.setOnMouseEntered(c.getMouseEnterPlantSelection());
-		
 		plantsGP.setGridLinesVisible(true);
 		
 		/////////////////////////////////////////////////////////////////
 		shrubs = new Tab("Shrubs");
-//		shrubs.setContent(shrubsGP)
+		//setting up the Plant selection gridPane
 		
+		shrubs.setContent(shrubsGP);
+		
+		// max size of items
+		plantsGP.setMaxSize(100.0, 100.0);
+		//adding row
+		plantsGP.getRowConstraints().add(new RowConstraints(100));
+		for (int i = 0; i < selectionSize; i++) {
+	         ColumnConstraints column = new ColumnConstraints(100);
+	         plantsGP.getColumnConstraints().add(column);
+	         plantsGP.add(backdropColor.get(i), i, 0,1,1);
+		}
+		
+		plantsGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
+		
+		plantsGP.setGridLinesVisible(true);
+		
+		/////////////////////////////////////////////////////////////////
 		undergrowth = new Tab("Undergrowth");
 //		undergrowth.setContent
 		
