@@ -105,6 +105,8 @@ public class DesignGarden extends Screen{
 	GridPane pathsGP = new GridPane();
 	GridPane otherGP = new GridPane();
 	
+	GridPane tileEditingGP = new GridPane();
+	
 	//2d array 5x5 of GardenTile using GridPane
 	
 	private Stage theStage;
@@ -120,6 +122,9 @@ public class DesignGarden extends Screen{
 	
 	// Used as backdrops colors for selection gridpanes
 	private ArrayList<ImageView> backdropColor = new ArrayList<ImageView>();
+	
+	// used to hold images of more n less light and water
+	private ArrayList<ImageView> tileEdit = new ArrayList<ImageView>();
 	
 	public DesignGarden(Controller controller,Stage s) {
 		this.c = controller;
@@ -193,10 +198,33 @@ public class DesignGarden extends Screen{
 	 */
 	
 	public void showDesignGarden(Stage stage) {
+		// setting up tileEditingGP
+		String[] temp = {"img/waterAdd.jpg","img/lessWater.jpg",
+				"img/moreLight.png","img/lessLight.png"};
+		
+		// setting up with each different picture
+		for(int i=0; i<temp.length;i++) {
+			Image img = new Image(temp[i]);
+			ImageView imgV = new ImageView(img);
+			imgV.setPreserveRatio(true);
+			imgV.setFitHeight(100);
+			imgV.setFitWidth(100);
+			tileEdit.add(imgV);
+		}
+		
+		plantsGP.setMaxSize(100.0, 100.0);
+		//adding row
+		plantsGP.getRowConstraints().add(new RowConstraints(100));
+		for (int i = 0; i < selectionSize; i++) {
+	         ColumnConstraints column = new ColumnConstraints(100);
+	         plantsGP.getColumnConstraints().add(column);
+	         plantsGP.add(backdropColor.get(i), i, 0,1,1);
+		}
+		
 		// setting up backupDrop with 6 images since that is the size of each gridPane
 		for(int i=0; i<selectionSize;i++) {
 			ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
-			imv1.setPreserveRatio(false);
+			imv1.setPreserveRatio(true);
 			imv1.setFitHeight(100);
 			imv1.setFitWidth(100);
 			backdropColor.add(imv1);
