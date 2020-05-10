@@ -106,6 +106,8 @@ public class Model implements Serializable{
 		
 		// holds all scenery items like dirt to branchs
 		sceneryArr = new ArrayList<AddOn>();
+		AddOn bench = new AddOn("Bench",1,"A bench to sit on....duh");
+		sceneryArr.add(bench);
 		
 		// holds all plants in program ---> Used on creation only
 		allPlants = new ArrayList<Plant>();
