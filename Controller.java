@@ -994,6 +994,48 @@ public class Controller{
 		}//switch
 		return null;
 	}
+	
+	/**
+	 * Takes in a DragEvent to know when the target has the mouse released over it.
+	 * <p>
+	 * Once dropped will alter the waterLevel or SunLevel depending which image was dropped
+	 * on the tile. 
+	 * 
+	 * @param event DragEvent to know when the drag finished
+	 * @see DesignGarden
+	 */
+	public void detectSunWaterDragDrop(DragEvent event) {
+		Dragboard db = event.getDragboard();
+		boolean worked = false;
+		//Node n = event.getPickResult().getIntersectedNode();
+		Node n = event.getPickResult().getIntersectedNode();
+		if(DEBUG) {System.out.println(n.toString());}
+		if(n != view.getDesignGardenScreen().getPlot() && db.hasImage()) {
+			Integer colIndex = GridPane.getColumnIndex(n);
+			Integer rowIndex = GridPane.getRowIndex(n);
+			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
+			int index = 0;//items held in gridpane of 4. 0 is add water, 1 is less water, 2 is add sun, 3 is remove water
+			switch(index) {
+			// increases wetness of tile
+			case 0: model.getUserPlot().getLayout()[colIndex][rowIndex].setWaterLevel(
+					model.getUserPlot().getLayout()[colIndex][rowIndex].getWaterLevel()+1);
+			// less water of tile dropped on
+			case 1: model.getUserPlot().getLayout()[colIndex][rowIndex].setWaterLevel(
+				model.getUserPlot().getLayout()[colIndex][rowIndex].getWaterLevel()-1);
+			// more light of tile dropped on 
+			case 2: model.getUserPlot().getLayout()[colIndex][rowIndex].setSunLightLevel(
+					model.getUserPlot().getLayout()[colIndex][rowIndex].getSunLightLevel()+1);
+			// less light of tile dropped on
+			case 3: model.getUserPlot().getLayout()[colIndex][rowIndex].setSunLightLevel(
+				model.getUserPlot().getLayout()[colIndex][rowIndex].getSunLightLevel()-1);
+			}//switch
+			worked = true;
+		}
+		event.setDropCompleted(worked);
+		if(DEBUG) {System.out.println("Tile Sun/Water Altered");}
+		event.consume();
+	}//detectSunWaterDragDrop
+	
 }//Controller
 
 
