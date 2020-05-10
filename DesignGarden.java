@@ -291,11 +291,11 @@ public class DesignGarden extends Screen{
 		plants.setContent(plantsGP);
 		
 		// max size of items
-		plantsGP.setMaxSize(100.0, 100.0);
+		plantsGP.setMaxSize(selectionGPsize, selectionGPsize);
 		//adding row
-		plantsGP.getRowConstraints().add(new RowConstraints(100));
+		plantsGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 		for (int i = 0; i < selectionSize; i++) {
-	         ColumnConstraints column = new ColumnConstraints(100);
+	         ColumnConstraints column = new ColumnConstraints(selectionGPsize);
 	         plantsGP.getColumnConstraints().add(column);
 	         plantsGP.add(backdropColor.get(i), i, 0,1,1);
 		}
@@ -305,24 +305,34 @@ public class DesignGarden extends Screen{
 		plantsGP.setGridLinesVisible(true);
 		
 		/////////////////////////////////////////////////////////////////
+		// copying the imageviews to new array so colors don't move from pane to pane
+		ArrayList<ImageView> backdropColor2 = new ArrayList<ImageView>();
+		for(int i=0; i<selectionSize;i++) {
+			ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
+			imv1.setPreserveRatio(true);
+			imv1.setFitHeight(100);
+			imv1.setFitWidth(100);
+			backdropColor2.add(imv1);
+		}
+		
 		shrubs = new Tab("Shrubs");
 		//setting up the Plant selection gridPane
 		
 		shrubs.setContent(shrubsGP);
 		
 		// max size of items
-		plantsGP.setMaxSize(100.0, 100.0);
+		shrubsGP.setMaxSize(selectionGPsize, selectionGPsize);
 		//adding row
-		plantsGP.getRowConstraints().add(new RowConstraints(100));
+		shrubsGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 		for (int i = 0; i < selectionSize; i++) {
-	         ColumnConstraints column = new ColumnConstraints(100);
-	         plantsGP.getColumnConstraints().add(column);
-	         plantsGP.add(backdropColor.get(i), i, 0,1,1);
+	         ColumnConstraints column = new ColumnConstraints(selectionGPsize);
+	         shrubsGP.getColumnConstraints().add(column);
+	         shrubsGP.add(backdropColor2.get(i), i, 0,1,1);
 		}
 		
-		plantsGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
+		shrubsGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
 		
-		plantsGP.setGridLinesVisible(true);
+		shrubsGP.setGridLinesVisible(true);
 		
 		/////////////////////////////////////////////////////////////////
 		undergrowth = new Tab("Undergrowth");
