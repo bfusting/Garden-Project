@@ -560,6 +560,9 @@ public class Controller{
 			// less light of tile dropped on
 			case 3: model.getUserPlot().getLayout()[colIndex][rowIndex].setSunLightLevel(
 				model.getUserPlot().getLayout()[colIndex][rowIndex].getSunLightLevel()-1);
+			default: 
+				if(DEBUG) {System.out.println("Failed to place tile editor");}
+				//view.getDesignGardenScreen().setHoverEditTile(false);
 			}//switch
 			view.getDesignGardenScreen().setHoverEditTile(false);
 			if(DEBUG) {System.out.println("bool set to false");}
