@@ -80,8 +80,9 @@ public class Controller{
 	public void createNewGarden(MouseEvent event) {
 		if(DEBUG) { System.out.println("Created new Garden Plot");};
 		//model.setUserPlot(new GardenPlot());
-		model = new Model();
 		view.createNew();
+		model = new Model();
+		
 		view.show("chooseTemplateScreen");
 		System.out.println("CHOOSE YOUR FIGHTER");
 	}//createNewGarden
@@ -257,7 +258,8 @@ public class Controller{
 	 * @see GardenPlot
 	 */
 	public void designTime(MouseEvent event) {
-		view.sendPreferences();
+		System.out.println("Final preferences:\nColor: "+model.getUserPrefColor()+", Season: "+model.getUserPrefSeason()+", Light level: "+model.getUserPrefLight()+"\nWater level: "+model.getUserPrefWater()+", Length: "+ model.getUserLength()+", Width: "+model.getUserWidth());
+		
 		model.createUserPlot();
 		System.out.println("Make Garden");
 		//view.showDesignGardenScreen();
@@ -811,13 +813,20 @@ public class Controller{
 				
 				model = (Model) ois.readObject();
 				
-				System.out.println("Loading...Shape: "+ model.getUserTemplate()+" Color:  "+model.getUserPrefColor()+", Season: "+model.getUserPrefSeason()+", Light level: "+model.getUserPrefLight()+"\nWater level: "+model.getUserPrefWater()+", Length: "+ model.getUserLength()+", Width: "+model.getUserWidth());
-				if (model.verifyUserPrefsSet()) {
+				System.out.println("Loading...Shape: "+ model.getUserTemplate()+" Color:  "+model.getUserPrefColor()+", Season: "+model.getUserPrefSeason()+", Light level: "+model.getUserPrefLight()+"\nWater level: "+model.getUserPrefWater()+", Length: "+ model.getUserLength()+", Width: "+model.getUserWidth()+"\n total Prefs Set: "+model.getPrefsSet());
+				/*if (model.verifyUserPrefsSet()) {
 					System.out.println("File loaded. Time to design!!");
 					
 					view.show("designGardenScreen");
 				} else {
 					
+					view.loadPreferences(model.getUserPrefColor(),model.getUserPrefSeason()!=null ? model.getUserPrefSeason().name() : "", model.getUserPrefWater(), model.getUserPrefLight(), model.getUserLength(), model.getUserWidth());
+					view.show("preferencesScreen");
+				}*/
+				if (model.getUserPlot()!=null) {
+					view.show("designGardenScreen");
+				} else {
+					view.createNew();
 					view.loadPreferences(model.getUserPrefColor(),model.getUserPrefSeason()!=null ? model.getUserPrefSeason().name() : "", model.getUserPrefWater(), model.getUserPrefLight(), model.getUserLength(), model.getUserWidth());
 					view.show("preferencesScreen");
 				}
@@ -989,14 +998,58 @@ public class Controller{
 		
 		
 	}
-	
+	/**
+	 * Sends the preference modified from its default value to Model.
+	 * 
+	 * @param color A String representing the color chosen by the user. Ignored if empty String.
+	 * @param season Seasons enum representing the season chosen by the user. Ignored if null.
+	 * @param light An int, the amount of light the user specifies their garden receives. Ignored if 0.
+	 * @param water An int, the water level the user specifies their garden has. Ignored if 0.
+	 * @param length An int, the length the user has chosen for their garden. Ignored if 0.
+	 * @param width An int, the width the user has chosen for their garden. Ignored if 0.
+	 */
 	public void setPreferences(String color, Seasons season, int light,int water,int length, int width) {
-		
-		model.setUserPrefSeason(season);
 		model.setUserPrefColor(color);
+		model.setUserPrefSeason(season);
 		model.setUserPrefLight(light);
+		model.setUserPrefWater(water);
 		model.setUserLength(length);
 		model.setUserWidth(width);
+		
+		/*if (season!=null) {
+			model.setUserPrefSeason(season);
+			System.out.println("Season preference sent to model: "+ season);
+		}
+		if (!(color.equals(""))) {
+			model.setUserPrefColor(color);
+			System.out.println("Color preference sent to model: "+ color);
+		}
+		if (light!=0) {
+			model.setUserPrefLight(light);
+			System.out.println("Light preference sent to model: "+ light);
+		}
+		if (water!=0) {
+			model.setUserPrefWater(water);
+			System.out.println("Water preference sent to model: "+water);
+		}
+		
+		if (length!=0) {
+			model.setUserLength(length);
+			System.out.println("Length preference sent to model: "+ length);
+		}
+		if (width!=0) {
+			model.setUserWidth(width);
+			System.out.println("Width preference sent to model: "+ width);
+		}*/
+		System.out.println("Total prefs set: "+model.getPrefsSet());
+	}
+	
+	/**
+	 * Returns the number of preference properties that have been set in Model.
+	 * @return an int, the number of preferences that have been modified from their default value.
+	 */
+	public int getPrefsSet() {
+		return model.getPrefsSet();
 	}
 
 	

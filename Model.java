@@ -57,7 +57,7 @@ public class Model implements Serializable{
 	private Seasons userPrefSeason;
 	private int userPrefLight;
 	private int userPrefWater;
-	
+	private int prefsSet;
 	// Width and length given by user passed in by preferences
 	private int userLength;
 	private int userWidth;
@@ -79,9 +79,9 @@ public class Model implements Serializable{
 	 * @see GardenPlot
 	 */
 	public Model() {
-		//userPlot = new GardenPlot();
 		userPlot = null;
 		userTemplate = "";
+		prefsSet = 0;
 		// Creating temp Plants for Bradley to use in methods, remove later
 		
 		Plant purpleConeFlower = new Plant("Purple Cone Flower", 1, "cone flower", 
@@ -432,27 +432,51 @@ public class Model implements Serializable{
 	}
 	
 	public void setUserPrefColor(String newColor) {
-		userPrefColor = newColor;
+		if (userPrefColor.equals("") && newColor!="") {
+			prefsSet++;
+			userPrefColor = newColor;
+		}
+		
 	}
 	
 	public void setUserPrefSeason(Seasons newSeason) {
-		userPrefSeason = newSeason;
+		if (userPrefSeason==null && newSeason!=null) {
+			prefsSet++;
+			userPrefSeason = newSeason;
+		}
+		
 	}
 	
 	public void setUserPrefLight(int newLight) {
-		userPrefLight = newLight;
+		if (userPrefLight==0 && newLight!=0) {
+			prefsSet++;
+			userPrefLight = newLight;
+		}
+		
 	}
 	
 	public void setUserPrefWater(int newWater) {
-		userPrefWater = newWater;
+		if (userPrefWater == 0 && newWater!=0) {
+			prefsSet++;
+			userPrefWater = newWater;
+		}
+		
 	}
 	
 	public void setUserLength(int newLength) {
-		userLength = newLength;
+		if (userLength==0 && newLength!=0) {
+			prefsSet++;
+			userLength = newLength;
+		}
+		
 	}
 	
 	public void setUserWidth(int newWidth) {
-		userWidth = newWidth;
+		if (userWidth==0 && newWidth!=0) {
+			prefsSet++;
+			userWidth = newWidth;
+		}
+		
 	}
 	
 	//////////////////// Comparators ///////////////////////////////////
@@ -732,24 +756,12 @@ public class Model implements Serializable{
 	}
 	
 	/**
-	 * Indicates whether the user has completed the preferences page by checking whether the preferences have
-	 * been set from their default values.
-	 * @return a boolean indicating whether the user preferences have been set, true if all have been set, false if
-	 * the template or any of the preferences have not been changed from their default.
+	 * Returns the value of property prefSet.
+	 * 
+	 * @return An int, the number of preferences that have been modified from their default value.
 	 */
-	public boolean verifyUserPrefsSet() {
-		int defaultIntPref = 0;
-		String defaultStringPref = "";
-		
-		
-		int[] intPrefs = new int[] {userPrefLight,userPrefWater,userLength,userWidth};
-		for (int p : intPrefs) {
-			if (p==defaultIntPref) {
-				return false;
-			}
-		}
-		
-		return !(userPlot == null || userPrefSeason==null || userPrefColor.equals(defaultStringPref));
+	public int getPrefsSet() {
+		return prefsSet;
 	}
 	// then getters and setters for new attributes
 }//Modeld
