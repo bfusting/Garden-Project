@@ -397,6 +397,31 @@ public class DesignGarden extends Screen{
 		pathways = new Tab("Pathways");
 		pathways.setContent(pathsGP);
 		
+		ArrayList<ImageView> backdropColor5 = new ArrayList<ImageView>();
+		for(int i=0; i<selectionSize;i++) {
+			ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
+			imv1.setPreserveRatio(true);
+			imv1.setFitHeight(100);
+			imv1.setFitWidth(100);
+			backdropColor5.add(imv1);
+		}
+		
+		// max size of items
+		pathsGP.setMaxSize(selectionGPsize, selectionGPsize);
+		//adding row
+		pathsGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
+		for (int i = 0; i < selectionSize; i++) {
+	         ColumnConstraints column = new ColumnConstraints(selectionGPsize);
+	         pathsGP.getColumnConstraints().add(column);
+	         pathsGP.add(backdropColor5.get(i), i, 0,1,1);
+		}
+		
+		pathsGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
+		
+		pathsGP.setGridLinesVisible(true);
+		
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
 		otherOptions = new Tab("Other");
 		otherOptions.setContent(otherGP);
 		
