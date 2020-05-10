@@ -579,6 +579,24 @@ public class DesignGarden extends Screen{
 	public GridPane getTileEditGP() {
 		return tileEditingGP;
 	}
+	public GridPane getPlantsGP() {
+		return plantsGP;
+	}
+	public GridPane getTreesGP() {
+		return treesGP;
+	}
+	public GridPane getShrubsGP() {
+		return shrubsGP;
+	}
+	public GridPane getUnderGP() {
+		return underGP;
+	}
+	public GridPane getPathsGP() {
+		return pathsGP;
+	}
+	public GridPane getOtherGP() {
+		return otherGP;
+	}
 	
 	@Override
 	public String toString() {
