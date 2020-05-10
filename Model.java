@@ -76,7 +76,7 @@ public class Model implements Serializable{
 	 * 
 	 * @see GardenPlot
 	 */
-	public void Model() {
+	public Model() {
 		userPlot = new GardenPlot();
 		// Creating temp Plants for Bradley to use in methods, remove later
 		
