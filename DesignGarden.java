@@ -119,6 +119,7 @@ public class DesignGarden extends Screen{
 	private int length = 5;
 	private int width = 5;
 	private final int selectionSize = 6;
+	private final double maxTileEditSize = 50.0;
 	
 	// Used as backdrops colors for selection gridpanes
 	private ArrayList<ImageView> backdropColor = new ArrayList<ImageView>();
@@ -207,19 +208,25 @@ public class DesignGarden extends Screen{
 			Image img = new Image(temp[i]);
 			ImageView imgV = new ImageView(img);
 			imgV.setPreserveRatio(true);
-			imgV.setFitHeight(100);
-			imgV.setFitWidth(100);
+			imgV.setFitHeight(maxTileEditSize);
+			imgV.setFitWidth(maxTileEditSize);
 			tileEdit.add(imgV);
 		}
 		
-		tileEditingGP.setMaxSize(100.0, 100.0);
+		tileEdit.forEach(imgV -> imgV.setOnDragDetected(c.getStartDrag()));
+		
+		tileEditingGP.setMaxSize(maxTileEditSize,maxTileEditSize);
 		//adding row
-		tileEditingGP.getRowConstraints().add(new RowConstraints(100));
+		tileEditingGP.getRowConstraints().add(new RowConstraints(maxTileEditSize));
 		for (int i = 0; i < 4; i++) {
-	         ColumnConstraints column = new ColumnConstraints(100);
+	         ColumnConstraints column = new ColumnConstraints(maxTileEditSize);
 	         tileEditingGP.getColumnConstraints().add(column);
 	         tileEditingGP.add(tileEdit.get(i), i, 0,1,1);
 		}
+		
+		// EventHandler to listen to which row, column its on
+		tileEditingGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
+		
 		
 		// setting up backupDrop with 6 images since that is the size of each gridPane
 		for(int i=0; i<selectionSize;i++) {
