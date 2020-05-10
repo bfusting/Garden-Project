@@ -22,7 +22,7 @@ import java.io.Serializable;
  *
  */
 public class GardenTile implements Comparable<AddOn>,Serializable {
-	private static final long serialVersionUID = 1982591688L;
+	
 	
 	private int xLoc;
 	private int yLoc;
@@ -48,8 +48,6 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	 * the AddOn that occupies this GardenTile
 	 */
 	private AddOn addOn = null;
-	
-	private Plant plant = null;
 	
 	/**
 	 * Constructor setting variables to default settings
@@ -138,19 +136,19 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	}
 	
 	//temp is being used while we have temporary plant objects in the Model class.  Will remove later
-	//private Model temp = new Model();
-	private Model temp = null;
+	private Model temp = new Model();
+	
 	/**\
 	 * 
 	 * @return
 	 * Returns an array of Plants that should be used in this GardenTile
 	 */
-	public AddOn[] getRecommendations(AddOn[] arr) {
+	public Plant[] getRecommendations(AddOn[] arr) {
 		//TODO:
 		//Have to test for each type of AddOn
 		//Order of AddOn's in arr are Tile to the left, then right, then above, then below
 		//Also have to make this work with the .csv of plants when we get that in
-		AddOn[] result = new AddOn[5];
+		Plant[] result = new Plant[5];
 		
 		for(int i = 0; i < arr.length; i++) {
 			if(arr[i].getClass() == Plant.class) {
@@ -292,22 +290,7 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	public void setAddOn(AddOn addOn) {
 		this.addOn = addOn;
 	}
-	
-	/**
-	 * 
-	 * @param p
-	 */
-	public void setPlant(Plant p) {
-		this.plant = p;
-	}
 
-	/**
-	 * 
-	 * @return
-	 */
-	public Plant getPlant() {
-		return this.plant;
-	}
 	/**
 	 * 
 	 * @param isActive
