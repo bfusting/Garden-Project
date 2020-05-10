@@ -49,6 +49,8 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	 */
 	private AddOn addOn = null;
 	
+	private Plant plant = null;
+	
 	/**
 	 * Constructor setting variables to default settings
 	 */
@@ -294,7 +296,22 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	public void setAddOn(AddOn addOn) {
 		this.addOn = addOn;
 	}
+	
+	/**
+	 * 
+	 * @param p
+	 */
+	public void setPlant(Plant p) {
+		this.plant = p;
+	}
 
+	/**
+	 * 
+	 * @return
+	 */
+	public Plant getPlant() {
+		return this.plant;
+	}
 	/**
 	 * 
 	 * @param isActive

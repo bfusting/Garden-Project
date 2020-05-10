@@ -230,7 +230,7 @@ public class ChooseTemplate extends Screen {
 	
 	@Override
 	public String toString() {
-		return "Choose Template";
+		return "Templates";
 	}
 	
 	

@@ -128,20 +128,25 @@ public class FinalView extends Screen {
 		save.setOnMouseClicked(c.getSaveBTN());
 		exit.setOnMouseClicked(c.getExit());
 		
+		
+		Button mainMenu = new Button("Main Menu");
+		mainMenu.setOnMouseClicked(c.getMainMenuWarning());
 
 		root.setBottomAnchor(edit, 150.0);
 		root.setBottomAnchor(viewSeasons, 150.0);
 		root.setBottomAnchor(infoTips, 150.0);
 		root.setBottomAnchor(save, 150.0);
 		root.setBottomAnchor(exit, 150.0);
+		root.setBottomAnchor(mainMenu, 150.0);
 		
 		root.setLeftAnchor(edit, 200.0);
 		root.setLeftAnchor(viewSeasons, 350.0);
 		root.setLeftAnchor(infoTips, 550.0);
 		root.setLeftAnchor(save, 780.0);
 		root.setLeftAnchor(exit, 980.0);
+		root.setLeftAnchor(mainMenu,1080.0);
 		
-		root.getChildren().addAll(edit, viewSeasons, infoTips, save,exit);
+		root.getChildren().addAll(edit, viewSeasons, infoTips, save,exit,mainMenu);
 
 		
 //		Label fv = new Label ("This is final view");

@@ -263,8 +263,9 @@ public class Preferences extends Screen{
 		
 		
 		tpane.setVgap(50);
-		
-		tpane.getChildren().addAll(color,season,light,water,length,width,back,startCreating);
+		Button mainMenu = new Button("Main Menu");
+		mainMenu.setOnMouseClicked(c.getMainMenuWarning());
+		tpane.getChildren().addAll(color,season,light,water,length,width,back,startCreating,mainMenu);
 		preferencesScene = new Scene(tpane,View.primarySceneWidth,View.primarySceneHeight);
 		stage.setScene(preferencesScene);
 		

@@ -1,4 +1,4 @@
-Used in Alpha for genric plant implementation
+Used in Alpha for generic plant implementation
 
 SweetFern:
 	Latin Name: Comptonia peregerina
@@ -26,3 +26,70 @@ Orange MilkWeed:
 	Light Req: Sun
 	Soil Moisture: Dry, Moist
 	Benefit: Butterflies + Honey + BumbleBees + 
+	
+Seaside Alder:
+	Latin Name: Alnus Maritima
+	leaf:green
+	bloom color: yellow/greem
+	bloom time: Jul, Aug
+	Light required: part shade
+	Water need: high
+
+Red Chokeberry:
+	Latin name: Aronia arbutifolia
+	leaf: green
+	Bloom color: white
+	bloom time: May
+	size:6-12 ft
+	water need: high
+	light required: sun
+	attracts birds
+	
+	
+Sweet Shrub:
+	latin name: Calycanthus floridus
+	leaf: green
+	bloom color: red
+	bloom time: apr, may, jun, july
+	water need: moist
+	light required: part shade
+	
+New Jersey Tea:
+	latin name: Ceanothus americanus
+	leaf: green
+	bloom color: white
+	bloom time: mar apr
+	water need: low
+	light need: part shade/ shade
+	
+American Hazelnut
+	latin name: Corylus americana
+	leaf: green
+	bloom color: white /  green
+	bloom time: apr, may, jun
+	water need: medium
+	light needL part shade / shade
+	
+Red Willow:
+	latin name: Cornus amomum
+	leaf: green
+	bloom color: white
+	bloom time: mar, apr
+	water need: high\
+	light need: part shade / shade
+	
+Maidenhair Fern:
+	Latin name: Adiantum pedatum
+	leaf: green
+	bloom color: no bloom
+	bloom time: no bloom
+	water need: medium
+	light need: Part shade / shade
+	
+BlackStem Spleenwort:
+	latin name: ASplenium Resiliens
+	leaf: green
+	bloom color: N/A
+	bloom time: N/A
+	water need: medium
+	light need: shade / part shade
