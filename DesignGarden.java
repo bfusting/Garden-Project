@@ -382,6 +382,8 @@ public class DesignGarden extends Screen{
 		// Replace with vars so works better
 		//FitHeight and FitWidth should take in var constraints
 		plot = new GridPane();
+		plot.setBorder(View.primarySceneBorder1);
+		
 		soil = new ImageView[5][5];
 		for(int i=0; i<5; i++) {
 			for(int j=0; j<5; j++) {
@@ -390,8 +392,14 @@ public class DesignGarden extends Screen{
 				soil[i][j].setFitHeight(150);
 				soil[i][j].setFitWidth(99);
 				plot.add(soil[i][j], i, j,1,1);
+				//soil[i][j].setVisible(false);
 			}
 		}
+		/*soil[3][3] = new ImageView(new Image("img/soil.jpg"));
+		soil[3][3].setPreserveRatio(true);
+		soil[3][3].setFitHeight(150);
+		soil[3][3].setFitWidth(99);
+		plot.add(soil[3][3], 3, 3,1,1);*/
 		
 		/*
 		ImageView soil1 = new ImageView();
@@ -428,7 +436,7 @@ public class DesignGarden extends Screen{
 		plot.setOnDragDropped(c.getDetectDragDrop());
 
 		plot.setGridLinesVisible(true);
-		
+		//plot.setGridLinesVisible(false);
 		root.setTopAnchor(plot, 200.0);
 		root.setLeftAnchor(plot, 40.0);
 		

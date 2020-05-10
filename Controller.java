@@ -79,8 +79,9 @@ public class Controller{
 	 */
 	public void createNewGarden(MouseEvent event) {
 		if(DEBUG) { System.out.println("Created new Garden Plot");};
-		model.setUserPlot(new GardenPlot());
-		
+		//model.setUserPlot(new GardenPlot());
+		model = new Model();
+		view.createNew();
 		view.show("chooseTemplateScreen");
 		System.out.println("CHOOSE YOUR FIGHTER");
 	}//createNewGarden
@@ -123,7 +124,8 @@ public class Controller{
 	public void loadGarden(MouseEvent event) {
 		System.out.println("Load Garden Here");
 		
-		view.show("loadGarden");
+		//view.show("loadGarden");
+		loadGarden(view.showSaveLoad(false));
 		/*File file = view.showLoadGardenScreen();
 		if (file!=null) {
 		//presumably update Model here with file contents and tell all the information to view
@@ -256,6 +258,7 @@ public class Controller{
 	 */
 	public void designTime(MouseEvent event) {
 		view.sendPreferences();
+		model.createUserPlot();
 		System.out.println("Make Garden");
 		//view.showDesignGardenScreen();
 		view.show("designGardenScreen");
@@ -715,9 +718,9 @@ public class Controller{
 	 * @see ChooseTemplate
 	 */
 	public void templateToPref(MouseEvent event) {
-		String template = view.getSelectedTemplate();
+		String template = view.sendTemplate();
 		
-		model.getUserPlot().setShape(template);
+		model.setUserTemplate(template);
 		System.out.println("Template sent to model: "+template);
 		view.show("preferencesScreen");
 	}
@@ -808,13 +811,22 @@ public class Controller{
 				
 				model = (Model) ois.readObject();
 				
+				System.out.println("Loading...Shape: "+ model.getUserTemplate()+" Color:  "+model.getUserPrefColor()+", Season: "+model.getUserPrefSeason()+", Light level: "+model.getUserPrefLight()+"\nWater level: "+model.getUserPrefWater()+", Length: "+ model.getUserLength()+", Width: "+model.getUserWidth());
+				if (model.verifyUserPrefsSet()) {
+					System.out.println("File loaded. Time to design!!");
+					
+					view.show("designGardenScreen");
+				} else {
+					
+					view.loadPreferences(model.getUserPrefColor(),model.getUserPrefSeason()!=null ? model.getUserPrefSeason().name() : "", model.getUserPrefWater(), model.getUserPrefLight(), model.getUserLength(), model.getUserWidth());
+					view.show("preferencesScreen");
+				}
 				
-				System.out.println("Loading...Shape: "+ model.getUserPlot().getShape()+" Color:  "+model.getUserPrefColor()+", Season: "+model.getUserPrefSeason()+", Light level: "+model.getUserPrefLight()+"\nWater level: "+model.getUserPrefWater()+", Length: "+ model.getUserLength()+", Width: "+model.getUserWidth());
 				
-				System.out.println("File loaded. Time to design!!");
 				return true;
 			}
 			catch (InvalidClassException e) {
+				System.out.println("show error screen here");
 				e.printStackTrace();
 			}
 			catch (ClassNotFoundException e) {
