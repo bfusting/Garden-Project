@@ -570,6 +570,15 @@ public class DesignGarden extends Screen{
 	public void setGridPaneInd(int i) {
 		gridPaneInd = i;
 	}
+	public boolean getHoverEditTile() {
+		return hoverEditTile;
+	}
+	public void setHoverEditTile(boolean b) {
+		hoverEditTile = b;
+	}
+	public GridPane getTileEditGP() {
+		return tileEditingGP;
+	}
 	
 	@Override
 	public String toString() {

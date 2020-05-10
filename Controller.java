@@ -962,6 +962,10 @@ public class Controller{
 		Integer col = GridPane.getColumnIndex(n);
 		if(DEBUG) {System.out.println("row " + row + " col " + col);}
 		view.getDesignGardenScreen().setGridPaneInd(col);
+		if(view.getDesignGardenScreen().getTileEditGP().isHover() == true) {
+			view.getDesignGardenScreen().setHoverEditTile(true);
+			if(DEBUG) {System.out.println("bool set to true");}
+		}
 	}
 	
 	/**
