@@ -286,7 +286,6 @@ public class DesignGarden extends Screen{
 		otherGP.add(other3, 2, 1);
 */	
 
-		/*
 		plants = new Tab("Plants");
 		
 		//setting up the Plant selection gridPane
@@ -305,6 +304,8 @@ public class DesignGarden extends Screen{
 		plantsGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
 		
 		plantsGP.setGridLinesVisible(true);
+		
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		ArrayList<ImageView> backdropColor2 = new ArrayList<ImageView>();
 		for(int i=0; i<selectionSize;i++) {
@@ -334,6 +335,8 @@ public class DesignGarden extends Screen{
 		
 		shrubsGP.setGridLinesVisible(true);
 		
+		////////////////////////////////////////////////////////////////////////////////////////////////////
+		
 		ArrayList<ImageView> backdropColor3 = new ArrayList<ImageView>();
 		for(int i=0; i<selectionSize;i++) {
 			ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
@@ -361,16 +364,43 @@ public class DesignGarden extends Screen{
 		
 		underGP.setGridLinesVisible(true);
 		
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
 		trees = new Tab("Trees");
 		trees.setContent(treesGP);
+		
+		ArrayList<ImageView> backdropColor4 = new ArrayList<ImageView>();
+		for(int i=0; i<selectionSize;i++) {
+			ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
+			imv1.setPreserveRatio(true);
+			imv1.setFitHeight(100);
+			imv1.setFitWidth(100);
+			backdropColor4.add(imv1);
+		}
+		
+		// max size of items
+		treesGP.setMaxSize(selectionGPsize, selectionGPsize);
+		//adding row
+		treesGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
+		for (int i = 0; i < selectionSize; i++) {
+	         ColumnConstraints column = new ColumnConstraints(selectionGPsize);
+	         treesGP.getColumnConstraints().add(column);
+	         treesGP.add(backdropColor4.get(i), i, 0,1,1);
+		}
+		
+		treesGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
+		
+		treesGP.setGridLinesVisible(true);
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		pathways = new Tab("Pathways");
 		pathways.setContent(pathsGP);
 		
 		otherOptions = new Tab("Other");
 		otherOptions.setContent(otherGP);
-		*/
 		
+		// Done setting up tabs
 		
 		ImageView iv1 = new ImageView();
 		Image im1 = new Image(getClass().getResourceAsStream("/commonMilkweedcopy.png"));
