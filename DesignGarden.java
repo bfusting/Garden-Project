@@ -59,6 +59,10 @@ public class DesignGarden extends Screen{
 	private ArrayList<ImageView> shrubSelArr;
 	private ArrayList<ImageView> treeSelArr;
 	private ArrayList<ImageView> underSelArr;
+	// just drops a general addon into model
+	// add case in controller so it works
+	private ArrayList<ImageView> pathsArr;
+	private ArrayList<ImageView> otherSelctionArr;
 	
 	private int otherArrInd = 0;
 	private int pSelectionArrInd = 0;

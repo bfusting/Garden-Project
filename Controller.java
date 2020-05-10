@@ -537,6 +537,7 @@ public class Controller{
 			// Model side of plant drop
 			ArrayList<Plant> tempArrayList = this.changeTabIndex();
 			int index = view.getDesignGardenScreen().getGridPaneInd();
+			//adding test to see if index is holding plants or addons
 			model.getUserPlot().getLayout()[colIndex][rowIndex].setPlant(tempArrayList.get(index));
 			//int index = this.methodName; used to pull from designGarden array
 			worked = true;
@@ -1024,6 +1025,7 @@ public class Controller{
 			case 1: return model.getTreeArr();
 			case 2: return model.getShrubArr();
 			case 3: return model.getUnderGrowth();
+			case 4: return model.getShrubArr();
 		}//switch
 		return null;
 	}
