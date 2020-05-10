@@ -50,6 +50,8 @@ public class Model implements Serializable{
 	private ArrayList<Plant> otherLight;
 	private ArrayList<Plant> otherWater;
 	
+	
+	private String userTemplate;
 	// Prefs given by user
 	private String userPrefColor;
 	private Seasons userPrefSeason;
@@ -77,8 +79,9 @@ public class Model implements Serializable{
 	 * @see GardenPlot
 	 */
 	public Model() {
-		userPlot = new GardenPlot();
-		
+		//userPlot = new GardenPlot();
+		userPlot = null;
+		userTemplate = "";
 		// Creating temp Plants for Bradley to use in methods, remove later
 		
 		Plant purpleConeFlower = new Plant("Purple Cone Flower", 1, "cone flower", 
@@ -702,6 +705,51 @@ public class Model implements Serializable{
 		otherSeasons.clear();
 		otherLight.clear();
 		otherWater.clear();
+	}
+	
+	/**
+	 * Sets the property userTemplate, a string representing the template shape chosen by the user that
+	 * the userPlot will be.
+	 * @param shape A string representing the template shape chosen by the user.
+	 */
+	public void setUserTemplate(String shape) {
+		userTemplate = shape;
+	}
+	
+	/**
+	 * Returns the property userTemplate, a string representing the template shape chosen by the user.
+	 * @return
+	 */
+	public String getUserTemplate() {
+		return userTemplate;
+	}
+	
+	/**
+	 * Sets the property userPlot to a new GardenPlot with the user specified template, length and width.
+	 */
+	public void createUserPlot() {
+		userPlot = new GardenPlot(userTemplate,userLength,userWidth);
+	}
+	
+	/**
+	 * Indicates whether the user has completed the preferences page by checking whether the preferences have
+	 * been set from their default values.
+	 * @return a boolean indicating whether the user preferences have been set, true if all have been set, false if
+	 * the template or any of the preferences have not been changed from their default.
+	 */
+	public boolean verifyUserPrefsSet() {
+		int defaultIntPref = 0;
+		String defaultStringPref = "";
+		
+		
+		int[] intPrefs = new int[] {userPrefLight,userPrefWater,userLength,userWidth};
+		for (int p : intPrefs) {
+			if (p==defaultIntPref) {
+				return false;
+			}
+		}
+		
+		return !(userPlot == null || userPrefSeason==null || userPrefColor.equals(defaultStringPref));
 	}
 	// then getters and setters for new attributes
 }//Modeld

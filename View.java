@@ -81,7 +81,7 @@ public class View extends Application{
 	 */
 	public View() {
 		con = new Controller(this);
-		prefs = new HashSet<Node>();
+		//prefs = new HashSet<Node>();
 		fileChooser = new FileChooser();
 
 	}
@@ -120,11 +120,12 @@ public class View extends Application{
 	
 		exitScreen = new Exit(con);
 		
-		chooseTemplateScreen = new ChooseTemplate(con,primaryStage);
-		chooseTemplateScreen.setPreviousScreen(mainMenuScreen);
+		createNew();
+		//chooseTemplateScreen = new ChooseTemplate(con,primaryStage);
+		//chooseTemplateScreen.setPreviousScreen(mainMenuScreen);
 		
-		designGardenScreen = new DesignGarden(con,primaryStage);
-		designGardenScreen.setPreviousScreen(chooseTemplateScreen);
+		//designGardenScreen = new DesignGarden(con,primaryStage);
+		//designGardenScreen.setPreviousScreen(chooseTemplateScreen);
 		
 		
 		
@@ -141,8 +142,8 @@ public class View extends Application{
 		recommendationsScreen = new Recommendations(con);
 		recommendationsScreen.setPreviousScreen(designGardenScreen);
 		
-		preferencesScreen = new Preferences(con,primaryStage);
-		preferencesScreen.setPreviousScreen(chooseTemplateScreen);
+		//preferencesScreen = new Preferences(con,primaryStage);
+		//preferencesScreen.setPreviousScreen(chooseTemplateScreen);
 		
 		
 		currentPrimaryScreen = mainMenuScreen;
@@ -263,6 +264,7 @@ public class View extends Application{
 			if (con.loadGarden(showSaveLoad(false))) {
 				show("designGardenScreen");
 			}
+			//might delete
 			break;
 			
 		case "seasonViewScreen":
@@ -385,10 +387,15 @@ public class View extends Application{
 	 * @see ChooseTemplate#getSelectedTemplate()
 	 * @see GardenPlot#shape
 	 */
-	public String getSelectedTemplate() {
+	public String sendTemplate() {
 		return chooseTemplateScreen.getSelectedTemplate();
 	}
 	
+	/**
+	 * Tells the preferencesScreen to send the preferences specified by the user to the Controller. To be called
+	 * when the user clicks the button to start the design process.
+	 * @see Preferences#sendPreferences()
+	 */
 	public void sendPreferences() {
 			preferencesScreen.sendPreferences();
 	}
@@ -397,6 +404,20 @@ public class View extends Application{
 		return String.valueOf(currentPrimaryScreen);
 	}
 	
+	public void loadPreferences(String colorPref, String seasonPref, int waterPref,int lightPref, int lengthPref, int widthPref) {
+		
+		preferencesScreen.setValues(colorPref,seasonPref,waterPref,lightPref,lengthPref,widthPref);
+	}
+	
+	public void createNew() {
+		chooseTemplateScreen = new ChooseTemplate(con,primaryStage);
+		chooseTemplateScreen.setPreviousScreen(mainMenuScreen);
+		preferencesScreen = new Preferences(con,primaryStage);
+		preferencesScreen.setPreviousScreen(chooseTemplateScreen);
+		designGardenScreen = new DesignGarden(con,primaryStage);
+		designGardenScreen.setPreviousScreen(chooseTemplateScreen);
+		prefs = new HashSet<Node>();
+	}
 		
 	
 }

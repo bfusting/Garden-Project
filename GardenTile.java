@@ -22,7 +22,7 @@ import java.io.Serializable;
  *
  */
 public class GardenTile implements Comparable<AddOn>,Serializable {
-	
+	private static final long serialVersionUID = 1982591688L;
 	
 	private int xLoc;
 	private int yLoc;

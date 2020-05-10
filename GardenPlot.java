@@ -74,10 +74,10 @@ public class GardenPlot implements Serializable{
 	 * @param height
 	 * @return
 	 */
-	public GardenTile[][] makeSizeSquare(int width, int height){
-		GardenTile[][] result = {};
+	public GardenTile[][] makeSizeSquare(int length, int width){
+		GardenTile[][] result = new GardenTile[length][width];
 		
-		for(int i = 0; i < height; i++) {
+		for(int i = 0; i < length; i++) {
 			for(int k = 0; k < width; k++) {
 				result[i][k] = new GardenTile(i, k);
 			}

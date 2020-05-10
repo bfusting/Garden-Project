@@ -250,7 +250,7 @@ public class Preferences extends Screen{
 		
 		Slider[] sliders = new Slider[]{light,water,length,width};
 		for (Slider s : sliders) {
-			s.setMin(0);
+			s.setMin(1);
 			s.setMax(5);
 			s.setShowTickMarks(true);
 			s.setMajorTickUnit(1);
@@ -278,6 +278,9 @@ public class Preferences extends Screen{
 		
 	}
 	
+	/**
+	 * Sends the values of the Nodes on this Screen when the user clicks the 'Start Creating' button to the Controller.
+	 */
 	public void sendPreferences() {
 		String colPref = color.getValue();
 		Seasons seasonPref = Seasons.valueOf(season.getValue().toUpperCase());
@@ -287,6 +290,15 @@ public class Preferences extends Screen{
 		int widthPref = (int) width.getValue();
 		System.out.println("Sending to model:\nColor: "+colPref+", Season: "+seasonPref+", Light level: "+lightPref+"\nWater level: "+waterPref+", Length: "+ lengthPref+", Width: "+widthPref);
 		c.setPreferences(color.getValue(), seasonPref, lightPref,waterPref,lengthPref,widthPref);
+	}
+	
+	public void setValues(String colorPref, String seasonPref, int waterPref,int lightPref, int lengthPref, int widthPref) {
+		color.setValue(colorPref);
+		season.setValue(seasonPref);
+		water.setValue(waterPref);
+		light.setValue(lightPref);
+		length.setValue(lengthPref);
+		width.setValue(widthPref);
 	}
 	
 	
