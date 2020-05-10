@@ -235,6 +235,19 @@ public class DesignGarden extends Screen{
 		// EventHandler to listen to which row, column its on
 		tileEditingGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
 		
+		// setting up paths images
+		/*
+		String pathImgs[] = {"img/dirtPath.jpg","img/stonePath.jpg","img/brickPath.jpg"};
+		for(int i=0; i<selectionSize/2;i++) {
+			ImageView imv = new ImageView(pathImgs[i]);
+			imv.setPreserveRatio(true);
+			imv.setFitHeight(selectionGPsize);
+			imv.setFitWidth(selectionGPsize);
+			imv.setOnDragDetected(c.getStartDrag());
+			pathsArr.add(imv);
+			//pathsGP.add(imv, i, 0);
+		}
+		*/
 		
 		// setting up backupDrop with 6 images since that is the size of each gridPane
 		for(int i=0; i<selectionSize;i++) {
@@ -423,6 +436,19 @@ public class DesignGarden extends Screen{
 		pathsGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
 		
 		pathsGP.setGridLinesVisible(true);
+		
+		// setting up paths Arraylist of images to be displated
+		pathsArr = new ArrayList<ImageView>();
+		String pathImgs[] = {"img/dirtPath.jpg","img/stonePath.jpg","img/brickPath.jpg"};
+		for(int i=0; i<selectionSize/2;i++) {
+			ImageView imv = new ImageView(pathImgs[i]);
+			imv.setPreserveRatio(false);
+			imv.setFitHeight(selectionGPsize);
+			imv.setFitWidth(selectionGPsize);
+			imv.setOnDragDetected(c.getStartDrag());
+			pathsArr.add(imv);
+			pathsGP.add(imv, i, 0);
+		}
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
