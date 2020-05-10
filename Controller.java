@@ -543,6 +543,7 @@ public class Controller{
 		}
 		else if(n != view.getDesignGardenScreen().getPlot() && db.hasImage() &&
 				view.getDesignGardenScreen().getHoverEditTile() == true) {
+			view.getDesignGardenScreen().setHoverEditTile(false);
 			Integer colIndex = GridPane.getColumnIndex(n);
 			Integer rowIndex = GridPane.getRowIndex(n);
 			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
