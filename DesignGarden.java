@@ -425,6 +425,29 @@ public class DesignGarden extends Screen{
 		otherOptions = new Tab("Other");
 		otherOptions.setContent(otherGP);
 		
+		ArrayList<ImageView> backdropColor6 = new ArrayList<ImageView>();
+		for(int i=0; i<selectionSize;i++) {
+			ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
+			imv1.setPreserveRatio(true);
+			imv1.setFitHeight(100);
+			imv1.setFitWidth(100);
+			backdropColor6.add(imv1);
+		}
+		
+		// max size of items
+		otherGP.setMaxSize(selectionGPsize, selectionGPsize);
+		//adding row
+		otherGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
+		for (int i = 0; i < selectionSize; i++) {
+	         ColumnConstraints column = new ColumnConstraints(selectionGPsize);
+	         otherGP.getColumnConstraints().add(column);
+	         otherGP.add(backdropColor5.get(i), i, 0,1,1);
+		}
+		
+		otherGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
+		
+		otherGP.setGridLinesVisible(true);
+		
 		// Done setting up tabs
 		
 		ImageView iv1 = new ImageView();
