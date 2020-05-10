@@ -524,7 +524,8 @@ public class Controller{
 		//Node n = event.getPickResult().getIntersectedNode();
 		Node n = event.getPickResult().getIntersectedNode();
 		if(DEBUG) {System.out.println(n.toString());}
-		if(n != view.getDesignGardenScreen().getPlot() && db.hasImage()) {
+		if(n != view.getDesignGardenScreen().getPlot() && db.hasImage() && 
+				view.getDesignGardenScreen().getHoverEditTile() == false) {
 			// View side of plant drop
 			ImageView iv = new ImageView(db.getImage());
 			iv.setPreserveRatio(true);
@@ -538,6 +539,30 @@ public class Controller{
 			int index = view.getDesignGardenScreen().getGridPaneInd();
 			model.getUserPlot().getLayout()[colIndex][rowIndex].setPlant(tempArrayList.get(index));
 			//int index = this.methodName; used to pull from designGarden array
+			worked = true;
+		}
+		else if(n != view.getDesignGardenScreen().getPlot() && db.hasImage() &&
+				view.getDesignGardenScreen().getHoverEditTile() == true) {
+			Integer colIndex = GridPane.getColumnIndex(n);
+			Integer rowIndex = GridPane.getRowIndex(n);
+			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
+			int index = view.getDesignGardenScreen().getGridPaneInd();//items held in gridpane of 4. 0 is add water, 1 is less water, 2 is add sun, 3 is remove water
+			switch(index) {
+			// increases wetness of tile
+			case 0: model.getUserPlot().getLayout()[colIndex][rowIndex].setWaterLevel(
+					model.getUserPlot().getLayout()[colIndex][rowIndex].getWaterLevel()+1);
+			// less water of tile dropped on
+			case 1: model.getUserPlot().getLayout()[colIndex][rowIndex].setWaterLevel(
+				model.getUserPlot().getLayout()[colIndex][rowIndex].getWaterLevel()-1);
+			// more light of tile dropped on 
+			case 2: model.getUserPlot().getLayout()[colIndex][rowIndex].setSunLightLevel(
+					model.getUserPlot().getLayout()[colIndex][rowIndex].getSunLightLevel()+1);
+			// less light of tile dropped on
+			case 3: model.getUserPlot().getLayout()[colIndex][rowIndex].setSunLightLevel(
+				model.getUserPlot().getLayout()[colIndex][rowIndex].getSunLightLevel()-1);
+			}//switch
+			view.getDesignGardenScreen().setHoverEditTile(false);
+			if(DEBUG) {System.out.println("bool set to false");}
 			worked = true;
 		}
 		event.setDropCompleted(worked);

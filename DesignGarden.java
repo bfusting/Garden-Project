@@ -441,7 +441,7 @@ public class DesignGarden extends Screen{
 		for (int i = 0; i < selectionSize; i++) {
 	         ColumnConstraints column = new ColumnConstraints(selectionGPsize);
 	         otherGP.getColumnConstraints().add(column);
-	         otherGP.add(backdropColor5.get(i), i, 0,1,1);
+	         otherGP.add(backdropColor6.get(i), i, 0,1,1);
 		}
 		
 		otherGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
