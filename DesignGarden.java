@@ -285,6 +285,8 @@ public class DesignGarden extends Screen{
 		otherGP.add(other2, 1, 1);
 		otherGP.add(other3, 2, 1);
 */	
+
+		/*
 		plants = new Tab("Plants");
 		
 		//setting up the Plant selection gridPane
@@ -304,8 +306,6 @@ public class DesignGarden extends Screen{
 		
 		plantsGP.setGridLinesVisible(true);
 		
-		/////////////////////////////////////////////////////////////////
-		// copying the imageviews to new array so colors don't move from pane to pane
 		ArrayList<ImageView> backdropColor2 = new ArrayList<ImageView>();
 		for(int i=0; i<selectionSize;i++) {
 			ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
@@ -334,18 +334,42 @@ public class DesignGarden extends Screen{
 		
 		shrubsGP.setGridLinesVisible(true);
 		
-		/////////////////////////////////////////////////////////////////
+		ArrayList<ImageView> backdropColor3 = new ArrayList<ImageView>();
+		for(int i=0; i<selectionSize;i++) {
+			ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
+			imv1.setPreserveRatio(true);
+			imv1.setFitHeight(100);
+			imv1.setFitWidth(100);
+			backdropColor3.add(imv1);
+		}
+		
 		undergrowth = new Tab("Undergrowth");
-//		undergrowth.setContent
+		
+		undergrowth.setContent(underGP);
+		
+		// max size of items
+		underGP.setMaxSize(selectionGPsize, selectionGPsize);
+		//adding row
+		underGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
+		for (int i = 0; i < selectionSize; i++) {
+	         ColumnConstraints column = new ColumnConstraints(selectionGPsize);
+	         underGP.getColumnConstraints().add(column);
+	         underGP.add(backdropColor3.get(i), i, 0,1,1);
+		}
+		
+		underGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
+		
+		underGP.setGridLinesVisible(true);
 		
 		trees = new Tab("Trees");
-//		trees.setContent(treesGP);
+		trees.setContent(treesGP);
 		
 		pathways = new Tab("Pathways");
-//		pathways.setContent(pathsGP);
+		pathways.setContent(pathsGP);
 		
 		otherOptions = new Tab("Other");
-//		otherOptions.setContent(otherGP);
+		otherOptions.setContent(otherGP);
+		*/
 		
 		
 		ImageView iv1 = new ImageView();
@@ -420,14 +444,14 @@ public class DesignGarden extends Screen{
 	        treesTP.getChildren().add(iv);
 	   	}
 		
-	    trees.setContent(treesTP);
+	    //trees.setContent(treesTP);
     
 	    TilePane pathsTP = new TilePane();
 	    pathsTP.setHgap(8);
 	    pathsTP.setPrefColumns(5);
 	    pathsTP.getChildren().addAll(new Label("Stone path"), new Label("Brick Path"), new Label("Straight up dirt"));
 	    
-	    pathways.setContent(pathsTP);
+	    //pathways.setContent(pathsTP);
 	    
 	    otherArr = new ArrayList<Label>();
 	    otherArr.add(new Label("Rock"));
@@ -446,7 +470,7 @@ public class DesignGarden extends Screen{
 	    }
 //	    otherTP.getChildren().addAll(new Label("Rock"), new Label("Tiki hut"), new Label("She-shed"), new Label("Bright pink flamingo"), new Label("Fountain"), new Label("General Building"));
 		
-	    otherOptions.setContent(otherTP);
+	    //otherOptions.setContent(otherTP);
 	    
 		selectGardenType.getTabs().addAll( plants, trees, shrubs, undergrowth, pathways, otherOptions);
 
@@ -645,6 +669,46 @@ public class DesignGarden extends Screen{
 		root.setDisable(false);
 		theStage.setOpacity(View.EditableOpacity);
 	}
+	
+	public void setUpTabs() {
+		// arrays to traverse the gridPanes and their respective names
+		Tab tabArr[] = {plants,trees,shrubs,undergrowth,pathways,otherOptions};
+		GridPane gpArr[] = {plantsGP,treesGP,shrubsGP,underGP,pathsGP,otherGP};
+		String tabNames[] = {"Plants","Trees","Shrubs","Undergrowth","Pathways","Other"};
+		ImageView backdrop[][] = new ImageView[selectionSize][selectionSize];
+		ArrayList<ImageView> backdropColor = new ArrayList<ImageView>();
+		for(int i=0; i<selectionSize;i++) {
+			for(int j=0; j<selectionSize;j++) {
+				ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
+				imv1.setPreserveRatio(true);
+				imv1.setFitHeight(100);
+				imv1.setFitWidth(100);
+				backdrop[i][j] = imv1;
+			}//for
+		}//for
+		for(int i=0;i<selectionSize;i++) {
+			
+			//setting up
+			tabArr[i] = new Tab(tabNames[i]);
+			tabArr[i].setContent(gpArr[i]);
+			
+			// max size of items
+			gpArr[i].setMaxSize(selectionGPsize, selectionGPsize);
+			//adding row
+			gpArr[i].getRowConstraints().add(new RowConstraints(selectionGPsize));
+			for (int j = 0; j < selectionSize; j++) {
+		         ColumnConstraints column = new ColumnConstraints(selectionGPsize);
+		         gpArr[j].getColumnConstraints().add(column);
+		         gpArr[j].getChildren().add(backdrop[i][j]);
+			}
+			
+			gpArr[i].getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
+			
+			gpArr[i].setGridLinesVisible(true);
+			
+			selectGardenType.getTabs().add(tabArr[i]);
+		}
+	}//setUpTabs
 
 	
 	
