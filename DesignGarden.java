@@ -61,7 +61,6 @@ public class DesignGarden extends Screen{
 	private ArrayList<ImageView> underSelArr;
 	// just drops a general addon into model
 	// add case in controller so it works
-	private ArrayList<ImageView> pathsArr;
 	private ArrayList<ImageView> otherSelctionArr;
 	
 	private int otherArrInd = 0;
@@ -437,14 +436,14 @@ public class DesignGarden extends Screen{
 		
 		pathsGP.setGridLinesVisible(true);
 		
-		// setting up paths Arraylist of images to be displated
-		pathsArr = new ArrayList<ImageView>();
+		// setting up paths Arraylist of images to be displayed
+		ArrayList<ImageView> pathsArr = new ArrayList<ImageView>();
 		String pathImgs[] = {"img/dirtPath.jpg","img/stonePath.jpg","img/brickPath.jpg"};
 		for(int i=0; i<selectionSize/2;i++) {
 			ImageView imv = new ImageView(pathImgs[i]);
 			imv.setPreserveRatio(false);
-			imv.setFitHeight(selectionGPsize);
-			imv.setFitWidth(selectionGPsize);
+			imv.setFitHeight(selectionGPsize*.9);
+			imv.setFitWidth(selectionGPsize*.9);
 			imv.setOnDragDetected(c.getStartDrag());
 			pathsArr.add(imv);
 			pathsGP.add(imv, i, 0);
@@ -477,6 +476,18 @@ public class DesignGarden extends Screen{
 		otherGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
 		
 		otherGP.setGridLinesVisible(true);
+		
+		// setting up paths Arraylist of images to be displayed
+		String otherImgs[] = {"img/rock.jpg","img/tikihut.jpg","img/sheshed.jpg",
+				"img/flamingo.jpg","img/fountain.jpg"};
+		for(int i=0; i<selectionSize-1;i++) {
+			ImageView imv = new ImageView(otherImgs[i]);
+			imv.setPreserveRatio(false);
+			imv.setFitHeight(selectionGPsize*.9);
+			imv.setFitWidth(selectionGPsize*.9);
+			imv.setOnDragDetected(c.getStartDrag());
+			otherGP.add(imv, i, 0);
+		}
 		
 		// Done setting up tabs
 		
