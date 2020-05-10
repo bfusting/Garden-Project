@@ -1036,6 +1036,21 @@ public class Controller{
 		event.consume();
 	}//detectSunWaterDragDrop
 	
+	/**
+	 * Returns an Event Handler to bind to an eventListener for the
+	 * Drag listener on DesignGarden
+	 * <p>
+	 * Used to access the DetectSunWaterDragDrop method and bind it using a
+	 * lambda function to an eventListner
+	 * 
+	 * @return EventHandler used to bind to listeners
+	 * @see DesignGarden
+	 * @see DetectSunWaterDetectDragDrop
+	 */
+	public EventHandler<DragEvent> getDetectSunWaterDetectDragDrop() {
+		return event -> detectSunWaterDragDrop((DragEvent)event);
+	}//getDetectDragDrop
+	
 }//Controller
 
 

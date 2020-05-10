@@ -127,6 +127,9 @@ public class DesignGarden extends Screen{
 	// used to hold images of more n less light and water
 	private ArrayList<ImageView> tileEdit = new ArrayList<ImageView>();
 	
+	// used to tell if hovering over tile editorers array
+	private boolean hoverEditTile = false;
+	
 	public DesignGarden(Controller controller,Stage s) {
 		this.c = controller;
 		theStage = s;
@@ -460,7 +463,7 @@ public class DesignGarden extends Screen{
 		finalView.setOnMouseClicked(c.getFinalViewBTN());
 		
 		AnchorPane apButtons = new AnchorPane();
-
+		Label tileEditors = new Label("Tile Editors");
 		Label otherFeaturesLabel = new Label("Other Features: ");
 		apButtons.setTopAnchor(otherFeaturesLabel, 60.0);
 		apButtons.setTopAnchor(recommendations, 120.0);
@@ -468,9 +471,10 @@ public class DesignGarden extends Screen{
 		apButtons.setTopAnchor(infoTips, 240.0);
 		apButtons.setTopAnchor(save, 300.0);
 		apButtons.setTopAnchor(finalView, 360.0);
-		apButtons.setTopAnchor(tileEditingGP, 400.0);
+		apButtons.setTopAnchor(tileEditors, 420.0);
+		apButtons.setTopAnchor(tileEditingGP, 440.0);
 		
-		apButtons.getChildren().addAll(recommendations, changeSeasons, otherFeaturesLabel, infoTips, save, finalView,tileEditingGP);
+		apButtons.getChildren().addAll(recommendations, changeSeasons, otherFeaturesLabel, infoTips, save, finalView,tileEditors,tileEditingGP);
 
 		
 		root.setTopAnchor(apButtons, 40.0);
@@ -529,6 +533,7 @@ public class DesignGarden extends Screen{
 	         plot.getRowConstraints().add(row);
 	     }
 		
+		//Drag and drop for normal use of adding plants
 		plot.setOnDragOver(c.getDetectDrag());
 		plot.setOnDragDropped(c.getDetectDragDrop());
 
