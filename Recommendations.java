@@ -236,18 +236,14 @@ public class Recommendations extends Screen{
 		texts.add(new Text("Tree"));
 		texts.add(new Text("Shrub"));
 		texts.add(new Text("Flower"));
-<<<<<<< HEAD
-=======
+
 		texts.add(new Text("Undergrowth"));
->>>>>>> master
 		
 		TitledPane treeTest = null;
 		TitledPane shrubTest = null;
 		TitledPane flowerTest = null;
-<<<<<<< HEAD
-=======
+
 		TitledPane underGrowthTest = null;
->>>>>>> master
 	
 		for(Text t : texts) {
 			AnchorPane.setLeftAnchor(t, 5.0);
@@ -258,10 +254,7 @@ public class Recommendations extends Screen{
 	AnchorPane treeAccord = new AnchorPane(new Text("Trees"));
 	AnchorPane shrubAccord = new AnchorPane(new Text("Shrubs"));
 	AnchorPane flowerAccord = new AnchorPane(new Text("Flowers"));
-<<<<<<< HEAD
-=======
 	AnchorPane underGrowthAccord = new AnchorPane(new Text("Undergrowth"));
->>>>>>> master
 	
 	Accordion accord = new Accordion();
 	VBox root = new VBox(accord);
@@ -273,10 +266,8 @@ public class Recommendations extends Screen{
 				treeTest = new TitledPane("Trees", new Text(this.getRecPlants()[i].getName()));
 				shrubTest = new TitledPane("Shrubs", new Text(this.getRecPlants()[i].getName()));
 				flowerTest = new TitledPane("Flowers", new Text(this.getRecPlants()[i].getName()));
-<<<<<<< HEAD
-=======
 				underGrowthTest = new TitledPane("UnderGrowth", new Text(this.getRecPlants()[i].getName()));
->>>>>>> master
+
 			}
 		}
 		
@@ -285,17 +276,13 @@ public class Recommendations extends Screen{
 		treeTest = new TitledPane("Trees", new Text("No Recommendations"));
 		shrubTest = new TitledPane("Shrubs", new Text("No Recommendations"));
 		flowerTest = new TitledPane("Flowers", new Text("No Recommendations"));
-<<<<<<< HEAD
 		
 	}
 	
 	accord.getPanes().addAll(treeTest, flowerTest, shrubTest);
-=======
-		underGrowthTest = new TitledPane("UnderGrowth", new Text("No Recommendations"));
-	}
+	underGrowthTest = new TitledPane("UnderGrowth", new Text("No Recommendations"));
 	
 	accord.getPanes().addAll(treeTest, flowerTest, shrubTest, underGrowthTest);
->>>>>>> master
 	
 	stage = new Stage();
 	stage.setTitle("Recommendations");
@@ -304,8 +291,6 @@ public class Recommendations extends Screen{
 	Scene scene = new Scene(root, WIDTH, HEIGHT);
 	stage.setScene(scene);
 	}
-	
-
 
 
 	@Override
