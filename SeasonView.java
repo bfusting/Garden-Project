@@ -44,7 +44,7 @@ public class SeasonView extends Screen{
 	
 	// used to anchor items in place
 	private final double bottomAnchorPoint = 100.0;
-	private double leftAnchorPoint = 225.0;
+	private double leftAnchorPoint = 250.0;
 	private final double topAnchorPoint = 0.0; 
 	private final double overlapPoint = 150.0;
 
@@ -155,8 +155,8 @@ public class SeasonView extends Screen{
 		}
 		
 		// Anchoring Buttons in AnchorPane from left to right
-		double btmPlaceArr[] = {leftAnchorPoint,leftAnchorPoint+225,
-				leftAnchorPoint+450,leftAnchorPoint+675,leftAnchorPoint+900};
+		double btmPlaceArr[] = {leftAnchorPoint,leftAnchorPoint+125,
+				leftAnchorPoint+250,leftAnchorPoint+375,leftAnchorPoint+500};
 		for(int i=0;i<btnArr.length;i++) {
 			root.setLeftAnchor(btnArr[i], btmPlaceArr[i]);
 		}

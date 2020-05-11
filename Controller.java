@@ -1204,7 +1204,7 @@ public class Controller{
      * @see DesignGarden
      */
     public void clickOnCloseSeasons(MouseEvent event) {
-    	view.getSeasonViewScreen().closeScreen();
+    	view.getSeasonViewScreen().closeSeasons();
     }
     
     /**
