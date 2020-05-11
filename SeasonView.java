@@ -45,7 +45,7 @@ public class SeasonView extends Screen{
 	// used to anchor items in place
 	private final double bottomAnchorPoint = 100.0;
 	private double leftAnchorPoint = 250.0;
-	private final double topAnchorPoint = 0.0; 
+	private final double topAnchorPoint = 0.0;
 	private final double overlapPoint = 150.0;
 
 	//used as the main stage which holds everything

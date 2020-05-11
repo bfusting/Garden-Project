@@ -56,8 +56,23 @@ public class GardenPlot implements Serializable{
 		this.shape = s;
 		this.length = l;
 		this.width = w;
-		this.layout = this.makeSizeSquare(l, w);
+		//this.layout = this.makeSizeSquare(l, w);
 		
+		switch(shape) {
+		case ("square"):
+			makeSquare();
+			System.out.println("made Square");
+			break;
+		case ("triangle"):
+			makeTriangle();
+		System.out.println("made triangle");
+			break;
+		case ("circle"):
+			makeCircle();
+			System.out.println("made circle");
+			break;
+			
+		}
 		
 	}
 	
@@ -92,8 +107,18 @@ public class GardenPlot implements Serializable{
 	 * @return
 	 * returns the array for this.layout
 	 */
-	public GardenTile[][] makeSquare(){
-		//Row 1
+	public void makeSquare(){
+		layout = new GardenTile[length][width];
+		
+		for(int i = 0; i < length; i++) {
+			for(int k = 0; k < width; k++) {
+				layout[i][k] = new GardenTile(i, k);
+			}
+		}
+		
+		
+		
+		/*//Row 1
 		GardenTile gT1 = new GardenTile(0,0);
 		GardenTile gT2 = new GardenTile(1,0);
 		GardenTile gT3 = new GardenTile(2,0);
@@ -134,7 +159,7 @@ public class GardenPlot implements Serializable{
 								{gT16, gT17, gT18, gT19, gT20},
 								{gT21, gT22, gT23, gT24, gT25}};
 		this.shape = "square";
-		return layout;
+		return layout;*/
 		
 								}
 		
@@ -147,12 +172,31 @@ public class GardenPlot implements Serializable{
 	 * @param height
 	 * @return
 	 */
-	public GardenTile[][] makeSizeTriangle(int width, int height){
-		GardenTile[][] result = {};
+	public GardenTile[][] makeSizeTriangle(int rows){
+		rows*=2;
+		GardenTile[][] result = new GardenTile[rows][rows];
 		
-		for(int i = 0; i < height; i++) {
-			for(int k = 0; k < width; k++) {
-				
+		int invis = 0;
+		for(int i = (int) Math.ceil(rows/2); i > 0; i--) {
+			int middletimes = 0;
+			
+			for (int left =0;left < invis;left++) {
+				System.out.print("X ");
+				result[i][left]=new GardenTile(i,left,false);
+			}
+			for(int middle = invis; middle < rows-invis; middle++) {
+				middletimes++;
+				System.out.print("O ");
+				result[i][middle]= new GardenTile(i,middle);
+			}
+			for (int right = rows-invis; right<rows;right++) {
+				System.out.print("X ");
+				result[i][right]= new GardenTile(i,right,false);
+			}
+			invis+=1;
+			System.out.println();
+			if (middletimes<=2) {
+				break;
 			}
 		}
 		
@@ -169,9 +213,36 @@ public class GardenPlot implements Serializable{
 	 * @return
 	 * returns a 2D gardenTIle array for this.layout
 	 */
-	public GardenTile[][] makeTriangle(){
+	public void makeTriangle(){
 		
-			//Row 1
+		
+		layout = new GardenTile[length][width];
+		int invis = 0;
+		for(int i = 0; i < length; i++) {
+			int middletimes = 0;
+			
+			for (int left =0;left < invis;left++) {
+				System.out.print("X ");
+				layout[i][left]=new GardenTile(i,left,false);
+			}
+			for(int middle = invis; middle < width-invis; middle++) {
+				middletimes++;
+				System.out.print("O ");
+				layout[i][middle]= new GardenTile(i,middle);
+			}
+			for (int right = width-invis; right<width;right++) {
+				System.out.print("X ");
+				layout[i][right]= new GardenTile(i,right,false);
+			}
+			invis+=1;
+			System.out.println();
+			if (middletimes<=2) {
+				break;
+			}
+		}
+		
+		
+			/*//Row 1
 				GardenTile gT1 = new GardenTile(0,0, false);
 				GardenTile gT2 = new GardenTile(1,0, false);
 				GardenTile gT3 = new GardenTile(2,0, false);
@@ -239,7 +310,7 @@ public class GardenPlot implements Serializable{
 		
 		this.shape = "triangle";
 		return result;
-		
+		*/
 				
 		
 	}
@@ -251,7 +322,7 @@ public class GardenPlot implements Serializable{
 	 * @return
 	 * returns the 2D array of GardenTiles to be used in this.layout
 	 */
-	public GardenTile[][] makeCircle(){
+	public void makeCircle(){
 		
 		//Row 1
 		GardenTile gT1 = new GardenTile(0,0, false);
@@ -330,7 +401,9 @@ public class GardenPlot implements Serializable{
 								 {gT43, gT44, gT45, gT46, gT47, gT48, gT49}
 										};
 		
-		return result;
+		layout = result;
+		length = 7;
+		width = 7;
 	}
 	
 	

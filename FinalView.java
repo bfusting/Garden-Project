@@ -2,6 +2,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.control.Label;
@@ -27,6 +30,8 @@ public class FinalView extends Screen {
 	private Scene finalViewScene;
 	private Stage primaryStage;
 	private Controller c;
+	
+	private GridPane originalGP;
 	
 	private int canvasHeight = 800;
 	private int canvasWidth = 1200;
@@ -107,6 +112,10 @@ public class FinalView extends Screen {
 		
 		root = new AnchorPane();
 		
+		// creating OriginalGP Plot + making it move
+		//originalGP = new GridPane();
+		
+		
 
 		Rectangle r1 = new Rectangle(150, 100, 900, 500);
 		r1.setStroke(Color.LIGHTGRAY);
@@ -123,6 +132,8 @@ public class FinalView extends Screen {
 		//Binding Event handlers to buttons
 		
 		edit.setOnMouseClicked(c.getDesignTime());
+		//edit.setOnMouseClicked(c.getBackBTN());
+		
 		infoTips.setOnMouseClicked(c.getInfoTipsBTN());
 		viewSeasons.setOnMouseClicked(c.getViewSeasonsBTN());
 		save.setOnMouseClicked(c.getSaveBTN());
@@ -147,13 +158,33 @@ public class FinalView extends Screen {
 		root.setLeftAnchor(mainMenu,1080.0);
 		
 		root.getChildren().addAll(edit, viewSeasons, infoTips, save,exit,mainMenu);
+		
+		
 
 		
 //		Label fv = new Label ("This is final view");
 //		AnchorPane.setTopAnchor(fv, 100.0);
+		// setting up seasonsGP with controller
+				originalGP = new GridPane();
+				
+				// setting up the seasonGP with the information from DesignGarden
+				for (int i = 0; i < c.getView().getDesignGardenScreen().getLength(); i++) {
+				     ColumnConstraints column = new ColumnConstraints(c.getView().getDesignGardenScreen()
+				    		 .getColConstraint());
+				     originalGP.getColumnConstraints().add(column);
+				 }
+				for (int i = 0; i < c.getView().getDesignGardenScreen().getWidth(); i++) {
+				     RowConstraints row = new RowConstraints(c.getView().getDesignGardenScreen()
+				    		 .getRowConstraint());
+				     originalGP.getRowConstraints().add(row);
+				 }
+				
+				originalGP.getChildren().addAll(c.getView().getDesignGardenScreen()
+						.getPlot().getChildren());
+		root.setTopAnchor(originalGP, 100.0);
+		root.setLeftAnchor(originalGP, 150.0);
 		
-		
-		root.getChildren().add(r1);
+		root.getChildren().addAll(r1,originalGP);
 		finalViewScene = new Scene(root, canvasWidth, canvasHeight);
 		
 		stage.setTitle("Final View");
@@ -210,6 +241,10 @@ public class FinalView extends Screen {
 	@Override
 	public String toString() {
 		return "Final View";
+	}
+	
+	public GridPane getOriginalGP() {
+		return originalGP;
 	}
 
 }

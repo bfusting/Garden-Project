@@ -5,6 +5,11 @@ import javafx.scene.control.Control;
 import javafx.stage.Stage;
 
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -47,15 +52,23 @@ public class Preferences extends Screen{
 	private ComboBox<Integer> gardenLength;
 	private ComboBox<Integer> gardenWidth;
 	
-	private final int totalPrefs = 6;
+	private int totalPrefs = 6;
 	
 	private Scene preferencesScene;
 	
 	private Button startCreating;
 	private Button back;
 	
+	private final Border unfinishedPrefBorder = new Border(new BorderStroke(View.borderColor1,BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(2.0)));
+	
+	
 	private Controller c;
 	Stage stage;
+	
+	private Label lengthLabel;
+	private Label widthLabel;
+	
+	
 	
 	public Preferences(Controller controller,Stage theStage) {
 		this.c = controller;
@@ -222,6 +235,39 @@ public class Preferences extends Screen{
 	
 	@Override
 	public void showScreen() {
+		switch (c.getTemplateFromModel()) {
+		case ("triangle"):
+			length.setVisible(true);
+			width.setVisible(false);
+			lengthLabel.setVisible(true);
+			widthLabel.setVisible(false);
+			lengthLabel.setText("Rows");
+			totalPrefs=5;
+			break;
+		case ("circle"):
+			width.setVisible(false);
+			length.setVisible(false);
+			widthLabel.setVisible(false);
+			lengthLabel.setVisible(false);
+			totalPrefs=4;
+			break;
+		case("square"):
+			width.setVisible(true);
+			length.setVisible(true);
+			widthLabel.setVisible(true);
+			lengthLabel.setVisible(true);
+			lengthLabel.setText("Length");
+			totalPrefs=6;
+		}
+		
+		if (!c.verifySettings()) {
+			startCreating.setDisable(true);
+		} else {
+			startCreating.setDisable(false);
+		}
+		
+		
+		
 		stage.setTitle("Preferences");
 		stage.setScene(preferencesScene);
 	}
@@ -239,13 +285,15 @@ public class Preferences extends Screen{
 		color.setEditable(true);
 		color.getItems().addAll("Red","Green","Purple","Blue","Orange","Yellow","Pink","White");
 		color.setOnAction(c.getPreferenceChanged());
+		color.setBorder(unfinishedPrefBorder);
 		
 		season = new ComboBox<String>();
 		season.getItems().addAll("Spring","Summer","Autumn","Winter");
 		season.setOnAction(c.getPreferenceChanged());
-		
+		season.setBorder(unfinishedPrefBorder);
 		
 		light = new Slider();
+		
 		light.addEventHandler(MouseEvent.MOUSE_CLICKED, c.getMouseClicked());
 		water = new Slider();
 		water.addEventHandler(MouseEvent.MOUSE_CLICKED, c.getMouseClicked());
@@ -258,8 +306,7 @@ public class Preferences extends Screen{
 		
 		Slider[] sliders = new Slider[]{light,water,length,width};
 		for (Slider s : sliders) {
-			//s.valueProperty().addListener(listener);
-			//s.addEventHandler(MouseEvent.MOUSE_CLICKED, c.getMouseClicked());
+			s.setBorder(unfinishedPrefBorder);
 			s.setMin(1);
 			s.setMax(5);
 			s.setShowTickMarks(true);
@@ -269,7 +316,11 @@ public class Preferences extends Screen{
 			s.setShowTickLabels(true);
 		}
 		
-		Button mainMenu = new Button("Main Menu");
+    
+    widthLabel = new Label("width");
+lengthLabel = new Label("length");
+
+    Button mainMenu = new Button("Main Menu");
 		
 		double lAnchors = 600.0;
 		
@@ -311,8 +362,9 @@ public class Preferences extends Screen{
 		AnchorPane.setLeftAnchor(lengthL, labelAnchors-150.0);
 		AnchorPane.setLeftAnchor(widthL, labelAnchors+75.0);
 		
-//		aPane.setVgap(50);
-
+		
+		
+		Button mainMenu = new Button("Main Menu");
 		mainMenu.setOnMouseClicked(c.getMainMenuWarning());
 		aPane.getChildren().addAll(color,season,light,water,length,width,back,startCreating,mainMenu, colorL, seasonL, lightL, waterL, lengthL, widthL);
 		preferencesScene = new Scene(aPane,View.primarySceneWidth,View.primarySceneHeight);
@@ -333,39 +385,40 @@ public class Preferences extends Screen{
 	public void sendPreference(Control control) {
 		
 		
-		
-		
-		
-		
-		
 		if (control.equals(color)) {
 			String colPref = color.getValue();
 			c.setPreferences(colPref, null, 0, 0, 0, 0);
+			color.setBorder(Border.EMPTY);
 			System.out.println("Color sent: "+colPref);
 		}
 		else if (control.equals(season)) {
 			Seasons seasonPref = Seasons.valueOf(season.getValue().toUpperCase());
 			c.setPreferences("", seasonPref, 0, 0, 0, 0);
+			season.setBorder(Border.EMPTY);
 			System.out.println("Season sent: "+seasonPref);
 		}
 		else if (control.equals(water)) {
 			int waterPref = (int)water.getValue();
-			c.setPreferences("Water level sent: ", null, 0, waterPref, 0, 0);
+			c.setPreferences("", null, 0, waterPref, 0, 0);
+			water.setBorder(Border.EMPTY);
 			System.out.println("Water level sent: "+ waterPref);
 		}
 		else if (control.equals(light)) {
 			int lightPref = (int)light.getValue();
 			c.setPreferences("",null,lightPref,0,0,0);
+			light.setBorder(Border.EMPTY);
 			System.out.println("Light level sent: "+ lightPref);
 		}
 		else if (control.equals(length)) {
 			int lengthPref = (int) length.getValue();
 			c.setPreferences("",null,0,0,lengthPref,0);
+			length.setBorder(Border.EMPTY);
 			System.out.println("Length sent: "+lengthPref);
 		}
 		else if (control.equals(width)) {
 			int widthPref = (int) width.getValue();
 			c.setPreferences("",null,0,0,0,widthPref);
+			width.setBorder(Border.EMPTY);
 			System.out.println("Width sent: "+ widthPref);
 		}
 		/*String colPref = color.getValue();
@@ -385,6 +438,42 @@ public class Preferences extends Screen{
 		light.setValue(lightPref);
 		length.setValue(lengthPref);
 		width.setValue(widthPref);
+		
+		if (colorPref=="") {
+			color.setBorder(unfinishedPrefBorder);
+		} else {
+			color.setBorder(Border.EMPTY);
+		}
+		
+		if (seasonPref=="") {
+			season.setBorder(unfinishedPrefBorder);
+		} else {
+			season.setBorder(Border.EMPTY);
+		}
+		
+		if (waterPref==0) {
+			water.setBorder(unfinishedPrefBorder);
+		} else {
+			water.setBorder(Border.EMPTY);
+		}
+		
+		if(lightPref==0) {
+			light.setBorder(unfinishedPrefBorder);
+		} else {
+			light.setBorder(Border.EMPTY);
+		}
+		
+		if(lengthPref==0) {
+			length.setBorder(unfinishedPrefBorder);
+		} else {
+			length.setBorder(Border.EMPTY);
+		}
+		
+		if(widthPref==0) {
+			width.setBorder(unfinishedPrefBorder);
+		} else {
+			width.setBorder(Border.EMPTY);
+		}
 	}
 	
 	
