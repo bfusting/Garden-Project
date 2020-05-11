@@ -20,3 +20,44 @@ Narrow Leaf Cottonwood:
 	Water Use: high
 	soil Moisture: wet
 	soil description: moist to mesic
+
+Box Elder:
+	latin name: Acer negundo
+	leaf: green
+	bloom color: yellow/green/brown (doesnt really have a flower)
+	bloom time: mar april
+	water need: medium
+	light need: sun
+
+Black Maple:
+	latin name: Acer nigrum
+	leaf: green
+	bloom color: yellow / green
+	bloom time: Apr, May
+	water need: medium
+	light need: shade / part shade
+	
+Junebush:
+	latin name: Amelanchier canadensis
+	lead: green
+	bloom color: white
+	bloom time: Apr, May
+	water need: medium
+	light need: sun or shade
+	
+White Birch:
+	latin name: Betula populifolia
+	leaf: green
+	bloom color: Green/Brown
+	bloom time: April
+	water need: low
+	light need: Sun or shade
+	
+Cigar Tree:
+	latin name: Catalpa bignonioides
+	leaf: green
+	bloom color: white
+	bloom time: May Jun
+	Water need: low
+	light need: part shade / shade
+	

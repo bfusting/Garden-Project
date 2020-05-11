@@ -18,3 +18,44 @@ Seaside Goldenrod:
 	soil moisture: moist
 	soil type: sandy
 	light required: sun
+
+Fillaree:
+	Latin Name: Geraniaceae Erodium texanum
+	leaf: green
+	bloom color: Red/Purple
+	bloom time: Mar/Apr
+	Light required: sun
+	Soil moisture: dry
+	Soil type: rocky
+	
+Star Grass:
+	Latin name: Liliaceae Aletris aurea
+	leaf: light green
+	Bloom color: yellow
+	Bloom Time: Apr, May, Jun, July
+	water need: medium
+	sun need: sun / part shade
+
+NarrowLeaf Onion:
+	Latin name: Allium amplectens
+	leaf: green
+	bloom color:white, pink
+	bloom time: Apr, May, Jun, July
+
+	
+Pear Thorn:
+	latin name: Crataegus calpodenron
+	leaf: green
+	bloom color: white
+	bloom time: may, jun
+	water need: medium
+	light need: part shade	
+	
+White Snakeroot:
+	latin name: Ageratina Altissim
+	leaf: green
+	bloom color: white
+	bloom time: july aug sept nov
+	water need: low
+	light need: sun / part shade
+	
