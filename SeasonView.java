@@ -6,7 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -92,8 +94,19 @@ public class SeasonView extends Screen{
 		// setting up seasonsGP with controller
 		seasonGP = new GridPane();
 		
-		//double rowConstraint =
+		// setting up the seasonGP with the information from DesignGarden
+		for (int i = 0; i < c.getView().getDesignGardenScreen().getLength(); i++) {
+		     ColumnConstraints column = new ColumnConstraints(c.getView().getDesignGardenScreen()
+		    		 .getColConstraint());
+		     seasonGP.getColumnConstraints().add(column);
+		 }
+		for (int i = 0; i < c.getView().getDesignGardenScreen().getWidth(); i++) {
+		     RowConstraints row = new RowConstraints(c.getView().getDesignGardenScreen()
+		    		 .getRowConstraint());
+		     seasonGP.getRowConstraints().add(row);
+		 }
 		
+		// Fetching the url of an image test
 		ImageView img = new ImageView("img/dirtPath.jpg");
 		int substringInd = img.getImage().impl_getUrl().indexOf("team-11-3");
 		System.out.println(substringInd);
@@ -110,7 +123,8 @@ public class SeasonView extends Screen{
 		root.getChildren().add(backdrop);
 		
 		// overlaying seasonsGP onto backdrop rectangle
-		root.setTopAnchor(seasonGP, topAnchorPoint);
+		seasonGP.setGridLinesVisible(true);
+		root.setLeftAnchor(seasonGP,150.0);
 		root.getChildren().add(seasonGP);
 		
 		// Buttons initilization to have their own labels

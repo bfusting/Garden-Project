@@ -629,11 +629,11 @@ plot.add(emptySpace5, 4, 4);
 
 plot.setMaxSize(600.0, 600.0);
 for (int i = 0; i < length; i++) {
-     ColumnConstraints column = new ColumnConstraints(150);
+     ColumnConstraints column = new ColumnConstraints(colConstraint);
      plot.getColumnConstraints().add(column);
  }
 for (int i = 0; i < width; i++) {
-     RowConstraints row = new RowConstraints(100);
+     RowConstraints row = new RowConstraints(rowConstraint);
      plot.getRowConstraints().add(row);
  }
 
