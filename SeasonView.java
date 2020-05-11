@@ -65,6 +65,7 @@ public class SeasonView extends Screen{
 	private Button summerBTN;
 	private Button fallBTN;
 	private Button winterBTN;
+	private Button closeBTN;
 	
 	// used to display stage
 	private Controller c;
@@ -132,6 +133,8 @@ public class SeasonView extends Screen{
 		
 		// overlaying seasonsGP onto backdrop rectangle
 		seasonGP.setGridLinesVisible(true);
+		seasonGP.getChildren().addAll(c.getView().getDesignGardenScreen()
+				.getPlot().getChildren());
 		root.setLeftAnchor(seasonGP,overlapPoint);
 		root.getChildren().add(seasonGP);
 		
@@ -140,25 +143,26 @@ public class SeasonView extends Screen{
 		summerBTN = new Button("View Summer");
 		fallBTN = new Button("View Fall");
 		winterBTN = new Button("View Winter");
+		closeBTN = new Button("Close SeasonView");
 		
 		// Binding buttons to event handlers (Event handler for each season)
 		
 		
 		// Anchoring in AnchorPane at the bottom via for loop
-		Button btnArr[] = {springBTN,summerBTN,fallBTN,winterBTN};
+		Button btnArr[] = {springBTN,summerBTN,fallBTN,winterBTN,closeBTN};
 		for(int i=0;i<btnArr.length;i++) {
 			root.setBottomAnchor(btnArr[i], bottomAnchorPoint);
 		}
 		
 		// Anchoring Buttons in AnchorPane from left to right
 		double btmPlaceArr[] = {leftAnchorPoint,leftAnchorPoint+225,
-				leftAnchorPoint+450,leftAnchorPoint+675};
+				leftAnchorPoint+450,leftAnchorPoint+675,leftAnchorPoint+900};
 		for(int i=0;i<btnArr.length;i++) {
 			root.setLeftAnchor(btnArr[i], btmPlaceArr[i]);
 		}
 		
 		//adding buttons to the anchorpane
-		root.getChildren().addAll(springBTN,summerBTN,fallBTN,winterBTN);
+		root.getChildren().addAll(springBTN,summerBTN,fallBTN,winterBTN,closeBTN);
 		
 		// Setting the Scene with AnchorPane
 		Scene scene = new Scene(root,HEIGHT,WIDTH);
@@ -200,5 +204,12 @@ public class SeasonView extends Screen{
 		stage.setTitle("Winter");
 		// change color of plants using 
 		// use color adjust to possible alter plants colors
+	}
+	
+	public void closeSeasons() {
+		// adding elements back into gridPane
+		c.getView().getDesignGardenScreen().getPlot().getChildren().
+		addAll(seasonGP.getChildren());
+		stage.close();
 	}
 }
