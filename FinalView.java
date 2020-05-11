@@ -132,6 +132,8 @@ public class FinalView extends Screen {
 		//Binding Event handlers to buttons
 		
 		edit.setOnMouseClicked(c.getDesignTime());
+		//edit.setOnMouseClicked(c.getBackBTN());
+		
 		infoTips.setOnMouseClicked(c.getInfoTipsBTN());
 		viewSeasons.setOnMouseClicked(c.getViewSeasonsBTN());
 		save.setOnMouseClicked(c.getSaveBTN());

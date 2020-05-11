@@ -521,50 +521,89 @@ public class Model implements Serializable{
 	}
 	
 	public void setUserPrefColor(String newColor) {
-		if (userPrefColor.equals("") && newColor!="") {
+		if (newColor!="") {
+			if (userPrefColor.equals("")) {
+				prefsSet++;
+			}
+			userPrefColor = newColor;
+			System.out.println("nc");
+		}
+		/*if (userPrefColor.equals("") && newColor!="") {
 			prefsSet++;
 			userPrefColor = newColor;
-		}
+		}*/
 		
 	}
 	
 	public void setUserPrefSeason(Seasons newSeason) {
-		if (userPrefSeason==null && newSeason!=null) {
+		if (newSeason!=null) {
+			if (userPrefSeason==null) {
+				prefsSet++;
+			}
+			userPrefSeason=newSeason;
+ 		}
+		/*if (userPrefSeason==null && newSeason!=null) {
 			prefsSet++;
 			userPrefSeason = newSeason;
-		}
+		}*/
 		
 	}
 	
 	public void setUserPrefLight(int newLight) {
-		if (userPrefLight==0 && newLight!=0) {
+		if (newLight!=0) {
+			if (userPrefLight==0) {prefsSet++;}
+			userPrefLight=newLight;
+		}
+		/*if (userPrefLight==0 && newLight!=0) {
 			prefsSet++;
 			userPrefLight = newLight;
-		}
+		}*/
 		
 	}
 	
 	public void setUserPrefWater(int newWater) {
-		if (userPrefWater == 0 && newWater!=0) {
+		if (newWater!=0) {
+			
+			if(userPrefWater==0) {
+				prefsSet++;
+			}
+			userPrefWater=newWater;
+		}
+		
+		/*if (userPrefWater == 0 && newWater!=0) {
 			prefsSet++;
 			userPrefWater = newWater;
-		}
+		}*/
 		
 	}
 	
-	public void setUserLength(int newLength) {
-		if (userLength==0 && newLength!=0) {
-			prefsSet++;
+	void setUserLength(int newLength) {
+		if (newLength!=0) {
+			if (userLength==0) { prefsSet++;}
 			userLength = newLength;
 		}
+		/*if (userLength==0 && newLength!=0) {
+			prefsSet++;
+			userLength = newLength;
+		}*/
 		
 	}
 	
-	public void setUserWidth(int newWidth) {
-		if (userWidth==0 && newWidth!=0) {
-			prefsSet++;
+	/**
+	 * Sets the property userWidth, ignoring if the default width has been passed in.
+	 * @param newWidth
+	 */
+	void setUserWidth(int newWidth) {
+		if (newWidth!=0) {
+			if (userWidth==0) {
+				prefsSet++;
+			}
 			userWidth = newWidth;
 		}
+		/*if (userWidth==0 && newWidth!=0) {
+			prefsSet++;
+			userWidth = newWidth;
+		}*/
 		
 	}
 	
@@ -851,6 +890,10 @@ public class Model implements Serializable{
 	 */
 	public int getPrefsSet() {
 		return prefsSet;
+	}
+	
+	public boolean necessaryPrefsSet() {
+		return !(userPrefColor.equals("") || userPrefSeason==null || userPrefLight==0 || userPrefWater==0 );
 	}
 	// then getters and setters for new attributes
 }//Modeld

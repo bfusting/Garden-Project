@@ -259,11 +259,24 @@ public class Controller{
 	 * @see GardenPlot
 	 */
 	public void designTime(MouseEvent event) {
+		int circleSize = 7;
+		
+		if (model.getUserTemplate().equals("triangle")) {
+			model.setUserWidth(2*model.getUserLength());
+		}
+		else if (model.getUserTemplate().equals("circle")) {
+			model.setUserLength(circleSize);
+			model.setUserWidth(circleSize);
+			System.out.println("rewriting length and width");
+		}
+		
+		
 		System.out.println("Final preferences:\nColor: "+model.getUserPrefColor()+", Season: "+model.getUserPrefSeason()+", Light level: "+model.getUserPrefLight()+"\nWater level: "+model.getUserPrefWater()+", Length: "+ model.getUserLength()+", Width: "+model.getUserWidth());
 		
 		model.createUserPlot();
 		System.out.println("Make Garden");
 		//view.showDesignGardenScreen();
+		view.show("designGardenScreen");
 	}//choseDesign
 	
 	/**
@@ -541,14 +554,18 @@ public class Controller{
 			iv.setPreserveRatio(true);
 	    	iv.setFitHeight(100);
 			Integer colIndex = GridPane.getColumnIndex(n);
-			Integer rowIndex = GridPane.getRowIndex(n);
+	    	Integer rowIndex = GridPane.getRowIndex(n);
+	    	
+	    	
+			
 			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
 			view.getDesignGardenScreen().getPlot().add(iv, colIndex, rowIndex, 1, 1);//add(iv, column, row);
 			// Model side of plant drop
 			ArrayList<Plant> tempArrayList = this.changeTabIndex();
 			int index = view.getDesignGardenScreen().getGridPaneInd();
 			//adding test to see if index is holding plants or addons
-			model.getUserPlot().getLayout()[colIndex][rowIndex].setPlant(tempArrayList.get(index));
+			//switched
+			model.getUserPlot().getLayout()[rowIndex][colIndex].setPlant(tempArrayList.get(index));
 			//int index = this.methodName; used to pull from designGarden array
 			worked = true;
 		}
@@ -561,17 +578,17 @@ public class Controller{
 			int index = view.getDesignGardenScreen().getGridPaneInd();//items held in gridpane of 4. 0 is add water, 1 is less water, 2 is add sun, 3 is remove water
 			switch(index) {
 			// increases wetness of tile
-			case 0: model.getUserPlot().getLayout()[colIndex][rowIndex].setWaterLevel(
-					model.getUserPlot().getLayout()[colIndex][rowIndex].getWaterLevel()+1);
+			case 0: model.getUserPlot().getLayout()[rowIndex][colIndex].setWaterLevel(
+					model.getUserPlot().getLayout()[rowIndex][colIndex].getWaterLevel()+1);
 			// less water of tile dropped on
-			case 1: model.getUserPlot().getLayout()[colIndex][rowIndex].setWaterLevel(
-				model.getUserPlot().getLayout()[colIndex][rowIndex].getWaterLevel()-1);
+			case 1: model.getUserPlot().getLayout()[rowIndex][colIndex].setWaterLevel(
+				model.getUserPlot().getLayout()[rowIndex][colIndex].getWaterLevel()-1);
 			// more light of tile dropped on 
-			case 2: model.getUserPlot().getLayout()[colIndex][rowIndex].setSunLightLevel(
-					model.getUserPlot().getLayout()[colIndex][rowIndex].getSunLightLevel()+1);
+			case 2: model.getUserPlot().getLayout()[rowIndex][colIndex].setSunLightLevel(
+					model.getUserPlot().getLayout()[rowIndex][colIndex].getSunLightLevel()+1);
 			// less light of tile dropped on
-			case 3: model.getUserPlot().getLayout()[colIndex][rowIndex].setSunLightLevel(
-				model.getUserPlot().getLayout()[colIndex][rowIndex].getSunLightLevel()-1);
+			case 3: model.getUserPlot().getLayout()[rowIndex][colIndex].setSunLightLevel(
+				model.getUserPlot().getLayout()[rowIndex][colIndex].getSunLightLevel()-1);
 			default: 
 				if(DEBUG) {System.out.println("Failed to place tile editor");}
 				//view.getDesignGardenScreen().setHoverEditTile(false);
@@ -1083,8 +1100,12 @@ public class Controller{
 	 * Returns the number of preference properties that have been set in Model.
 	 * @return an int, the number of preferences that have been modified from their default value.
 	 */
-	public int getPrefsSet() {
+	/*public int getPrefsSet() {
 		return model.getPrefsSet();
+	}*/
+	
+	public boolean verifySettings() {
+		return (model.necessaryPrefsSet() && model.getPrefsSet()>=view.getCurrentTotalPrefs());
 	}
 
     public void mouseEnterPlantSelection(MouseEvent event) {
@@ -1153,17 +1174,17 @@ public class Controller{
 	    int index = 0;//items held in gridpane of 4. 0 is add water, 1 is less water, 2 is add sun, 3 is remove water
 	    switch(index) {
 		// increases wetness of tile
-	    case 0: model.getUserPlot().getLayout()[colIndex][rowIndex].setWaterLevel(
-										      model.getUserPlot().getLayout()[colIndex][rowIndex].getWaterLevel()+1);
+	    case 0: model.getUserPlot().getLayout()[rowIndex][colIndex].setWaterLevel(
+										      model.getUserPlot().getLayout()[rowIndex][colIndex].getWaterLevel()+1);
 		// less water of tile dropped on
-	    case 1: model.getUserPlot().getLayout()[colIndex][rowIndex].setWaterLevel(
-										      model.getUserPlot().getLayout()[colIndex][rowIndex].getWaterLevel()-1);
+	    case 1: model.getUserPlot().getLayout()[rowIndex][colIndex].setWaterLevel(
+										      model.getUserPlot().getLayout()[rowIndex][colIndex].getWaterLevel()-1);
 		// more light of tile dropped on 
-	    case 2: model.getUserPlot().getLayout()[colIndex][rowIndex].setSunLightLevel(
-											 model.getUserPlot().getLayout()[colIndex][rowIndex].getSunLightLevel()+1);
+	    case 2: model.getUserPlot().getLayout()[rowIndex][colIndex].setSunLightLevel(
+											 model.getUserPlot().getLayout()[rowIndex][colIndex].getSunLightLevel()+1);
 		// less light of tile dropped on
-	    case 3: model.getUserPlot().getLayout()[colIndex][rowIndex].setSunLightLevel(
-											 model.getUserPlot().getLayout()[colIndex][rowIndex].getSunLightLevel()-1);
+	    case 3: model.getUserPlot().getLayout()[rowIndex][colIndex].setSunLightLevel(
+											 model.getUserPlot().getLayout()[rowIndex][colIndex].getSunLightLevel()-1);
 	    }//switch
 	    worked = true;
 	}
@@ -1219,6 +1240,18 @@ public class Controller{
      */
     public EventHandler<MouseEvent> getClickOnCloseSeasons(){
     	return event -> clickOnCloseSeasons((MouseEvent)event);
+    }
+
+    public String getTemplateFromModel() {
+	return model.getUserTemplate();
+    }
+
+    public int getLengthFromModel() {
+	return model.getUserLength();
+    }
+
+    public int getWidthFromModel() {
+	return model.getUserWidth();
     }
 }//Controller
 

@@ -119,12 +119,12 @@ public class DesignGarden extends Screen{
 	private Controller c;
 	
 	// length/width taken in by user preference
-	private int length = 5;
-	private int width = 5;
-	private double colConstraint = 150.0;
-	private double rowConstraint = 100.0;
-	
-	// final vars
+	//private int length = 5;
+	//private int width = 5;
+	private int length;
+	private int width;
+	private double colConstraint = 90.0;
+	private double rowConstraint = 90.0;
 	private final int selectionSize = 6;
 	private final double maxTileEditSize = 50.0;
 	private final double selectionGPsize = 100.0;
@@ -138,9 +138,201 @@ public class DesignGarden extends Screen{
 	// used to tell if hovering over tile editorers array
 	private boolean hoverEditTile = false;
 	
+	private boolean shown = false;
+	
 	public DesignGarden(Controller controller,Stage s) {
 		this.c = controller;
 		theStage = s;
+		
+		
+
+
+
+
+}
+
+	
+	public int increaseSelectionArrInd(int currentInd) {
+		int newIndex = currentInd + 1;
+		return newIndex;
+	}
+	
+	public int decreaseSelectionArrInd(int currentInd) {
+		int newIndex = currentInd - 1;
+		return newIndex;
+	}
+	
+	public int getOtherArrInd(){
+		return otherArrInd;
+	}
+	public void setOtherArrInd(int newInd) {
+		this.otherArrInd = newInd;
+	}
+	public int getPSelectionArrInd(){
+		return pSelectionArrInd;
+	}
+	public void setPSelectionArrInd(int newInd) {
+		this.pSelectionArrInd = newInd;
+	}
+	
+	
+/*	/**
+	 * Updates the viewable array of plants, trees, etc able to be dragged into the garden.
+	 *
+	public void updateSelectionIndex() {
+		
+	}
+*/	
+
+	
+	public Scene getDesignGardenScene() {
+		return designGardenScene;
+	}
+
+
+	/**
+	 * Creates the array of plants/trees/etc for the user to choose from based on local requirements and user preferences.
+	 */
+	public void createImageArray() {
+		
+	}
+	
+	public GridPane getPlot() {
+		return plot;
+	}
+	
+	
+	
+/*	/**
+	 * Opens the recommendations 
+	 *
+	public void openRecommendations() {
+		
+	}
+*/
+	
+	
+
+	public Button getRecommendationsBTTN() {
+		return recommendations;
+	}
+	public Button getChangeSeasonsBTTN() {
+		return changeSeasons;
+	}
+	public Button getInfoTipsBTTN() {
+		return infoTips;
+	}
+	public TabPane getSelectGardenType() {
+		return selectGardenType;
+	}
+	public int getGridPaneInd() {
+		return gridPaneInd;
+	}
+	public void setGridPaneInd(int i) {
+		gridPaneInd = i;
+	}
+	public boolean getHoverEditTile() {
+		return hoverEditTile;
+	}
+	public void setHoverEditTile(boolean b) {
+		hoverEditTile = b;
+	}
+	public GridPane getTileEditGP() {
+		return tileEditingGP;
+	}
+	public GridPane getPlantsGP() {
+		return plantsGP;
+	}
+	public GridPane getTreesGP() {
+		return treesGP;
+	}
+	public GridPane getShrubsGP() {
+		return shrubsGP;
+	}
+	public GridPane getUnderGP() {
+		return underGP;
+	}
+	public GridPane getPathsGP() {
+		return pathsGP;
+	}
+	public GridPane getOtherGP() {
+		return otherGP;
+	}
+	
+	@Override
+	public String toString() {
+		return "Design Garden";
+	}
+	
+	@Override
+	public void showScreen() {
+		if (!shown) {
+			drawScene();
+			shown = true;
+		}
+		theStage.setTitle("Design Garden");
+		theStage.setScene(designGardenScene);
+		theStage.show();
+		
+	}
+	
+	@Override
+	public void setUneditable() {
+		root.setDisable(true);
+		theStage.setOpacity(View.nonEditableOpacity);
+	}
+	
+	@Override
+	public void setEditable() {
+		root.setDisable(false);
+		theStage.setOpacity(View.EditableOpacity);
+	}
+	
+	public void setUpTabs() {
+		// arrays to traverse the gridPanes and their respective names
+		Tab tabArr[] = {plants,trees,shrubs,undergrowth,pathways,otherOptions};
+		GridPane gpArr[] = {plantsGP,treesGP,shrubsGP,underGP,pathsGP,otherGP};
+		String tabNames[] = {"Plants","Trees","Shrubs","Undergrowth","Pathways","Other"};
+		ImageView backdrop[][] = new ImageView[selectionSize][selectionSize];
+		ArrayList<ImageView> backdropColor = new ArrayList<ImageView>();
+		for(int i=0; i<selectionSize;i++) {
+			for(int j=0; j<selectionSize;j++) {
+				ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
+				imv1.setPreserveRatio(true);
+				imv1.setFitHeight(100);
+				imv1.setFitWidth(100);
+				backdrop[i][j] = imv1;
+			}//for
+		}//for
+		for(int i=0;i<selectionSize;i++) {
+			
+			//setting up
+			tabArr[i] = new Tab(tabNames[i]);
+			tabArr[i].setContent(gpArr[i]);
+			
+			// max size of items
+			gpArr[i].setMaxSize(selectionGPsize, selectionGPsize);
+			//adding row
+			gpArr[i].getRowConstraints().add(new RowConstraints(selectionGPsize));
+			for (int j = 0; j < selectionSize; j++) {
+		         ColumnConstraints column = new ColumnConstraints(selectionGPsize);
+		         gpArr[j].getColumnConstraints().add(column);
+		         gpArr[j].getChildren().add(backdrop[i][j]);
+			}
+			
+			gpArr[i].getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
+			
+			gpArr[i].setGridLinesVisible(true);
+			
+			selectGardenType.getTabs().add(tabArr[i]);
+		}
+	}//setUpTabs
+
+	public void drawScene() {
+		System.out.println("drawing scene");
+		length = c.getWidthFromModel();
+		width = c.getLengthFromModel();
+		gardenPlot = c.getModel().getUserPlot();
 		
 		// setting up tileEditingGP
 		String[] temp = {"img/waterAdd.jpg","img/lessWater.jpg",
@@ -598,8 +790,8 @@ for(int i=0; i<length; i++) {
 	for(int j=0; j<width; j++) {
 		soil[i][j] = new ImageView(new Image("img/soil.jpg"));
 		soil[i][j].setPreserveRatio(true);
-		soil[i][j].setFitHeight(150);
-		soil[i][j].setFitWidth(99);
+		soil[i][j].setFitHeight(89);
+		soil[i][j].setFitWidth(89);
 		plot.add(soil[i][j], i, j,1,1);
 	}
 }
@@ -627,13 +819,14 @@ plot.add(emptySpace4, 3, 3);
 plot.add(emptySpace5, 4, 4);
 */
 
-plot.setMaxSize(600.0, 600.0);
+plot.setMaxSize(300.0, 300.0);
+//plot.setMinSize(200.0, 200.0);
 for (int i = 0; i < length; i++) {
-     ColumnConstraints column = new ColumnConstraints(colConstraint);
+     ColumnConstraints column = new ColumnConstraints(90);
      plot.getColumnConstraints().add(column);
  }
 for (int i = 0; i < width; i++) {
-     RowConstraints row = new RowConstraints(rowConstraint);
+     RowConstraints row = new RowConstraints(90);
      plot.getRowConstraints().add(row);
  }
 
@@ -656,7 +849,7 @@ designGardenScene = new Scene(root,1200,800);
 }
 
 	
-	public int increaseSelectionArrInd(int currentInd) {
+	/*public int increaseSelectionArrInd(int currentInd) {
 		int newIndex = currentInd + 1;
 		return newIndex;
 	}
@@ -680,30 +873,24 @@ designGardenScene = new Scene(root,1200,800);
 	}
 	
 	
-/*	/**
-	 * Updates the viewable array of plants, trees, etc able to be dragged into the garden.
-	 *
-	public void updateSelectionIndex() {
-		
-	}
-*/	
+	
 
 	
 	public Scene getDesignGardenScene() {
 		return designGardenScene;
-	}
+	}*/
 
 
 	/**
 	 * Creates the array of plants/trees/etc for the user to choose from based on local requirements and user preferences.
 	 */
-	public void createImageArray() {
+	/*public void createImageArray() {
 		
 	}
 	
 	public GridPane getPlot() {
 		return plot;
-	}
+	}*/
 	
 	
 	
@@ -717,7 +904,7 @@ designGardenScene = new Scene(root,1200,800);
 	
 	
 
-	public Button getRecommendationsBTTN() {
+	/*public Button getRecommendationsBTTN() {
 		return recommendations;
 	}
 	public Button getChangeSeasonsBTTN() {
@@ -761,7 +948,7 @@ designGardenScene = new Scene(root,1200,800);
 	}
 	public GridPane getOtherGP() {
 		return otherGP;
-	}
+	}*/
 	public int getLength() {
 		return length;
 	}
@@ -775,7 +962,7 @@ designGardenScene = new Scene(root,1200,800);
 		return rowConstraint;
 	}
 	
-	@Override
+	/*@Override
 	public String toString() {
 		return "Design Garden";
 	}
@@ -838,7 +1025,7 @@ designGardenScene = new Scene(root,1200,800);
 			
 			selectGardenType.getTabs().add(tabArr[i]);
 		}
-	}//setUpTabs
+	}//setUpTabs*/
 
 	
 	
