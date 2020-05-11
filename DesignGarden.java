@@ -538,10 +538,27 @@ for(int i=0; i<selectionSize;i++) {
 treesGP.setMaxSize(selectionGPsize, selectionGPsize);
 //adding row
 treesGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
+
+String[] tree = {"Plant Pictures/Box_Elder.jpg","Plant Pictures/Cigar_Tree.JPG"};
+
+treeSelArr = new ArrayList<ImageView>();
+//setting up with each different picture
+for(int i=0; i<tree.length;i++) {
+	Image img = new Image(tree[i]);
+	ImageView imgV = new ImageView(img);
+	imgV.setPreserveRatio(true);
+	imgV.setFitHeight(100);
+	imgV.setFitWidth(100);
+	imgV.setOnDragDetected(c.getStartDrag());
+	treeSelArr.add(imgV);
+}
 for (int i = 0; i < selectionSize; i++) {
      ColumnConstraints column = new ColumnConstraints(selectionGPsize);
      treesGP.getColumnConstraints().add(column);
      treesGP.add(backdropColor4.get(i), i, 0,1,1);
+     if(i<2) {
+    	 treesGP.add(treeSelArr.get(i), i, 0,1,1);
+     }
 }
 
 treesGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
