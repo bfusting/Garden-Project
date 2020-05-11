@@ -526,7 +526,7 @@ for(int i=0; i<under.length;i++) {
 }
 
 //adding row
-underGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
+//underGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 for (int i = 0; i < selectionSize; i++) {
      ColumnConstraints column = new ColumnConstraints(selectionGPsize);
      underGP.getColumnConstraints().add(column);
