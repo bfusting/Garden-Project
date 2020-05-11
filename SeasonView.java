@@ -93,7 +93,9 @@ public class SeasonView extends Screen{
 		seasonGP = new GridPane();
 		
 		ImageView img = new ImageView("img/dirtPath.jpg");
-		System.out.println(img.getImage().impl_getUrl().substring(79));
+		int substringInd = img.getImage().impl_getUrl().indexOf("team-11-3");
+		System.out.println(substringInd);
+		System.out.println(img.getImage().impl_getUrl().substring(substringInd));
 		
 		// dummy variable to see where to place future gridPane
 		Rectangle backdrop = new Rectangle(150,100,900,500);
