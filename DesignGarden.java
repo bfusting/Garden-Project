@@ -329,7 +329,8 @@ public class DesignGarden extends Screen{
 	public void drawScene() {
 		length = c.getLengthFromModel();
 		width = c.getWidthFromModel();
-				
+		gardenPlot = c.getModel().getUserPlot();
+		
 		// setting up tileEditingGP
 		String[] temp = {"img/waterAdd.jpg","img/lessWater.jpg",
 				"img/moreLight.png","img/lessLight.png"};
@@ -778,6 +779,8 @@ Label emptySpace3 = new Label("		");
 Label emptySpace4 = new Label("		");
 Label emptySpace5 = new Label("		");
 
+
+
 // Replace with vars so works better
 //FitHeight and FitWidth should take in var constraints
 plot = new GridPane();
@@ -786,8 +789,8 @@ for(int i=0; i<width; i++) {
 	for(int j=0; j<length; j++) {
 		soil[i][j] = new ImageView(new Image("img/soil.jpg"));
 		soil[i][j].setPreserveRatio(true);
-		soil[i][j].setFitHeight(150);
-		soil[i][j].setFitWidth(99);
+		soil[i][j].setFitHeight(89);
+		soil[i][j].setFitWidth(89);
 		plot.add(soil[i][j], i, j,1,1);
 	}
 }
@@ -815,13 +818,14 @@ plot.add(emptySpace4, 3, 3);
 plot.add(emptySpace5, 4, 4);
 */
 
-plot.setMaxSize(600.0, 600.0);
+plot.setMaxSize(300.0, 300.0);
+//plot.setMinSize(200.0, 200.0);
 for (int i = 0; i < width; i++) {
-     ColumnConstraints column = new ColumnConstraints(150);
+     ColumnConstraints column = new ColumnConstraints(90);
      plot.getColumnConstraints().add(column);
  }
 for (int i = 0; i < length; i++) {
-     RowConstraints row = new RowConstraints(100);
+     RowConstraints row = new RowConstraints(90);
      plot.getRowConstraints().add(row);
  }
 

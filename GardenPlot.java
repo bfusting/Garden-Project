@@ -215,7 +215,7 @@ public class GardenPlot implements Serializable{
 	 */
 	public void makeTriangle(){
 		
-		//width=length* 2;
+		
 		layout = new GardenTile[length][width];
 		int invis = 0;
 		for(int i = 0; i < length; i++) {
