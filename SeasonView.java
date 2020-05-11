@@ -113,6 +113,12 @@ public class SeasonView extends Screen{
 		System.out.println(substringInd);
 		System.out.println(img.getImage().impl_getUrl().substring(substringInd));
 		
+		//creating images in the gridpane via url
+		for(int i=0; i< c.getView().getDesignGardenScreen().getPlot()
+				.getChildren().size();i++) {
+			// fill in body here
+		}//for
+		
 		// dummy variable to see where to place future gridPane
 		Rectangle backdrop = new Rectangle(overlapPoint,bottomAnchorPoint,
 				overlapPoint*5,bottomAnchorPoint*5);
