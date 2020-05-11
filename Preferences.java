@@ -234,7 +234,7 @@ public class Preferences extends Screen{
 		startCreating.setDisable(true);
 		
 		
-		TilePane tpane = new TilePane();
+		AnchorPane aPane = new AnchorPane();
 		color = new ComboBox<String>();
 		color.setEditable(true);
 		color.getItems().addAll("Red","Green","Purple","Blue","Orange","Yellow","Pink","White");
@@ -269,14 +269,53 @@ public class Preferences extends Screen{
 			s.setShowTickLabels(true);
 		}
 		
-		
-		
-		
-		tpane.setVgap(50);
 		Button mainMenu = new Button("Main Menu");
+		
+		double lAnchors = 600.0;
+		
+		AnchorPane.setTopAnchor(color, 50.0);
+		AnchorPane.setTopAnchor(season, 150.0);
+		AnchorPane.setTopAnchor(light, 250.0);
+		AnchorPane.setTopAnchor(water, 350.0);
+		AnchorPane.setTopAnchor(length, 450.0);
+		AnchorPane.setTopAnchor(width, 550.0);
+		AnchorPane.setTopAnchor(startCreating, 650.0);
+		AnchorPane.setTopAnchor(mainMenu, 650.0);
+		AnchorPane.setLeftAnchor(color, lAnchors);
+		AnchorPane.setLeftAnchor(season, lAnchors);
+		AnchorPane.setLeftAnchor(light, lAnchors);
+		AnchorPane.setLeftAnchor(water, lAnchors);
+		AnchorPane.setLeftAnchor(length, lAnchors);
+		AnchorPane.setLeftAnchor(width, lAnchors);
+		AnchorPane.setLeftAnchor(startCreating, lAnchors);
+		AnchorPane.setLeftAnchor(mainMenu, 400.0);
+		
+		Label colorL = new Label("Preferred Color: ");
+		Label seasonL = new Label("Preferred bloom season: ");
+		Label lightL = new Label("Light availability: ");
+		Label waterL = new Label("Water availability: ");
+		Label lengthL = new Label("Enter the length of your available garden space (ft): ");
+		Label widthL = new Label("Width (ft): ");
+		
+		double labelAnchors = 350.0;
+		AnchorPane.setTopAnchor(colorL, 50.0);
+		AnchorPane.setTopAnchor(seasonL, 150.0);
+		AnchorPane.setTopAnchor(lightL, 250.0);
+		AnchorPane.setTopAnchor(waterL, 350.0);
+		AnchorPane.setTopAnchor(lengthL, 450.0);
+		AnchorPane.setTopAnchor(widthL, 550.0);
+		AnchorPane.setLeftAnchor(colorL, labelAnchors);
+		AnchorPane.setLeftAnchor(seasonL, labelAnchors);
+		AnchorPane.setLeftAnchor(lightL, labelAnchors);
+		AnchorPane.setLeftAnchor(waterL, labelAnchors);
+		AnchorPane.setLeftAnchor(lengthL, labelAnchors-150.0);
+		AnchorPane.setLeftAnchor(widthL, labelAnchors+75.0);
+		
+//		aPane.setVgap(50);
+
 		mainMenu.setOnMouseClicked(c.getMainMenuWarning());
-		tpane.getChildren().addAll(color,season,light,water,length,width,back,startCreating,mainMenu);
-		preferencesScene = new Scene(tpane,View.primarySceneWidth,View.primarySceneHeight);
+		aPane.getChildren().addAll(color,season,light,water,length,width,back,startCreating,mainMenu, colorL, seasonL, lightL, waterL, lengthL, widthL);
+		preferencesScene = new Scene(aPane,View.primarySceneWidth,View.primarySceneHeight);
 		stage.setScene(preferencesScene);
 		
 		
