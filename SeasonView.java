@@ -146,7 +146,7 @@ public class SeasonView extends Screen{
 		closeBTN = new Button("Close SeasonView");
 		
 		// Binding buttons to event handlers (Event handler for each season)
-		
+		closeBTN.setOnMouseClicked(c.getClickOnCloseSeasons());
 		
 		// Anchoring in AnchorPane at the bottom via for loop
 		Button btnArr[] = {springBTN,summerBTN,fallBTN,winterBTN,closeBTN};

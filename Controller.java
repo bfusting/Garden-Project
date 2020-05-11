@@ -1185,7 +1185,7 @@ public class Controller{
      * @see DetectSunWaterDetectDragDrop
      */
     public EventHandler<DragEvent> getDetectSunWaterDetectDragDrop() {
-	return event -> detectSunWaterDragDrop((DragEvent)event);
+    	return event -> detectSunWaterDragDrop((DragEvent)event);
     }//getDetectDragDrop
     
     /**
@@ -1195,6 +1195,31 @@ public class Controller{
      */
     public View getView() {
     	return view;
+    }
+    
+    /**
+     * Closes the screen and moves the plants back into the gardenScreen
+     * <p>
+     * @param event representing clicking on the button
+     * @see DesignGarden
+     */
+    public void clickOnCloseSeasons(MouseEvent event) {
+    	view.getSeasonViewScreen().closeScreen();
+    }
+    
+    /**
+     * Returns an Event Handler to bind to an eventListener for the
+     * onCLick listener on seasonView closeButton
+     * <p>
+     * Used to access the clickOnCloseSeasons method and bind it using a
+     * lambda function to an eventListner
+     * 
+     * @return EventHandler used to bind to listeners
+     * @see SeasonView
+     * @see clickOnCloseSeasons
+     */
+    public EventHandler<MouseEvent> getClickOnCloseSeasons(){
+    	return event -> clickOnCloseSeasons((MouseEvent)event);
     }
 }//Controller
 
