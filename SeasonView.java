@@ -1,7 +1,10 @@
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -34,12 +37,13 @@ import javafx.stage.Stage;
 public class SeasonView extends Screen{
 	// make it so one label which changes depending on season?
 	// full screen season view?
-	private final static int HEIGHT = 600;
-	private final static int WIDTH = 800;
+	private final static int HEIGHT = 1000;
+	private final static int WIDTH = 1200;
 	
 	// used to anchor items in place
-	private final static double bottomAnchorPoint = 200.0;
-	private double leftAnchorPoint = 200.0;
+	private final double bottomAnchorPoint = 100.0;
+	private double leftAnchorPoint = 225.0;
+	private final double topAnchorPoint = 0.0; 
 
 	//used as the main stage which holds everything
 	private AnchorPane root;
@@ -86,7 +90,10 @@ public class SeasonView extends Screen{
 		root = new AnchorPane();
 		
 		// setting up seasonsGP with controller
-		seasonGP = c.getView().getDesignGardenScreen().getPlot();
+		seasonGP = new GridPane();
+		
+		ImageView img = new ImageView("img/dirtPath.jpg");
+		System.out.println(img.getImage().impl_getUrl().substring(79));
 		
 		// dummy variable to see where to place future gridPane
 		Rectangle backdrop = new Rectangle(150,100,900,500);
@@ -95,8 +102,12 @@ public class SeasonView extends Screen{
 		backdrop.setStrokeWidth(1);
 		
 		// used to anchor the rectangle above buttons, can use for gridPane
-		root.setTopAnchor(backdrop, 0.0);
+		root.setTopAnchor(backdrop, topAnchorPoint);
 		root.getChildren().add(backdrop);
+		
+		// overlaying seasonsGP onto backdrop rectangle
+		root.setTopAnchor(seasonGP, topAnchorPoint);
+		root.getChildren().add(seasonGP);
 		
 		// Buttons initilization to have their own labels
 		springBTN = new Button("View Spring");
@@ -114,8 +125,8 @@ public class SeasonView extends Screen{
 		}
 		
 		// Anchoring Buttons in AnchorPane from left to right
-		double btmPlaceArr[] = {leftAnchorPoint,leftAnchorPoint+200,
-				leftAnchorPoint+400,leftAnchorPoint+600};
+		double btmPlaceArr[] = {leftAnchorPoint,leftAnchorPoint+225,
+				leftAnchorPoint+450,leftAnchorPoint+675};
 		for(int i=0;i<btnArr.length;i++) {
 			root.setLeftAnchor(btnArr[i], btmPlaceArr[i]);
 		}
