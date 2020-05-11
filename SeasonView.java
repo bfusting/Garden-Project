@@ -178,4 +178,27 @@ public class SeasonView extends Screen{
 		stage.close();
 	}
 	
+	public void setToSpring() {
+		stage.setTitle("Spring");
+		// change color of plants using 
+		// use color adjust to possible alter plants colors
+	}
+	
+	public void setToSummer() {
+		stage.setTitle("Summer");
+		// change color of plants using 
+		// use color adjust to possible alter plants colors
+	}
+	
+	public void setToFall() {
+		stage.setTitle("Fall");
+		// change color of plants using 
+		// use color adjust to possible alter plants colors
+	}
+	
+	public void setToWinter() {
+		stage.setTitle("Winter");
+		// change color of plants using 
+		// use color adjust to possible alter plants colors
+	}
 }
