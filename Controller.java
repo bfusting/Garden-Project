@@ -228,6 +228,10 @@ public class Controller{
 	 */
 	public void backBTN(MouseEvent event) {
 		System.out.println("Go Back");
+		/* Add different method to move back
+		view.getDesignGardenScreen().getPlot().getChildren().
+		addAll(view.getFinalViewScreen().getOriginalGP().getChildren());
+		*/
 		view.goToLastScreen();
 	}//backBTN
 	
@@ -264,6 +268,7 @@ public class Controller{
 		model.createUserPlot();
 		System.out.println("Make Garden");
 		//view.showDesignGardenScreen();
+		view.show("designGardenScreen");
 	}//choseDesign
 	
 	/**
