@@ -369,10 +369,14 @@ public class View extends Application{
 		else if (currentPrimaryScreen.equals(preferencesScreen)) {
 			//prefs.add((Node) o);
 			preferencesScreen.sendPreference((Control) o);
-			if (con.getPrefsSet()==preferencesScreen.getTotalPrefs()) {
+			if (con.verifySettings()) {
 				preferencesScreen.allowStartCreating();
 			}
 		}
+	}
+	
+	public int getCurrentTotalPrefs() {
+		return preferencesScreen.getTotalPrefs();
 	}
 	
 	/**

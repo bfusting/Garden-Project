@@ -259,6 +259,18 @@ public class Controller{
 	 * @see GardenPlot
 	 */
 	public void designTime(MouseEvent event) {
+		int circleSize = 7;
+		
+		if (model.getUserTemplate().equals("triangle")) {
+			model.setUserWidth(2*model.getUserLength());
+		}
+		else if (model.getUserTemplate().equals("circle")) {
+			model.setUserLength(circleSize);
+			model.setUserWidth(circleSize);
+			System.out.println("rewriting length and width");
+		}
+		
+		
 		System.out.println("Final preferences:\nColor: "+model.getUserPrefColor()+", Season: "+model.getUserPrefSeason()+", Light level: "+model.getUserPrefLight()+"\nWater level: "+model.getUserPrefWater()+", Length: "+ model.getUserLength()+", Width: "+model.getUserWidth());
 		
 		model.createUserPlot();
@@ -1084,8 +1096,12 @@ public class Controller{
 	 * Returns the number of preference properties that have been set in Model.
 	 * @return an int, the number of preferences that have been modified from their default value.
 	 */
-	public int getPrefsSet() {
+	/*public int getPrefsSet() {
 		return model.getPrefsSet();
+	}*/
+	
+	public boolean verifySettings() {
+		return (model.necessaryPrefsSet() && model.getPrefsSet()>=view.getCurrentTotalPrefs());
 	}
 
     public void mouseEnterPlantSelection(MouseEvent event) {
@@ -1188,8 +1204,10 @@ public class Controller{
 	return event -> detectSunWaterDragDrop((DragEvent)event);
     }//getDetectDragDrop
 
-
-
+    
+    public String getTemplateFromModel() {
+    	return model.getUserTemplate();
+    }
 	
 	
 }//Controller
