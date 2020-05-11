@@ -478,6 +478,7 @@ for(int i=0; i<shrub.length;i++) {
 	imgV.setOnDragDetected(c.getStartDrag());
 	shrubSelArr.add(imgV);
 }
+
 for (int i = 0; i < selectionSize; i++) {
      ColumnConstraints column = new ColumnConstraints(selectionGPsize);
      shrubsGP.getColumnConstraints().add(column);

@@ -276,13 +276,12 @@ public class Recommendations extends Screen{
 		treeTest = new TitledPane("Trees", new Text("No Recommendations"));
 		shrubTest = new TitledPane("Shrubs", new Text("No Recommendations"));
 		flowerTest = new TitledPane("Flowers", new Text("No Recommendations"));
-		
+		underGrowthTest = new TitledPane("Undergrowth", new Text("No Recommendations"));
 	}
 	
-	accord.getPanes().addAll(treeTest, flowerTest, shrubTest);
-	underGrowthTest = new TitledPane("UnderGrowth", new Text("No Recommendations"));
-	
 	accord.getPanes().addAll(treeTest, flowerTest, shrubTest, underGrowthTest);
+
+	
 	
 	stage = new Stage();
 	stage.setTitle("Recommendations");
