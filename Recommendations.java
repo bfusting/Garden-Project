@@ -236,11 +236,13 @@ public class Recommendations extends Screen{
 		texts.add(new Text("Tree"));
 		texts.add(new Text("Shrub"));
 		texts.add(new Text("Flower"));
+
 		texts.add(new Text("Undergrowth"));
 		
 		TitledPane treeTest = null;
 		TitledPane shrubTest = null;
 		TitledPane flowerTest = null;
+
 		TitledPane underGrowthTest = null;
 	
 		for(Text t : texts) {
@@ -265,6 +267,7 @@ public class Recommendations extends Screen{
 				shrubTest = new TitledPane("Shrubs", new Text(this.getRecPlants()[i].getName()));
 				flowerTest = new TitledPane("Flowers", new Text(this.getRecPlants()[i].getName()));
 				underGrowthTest = new TitledPane("UnderGrowth", new Text(this.getRecPlants()[i].getName()));
+
 			}
 		}
 		
@@ -273,8 +276,11 @@ public class Recommendations extends Screen{
 		treeTest = new TitledPane("Trees", new Text("No Recommendations"));
 		shrubTest = new TitledPane("Shrubs", new Text("No Recommendations"));
 		flowerTest = new TitledPane("Flowers", new Text("No Recommendations"));
-		underGrowthTest = new TitledPane("UnderGrowth", new Text("No Recommendations"));
+		
 	}
+	
+	accord.getPanes().addAll(treeTest, flowerTest, shrubTest);
+	underGrowthTest = new TitledPane("UnderGrowth", new Text("No Recommendations"));
 	
 	accord.getPanes().addAll(treeTest, flowerTest, shrubTest, underGrowthTest);
 	
@@ -285,8 +291,6 @@ public class Recommendations extends Screen{
 	Scene scene = new Scene(root, WIDTH, HEIGHT);
 	stage.setScene(scene);
 	}
-	
-
 
 
 	@Override

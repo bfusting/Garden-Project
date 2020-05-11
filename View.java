@@ -413,5 +413,8 @@ public class View extends Application{
 		designGardenScreen.setPreviousScreen(preferencesScreen);
 	}
 		
+	public SeasonView getSeasonViewScreen() {
+		return seasonViewScreen;
+	}
 	
 }

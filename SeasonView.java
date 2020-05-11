@@ -1,12 +1,16 @@
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 /*
@@ -22,6 +26,9 @@ import javafx.stage.Stage;
 *  
 */
 
+// 4 scene
+// to summer -> to winter -> to spring -> to fall buttons
+
 /**
  * Season View is a GUI implementation where the user can see how their garden would look
  * in different seasons such as SUMMER, WINTER, FALL
@@ -32,14 +39,35 @@ import javafx.stage.Stage;
 public class SeasonView extends Screen{
 	// make it so one label which changes depending on season?
 	// full screen season view?
-	private final static int HEIGHT = 600;
-	private final static int WIDTH = 800;
-	private Label yourGarden;
-	private Label currSeason;
-	private BorderPane currView;
-	private Scene seasonView;
-	private Button backBTN;
-	private Button nextBTN;
+	private final static int HEIGHT = 1000;
+	private final static int WIDTH = 1200;
+	
+	// used to anchor items in place
+	private final double bottomAnchorPoint = 100.0;
+	private double leftAnchorPoint = 250.0;
+	private final double topAnchorPoint = 0.0; 
+	private final double overlapPoint = 150.0;
+
+	//used as the main stage which holds everything
+	private AnchorPane root;
+	
+	// displays current gridpane from designGarden
+	private GridPane seasonGP;
+	
+	// used to change between various seasons by setting various scenes
+	private Scene springView;
+	private Scene summerView;
+	private Scene fallView;
+	private Scene winterView;
+	
+	// Buttons used to swap between seasons
+	private Button springBTN;
+	private Button summerBTN;
+	private Button fallBTN;
+	private Button winterBTN;
+	private Button closeBTN;
+	
+	// used to display stage
 	private Controller c;
 	private Stage stage;
 	
@@ -48,61 +76,9 @@ public class SeasonView extends Screen{
 	 * to be created by any other class
 	 */
 	public SeasonView(Controller controller) {
-		yourGarden = new Label("Your Garden");
-		currSeason = new Label("Spring");
-		currView = new BorderPane();
-		seasonView = null;
 		c = controller;
 	}
-	
-	/**
-	 * Returns type Label which displays the current season name in the SeasonsView
-	 * pane.
-	 * <p>
-	 * Getter for CurrSeason attribute
-	 * 
-	 * @return Label which represents the scenes current seasons
-	 * @see currSeason
-	 */
-	public Label getCurrSeason() {
-		return currSeason;
-	}
 
-	/**
-	 * Returns type Scene which displays the current season of the SeasonsView
-	 * pane.
-	 * <p>
-	 * Getter for seasonView attribute
-	 * 
-	 * @return scene which represents the current season on the screen
-	 * @see seasonView
-	 * 
-	public Scene getSeasonView() {
-		return seasonView;
-	}
-	
-	/**
-	 * Returns the back button to bind an event listener to
-	 * <p>
-	 * Getter for backBTN
-	 * 
-	 * @return back button on the screen
-	 */
-	public Button getbackBTN() {
-		return backBTN;
-	}
-	
-	/**
-	 * Returns the next button to bind an event listener to
-	 * <p>
-	 * Getter for nextBTN
-	 * 
-	 * @return next button on the screen
-	 */
-	public Button getNextBTN() {
-		return nextBTN;
-	}
-	
 	/**
 	 * Used to create a new popup window of the stage and adds the
 	 * features such as the back button and a pane within the borderpane center
@@ -113,27 +89,83 @@ public class SeasonView extends Screen{
 	public void ShowSeasonView(){
 		//Creating new instances of images
 		stage = new Stage();
-		BorderPane bPane = new BorderPane();
-		Text texInFlow = new Text("Here will be the season presentation of the Garden"
-				+ " in various seasons. Buttons will change the title of the scene" );
-		FlowPane fPane = new FlowPane();
-		HBox hPane = new HBox();
-		backBTN = new Button("Back a Season");
-		nextBTN = new Button("Next Season");
-		Pane spacer = new Pane();
-		spacer.setMinSize(500, 1);
 		
-		// Stacking items within items buttons -> HBox --> Bottom of bpane
-		hPane.getChildren().add(spacer);
-		hPane.getChildren().add(backBTN);
-		hPane.getChildren().add(nextBTN);
-		fPane.getChildren().add(texInFlow);
-		bPane.setBottom(hPane);
-		bPane.setCenter(fPane);
-		bPane.setTop(currSeason);
+		// creating a new instance
+		root = new AnchorPane();
 		
-		// Setting the Scene with bPane
-		Scene scene = new Scene(bPane,HEIGHT,WIDTH);
+		// setting up seasonsGP with controller
+		seasonGP = new GridPane();
+		
+		// setting up the seasonGP with the information from DesignGarden
+		for (int i = 0; i < c.getView().getDesignGardenScreen().getLength(); i++) {
+		     ColumnConstraints column = new ColumnConstraints(c.getView().getDesignGardenScreen()
+		    		 .getColConstraint());
+		     seasonGP.getColumnConstraints().add(column);
+		 }
+		for (int i = 0; i < c.getView().getDesignGardenScreen().getWidth(); i++) {
+		     RowConstraints row = new RowConstraints(c.getView().getDesignGardenScreen()
+		    		 .getRowConstraint());
+		     seasonGP.getRowConstraints().add(row);
+		 }
+		
+		// Fetching the url of an image test
+		ImageView img = new ImageView("img/dirtPath.jpg");
+		int substringInd = img.getImage().impl_getUrl().indexOf("team-11-3");
+		System.out.println(substringInd);
+		System.out.println(img.getImage().impl_getUrl().substring(substringInd));
+		
+		//creating images in the gridpane via url
+		for(int i=0; i< c.getView().getDesignGardenScreen().getPlot()
+				.getChildren().size();i++) {
+			// fill in body here
+		}//for
+		
+		// dummy variable to see where to place future gridPane
+		Rectangle backdrop = new Rectangle(overlapPoint,bottomAnchorPoint,
+				overlapPoint*5,bottomAnchorPoint*5);
+		backdrop.setStroke(Color.LIGHTGRAY);
+		backdrop.setFill(Color.LIGHTGRAY);
+		backdrop.setStrokeWidth(1);
+		
+		// used to anchor the rectangle above buttons, can use for gridPane
+		root.setTopAnchor(backdrop, topAnchorPoint);
+		root.getChildren().add(backdrop);
+		
+		// overlaying seasonsGP onto backdrop rectangle
+		seasonGP.setGridLinesVisible(true);
+		seasonGP.getChildren().addAll(c.getView().getDesignGardenScreen()
+				.getPlot().getChildren());
+		root.setLeftAnchor(seasonGP,overlapPoint);
+		root.getChildren().add(seasonGP);
+		
+		// Buttons initilization to have their own labels
+		springBTN = new Button("View Spring");
+		summerBTN = new Button("View Summer");
+		fallBTN = new Button("View Fall");
+		winterBTN = new Button("View Winter");
+		closeBTN = new Button("Close SeasonView");
+		
+		// Binding buttons to event handlers (Event handler for each season)
+		closeBTN.setOnMouseClicked(c.getClickOnCloseSeasons());
+		
+		// Anchoring in AnchorPane at the bottom via for loop
+		Button btnArr[] = {springBTN,summerBTN,fallBTN,winterBTN,closeBTN};
+		for(int i=0;i<btnArr.length;i++) {
+			root.setBottomAnchor(btnArr[i], bottomAnchorPoint);
+		}
+		
+		// Anchoring Buttons in AnchorPane from left to right
+		double btmPlaceArr[] = {leftAnchorPoint,leftAnchorPoint+125,
+				leftAnchorPoint+250,leftAnchorPoint+375,leftAnchorPoint+500};
+		for(int i=0;i<btnArr.length;i++) {
+			root.setLeftAnchor(btnArr[i], btmPlaceArr[i]);
+		}
+		
+		//adding buttons to the anchorpane
+		root.getChildren().addAll(springBTN,summerBTN,fallBTN,winterBTN,closeBTN);
+		
+		// Setting the Scene with AnchorPane
+		Scene scene = new Scene(root,HEIGHT,WIDTH);
 		stage.setTitle("SeasonView");
 		stage.setScene(scene);
 		stage.show();
@@ -149,5 +181,35 @@ public class SeasonView extends Screen{
 	public void goToPreviousScreen() {
 		stage.close();
 	}
-	 
+	
+	public void setToSpring() {
+		stage.setTitle("Spring");
+		// change color of plants using 
+		// use color adjust to possible alter plants colors
+	}
+	
+	public void setToSummer() {
+		stage.setTitle("Summer");
+		// change color of plants using 
+		// use color adjust to possible alter plants colors
+	}
+	
+	public void setToFall() {
+		stage.setTitle("Fall");
+		// change color of plants using 
+		// use color adjust to possible alter plants colors
+	}
+	
+	public void setToWinter() {
+		stage.setTitle("Winter");
+		// change color of plants using 
+		// use color adjust to possible alter plants colors
+	}
+	
+	public void closeSeasons() {
+		// adding elements back into gridPane
+		c.getView().getDesignGardenScreen().getPlot().getChildren().
+		addAll(seasonGP.getChildren());
+		stage.close();
+	}
 }
