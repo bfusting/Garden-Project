@@ -84,85 +84,88 @@ public class Model implements Serializable{
 		prefsSet = 0;
 		// Creating temp Plants for Bradley to use in methods, remove later
 		
-		Plant purpleConeFlower = new Plant("Purple Cone Flower", 1, "cone flower", 
-				"purple", 0, 0, 0, 0, Seasons.AUTUMN, false, null, null, "Flower", null, null);
 		
-		Plant goldenRod = new Plant("Golden Rod", "Solidago Sempervirens", "Yellow", "Autumn", null, null, 3, 5, "Moist", null);
+		//These Plants have the incorrect constructor
+		/**
+		Plant purpleConeFlower = new Plant("Purple Cone Flower", 1, "cone flower", 
+				"purple", 0, 0, 0, 0, "Autumn", false, null, null, "Flower", null, null);
+		
+		Plant goldenRod = new Plant("Golden Rod", "Solidago Sempervirens", "Yellow", "Autumn", "", 0, 3, 5, "Moist", new ArrayList<String>());
 		
 		Plant sugarMaple = new Plant("Sugar Maple", 4, "Maple Tree", "Yellow", 3, 0,
-				0, 0, Seasons.SUMMER, true, null, null, "Tree", null, null);
+				0, 0, "Summer", true, null, null, "Tree", null, null);
 		
 		Plant sweetFern = new Plant("Sweet Fern", 1, "Fern Variant", "White",
-				3, 2, 3.0, 0, Seasons.SPRING, false, null, null, "Shrub", null, null);
+				3, 2, 3.0, 0, "Spring", false, null, null, "Shrub", null, null);
 
 		Plant milkWeed = new Plant("Milkweed", 1, "Common Milkweed", "Orange", 4, 2, 
-				2.00, 0, Seasons.SUMMER, false, null, null, "UnderGrowth", null, null);
+				2.00, 0, "Summer", false, null, null, "UnderGrowth", null, null);
 		
+		*/
 		
 		Plant fillaree = new Plant("Fillaree", "eraniaceae Erodium texanum", "Red", 
-				"Spring", null, null, 1, 5, "Dry", null);
+				"Spring", "", 0, 1, 5, "Dry", new ArrayList<String>());
 		
 		Plant starGrass = new Plant("Star Grass", "Liliaceae Aletris aurea", "Yellow",
-				"Summer", null, null, 3, 3, null, null);
+				"Summer", "", 0, 3, 3, "", new ArrayList<String>());
 		
 		Plant narrowLeafOnion = new Plant("Narrowleaf Onion","Allium amplectens", "White", 
-				"Spring", null, null, 3, 3, null, null);
+				"Spring", "", 0, 3, 3, "", new ArrayList<String>());
 		
 		Plant pearThorn = new Plant("Pear Thorn", "Crataegus calpodenron", "White",
-				"Summer", null, null, 3, 3, null, null);
+				"Summer", "", 0, 3, 3, "", new ArrayList<String>());
 		
 		Plant whiteSnakeroot = new Plant("White Snakeroot", "Ageratina Altissim", "White",
-				"Summer", null, null, 1, 3, null, null);
+				"Summer", "", 0, 1, 3, "", new ArrayList<String>());
 		
 		// Trees
 		Plant narrowleafCottonwood = new Plant("Narrowleaf Cottonwood", "Populus Angustifloia", "White",
-				"Spring", null, null, 5, 3, null, null);
+				"Spring", "", 0, 5, 3, "", new ArrayList<String>());
 		
 		Plant boxElder = new Plant("Box Elder", "Acer negundo", "Yellow",
-				"Spring", null, null, 3, 5, null, null);
+				"Spring", "", 0, 3, 5, "", new ArrayList<String>());
 		
 		Plant blackMaple = new Plant("Black Maple", "Acer nigrum", "Yellow",
-				"Spring", null, null, 3, 3, null, null);
+				"Spring", "", 0, 3, 3, "", new ArrayList<String>());
 		
 		Plant juneBush = new Plant("Junebush", "Amelanchier canadensis", "White",
-				"Spring", null, null, 3, 4, null, null);
+				"Spring", "", 0, 3, 4, "", new ArrayList<String>());
 		
 		Plant whiteBirch = new Plant("White Birch", "Betula poulifolia", "Green",
-				"Spring", null, null, 1, 3, null, null);
+				"Spring", "", 0, 1, 3, "", new ArrayList<String>());
 		
 		Plant cigarTree = new Plant("Cigar Tree"," Amelanchier canadensis", "White", 
-				"Summer", null, null, 1, 1, null, null);
+				"Summer", "", 0, 1, 1, "", new ArrayList<String>());
 		
 		
 		//Shrubs
 		Plant seasideAlder = new Plant("Seaside Alder", "Alnus Maritima", "Yellow",
-				"Summer", null, null, 5, 3, null, null);
+				"Summer","", 0, 5, 3, "", new ArrayList<String>());
 		
 		Plant redChokeberry = new Plant("Red Chokeberry", "Aronia arbutifolia", "White",
-				"Spring", null, null, 5, 5, null, null);
+				"Spring", "", 0, 5, 5, "", new ArrayList<String>());
 		
 		Plant sweetShrub = new Plant("Sweet Shrub", "Calycanthus floridus", "Red",
-				"Spring", null, null, 3, 3, "Moist", null);
+				"Spring", "", 0, 3, 3, "Moist", new ArrayList<String>());
 		
 		Plant newJerseyTea = new Plant("New Jersey Tea", "Ceanothus americanus", "White",
-				"Spring", null, 1, 2, null, null);
+				"Spring", "", 0, 1, 2, "", new ArrayList<String>());
 		
-		Plant americanHazelnut = new plant("American Hazelnut", "Corylus americana", "White",
-				"Spring", null, 3, 2, null, null);
+		Plant americanHazelnut = new Plant("American Hazelnut", "Corylus americana", "White",
+				"Spring", "", 0, 3, 2, "", new ArrayList<String>());
 		
 		Plant redWillow = new Plant("Red Willow", "Cornus amomum", "White",
-				"Spring", null, 5, 3, null, null);
+				"Spring", "", 0, 5, 3, "", new ArrayList<String>());
 		
-		Plant maidenhairFern = new Plant("Maidenhair Fern", "Adiantum pedatum", null,
-				null, null, 3, 3, null, null);
+		Plant maidenhairFern = new Plant("Maidenhair Fern", "Adiantum pedatum", "",
+				"", "", 0, 3, 3, "", new ArrayList<String>());
 		
-		Plant blackstemSpleenwort = new Plant("Blackstem Spleenwort", "Asplenium Resiliens", null,
-				null, null, 3, 2, null, null);
-		
-		
+		Plant blackstemSpleenwort = new Plant("Blackstem Spleenwort", "Asplenium Resiliens", "",
+				"", "", 0, 3, 2, "", new ArrayList<String>());
+				
 		flowerArr = new ArrayList<Plant>();
-		flowerArr.add(purpleConeFlower);
-		flowerArr.add(goldenRod);
+	//	flowerArr.add(purpleConeFlower);
+	//	flowerArr.add(goldenRod);
 		flowerArr.add(pearThorn);
 		flowerArr.add(whiteSnakeroot);
 		flowerArr.add(starGrass);
@@ -170,7 +173,7 @@ public class Model implements Serializable{
 		flowerArr.add(fillaree);
 		
 		shrubArr = new ArrayList<Plant>();
-		shrubArr.add(sweetFern);
+		//shrubArr.add(sweetFern);
 		shrubArr.add(seasideAlder);
 		shrubArr.add(redChokeberry);
 		shrubArr.add(newJerseyTea);
@@ -179,7 +182,7 @@ public class Model implements Serializable{
 	
 		
 		treeArr = new ArrayList<Plant>();
-		treeArr.add(sugarMaple);
+		//treeArr.add(sugarMaple);
 		treeArr.add(cigarTree);
 		treeArr.add(whiteBirch);
 		treeArr.add(boxElder);
@@ -188,7 +191,7 @@ public class Model implements Serializable{
 		treeArr.add(narrowleafCottonwood);
 		
 		underGrowthArr = new ArrayList<Plant>();
-		underGrowthArr.add(milkWeed);
+	//	underGrowthArr.add(milkWeed);
 		underGrowthArr.add(maidenhairFern);
 		underGrowthArr.add(blackstemSpleenwort);
 		

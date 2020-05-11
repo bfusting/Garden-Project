@@ -7,13 +7,18 @@ import java.io.*;
 public class Plant extends AddOn{
 	private static final long serialVersionUID = 998480235L;
 	
+	private String latinName;
 	private String color;
 	private int waterNeed;
 	private int sunLightNeed;
 	private double plantHeight;
 	private int locationPref;
-	private Seasons bloomTime;
+	private String bloomTime;
 	private boolean provideShade;
+	
+	private int size;
+	private String habit;
+	private String soilMoisture;
 	
 	private String[] ageImages;
 	private String[] seasonImages;
@@ -23,13 +28,28 @@ public class Plant extends AddOn{
 	private ArrayList<String> animalsFed = new ArrayList();
 	private ArrayList<String> compatiblePlants = new ArrayList();
 	
+	
+	public Plant(String name, String latinName, String color, String bloomTime,
+			String habit, int size, int waterNeed, int sunLightNeed, String soilMoisture, ArrayList<String> animalsFed) {
+		this.name = name;
+		this.color = color;
+		this.bloomTime = bloomTime;
+		this.latinName = latinName;
+		this.sunLightNeed = sunLightNeed;
+		this.waterNeed = waterNeed;
+		this.size = size;
+		this.habit = habit;
+		this.soilMoisture = soilMoisture;
+		this.animalsFed = animalsFed;
+		
+	}
 	/**
 	 * Constructor for the Plant class. Initializes the characteristics and requirements for the plant
 	 * and the arrays of Strings containing the urls for the images of the plant at different ages and in
 	 * different seasons.
 	 */
 	public Plant(String name, int tileSize, String description, String color, int waterNeed, int sunLightNeed, double plantHeight, int locationPref,
-			Seasons bloomTime, boolean provideShade, String[] ageImages, String[] season, String plantType, 
+			String bloomTime, boolean provideShade, String[] ageImages, String[] season, String plantType, 
 			ArrayList<String> animalsFed, ArrayList<String> compatiblePlants) {
 		super(name,tileSize,description);
 		
@@ -49,6 +69,8 @@ public class Plant extends AddOn{
 		
 		
 	}
+	
+	
 	
 	public Plant() {
 		
@@ -144,7 +166,7 @@ public class Plant extends AddOn{
  * Returns the bloom period of the plant as a Date object.
  * @return bloomTime the bloom period of the plant
  */
-	public Seasons getBloomTime() {
+	public String getBloomTime() {
 		return bloomTime;
 	}
 	
@@ -152,7 +174,7 @@ public class Plant extends AddOn{
 	 * Sets the bloom period of the plant as a Date object.
 	 * @param bloomTime the bloom period of the plant
 	 */
-	public void setBloomTime(Seasons bloomTime) {
+	public void setBloomTime(String bloomTime) {
 		this.bloomTime = bloomTime;
 	}
 
