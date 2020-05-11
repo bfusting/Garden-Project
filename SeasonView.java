@@ -3,6 +3,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 /*
@@ -33,6 +36,10 @@ public class SeasonView extends Screen{
 	// full screen season view?
 	private final static int HEIGHT = 600;
 	private final static int WIDTH = 800;
+	
+	// used to anchor items in place
+	private final static double bottomAnchorPoint = 200.0;
+	private double leftAnchorPoint = 200.0;
 
 	//used as the main stage which holds everything
 	private AnchorPane root;
@@ -50,7 +57,7 @@ public class SeasonView extends Screen{
 	private Button springBTN;
 	private Button summerBTN;
 	private Button fallBTN;
-	private Button WinterBTN;
+	private Button winterBTN;
 	
 	// used to display stage
 	private Controller c;
@@ -97,9 +104,45 @@ public class SeasonView extends Screen{
 		//Creating new instances of images
 		stage = new Stage();
 		
+		// creating a new instance
 		root = new AnchorPane();
 		
-		// Setting the Scene with bPane
+		// dummy variable to see where to place future gridPane
+		Rectangle r1 = new Rectangle(150,100,900,500);
+		r1.setStroke(Color.LIGHTGRAY);
+		r1.setFill(Color.LIGHTGRAY);
+		r1.setStrokeWidth(1);
+		
+		// used to anchor the rectangle above buttons, can use for gridPane
+		root.setTopAnchor(r1, 0.0);
+		root.getChildren().add(r1);
+		
+		// Buttons initilization to have their own labels
+		springBTN = new Button("View Spring");
+		summerBTN = new Button("View Summer");
+		fallBTN = new Button("View Fall");
+		winterBTN = new Button("View Winter");
+		
+		// Binding buttons to event handlers (Event handler for each season)
+		
+		
+		// Anchoring in AnchorPane at the bottom via for loop
+		Button btnArr[] = {springBTN,summerBTN,fallBTN,winterBTN};
+		for(int i=0;i<btnArr.length;i++) {
+			root.setBottomAnchor(btnArr[i], bottomAnchorPoint);
+		}
+		
+		// Anchoring Buttons in AnchorPane from left to right
+		double btmPlaceArr[] = {leftAnchorPoint,leftAnchorPoint+200,
+				leftAnchorPoint+400,leftAnchorPoint+600};
+		for(int i=0;i<btnArr.length;i++) {
+			root.setLeftAnchor(btnArr[i], btmPlaceArr[i]);
+		}
+		
+		//adding buttons to the anchorpane
+		root.getChildren().addAll(springBTN,summerBTN,fallBTN,winterBTN);
+		
+		// Setting the Scene with AnchorPane
 		Scene scene = new Scene(root,HEIGHT,WIDTH);
 		stage.setTitle("SeasonView");
 		stage.setScene(scene);
