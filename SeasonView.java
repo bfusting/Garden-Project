@@ -23,11 +23,10 @@ import javafx.stage.Stage;
 */
 
 /**
- * 
- * @author Malachi Parks
- * <p>
  * Season View is a GUI implementation where the user can see how their garden would look
  * in different seasons such as SUMMER, WINTER, FALL
+ * <p>
+ * @author Malachi Parks
  *
  */
 public class SeasonView extends Screen{
