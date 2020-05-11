@@ -70,29 +70,7 @@ public class SeasonView extends Screen{
 	public SeasonView(Controller controller) {
 		c = controller;
 	}
-	
-	/**
-	 * Returns the back button to bind an event listener to
-	 * <p>
-	 * Getter for springBTN
-	 * 
-	 * @return back button on the screen
-	 */
-	public Button getSpringBTN() {
-		return springBTN;
-	}
-	
-	/**
-	 * Returns the next button to bind an event listener to
-	 * <p>
-	 * Getter for summerBTN
-	 * 
-	 * @return summer button on the screen
-	 */
-	public Button getSummerBTN() {
-		return summerBTN;
-	}
-	
+
 	/**
 	 * Used to create a new popup window of the stage and adds the
 	 * features such as the back button and a pane within the borderpane center
