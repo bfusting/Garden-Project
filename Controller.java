@@ -264,7 +264,6 @@ public class Controller{
 		model.createUserPlot();
 		System.out.println("Make Garden");
 		//view.showDesignGardenScreen();
-		view.show("designGardenScreen");
 	}//choseDesign
 	
 	/**
