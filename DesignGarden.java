@@ -465,14 +465,26 @@ shrubs = new Tab("Shrubs");
 
 shrubs.setContent(shrubsGP);
 
-// max size of items
-shrubsGP.setMaxSize(selectionGPsize, selectionGPsize);
-//adding row
-shrubsGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
+String[] shrub = {"Plant Pictures/Maidenhair_Fern.JPG","Plant Pictures/Sweet_Shrub.JPG"};
+
+shrubSelArr = new ArrayList<ImageView>();
+//setting up with each different picture
+for(int i=0; i<shrub.length;i++) {
+	Image img = new Image(shrub[i]);
+	ImageView imgV = new ImageView(img);
+	imgV.setPreserveRatio(true);
+	imgV.setFitHeight(100);
+	imgV.setFitWidth(100);
+	imgV.setOnDragDetected(c.getStartDrag());
+	shrubSelArr.add(imgV);
+}
 for (int i = 0; i < selectionSize; i++) {
      ColumnConstraints column = new ColumnConstraints(selectionGPsize);
      shrubsGP.getColumnConstraints().add(column);
      shrubsGP.add(backdropColor2.get(i), i, 0,1,1);
+     if(i<2) {
+    	 shrubsGP.add(shrubSelArr.get(i), i, 0,1,1);
+     }
 }
 
 shrubsGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
