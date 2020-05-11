@@ -46,6 +46,7 @@ public class SeasonView extends Screen{
 	private final double bottomAnchorPoint = 100.0;
 	private double leftAnchorPoint = 225.0;
 	private final double topAnchorPoint = 0.0; 
+	private final double overlapPoint = 150.0;
 
 	//used as the main stage which holds everything
 	private AnchorPane root;
@@ -113,7 +114,8 @@ public class SeasonView extends Screen{
 		System.out.println(img.getImage().impl_getUrl().substring(substringInd));
 		
 		// dummy variable to see where to place future gridPane
-		Rectangle backdrop = new Rectangle(150,100,900,500);
+		Rectangle backdrop = new Rectangle(overlapPoint,bottomAnchorPoint,
+				overlapPoint*5,bottomAnchorPoint*5);
 		backdrop.setStroke(Color.LIGHTGRAY);
 		backdrop.setFill(Color.LIGHTGRAY);
 		backdrop.setStrokeWidth(1);
@@ -124,7 +126,7 @@ public class SeasonView extends Screen{
 		
 		// overlaying seasonsGP onto backdrop rectangle
 		seasonGP.setGridLinesVisible(true);
-		root.setLeftAnchor(seasonGP,150.0);
+		root.setLeftAnchor(seasonGP,overlapPoint);
 		root.getChildren().add(seasonGP);
 		
 		// Buttons initilization to have their own labels
