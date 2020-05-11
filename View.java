@@ -417,4 +417,8 @@ public class View extends Application{
 		return seasonViewScreen;
 	}
 	
+	public FinalView getFinalViewScreen() {
+		return finalViewScreen;
+	}
+	
 }
