@@ -4,6 +4,7 @@ import java.util.HashSet;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Node;
+import javafx.scene.control.Control;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -39,7 +40,7 @@ import javafx.stage.Stage;
  * @author Takiyah Price 
  */
 
-//last edited: 5-7-20 12:53PM
+//last edited: 5-10-20 7:00PM
 
 
 public class View extends Application{
@@ -69,19 +70,20 @@ public class View extends Application{
 	static final Color bgColor1 = Color.web("#a5c96b");
 	static final Border primarySceneBorder1 = new Border(new BorderStroke(borderColor1,BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(borderWidth)));
 	
-	private HashSet<Node> prefs;
+	
 	
 	
 	private FileChooser fileChooser;
 	
 	/**
-	 * Constructor for the View that creates the Controller and passes itself into the Controller's constructor. 
+	 * Constructor for the View that creates the Controller and passes itself into the Controller's constructor and creates a FileChooser for when
+	 * when the user loads a saved design.
 	 * 
 	 * @see Controller
 	 */
 	public View() {
 		con = new Controller(this);
-		prefs = new HashSet<Node>();
+		
 		fileChooser = new FileChooser();
 
 	}
@@ -120,11 +122,8 @@ public class View extends Application{
 	
 		exitScreen = new Exit(con);
 		
-		chooseTemplateScreen = new ChooseTemplate(con,primaryStage);
-		chooseTemplateScreen.setPreviousScreen(mainMenuScreen);
+		createNew();
 		
-		designGardenScreen = new DesignGarden(con,primaryStage);
-		designGardenScreen.setPreviousScreen(chooseTemplateScreen);
 		
 		
 		
@@ -140,9 +139,6 @@ public class View extends Application{
 		
 		recommendationsScreen = new Recommendations(con);
 		recommendationsScreen.setPreviousScreen(designGardenScreen);
-		
-		preferencesScreen = new Preferences(con,primaryStage);
-		preferencesScreen.setPreviousScreen(chooseTemplateScreen);
 		
 		
 		currentPrimaryScreen = mainMenuScreen;
@@ -210,6 +206,7 @@ public class View extends Application{
 			}
 			currentPrimaryScreen = mainMenuScreen;
 			mainMenuScreen.showScreen();
+			//createNew();
 			break;
 		case "instructionsScreen":
 			//instructionsScreen.setPreviousScreen(currentPrimaryScreen);
@@ -263,6 +260,7 @@ public class View extends Application{
 			if (con.loadGarden(showSaveLoad(false))) {
 				show("designGardenScreen");
 			}
+			//might delete
 			break;
 			
 		case "seasonViewScreen":
@@ -369,8 +367,9 @@ public class View extends Application{
 			chooseTemplateScreen.mouseClicked((Shape) o);
 		}
 		else if (currentPrimaryScreen.equals(preferencesScreen)) {
-			prefs.add((Node) o);
-			if (prefs.size()==preferencesScreen.getTotalPrefs()) {
+			//prefs.add((Node) o);
+			preferencesScreen.sendPreference((Control) o);
+			if (con.getPrefsSet()==preferencesScreen.getTotalPrefs()) {
 				preferencesScreen.allowStartCreating();
 			}
 		}
@@ -385,18 +384,37 @@ public class View extends Application{
 	 * @see ChooseTemplate#getSelectedTemplate()
 	 * @see GardenPlot#shape
 	 */
-	public String getSelectedTemplate() {
+	public String sendTemplate() {
 		return chooseTemplateScreen.getSelectedTemplate();
 	}
 	
-	public void sendPreferences() {
-			preferencesScreen.sendPreferences();
-	}
 	
+	/**
+	 * Returns the String representation of the current primary Screen being viewed.
+	 */
 	public String getCurrentPrimaryScreen() {
 		return String.valueOf(currentPrimaryScreen);
 	}
 	
+	public void loadPreferences(String colorPref, String seasonPref, int waterPref,int lightPref, int lengthPref, int widthPref) {
 		
+		preferencesScreen.setValues(colorPref,seasonPref,waterPref,lightPref,lengthPref,widthPref);
+	}
+	
+	/**
+	 * Reinstantiates the templates, preferences and design Screens. To be called when the user clicks the 'Create New Garden' button from the main menu.
+	 */
+	public void createNew() {
+		chooseTemplateScreen = new ChooseTemplate(con,primaryStage);
+		chooseTemplateScreen.setPreviousScreen(mainMenuScreen);
+		preferencesScreen = new Preferences(con,primaryStage);
+		preferencesScreen.setPreviousScreen(chooseTemplateScreen);
+		designGardenScreen = new DesignGarden(con,primaryStage);
+		designGardenScreen.setPreviousScreen(preferencesScreen);
+	}
+		
+	public SeasonView getSeasonViewScreen() {
+		return seasonViewScreen;
+	}
 	
 }

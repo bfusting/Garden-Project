@@ -50,12 +50,14 @@ public class Model implements Serializable{
 	private ArrayList<Plant> otherLight;
 	private ArrayList<Plant> otherWater;
 	
+	
+	private String userTemplate;
 	// Prefs given by user
 	private String userPrefColor;
 	private Seasons userPrefSeason;
 	private int userPrefLight;
 	private int userPrefWater;
-	
+	private int prefsSet;
 	// Width and length given by user passed in by preferences
 	private int userLength;
 	private int userWidth;
@@ -77,15 +79,18 @@ public class Model implements Serializable{
 	 * @see GardenPlot
 	 */
 	public Model() {
-		userPlot = new GardenPlot();
-		
+		userPlot = null;
+		userTemplate = "";
+		prefsSet = 0;
 		// Creating temp Plants for Bradley to use in methods, remove later
 		
 		Plant purpleConeFlower = new Plant("Purple Cone Flower", 1, "cone flower", 
-				"purple", 0, 0, 0, 0, Seasons.AUTUMN, false, null, null, null, null, null);
+				"purple", 0, 0, 0, 0, Seasons.AUTUMN, false, null, null, "Flower", null, null);
+		
+		Plant goldenRod = new Plant("Golden Rod", "Solidago Sempervirens", "Yellow", "Autumn", null, null, 3, 5, "Moist", null);
 		
 		Plant sugarMaple = new Plant("Sugar Maple", 4, "Maple Tree", "Yellow", 3, 0,
-				0, 0, Seasons.SUMMER, true, null, null, null, null, null);
+				0, 0, Seasons.SUMMER, true, null, null, "Tree", null, null);
 		
 		Plant sweetFern = new Plant("Sweet Fern", 1, "Fern Variant", "White",
 				3, 2, 3.0, 0, Seasons.SPRING, false, null, null, "Shrub", null, null);
@@ -93,20 +98,104 @@ public class Model implements Serializable{
 		Plant milkWeed = new Plant("Milkweed", 1, "Common Milkweed", "Orange", 4, 2, 
 				2.00, 0, Seasons.SUMMER, false, null, null, "UnderGrowth", null, null);
 		
+		
+		Plant fillaree = new Plant("Fillaree", "eraniaceae Erodium texanum", "Red", 
+				"Spring", null, null, 1, 5, "Dry", null);
+		
+		Plant starGrass = new Plant("Star Grass", "Liliaceae Aletris aurea", "Yellow",
+				"Summer", null, null, 3, 3, null, null);
+		
+		Plant narrowLeafOnion = new Plant("Narrowleaf Onion","Allium amplectens", "White", 
+				"Spring", null, null, 3, 3, null, null);
+		
+		Plant pearThorn = new Plant("Pear Thorn", "Crataegus calpodenron", "White",
+				"Summer", null, null, 3, 3, null, null);
+		
+		Plant whiteSnakeroot = new Plant("White Snakeroot", "Ageratina Altissim", "White",
+				"Summer", null, null, 1, 3, null, null);
+		
+		// Trees
+		Plant narrowleafCottonwood = new Plant("Narrowleaf Cottonwood", "Populus Angustifloia", "White",
+				"Spring", null, null, 5, 3, null, null);
+		
+		Plant boxElder = new Plant("Box Elder", "Acer negundo", "Yellow",
+				"Spring", null, null, 3, 5, null, null);
+		
+		Plant blackMaple = new Plant("Black Maple", "Acer nigrum", "Yellow",
+				"Spring", null, null, 3, 3, null, null);
+		
+		Plant juneBush = new Plant("Junebush", "Amelanchier canadensis", "White",
+				"Spring", null, null, 3, 4, null, null);
+		
+		Plant whiteBirch = new Plant("White Birch", "Betula poulifolia", "Green",
+				"Spring", null, null, 1, 3, null, null);
+		
+		Plant cigarTree = new Plant("Cigar Tree"," Amelanchier canadensis", "White", 
+				"Summer", null, null, 1, 1, null, null);
+		
+		
+		//Shrubs
+		Plant seasideAlder = new Plant("Seaside Alder", "Alnus Maritima", "Yellow",
+				"Summer", null, null, 5, 3, null, null);
+		
+		Plant redChokeberry = new Plant("Red Chokeberry", "Aronia arbutifolia", "White",
+				"Spring", null, null, 5, 5, null, null);
+		
+		Plant sweetShrub = new Plant("Sweet Shrub", "Calycanthus floridus", "Red",
+				"Spring", null, null, 3, 3, "Moist", null);
+		
+		Plant newJerseyTea = new Plant("New Jersey Tea", "Ceanothus americanus", "White",
+				"Spring", null, 1, 2, null, null);
+		
+		Plant americanHazelnut = new plant("American Hazelnut", "Corylus americana", "White",
+				"Spring", null, 3, 2, null, null);
+		
+		Plant redWillow = new Plant("Red Willow", "Cornus amomum", "White",
+				"Spring", null, 5, 3, null, null);
+		
+		Plant maidenhairFern = new Plant("Maidenhair Fern", "Adiantum pedatum", null,
+				null, null, 3, 3, null, null);
+		
+		Plant blackstemSpleenwort = new Plant("Blackstem Spleenwort", "Asplenium Resiliens", null,
+				null, null, 3, 2, null, null);
+		
+		
 		flowerArr = new ArrayList<Plant>();
 		flowerArr.add(purpleConeFlower);
+		flowerArr.add(goldenRod);
+		flowerArr.add(pearThorn);
+		flowerArr.add(whiteSnakeroot);
+		flowerArr.add(starGrass);
+		flowerArr.add(narrowLeafOnion);
+		flowerArr.add(fillaree);
 		
 		shrubArr = new ArrayList<Plant>();
 		shrubArr.add(sweetFern);
+		shrubArr.add(seasideAlder);
+		shrubArr.add(redChokeberry);
+		shrubArr.add(newJerseyTea);
+		shrubArr.add(americanHazelnut);
+		shrubArr.add(redWillow);
+	
 		
 		treeArr = new ArrayList<Plant>();
 		treeArr.add(sugarMaple);
+		treeArr.add(cigarTree);
+		treeArr.add(whiteBirch);
+		treeArr.add(boxElder);
+		treeArr.add(blackMaple);
+		treeArr.add(juneBush);
+		treeArr.add(narrowleafCottonwood);
 		
 		underGrowthArr = new ArrayList<Plant>();
 		underGrowthArr.add(milkWeed);
+		underGrowthArr.add(maidenhairFern);
+		underGrowthArr.add(blackstemSpleenwort);
 		
 		// holds all scenery items like dirt to branchs
 		sceneryArr = new ArrayList<AddOn>();
+		AddOn bench = new AddOn("Bench",1,"A bench to sit on....duh");
+		sceneryArr.add(bench);
 		
 		// holds all plants in program ---> Used on creation only
 		allPlants = new ArrayList<Plant>();
@@ -429,27 +518,51 @@ public class Model implements Serializable{
 	}
 	
 	public void setUserPrefColor(String newColor) {
-		userPrefColor = newColor;
+		if (userPrefColor.equals("") && newColor!="") {
+			prefsSet++;
+			userPrefColor = newColor;
+		}
+		
 	}
 	
 	public void setUserPrefSeason(Seasons newSeason) {
-		userPrefSeason = newSeason;
+		if (userPrefSeason==null && newSeason!=null) {
+			prefsSet++;
+			userPrefSeason = newSeason;
+		}
+		
 	}
 	
 	public void setUserPrefLight(int newLight) {
-		userPrefLight = newLight;
+		if (userPrefLight==0 && newLight!=0) {
+			prefsSet++;
+			userPrefLight = newLight;
+		}
+		
 	}
 	
 	public void setUserPrefWater(int newWater) {
-		userPrefWater = newWater;
+		if (userPrefWater == 0 && newWater!=0) {
+			prefsSet++;
+			userPrefWater = newWater;
+		}
+		
 	}
 	
 	public void setUserLength(int newLength) {
-		userLength = newLength;
+		if (userLength==0 && newLength!=0) {
+			prefsSet++;
+			userLength = newLength;
+		}
+		
 	}
 	
 	public void setUserWidth(int newWidth) {
-		userWidth = newWidth;
+		if (userWidth==0 && newWidth!=0) {
+			prefsSet++;
+			userWidth = newWidth;
+		}
+		
 	}
 	
 	//////////////////// Comparators ///////////////////////////////////
@@ -702,6 +815,39 @@ public class Model implements Serializable{
 		otherSeasons.clear();
 		otherLight.clear();
 		otherWater.clear();
+	}
+	
+	/**
+	 * Sets the property userTemplate, a string representing the template shape chosen by the user that
+	 * the userPlot will be.
+	 * @param shape A string representing the template shape chosen by the user.
+	 */
+	public void setUserTemplate(String shape) {
+		userTemplate = shape;
+	}
+	
+	/**
+	 * Returns the property userTemplate, a string representing the template shape chosen by the user.
+	 * @return
+	 */
+	public String getUserTemplate() {
+		return userTemplate;
+	}
+	
+	/**
+	 * Sets the property userPlot to a new GardenPlot with the user specified template, length and width.
+	 */
+	public void createUserPlot() {
+		userPlot = new GardenPlot(userTemplate,userLength,userWidth);
+	}
+	
+	/**
+	 * Returns the value of property prefSet.
+	 * 
+	 * @return An int, the number of preferences that have been modified from their default value.
+	 */
+	public int getPrefsSet() {
+		return prefsSet;
 	}
 	// then getters and setters for new attributes
 }//Modeld
