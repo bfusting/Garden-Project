@@ -237,9 +237,9 @@ public class Recommendations extends Screen{
 		texts.add(new Text("Shrub"));
 		texts.add(new Text("Flower"));
 		
-		TitledPane treeTest;
-		TitledPane shrubTest;
-		TitledPane flowerTest;
+		TitledPane treeTest = null;
+		TitledPane shrubTest = null;
+		TitledPane flowerTest = null;
 	
 		for(Text t : texts) {
 			AnchorPane.setLeftAnchor(t, 5.0);
@@ -256,9 +256,13 @@ public class Recommendations extends Screen{
 	root.setBackground(new Background(new BackgroundFill(Color.DARKOLIVEGREEN,CornerRadii.EMPTY,Insets.EMPTY)));
 	
 	try {
-		treeTest = new TitledPane("Trees", new Text(this.getRecPlants()[0].getName()));
-		shrubTest = new TitledPane("Shrubs", new Text(this.getRecPlants()[0].getName()));
-		flowerTest = new TitledPane("Flowers", new Text(this.getRecPlants()[0].getName()));
+		for(int i = 0; i < this.getRecPlants().length; i++) {
+			if(this.getRecPlants()[i] != null) {
+				treeTest = new TitledPane("Trees", new Text(this.getRecPlants()[i].getName()));
+				shrubTest = new TitledPane("Shrubs", new Text(this.getRecPlants()[i].getName()));
+				flowerTest = new TitledPane("Flowers", new Text(this.getRecPlants()[i].getName()));
+			}
+		}
 		
 	}
 	catch(Exception e) {
@@ -314,8 +318,12 @@ public class Recommendations extends Screen{
 				
 				//getting recommended plants from every gardenTile
 				//This might want to be changed to include fewer tiles, like every other tile or something
-				rec[count] = this.c.getModel().getUserPlot().getLayout()[i][k].getRecommendations(
-						this.c.getModel().getUserPlot().getSurroundingInfo(i, k))[1];
+				for(int j = 0; j < this.c.getModel().getUserPlot().getLayout()[i][k].getRecommendations(
+						this.c.getModel().getUserPlot().getSurroundingInfo(i, k)).length; j++) {
+					rec[count] = this.c.getModel().getUserPlot().getLayout()[i][k].getRecommendations(
+							this.c.getModel().getUserPlot().getSurroundingInfo(i, k))[j];
+					
+				}
 				
 			
 				
