@@ -92,6 +92,8 @@ public class SeasonView extends Screen{
 		// setting up seasonsGP with controller
 		seasonGP = new GridPane();
 		
+		//double rowConstraint =
+		
 		ImageView img = new ImageView("img/dirtPath.jpg");
 		int substringInd = img.getImage().impl_getUrl().indexOf("team-11-3");
 		System.out.println(substringInd);

@@ -121,6 +121,10 @@ public class DesignGarden extends Screen{
 	// length/width taken in by user preference
 	private int length = 5;
 	private int width = 5;
+	private double colConstraint = 150.0;
+	private double rowConstraint = 100.0;
+	
+	// final vars
 	private final int selectionSize = 6;
 	private final double maxTileEditSize = 50.0;
 	private final double selectionGPsize = 100.0;
@@ -757,6 +761,18 @@ designGardenScene = new Scene(root,1200,800);
 	}
 	public GridPane getOtherGP() {
 		return otherGP;
+	}
+	public int getLength() {
+		return length;
+	}
+	public int getWidth() {
+		return width;
+	}
+	public double getColConstraint(){
+		return colConstraint;
+	}
+	public double getRowConstraint() {
+		return rowConstraint;
 	}
 	
 	@Override
