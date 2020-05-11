@@ -15,6 +15,12 @@ public class Plant extends AddOn{
 	private Seasons bloomTime;
 	private boolean provideShade;
 	
+	private String latinName;
+	private String habit;
+	private String animalsFedString;
+	private int size;
+	private String soilMoisture;
+	
 	private String[] ageImages;
 	private String[] seasonImages;
 	
@@ -52,6 +58,21 @@ public class Plant extends AddOn{
 	
 	public Plant() {
 		
+	}
+	
+	public Plant(String name, String latinName, String color, Seasons bloomTime, String habit, int size, int waterNeed, int sunLightNeed, String soilMoisture, String animalsFedString) {
+		this.latinName = latinName;
+		this.name = name;
+		this.color = color;
+		this.bloomTime = bloomTime;
+		this.habit = habit;
+		this.size = size;
+		this.waterNeed = waterNeed;
+		this.sunLightNeed = sunLightNeed;
+		this.soilMoisture = soilMoisture;
+		this.animalsFedString = animalsFedString;
+		
+				
 	}
 	
 

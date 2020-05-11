@@ -87,7 +87,7 @@ public class Model implements Serializable{
 		Plant purpleConeFlower = new Plant("Purple Cone Flower", 1, "cone flower", 
 				"purple", 0, 0, 0, 0, Seasons.AUTUMN, false, null, null, "Flower", null, null);
 		
-		Plant goldenRod = new Plant("Golden Rod", "Solidago Sempervirens", "Yellow", "Autumn", null, null, 3, 5, "Moist", null);
+		Plant goldenRod = new Plant("Golden Rod", "Solidago Sempervirens",  "Yellow", Seasons.AUTUMN, null, 0, 3, 5, "Moist", null);
 		
 		Plant sugarMaple = new Plant("Sugar Maple", 4, "Maple Tree", "Yellow", 3, 0,
 				0, 0, Seasons.SUMMER, true, null, null, "Tree", null, null);
@@ -100,66 +100,66 @@ public class Model implements Serializable{
 		
 		
 		Plant fillaree = new Plant("Fillaree", "eraniaceae Erodium texanum", "Red", 
-				"Spring", null, null, 1, 5, "Dry", null);
+				Seasons.SPRING, null, 0, 1, 5, "Dry", null);
 		
 		Plant starGrass = new Plant("Star Grass", "Liliaceae Aletris aurea", "Yellow",
-				"Summer", null, null, 3, 3, null, null);
+				Seasons.SPRING, null, 0, 3, 3, null, null);
 		
 		Plant narrowLeafOnion = new Plant("Narrowleaf Onion","Allium amplectens", "White", 
-				"Spring", null, null, 3, 3, null, null);
+				Seasons.SPRING, null, 0, 3, 3, null, null);
 		
 		Plant pearThorn = new Plant("Pear Thorn", "Crataegus calpodenron", "White",
-				"Summer", null, null, 3, 3, null, null);
+				Seasons.SUMMER, null, 0, 3, 3, null, null);
 		
 		Plant whiteSnakeroot = new Plant("White Snakeroot", "Ageratina Altissim", "White",
-				"Summer", null, null, 1, 3, null, null);
+				Seasons.SUMMER, null, 0, 1, 3, null, null);
 		
 		// Trees
 		Plant narrowleafCottonwood = new Plant("Narrowleaf Cottonwood", "Populus Angustifloia", "White",
-				"Spring", null, null, 5, 3, null, null);
+				Seasons.SPRING, null, 0, 5, 3, null, null);
 		
 		Plant boxElder = new Plant("Box Elder", "Acer negundo", "Yellow",
-				"Spring", null, null, 3, 5, null, null);
+				Seasons.SPRING, null, 0, 3, 5, null, null);
 		
 		Plant blackMaple = new Plant("Black Maple", "Acer nigrum", "Yellow",
-				"Spring", null, null, 3, 3, null, null);
+				Seasons.SPRING, null, 0, 3, 3, null, null);
 		
 		Plant juneBush = new Plant("Junebush", "Amelanchier canadensis", "White",
-				"Spring", null, null, 3, 4, null, null);
+				Seasons.SPRING, null, 0, 3, 4, null, null);
 		
 		Plant whiteBirch = new Plant("White Birch", "Betula poulifolia", "Green",
-				"Spring", null, null, 1, 3, null, null);
+				Seasons.SPRING, null, 0, 1, 3, null, null);
 		
 		Plant cigarTree = new Plant("Cigar Tree"," Amelanchier canadensis", "White", 
-				"Summer", null, null, 1, 1, null, null);
+				Seasons.SUMMER, null, 0, 1, 1, null, null);
 		
 		
 		//Shrubs
 		Plant seasideAlder = new Plant("Seaside Alder", "Alnus Maritima", "Yellow",
-				"Summer", null, null, 5, 3, null, null);
+				Seasons.SUMMER, null, 0, 5, 3, null, null);
 		
 		Plant redChokeberry = new Plant("Red Chokeberry", "Aronia arbutifolia", "White",
-				"Spring", null, null, 5, 5, null, null);
+				Seasons.SPRING, null, 0, 5, 5, null, null);
 		
 		Plant sweetShrub = new Plant("Sweet Shrub", "Calycanthus floridus", "Red",
-				"Spring", null, null, 3, 3, "Moist", null);
+				Seasons.SPRING, null, 0, 3, 3, "Moist", null);
 		
 		Plant newJerseyTea = new Plant("New Jersey Tea", "Ceanothus americanus", "White",
-				"Spring", null, 1, 2, null, null);
+				Seasons.SPRING, null,0, 1, 2, null, null);
 		
-		Plant americanHazelnut = new plant("American Hazelnut", "Corylus americana", "White",
-				"Spring", null, 3, 2, null, null);
+		Plant americanHazelnut = new Plant("American Hazelnut", "Corylus americana", "White",
+				Seasons.SPRING, null,0, 3, 2, null, null);
 		
 		Plant redWillow = new Plant("Red Willow", "Cornus amomum", "White",
-				"Spring", null, 5, 3, null, null);
+				Seasons.SPRING, null,0, 5, 3, null, null);
 		
-		Plant maidenhairFern = new Plant("Maidenhair Fern", "Adiantum pedatum", null,
+/*		Plant maidenhairFern = new Plant("Maidenhair Fern", "Adiantum pedatum", null,
 				null, null, 3, 3, null, null);
 		
 		Plant blackstemSpleenwort = new Plant("Blackstem Spleenwort", "Asplenium Resiliens", null,
 				null, null, 3, 2, null, null);
 		
-		
+*/		
 		flowerArr = new ArrayList<Plant>();
 		flowerArr.add(purpleConeFlower);
 		flowerArr.add(goldenRod);
@@ -189,9 +189,9 @@ public class Model implements Serializable{
 		
 		underGrowthArr = new ArrayList<Plant>();
 		underGrowthArr.add(milkWeed);
-		underGrowthArr.add(maidenhairFern);
+/*		underGrowthArr.add(maidenhairFern);
 		underGrowthArr.add(blackstemSpleenwort);
-		
+*/		
 		// holds all scenery items like dirt to branchs
 		sceneryArr = new ArrayList<AddOn>();
 		AddOn bench = new AddOn("Bench",1,"A bench to sit on....duh");
