@@ -1,14 +1,26 @@
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
 import javafx.stage.Stage;
 
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.input.MouseEvent;
+
+import java.util.ArrayList;
+
+import javax.swing.event.ChangeListener;
+
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 
 //Updated: 4/26 5:08 >>updated by TJ 4/30 made it extend Screen
@@ -24,11 +36,18 @@ public class Preferences extends Screen{
 	private ComboBox<String> bloomTime;
 	private ComboBox<String> waterReq;
 	private ComboBox<String> lightReq;
-	private ColorPicker color;
+	//private ColorPicker color;
+	private ComboBox<String> color;
+	private ComboBox<String> season;
+	private Slider light;
+	private Slider water;
+	private Slider length;
+	private Slider width;
 	
 	private ComboBox<Integer> gardenLength;
 	private ComboBox<Integer> gardenWidth;
 	
+	private final int totalPrefs = 6;
 	
 	private Scene preferencesScene;
 	
@@ -41,8 +60,8 @@ public class Preferences extends Screen{
 	public Preferences(Controller controller,Stage theStage) {
 		this.c = controller;
 		stage = theStage;
-		
-		back = new Button("Back to Templates");
+		temp();
+		/*back = new Button("Back to Templates");
 		back.setOnMouseClicked(c.getBackBTN());
 		
 		AnchorPane root = new AnchorPane();
@@ -58,6 +77,7 @@ public class Preferences extends Screen{
 		
 		bloomTime = new ComboBox<String>();
 		bloomTime.getItems().addAll("Fall","Winter","Spring","Summer");
+		bloomTime.setOnAction(c.getPreferenceChanged());
 		
 		Label btLabel = new Label("Bloom time:	");
 		AnchorPane.setLeftAnchor(btLabel,120.0);
@@ -110,9 +130,12 @@ public class Preferences extends Screen{
 //		Label pref = new Label ("This is preferences");
 //		AnchorPane.setTopAnchor(pref, 100.0);
 		root.getChildren().addAll(bloomTime, pref, btLabel, r1, colorLabel, color, startCreating, glLabel, gwLabel, gardenLength, gardenWidth, getGardenDim,back);
-		preferencesScene = new Scene(root, 500.0, 500.0);
+		preferencesScene = new Scene(root, 500.0, 500.0);*/
 	}
 	
+	public int getTotalPrefs() {
+		return totalPrefs;
+	}
 	
 	/**
 	 * 
@@ -150,9 +173,9 @@ public class Preferences extends Screen{
 	 * 
 	 * @return color The color of the plant
 	 */
-	public ColorPicker getColor() {
-		return color;
-	}
+	//public ColorPicker getColor() {
+		//return color;
+	//}
 	
 /*	/**
 	 * 
@@ -201,6 +224,128 @@ public class Preferences extends Screen{
 	public void showScreen() {
 		stage.setTitle("Preferences");
 		stage.setScene(preferencesScene);
+	}
+	
+	public void temp() {
+		back = new Button("Back to Templates");
+		back.setOnMouseClicked(c.getBackBTN());
+		startCreating = new Button("Start Creating");
+		startCreating.setOnMouseClicked(c.getDesignTime());
+		startCreating.setDisable(true);
+		
+		
+		TilePane tpane = new TilePane();
+		color = new ComboBox<String>();
+		color.setEditable(true);
+		color.getItems().addAll("Red","Green","Purple","Blue","Orange","Yellow","Pink","White");
+		color.setOnAction(c.getPreferenceChanged());
+		
+		season = new ComboBox<String>();
+		season.getItems().addAll("Spring","Summer","Autumn","Winter");
+		season.setOnAction(c.getPreferenceChanged());
+		
+		
+		light = new Slider();
+		light.addEventHandler(MouseEvent.MOUSE_CLICKED, c.getMouseClicked());
+		water = new Slider();
+		water.addEventHandler(MouseEvent.MOUSE_CLICKED, c.getMouseClicked());
+		width = new Slider();
+		width.addEventHandler(MouseEvent.MOUSE_CLICKED, c.getMouseClicked());
+		length = new Slider();
+		length.addEventHandler(MouseEvent.MOUSE_CLICKED, c.getMouseClicked());
+		
+		
+		
+		Slider[] sliders = new Slider[]{light,water,length,width};
+		for (Slider s : sliders) {
+			//s.valueProperty().addListener(listener);
+			//s.addEventHandler(MouseEvent.MOUSE_CLICKED, c.getMouseClicked());
+			s.setMin(1);
+			s.setMax(5);
+			s.setShowTickMarks(true);
+			s.setMajorTickUnit(1);
+			s.setBlockIncrement(1);
+			s.setSnapToTicks(true);
+			s.setShowTickLabels(true);
+		}
+		
+		
+		
+		
+		tpane.setVgap(50);
+		Button mainMenu = new Button("Main Menu");
+		mainMenu.setOnMouseClicked(c.getMainMenuWarning());
+		tpane.getChildren().addAll(color,season,light,water,length,width,back,startCreating,mainMenu);
+		preferencesScene = new Scene(tpane,View.primarySceneWidth,View.primarySceneHeight);
+		stage.setScene(preferencesScene);
+		
+		
+	}
+	
+	public void allowStartCreating() {
+		startCreating.setDisable(false);
+		
+		
+	}
+	
+	/**
+	 * Sends the values of the Nodes on this Screen when the user clicks the 'Start Creating' button to the Controller.
+	 */
+	public void sendPreference(Control control) {
+		
+		
+		
+		
+		
+		
+		
+		if (control.equals(color)) {
+			String colPref = color.getValue();
+			c.setPreferences(colPref, null, 0, 0, 0, 0);
+			System.out.println("Color sent: "+colPref);
+		}
+		else if (control.equals(season)) {
+			Seasons seasonPref = Seasons.valueOf(season.getValue().toUpperCase());
+			c.setPreferences("", seasonPref, 0, 0, 0, 0);
+			System.out.println("Season sent: "+seasonPref);
+		}
+		else if (control.equals(water)) {
+			int waterPref = (int)water.getValue();
+			c.setPreferences("Water level sent: ", null, 0, waterPref, 0, 0);
+			System.out.println("Water level sent: "+ waterPref);
+		}
+		else if (control.equals(light)) {
+			int lightPref = (int)light.getValue();
+			c.setPreferences("",null,lightPref,0,0,0);
+			System.out.println("Light level sent: "+ lightPref);
+		}
+		else if (control.equals(length)) {
+			int lengthPref = (int) length.getValue();
+			c.setPreferences("",null,0,0,lengthPref,0);
+			System.out.println("Length sent: "+lengthPref);
+		}
+		else if (control.equals(width)) {
+			int widthPref = (int) width.getValue();
+			c.setPreferences("",null,0,0,0,widthPref);
+			System.out.println("Width sent: "+ widthPref);
+		}
+		/*String colPref = color.getValue();
+		Seasons seasonPref = Seasons.valueOf(season.getValue().toUpperCase());
+		int lightPref = (int)light.getValue();
+		int waterPref = (int)water.getValue();
+		int lengthPref = (int) length.getValue();
+		int widthPref = (int) width.getValue();
+		System.out.println("Sending to model:\nColor: "+colPref+", Season: "+seasonPref+", Light level: "+lightPref+"\nWater level: "+waterPref+", Length: "+ lengthPref+", Width: "+widthPref);
+		c.setPreferences(color.getValue(), seasonPref, lightPref,waterPref,lengthPref,widthPref);*/
+	}
+	
+	public void setValues(String colorPref, String seasonPref, int waterPref,int lightPref, int lengthPref, int widthPref) {
+		color.setValue(colorPref);
+		season.setValue(seasonPref);
+		water.setValue(waterPref);
+		light.setValue(lightPref);
+		length.setValue(lengthPref);
+		width.setValue(widthPref);
 	}
 	
 	

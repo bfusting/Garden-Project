@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
  */
 
 public class Model implements Serializable{
-	
+	private static final long serialVersionUID = 1558153956L;
 	// Holds all the data for our plants
 	
 	private GardenPlot userPlot;
@@ -50,12 +50,14 @@ public class Model implements Serializable{
 	private ArrayList<Plant> otherLight;
 	private ArrayList<Plant> otherWater;
 	
+	
+	private String userTemplate;
 	// Prefs given by user
 	private String userPrefColor;
 	private Seasons userPrefSeason;
 	private int userPrefLight;
 	private int userPrefWater;
-	
+	private int prefsSet;
 	// Width and length given by user passed in by preferences
 	private int userLength;
 	private int userWidth;
@@ -77,7 +79,9 @@ public class Model implements Serializable{
 	 * @see GardenPlot
 	 */
 	public Model() {
-		userPlot = new GardenPlot();
+		userPlot = null;
+		userTemplate = "";
+		prefsSet = 0;
 		// Creating temp Plants for Bradley to use in methods, remove later
 		
 		Plant purpleConeFlower = new Plant("Purple Cone Flower", 1, "cone flower", 
@@ -430,27 +434,51 @@ public class Model implements Serializable{
 	}
 	
 	public void setUserPrefColor(String newColor) {
-		userPrefColor = newColor;
+		if (userPrefColor.equals("") && newColor!="") {
+			prefsSet++;
+			userPrefColor = newColor;
+		}
+		
 	}
 	
 	public void setUserPrefSeason(Seasons newSeason) {
-		userPrefSeason = newSeason;
+		if (userPrefSeason==null && newSeason!=null) {
+			prefsSet++;
+			userPrefSeason = newSeason;
+		}
+		
 	}
 	
 	public void setUserPrefLight(int newLight) {
-		userPrefLight = newLight;
+		if (userPrefLight==0 && newLight!=0) {
+			prefsSet++;
+			userPrefLight = newLight;
+		}
+		
 	}
 	
 	public void setUserPrefWater(int newWater) {
-		userPrefWater = newWater;
+		if (userPrefWater == 0 && newWater!=0) {
+			prefsSet++;
+			userPrefWater = newWater;
+		}
+		
 	}
 	
 	public void setUserLength(int newLength) {
-		userLength = newLength;
+		if (userLength==0 && newLength!=0) {
+			prefsSet++;
+			userLength = newLength;
+		}
+		
 	}
 	
 	public void setUserWidth(int newWidth) {
-		userWidth = newWidth;
+		if (userWidth==0 && newWidth!=0) {
+			prefsSet++;
+			userWidth = newWidth;
+		}
+		
 	}
 	
 	//////////////////// Comparators ///////////////////////////////////
@@ -703,6 +731,39 @@ public class Model implements Serializable{
 		otherSeasons.clear();
 		otherLight.clear();
 		otherWater.clear();
+	}
+	
+	/**
+	 * Sets the property userTemplate, a string representing the template shape chosen by the user that
+	 * the userPlot will be.
+	 * @param shape A string representing the template shape chosen by the user.
+	 */
+	public void setUserTemplate(String shape) {
+		userTemplate = shape;
+	}
+	
+	/**
+	 * Returns the property userTemplate, a string representing the template shape chosen by the user.
+	 * @return
+	 */
+	public String getUserTemplate() {
+		return userTemplate;
+	}
+	
+	/**
+	 * Sets the property userPlot to a new GardenPlot with the user specified template, length and width.
+	 */
+	public void createUserPlot() {
+		userPlot = new GardenPlot(userTemplate,userLength,userWidth);
+	}
+	
+	/**
+	 * Returns the value of property prefSet.
+	 * 
+	 * @return An int, the number of preferences that have been modified from their default value.
+	 */
+	public int getPrefsSet() {
+		return prefsSet;
 	}
 	// then getters and setters for new attributes
 }//Modeld

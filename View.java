@@ -1,7 +1,10 @@
 import java.io.File;
+import java.util.HashSet;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.Node;
+import javafx.scene.control.Control;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -37,7 +40,7 @@ import javafx.stage.Stage;
  * @author Takiyah Price 
  */
 
-//last edited: 5-4-20 12:58PM
+//last edited: 5-10-20 7:00PM
 
 
 public class View extends Application{
@@ -69,16 +72,20 @@ public class View extends Application{
 	
 	
 	
+	
 	private FileChooser fileChooser;
 	
 	/**
-	 * Constructor for the View that creates the Controller and passes itself into the Controller's constructor. 
+	 * Constructor for the View that creates the Controller and passes itself into the Controller's constructor and creates a FileChooser for when
+	 * when the user loads a saved design.
 	 * 
 	 * @see Controller
 	 */
 	public View() {
 		con = new Controller(this);
+		
 		fileChooser = new FileChooser();
+
 	}
 	
 	/**
@@ -104,6 +111,8 @@ public class View extends Application{
 	 * @param theStage primary stage which will be set with mainMenuScreen's scene
 	 */
 	public void start(Stage theStage) {
+		
+		
 		primaryStage = theStage;
 		primaryStage.setOnCloseRequest(con.getExitStage());
 		
@@ -113,11 +122,8 @@ public class View extends Application{
 	
 		exitScreen = new Exit(con);
 		
-		chooseTemplateScreen = new ChooseTemplate(con,primaryStage);
-		chooseTemplateScreen.setPreviousScreen(mainMenuScreen);
+		createNew();
 		
-		designGardenScreen = new DesignGarden(con,primaryStage);
-		designGardenScreen.setPreviousScreen(chooseTemplateScreen);
 		
 		
 		
@@ -134,9 +140,6 @@ public class View extends Application{
 		recommendationsScreen = new Recommendations(con);
 		recommendationsScreen.setPreviousScreen(designGardenScreen);
 		
-		preferencesScreen = new Preferences(con,primaryStage);
-		preferencesScreen.setPreviousScreen(chooseTemplateScreen);
-		
 		
 		currentPrimaryScreen = mainMenuScreen;
 		
@@ -145,7 +148,6 @@ public class View extends Application{
 		mainMenuScreen.showScreen();
 		
 		primaryStage.show();
-		
 		
 		
 		
@@ -199,8 +201,12 @@ public class View extends Application{
 		
 		switch (screen) {
 		case "mainMenuScreen":
+			if (currentPrimaryScreen.equals(exitScreen)) {
+				exitScreen.goToPreviousScreen();
+			}
 			currentPrimaryScreen = mainMenuScreen;
 			mainMenuScreen.showScreen();
+			//createNew();
 			break;
 		case "instructionsScreen":
 			//instructionsScreen.setPreviousScreen(currentPrimaryScreen);
@@ -228,7 +234,6 @@ public class View extends Application{
 		case "preferencesScreen":
 			currentPrimaryScreen = preferencesScreen;
 			preferencesScreen.showScreen();
-			//preferencesScreen.showPreferences(primaryStage);
 			break;
 		case "saveGarden":
 			
@@ -236,7 +241,12 @@ public class View extends Application{
 				exitScreen.closeScreen();
 				
 				if (con.saveGarden(showSaveLoad(true))) {
-					exit();
+					if (exitScreen.getExitCase().equals("mainMenuWarning")) {
+						show("mainMenuScreen");
+					}
+					else {
+						exit();
+					}
 				} else {
 					goToLastScreen();
 				}
@@ -250,11 +260,11 @@ public class View extends Application{
 			if (con.loadGarden(showSaveLoad(false))) {
 				show("designGardenScreen");
 			}
+			//might delete
 			break;
 			
 		case "seasonViewScreen":
 			seasonViewScreen.setPreviousScreen(currentPrimaryScreen);
-			//currentPrimaryScreen = seasonViewScreen;
 			
 			seasonViewScreen.showScreen();
 			break;
@@ -266,16 +276,19 @@ public class View extends Application{
 		case "exitScreen":
 			System.out.println("leaving so soon? :(");
 			exitScreen.setPreviousScreen(currentPrimaryScreen);
-			
-			
-			if (currentPrimaryScreen.equals(finalViewScreen)) {
-				exitScreen.showExitWithSave();
+			if (currentPrimaryScreen.equals(finalViewScreen) || currentPrimaryScreen.equals(designGardenScreen) || currentPrimaryScreen.equals(preferencesScreen)) {
+				exitScreen.showScreen("exitSave");
+			} else {
+				exitScreen.showScreen("exitNoSave");
 			}
-			else {
-				exitScreen.showExitWithoutSave();
-			}
-			
+		
 			currentPrimaryScreen = exitScreen;
+			break;
+		case "mainMenuWarning":
+			exitScreen.setPreviousScreen(currentPrimaryScreen);
+			currentPrimaryScreen = exitScreen;
+			exitScreen.showScreen("mainMenuWarning");
+			
 		}
 		
 
@@ -353,6 +366,13 @@ public class View extends Application{
 		if (currentPrimaryScreen.equals(chooseTemplateScreen)) {
 			chooseTemplateScreen.mouseClicked((Shape) o);
 		}
+		else if (currentPrimaryScreen.equals(preferencesScreen)) {
+			//prefs.add((Node) o);
+			preferencesScreen.sendPreference((Control) o);
+			if (con.getPrefsSet()==preferencesScreen.getTotalPrefs()) {
+				preferencesScreen.allowStartCreating();
+			}
+		}
 	}
 	
 	/**
@@ -364,11 +384,34 @@ public class View extends Application{
 	 * @see ChooseTemplate#getSelectedTemplate()
 	 * @see GardenPlot#shape
 	 */
-	public String getSelectedTemplate() {
+	public String sendTemplate() {
 		return chooseTemplateScreen.getSelectedTemplate();
 	}
 	
 	
+	/**
+	 * Returns the String representation of the current primary Screen being viewed.
+	 */
+	public String getCurrentPrimaryScreen() {
+		return String.valueOf(currentPrimaryScreen);
+	}
+	
+	public void loadPreferences(String colorPref, String seasonPref, int waterPref,int lightPref, int lengthPref, int widthPref) {
+		
+		preferencesScreen.setValues(colorPref,seasonPref,waterPref,lightPref,lengthPref,widthPref);
+	}
+	
+	/**
+	 * Reinstantiates the templates, preferences and design Screens. To be called when the user clicks the 'Create New Garden' button from the main menu.
+	 */
+	public void createNew() {
+		chooseTemplateScreen = new ChooseTemplate(con,primaryStage);
+		chooseTemplateScreen.setPreviousScreen(mainMenuScreen);
+		preferencesScreen = new Preferences(con,primaryStage);
+		preferencesScreen.setPreviousScreen(chooseTemplateScreen);
+		designGardenScreen = new DesignGarden(con,primaryStage);
+		designGardenScreen.setPreviousScreen(preferencesScreen);
+	}
 		
 	
 }

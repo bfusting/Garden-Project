@@ -19,6 +19,8 @@ import java.io.*;
  *
  */
 public class GardenPlot implements Serializable{
+	private static final long serialVersionUID = 1059128301L;
+	
 	String shape;
 	
 	/**
@@ -54,7 +56,7 @@ public class GardenPlot implements Serializable{
 		this.shape = s;
 		this.length = l;
 		this.width = w;
-		this.layout = this.makeSquare();
+		this.layout = this.makeSizeSquare(l, w);
 		
 		
 	}
@@ -64,6 +66,25 @@ public class GardenPlot implements Serializable{
 	}
 	
 	
+	/**
+	 * Creates a 2D GardenTile array with inputs for width and height of the plot
+	 * 
+	 * 
+	 * @param width
+	 * @param height
+	 * @return
+	 */
+	public GardenTile[][] makeSizeSquare(int length, int width){
+		GardenTile[][] result = new GardenTile[length][width];
+		
+		for(int i = 0; i < length; i++) {
+			for(int k = 0; k < width; k++) {
+				result[i][k] = new GardenTile(i, k);
+			}
+		}
+		
+		return result;
+	}
 	
 	/**
 	 * Creates a square 5x5 2D GardenTile array for the layout.
@@ -114,9 +135,33 @@ public class GardenPlot implements Serializable{
 								{gT21, gT22, gT23, gT24, gT25}};
 		this.shape = "square";
 		return layout;
+		
 								}
 		
 		
+	
+	
+	/**
+	 * 
+	 * @param width
+	 * @param height
+	 * @return
+	 */
+	public GardenTile[][] makeSizeTriangle(int width, int height){
+		GardenTile[][] result = {};
+		
+		for(int i = 0; i < height; i++) {
+			for(int k = 0; k < width; k++) {
+				
+			}
+		}
+		
+		
+		
+		
+		
+		return result;
+	}
 	
 	/**
 	 * Creates a 2D array of garden tiles and deactivates specific tiles in order to create a triangle shape
@@ -287,6 +332,9 @@ public class GardenPlot implements Serializable{
 		
 		return result;
 	}
+	
+	
+	
 	
 	
 	/**

@@ -2,11 +2,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.Node;
@@ -78,8 +80,10 @@ public class Controller{
 	 */
 	public void createNewGarden(MouseEvent event) {
 		if(DEBUG) { System.out.println("Created new Garden Plot");};
-		model.setUserPlot(new GardenPlot());
-		//view.showChooseTemplateScreen();
+		//model.setUserPlot(new GardenPlot());
+		model = new Model();
+		//model.setUserPlot(new GardenPlot());
+		view.createNew();
 		view.show("chooseTemplateScreen");
 		System.out.println("CHOOSE YOUR FIGHTER");
 	}//createNewGarden
@@ -122,7 +126,8 @@ public class Controller{
 	public void loadGarden(MouseEvent event) {
 		System.out.println("Load Garden Here");
 		
-		view.show("loadGarden");
+		//view.show("loadGarden");
+		loadGarden(view.showSaveLoad(false));
 		/*File file = view.showLoadGardenScreen();
 		if (file!=null) {
 		//presumably update Model here with file contents and tell all the information to view
@@ -157,9 +162,12 @@ public class Controller{
 	 * @see MainMenu
 	 */
 	public void exit(MouseEvent event) {
-		System.out.println("Exit by saving the closing");
-		//view.showExitScreen();
+		
+		if (view.getCurrentPrimaryScreen().equals("Main Menu")) {
+			view.exit();
+		} else {
 		view.show("exitScreen");
+		}
 	}//exit
 	
 	/**
@@ -251,6 +259,9 @@ public class Controller{
 	 * @see GardenPlot
 	 */
 	public void designTime(MouseEvent event) {
+		System.out.println("Final preferences:\nColor: "+model.getUserPrefColor()+", Season: "+model.getUserPrefSeason()+", Light level: "+model.getUserPrefLight()+"\nWater level: "+model.getUserPrefWater()+", Length: "+ model.getUserLength()+", Width: "+model.getUserWidth());
+		
+		model.createUserPlot();
 		System.out.println("Make Garden");
 		//view.showDesignGardenScreen();
 		view.show("designGardenScreen");
@@ -745,9 +756,9 @@ public class Controller{
 	 * @see ChooseTemplate
 	 */
 	public void templateToPref(MouseEvent event) {
-		String template = view.getSelectedTemplate();
+		String template = view.sendTemplate();
 		
-		model.getUserPlot().setShape(template);
+		model.setUserTemplate(template);
 		System.out.println("Template sent to model: "+template);
 		view.show("preferencesScreen");
 	}
@@ -762,7 +773,7 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see ChooseTemplate
 	 */
-	public EventHandler getTemplateToPref() {
+	public EventHandler<MouseEvent> getTemplateToPref() {
 		return event -> templateToPref((MouseEvent)event);
 	}
 	
@@ -819,7 +830,7 @@ public class Controller{
 	 * @return EventHandler used to bind to listeners
 	 * @see finalViewBTN
 	 */
-	public EventHandler getFinalViewBTN() {
+	public EventHandler<MouseEvent> getFinalViewBTN() {
 		return event -> finalViewBTN((MouseEvent)event);
 	}
 	
@@ -832,12 +843,36 @@ public class Controller{
 	public boolean loadGarden(File file) {
 		
 		if (file!=null) {
-			try {
-				FileInputStream fis = new FileInputStream(file);
-				ObjectInputStream ois = new ObjectInputStream(fis);
+			try (FileInputStream fis = new FileInputStream(file);
+				ObjectInputStream ois = new ObjectInputStream(fis);) {
+				
 				
 				model = (Model) ois.readObject();
-				System.out.println(model.getUserPlot().getShape());
+				
+				System.out.println("Loading...Shape: "+ model.getUserTemplate()+" Color:  "+model.getUserPrefColor()+", Season: "+model.getUserPrefSeason()+", Light level: "+model.getUserPrefLight()+"\nWater level: "+model.getUserPrefWater()+", Length: "+ model.getUserLength()+", Width: "+model.getUserWidth()+"\n total Prefs Set: "+model.getPrefsSet());
+				/*if (model.verifyUserPrefsSet()) {
+					System.out.println("File loaded. Time to design!!");
+					
+					view.show("designGardenScreen");
+				} else {
+					
+					view.loadPreferences(model.getUserPrefColor(),model.getUserPrefSeason()!=null ? model.getUserPrefSeason().name() : "", model.getUserPrefWater(), model.getUserPrefLight(), model.getUserLength(), model.getUserWidth());
+					view.show("preferencesScreen");
+				}*/
+				if (model.getUserPlot()!=null) {
+					view.show("designGardenScreen");
+				} else {
+					view.createNew();
+					view.loadPreferences(model.getUserPrefColor(),model.getUserPrefSeason()!=null ? model.getUserPrefSeason().name() : "", model.getUserPrefWater(), model.getUserPrefLight(), model.getUserLength(), model.getUserWidth());
+					view.show("preferencesScreen");
+				}
+				
+				
+				return true;
+			}
+			catch (InvalidClassException e) {
+				System.out.println("show error screen here");
+				e.printStackTrace();
 			}
 			catch (ClassNotFoundException e) {
 				e.printStackTrace();
@@ -845,8 +880,7 @@ public class Controller{
 			catch (IOException e) {
 				e.printStackTrace();
 			}
-			System.out.println("File loaded. Time to design!!");
-			return true;
+			
 		}
 		System.out.println("File not loaded");
 		return false;
@@ -897,21 +931,19 @@ public class Controller{
 	 * @return a boolean specifying whether or not the File was written to and saved successfully
 	 */
 	public boolean saveGarden(File file) {
-		//adding this with different method signature in case changing the other one causes issues with tests
-		//or something
 		if (file!=null) {
-			//do the saving here
+			
 			try {
 				FileOutputStream fos = new FileOutputStream(file);
 				ObjectOutputStream oos = new ObjectOutputStream(fos);
 				oos.writeObject(model);
 				oos.close();
+				return true;
 			}
 			catch (IOException e) {
 				e.printStackTrace();
 			}
 			
-			return true;
 		}
 		return false;
 	}
@@ -962,8 +994,10 @@ public class Controller{
 	 * @param event
 	 */
 	public void exitStage(WindowEvent event) {
-		event.consume();
-		view.show("exitScreen");
+		if (!view.getCurrentPrimaryScreen().equals("Main Menu")) {
+			event.consume();
+			view.show("exitScreen");
+		}
 	}
 	
 	/**
@@ -982,109 +1016,181 @@ public class Controller{
 		view.mouseClicked(event.getSource());
 	}
 	
+	public EventHandler<MouseEvent> getMainMenuWarning() {
+		return event -> mainMenuWarning((MouseEvent)event);
+	}
+	
+	public void mainMenuWarning(MouseEvent event) {
+		view.show("mainMenuWarning");
+	}
+	
+
+	public EventHandler<ActionEvent> getPreferenceChanged() {
+		return event-> preferenceChanged((ActionEvent)event);
+	}
+	
+	public void preferenceChanged(ActionEvent event) {
+		view.mouseClicked(event.getSource());
+		
+		
+	}
 	/**
+	 * Sends the preference modified from its default value to Model.
 	 * 
-	 * @param event
+	 * @param color A String representing the color chosen by the user. Ignored if empty String.
+	 * @param season Seasons enum representing the season chosen by the user. Ignored if null.
+	 * @param light An int, the amount of light the user specifies their garden receives. Ignored if 0.
+	 * @param water An int, the water level the user specifies their garden has. Ignored if 0.
+	 * @param length An int, the length the user has chosen for their garden. Ignored if 0.
+	 * @param width An int, the width the user has chosen for their garden. Ignored if 0.
 	 */
-	public void mouseEnterPlantSelection(MouseEvent event) {
-		Node n = (Node)event.getSource();
-		Integer row = GridPane.getRowIndex(n);
-		Integer col = GridPane.getColumnIndex(n);
-		if(DEBUG) {System.out.println("row " + row + " col " + col);}
-		view.getDesignGardenScreen().setGridPaneInd(col);
-		if(view.getDesignGardenScreen().getTileEditGP().isHover() == true) {
-			view.getDesignGardenScreen().setHoverEditTile(true);
-			if(DEBUG) {System.out.println("bool set to true");}
+	public void setPreferences(String color, Seasons season, int light,int water,int length, int width) {
+		model.setUserPrefColor(color);
+		model.setUserPrefSeason(season);
+		model.setUserPrefLight(light);
+		model.setUserPrefWater(water);
+		model.setUserLength(length);
+		model.setUserWidth(width);
+		
+		/*if (season!=null) {
+			model.setUserPrefSeason(season);
+			System.out.println("Season preference sent to model: "+ season);
 		}
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public EventHandler<MouseEvent> getMouseEnterPlantSelection(){
-		return event -> mouseEnterPlantSelection((MouseEvent) event);
-	}
-	
-	/**
-	 * Returns an arrayList which is the arrayList of plants to choose from
-	 * based on the tab selected.
-	 * <p>
-	 * Used in the drag and drop method to select the plant in the correct location
-	 * to select the correct array to choose the plant from. 
-	 * 
-	 * @return arrayList of plants from model. If none are available returns null
-	 * @see Controller#detectDragDrop(DragEvent)
-	 */
-	public ArrayList<Plant> changeTabIndex() {
-		// get the current tab selected in design garden
-		int t = view.getDesignGardenScreen().getSelectGardenType().
-		getSelectionModel().getSelectedIndex();
-		switch(t) {
-			case 0: return model.getFlowerArr();
-			case 1: return model.getTreeArr();
-			case 2: return model.getShrubArr();
-			case 3: return model.getUnderGrowth();
-			case 4: return model.getShrubArr();
-		}//switch
-		return null;
-	}
-	
-	/**
-	 * Takes in a DragEvent to know when the target has the mouse released over it.
-	 * <p>
-	 * Once dropped will alter the waterLevel or SunLevel depending which image was dropped
-	 * on the tile. 
-	 * 
-	 * @param event DragEvent to know when the drag finished
-	 * @see DesignGarden
-	 */
-	public void detectSunWaterDragDrop(DragEvent event) {
-		Dragboard db = event.getDragboard();
-		boolean worked = false;
-		//Node n = event.getPickResult().getIntersectedNode();
-		Node n = event.getPickResult().getIntersectedNode();
-		if(DEBUG) {System.out.println(n.toString());}
-		if(n != view.getDesignGardenScreen().getPlot() && db.hasImage()) {
-			Integer colIndex = GridPane.getColumnIndex(n);
-			Integer rowIndex = GridPane.getRowIndex(n);
-			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
-			int index = 0;//items held in gridpane of 4. 0 is add water, 1 is less water, 2 is add sun, 3 is remove water
-			switch(index) {
-			// increases wetness of tile
-			case 0: model.getUserPlot().getLayout()[colIndex][rowIndex].setWaterLevel(
-					model.getUserPlot().getLayout()[colIndex][rowIndex].getWaterLevel()+1);
-			// less water of tile dropped on
-			case 1: model.getUserPlot().getLayout()[colIndex][rowIndex].setWaterLevel(
-				model.getUserPlot().getLayout()[colIndex][rowIndex].getWaterLevel()-1);
-			// more light of tile dropped on 
-			case 2: model.getUserPlot().getLayout()[colIndex][rowIndex].setSunLightLevel(
-					model.getUserPlot().getLayout()[colIndex][rowIndex].getSunLightLevel()+1);
-			// less light of tile dropped on
-			case 3: model.getUserPlot().getLayout()[colIndex][rowIndex].setSunLightLevel(
-				model.getUserPlot().getLayout()[colIndex][rowIndex].getSunLightLevel()-1);
-			}//switch
-			worked = true;
+		if (!(color.equals(""))) {
+			model.setUserPrefColor(color);
+			System.out.println("Color preference sent to model: "+ color);
 		}
-		event.setDropCompleted(worked);
-		if(DEBUG) {System.out.println("Tile Sun/Water Altered");}
-		event.consume();
-	}//detectSunWaterDragDrop
+		if (light!=0) {
+			model.setUserPrefLight(light);
+			System.out.println("Light preference sent to model: "+ light);
+		}
+		if (water!=0) {
+			model.setUserPrefWater(water);
+			System.out.println("Water preference sent to model: "+water);
+		}
+		
+		if (length!=0) {
+			model.setUserLength(length);
+			System.out.println("Length preference sent to model: "+ length);
+		}
+		if (width!=0) {
+			model.setUserWidth(width);
+			System.out.println("Width preference sent to model: "+ width);
+		}*/
+		System.out.println("Total prefs set: "+model.getPrefsSet());
+	}
 	
 	/**
-	 * Returns an Event Handler to bind to an eventListener for the
-	 * Drag listener on DesignGarden
-	 * <p>
-	 * Used to access the DetectSunWaterDragDrop method and bind it using a
-	 * lambda function to an eventListner
-	 * 
-	 * @return EventHandler used to bind to listeners
-	 * @see DesignGarden
-	 * @see DetectSunWaterDetectDragDrop
+	 * Returns the number of preference properties that have been set in Model.
+	 * @return an int, the number of preferences that have been modified from their default value.
 	 */
-	public EventHandler<DragEvent> getDetectSunWaterDetectDragDrop() {
-		return event -> detectSunWaterDragDrop((DragEvent)event);
-	}//getDetectDragDrop
+	public int getPrefsSet() {
+		return model.getPrefsSet();
+	}
+
+    public void mouseEnterPlantSelection(MouseEvent event) {
+	Node n = (Node)event.getSource();
+	Integer row = GridPane.getRowIndex(n);
+	Integer col = GridPane.getColumnIndex(n);
+	if (DEBUG) {System.out.println("row "+ row + " col " + col);}
+	view.getDesignGardenScreen().setGridPaneInd(col);
+	if(view.getDesignGardenScreen().getTileEditGP().isHover() == true) {
+	    view.getDesignGardenScreen().setHoverEditTile(true);
+	    if(DEBUG) {System.out.println("bool set to true");}
+	}
+    }
+    
+    /**
+     * 
+     * @return
+     */
+    public EventHandler<MouseEvent> getMouseEnterPlantSelection(){
+	return event -> mouseEnterPlantSelection((MouseEvent) event);
+    }
+    
+    /**
+     * Returns an arrayList which is the arrayList of plants to choose from
+     * based on the tab selected.
+     * <p>
+     * Used in the drag and drop method to select the plant in the correct location
+     * to select the correct array to choose the plant from. 
+     * 
+     * @return arrayList of plants from model. If none are available returns null
+     * @see Controller#detectDragDrop(DragEvent)
+     */
+    public ArrayList<Plant> changeTabIndex() {
+	// get the current tab selected in design garden
+	int t = view.getDesignGardenScreen().getSelectGardenType().
+	    getSelectionModel().getSelectedIndex();
+	switch(t) {
+	case 0: return model.getFlowerArr();
+	case 1: return model.getTreeArr();
+	case 2: return model.getShrubArr();
+	case 3: return model.getUnderGrowth();
+	case 4: return model.getShrubArr();
+	}//switch
+	return null;
+    }
+    
+    /**
+     * Takes in a DragEvent to know when the target has the mouse released over it.
+     * <p>
+     * Once dropped will alter the waterLevel or SunLevel depending which image was dropped
+     * on the tile. 
+     * 
+     * @param event DragEvent to know when the drag finished
+     * @see DesignGarden
+     */
+    public void detectSunWaterDragDrop(DragEvent event) {
+	Dragboard db = event.getDragboard();
+	boolean worked = false;
+	//Node n = event.getPickResult().getIntersectedNode();
+	Node n = event.getPickResult().getIntersectedNode();
+	if(DEBUG) {System.out.println(n.toString());}
+	if(n != view.getDesignGardenScreen().getPlot() && db.hasImage()) {
+	    Integer colIndex = GridPane.getColumnIndex(n);
+	    Integer rowIndex = GridPane.getRowIndex(n);
+	    if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
+	    int index = 0;//items held in gridpane of 4. 0 is add water, 1 is less water, 2 is add sun, 3 is remove water
+	    switch(index) {
+		// increases wetness of tile
+	    case 0: model.getUserPlot().getLayout()[colIndex][rowIndex].setWaterLevel(
+										      model.getUserPlot().getLayout()[colIndex][rowIndex].getWaterLevel()+1);
+		// less water of tile dropped on
+	    case 1: model.getUserPlot().getLayout()[colIndex][rowIndex].setWaterLevel(
+										      model.getUserPlot().getLayout()[colIndex][rowIndex].getWaterLevel()-1);
+		// more light of tile dropped on 
+	    case 2: model.getUserPlot().getLayout()[colIndex][rowIndex].setSunLightLevel(
+											 model.getUserPlot().getLayout()[colIndex][rowIndex].getSunLightLevel()+1);
+		// less light of tile dropped on
+	    case 3: model.getUserPlot().getLayout()[colIndex][rowIndex].setSunLightLevel(
+											 model.getUserPlot().getLayout()[colIndex][rowIndex].getSunLightLevel()-1);
+	    }//switch
+	    worked = true;
+	}
+	event.setDropCompleted(worked);
+	if(DEBUG) {System.out.println("Tile Sun/Water Altered");}
+	event.consume();
+    }//detectSunWaterDragDrop
+    
+    /**
+     * Returns an Event Handler to bind to an eventListener for the
+     * Drag listener on DesignGarden
+     * <p>
+     * Used to access the DetectSunWaterDragDrop method and bind it using a
+     * lambda function to an eventListner
+     * 
+     * @return EventHandler used to bind to listeners
+     * @see DesignGarden
+     * @see DetectSunWaterDetectDragDrop
+     */
+    public EventHandler<DragEvent> getDetectSunWaterDetectDragDrop() {
+	return event -> detectSunWaterDragDrop((DragEvent)event);
+    }//getDetectDragDrop
+
+
+
+	
 	
 }//Controller
 
