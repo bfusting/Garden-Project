@@ -326,12 +326,31 @@ undergrowth.setContent(underGP);
 
 // max size of items
 underGP.setMaxSize(selectionGPsize, selectionGPsize);
+
+// setting up undergrowth Arr
+String[] under = {"Plant Pictures/Fillaree.JPG","Plant Pictures/Blackstem_Spleenwort.JPG"};
+
+underSelArr = new ArrayList<ImageView>();
+//setting up with each different picture
+for(int i=0; i<under.length;i++) {
+	Image img = new Image(under[i]);
+	ImageView imgV = new ImageView(img);
+	imgV.setPreserveRatio(true);
+	imgV.setFitHeight(100);
+	imgV.setFitWidth(100);
+	imgV.setOnDragDetected(c.getStartDrag());
+	underSelArr.add(imgV);
+}
+
 //adding row
 underGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 for (int i = 0; i < selectionSize; i++) {
      ColumnConstraints column = new ColumnConstraints(selectionGPsize);
      underGP.getColumnConstraints().add(column);
      underGP.add(backdropColor3.get(i), i, 0,1,1);
+     if(i<2) {
+    	 underGP.add(underSelArr.get(i), i, 0,1,1);
+     }
 }
 
 underGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
