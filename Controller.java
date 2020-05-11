@@ -1208,6 +1208,14 @@ public class Controller{
     public String getTemplateFromModel() {
     	return model.getUserTemplate();
     }
+    
+    public int getLengthFromModel() {
+    	return model.getUserLength();
+    }
+    
+    public int getWidthFromModel() {
+    	return model.getUserWidth();
+    }
 	
 	
 }//Controller
