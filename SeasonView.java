@@ -85,15 +85,18 @@ public class SeasonView extends Screen{
 		// creating a new instance
 		root = new AnchorPane();
 		
+		// setting up seasonsGP with controller
+		seasonGP = c.getView().getDesignGardenScreen().getPlot();
+		
 		// dummy variable to see where to place future gridPane
-		Rectangle r1 = new Rectangle(150,100,900,500);
-		r1.setStroke(Color.LIGHTGRAY);
-		r1.setFill(Color.LIGHTGRAY);
-		r1.setStrokeWidth(1);
+		Rectangle backdrop = new Rectangle(150,100,900,500);
+		backdrop.setStroke(Color.LIGHTGRAY);
+		backdrop.setFill(Color.LIGHTGRAY);
+		backdrop.setStrokeWidth(1);
 		
 		// used to anchor the rectangle above buttons, can use for gridPane
-		root.setTopAnchor(r1, 0.0);
-		root.getChildren().add(r1);
+		root.setTopAnchor(backdrop, 0.0);
+		root.getChildren().add(backdrop);
 		
 		// Buttons initilization to have their own labels
 		springBTN = new Button("View Spring");
@@ -137,5 +140,5 @@ public class SeasonView extends Screen{
 	public void goToPreviousScreen() {
 		stage.close();
 	}
-	 
+	
 }

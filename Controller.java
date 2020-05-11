@@ -1187,11 +1187,15 @@ public class Controller{
     public EventHandler<DragEvent> getDetectSunWaterDetectDragDrop() {
 	return event -> detectSunWaterDragDrop((DragEvent)event);
     }//getDetectDragDrop
-
-
-
-	
-	
+    
+    /**
+     * Getter for view attribute in controller
+     * <p>
+     * @return View the current view in the model
+     */
+    public View getView() {
+    	return view;
+    }
 }//Controller
 
 
