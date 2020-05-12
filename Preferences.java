@@ -5,17 +5,38 @@ import javafx.scene.control.Control;
 import javafx.stage.Stage;
 
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderImage;
+import javafx.scene.layout.BorderRepeat;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
@@ -24,6 +45,7 @@ import javax.swing.event.ChangeListener;
 
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -58,93 +80,123 @@ public class Preferences extends Screen{
 	
 	private Button startCreating;
 	private Button back;
+	private String backBTNText;
 	
-	private final Border unfinishedPrefBorder = new Border(new BorderStroke(View.borderColor1,BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(2.0)));
+	private final Border unfinishedPrefBorder = new Border(new BorderStroke(View.settingsBorderColor,BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(2.0)));
 	
 	
 	private Controller c;
 	Stage stage;
 	
-	//private Label lengthLabel;
-	//private Label widthLabel;
-	private Label lengthL;
-	private Label widthL;
+	
+	private Text lengthL;
+	private Text widthL;
 	
 	
 	public Preferences(Controller controller,Stage theStage) {
 		this.c = controller;
 		stage = theStage;
 		temp();
+		//
 		/*back = new Button("Back to Templates");
 		back.setOnMouseClicked(c.getBackBTN());
 		
-		AnchorPane root = new AnchorPane();
-		
-		Label pref = new Label("Select Your Plant Preferences and Requirements");
-		AnchorPane.setTopAnchor(pref, 40.0);
-		AnchorPane.setLeftAnchor(pref,100.0);
-		
-		Rectangle r1 = new Rectangle(30, 65, 430, 3);
-		r1.setStroke(Color.DARKGREEN);
-		r1.setStrokeWidth(1);
-		
-		
-		bloomTime = new ComboBox<String>();
-		bloomTime.getItems().addAll("Fall","Winter","Spring","Summer");
-		bloomTime.setOnAction(c.getPreferenceChanged());
-		
-		Label btLabel = new Label("Bloom time:	");
-		AnchorPane.setLeftAnchor(btLabel,120.0);
-		AnchorPane.setTopAnchor(btLabel,100.0);
-		
-		AnchorPane.setTopAnchor(bloomTime,100.0);
-		AnchorPane.setLeftAnchor(bloomTime, 200.0);
-		
-		gardenLength = new ComboBox<Integer>();
-		gardenLength.setEditable(true);
-		gardenWidth = new ComboBox<Integer>();
-		gardenWidth.setEditable(true);
-		
-		AnchorPane.setLeftAnchor(gardenLength,230.0);
-		AnchorPane.setTopAnchor(gardenLength,310.0);
-		AnchorPane.setLeftAnchor(gardenWidth,230.0);
-		AnchorPane.setTopAnchor(gardenWidth,360.0);
-		
-		Label getGardenDim = new Label("What is the size of your available garden space? ");
-		AnchorPane.setLeftAnchor(getGardenDim,100.0);
-		AnchorPane.setTopAnchor(getGardenDim,265.0);
-		
-		Label glLabel = new Label("Garden length (ft): ");
-		AnchorPane.setLeftAnchor(glLabel,100.0);
-		AnchorPane.setTopAnchor(glLabel,310.0);
-		
-		Label gwLabel = new Label("Garden width (ft): ");
-		AnchorPane.setLeftAnchor(gwLabel,100.0);
-		AnchorPane.setTopAnchor(gwLabel,360.0);
-		
-		
-		waterReq = new ComboBox<String>();
-		
-		Label colorLabel = new Label("Plant Color:	");
-		AnchorPane.setLeftAnchor(colorLabel, 120.0);
-		AnchorPane.setTopAnchor(colorLabel, 160.0);
-		color = new ColorPicker(Color.DARKGREEN);
-		AnchorPane.setLeftAnchor(color, 200.0);
-		AnchorPane.setTopAnchor(color, 160.0);
-		
 		startCreating = new Button("Start Creating");
-		AnchorPane.setBottomAnchor(startCreating, 40.0);
-		AnchorPane.setRightAnchor(startCreating, 40.0);
-		AnchorPane.setBottomAnchor(back, 40.0);
-		AnchorPane.setLeftAnchor(back, 40.0);
-		
-		// Binding to event Listener
 		startCreating.setOnMouseClicked(c.getDesignTime());
+		startCreating.setDisable(true);
 		
-//		Label pref = new Label ("This is preferences");
-//		AnchorPane.setTopAnchor(pref, 100.0);
-		root.getChildren().addAll(bloomTime, pref, btLabel, r1, colorLabel, color, startCreating, glLabel, gwLabel, gardenLength, gardenWidth, getGardenDim,back);
-		preferencesScene = new Scene(root, 500.0, 500.0);*/
+		
+		AnchorPane aPane = new AnchorPane();
+		color = new ComboBox<String>();
+		color.setEditable(true);
+		color.getItems().addAll("Red","Green","Purple","Blue","Orange","Yellow","Pink","White");
+		color.setOnAction(c.getPreferenceChanged());
+		color.setBorder(unfinishedPrefBorder);
+		
+		season = new ComboBox<String>();
+		season.getItems().addAll("Spring","Summer","Autumn","Winter");
+		season.setOnAction(c.getPreferenceChanged());
+		season.setBorder(unfinishedPrefBorder);
+		
+		light = new Slider();
+		light.addEventHandler(MouseEvent.MOUSE_CLICKED, c.getMouseClicked());
+		
+		water = new Slider();
+		water.addEventHandler(MouseEvent.MOUSE_CLICKED, c.getMouseClicked());
+		
+		width = new Slider();
+		width.addEventHandler(MouseEvent.MOUSE_CLICKED, c.getMouseClicked());
+		
+		length = new Slider();
+		length.addEventHandler(MouseEvent.MOUSE_CLICKED, c.getMouseClicked());
+		
+		
+		
+		Slider[] sliders = new Slider[]{light,water,length,width};
+		for (Slider s : sliders) {
+			s.setBorder(unfinishedPrefBorder);
+			s.setMin(1);
+			s.setMax(5);
+			s.setShowTickMarks(true);
+			s.setMajorTickUnit(1);
+			s.setBlockIncrement(5);
+			s.setSnapToTicks(true);
+			s.setShowTickLabels(true);
+		}
+		
+    
+    	Button mainMenu = new Button("Main Menu");
+    	mainMenu.setOnMouseClicked(c.getMainMenuWarning());
+		double lAnchors = 600.0;
+		
+		AnchorPane.setTopAnchor(color, 50.0);
+		AnchorPane.setTopAnchor(season, 150.0);
+		AnchorPane.setTopAnchor(light, 250.0);
+		AnchorPane.setTopAnchor(water, 350.0);
+		AnchorPane.setTopAnchor(length, 450.0);
+		AnchorPane.setTopAnchor(width, 550.0);
+		AnchorPane.setTopAnchor(startCreating, 650.0);
+		AnchorPane.setTopAnchor(mainMenu, 650.0);
+		AnchorPane.setLeftAnchor(color, lAnchors);
+		AnchorPane.setLeftAnchor(season, lAnchors);
+		AnchorPane.setLeftAnchor(light, lAnchors);
+		AnchorPane.setLeftAnchor(water, lAnchors);
+		AnchorPane.setLeftAnchor(length, lAnchors);
+		AnchorPane.setLeftAnchor(width, lAnchors);
+		AnchorPane.setLeftAnchor(startCreating, lAnchors);
+		AnchorPane.setLeftAnchor(mainMenu, 400.0);
+		
+		Label colorL = new Label("Preferred Color: ");
+		Label seasonL = new Label("Preferred bloom season: ");
+		Label lightL = new Label("Light availability: ");
+		Label waterL = new Label("Water availability: ");
+		lengthText = "Enter the length of your available garden space (ft): ";
+		lengthL = new Label(lengthText);
+		widthL = new Label("Width (ft): ");
+		
+		double labelAnchors = 350.0;
+		AnchorPane.setTopAnchor(colorL, 50.0);
+		AnchorPane.setTopAnchor(seasonL, 150.0);
+		AnchorPane.setTopAnchor(lightL, 250.0);
+		AnchorPane.setTopAnchor(waterL, 350.0);
+		AnchorPane.setTopAnchor(lengthL, 450.0);
+		AnchorPane.setTopAnchor(widthL, 550.0);
+		AnchorPane.setLeftAnchor(colorL, labelAnchors);
+		AnchorPane.setLeftAnchor(seasonL, labelAnchors);
+		AnchorPane.setLeftAnchor(lightL, labelAnchors);
+		AnchorPane.setLeftAnchor(waterL, labelAnchors);
+		AnchorPane.setLeftAnchor(lengthL, labelAnchors-150.0);
+		AnchorPane.setLeftAnchor(widthL, labelAnchors+75.0);
+		
+		
+		
+		//Button mainMenu = new Button("Main Menu");
+		
+		aPane.getChildren().addAll(color,season,light,water,length,width,back,startCreating,mainMenu, colorL, seasonL, lightL, waterL, lengthL, widthL);
+		preferencesScene = new Scene(aPane,View.primarySceneWidth,View.primarySceneHeight);
+		stage.setScene(preferencesScene);
+		*/
+		
 	}
 	
 	public int getTotalPrefs() {
@@ -236,13 +288,14 @@ public class Preferences extends Screen{
 	
 	@Override
 	public void showScreen() {
-		switch (c.getTemplateFromModel()) {
+		String template = c.getTemplateFromModel();
+		switch (template) {
 		case ("triangle"):
 			length.setVisible(true);
 			width.setVisible(false);
 			lengthL.setVisible(true);
 			widthL.setVisible(false);
-			lengthL.setText("Rows");
+			lengthL.setText("Number of Rows: ");
 			totalPrefs=5;
 			break;
 		case ("circle"):
@@ -267,28 +320,39 @@ public class Preferences extends Screen{
 			startCreating.setDisable(false);
 		}
 		
-		
+		back.setText("Selected: "+template.toUpperCase()+"\n\nBack to Templates");
 		
 		stage.setTitle("Preferences");
 		stage.setScene(preferencesScene);
 	}
 	
 	public void temp() {
-		back = new Button("Back to Templates");
+		int borderWidth = 50;
+		Color borderColor = Color.web("#122310");
+		lengthText = "Enter the length of your \navailable garden space (ft): ";
+		
+		back = new Button();
+		back.setFont(Font.font("Verdana",FontWeight.BOLD,FontPosture.ITALIC,12));
+		
+		back.setMinSize(180, 70);
 		back.setOnMouseClicked(c.getBackBTN());
+		
 		startCreating = new Button("Start Creating");
 		startCreating.setOnMouseClicked(c.getDesignTime());
 		startCreating.setDisable(true);
-		
+		startCreating.setMinSize(180, 70);
+		startCreating.setFont(View.backNextBTNFont);
 		
 		AnchorPane aPane = new AnchorPane();
 		color = new ComboBox<String>();
-		color.setEditable(true);
+		color.setEditable(false);
+		color.setMinSize(150, 25);
 		color.getItems().addAll("Red","Green","Purple","Blue","Orange","Yellow","Pink","White");
 		color.setOnAction(c.getPreferenceChanged());
 		color.setBorder(unfinishedPrefBorder);
 		
 		season = new ComboBox<String>();
+		season.setMinSize(150, 25);
 		season.getItems().addAll("Spring","Summer","Autumn","Winter");
 		season.setOnAction(c.getPreferenceChanged());
 		season.setBorder(unfinishedPrefBorder);
@@ -308,7 +372,6 @@ public class Preferences extends Screen{
 		Slider[] sliders = new Slider[]{light,water,length,width};
 		for (Slider s : sliders) {
 			s.setBorder(unfinishedPrefBorder);
-			s.setMin(1);
 			s.setMax(5);
 			s.setShowTickMarks(true);
 			s.setMajorTickUnit(1);
@@ -318,12 +381,23 @@ public class Preferences extends Screen{
 		}
 		
     
-    //widthLabel = new Label("width");
-//lengthLabel = new Label("length");
+   
 
     	Button mainMenu = new Button("Main Menu");
     	mainMenu.setOnMouseClicked(c.getMainMenuWarning());
-		double lAnchors = 600.0;
+    	mainMenu.setMinSize(160, 60);
+		mainMenu.setFont(Font.font("Verdana",15));
+    	
+    	Button exit = new Button("Exit");
+    	exit.setOnMouseClicked(c.getExit());
+    	exit.setMinSize(160,60);
+    	exit.setFont(Font.font("Verdana",15));
+    	
+    	Button instructions = new Button("Instructions");
+    	instructions.setOnMouseClicked(c.getInstructionShow());
+    	instructions.setMinSize(160, 60);
+    	instructions.setFont(Font.font("Verdana",15));
+    	/*double lAnchors = 600.0;
 		
 		AnchorPane.setTopAnchor(color, 50.0);
 		AnchorPane.setTopAnchor(season, 150.0);
@@ -340,17 +414,109 @@ public class Preferences extends Screen{
 		AnchorPane.setLeftAnchor(length, lAnchors);
 		AnchorPane.setLeftAnchor(width, lAnchors);
 		AnchorPane.setLeftAnchor(startCreating, lAnchors);
-		AnchorPane.setLeftAnchor(mainMenu, 400.0);
+		AnchorPane.setLeftAnchor(mainMenu, 400.0);*/
 		
-		Label colorL = new Label("Preferred Color: ");
-		Label seasonL = new Label("Preferred bloom season: ");
-		Label lightL = new Label("Light availability: ");
-		Label waterL = new Label("Water availability: ");
-		lengthText = "Enter the length of your available garden space (ft): ";
-		lengthL = new Label(lengthText);
-		widthL = new Label("Width (ft): ");
+		Font font = new Font(16);
+    	Text colorL = new Text("Preferred Color: ");
+    	colorL.setFont(font);
+    	Text seasonL = new Text("Preferred bloom season: ");
+    	seasonL.setFont(font);
+    	Text lightL = new Text("Light availability: ");
+    	lightL.setFont(font);
+    	Text waterL = new Text("Water availability: ");
+    	waterL.setFont(font);
+    	lengthL = new Text(lengthText);
+    	lengthL.setFont(font);
+    	lengthL.setTextAlignment(TextAlignment.RIGHT);
+    	widthL = new Text("Width (ft): ");
+    	widthL.setFont(font);
+    	
+		//Label colorL = new Label("Preferred Color: ");
+		//Label seasonL = new Label("Preferred bloom season: ");
+		//Label lightL = new Label("Light availability: ");
+		//Label waterL = new Label("Water availability: ");
+		//lengthText = "Enter the length of your available garden space (ft): ";
+		//lengthL = new Label(lengthText);
+		//widthL = new Label("Width (ft): ");
 		
-		double labelAnchors = 350.0;
+		Color bg1 =  Color.web("#8fc36f");
+		
+		GridPane gPane = new GridPane();
+		gPane.setGridLinesVisible(false);
+		
+		Rectangle divider = new Rectangle(860,View.borderWidth,View.borderWidth,760);
+		divider.setFill(borderColor);
+		
+		Circle instructionCircle = new Circle(12,Color.web("#4b7260"));
+		instructionCircle.setCenterX(110);
+		instructionCircle.setCenterY(98);
+		instructionCircle.setStroke(borderColor);
+		instructionCircle.setStrokeWidth(2);
+		
+		Text instructionText = new Text("Please enter the following preferences and characteristics.");
+		instructionText.setFont(Font.font("Verdana",FontPosture.ITALIC,20));
+		instructionText.setTextAlignment(TextAlignment.CENTER);
+		instructionText.setX(140);
+		instructionText.setY(105);
+		
+		gPane.setMinSize(1160, 760);
+		gPane.setMaxSize(1160, 760);
+		
+		gPane.setBackground(View.settingsBackground);
+		
+		
+		BorderWidths bw = new BorderWidths(borderWidth);
+		gPane.setBorder(new Border(new BorderImage(View.settingsAccentImg, bw, null, bw, false, BorderRepeat.ROUND,BorderRepeat.REPEAT)));
+		
+		HBox hBox = new HBox(gPane);
+		
+		hBox.setBorder(new Border(new BorderStroke(borderColor,BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(View.borderWidth))));
+		
+		hBox.setMinSize(View.primarySceneWidth, View.primarySceneHeight);
+		
+		
+		VBox labelBox = new VBox(75);
+		labelBox.setAlignment(Pos.BASELINE_RIGHT);
+		labelBox.getChildren().addAll(colorL,seasonL,lightL,waterL,lengthL,widthL);
+		labelBox.setPadding(new Insets(90,40,0,0));
+		
+		gPane.getColumnConstraints().addAll(new ColumnConstraints(200),new ColumnConstraints(270),new ColumnConstraints(250),new ColumnConstraints(340));
+		gPane.getRowConstraints().add(new RowConstraints(660));
+		
+		
+		VBox backBTNBox = new VBox(back);
+		backBTNBox.setAlignment(Pos.BOTTOM_CENTER);
+		backBTNBox.setPadding(new Insets(0,0,15,15));
+		
+		VBox controlsBox = new VBox(61);
+		controlsBox.getChildren().addAll(color,season,light,water,length,width);
+		controlsBox.setAlignment(Pos.TOP_CENTER);
+		controlsBox.setPadding(new Insets(90,0,0,0));
+		
+		AnchorPane sideBTNPane = new AnchorPane();
+		
+		VBox sideBTNBox = new VBox(30);
+		sideBTNBox.getChildren().addAll(mainMenu,exit,instructions);
+		sideBTNBox.setAlignment(Pos.CENTER);
+		
+		AnchorPane.setTopAnchor(sideBTNBox,90.0);
+		AnchorPane.setRightAnchor(sideBTNBox,30.0);
+		
+		AnchorPane.setBottomAnchor(startCreating, 15.0);
+		AnchorPane.setRightAnchor(startCreating, 30.0);
+		
+		sideBTNPane.getChildren().addAll(sideBTNBox,startCreating);
+		
+		
+		gPane.add(backBTNBox, 0, 0);
+		gPane.add(labelBox, 1, 0);
+		gPane.add(controlsBox, 2, 0);
+		gPane.add(sideBTNPane, 3, 0);
+		
+		Group root = new Group();
+		root.getChildren().addAll(hBox,divider,instructionCircle,instructionText);
+		
+		/*double labelAnchors = 350.0;
 		AnchorPane.setTopAnchor(colorL, 50.0);
 		AnchorPane.setTopAnchor(seasonL, 150.0);
 		AnchorPane.setTopAnchor(lightL, 250.0);
@@ -362,15 +528,39 @@ public class Preferences extends Screen{
 		AnchorPane.setLeftAnchor(lightL, labelAnchors);
 		AnchorPane.setLeftAnchor(waterL, labelAnchors);
 		AnchorPane.setLeftAnchor(lengthL, labelAnchors-150.0);
-		AnchorPane.setLeftAnchor(widthL, labelAnchors+75.0);
+		AnchorPane.setLeftAnchor(widthL, labelAnchors+75.0);*/
 		
 		
 		
 		//Button mainMenu = new Button("Main Menu");
 		
-		aPane.getChildren().addAll(color,season,light,water,length,width,back,startCreating,mainMenu, colorL, seasonL, lightL, waterL, lengthL, widthL);
-		preferencesScene = new Scene(aPane,View.primarySceneWidth,View.primarySceneHeight);
+		//aPane.getChildren().addAll(color,season,light,water,length,width,back,startCreating,mainMenu, colorL, seasonL, lightL, waterL, lengthL, widthL);
+		
+		/*TilePane left = new TilePane(colorL, seasonL,lightL,waterL,lengthL,widthL);
+		left.setVgap(80);
+		//left.setHgap(290);
+		left.setMinWidth(580);
+		left.setMaxWidth(580);
+		//left.setAlignment(Pos.CENTER);
+		left.setTileAlignment(Pos.CENTER_RIGHT);
+		TilePane right = new TilePane(color,season,light,water,length,width);
+		right.setVgap(80);
+		//right.setHgap(290);
+		right.setMinWidth(580);
+		right.setMaxWidth(580);
+		left.setTileAlignment(Pos.CENTER);*/
+		
+		/*ColumnConstraints colCon = new ColumnConstraints(530);
+		gPane.getColumnConstraints().add(colCon);
+		gPane.getRowConstraints().add(new RowConstraints(660));
+		
+		gPane.add(aPane, 0, 0);*/
+		
+		//preferencesScene = new Scene(aPane,View.primarySceneWidth,View.primarySceneHeight);
+		preferencesScene = new Scene(root,View.primarySceneWidth,View.primarySceneHeight);
+	
 		stage.setScene(preferencesScene);
+		
 		
 		
 	}
@@ -400,37 +590,30 @@ public class Preferences extends Screen{
 			System.out.println("Season sent: "+seasonPref);
 		}
 		else if (control.equals(water)) {
-			int waterPref = (int)water.getValue();
+			int waterPref = Math.round((float)water.getValue());
 			c.setPreferences("", null, 0, waterPref, 0, 0);
 			water.setBorder(Border.EMPTY);
 			System.out.println("Water level sent: "+ waterPref);
 		}
 		else if (control.equals(light)) {
-			int lightPref = (int)light.getValue();
+			int lightPref = Math.round((float)light.getValue());
 			c.setPreferences("",null,lightPref,0,0,0);
 			light.setBorder(Border.EMPTY);
 			System.out.println("Light level sent: "+ lightPref);
 		}
 		else if (control.equals(length)) {
-			int lengthPref = (int) length.getValue();
+			int lengthPref = Math.round( (float)length.getValue());
 			c.setPreferences("",null,0,0,lengthPref,0);
 			length.setBorder(Border.EMPTY);
 			System.out.println("Length sent: "+lengthPref);
 		}
 		else if (control.equals(width)) {
-			int widthPref = (int) width.getValue();
+			int widthPref = Math.round((float)width.getValue());
 			c.setPreferences("",null,0,0,0,widthPref);
 			width.setBorder(Border.EMPTY);
 			System.out.println("Width sent: "+ widthPref);
 		}
-		/*String colPref = color.getValue();
-		Seasons seasonPref = Seasons.valueOf(season.getValue().toUpperCase());
-		int lightPref = (int)light.getValue();
-		int waterPref = (int)water.getValue();
-		int lengthPref = (int) length.getValue();
-		int widthPref = (int) width.getValue();
-		System.out.println("Sending to model:\nColor: "+colPref+", Season: "+seasonPref+", Light level: "+lightPref+"\nWater level: "+waterPref+", Length: "+ lengthPref+", Width: "+widthPref);
-		c.setPreferences(color.getValue(), seasonPref, lightPref,waterPref,lengthPref,widthPref);*/
+		
 	}
 	
 	public void setValues(String colorPref, String seasonPref, int waterPref,int lightPref, int lengthPref, int widthPref) {
