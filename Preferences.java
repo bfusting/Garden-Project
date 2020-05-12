@@ -24,6 +24,7 @@ import javax.swing.event.ChangeListener;
 
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -49,8 +50,7 @@ public class Preferences extends Screen{
 	private Slider length;
 	private Slider width;
 	
-	private ComboBox<Integer> gardenLength;
-	private ComboBox<Integer> gardenWidth;
+	private String lengthText;
 	
 	private int totalPrefs = 6;
 	
@@ -257,7 +257,7 @@ public class Preferences extends Screen{
 			length.setVisible(true);
 			widthL.setVisible(true);
 			lengthL.setVisible(true);
-			lengthL.setText("Length");
+			lengthL.setText(lengthText);
 			totalPrefs=6;
 		}
 		
@@ -346,7 +346,8 @@ public class Preferences extends Screen{
 		Label seasonL = new Label("Preferred bloom season: ");
 		Label lightL = new Label("Light availability: ");
 		Label waterL = new Label("Water availability: ");
-		lengthL = new Label("Enter the length of your available garden space (ft): ");
+		lengthText = "Enter the length of your available garden space (ft): ";
+		lengthL = new Label(lengthText);
 		widthL = new Label("Width (ft): ");
 		
 		double labelAnchors = 350.0;

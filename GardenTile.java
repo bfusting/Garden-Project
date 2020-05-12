@@ -146,44 +146,42 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	 * Returns an array of Plants that should be used in this GardenTile
 	 */
 	public Plant[] getRecommendations(AddOn[] arr) {
-		//TODO:
-		//Have to test for each type of AddOn
-		//Order of AddOn's in arr are Tile to the left, then right, then above, then below
-		//Also have to make this work with the .csv of plants when we get that in
-		Plant[] result = new Plant[5];
-		
-		for(int i = 0; i < arr.length; i++) {
-			if(arr[i].getClass() == Plant.class) {
-				Plant pA = (Plant) arr[i];
-				if(pA.getPlantType() == "Tree") {
-					result[i] = temp.getTreeArr().get(0);
+			//TODO:
+			//Have to test for each type of AddOn
+			//Order of AddOn's in arr are Tile to the left, then right, then above, then below
+			//Also have to make this work with the .csv of plants when we get that in
+			Plant[] result = new Plant[5];
+			
+			for(int i = 0; i < arr.length; i++) {
+				if(arr[i].getClass() == Plant.class) {
+					Plant pA = (Plant) arr[i];
+					if(pA.getPlantType() == "Tree") {
+						result[i] = temp.getTreeArr().get(0);
+						
+					}
+					
+					if(pA.getPlantType() == "Flower") {
+						result[i] = temp.getFlowerArr().get(0);
+					}
+					
+					if(pA.getPlantType() == "Shrub") {
+						result[i] = temp.getShrubArr().get(0);
+					}
+					
+					if(pA.getPlantType() == "UnderGrowth") {
+						result[i] = temp.getUnderGrowth().get(0);
+					}
 					
 				}
 				
-				if(pA.getPlantType() == "Flower") {
-
-					result[i] = temp.getFlowerArr().get(rand);
-
-					result[i] = temp.getFlowerArr().get(0);
-
-				}
-				
-				if(pA.getPlantType() == "Shrub") {
-					result[i] = temp.getShrubArr().get(0);
-				}
-				
-				if(pA.getPlantType() == "UnderGrowth") {
-					result[i] = temp.getUnderGrowth().get(0);
-				}
 				
 			}
 			
 			
+			return null;
 		}
 		
 		
-		return null;
-	}
 	
 	
 	
