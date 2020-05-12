@@ -292,11 +292,13 @@ public class Preferences extends Screen{
 		switch (template) {
 		case ("triangle"):
 			length.setVisible(true);
+			length.setMax(4);
 			width.setVisible(false);
 			lengthL.setVisible(true);
 			widthL.setVisible(false);
 			lengthL.setText("Number of Rows: ");
 			totalPrefs=5;
+			
 			break;
 		case ("circle"):
 			width.setVisible(false);
@@ -307,7 +309,9 @@ public class Preferences extends Screen{
 			break;
 		case("square"):
 			width.setVisible(true);
+			width.setMax(9);
 			length.setVisible(true);
+			length.setMax(6);
 			widthL.setVisible(true);
 			lengthL.setVisible(true);
 			lengthL.setText(lengthText);
@@ -372,6 +376,7 @@ public class Preferences extends Screen{
 		Slider[] sliders = new Slider[]{light,water,length,width};
 		for (Slider s : sliders) {
 			s.setBorder(unfinishedPrefBorder);
+			s.setMin(1);
 			s.setMax(5);
 			s.setShowTickMarks(true);
 			s.setMajorTickUnit(1);
