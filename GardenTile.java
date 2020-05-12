@@ -161,11 +161,11 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 				}
 				
 				if(pA.getPlantType() == "Flower") {
-<<<<<<< HEAD
+
 					result[i] = temp.getFlowerArr().get(rand);
-=======
+
 					result[i] = temp.getFlowerArr().get(0);
->>>>>>> 00a800ffbc01cf889eef717913e90442651a5e81
+
 				}
 				
 				if(pA.getPlantType() == "Shrub") {

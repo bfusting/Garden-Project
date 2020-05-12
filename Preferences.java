@@ -39,8 +39,8 @@ import javafx.scene.Scene;
  */
 public class Preferences extends Screen{
 	private ComboBox<String> bloomTime;
-	private ComboBox<String> waterReq;
-	private ComboBox<String> lightReq;
+	//private ComboBox<String> waterReq;
+	//private ComboBox<String> lightReq;
 	//private ColorPicker color;
 	private ComboBox<String> color;
 	private ComboBox<String> season;
@@ -65,9 +65,10 @@ public class Preferences extends Screen{
 	private Controller c;
 	Stage stage;
 	
-	private Label lengthLabel;
-	private Label widthLabel;
-	
+	//private Label lengthLabel;
+	//private Label widthLabel;
+	private Label lengthL;
+	private Label widthL;
 	
 	
 	public Preferences(Controller controller,Stage theStage) {
@@ -170,17 +171,17 @@ public class Preferences extends Screen{
 	 * 
 	 * @return waterReq The amount of water required for the plant
 	 */
-	public ComboBox<String> getWaterReq() {
+	/*public ComboBox<String> getWaterReq() {
 		return waterReq;
-	}
+	}*/
 	
 	/**
 	 * 
 	 * @return LightReq The amount of light required for the plant
 	 */
-	public ComboBox<String> getLightReq() {
+	/*public ComboBox<String> getLightReq() {
 		return lightReq;
-	}
+	}*/
 	
 	/**
 	 * 
@@ -239,24 +240,24 @@ public class Preferences extends Screen{
 		case ("triangle"):
 			length.setVisible(true);
 			width.setVisible(false);
-			lengthLabel.setVisible(true);
-			widthLabel.setVisible(false);
-			lengthLabel.setText("Rows");
+			lengthL.setVisible(true);
+			widthL.setVisible(false);
+			lengthL.setText("Rows");
 			totalPrefs=5;
 			break;
 		case ("circle"):
 			width.setVisible(false);
 			length.setVisible(false);
-			widthLabel.setVisible(false);
-			lengthLabel.setVisible(false);
+			widthL.setVisible(false);
+			lengthL.setVisible(false);
 			totalPrefs=4;
 			break;
 		case("square"):
 			width.setVisible(true);
 			length.setVisible(true);
-			widthLabel.setVisible(true);
-			lengthLabel.setVisible(true);
-			lengthLabel.setText("Length");
+			widthL.setVisible(true);
+			lengthL.setVisible(true);
+			lengthL.setText("Length");
 			totalPrefs=6;
 		}
 		
@@ -317,11 +318,11 @@ public class Preferences extends Screen{
 		}
 		
     
-    widthLabel = new Label("width");
-lengthLabel = new Label("length");
+    //widthLabel = new Label("width");
+//lengthLabel = new Label("length");
 
-    Button mainMenu = new Button("Main Menu");
-		
+    	Button mainMenu = new Button("Main Menu");
+    	mainMenu.setOnMouseClicked(c.getMainMenuWarning());
 		double lAnchors = 600.0;
 		
 		AnchorPane.setTopAnchor(color, 50.0);
@@ -345,8 +346,8 @@ lengthLabel = new Label("length");
 		Label seasonL = new Label("Preferred bloom season: ");
 		Label lightL = new Label("Light availability: ");
 		Label waterL = new Label("Water availability: ");
-		Label lengthL = new Label("Enter the length of your available garden space (ft): ");
-		Label widthL = new Label("Width (ft): ");
+		lengthL = new Label("Enter the length of your available garden space (ft): ");
+		widthL = new Label("Width (ft): ");
 		
 		double labelAnchors = 350.0;
 		AnchorPane.setTopAnchor(colorL, 50.0);
@@ -364,8 +365,8 @@ lengthLabel = new Label("length");
 		
 		
 		
-		Button mainMenu = new Button("Main Menu");
-		mainMenu.setOnMouseClicked(c.getMainMenuWarning());
+		//Button mainMenu = new Button("Main Menu");
+		
 		aPane.getChildren().addAll(color,season,light,water,length,width,back,startCreating,mainMenu, colorL, seasonL, lightL, waterL, lengthL, widthL);
 		preferencesScene = new Scene(aPane,View.primarySceneWidth,View.primarySceneHeight);
 		stage.setScene(preferencesScene);
