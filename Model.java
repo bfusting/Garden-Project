@@ -262,12 +262,20 @@ public class Model implements Serializable{
 					String sunlightNeedStr = buffReader.readLine();
 					String soilMoisture = buffReader.readLine();
 					String animalsFedStr = buffReader.readLine();
+					String spring = buffReader.readLine();
+					String summer = buffReader.readLine();
+					String autumn = buffReader.readLine();
+					String winter = buffReader.readLine();
+					
+					String[] seasonsArr = {spring,summer,autumn,winter};
 					
 					int size = Integer.parseInt(sizeStr);
 			        int waterNeed = Integer.parseInt(waterNeedStr);
 			        int sunlightNeed = Integer.parseInt(sunlightNeedStr);
 			        
-		        	Plant newPlant = new Plant(name, latinName, color, bloomTimeStr, habit, size, waterNeed, sunlightNeed, soilMoisture, animalsFedStr);
+
+		        	Plant newPlant = new Plant(name, latinName, color, bloomTimeStr, habit, size, waterNeed, sunlightNeed, soilMoisture, animalsFedStr, seasonsArr);
+
 			        if (i==0) {
 			        	plants = addPlant(plants, newPlant);
 			        } else if (i==1) {

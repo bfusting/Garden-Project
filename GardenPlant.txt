@@ -9,102 +9,142 @@ Shrub
 3
 Dry
 Butterflies
+PlantPictures/Sweet_Fern.jpg
+PlantPictures/Sweet_Fern.jpg
+PlantPictures/Sweet_Fern.jpg
+PlantPictures/Sweet_Fern.jpg
 
 Orange MilkWeed
 Asclepias Tuberosa
 Orange
 Summer
-Herb
+Shrub
 3
 1
 5
 Dry, Moist
-Butterflies + Honey + BumbleBees 
+Butterflies + Honey + BumbleBees
+PlantPictures/Orange_milkweed.jpg
+PlantPictures/Orange_milkweed.jpg
+PlantPictures/Orange_milkweed.jpg
+PlantPictures/Orange_milkweed.jpg
 
 Seaside Alder
 Alnus Maritima
 yellow
 Fall
-null
+Shrub
 0
 5
 3
 null
 null
+PlantPictures/Seaside_Alder.jpg
+PlantPictures/Seaside_Alder.jpg
+PlantPictures/Seaside_Alder.jpg
+PlantPictures/Seaside_Alder.jpg
 
 Red Chokeberry
 Aronia arbutifolia
 white
 Summer
-null
+Shrub
 12
 5
 5
 null
 attracts birds
+PlantPictures/Red_Chokeberry.jpg
+PlantPictures/Red_Chokeberry.jpg
+PlantPictures/Red_Chokeberry.jpg
+PlantPictures/Red_Chokeberry.jpg
 
 Sweet Shrub
 alycanthus floridus
 red
 Summer
-null
+Shrub
 0
 3
 3
 null
 null
+PlantPictures/Sweet_Shrub.jpg
+PlantPictures/Sweet_Shrub.jpg
+PlantPictures/Sweet_Shrub.jpg
+PlantPictures/Sweet_Shrub.jpg
 
 New Jersey Tea
 Ceanothus americanus
 white
 Spring
-null
+Shrub
 0
 1
 4
 null
 null
+PlantPictures/New_Jersey_Tea.jpg
+PlantPictures/New_Jersey_Tea.jpg
+PlantPictures/New_Jersey_Tea.jpg
+PlantPictures/New_Jersey_Tea.jpg
 
 American Hazelnut
 Corylus americana
 white
 Summer
-null
+Shrub
 0
 3
 4
 null
 null
+PlantPictures/American_Hazelnut.jpg
+PlantPictures/American_Hazelnut.jpg
+PlantPictures/American_Hazelnut.jpg
+PlantPictures/American_Hazelnut.jpg
 
 Red Willow
 Cornus amomum
 white
 Spring
-null
+Tree
 0
 5
 4
 null
 null
+PlantPictures/Red_WIllow.jpg
+PlantPictures/Red_WIllow.jpg
+PlantPictures/Red_WIllow.jpg
+PlantPictures/Red_WIllow.jpg
 
 Maidenhair Fern
 Adiantum pedatum
 null
 null
-null
+Shrub
 0
 3
 4
 null
 null
+PlantPictures/Maidenhair_Fern.jpg
+PlantPictures/Maidenhair_Fern.jpg
+PlantPictures/Maidenhair_Fern.jpg
+PlantPictures/Maidenhair_Fern.jpg
 
 BlackStem Spleenwort
 ASplenium Resiliens
 null
 null
-null
+Shrub
 0
 3
 4
 null
 null
+PlantPictures/Blackstem_Spleenwort.jpg
+PlantPictures/Blackstem_Spleenwort.jpg
+PlantPictures/Blackstem_Spleenwort.jpg
+PlantPictures/Blackstem_Spleenwort.jpg
