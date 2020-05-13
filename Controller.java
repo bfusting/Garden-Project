@@ -24,6 +24,8 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -547,22 +549,25 @@ public class Controller{
 		//Node n = event.getPickResult().getIntersectedNode();
 		Node n = event.getPickResult().getIntersectedNode();
 		if(DEBUG) {System.out.println(n.toString());}
+		ArrayList<Plant> tempArrayList = this.changeTabIndex();
+		int index = view.getDesignGardenScreen().getGridPaneInd();
 		if(n != view.getDesignGardenScreen().getPlot() && db.hasImage() && 
 				view.getDesignGardenScreen().getHoverEditTile() == false) {
 			// View side of plant drop
-			ImageView iv = new ImageView(db.getImage());
-			iv.setPreserveRatio(true);
-	    	iv.setFitHeight(100);
+			//ImageView iv = new ImageView(db.getImage());
+			//iv.setPreserveRatio(true);
+	    	//iv.setFitHeight(100);
+			Circle c = new Circle();
+			c = this.createCirlceSizes(db.getImage(), index);
 			Integer colIndex = GridPane.getColumnIndex(n);
 	    	Integer rowIndex = GridPane.getRowIndex(n);
 	    	
 	    	
 			
 			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
-			view.getDesignGardenScreen().getPlot().add(iv, colIndex, rowIndex, 1, 1);//add(iv, column, row);
+			view.getDesignGardenScreen().getPlot().add(c, colIndex, rowIndex, 1, 1);//add(iv, column, row);
 			// Model side of plant drop
-			ArrayList<Plant> tempArrayList = this.changeTabIndex();
-			int index = view.getDesignGardenScreen().getGridPaneInd();
+
 			//adding test to see if index is holding plants or addons
 			//switched
 			model.getUserPlot().getLayout()[rowIndex][colIndex].setPlant(tempArrayList.get(index));
@@ -575,7 +580,7 @@ public class Controller{
 			Integer colIndex = GridPane.getColumnIndex(n);
 			Integer rowIndex = GridPane.getRowIndex(n);
 			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
-			int index = view.getDesignGardenScreen().getGridPaneInd();//items held in gridpane of 4. 0 is add water, 1 is less water, 2 is add sun, 3 is remove water
+			//int index = view.getDesignGardenScreen().getGridPaneInd();//items held in gridpane of 4. 0 is add water, 1 is less water, 2 is add sun, 3 is remove water
 			switch(index) {
 			// increases wetness of tile
 			case 0: model.getUserPlot().getLayout()[rowIndex][colIndex].setWaterLevel(
@@ -1252,6 +1257,39 @@ public class Controller{
 
     public int getWidthFromModel() {
 	return model.getUserWidth();
+    }
+    
+    /**
+     * Takes in a parameter of an image which will be used to set the pattern of the 
+     * circle to the passed in image. Int i represents which tab is selected from 
+     * plants to pathways which determines the circle size. Returns a circle which 
+     * will be added to the designGarden
+     * <p>
+     * Used within the drag and drop method to drop pretty circles of the images
+     * instead of sized imageViews of the image.
+     * 
+     * @param img image from dragboard passed in within dragEvent
+     * @param i index of tab selected
+     * @return circle with image inside to be dropped in DesignGarden
+     * @see DesignGarden.java
+     * @see #detectDragDrop(DragEvent)
+     */
+    public Circle createCirlceSizes(Image img, int i) {
+    	//depending on what tab index is selected determines size
+    	Circle c = new Circle();
+    	switch(i) {
+    	// used to drop plants circle size
+    	case 0: c.setRadius(25);c.setFill(new ImagePattern(img));
+    	// used to drop under tree circle size
+    	case 1: c.setRadius(35);c.setFill(new ImagePattern(img));
+    	// used to drop shrubs circle size
+    	case 2: c.setRadius(43);c.setFill(new ImagePattern(img));
+    	// used to drop undergrowth circle size
+    	case 3: c.setRadius(25);c.setFill(new ImagePattern(img));
+    	// used to drop paths and other items
+    	default: c.setRadius(43);c.setFill(new ImagePattern(img));
+    	}
+    	return c;
     }
 }//Controller
 
