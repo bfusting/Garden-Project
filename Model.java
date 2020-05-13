@@ -240,9 +240,10 @@ public class Model implements Serializable{
 
 //	    Scanner input;
 		BufferedReader buffReader;
-	    String[] textFileStrings = {"GardenPlant.txt","GardenTree.txt"};
+	    String[] textFileStrings = {"GardenPlant.txt","GardenTree.txt","GardenFlower.txt"};
 	    Plant[] plants = new Plant[0];
 	    Plant[] trees = new Plant[0];
+	    Plant[] flowers = new Plant[0];
 	    
 		try {
 			for(int i=0;i<textFileStrings.length;i++) {
@@ -270,7 +271,10 @@ public class Model implements Serializable{
 			        	plants = addPlant(plants, newPlant);
 			        } else if (i==1) {
 			        	trees = addPlant(trees, newPlant);
+			        } else if (i==2) {
+			        	flowers = addPlant(flowers, newPlant);
 			        }
+			        
 				}
 
 
@@ -314,6 +318,9 @@ public class Model implements Serializable{
 			    }
 			    for (Plant tree : trees) {
 			    	System.out.println(tree);
+			    }
+			    for (Plant flower : flowers) {
+			    	System.out.println(flower);
 			    }
 			}
 
