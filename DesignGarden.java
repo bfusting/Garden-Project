@@ -378,7 +378,7 @@ treesGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 
 // setting tab full of flowers
 //setting up undergrowth Arr
-String[] tree = {"Plant Pictures/Box_Elder.jpg","Plant Pictures/Cigar_Tree.JPG"};
+String[] tree = {"Plant Pictures/Box_Elder.jpg","Plant Pictures/Cigar_Tree.jpg"};
 
 treeSelArr = new ArrayList<ImageView>();
 //setting up with each different picture
