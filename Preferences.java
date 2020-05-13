@@ -289,25 +289,25 @@ public class Preferences extends Screen{
 	@Override
 	public void showScreen() {
 		String template = c.getTemplateFromModel();
-		switch (template) {
-		case ("triangle"):
+		
+		if (template.equals("triangle")) {
 			length.setVisible(true);
 			length.setMax(4);
 			width.setVisible(false);
 			lengthL.setVisible(true);
 			widthL.setVisible(false);
 			lengthL.setText("Number of Rows: ");
-			totalPrefs=5;
-			
-			break;
-		case ("circle"):
+			totalPrefs=5;	
+		} 
+		else if (template.equals("circle")) {
+		
 			width.setVisible(false);
 			length.setVisible(false);
 			widthL.setVisible(false);
 			lengthL.setVisible(false);
 			totalPrefs=4;
-			break;
-		case("square"):
+		}
+		else if (template.equals("square") || template.equals("custom")) {
 			width.setVisible(true);
 			width.setMax(9);
 			length.setVisible(true);

@@ -71,7 +71,9 @@ public class GardenPlot implements Serializable{
 			makeCircle();
 			System.out.println("made circle");
 			break;
-			
+		case ("custom"):
+			makeSquare();
+			System.out.println("made custom");
 		}
 		
 	}
