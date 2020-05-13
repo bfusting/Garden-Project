@@ -230,10 +230,6 @@ public class Controller{
 	 */
 	public void backBTN(MouseEvent event) {
 		System.out.println("Go Back");
-		/* Add different method to move back
-		view.getDesignGardenScreen().getPlot().getChildren().
-		addAll(view.getFinalViewScreen().getOriginalGP().getChildren());
-		*/
 		view.goToLastScreen();
 	}//backBTN
 	
@@ -555,7 +551,7 @@ public class Controller{
 		if(DEBUG) {System.out.println(n.toString());}
 		ArrayList<Plant> tempArrayList = this.changeTabIndex();
 		int index = view.getDesignGardenScreen().getGridPaneInd();
-		int tabIndex = view.getDesignGardenScreen().getSelectGardenType().
+		int circleIndex = view.getDesignGardenScreen().getSelectGardenType().
 			    getSelectionModel().getSelectedIndex();
 		if(n != view.getDesignGardenScreen().getPlot() && db.hasImage() && 
 				view.getDesignGardenScreen().getHoverEditTile() == false) {
@@ -564,12 +560,9 @@ public class Controller{
 			//iv.setPreserveRatio(true);
 	    	//iv.setFitHeight(100);
 			Circle c = new Circle();
-			c = this.createCirlceSizes(db.getImage(), tabIndex);
+			c = this.createCirlceSizes(db.getImage(), circleIndex);
 			Integer colIndex = GridPane.getColumnIndex(n);
 	    	Integer rowIndex = GridPane.getRowIndex(n);
-	    	
-	    	
-			
 			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
 			view.getDesignGardenScreen().getPlot().add(c, colIndex, rowIndex, 1, 1);//add(iv, column, row);
 			// Model side of plant drop
@@ -1252,7 +1245,6 @@ public class Controller{
     public EventHandler<MouseEvent> getClickOnCloseSeasons(){
     	return event -> clickOnCloseSeasons((MouseEvent)event);
     }
-    
 
     public String getTemplateFromModel() {
 	return model.getUserTemplate();

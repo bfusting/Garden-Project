@@ -232,11 +232,10 @@ public class Model implements Serializable{
 		highBound = 0;
 	}//Model()
 	
-	/*
 	private void createArrs() {
 
 	    Scanner input;
-	    String[] textFileStrings = {"GardenPlant.txt","GardenTree.txt"};
+	    String[] textFileStrings = {"GardenPlant.rtf","GardenTree.rtf"};
 		try {
 			for(int i=0;i<textFileStrings.length;i++) {
 				input = new Scanner(new File(textFileStrings[i]));
@@ -255,8 +254,15 @@ public class Model implements Serializable{
 			        int size = input.nextInt();
 			        int waterNeed = input.nextInt();
 			        int sunlightNeed = input.nextInt();
+//			        String sizeStr = input.next();
+//			        String waterNeedStr = input.next();
+//			        String sunlightNeedStr = input.next();
 			        String soilMoisture = input.next();
 			        String animalsFedStr = input.next();
+			        
+//			        int size = Integer.parseInt(sizeStr);
+//			        int waterNeed = Integer.parseInt(waterNeedStr);
+//			        int sunlightNeed = Integer.parseInt(sunlightNeedStr);
 			        
 		        	Plant newPlant = new Plant(name, latinName, color, bloomTime, habit, size, waterNeed, sunlightNeed, soilMoisture, animalsFedStr);
 			        if (i==0) {
@@ -281,7 +287,6 @@ public class Model implements Serializable{
 		}
 
 	}
-	*/
 	
     private static Plant[] addPlant(Plant[] plantsArr, Plant plantToAdd) {
 	    Plant[] newPlants = new Plant[plantsArr.length + 1];

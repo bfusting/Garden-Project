@@ -71,7 +71,9 @@ public class GardenPlot implements Serializable{
 			makeCircle();
 			System.out.println("made circle");
 			break;
-			
+		case ("custom"):
+			makeSquare();
+			System.out.println("made custom");
 		}
 		
 	}
@@ -219,14 +221,14 @@ public class GardenPlot implements Serializable{
 		layout = new GardenTile[length][width];
 		int invis = 0;
 		for(int i = 0; i < length; i++) {
-			int middletimes = 0;
 			
 			for (int left =0;left < invis;left++) {
 				System.out.print("X ");
 				layout[i][left]=new GardenTile(i,left,false);
+				if (left>=length-2) { break;}
 			}
 			for(int middle = invis; middle < width-invis; middle++) {
-				middletimes++;
+				
 				System.out.print("O ");
 				layout[i][middle]= new GardenTile(i,middle);
 			}
@@ -236,9 +238,7 @@ public class GardenPlot implements Serializable{
 			}
 			invis+=1;
 			System.out.println();
-			if (middletimes<=2) {
-				break;
-			}
+			
 		}
 		
 		

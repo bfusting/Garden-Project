@@ -357,9 +357,6 @@ public class DesignGarden extends Screen{
 	         ColumnConstraints column = new ColumnConstraints(maxTileEditSize);
 	         tileEditingGP.getColumnConstraints().add(column);
 	         tileEditingGP.add(tileEdit.get(i), i, 0,1,1);
-	         
-	    // setting up trees/shrubs in gardenPane
-	    
 }
 
 // EventHandler to listen to which row, column its on
@@ -442,10 +439,30 @@ plants.setContent(plantsGP);
 plantsGP.setMaxSize(selectionGPsize, selectionGPsize);
 //adding row
 plantsGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
+
+String[] flower = {"Plant Pictures/Red_Willow.jpg",
+		"Plant Pictures/Seaside_GoldenRod.jpg",
+		"Plant Pictures/Pear_Thorn.jpg"};
+
+pSelectionArr = new ArrayList<ImageView>();
+//setting up with each different picture
+for(int i=0; i<flower.length;i++) {
+	Image img = new Image(flower[i]);
+	ImageView imgV = new ImageView(img);
+	imgV.setPreserveRatio(true);
+	imgV.setFitHeight(100);
+	imgV.setFitWidth(100);
+	imgV.setOnDragDetected(c.getStartDrag());
+	pSelectionArr.add(imgV);
+}
+
 for (int i = 0; i < selectionSize; i++) {
      ColumnConstraints column = new ColumnConstraints(selectionGPsize);
      plantsGP.getColumnConstraints().add(column);
      plantsGP.add(backdropColor.get(i), i, 0,1,1);
+     if(i<flower.length) {
+    	 plantsGP.add(pSelectionArr.get(i), i, 0,1,1);
+     }
 }
 
 plantsGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
@@ -468,15 +485,6 @@ shrubs = new Tab("Shrubs");
 
 shrubs.setContent(shrubsGP);
 
-
-// max size of items
-shrubsGP.setMaxSize(selectionGPsize, selectionGPsize);
-//adding row
-shrubsGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
-
-// Setting up shrubArr pictures
-//setting up tileEditingGP
-
 String[] shrub = {"Plant Pictures/Maidenhair_Fern.jpg","Plant Pictures/Sweet_Shrub.jpg"};
 
 shrubSelArr = new ArrayList<ImageView>();
@@ -495,7 +503,7 @@ for (int i = 0; i < selectionSize; i++) {
      ColumnConstraints column = new ColumnConstraints(selectionGPsize);
      shrubsGP.getColumnConstraints().add(column);
      shrubsGP.add(backdropColor2.get(i), i, 0,1,1);
-     if(i<2) {
+     if(i<shrub.length) {
     	 shrubsGP.add(shrubSelArr.get(i), i, 0,1,1);
      }
 }
@@ -521,9 +529,10 @@ undergrowth.setContent(underGP);
 
 // max size of items
 underGP.setMaxSize(selectionGPsize, selectionGPsize);
+//adding row
+underGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 
-// setting up undergrowth Arr
-String[] under = {"Plant Pictures/Fillaree.JPG","Plant Pictures/Blackstem_Spleenwort.JPG"};
+String[] under = {"Plant Pictures/Fillaree.jpg","Plant Pictures/Blackstem_Spleenwort.jpg"};
 
 underSelArr = new ArrayList<ImageView>();
 //setting up with each different picture
@@ -538,15 +547,12 @@ for(int i=0; i<under.length;i++) {
 }
 
 //adding row
-underGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
-
-//adding row
 //underGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 for (int i = 0; i < selectionSize; i++) {
      ColumnConstraints column = new ColumnConstraints(selectionGPsize);
      underGP.getColumnConstraints().add(column);
      underGP.add(backdropColor3.get(i), i, 0,1,1);
-     if(i<2) {
+     if(i<under.length) {
     	 underGP.add(underSelArr.get(i), i, 0,1,1);
      }
 }
@@ -574,10 +580,7 @@ treesGP.setMaxSize(selectionGPsize, selectionGPsize);
 //adding row
 treesGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 
-// setting tab full of flowers
-//setting up undergrowth Arr
 String[] tree = {"Plant Pictures/Box_Elder.jpg","Plant Pictures/Cigar_Tree.jpg"};
-
 
 treeSelArr = new ArrayList<ImageView>();
 //setting up with each different picture
@@ -594,7 +597,7 @@ for (int i = 0; i < selectionSize; i++) {
      ColumnConstraints column = new ColumnConstraints(selectionGPsize);
      treesGP.getColumnConstraints().add(column);
      treesGP.add(backdropColor4.get(i), i, 0,1,1);
-     if(i<2) {
+     if(i<tree.length) {
     	 treesGP.add(treeSelArr.get(i), i, 0,1,1);
      }
 }
@@ -686,6 +689,7 @@ for(int i=0; i<selectionSize-1;i++) {
 
 // Done setting up tabs
 
+/*
 ImageView iv1 = new ImageView();
 Image im1 = new Image(getClass().getResourceAsStream("/commonMilkweedcopy.png"));
 
@@ -717,6 +721,7 @@ for(int i=0; i<selectionSize; i++) {
 		plantsGP.getChildren().add(pSelectionArr.get(i));
 	}
 }
+*/
 
 /*
 TilePane plantTP = new TilePane();
