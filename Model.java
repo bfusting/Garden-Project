@@ -1,5 +1,13 @@
 import static org.junit.jupiter.api.DynamicTest.stream;
 
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -82,6 +90,10 @@ public class Model implements Serializable{
 		userPlot = null;
 		userTemplate = "";
 		prefsSet = 0;
+
+		createArrs();
+		
+
 		// Creating temp Plants for Bradley to use in methods, remove later
 		
 		
@@ -224,6 +236,115 @@ public class Model implements Serializable{
 		highBound = 0;
 	}//Model()
 	
+
+	private void createArrs() {
+
+//	    Scanner input;
+		BufferedReader buffReader;
+	    String[] textFileStrings = {"GardenPlant.txt","GardenTree.txt","GardenFlower.txt"};
+	    Plant[] plants = new Plant[0];
+	    Plant[] trees = new Plant[0];
+	    Plant[] flowers = new Plant[0];
+	    
+		try {
+			for(int i=0;i<textFileStrings.length;i++) {
+				
+				buffReader = new BufferedReader(new InputStreamReader(new FileInputStream(textFileStrings[i]))); 
+//				String line = buffReader.readLine(); 
+				while (buffReader.readLine() != null) { 
+					String name = buffReader.readLine();
+					String latinName = buffReader.readLine();
+					String color = buffReader.readLine();
+					String bloomTime = buffReader.readLine();
+					String habit = buffReader.readLine();
+					String sizeStr = buffReader.readLine();
+					String waterNeedStr = buffReader.readLine();
+					String sunlightNeedStr = buffReader.readLine();
+					String soilMoisture = buffReader.readLine();
+					String animalsFedStr = buffReader.readLine();
+					
+					int size = Integer.parseInt(sizeStr);
+			        int waterNeed = Integer.parseInt(waterNeedStr);
+			        int sunlightNeed = Integer.parseInt(sunlightNeedStr);
+			        
+		        	Plant newPlant = new Plant(name, latinName, color, bloomTime, habit, size, waterNeed, sunlightNeed, soilMoisture, animalsFedStr);
+			        if (i==0) {
+			        	plants = addPlant(plants, newPlant);
+			        } else if (i==1) {
+			        	trees = addPlant(trees, newPlant);
+			        } else if (i==2) {
+			        	flowers = addPlant(flowers, newPlant);
+			        }
+			        
+				}
+
+
+				
+/*				input = new Scanner(new File(textFileStrings[i]));
+			    input.useDelimiter("\n");
+			    
+			  
+			    Plant[] plants = new Plant[0];
+			    Plant[] trees = new Plant[0];
+			    
+			    while(input.hasNext()) {
+			        String name = input.next();
+			        String latinName = input.next();
+			        String color = input.next();
+			        String bloomTime = input.next();
+			        String habit = input.next();
+			        int size = input.nextInt();
+			        int waterNeed = input.nextInt();
+			        int sunlightNeed = input.nextInt();
+//			        String sizeStr = input.next();
+//			        String waterNeedStr = input.next();
+//			        String sunlightNeedStr = input.next();
+			        String soilMoisture = input.next();
+			        String animalsFedStr = input.next();
+			        
+//			        int size = Integer.parseInt(sizeStr);
+//			        int waterNeed = Integer.parseInt(waterNeedStr);
+//			        int sunlightNeed = Integer.parseInt(sunlightNeedStr);
+			        
+		        	Plant newPlant = new Plant(name, latinName, color, bloomTime, habit, size, waterNeed, sunlightNeed, soilMoisture, animalsFedStr);
+			        if (i==0) {
+			        	plants = addPlant(plants, newPlant);
+			        } else if (i==1) {
+			        	trees = addPlant(trees, newPlant);
+			        }
+			    }
+*/
+			    for (Plant plant : plants) {
+			        System.out.println(plant);
+			    }
+			    for (Plant tree : trees) {
+			    	System.out.println(tree);
+			    }
+			    for (Plant flower : flowers) {
+			    	System.out.println(flower);
+			    }
+			}
+
+		    
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+    private static Plant[] addPlant(Plant[] plantsArr, Plant plantToAdd) {
+	    Plant[] newPlants = new Plant[plantsArr.length + 1];
+	    System.arraycopy(plantsArr, 0, newPlants, 0, plantsArr.length);
+	    newPlants[newPlants.length - 1] = plantToAdd;
+
+	    return newPlants;
+	}
+	
+
 	/**
 	 * Used to generate alternate GardenPlots for the Final View
 	 * since they are generated. Calls the GardenPlot constructor

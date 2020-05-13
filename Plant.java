@@ -16,6 +16,11 @@ public class Plant extends AddOn{
 	private Seasons bloomTime;
 	private boolean provideShade;
 	
+	private String waterNeedStr;
+	private String sunlightNeedStr;
+	private String sizeStr;
+	
+	
 	private int size;
 	private String habit;
 	private String soilMoisture;
@@ -43,6 +48,24 @@ public class Plant extends AddOn{
 		this.animalsFed = animalsFed;
 		
 	}
+	
+	public Plant(String name, String latinName, String color, String bloomTime,
+			String habit, String size, String waterNeed, String sunLightNeed, String soilMoisture, String animalsFedStr) {
+		this.name = name;
+		this.color = color;
+		this.bloomTime = bloomTime;
+		this.latinName = latinName;
+		this.sunlightNeedStr = sunLightNeed;
+		this.waterNeedStr = waterNeed;
+		this.sizeStr = size;
+		this.habit = habit;
+		this.soilMoisture = soilMoisture;
+		this.animalsFedStr = animalsFedStr;
+		
+	}
+	
+	
+	
 	/**
 	 * Constructor for the Plant class. Initializes the characteristics and requirements for the plant
 	 * and the arrays of Strings containing the urls for the images of the plant at different ages and in
