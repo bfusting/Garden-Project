@@ -1,7 +1,11 @@
 import static org.junit.jupiter.api.DynamicTest.stream;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -88,7 +92,7 @@ public class Model implements Serializable{
 		userTemplate = "";
 		prefsSet = 0;
 		
-		//createArrs();
+		createArrs();
 		
 		// Creating temp Plants for Bradley to use in methods, remove later
 		
@@ -234,11 +238,44 @@ public class Model implements Serializable{
 	
 	private void createArrs() {
 
-	    Scanner input;
-	    String[] textFileStrings = {"GardenPlant.rtf","GardenTree.rtf"};
+//	    Scanner input;
+		BufferedReader buffReader;
+	    String[] textFileStrings = {"GardenPlant.txt","GardenTree.txt"};
+	    Plant[] plants = new Plant[0];
+	    Plant[] trees = new Plant[0];
+	    
 		try {
 			for(int i=0;i<textFileStrings.length;i++) {
-				input = new Scanner(new File(textFileStrings[i]));
+				
+				buffReader = new BufferedReader(new InputStreamReader(new FileInputStream(textFileStrings[i]))); 
+//				String line = buffReader.readLine(); 
+				while (buffReader.readLine() != null) { 
+					String name = buffReader.readLine();
+					String latinName = buffReader.readLine();
+					String color = buffReader.readLine();
+					String bloomTime = buffReader.readLine();
+					String habit = buffReader.readLine();
+					String sizeStr = buffReader.readLine();
+					String waterNeedStr = buffReader.readLine();
+					String sunlightNeedStr = buffReader.readLine();
+					String soilMoisture = buffReader.readLine();
+					String animalsFedStr = buffReader.readLine();
+					
+					int size = Integer.parseInt(sizeStr);
+			        int waterNeed = Integer.parseInt(waterNeedStr);
+			        int sunlightNeed = Integer.parseInt(sunlightNeedStr);
+			        
+		        	Plant newPlant = new Plant(name, latinName, color, bloomTime, habit, size, waterNeed, sunlightNeed, soilMoisture, animalsFedStr);
+			        if (i==0) {
+			        	plants = addPlant(plants, newPlant);
+			        } else if (i==1) {
+			        	trees = addPlant(trees, newPlant);
+			        }
+				}
+
+
+				
+/*				input = new Scanner(new File(textFileStrings[i]));
 			    input.useDelimiter("\n");
 			    
 			  
@@ -271,7 +308,7 @@ public class Model implements Serializable{
 			        	trees = addPlant(trees, newPlant);
 			        }
 			    }
-
+*/
 			    for (Plant plant : plants) {
 			        System.out.println(plant);
 			    }
@@ -282,6 +319,9 @@ public class Model implements Serializable{
 
 		    
 		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

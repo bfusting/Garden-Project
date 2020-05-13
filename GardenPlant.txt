@@ -1,0 +1,110 @@
+
+SweetFern
+Comptonia peregerina
+White
+Summer
+Shrub
+6
+3
+3
+Dry
+Butterflies
+
+Orange MilkWeed
+Asclepias Tuberosa
+Orange
+Summer
+Herb
+3
+1
+5
+Dry, Moist
+Butterflies + Honey + BumbleBees 
+
+Seaside Alder
+Alnus Maritima
+yellow
+Fall
+null
+0
+5
+3
+null
+null
+
+Red Chokeberry
+Aronia arbutifolia
+white
+Summer
+null
+12
+5
+5
+null
+attracts birds
+
+Sweet Shrub
+alycanthus floridus
+red
+Summer
+null
+0
+3
+3
+null
+null
+
+New Jersey Tea
+Ceanothus americanus
+white
+Spring
+null
+0
+1
+4
+null
+null
+
+American Hazelnut
+Corylus americana
+white
+Summer
+null
+0
+3
+4
+null
+null
+
+Red Willow
+Cornus amomum
+white
+Spring
+null
+0
+5
+4
+null
+null
+
+Maidenhair Fern
+Adiantum pedatum
+null
+null
+null
+0
+3
+4
+null
+null
+
+BlackStem Spleenwort
+ASplenium Resiliens
+null
+null
+null
+0
+3
+4
+null
+null
