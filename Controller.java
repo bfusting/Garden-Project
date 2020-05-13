@@ -553,22 +553,25 @@ public class Controller{
 		//Node n = event.getPickResult().getIntersectedNode();
 		Node n = event.getPickResult().getIntersectedNode();
 		if(DEBUG) {System.out.println(n.toString());}
+		ArrayList<Plant> tempArrayList = this.changeTabIndex();
+		int index = view.getDesignGardenScreen().getGridPaneInd();
 		if(n != view.getDesignGardenScreen().getPlot() && db.hasImage() && 
 				view.getDesignGardenScreen().getHoverEditTile() == false) {
 			// View side of plant drop
-			ImageView iv = new ImageView(db.getImage());
-			iv.setPreserveRatio(true);
-	    	iv.setFitHeight(100);
+			//ImageView iv = new ImageView(db.getImage());
+			//iv.setPreserveRatio(true);
+	    	//iv.setFitHeight(100);
+			Circle c = new Circle();
+			c = this.createCirlceSizes(db.getImage(), index);
 			Integer colIndex = GridPane.getColumnIndex(n);
 	    	Integer rowIndex = GridPane.getRowIndex(n);
 	    	
 	    	
 			
 			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
-			view.getDesignGardenScreen().getPlot().add(iv, colIndex, rowIndex, 1, 1);//add(iv, column, row);
+			view.getDesignGardenScreen().getPlot().add(c, colIndex, rowIndex, 1, 1);//add(iv, column, row);
 			// Model side of plant drop
-			ArrayList<Plant> tempArrayList = this.changeTabIndex();
-			int index = view.getDesignGardenScreen().getGridPaneInd();
+
 			//adding test to see if index is holding plants or addons
 			//switched
 			model.getUserPlot().getLayout()[rowIndex][colIndex].setPlant(tempArrayList.get(index));
@@ -581,7 +584,7 @@ public class Controller{
 			Integer colIndex = GridPane.getColumnIndex(n);
 			Integer rowIndex = GridPane.getRowIndex(n);
 			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
-			int index = view.getDesignGardenScreen().getGridPaneInd();//items held in gridpane of 4. 0 is add water, 1 is less water, 2 is add sun, 3 is remove water
+			//int index = view.getDesignGardenScreen().getGridPaneInd();//items held in gridpane of 4. 0 is add water, 1 is less water, 2 is add sun, 3 is remove water
 			switch(index) {
 			// increases wetness of tile
 			case 0: model.getUserPlot().getLayout()[rowIndex][colIndex].setWaterLevel(
@@ -1285,11 +1288,11 @@ public class Controller{
     	// used to drop under tree circle size
     	case 1: c.setRadius(80);c.setFill(new ImagePattern(img));
     	// used to drop shrubs circle size
-    	case 2: c.setRadius(50);c.setFill(new ImagePattern(img));
+    	case 2: c.setRadius(40);c.setFill(new ImagePattern(img));
     	// used to drop undergrowth circle size
-    	case 3: c.setRadius(35);c.setFill(new ImagePattern(img));
+    	case 3: c.setRadius(30);c.setFill(new ImagePattern(img));
     	// used to drop paths and other items
-    	default: c.setRadius(95);c.setFill(new ImagePattern(img));
+    	default: c.setRadius(80);c.setFill(new ImagePattern(img));
     	}
     	return c;
     }
