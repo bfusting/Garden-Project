@@ -1,3 +1,4 @@
+
 SweetFern
 Comptonia peregerina
 White
@@ -8,6 +9,7 @@ Shrub
 3
 Dry
 Butterflies
+
 Orange MilkWeed
 Asclepias Tuberosa
 Orange
@@ -18,6 +20,7 @@ Herb
 5
 Dry, Moist
 Butterflies + Honey + BumbleBees 
+
 Seaside Alder
 Alnus Maritima
 yellow
@@ -28,6 +31,7 @@ null
 3
 null
 null
+
 Red Chokeberry
 Aronia arbutifolia
 white
@@ -38,6 +42,7 @@ null
 5
 null
 attracts birds
+
 Sweet Shrub
 alycanthus floridus
 red
@@ -48,6 +53,7 @@ null
 3
 null
 null
+
 New Jersey Tea
 Ceanothus americanus
 white
@@ -58,6 +64,7 @@ null
 4
 null
 null
+
 American Hazelnut
 Corylus americana
 white
@@ -68,6 +75,7 @@ null
 4
 null
 null
+
 Red Willow
 Cornus amomum
 white
@@ -78,6 +86,7 @@ null
 4
 null
 null
+
 Maidenhair Fern
 Adiantum pedatum
 null
@@ -88,6 +97,7 @@ null
 4
 null
 null
+
 BlackStem Spleenwort
 ASplenium Resiliens
 null

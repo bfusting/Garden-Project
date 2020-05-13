@@ -269,7 +269,6 @@ public class Controller{
 		else if (model.getUserTemplate().equals("circle")) {
 			model.setUserLength(circleSize);
 			model.setUserWidth(circleSize);
-			System.out.println("rewriting length and width");
 		}
 		
 		
@@ -593,8 +592,8 @@ public class Controller{
 			// less light of tile dropped on
 			case 3: model.getUserPlot().getLayout()[rowIndex][colIndex].setSunLightLevel(
 				model.getUserPlot().getLayout()[rowIndex][colIndex].getSunLightLevel()-1);
-			default: 
-				if(DEBUG) {System.out.println("Failed to place tile editor");}
+			//default: 
+				//if(DEBUG) {System.out.println("Failed to place tile editor");}
 				//view.getDesignGardenScreen().setHoverEditTile(false);
 			}//switch
 			view.getDesignGardenScreen().setHoverEditTile(false);

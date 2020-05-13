@@ -1,7 +1,11 @@
 import static org.junit.jupiter.api.DynamicTest.stream;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -88,7 +92,8 @@ public class Model implements Serializable{
 		userTemplate = "";
 		prefsSet = 0;
 		
-		//createArrs();
+		allPlants=new ArrayList<Plant>();
+		createArrs();
 		
 		// Creating temp Plants for Bradley to use in methods, remove later
 		
@@ -112,64 +117,64 @@ public class Model implements Serializable{
 		*/
 /*		
 		Plant fillaree = new Plant("Fillaree", "eraniaceae Erodium texanum", "Red", 
-				"Spring", "", 0, 1, 5, "Dry", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 1, 5, "Dry", new ArrayList<String>());
 		
 		Plant starGrass = new Plant("Star Grass", "Liliaceae Aletris aurea", "Yellow",
-				"Summer", "", 0, 3, 3, "", new ArrayList<String>());
+				Seasons.SUMMER, "", 0, 3, 3, "", new ArrayList<String>());
 		
 		Plant narrowLeafOnion = new Plant("Narrowleaf Onion","Allium amplectens", "White", 
-				"Spring", "", 0, 3, 3, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 3, 3, "", new ArrayList<String>());
 		
 		Plant pearThorn = new Plant("Pear Thorn", "Crataegus calpodenron", "White",
-				"Summer", "", 0, 3, 3, "", new ArrayList<String>());
+				Seasons.SUMMER, "", 0, 3, 3, "", new ArrayList<String>());
 		
 		Plant whiteSnakeroot = new Plant("White Snakeroot", "Ageratina Altissim", "White",
-				"Summer", "", 0, 1, 3, "", new ArrayList<String>());
+				Seasons.SUMMER, "", 0, 1, 3, "", new ArrayList<String>());
 		
 		// Trees
 		Plant narrowleafCottonwood = new Plant("Narrowleaf Cottonwood", "Populus Angustifloia", "White",
-				"Spring", "", 0, 5, 3, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 5, 3, "", new ArrayList<String>());
 		
 		Plant boxElder = new Plant("Box Elder", "Acer negundo", "Yellow",
-				"Spring", "", 0, 3, 5, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 3, 5, "", new ArrayList<String>());
 		
 		Plant blackMaple = new Plant("Black Maple", "Acer nigrum", "Yellow",
-				"Spring", "", 0, 3, 3, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 3, 3, "", new ArrayList<String>());
 		
 		Plant juneBush = new Plant("Junebush", "Amelanchier canadensis", "White",
-				"Spring", "", 0, 3, 4, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 3, 4, "", new ArrayList<String>());
 		
 		Plant whiteBirch = new Plant("White Birch", "Betula poulifolia", "Green",
-				"Spring", "", 0, 1, 3, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 1, 3, "", new ArrayList<String>());
 		
 		Plant cigarTree = new Plant("Cigar Tree"," Amelanchier canadensis", "White", 
-				"Summer", "", 0, 1, 1, "", new ArrayList<String>());
+				Seasons.SUMMER, "", 0, 1, 1, "", new ArrayList<String>());
 		
 		
 		//Shrubs
 		Plant seasideAlder = new Plant("Seaside Alder", "Alnus Maritima", "Yellow",
-				"Summer","", 0, 5, 3, "", new ArrayList<String>());
+				Seasons.SUMMER,"", 0, 5, 3, "", new ArrayList<String>());
 		
 		Plant redChokeberry = new Plant("Red Chokeberry", "Aronia arbutifolia", "White",
-				"Spring", "", 0, 5, 5, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 5, 5, "", new ArrayList<String>());
 		
 		Plant sweetShrub = new Plant("Sweet Shrub", "Calycanthus floridus", "Red",
-				"Spring", "", 0, 3, 3, "Moist", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 3, 3, "Moist", new ArrayList<String>());
 		
 		Plant newJerseyTea = new Plant("New Jersey Tea", "Ceanothus americanus", "White",
-				"Spring", "", 0, 1, 2, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 1, 2, "", new ArrayList<String>());
 		
 		Plant americanHazelnut = new Plant("American Hazelnut", "Corylus americana", "White",
-				"Spring", "", 0, 3, 2, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 3, 2, "", new ArrayList<String>());
 		
 		Plant redWillow = new Plant("Red Willow", "Cornus amomum", "White",
-				"Spring", "", 0, 5, 3, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 5, 3, "", new ArrayList<String>());
 		
 		Plant maidenhairFern = new Plant("Maidenhair Fern", "Adiantum pedatum", "",
-				"", "", 0, 3, 3, "", new ArrayList<String>());
+				null, "", 0, 3, 3, "", new ArrayList<String>());
 		
 		Plant blackstemSpleenwort = new Plant("Blackstem Spleenwort", "Asplenium Resiliens", "",
-				"", "", 0, 3, 2, "", new ArrayList<String>());
+				null, "", 0, 3, 2, "", new ArrayList<String>());
 				
 		flowerArr = new ArrayList<Plant>();
 	//	flowerArr.add(purpleConeFlower);
@@ -234,11 +239,48 @@ public class Model implements Serializable{
 	
 	private void createArrs() {
 
-	    Scanner input;
-	    String[] textFileStrings = {"GardenPlant.rtf","GardenTree.rtf"};
+//	    Scanner input;
+		BufferedReader buffReader;
+	    String[] textFileStrings = {"GardenPlant.txt","GardenTree.txt","GardenFlower.txt"};
+	    Plant[] plants = new Plant[0];
+	    Plant[] trees = new Plant[0];
+	    Plant[] flowers = new Plant[0];
+	    
 		try {
 			for(int i=0;i<textFileStrings.length;i++) {
-				input = new Scanner(new File(textFileStrings[i]));
+				
+				buffReader = new BufferedReader(new InputStreamReader(new FileInputStream(textFileStrings[i]))); 
+//				String line = buffReader.readLine(); 
+				while (buffReader.readLine() != null) { 
+					String name = buffReader.readLine();
+					String latinName = buffReader.readLine();
+					String color = buffReader.readLine();
+					String bloomTimeStr = buffReader.readLine();
+					String habit = buffReader.readLine();
+					String sizeStr = buffReader.readLine();
+					String waterNeedStr = buffReader.readLine();
+					String sunlightNeedStr = buffReader.readLine();
+					String soilMoisture = buffReader.readLine();
+					String animalsFedStr = buffReader.readLine();
+					
+					int size = Integer.parseInt(sizeStr);
+			        int waterNeed = Integer.parseInt(waterNeedStr);
+			        int sunlightNeed = Integer.parseInt(sunlightNeedStr);
+			        
+		        	Plant newPlant = new Plant(name, latinName, color, bloomTimeStr, habit, size, waterNeed, sunlightNeed, soilMoisture, animalsFedStr);
+			        if (i==0) {
+			        	plants = addPlant(plants, newPlant);
+			        } else if (i==1) {
+			        	trees = addPlant(trees, newPlant);
+			        } else if (i==2) {
+			        	flowers = addPlant(flowers, newPlant);
+			        }
+			        
+				}
+
+
+				
+/*				input = new Scanner(new File(textFileStrings[i]));
 			    input.useDelimiter("\n");
 			    
 			  
@@ -271,12 +313,15 @@ public class Model implements Serializable{
 			        	trees = addPlant(trees, newPlant);
 			        }
 			    }
-
+*/
 			    for (Plant plant : plants) {
 			        System.out.println(plant);
 			    }
 			    for (Plant tree : trees) {
 			    	System.out.println(tree);
+			    }
+			    for (Plant flower : flowers) {
+			    	System.out.println(flower);
 			    }
 			}
 
@@ -284,6 +329,18 @@ public class Model implements Serializable{
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (int i=0;i<plants.length;i++) {
+			allPlants.add(plants[i]);
+		}
+		for (int i=0;i<trees.length;i++) {
+			allPlants.add(trees[i]);
+		}
+		for(int i=0;i<flowers.length;i++) {
+			allPlants.add(flowers[i]);
 		}
 
 	}
@@ -330,7 +387,7 @@ public class Model implements Serializable{
 	public void updateArrs() {
 		// sets up the array by filter to appropriate type then filtering to all of
 		// of flowerArr then
-		setFlowerArr(filterByType(flowerArr,flower));
+		setFlowerArr(filterByType(allPlants,flower));
 		flowerArr.addAll(filterByColor(flowerArr,userPrefColor));
 		flowerArr.addAll(filterByBloomTime(flowerArr,userPrefSeason));
 		flowerArr.addAll(filterByLight(flowerArr,userPrefLight));
@@ -347,7 +404,7 @@ public class Model implements Serializable{
 		
 		// sets up the array by filter to appropriate type then filtering to all of
 		// of shrubArr
-		setShrubArr(filterByType(shrubArr,shrub));
+		setShrubArr(filterByType(allPlants,shrub));
 		shrubArr.addAll(filterByColor(shrubArr,userPrefColor));
 		shrubArr.addAll(filterByBloomTime(shrubArr,userPrefSeason));
 		shrubArr.addAll(filterByLight(shrubArr,userPrefLight));
@@ -364,7 +421,7 @@ public class Model implements Serializable{
 		
 		// sets up the array by filter to appropriate type then filtering to all of
 		// of treeArr
-		setTreeArr(filterByType(treeArr,tree));
+		setTreeArr(filterByType(allPlants,tree));
 		treeArr.addAll(filterByColor(treeArr,userPrefColor));
 		treeArr.addAll(filterByBloomTime(treeArr,userPrefSeason));
 		treeArr.addAll(filterByLight(treeArr,userPrefLight));
@@ -381,7 +438,7 @@ public class Model implements Serializable{
 		
 		// sets up the array by filter to appropriate type then filtering to all of
 		// of underGrowth Arr
-		setUnderGrowthArr((filterByType(underGrowthArr,undergrowth)));
+		setUnderGrowthArr((filterByType(allPlants,undergrowth)));
 		underGrowthArr.addAll(filterByColor(underGrowthArr,userPrefColor));
 		underGrowthArr.addAll(filterByBloomTime(underGrowthArr,userPrefSeason));
 		underGrowthArr.addAll(filterByLight(underGrowthArr,userPrefLight));

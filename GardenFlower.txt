@@ -1,61 +1,77 @@
-Pale Purple ConeFlower:
-	latin name: Chenacea Pallida
-	leaf: green
-	Flower: 3-5 inches across
-	fruit: dark
-	bloom color: pink/purple
-	bloom time: may, june, july
-	water use: medium
-	light required: sun
-	soil moisture: dry/moist
 
+Pale Purple ConeFlower
+Chenacea Pallida
+pink/purple
+Summer
+Flower
+0
+3
+5
+dry/moist
+null
 
-Seaside Goldenrod:
-	Latin name: Solidago Sempervirens
-	leaf: dark green
-	bloom color: yellow
-	bloom time: aug, sept, oct
-	soil moisture: moist
-	soil type: sandy
-	light required: sun
+Seaside Goldenrod
+Solidago Sempervirens
+yellow
+Fall
+Flower
+0
+3
+5
+moist
+null
 
-Fillaree:
-	Latin Name: Geraniaceae Erodium texanum
-	leaf: green
-	bloom color: Red/Purple
-	bloom time: Mar/Apr
-	Light required: sun
-	Soil moisture: dry
-	Soil type: rocky
+Fillaree
+Geraniaceae Erodium texanum
+Red/Purple
+Spring
+Flower
+0
+3
+5
+dry
+null
 	
-Star Grass:
-	Latin name: Liliaceae Aletris aurea
-	leaf: light green
-	Bloom color: yellow
-	Bloom Time: Apr, May, Jun, July
-	water need: medium
-	sun need: sun / part shade
+Star Grass
+Liliaceae Aletris aurea
+yellow
+Summer
+Flower
+0
+3
+4
+null
+null
 
-NarrowLeaf Onion:
-	Latin name: Allium amplectens
-	leaf: green
-	bloom color:white, pink
-	bloom time: Apr, May, Jun, July
+NarrowLeaf Onion
+Allium amplectens
+white, pink
+Summer
+Flower
+0
+3
+3
+null
+null
 
+Pear Thorn
+Crataegus calpodenron
+White
+Summer
+Flower
+0
+3
+3
+null
+null
 	
-Pear Thorn:
-	latin name: Crataegus calpodenron
-	leaf: green
-	bloom color: white
-	bloom time: may, jun
-	water need: medium
-	light need: part shade	
-	
-White Snakeroot:
-	latin name: Ageratina Altissim
-	leaf: green
-	bloom color: white
-	bloom time: july aug sept nov
-	water need: low
-	light need: sun / part shade
-	
+White Snakeroot
+Ageratina Altissim
+White
+Fall
+Flower
+0
+1
+4
+null
+null	

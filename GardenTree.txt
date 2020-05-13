@@ -1,3 +1,4 @@
+
 Southern Sugar Maple
 Acer Floridanum
 yellow
@@ -8,6 +9,7 @@ null
 3
 dry
 null
+
 Narrow Leaf Cottonwood
 Populus Angustifloia
 White
@@ -18,6 +20,7 @@ null
 3
 Wet
 null
+
 Box Elder
 Acer negundo
 yellow
@@ -28,6 +31,7 @@ null
 5
 null
 null
+
 Black Maple
 Acer nigrum
 yellow / green
@@ -38,6 +42,7 @@ null
 4
 null
 null
+
 Junebush
 Amelanchier canadensis
 White
@@ -48,6 +53,7 @@ null
 4
 null
 null
+
 White Birch
 Betula populifolia
 Green/Brown
@@ -58,6 +64,7 @@ null
 4
 null
 null
+
 Cigar Tree
 Catalpa bignonioides
 White
