@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-
+import javafx.scene.Group;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.text.Text;
@@ -242,42 +242,80 @@ public class Recommendations extends Screen{
 		TitledPane treeTest = null;
 		TitledPane shrubTest = null;
 		TitledPane flowerTest = null;
-
 		TitledPane underGrowthTest = null;
-	
+		
+		
+		
+		String trees = "";
+		String shrubs = "";
+		String flowers = "";
+		String underGrowths = "";
+		
+		try {
+			
+			for(int i = 0; i < getRecTrees().length; i++) {
+			if(getRecTrees()[i] != null) {
+				trees = trees + getRecTrees()[i].getName() + "\n";
+				}
+			}
+			
+			treeTest = new TitledPane("Trees", new Text(trees));
+		}
+		catch(Exception e) {
+			treeTest = new TitledPane("Trees", new Text("No Recommendations"));
+		}
+		
+		try {
+			for(int i = 0; i < getRecShrubs().length; i++) {
+				if(getRecShrubs()[i] != null) {
+					shrubs = shrubs + getRecShrubs()[i].getName() + "\n";
+				}
+			}
+			
+			shrubTest = new TitledPane("Shrubs", new Text(shrubs));
+		}
+		catch(Exception e) {
+			shrubTest = new TitledPane("Shrubs", new Text("No Recommendations"));
+		}
+		
+		try {
+			for(int i = 0; i < getRecFlowers().length; i++) {
+				if(getRecFlowers()[i] != null) {
+					flowers = flowers + getRecFlowers()[i].getName() + "\n";
+				}
+			}
+			
+			flowerTest = new TitledPane("Flowers", new Text(flowers));
+		}
+		catch(Exception e){
+			flowerTest = new TitledPane("Flowers", new Text("No Recommendations"));
+		}
+		
+		try {
+			for(int i = 0; i < getRecUndergrowth().length; i++) {
+				if(getRecUndergrowth()[i] != null) {
+					underGrowths = underGrowths + getRecUndergrowth()[i].getName() + "\n";
+				}
+			}
+			
+			underGrowthTest = new TitledPane("Undergrowth", new Text(underGrowths));
+		}
+		catch(Exception e) {
+			underGrowthTest = new TitledPane("Undergrowth", new Text("No Recommendations"));
+		}
 		for(Text t : texts) {
 			AnchorPane.setLeftAnchor(t, 5.0);
 			AnchorPane.setRightAnchor(t, 5.0);
 			AnchorPane.setTopAnchor(t, 5.0);
 		}
-	
-	AnchorPane treeAccord = new AnchorPane(new Text("Trees"));
-	AnchorPane shrubAccord = new AnchorPane(new Text("Shrubs"));
-	AnchorPane flowerAccord = new AnchorPane(new Text("Flowers"));
-	AnchorPane underGrowthAccord = new AnchorPane(new Text("Undergrowth"));
+
 	
 	Accordion accord = new Accordion();
 	VBox root = new VBox(accord);
 	root.setBackground(new Background(new BackgroundFill(Color.DARKOLIVEGREEN,CornerRadii.EMPTY,Insets.EMPTY)));
 	
-	try {
-		for(int i = 0; i < this.getRecPlants().length; i++) {
-			if(this.getRecPlants()[i] != null) {
-				treeTest = new TitledPane("Trees", new Text(this.getRecPlants()[i].getName()));
-				shrubTest = new TitledPane("Shrubs", new Text(this.getRecPlants()[i].getName()));
-				flowerTest = new TitledPane("Flowers", new Text(this.getRecPlants()[i].getName()));
-				underGrowthTest = new TitledPane("UnderGrowth", new Text(this.getRecPlants()[i].getName()));
-
-			}
-		}
-		
-	}
-	catch(Exception e) {
-		treeTest = new TitledPane("Trees", new Text("No Recommendations"));
-		shrubTest = new TitledPane("Shrubs", new Text("No Recommendations"));
-		flowerTest = new TitledPane("Flowers", new Text("No Recommendations"));
-		underGrowthTest = new TitledPane("Undergrowth", new Text("No Recommendations"));
-	}
+	
+	
 	
 	accord.getPanes().addAll(treeTest, flowerTest, shrubTest, underGrowthTest);
 
@@ -290,7 +328,7 @@ public class Recommendations extends Screen{
 	Scene scene = new Scene(root, WIDTH, HEIGHT);
 	stage.setScene(scene);
 	}
-
+	
 
 	@Override
 	public void showScreen() {
@@ -316,33 +354,159 @@ public class Recommendations extends Screen{
 	 * @return
 	 * returns rec - the 2D array of recommended addOns
 	 */
-	public Plant[] getRecPlants() {
-		Plant[] rec= {};
+	public Plant[] getRecFlowers() {
+		Plant[] rec = new Plant[10];
 		int count = 0;
-		for(int i = 0; i < this.c.getModel().getUserPlot().getWidth(); i++) {
-			for(int k = 0; k < this.c.getModel().getUserPlot().getLength(); k++) {
-			
-				
-				//getting recommended plants from every gardenTile
-				//This might want to be changed to include fewer tiles, like every other tile or something
-				for(int j = 0; j < this.c.getModel().getUserPlot().getLayout()[i][k].getRecommendations(
-						this.c.getModel().getUserPlot().getSurroundingInfo(i, k)).length; j++) {
-					rec[count] = this.c.getModel().getUserPlot().getLayout()[i][k].getRecommendations(
-							this.c.getModel().getUserPlot().getSurroundingInfo(i, k))[j];
-					
-				}
-				
-			
-				
+		for(Plant p : this.c.getModel().getFlowerArr()) {
+			if(p.getColor() == this.c.getModel().getUserPrefColor()) {
+				rec[count] = p;
 				count++;
 			}
-			
 		}
+		
+		for(Plant p : this.c.getModel().getFlowerArr()) {
+			if(p.getBloomTime() == this.c.getModel().getUserPrefSeason()) {
+				rec[count] = p;
+				count++;
+			}
+		}
+		
+		for(Plant p : this.c.getModel().getFlowerArr()) {
+			if(p.getSunLightNeed() == this.c.getModel().getUserPrefLight()) {
+				rec[count] = p;
+				count++;
+			}
+		}
+		
+		for(Plant p : this.c.getModel().getFlowerArr()) {
+			if(p.getWaterNeed() == this.c.getModel().getUserPrefWater()) {
+				rec[count] = p;
+				count++;
+			}
+		}
+		
+		return rec;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Plant[] getRecTrees() {
+		Plant[] rec = new Plant[10];
+		int count = 0;
+		for(Plant p : this.c.getModel().getTreeArr()) {
+			if(p.getColor() == this.c.getModel().getUserPrefColor() && count < 10) {
+				rec[count] = p;
+				count++;
+			}
+		}
+		
+		for(Plant p : this.c.getModel().getTreeArr()) {
+			if(p.getBloomTime() == this.c.getModel().getUserPrefSeason() && count < 10) {
+				rec[count] = p;
+				count++;
+			}
+		}
+		
+		for(Plant p : this.c.getModel().getTreeArr()) {
+			if(p.getSunLightNeed() == this.c.getModel().getUserPrefLight() && count < 10) {
+				rec[count] = p;
+				count++;
+			}
+		}
+		
+		for(Plant p : this.c.getModel().getTreeArr()) {
+			if(p.getWaterNeed() == this.c.getModel().getUserPrefWater() && count < 10) {
+				rec[count] = p;
+				count++;
+			}
+		}
+		
 		
 		
 		return rec;
 		
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public Plant[] getRecShrubs() {
+		Plant[] rec = new Plant[10];
+		int count = 0;
+		for(Plant p : this.c.getModel().getShrubArr()) {
+			if(p.getColor() == this.c.getModel().getUserPrefColor()) {
+				rec[count] = p;
+				count++;
+			}
+		}
+		
+		for(Plant p : this.c.getModel().getShrubArr()) {
+			if(p.getBloomTime() == this.c.getModel().getUserPrefSeason()) {
+				rec[count] = p;
+				count++;
+			}
+		}
+		
+		for(Plant p : this.c.getModel().getShrubArr()) {
+			if(p.getSunLightNeed() == this.c.getModel().getUserPrefLight()) {
+				rec[count] = p;
+				count++;
+			}
+		}
+		
+		for(Plant p : this.c.getModel().getShrubArr()) {
+			if(p.getWaterNeed() == this.c.getModel().getUserPrefWater()) {
+				rec[count] = p;
+				count++;
+			}
+		}
+		
+		
+		return rec;
+		
+	}
 
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Plant[] getRecUndergrowth() {
+		Plant[] rec = new Plant[10];
+		int count = 0;
+		for(Plant p : this.c.getModel().getUnderGrowth()) {
+			if(p.getColor() == this.c.getModel().getUserPrefColor()) {
+				rec[count] = p;
+				count++;
+			}
+		}
+		
+		for(Plant p : this.c.getModel().getUnderGrowth()) {
+			if(p.getBloomTime() == this.c.getModel().getUserPrefSeason()) {
+				rec[count] = p;
+				count++;
+			}
+		}
+		
+		for(Plant p : this.c.getModel().getUnderGrowth()) {
+			if(p.getSunLightNeed() == this.c.getModel().getUserPrefLight()) {
+				rec[count] = p;
+				count++;
+			}
+		}
+		
+		for(Plant p : this.c.getModel().getUnderGrowth()) {
+			if(p.getWaterNeed() == this.c.getModel().getUserPrefWater()) {
+				rec[count] = p;
+				count++;
+			}
+		}
+		
+		
+		return rec;
+		
+	}
 }

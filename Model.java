@@ -1,17 +1,12 @@
 import static org.junit.jupiter.api.DynamicTest.stream;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
-
-
 
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
@@ -87,14 +82,11 @@ public class Model implements Serializable{
 		userPlot = null;
 		userTemplate = "";
 		prefsSet = 0;
-		
-		//createArrs();
-		
 		// Creating temp Plants for Bradley to use in methods, remove later
 		
 		
 		//These Plants have the incorrect constructor
-		/*
+		/**
 		Plant purpleConeFlower = new Plant("Purple Cone Flower", 1, "cone flower", 
 				"purple", 0, 0, 0, 0, "Autumn", false, null, null, "Flower", null, null);
 		
@@ -110,66 +102,66 @@ public class Model implements Serializable{
 				2.00, 0, "Summer", false, null, null, "UnderGrowth", null, null);
 		
 		*/
-/*		
+		
 		Plant fillaree = new Plant("Fillaree", "eraniaceae Erodium texanum", "Red", 
-				"Spring", "", 0, 1, 5, "Dry", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 1, 5, "Dry", new ArrayList<String>());
 		
 		Plant starGrass = new Plant("Star Grass", "Liliaceae Aletris aurea", "Yellow",
-				"Summer", "", 0, 3, 3, "", new ArrayList<String>());
+				Seasons.SUMMER, "", 0, 3, 3, "", new ArrayList<String>());
 		
 		Plant narrowLeafOnion = new Plant("Narrowleaf Onion","Allium amplectens", "White", 
-				"Spring", "", 0, 3, 3, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 3, 3, "", new ArrayList<String>());
 		
 		Plant pearThorn = new Plant("Pear Thorn", "Crataegus calpodenron", "White",
-				"Summer", "", 0, 3, 3, "", new ArrayList<String>());
+				Seasons.SUMMER, "", 0, 3, 3, "", new ArrayList<String>());
 		
 		Plant whiteSnakeroot = new Plant("White Snakeroot", "Ageratina Altissim", "White",
-				"Summer", "", 0, 1, 3, "", new ArrayList<String>());
+				Seasons.SUMMER, "", 0, 1, 3, "", new ArrayList<String>());
 		
 		// Trees
 		Plant narrowleafCottonwood = new Plant("Narrowleaf Cottonwood", "Populus Angustifloia", "White",
-				"Spring", "", 0, 5, 3, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 5, 3, "", new ArrayList<String>());
 		
 		Plant boxElder = new Plant("Box Elder", "Acer negundo", "Yellow",
-				"Spring", "", 0, 3, 5, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 3, 5, "", new ArrayList<String>());
 		
 		Plant blackMaple = new Plant("Black Maple", "Acer nigrum", "Yellow",
-				"Spring", "", 0, 3, 3, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 3, 3, "", new ArrayList<String>());
 		
 		Plant juneBush = new Plant("Junebush", "Amelanchier canadensis", "White",
-				"Spring", "", 0, 3, 4, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 3, 4, "", new ArrayList<String>());
 		
 		Plant whiteBirch = new Plant("White Birch", "Betula poulifolia", "Green",
-				"Spring", "", 0, 1, 3, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 1, 3, "", new ArrayList<String>());
 		
 		Plant cigarTree = new Plant("Cigar Tree"," Amelanchier canadensis", "White", 
-				"Summer", "", 0, 1, 1, "", new ArrayList<String>());
+				Seasons.SUMMER, "", 0, 1, 1, "", new ArrayList<String>());
 		
 		
 		//Shrubs
 		Plant seasideAlder = new Plant("Seaside Alder", "Alnus Maritima", "Yellow",
-				"Summer","", 0, 5, 3, "", new ArrayList<String>());
+				Seasons.SUMMER,"", 0, 5, 3, "", new ArrayList<String>());
 		
 		Plant redChokeberry = new Plant("Red Chokeberry", "Aronia arbutifolia", "White",
-				"Spring", "", 0, 5, 5, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 5, 5, "", new ArrayList<String>());
 		
 		Plant sweetShrub = new Plant("Sweet Shrub", "Calycanthus floridus", "Red",
-				"Spring", "", 0, 3, 3, "Moist", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 3, 3, "Moist", new ArrayList<String>());
 		
 		Plant newJerseyTea = new Plant("New Jersey Tea", "Ceanothus americanus", "White",
-				"Spring", "", 0, 1, 2, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 1, 2, "", new ArrayList<String>());
 		
 		Plant americanHazelnut = new Plant("American Hazelnut", "Corylus americana", "White",
-				"Spring", "", 0, 3, 2, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 3, 2, "", new ArrayList<String>());
 		
 		Plant redWillow = new Plant("Red Willow", "Cornus amomum", "White",
-				"Spring", "", 0, 5, 3, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 5, 3, "", new ArrayList<String>());
 		
 		Plant maidenhairFern = new Plant("Maidenhair Fern", "Adiantum pedatum", "",
-				"", "", 0, 3, 3, "", new ArrayList<String>());
+				null, "", 0, 3, 3, "", new ArrayList<String>());
 		
 		Plant blackstemSpleenwort = new Plant("Blackstem Spleenwort", "Asplenium Resiliens", "",
-				"", "", 0, 3, 2, "", new ArrayList<String>());
+				null, "", 0, 3, 2, "", new ArrayList<String>());
 				
 		flowerArr = new ArrayList<Plant>();
 	//	flowerArr.add(purpleConeFlower);
@@ -202,7 +194,7 @@ public class Model implements Serializable{
 	//	underGrowthArr.add(milkWeed);
 		underGrowthArr.add(maidenhairFern);
 		underGrowthArr.add(blackstemSpleenwort);
-*/		
+		
 		// holds all scenery items like dirt to branchs
 		sceneryArr = new ArrayList<AddOn>();
 		AddOn bench = new AddOn("Bench",1,"A bench to sit on....duh");
@@ -231,70 +223,6 @@ public class Model implements Serializable{
 		lowBound = 0;
 		highBound = 0;
 	}//Model()
-	
-	private void createArrs() {
-
-	    Scanner input;
-	    String[] textFileStrings = {"GardenPlant.rtf","GardenTree.rtf"};
-		try {
-			for(int i=0;i<textFileStrings.length;i++) {
-				input = new Scanner(new File(textFileStrings[i]));
-			    input.useDelimiter("\n");
-			    
-			  
-			    Plant[] plants = new Plant[0];
-			    Plant[] trees = new Plant[0];
-			    
-			    while(input.hasNext()) {
-			        String name = input.next();
-			        String latinName = input.next();
-			        String color = input.next();
-			        String bloomTime = input.next();
-			        String habit = input.next();
-			        int size = input.nextInt();
-			        int waterNeed = input.nextInt();
-			        int sunlightNeed = input.nextInt();
-//			        String sizeStr = input.next();
-//			        String waterNeedStr = input.next();
-//			        String sunlightNeedStr = input.next();
-			        String soilMoisture = input.next();
-			        String animalsFedStr = input.next();
-			        
-//			        int size = Integer.parseInt(sizeStr);
-//			        int waterNeed = Integer.parseInt(waterNeedStr);
-//			        int sunlightNeed = Integer.parseInt(sunlightNeedStr);
-			        
-		        	Plant newPlant = new Plant(name, latinName, color, bloomTime, habit, size, waterNeed, sunlightNeed, soilMoisture, animalsFedStr);
-			        if (i==0) {
-			        	plants = addPlant(plants, newPlant);
-			        } else if (i==1) {
-			        	trees = addPlant(trees, newPlant);
-			        }
-			    }
-
-			    for (Plant plant : plants) {
-			        System.out.println(plant);
-			    }
-			    for (Plant tree : trees) {
-			    	System.out.println(tree);
-			    }
-			}
-
-		    
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-	
-    private static Plant[] addPlant(Plant[] plantsArr, Plant plantToAdd) {
-	    Plant[] newPlants = new Plant[plantsArr.length + 1];
-	    System.arraycopy(plantsArr, 0, newPlants, 0, plantsArr.length);
-	    newPlants[newPlants.length - 1] = plantToAdd;
-
-	    return newPlants;
-	}
 	
 	/**
 	 * Used to generate alternate GardenPlots for the Final View
