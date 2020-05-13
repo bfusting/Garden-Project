@@ -86,7 +86,7 @@ public class Plant extends AddOn{
 		this.provideShade = provideShade;
 		
 		this.ageImages = ageImages;
-		this.seasonImages = seasonImages;
+		this.seasonImages = season;
 		this.plantType = plantType;
 		this.animalsFed = animalsFed;
 		this.compatiblePlants = compatiblePlants;

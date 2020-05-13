@@ -327,7 +327,7 @@ public class GardenPlot implements Serializable{
 		//Row 1
 		GardenTile gT1 = new GardenTile(0,0, false);
 		GardenTile gT2 = new GardenTile(1,0, false);
-		GardenTile gT3 = new GardenTile(2,0, false);
+		GardenTile gT3 = new GardenTile(2,0);
 		GardenTile gT4 = new GardenTile(3,0);
 		GardenTile gT5 = new GardenTile(4,0);
 		GardenTile gT6 = new GardenTile(1,3, false);

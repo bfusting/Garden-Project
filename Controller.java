@@ -1256,7 +1256,10 @@ public class Controller{
     public int getWidthFromModel() {
 	return model.getUserWidth();
     }
-    
+    public String getImgNameFromModel(int x,int y) {
+         return model.getTileContentsName(x,y);
+    }
+
     /**
      * Takes in a parameter of an image which will be used to set the pattern of the 
      * circle to the passed in image. Int i represents which tab is selected from 

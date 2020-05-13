@@ -1024,5 +1024,22 @@ public class Model implements Serializable{
 	public boolean necessaryPrefsSet() {
 		return !(userPrefColor.equals("") || userPrefSeason==null || userPrefLight==0 || userPrefWater==0 );
 	}
+	
+	public String getTileContentsName(int x, int y) {
+		GardenTile tile = userPlot.getLayout()[x][y];
+		
+		String addOnImgName = "";
+		
+		Plant p = tile.getPlant();
+		if (!tile.isActive()) {
+			addOnImgName="inactive";
+		} else if (p!=null) {
+			addOnImgName=p.getSeasonImages()[userPrefSeason.ordinal()];
+		} else if (tile.getAddOn()!=null) {
+			addOnImgName = tile.getAddOn().getName();
+		} 
+		
+		return addOnImgName;
+	}
 	// then getters and setters for new attributes
 }//Modeld
