@@ -267,7 +267,6 @@ public class Controller{
 		else if (model.getUserTemplate().equals("circle")) {
 			model.setUserLength(circleSize);
 			model.setUserWidth(circleSize);
-			System.out.println("rewriting length and width");
 		}
 		
 		
@@ -275,7 +274,15 @@ public class Controller{
 		
 		model.createUserPlot();
 		System.out.println("Make Garden");
-		//view.showDesignGardenScreen();
+		
+		//
+		/*for (int i=0;i<model.getUserLength();i++) {
+			for (int j=0;j<model.getUserWidth();j++) {
+				view.getDesignGardenScreen().drawTile(j, i, model.getTileContentsName(i, j, model.getUserPrefSeason()));
+			}
+		}*/
+		
+		
 		view.show("designGardenScreen");
 	}//choseDesign
 	
@@ -1252,6 +1259,10 @@ public class Controller{
 
     public int getWidthFromModel() {
 	return model.getUserWidth();
+    }
+    
+    public String getImgNameFromModel(int x,int y) {
+    	return model.getTileContentsName(x, y);
     }
 }//Controller
 
