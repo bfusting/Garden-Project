@@ -1,95 +1,100 @@
-Used in Alpha for generic plant implementation
-
-SweetFern:
-	Latin Name: Comptonia peregerina
-	Leaf: Green
-	Autumn Foliage: Yes
-	Fruit: Green, Brown
-	Bloom Color: White, Green
-	Bloom Time: May, June, July, August
-	Habit: Shrub
-	Size: 3-6ft
-	Light Requirement: Part Shade
-	Soil Moisture: Dry
-	Attracks: Birds, Butterflies
-	Feeds: Butterflies
-
-Orange MilkWeed:
-	Latin Name: Asclepias Tuberosa
-	Leaf Retention: Deciduous
-	Flower: Corlla, hoods, and horns are orange
-	Habit: Herb
-	Size: 1-3ft
-	Bloom Color: Orange, Yellow
-	Bloom Time: May-Sept
-	Water Use: Low
-	Light Req: Sun
-	Soil Moisture: Dry, Moist
-	Benefit: Butterflies + Honey + BumbleBees + 
-	
-Seaside Alder:
-	Latin Name: Alnus Maritima
-	leaf:green
-	bloom color: yellow/greem
-	bloom time: Jul, Aug
-	Light required: part shade
-	Water need: high
-
-Red Chokeberry:
-	Latin name: Aronia arbutifolia
-	leaf: green
-	Bloom color: white
-	bloom time: May
-	size:6-12 ft
-	water need: high
-	light required: sun
-	attracts birds
-	
-	
-Sweet Shrub:
-	latin name: Calycanthus floridus
-	leaf: green
-	bloom color: red
-	bloom time: apr, may, jun, july
-	water need: moist
-	light required: part shade
-	
-New Jersey Tea:
-	latin name: Ceanothus americanus
-	leaf: green
-	bloom color: white
-	bloom time: mar apr
-	water need: low
-	light need: part shade/ shade
-	
+SweetFern
+Comptonia peregerina
+White
+Summer
+Shrub
+6
+3
+3
+Dry
+Butterflies
+Orange MilkWeed
+Asclepias Tuberosa
+Orange
+Summer
+Herb
+3
+1
+5
+Dry, Moist
+Butterflies + Honey + BumbleBees 
+Seaside Alder
+Alnus Maritima
+yellow
+Fall
+null
+0
+5
+3
+null
+null
+Red Chokeberry
+Aronia arbutifolia
+white
+Summer
+null
+12
+5
+5
+null
+attracts birds
+Sweet Shrub
+alycanthus floridus
+red
+Summer
+null
+0
+3
+3
+null
+null
+New Jersey Tea
+Ceanothus americanus
+white
+Spring
+null
+0
+1
+4
+null
+null
 American Hazelnut
-	latin name: Corylus americana
-	leaf: green
-	bloom color: white /  green
-	bloom time: apr, may, jun
-	water need: medium
-	light needL part shade / shade
-	
-Red Willow:
-	latin name: Cornus amomum
-	leaf: green
-	bloom color: white
-	bloom time: mar, apr
-	water need: high\
-	light need: part shade / shade
-	
-Maidenhair Fern:
-	Latin name: Adiantum pedatum
-	leaf: green
-	bloom color: no bloom
-	bloom time: no bloom
-	water need: medium
-	light need: Part shade / shade
-	
-BlackStem Spleenwort:
-	latin name: ASplenium Resiliens
-	leaf: green
-	bloom color: N/A
-	bloom time: N/A
-	water need: medium
-	light need: shade / part shade
+Corylus americana
+white
+Summer
+null
+0
+3
+4
+null
+null
+Red Willow
+Cornus amomum
+white
+Spring
+null
+0
+5
+4
+null
+null
+Maidenhair Fern
+Adiantum pedatum
+null
+null
+null
+0
+3
+4
+null
+null
+BlackStem Spleenwort
+ASplenium Resiliens
+null
+null
+null
+0
+3
+4
+null
+null

@@ -1,6 +1,7 @@
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.*;
+
+//import testingFileScanner.Plant;
+
 import java.io.*;
 
 
@@ -19,6 +20,7 @@ public class Plant extends AddOn{
 	private int size;
 	private String habit;
 	private String soilMoisture;
+	private String animalsFedStr;
 	
 	private String[] ageImages;
 	private String[] seasonImages;
@@ -30,7 +32,7 @@ public class Plant extends AddOn{
 	
 	
 	public Plant(String name, String latinName, String color, String bloomTime,
-			String habit, int size, int waterNeed, int sunLightNeed, String soilMoisture, ArrayList<String> animalsFed) {
+			String habit, int size, int waterNeed, int sunLightNeed, String soilMoisture, String animalsFedStr) {
 		this.name = name;
 		this.color = color;
 		this.bloomTime = bloomTime;
@@ -40,7 +42,7 @@ public class Plant extends AddOn{
 		this.size = size;
 		this.habit = habit;
 		this.soilMoisture = soilMoisture;
-		this.animalsFed = animalsFed;
+		this.animalsFedStr = animalsFedStr;
 		
 	}
 	/**
@@ -70,11 +72,26 @@ public class Plant extends AddOn{
 		
 	}
 	
-	
-	
 	public Plant() {
 		
 	}
+	
+
+	private static Plant[] addPlant(Plant[] plants, Plant plantToAdd) {
+	    Plant[] newPlants = new Plant[plants.length + 1];
+	    System.arraycopy(plants, 0, newPlants, 0, plants.length);
+	    newPlants[newPlants.length - 1] = plantToAdd;
+
+	    return newPlants;
+	}
+	
+    public String toString() {
+        return "Name: " + name + "\n" + "Latin Name: " + latinName + "\n" + "Plant color: " + color + "\n" + 
+    "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + "Water need: " + waterNeed + "\n" +"Light Requirements: " +
+        		sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" +"Animals Fed: " + animalsFedStr + "\n"+ "\n";
+    }
+	
+	
 	
 
 	/**
