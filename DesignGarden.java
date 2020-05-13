@@ -477,7 +477,7 @@ shrubsGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 // Setting up shrubArr pictures
 //setting up tileEditingGP
 
-String[] shrub = {"Plant Pictures/Maidenhair_Fern.JPG","Plant Pictures/Sweet_Shrub.JPG"};
+String[] shrub = {"Plant Pictures/Maidenhair_Fern.jpg","Plant Pictures/Sweet_Shrub.jpg"};
 
 shrubSelArr = new ArrayList<ImageView>();
 //setting up with each different picture

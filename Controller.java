@@ -555,6 +555,8 @@ public class Controller{
 		if(DEBUG) {System.out.println(n.toString());}
 		ArrayList<Plant> tempArrayList = this.changeTabIndex();
 		int index = view.getDesignGardenScreen().getGridPaneInd();
+		int tabIndex = view.getDesignGardenScreen().getSelectGardenType().
+			    getSelectionModel().getSelectedIndex();
 		if(n != view.getDesignGardenScreen().getPlot() && db.hasImage() && 
 				view.getDesignGardenScreen().getHoverEditTile() == false) {
 			// View side of plant drop
@@ -562,7 +564,7 @@ public class Controller{
 			//iv.setPreserveRatio(true);
 	    	//iv.setFitHeight(100);
 			Circle c = new Circle();
-			c = this.createCirlceSizes(db.getImage(), index);
+			c = this.createCirlceSizes(db.getImage(), tabIndex);
 			Integer colIndex = GridPane.getColumnIndex(n);
 	    	Integer rowIndex = GridPane.getRowIndex(n);
 	    	
@@ -1281,20 +1283,23 @@ public class Controller{
      */
     public Circle createCirlceSizes(Image img, int i) {
     	//depending on what tab index is selected determines size
+    	if(DEBUG) {System.out.println("Index Selected: " + i);}
     	Circle c = new Circle();
     	switch(i) {
     	// used to drop plants circle size
-    	case 0: c.setRadius(25);c.setFill(new ImagePattern(img));
+    	case 0: c.setRadius(25);c.setFill(new ImagePattern(img)); return c;
     	// used to drop under tree circle size
-    	case 1: c.setRadius(35);c.setFill(new ImagePattern(img));
+    	case 1: c.setRadius(45);c.setFill(new ImagePattern(img)); return c;
     	// used to drop shrubs circle size
-    	case 2: c.setRadius(45);c.setFill(new ImagePattern(img));
+    	case 2: c.setRadius(30);c.setFill(new ImagePattern(img)); return c;
     	// used to drop undergrowth circle size
-    	case 3: c.setRadius(25);c.setFill(new ImagePattern(img));
+    	case 3: c.setRadius(25);c.setFill(new ImagePattern(img)); return c;
     	// used to drop paths and other items
-    	default: c.setRadius(45);c.setFill(new ImagePattern(img));
+    	case 4: c.setRadius(45);c.setFill(new ImagePattern(img)); return c;
+    	case 5: c.setRadius(45);c.setFill(new ImagePattern(img)); return c;
+    	//default: c.setRadius(45);c.setFill(new ImagePattern(img));
     	}
-    	return c;
+    	return null;
     }
 }//Controller
 
