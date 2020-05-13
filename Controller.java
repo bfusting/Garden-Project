@@ -551,6 +551,8 @@ public class Controller{
 		if(DEBUG) {System.out.println(n.toString());}
 		ArrayList<Plant> tempArrayList = this.changeTabIndex();
 		int index = view.getDesignGardenScreen().getGridPaneInd();
+		int circleIndex = view.getDesignGardenScreen().getSelectGardenType().
+			    getSelectionModel().getSelectedIndex();
 		if(n != view.getDesignGardenScreen().getPlot() && db.hasImage() && 
 				view.getDesignGardenScreen().getHoverEditTile() == false) {
 			// View side of plant drop
@@ -558,12 +560,9 @@ public class Controller{
 			//iv.setPreserveRatio(true);
 	    	//iv.setFitHeight(100);
 			Circle c = new Circle();
-			c = this.createCirlceSizes(db.getImage(), index);
+			c = this.createCirlceSizes(db.getImage(), circleIndex);
 			Integer colIndex = GridPane.getColumnIndex(n);
 	    	Integer rowIndex = GridPane.getRowIndex(n);
-	    	
-	    	
-			
 			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
 			view.getDesignGardenScreen().getPlot().add(c, colIndex, rowIndex, 1, 1);//add(iv, column, row);
 			// Model side of plant drop
@@ -1281,13 +1280,14 @@ public class Controller{
     	// used to drop plants circle size
     	case 0: c.setRadius(25);c.setFill(new ImagePattern(img));
     	// used to drop under tree circle size
-    	case 1: c.setRadius(35);c.setFill(new ImagePattern(img));
+    	case 1: c.setRadius(43);c.setFill(new ImagePattern(img));
     	// used to drop shrubs circle size
-    	case 2: c.setRadius(43);c.setFill(new ImagePattern(img));
+    	case 2: c.setRadius(35);c.setFill(new ImagePattern(img));
     	// used to drop undergrowth circle size
     	case 3: c.setRadius(25);c.setFill(new ImagePattern(img));
     	// used to drop paths and other items
-    	default: c.setRadius(43);c.setFill(new ImagePattern(img));
+    	case 4: c.setRadius(43);c.setFill(new ImagePattern(img));
+    	case 5: c.setRadius(43);c.setFill(new ImagePattern(img));
     	}
     	return c;
     }

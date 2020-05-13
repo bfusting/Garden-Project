@@ -88,7 +88,7 @@ public class Model implements Serializable{
 		userTemplate = "";
 		prefsSet = 0;
 		
-		createArrs();
+		//createArrs();
 		
 		// Creating temp Plants for Bradley to use in methods, remove later
 		
