@@ -87,7 +87,7 @@ public class Plant extends AddOn{
 	
     public String toString() {
         return "Name: " + name + "\n" + "Latin Name: " + latinName + "\n" + "Plant color: " + color + "\n" + 
-    "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + "Water need: " + waterNeed + "\n" +"Light Requirements: " +
+    "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + "Height: " + size + "\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
         		sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" +"Animals Fed: " + animalsFedStr + "\n"+ "\n";
     }
 	
