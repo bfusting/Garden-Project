@@ -269,7 +269,6 @@ public class Controller{
 		else if (model.getUserTemplate().equals("circle")) {
 			model.setUserLength(circleSize);
 			model.setUserWidth(circleSize);
-			System.out.println("rewriting length and width");
 		}
 		
 		

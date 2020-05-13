@@ -92,6 +92,7 @@ public class Model implements Serializable{
 		userTemplate = "";
 		prefsSet = 0;
 		
+		allPlants=new ArrayList<Plant>();
 		createArrs();
 		
 		// Creating temp Plants for Bradley to use in methods, remove later
@@ -332,6 +333,15 @@ public class Model implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		for (int i=0;i<plants.length;i++) {
+			allPlants.add(plants[i]);
+		}
+		for (int i=0;i<trees.length;i++) {
+			allPlants.add(trees[i]);
+		}
+		for(int i=0;i<flowers.length;i++) {
+			allPlants.add(flowers[i]);
+		}
 
 	}
 	
@@ -377,7 +387,7 @@ public class Model implements Serializable{
 	public void updateArrs() {
 		// sets up the array by filter to appropriate type then filtering to all of
 		// of flowerArr then
-		setFlowerArr(filterByType(flowerArr,flower));
+		setFlowerArr(filterByType(allPlants,flower));
 		flowerArr.addAll(filterByColor(flowerArr,userPrefColor));
 		flowerArr.addAll(filterByBloomTime(flowerArr,userPrefSeason));
 		flowerArr.addAll(filterByLight(flowerArr,userPrefLight));
@@ -394,7 +404,7 @@ public class Model implements Serializable{
 		
 		// sets up the array by filter to appropriate type then filtering to all of
 		// of shrubArr
-		setShrubArr(filterByType(shrubArr,shrub));
+		setShrubArr(filterByType(allPlants,shrub));
 		shrubArr.addAll(filterByColor(shrubArr,userPrefColor));
 		shrubArr.addAll(filterByBloomTime(shrubArr,userPrefSeason));
 		shrubArr.addAll(filterByLight(shrubArr,userPrefLight));
@@ -411,7 +421,7 @@ public class Model implements Serializable{
 		
 		// sets up the array by filter to appropriate type then filtering to all of
 		// of treeArr
-		setTreeArr(filterByType(treeArr,tree));
+		setTreeArr(filterByType(allPlants,tree));
 		treeArr.addAll(filterByColor(treeArr,userPrefColor));
 		treeArr.addAll(filterByBloomTime(treeArr,userPrefSeason));
 		treeArr.addAll(filterByLight(treeArr,userPrefLight));
@@ -428,7 +438,7 @@ public class Model implements Serializable{
 		
 		// sets up the array by filter to appropriate type then filtering to all of
 		// of underGrowth Arr
-		setUnderGrowthArr((filterByType(underGrowthArr,undergrowth)));
+		setUnderGrowthArr((filterByType(allPlants,undergrowth)));
 		underGrowthArr.addAll(filterByColor(underGrowthArr,userPrefColor));
 		underGrowthArr.addAll(filterByBloomTime(underGrowthArr,userPrefSeason));
 		underGrowthArr.addAll(filterByLight(underGrowthArr,userPrefLight));
