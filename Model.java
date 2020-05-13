@@ -255,7 +255,7 @@ public class Model implements Serializable{
 					String name = buffReader.readLine();
 					String latinName = buffReader.readLine();
 					String color = buffReader.readLine();
-					String bloomTime = buffReader.readLine();
+					String bloomTimeStr = buffReader.readLine();
 					String habit = buffReader.readLine();
 					String sizeStr = buffReader.readLine();
 					String waterNeedStr = buffReader.readLine();
@@ -267,7 +267,7 @@ public class Model implements Serializable{
 			        int waterNeed = Integer.parseInt(waterNeedStr);
 			        int sunlightNeed = Integer.parseInt(sunlightNeedStr);
 			        
-		        	Plant newPlant = new Plant(name, latinName, color, bloomTime, habit, size, waterNeed, sunlightNeed, soilMoisture, animalsFedStr);
+		        	Plant newPlant = new Plant(name, latinName, color, bloomTimeStr, habit, size, waterNeed, sunlightNeed, soilMoisture, animalsFedStr);
 			        if (i==0) {
 			        	plants = addPlant(plants, newPlant);
 			        } else if (i==1) {

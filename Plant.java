@@ -13,7 +13,10 @@ public class Plant extends AddOn{
 	private int sunLightNeed;
 	private double plantHeight;
 	private int locationPref;
+	
 	private Seasons bloomTime;
+	private String bloomTimeStr;
+	
 	private boolean provideShade;
 	
 	private String waterNeedStr;
@@ -46,19 +49,19 @@ public class Plant extends AddOn{
 		this.size = size;
 		this.habit = habit;
 		this.soilMoisture = soilMoisture;
-		this.animalsFedStr = animalsFedStr;
+		this.animalsFed = animalsFed;
 		
 	}
 	
-	public Plant(String name, String latinName, String color, String bloomTime,
-			String habit, String size, String waterNeed, String sunLightNeed, String soilMoisture, String animalsFedStr) {
+	public Plant(String name, String latinName, String color, String bloomTimeStr,
+			String habit, int size, int waterNeed, int sunLightNeed, String soilMoisture, String animalsFedStr) {
 		this.name = name;
 		this.color = color;
-		this.bloomTime = bloomTime;
+		this.bloomTimeStr = bloomTimeStr;
 		this.latinName = latinName;
-		this.sunlightNeedStr = sunLightNeed;
-		this.waterNeedStr = waterNeed;
-		this.sizeStr = size;
+		this.sunLightNeed = sunLightNeed;
+		this.waterNeed = waterNeed;
+		this.size = size;
 		this.habit = habit;
 		this.soilMoisture = soilMoisture;
 		this.animalsFedStr = animalsFedStr;
