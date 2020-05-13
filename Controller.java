@@ -1275,21 +1275,23 @@ public class Controller{
      */
     public Circle createCirlceSizes(Image img, int i) {
     	//depending on what tab index is selected determines size
+    	if(DEBUG) {System.out.println("Index Selected: " + i);}
     	Circle c = new Circle();
     	switch(i) {
     	// used to drop plants circle size
-    	case 0: c.setRadius(25);c.setFill(new ImagePattern(img));
+    	case 0: c.setRadius(25);c.setFill(new ImagePattern(img)); return c;
     	// used to drop under tree circle size
-    	case 1: c.setRadius(43);c.setFill(new ImagePattern(img));
+    	case 1: c.setRadius(45);c.setFill(new ImagePattern(img)); return c;
     	// used to drop shrubs circle size
-    	case 2: c.setRadius(35);c.setFill(new ImagePattern(img));
+    	case 2: c.setRadius(30);c.setFill(new ImagePattern(img)); return c;
     	// used to drop undergrowth circle size
-    	case 3: c.setRadius(25);c.setFill(new ImagePattern(img));
+    	case 3: c.setRadius(25);c.setFill(new ImagePattern(img)); return c;
     	// used to drop paths and other items
-    	case 4: c.setRadius(43);c.setFill(new ImagePattern(img));
-    	case 5: c.setRadius(43);c.setFill(new ImagePattern(img));
+    	case 4: c.setRadius(45);c.setFill(new ImagePattern(img)); return c;
+    	case 5: c.setRadius(45);c.setFill(new ImagePattern(img)); return c;
+    	//default: c.setRadius(45);c.setFill(new ImagePattern(img));
     	}
-    	return c;
+    	return null;
     }
 }//Controller
 
