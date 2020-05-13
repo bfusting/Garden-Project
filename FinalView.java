@@ -131,13 +131,10 @@ public class FinalView extends Screen {
 		Button exit = new Button("Exit");
 		//Binding Event handlers to buttons
 		
-<<<<<<< HEAD
 		edit.setOnMouseClicked(c.getBackBTN());
-=======
 		edit.setOnMouseClicked(c.getDesignTime());
 		//edit.setOnMouseClicked(c.getBackBTN());
 		
->>>>>>> master
 		infoTips.setOnMouseClicked(c.getInfoTipsBTN());
 		viewSeasons.setOnMouseClicked(c.getViewSeasonsBTN());
 		save.setOnMouseClicked(c.getSaveBTN());

@@ -468,7 +468,7 @@ shrubs = new Tab("Shrubs");
 
 shrubs.setContent(shrubsGP);
 
-<<<<<<< HEAD
+
 // max size of items
 shrubsGP.setMaxSize(selectionGPsize, selectionGPsize);
 //adding row
@@ -476,8 +476,7 @@ shrubsGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 
 // Setting up shrubArr pictures
 //setting up tileEditingGP
-=======
->>>>>>> master
+
 String[] shrub = {"Plant Pictures/Maidenhair_Fern.JPG","Plant Pictures/Sweet_Shrub.JPG"};
 
 shrubSelArr = new ArrayList<ImageView>();
@@ -491,10 +490,7 @@ for(int i=0; i<shrub.length;i++) {
 	imgV.setOnDragDetected(c.getStartDrag());
 	shrubSelArr.add(imgV);
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> master
 for (int i = 0; i < selectionSize; i++) {
      ColumnConstraints column = new ColumnConstraints(selectionGPsize);
      shrubsGP.getColumnConstraints().add(column);
@@ -544,20 +540,6 @@ for(int i=0; i<under.length;i++) {
 //adding row
 underGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 
-String[] under = {"Plant Pictures/Fillaree.JPG","Plant Pictures/Blackstem_Spleenwort.JPG"};
-
-underSelArr = new ArrayList<ImageView>();
-//setting up with each different picture
-for(int i=0; i<under.length;i++) {
-	Image img = new Image(under[i]);
-	ImageView imgV = new ImageView(img);
-	imgV.setPreserveRatio(true);
-	imgV.setFitHeight(100);
-	imgV.setFitWidth(100);
-	imgV.setOnDragDetected(c.getStartDrag());
-	underSelArr.add(imgV);
-}
-
 //adding row
 //underGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 for (int i = 0; i < selectionSize; i++) {
@@ -592,13 +574,10 @@ treesGP.setMaxSize(selectionGPsize, selectionGPsize);
 //adding row
 treesGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 
-<<<<<<< HEAD
 // setting tab full of flowers
 //setting up undergrowth Arr
 String[] tree = {"Plant Pictures/Box_Elder.jpg","Plant Pictures/Cigar_Tree.jpg"};
-=======
-String[] tree = {"Plant Pictures/Box_Elder.jpg","Plant Pictures/Cigar_Tree.JPG"};
->>>>>>> master
+
 
 treeSelArr = new ArrayList<ImageView>();
 //setting up with each different picture

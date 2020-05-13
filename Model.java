@@ -88,7 +88,7 @@ public class Model implements Serializable{
 		userTemplate = "";
 		prefsSet = 0;
 		
-		createArrs();
+		//createArrs();
 		
 		// Creating temp Plants for Bradley to use in methods, remove later
 		
@@ -232,6 +232,7 @@ public class Model implements Serializable{
 		highBound = 0;
 	}//Model()
 	
+	/*
 	private void createArrs() {
 
 	    Scanner input;
@@ -280,6 +281,7 @@ public class Model implements Serializable{
 		}
 
 	}
+	*/
 	
     private static Plant[] addPlant(Plant[] plantsArr, Plant plantToAdd) {
 	    Plant[] newPlants = new Plant[plantsArr.length + 1];

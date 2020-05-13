@@ -1261,11 +1261,35 @@ public class Controller{
 	return model.getUserWidth();
     }
     
+    /**
+     * Takes in a parameter of an image which will be used to set the pattern of the 
+     * circle to the passed in image. Int i represents which tab is selected from 
+     * plants to pathways which determines the circle size. Returns a circle which 
+     * will be added to the designGarden
+     * <p>
+     * Used within the drag and drop method to drop pretty circles of the images
+     * instead of sized imageViews of the image.
+     * 
+     * @param img image from dragboard passed in within dragEvent
+     * @param i index of tab selected
+     * @return circle with image inside to be dropped in DesignGarden
+     * @see DesignGarden.java
+     * @see #detectDragDrop(DragEvent)
+     */
     public Circle createCirlceSizes(Image img, int i) {
     	//depending on what tab index is selected determines size
     	Circle c = new Circle();
     	switch(i) {
-    	case 0: c.setRadius(100);c.setFill(new ImagePattern(img));
+    	// used to drop plants circle size
+    	case 0: c.setRadius(25);c.setFill(new ImagePattern(img));
+    	// used to drop under tree circle size
+    	case 1: c.setRadius(80);c.setFill(new ImagePattern(img));
+    	// used to drop shrubs circle size
+    	case 2: c.setRadius(50);c.setFill(new ImagePattern(img));
+    	// used to drop undergrowth circle size
+    	case 3: c.setRadius(35);c.setFill(new ImagePattern(img));
+    	// used to drop paths and other items
+    	default: c.setRadius(95);c.setFill(new ImagePattern(img));
     	}
     	return c;
     }
