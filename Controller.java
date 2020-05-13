@@ -24,6 +24,8 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -1224,6 +1226,15 @@ public class Controller{
      */
     public EventHandler<MouseEvent> getClickOnCloseSeasons(){
     	return event -> clickOnCloseSeasons((MouseEvent)event);
+    }
+    
+    public Circle createCirlceSizes(Image img, int i) {
+    	//depending on what tab index is selected determines size
+    	Circle c = new Circle();
+    	switch(i) {
+    	case 0: c.setRadius(100);c.setFill(new ImagePattern(img));
+    	}
+    	return c;
     }
 }//Controller
 
