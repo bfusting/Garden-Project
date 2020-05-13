@@ -3,8 +3,12 @@ import java.util.HashSet;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Control;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -12,6 +16,9 @@ import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -66,12 +73,18 @@ public class View extends Application{
 	static final double nonEditableOpacity = 0.85;
 	static final double EditableOpacity = 1.0;
 	static final int borderWidth = 20;
-	static final Color borderColor1 = Color.web("#4e824a");
-	static final Color bgColor1 = Color.web("#a5c96b");
-	static final Border primarySceneBorder1 = new Border(new BorderStroke(borderColor1,BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(borderWidth)));
+	static final Color settingsBorderColor = Color.web("#4e824a");
+	static final Color settingsBackgroundColor = Color.web("#a5c96b");
+	static final Border settingsBorder = new Border(new BorderStroke(settingsBorderColor,BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(borderWidth)));
+	static final Background settingsBackground = new Background(new BackgroundFill(View.settingsBackgroundColor, CornerRadii.EMPTY, new Insets(borderWidth)));
+	static final Image settingsAccentImg = new Image("img/v850-sasi-13.jpg");
 	
+	static final Color designingBorderColor = Color.web("#194f3a");
+	static final Color designingBackgroundColor = Color.web("#a3dcbc");
+	static final Image designingAccentImg = new Image("img/v698-bb-2-leaves_1.jpg");
+	static final Background designBackground = new Background(new BackgroundFill(designingBackgroundColor,CornerRadii.EMPTY,Insets.EMPTY));
 	
-	
+	static final Font backNextBTNFont = Font.font("Verdana",FontWeight.BOLD,FontPosture.ITALIC,20);
 	
 	private FileChooser fileChooser;
 	

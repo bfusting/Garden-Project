@@ -126,8 +126,8 @@ public class ChooseTemplate extends Screen {
 		RowConstraints rowcon = new RowConstraints(choiceBoxHeight);
 		grid.getRowConstraints().addAll(new RowConstraints(textBoxHeight), rowcon,rowcon);
 		grid.setMinSize(View.primarySceneWidth, View.primarySceneHeight);
-		grid.setBackground(new Background(new BackgroundFill(View.bgColor1, CornerRadii.EMPTY, new Insets(View.borderWidth))));
-		grid.setBorder(View.primarySceneBorder1);
+		grid.setBackground(new Background(new BackgroundFill(View.settingsBackgroundColor, CornerRadii.EMPTY, new Insets(View.borderWidth))));
+		grid.setBorder(View.settingsBorder);
 		grid.setPadding(new Insets(gridPaddingAmt));
 		
 		
@@ -145,7 +145,7 @@ public class ChooseTemplate extends Screen {
 		custom = new Rectangle(templateDimension,templateDimension);
 		initTemplate(custom);
 		
-		Circle instructionCircle = new Circle(instructionCircleRadius,View.borderColor1);
+		Circle instructionCircle = new Circle(instructionCircleRadius,View.settingsBorderColor);
 		instructionCircle.setCenterX(instructionCircleXPos);
 		instructionCircle.setCenterY(instructionCircleYPos);
 		instructionCircle.setStroke(instructionCircleStrokeColor);
@@ -191,7 +191,7 @@ public class ChooseTemplate extends Screen {
 		instructions.setOnMouseClicked(con.getInstructionShow());
 		
 		next = new Button("To Preferences");
-		next.setFont(Font.font("Verdana",FontWeight.BOLD,FontPosture.ITALIC,instructionTextSize));
+		next.setFont(View.backNextBTNFont);
 		next.setMinSize(nextButtonWidth, nextButtonHeight);
 		next.setDisable(true);
 		next.setOnMouseClicked(con.getTemplateToPref());
