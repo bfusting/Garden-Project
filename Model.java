@@ -104,64 +104,64 @@ public class Model implements Serializable{
 		*/
 		
 		Plant fillaree = new Plant("Fillaree", "eraniaceae Erodium texanum", "Red", 
-				"Spring", "", 0, 1, 5, "Dry", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 1, 5, "Dry", new ArrayList<String>());
 		
 		Plant starGrass = new Plant("Star Grass", "Liliaceae Aletris aurea", "Yellow",
-				"Summer", "", 0, 3, 3, "", new ArrayList<String>());
+				Seasons.SUMMER, "", 0, 3, 3, "", new ArrayList<String>());
 		
 		Plant narrowLeafOnion = new Plant("Narrowleaf Onion","Allium amplectens", "White", 
-				"Spring", "", 0, 3, 3, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 3, 3, "", new ArrayList<String>());
 		
 		Plant pearThorn = new Plant("Pear Thorn", "Crataegus calpodenron", "White",
-				"Summer", "", 0, 3, 3, "", new ArrayList<String>());
+				Seasons.SUMMER, "", 0, 3, 3, "", new ArrayList<String>());
 		
 		Plant whiteSnakeroot = new Plant("White Snakeroot", "Ageratina Altissim", "White",
-				"Summer", "", 0, 1, 3, "", new ArrayList<String>());
+				Seasons.SUMMER, "", 0, 1, 3, "", new ArrayList<String>());
 		
 		// Trees
 		Plant narrowleafCottonwood = new Plant("Narrowleaf Cottonwood", "Populus Angustifloia", "White",
-				"Spring", "", 0, 5, 3, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 5, 3, "", new ArrayList<String>());
 		
 		Plant boxElder = new Plant("Box Elder", "Acer negundo", "Yellow",
-				"Spring", "", 0, 3, 5, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 3, 5, "", new ArrayList<String>());
 		
 		Plant blackMaple = new Plant("Black Maple", "Acer nigrum", "Yellow",
-				"Spring", "", 0, 3, 3, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 3, 3, "", new ArrayList<String>());
 		
 		Plant juneBush = new Plant("Junebush", "Amelanchier canadensis", "White",
-				"Spring", "", 0, 3, 4, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 3, 4, "", new ArrayList<String>());
 		
 		Plant whiteBirch = new Plant("White Birch", "Betula poulifolia", "Green",
-				"Spring", "", 0, 1, 3, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 1, 3, "", new ArrayList<String>());
 		
 		Plant cigarTree = new Plant("Cigar Tree"," Amelanchier canadensis", "White", 
-				"Summer", "", 0, 1, 1, "", new ArrayList<String>());
+				Seasons.SUMMER, "", 0, 1, 1, "", new ArrayList<String>());
 		
 		
 		//Shrubs
 		Plant seasideAlder = new Plant("Seaside Alder", "Alnus Maritima", "Yellow",
-				"Summer","", 0, 5, 3, "", new ArrayList<String>());
+				Seasons.SUMMER,"", 0, 5, 3, "", new ArrayList<String>());
 		
 		Plant redChokeberry = new Plant("Red Chokeberry", "Aronia arbutifolia", "White",
-				"Spring", "", 0, 5, 5, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 5, 5, "", new ArrayList<String>());
 		
 		Plant sweetShrub = new Plant("Sweet Shrub", "Calycanthus floridus", "Red",
-				"Spring", "", 0, 3, 3, "Moist", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 3, 3, "Moist", new ArrayList<String>());
 		
 		Plant newJerseyTea = new Plant("New Jersey Tea", "Ceanothus americanus", "White",
-				"Spring", "", 0, 1, 2, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 1, 2, "", new ArrayList<String>());
 		
 		Plant americanHazelnut = new Plant("American Hazelnut", "Corylus americana", "White",
-				"Spring", "", 0, 3, 2, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 3, 2, "", new ArrayList<String>());
 		
 		Plant redWillow = new Plant("Red Willow", "Cornus amomum", "White",
-				"Spring", "", 0, 5, 3, "", new ArrayList<String>());
+				Seasons.SPRING, "", 0, 5, 3, "", new ArrayList<String>());
 		
 		Plant maidenhairFern = new Plant("Maidenhair Fern", "Adiantum pedatum", "",
-				"", "", 0, 3, 3, "", new ArrayList<String>());
+				null, "", 0, 3, 3, "", new ArrayList<String>());
 		
 		Plant blackstemSpleenwort = new Plant("Blackstem Spleenwort", "Asplenium Resiliens", "",
-				"", "", 0, 3, 2, "", new ArrayList<String>());
+				null, "", 0, 3, 2, "", new ArrayList<String>());
 				
 		flowerArr = new ArrayList<Plant>();
 	//	flowerArr.add(purpleConeFlower);

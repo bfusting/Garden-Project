@@ -13,7 +13,7 @@ public class Plant extends AddOn{
 	private int sunLightNeed;
 	private double plantHeight;
 	private int locationPref;
-	private String bloomTime;
+	private Seasons bloomTime;
 	private boolean provideShade;
 	
 	private int size;
@@ -29,7 +29,7 @@ public class Plant extends AddOn{
 	private ArrayList<String> compatiblePlants = new ArrayList();
 	
 	
-	public Plant(String name, String latinName, String color, String bloomTime,
+	public Plant(String name, String latinName, String color, Seasons bloomTime,
 			String habit, int size, int waterNeed, int sunLightNeed, String soilMoisture, ArrayList<String> animalsFed) {
 		this.name = name;
 		this.color = color;
@@ -49,7 +49,7 @@ public class Plant extends AddOn{
 	 * different seasons.
 	 */
 	public Plant(String name, int tileSize, String description, String color, int waterNeed, int sunLightNeed, double plantHeight, int locationPref,
-			String bloomTime, boolean provideShade, String[] ageImages, String[] season, String plantType, 
+			Seasons bloomTime, boolean provideShade, String[] ageImages, String[] season, String plantType, 
 			ArrayList<String> animalsFed, ArrayList<String> compatiblePlants) {
 		super(name,tileSize,description);
 		
@@ -166,7 +166,7 @@ public class Plant extends AddOn{
  * Returns the bloom period of the plant as a Date object.
  * @return bloomTime the bloom period of the plant
  */
-	public String getBloomTime() {
+	public Seasons getBloomTime() {
 		return bloomTime;
 	}
 	
@@ -174,7 +174,7 @@ public class Plant extends AddOn{
 	 * Sets the bloom period of the plant as a Date object.
 	 * @param bloomTime the bloom period of the plant
 	 */
-	public void setBloomTime(String bloomTime) {
+	public void setBloomTime(Seasons bloomTime) {
 		this.bloomTime = bloomTime;
 	}
 
