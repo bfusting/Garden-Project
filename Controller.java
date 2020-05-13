@@ -1247,16 +1247,7 @@ public class Controller{
     public EventHandler<MouseEvent> getClickOnCloseSeasons(){
     	return event -> clickOnCloseSeasons((MouseEvent)event);
     }
-<<<<<<< HEAD
     
-    public Circle createCirlceSizes(Image img, int i) {
-    	//depending on what tab index is selected determines size
-    	Circle c = new Circle();
-    	switch(i) {
-    	case 0: c.setRadius(100);c.setFill(new ImagePattern(img));
-    	}
-    	return c;
-=======
 
     public String getTemplateFromModel() {
 	return model.getUserTemplate();
@@ -1268,7 +1259,15 @@ public class Controller{
 
     public int getWidthFromModel() {
 	return model.getUserWidth();
->>>>>>> master
+    }
+    
+    public Circle createCirlceSizes(Image img, int i) {
+    	//depending on what tab index is selected determines size
+    	Circle c = new Circle();
+    	switch(i) {
+    	case 0: c.setRadius(100);c.setFill(new ImagePattern(img));
+    	}
+    	return c;
     }
 }//Controller
 
