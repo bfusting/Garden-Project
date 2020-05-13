@@ -235,7 +235,7 @@ public class Model implements Serializable{
 	private void createArrs() {
 
 	    Scanner input;
-	    String[] textFileStrings = {"GardenPlant.txt","GardenTree.txt"};
+	    String[] textFileStrings = {"GardenPlant.rtf","GardenTree.rtf"};
 		try {
 			for(int i=0;i<textFileStrings.length;i++) {
 				input = new Scanner(new File(textFileStrings[i]));
