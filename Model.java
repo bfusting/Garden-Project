@@ -251,11 +251,15 @@ public class Model implements Serializable{
 			        String color = input.next();
 			        String bloomTime = input.next();
 			        String habit = input.next();
-			        int size = input.nextInt();
-			        int waterNeed = input.nextInt();
-			        int sunlightNeed = input.nextInt();
+			        String sizeStr = input.next();
+			        String waterNeedStr = input.next();
+			        String sunlightNeedStr = input.next();
 			        String soilMoisture = input.next();
 			        String animalsFedStr = input.next();
+			        
+			        int size = Integer.parseInt(sizeStr);
+			        int waterNeed = Integer.parseInt(waterNeedStr);
+			        int sunlightNeed = Integer.parseInt(sunlightNeedStr);
 			        
 		        	Plant newPlant = new Plant(name, latinName, color, bloomTime, habit, size, waterNeed, sunlightNeed, soilMoisture, animalsFedStr);
 			        if (i==0) {
