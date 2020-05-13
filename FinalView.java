@@ -131,7 +131,7 @@ public class FinalView extends Screen {
 		Button exit = new Button("Exit");
 		//Binding Event handlers to buttons
 		
-		edit.setOnMouseClicked(c.getDesignTime());
+		edit.setOnMouseClicked(c.getEditBTN());
 		//edit.setOnMouseClicked(c.getBackBTN());
 		
 		infoTips.setOnMouseClicked(c.getInfoTipsBTN());
@@ -167,6 +167,7 @@ public class FinalView extends Screen {
 		// setting up seasonsGP with controller
 				originalGP = new GridPane();
 				
+				
 				// setting up the seasonGP with the information from DesignGarden
 				for (int i = 0; i < c.getView().getDesignGardenScreen().getLength(); i++) {
 				     ColumnConstraints column = new ColumnConstraints(c.getView().getDesignGardenScreen()
@@ -181,6 +182,7 @@ public class FinalView extends Screen {
 				
 				originalGP.getChildren().addAll(c.getView().getDesignGardenScreen()
 						.getPlot().getChildren());
+						
 		root.setTopAnchor(originalGP, 100.0);
 		root.setLeftAnchor(originalGP, 150.0);
 		

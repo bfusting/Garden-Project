@@ -662,7 +662,13 @@ public class Controller{
 	 * @see FinalView
 	 */
 	public void editBTN(MouseEvent event) {
-		System.out.println("Loads In information");
+		System.out.println("Go Back To Editing");
+		this.getView().getDesignGardenScreen().getPlot().getChildren().addAll(
+				this.getView().getFinalViewScreen().getOriginalGP().getChildren());
+		// resetting the drag drop on the gridPane in case
+		this.getView().getDesignGardenScreen().getPlot().setOnDragOver(this.getDetectDrag());
+		this.getView().getDesignGardenScreen().getPlot().setOnDragDropped(this.getDetectDragDrop());
+		view.goToLastScreen();
 	}//editBTN
 	
 	/**

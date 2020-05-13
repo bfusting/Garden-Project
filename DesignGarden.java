@@ -1033,6 +1033,9 @@ designGardenScene = new Scene(root,1200,800);
 	public double getRowConstraint() {
 		return rowConstraint;
 	}
+	public void setPlot(GridPane p) {
+		plot = p;
+	}
 	
 	/*@Override
 	public String toString() {
