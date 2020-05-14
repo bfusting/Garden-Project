@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Control;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
@@ -14,6 +15,7 @@ import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
@@ -436,6 +438,36 @@ public class View extends Application{
 	
 	public FinalView getFinalViewScreen() {
 		return finalViewScreen;
+	}
+	
+	public static GridPane drawGrid(Controller con) {
+		GridPane gp = new GridPane();
+		
+		
+		for (int i=0;i<con.getLengthFromModel();i++) {
+			for (int j=0; j<con.getWidthFromModel();j++) {
+				ImageView soilImg = new ImageView(new Image("img/soil.jpg"));
+					soilImg.setPreserveRatio(true);
+					soilImg.setFitHeight(89);
+					soilImg.setFitWidth(89);
+					gp.add(soilImg, j, i,1,1);
+					
+					gp.setGridLinesVisible(false);
+					
+					String addOnImgName = con.getImgNameFromModel(i, j);
+					if  (addOnImgName.equals("inactive")) {
+						
+						gp.getChildren().remove(soilImg);
+					}
+					else if (!addOnImgName.equals("")) {
+						gp.add(new ImageView(new Image(addOnImgName)), j, i, 1,1);
+					}
+					
+					
+				}
+			}
+		return gp;
+		
 	}
 	
 }
