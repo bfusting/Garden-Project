@@ -852,9 +852,12 @@ public class Model implements Serializable{
 		// filters the arrayList taken in, makes copy so a is not disturbed
 		ArrayList<Plant> userColorPlants = new ArrayList<Plant>();
 		userColorPlants.addAll(a);
-		//streams the plants, filters by color, then adds them back to list
-		userColorPlants.stream().filter(p -> p.getColor().equals(color))
-		.collect(Collectors.toList());
+		
+		for(Plant p: a) {
+			if(p.getColor().equals(color)) {
+				userColorPlants.add(p);
+			}
+		}
 		return userColorPlants;
 	}//filterByColor
 	
@@ -883,10 +886,13 @@ public class Model implements Serializable{
 		otherSeasons.sort(new SortbyBloomTime());
 		
 		ArrayList<Plant> userBloomPlants = new ArrayList<Plant>();
-		userBloomPlants.addAll(a);
+		//userBloomPlants.addAll(a);
 		//streams the plants, filters by BloomTime, then adds them back to list
-		userBloomPlants.stream().filter(p -> p.getBloomTime().equals(season))
-		.collect(Collectors.toList());
+		for(Plant p: a) {
+			if(p.getBloomTime().equals(season)) {
+				userBloomPlants.add(p);
+			}
+		}
 		return userBloomPlants;
 	}//fliterByBloomTime
 	
@@ -923,10 +929,13 @@ public class Model implements Serializable{
 		otherWater.sort(new SortbyWaterNeed());
 	
 		ArrayList<Plant> userWaterPlants = new ArrayList<Plant>();
-		userWaterPlants.addAll(a);
+		//userWaterPlants.addAll(a);
 		//streams the plants, filters by BloomTime, then adds them back to list
-		userWaterPlants.stream().filter(p -> p.getWaterNeed() >= lowBound
-				&& p.getWaterNeed() <= highBound).collect(Collectors.toList());
+		for(Plant p: a) {
+			if(p.getWaterNeed() >= lowBound && p.getWaterNeed() <= highBound) {
+				otherWater.add(p);
+			}
+		}
 		return userWaterPlants;
 	}//filterByWater
 	
@@ -963,10 +972,17 @@ public class Model implements Serializable{
 		otherLight.sort(new SortbyLightNeed());
 	
 		ArrayList<Plant> userLightPlants = new ArrayList<Plant>();
-		userLightPlants.addAll(a);
+		//userLightPlants.addAll(a);
 		//streams the plants, filters by BloomTime, then adds them back to list
+		/*
 		userLightPlants.stream().filter(p -> p.getSunLightNeed() >= lowBound
 				&& p.getSunLightNeed() <= highBound).collect(Collectors.toList());
+				*/
+		for(Plant p: a) {
+			if(p.getSunLightNeed() >= lowBound && p.getSunLightNeed() <= highBound) {
+				userLightPlants.add(p);
+			}
+		}
 		return userLightPlants;
 	}//filterByLight
 	
@@ -990,9 +1006,14 @@ public class Model implements Serializable{
 	 */
 	public ArrayList<Plant> filterByType(ArrayList<Plant> a, String type){
 		ArrayList<Plant> typeArr = new ArrayList<Plant>();
-		typeArr.addAll(a);
+		//typeArr.addAll(a);
+		for(Plant p: a) {
+			if(p.getName().contentEquals(type)) {
+				typeArr.add(p);
+			}
+		}
 		//streams the plants, filters by BloomTime, then adds them back to list
-		typeArr.stream().filter(p -> p.getPlantType().equals(type)).collect(Collectors.toList());
+		//typeArr.stream().filter(p -> p.getPlantType().equals(type)).collect(Collectors.toList());
 		return typeArr;
 	}//filterByType
 	
