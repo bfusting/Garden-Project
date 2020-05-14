@@ -143,12 +143,12 @@ public class View extends Application{
 		finalViewScreen = new FinalView(con,primaryStage);
 		finalViewScreen.setPreviousScreen(designGardenScreen);
 		
-		// InfoTips should take in a plant from model
-		//infoTipsScreen = new InfoTips(null, 0, null, 0, 0, false, null, null);
-		infoTipsScreen = new InfoTips();
+		
+		
+		infoTipsScreen = new InfoTips(con);
 		
 		seasonViewScreen = new SeasonView(con);
-		// InfoTips should take in a plant from model
+		
 		
 		recommendationsScreen = new Recommendations(con);
 		recommendationsScreen.setPreviousScreen(designGardenScreen);
@@ -240,9 +240,9 @@ public class View extends Application{
 			break;
 		case "infoTipsScreen":
 			infoTipsScreen.setPreviousScreen(currentPrimaryScreen);
-			//currentPrimaryScreen = infoTipsScreen;
-			//infoTipsScreen.showScreen();
-			infoTipsScreen.showInfoTips(primaryStage);
+			currentPrimaryScreen = infoTipsScreen;
+			infoTipsScreen.showScreen();
+//			infoTipsScreen.showInfoTips(primaryStage);
 			break;
 		case "preferencesScreen":
 			currentPrimaryScreen = preferencesScreen;
