@@ -569,6 +569,7 @@ public class Controller{
 			//adding test to see if index is holding plants or addons
 			//switched
 			model.getUserPlot().getLayout()[rowIndex][colIndex].setPlant(tempArrayList.get(index));
+			model.getUsedPlants().add(tempArrayList.get(index));
 			//int index = this.methodName; used to pull from designGarden array
 			worked = true;
 		}

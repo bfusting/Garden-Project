@@ -118,15 +118,27 @@ public class Plant extends AddOn{
 	    return newPlants;
 	}
 	
-    public String toString() {
+ /*   public String toString() {
         return "Name: " + name + "\n" + "Latin Name: " + latinName + "\n" + "Plant color: " + color + "\n" + 
     "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + "Height: " + size + "\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
         		sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" +"Animals Fed: " + animalsFedStr + "\n"+ "Seasons String Img Array: " + 
         		seasonsImgArr[0]+", " + seasonsImgArr[1]+", " +seasonsImgArr[2]+", " +seasonsImgArr[3]+", " + "\n" + "\n";
     }
 	
+*/
+	public String toString() {
+		return "Plant color: " + color + "\n" + 
+    "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + "Height: " + size + "\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
+        		sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" +"Animals Fed: " + animalsFedStr + "\n" + "\n";
+	}
 	
-	
+    public String getName() {
+    	return name;
+    }
+    
+    public String getLatinName() {
+    	return latinName;
+    }
 
 	/**
 	 * Gets the String describing the color of the plant.

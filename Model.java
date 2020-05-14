@@ -61,7 +61,7 @@ public class Model implements Serializable{
 	private ArrayList<Plant> otherWater;
 	
 	// represents all the plants used in the garden
-	private HashSet<Plant> usedPlants = new HashSet<Plant>();
+	private static HashSet<Plant> usedPlants = new HashSet<Plant>();
 	
 	private String userTemplate;
 	// Prefs given by user
@@ -239,6 +239,10 @@ public class Model implements Serializable{
 		lowBound = 0;
 		highBound = 0;
 	}//Model()
+	
+	public static HashSet<Plant> getUsedPlants(){
+		return usedPlants;
+	}
 	
 	private void createArrs() {
 
