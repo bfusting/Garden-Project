@@ -3,75 +3,103 @@ Southern Sugar Maple
 Acer Floridanum
 yellow
 Spring
-null
+Tree
 0
 3
 3
 dry
 null
+PlantPictures/Southern_Sugar_Maple.jpg
+PlantPictures/Southern_Sugar_Maple.jpg
+PlantPictures/Southern_Sugar_Maple.jpg
+PlantPictures/Southern_Sugar_Maple.jpg
 
 Narrow Leaf Cottonwood
 Populus Angustifloia
 White
 Spring
-null
+Tree
 72
 5
 3
 Wet
 null
+PlantPictures/Narrowleaf_Cottonwood.jpg
+PlantPictures/Narrowleaf_Cottonwood.jpg
+PlantPictures/Narrowleaf_Cottonwood.jpg
+PlantPictures/Narrowleaf_Cottonwood.jpg
 
 Box Elder
 Acer negundo
 yellow
 Spring
-null
+Tree
 0
 3
 5
 null
 null
+PlantPictures/Box_Elder.jpg
+PlantPictures/Box_Elder.jpg
+PlantPictures/Box_Elder.jpg
+PlantPictures/Box_Elder.jpg
 
 Black Maple
 Acer nigrum
 yellow / green
 Spring
-null
+Tree
 0
 3
 4
 null
 null
+PlantPictures/Black_Maple.jpg
+PlantPictures/Black_Maple.jpg
+PlantPictures/Black_Maple.jpg
+PlantPictures/Black_Maple.jpg
 
 Junebush
 Amelanchier canadensis
 White
 Spring
-null
+Tree
 0
 3
 4
 null
 null
+PlantPictures/Junebush.jpg
+PlantPictures/Junebush.jpg
+PlantPictures/Junebush.jpg
+PlantPictures/Junebush.jpg
 
 White Birch
 Betula populifolia
 Green/Brown
 Spring
-null
+Tree
 0
 1
 4
 null
 null
+PlantPictures/White_Birch.jpg
+PlantPictures/White_Birch.jpg
+PlantPictures/White_Birch.jpg
+PlantPictures/White_Birch.jpg
 
 Cigar Tree
 Catalpa bignonioides
 White
 Summer
-null
+Tree
 0
 1
 4
 null
 null
+PlantPictures/Cigar_Tree.jpg
+PlantPictures/Cigar_Tree.jpg
+PlantPictures/Cigar_Tree.jpg
+PlantPictures/Cigar_Tree.jpg

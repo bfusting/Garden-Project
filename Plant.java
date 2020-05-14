@@ -23,6 +23,11 @@ public class Plant extends AddOn{
 	private String sunlightNeedStr;
 	private String sizeStr;
 	
+	private String springImgStr;
+	private String summerImgStr;
+	private String autumnImgStr;
+	private String winterImgStr;
+	private String[] seasonsImgArr;
 	
 	private int size;
 	private String habit;
@@ -54,7 +59,7 @@ public class Plant extends AddOn{
 	}
 	
 	public Plant(String name, String latinName, String color, String bloomTimeStr,
-			String habit, int size, int waterNeed, int sunLightNeed, String soilMoisture, String animalsFedStr) {
+			String habit, int size, int waterNeed, int sunLightNeed, String soilMoisture, String animalsFedStr, String[] seasonsImgArr) {
 		this.name = name;
 		this.color = color;
 		this.bloomTimeStr = bloomTimeStr;
@@ -65,10 +70,12 @@ public class Plant extends AddOn{
 		this.habit = habit;
 		this.soilMoisture = soilMoisture;
 		this.animalsFedStr = animalsFedStr;
-		
-		//adding so I can see if it finds the right season will delete later
-		seasonImages = new String[] {"img/Circle.png","img/Square.png","img/Triangle.png","img/DesignYourOwn.png"};
-		
+		this.seasonsImgArr = seasonsImgArr;
+/*		this.springImgStr = spring;
+		this.summerImgStr = summer;
+		this.autumnImgStr = autumn;
+		this.winterImgStr = winter;
+*/		
 	}
 	/**
 	 * Constructor for the Plant class. Initializes the characteristics and requirements for the plant
@@ -89,7 +96,7 @@ public class Plant extends AddOn{
 		this.provideShade = provideShade;
 		
 		this.ageImages = ageImages;
-		this.seasonImages = season;
+		this.seasonImages = seasonImages;
 		this.plantType = plantType;
 		this.animalsFed = animalsFed;
 		this.compatiblePlants = compatiblePlants;
@@ -113,7 +120,8 @@ public class Plant extends AddOn{
     public String toString() {
         return "Name: " + name + "\n" + "Latin Name: " + latinName + "\n" + "Plant color: " + color + "\n" + 
     "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + "Height: " + size + "\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
-        		sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" +"Animals Fed: " + animalsFedStr + "\n"+ "\n";
+        		sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" +"Animals Fed: " + animalsFedStr + "\n"+ "Seasons String Img Array: " + 
+        		seasonsImgArr[0]+", " + seasonsImgArr[1]+", " +seasonsImgArr[2]+", " +seasonsImgArr[3]+", " + "\n" + "\n";
     }
 	
 	

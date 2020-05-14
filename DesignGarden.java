@@ -440,9 +440,9 @@ plantsGP.setMaxSize(selectionGPsize, selectionGPsize);
 //adding row
 plantsGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 
-String[] flower = {"Plant Pictures/Red_Willow.jpg",
-		"Plant Pictures/Seaside_GoldenRod.jpg",
-		"Plant Pictures/Pear_Thorn.jpg"};
+String[] flower = {"PlantPictures/Red_Willow.jpg",
+		"PlantPictures/Seaside_GoldenRod.jpg",
+		"PlantPictures/Pear_Thorn.jpg"};
 
 pSelectionArr = new ArrayList<ImageView>();
 //setting up with each different picture
@@ -485,7 +485,7 @@ shrubs = new Tab("Shrubs");
 
 shrubs.setContent(shrubsGP);
 
-String[] shrub = {"Plant Pictures/Maidenhair_Fern.jpg","Plant Pictures/Sweet_Shrub.jpg"};
+String[] shrub = {"PlantPictures/Maidenhair_Fern.jpg","PlantPictures/Sweet_Shrub.jpg"};
 
 shrubSelArr = new ArrayList<ImageView>();
 //setting up with each different picture
@@ -532,7 +532,7 @@ underGP.setMaxSize(selectionGPsize, selectionGPsize);
 //adding row
 underGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 
-String[] under = {"Plant Pictures/Fillaree.jpg","Plant Pictures/Blackstem_Spleenwort.jpg"};
+String[] under = {"PlantPictures/Fillaree.jpg","PlantPictures/Blackstem_Spleenwort.jpg"};
 
 underSelArr = new ArrayList<ImageView>();
 //setting up with each different picture
@@ -580,7 +580,7 @@ treesGP.setMaxSize(selectionGPsize, selectionGPsize);
 //adding row
 treesGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 
-String[] tree = {"Plant Pictures/Box_Elder.jpg","Plant Pictures/Cigar_Tree.jpg"};
+String[] tree = {"PlantPictures/Box_Elder.jpg","PlantPictures/Cigar_Tree.jpg"};
 
 treeSelArr = new ArrayList<ImageView>();
 //setting up with each different picture
