@@ -93,6 +93,17 @@ public class Model implements Serializable{
 		prefsSet = 0;
 		
 		allPlants=new ArrayList<Plant>();
+		flowerArr = new ArrayList<Plant>();
+		shrubArr= new ArrayList<Plant>();
+		treeArr=new ArrayList<Plant>();
+		underGrowthArr = new ArrayList<Plant>();
+		sceneryArr = new ArrayList<AddOn>();
+		allPlants = new ArrayList<Plant>();
+		otherColors = new ArrayList<Plant>();
+		otherSeasons = new ArrayList<Plant>();
+		otherLight = new ArrayList<Plant>();
+		otherWater = new ArrayList<Plant>();
+		
 		createArrs();
 		
 		// Creating temp Plants for Bradley to use in methods, remove later

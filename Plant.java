@@ -66,6 +66,9 @@ public class Plant extends AddOn{
 		this.soilMoisture = soilMoisture;
 		this.animalsFedStr = animalsFedStr;
 		
+		//adding so I can see if it finds the right season will delete later
+		seasonImages = new String[] {"img/Circle.png","img/Square.png","img/Triangle.png","img/DesignYourOwn.png"};
+		
 	}
 	/**
 	 * Constructor for the Plant class. Initializes the characteristics and requirements for the plant
