@@ -63,6 +63,21 @@ public class Plant extends AddOn{
 		this.name = name;
 		this.color = color;
 		this.bloomTimeStr = bloomTimeStr;
+		
+		if (bloomTimeStr.toLowerCase().equals("fall")) {
+			this.bloomTimeStr="Autumn";
+		}
+		
+		//temporarily setting null values
+		if (color.equals("null")|| color==null) {
+			this.color = "Red";
+		}
+		if (this.bloomTimeStr.equals("null") || bloomTimeStr==null) {
+			this.bloomTimeStr="Spring";
+		}
+		
+		//
+		bloomTime = Seasons.valueOf(this.bloomTimeStr.toUpperCase());
 		this.latinName = latinName;
 		this.sunLightNeed = sunLightNeed;
 		this.waterNeed = waterNeed;
@@ -76,6 +91,10 @@ public class Plant extends AddOn{
 		this.autumnImgStr = autumn;
 		this.winterImgStr = winter;
 */		
+		
+		
+		
+		
 	}
 	/**
 	 * Constructor for the Plant class. Initializes the characteristics and requirements for the plant
@@ -118,7 +137,7 @@ public class Plant extends AddOn{
 	}
 	
     public String toString() {
-        return "Name: " + name + "\n" + "Latin Name: " + latinName + "\n" + "Plant color: " + color + "\n" + 
+        return "Name: " + name + "\n" + "Latin Name: " + latinName + "\n" + "Plant color: " + color + "\n" + "Bloom Time String: "+ bloomTimeStr+ "\n"+
     "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + "Height: " + size + "\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
         		sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" +"Animals Fed: " + animalsFedStr + "\n"+ "Seasons String Img Array: " + 
         		seasonsImgArr[0]+", " + seasonsImgArr[1]+", " +seasonsImgArr[2]+", " +seasonsImgArr[3]+", " + "\n" + "\n";
@@ -429,6 +448,9 @@ public class Plant extends AddOn{
 	
 	public String[] getSeasonsImgArr() {
 		return seasonsImgArr;
+	}
+	public String getHabit() {
+		return habit;
 	}
 	
 }//Plant

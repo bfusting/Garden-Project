@@ -67,6 +67,7 @@ public class Controller{
 	 */
 	public Controller(View passedInView) {
 		model = new Model();
+		
 		this.view = passedInView;
 		DEBUG = true;
 	}//Controller
@@ -550,6 +551,10 @@ public class Controller{
 		Node n = event.getPickResult().getIntersectedNode();
 		if(DEBUG) {System.out.println(n.toString());}
 		ArrayList<Plant> tempArrayList = this.changeTabIndex();
+		//ArrayList<Plant> tempArrayList = new ArrayList<Plant>(); test to see if allPlants still had elements
+		//tempArrayList.addAll(model.getAllPlants());
+		
+		
 		int index = view.getDesignGardenScreen().getGridPaneInd();
 		int circleIndex = view.getDesignGardenScreen().getSelectGardenType().
 			    getSelectionModel().getSelectedIndex();
@@ -1146,14 +1151,19 @@ public class Controller{
 	// get the current tab selected in design garden
 	int t = view.getDesignGardenScreen().getSelectGardenType().
 	    getSelectionModel().getSelectedIndex();
+	ArrayList<Plant> temp = new ArrayList<Plant>();
 	switch(t) {
-	case 0: return model.getFlowerArr();
-	case 1: return model.getTreeArr();
-	case 2: return model.getShrubArr();
-	case 3: return model.getUnderGrowth();
-	case 4: return model.getShrubArr();
+	case 0: temp.addAll(model.getFlowerArr());
+	break;
+	case 1: temp.addAll(model.getTreeArr());
+	break;
+	case 2: temp.addAll(model.getShrubArr());
+	break;
+	case 3: temp.addAll(model.getUnderGrowth());
+	break;
+	
 	}//switch
-	return null;
+	return temp;
     }
     
     /**

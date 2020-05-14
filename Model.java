@@ -92,17 +92,43 @@ public class Model implements Serializable{
 		userTemplate = "";
 		prefsSet = 0;
 		
-		allPlants=new ArrayList<Plant>();
+		
 		flowerArr = new ArrayList<Plant>();
 		shrubArr= new ArrayList<Plant>();
 		treeArr=new ArrayList<Plant>();
 		underGrowthArr = new ArrayList<Plant>();
+		
+		
+		
+		
+		// holds all scenery items like dirt to branchs
 		sceneryArr = new ArrayList<AddOn>();
+		AddOn bench = new AddOn("Bench",1,"A bench to sit on....duh");
+		sceneryArr.add(bench);
+				
+		// holds all plants in program ---> Used on creation only
 		allPlants = new ArrayList<Plant>();
+				
+		//Used for filtering methods to hold other vars
 		otherColors = new ArrayList<Plant>();
 		otherSeasons = new ArrayList<Plant>();
 		otherLight = new ArrayList<Plant>();
 		otherWater = new ArrayList<Plant>();
+				
+		// Prefs passed in by user
+		userPrefColor = "";
+		userPrefSeason = null;
+		userPrefLight = 0;
+		userPrefWater = 0;
+				
+		// user defined length and width
+		userLength = 0;
+		userWidth = 0;
+				
+		// Range of values to filter functions thats it
+		lowBound = 0;
+		highBound = 0;
+		
 		
 		createArrs();
 		
@@ -219,33 +245,7 @@ public class Model implements Serializable{
 		underGrowthArr.add(maidenhairFern);
 		underGrowthArr.add(blackstemSpleenwort);
 */		
-		// holds all scenery items like dirt to branchs
-		sceneryArr = new ArrayList<AddOn>();
-		AddOn bench = new AddOn("Bench",1,"A bench to sit on....duh");
-		sceneryArr.add(bench);
 		
-		// holds all plants in program ---> Used on creation only
-		allPlants = new ArrayList<Plant>();
-		
-		//Used for filtering methods to hold other vars
-		otherColors = new ArrayList<Plant>();
-		otherSeasons = new ArrayList<Plant>();
-		otherLight = new ArrayList<Plant>();
-		otherWater = new ArrayList<Plant>();
-		
-		// Prefs passed in by user
-		userPrefColor = "";
-		userPrefSeason = null;
-		userPrefLight = 0;
-		userPrefWater = 0;
-		
-		// user defined length and width
-		userLength = 0;
-		userWidth = 0;
-		
-		// Range of values to filter functions thats it
-		lowBound = 0;
-		highBound = 0;
 	}//Model()
 	
 	private void createArrs() {
@@ -333,7 +333,7 @@ public class Model implements Serializable{
 			        }
 			    }
 */
-			    for (Plant plant : plants) {
+			   /* for (Plant plant : plants) {
 			        System.out.println(plant);
 			    }
 			    for (Plant tree : trees) {
@@ -341,7 +341,7 @@ public class Model implements Serializable{
 			    }
 			    for (Plant flower : flowers) {
 			    	System.out.println(flower);
-			    }
+			    }*/
 			}
 
 		    
@@ -354,12 +354,20 @@ public class Model implements Serializable{
 		}
 		for (int i=0;i<plants.length;i++) {
 			allPlants.add(plants[i]);
+			//System.out.println("Added plant:\n"+plants[i]);
 		}
 		for (int i=0;i<trees.length;i++) {
 			allPlants.add(trees[i]);
+			//System.out.println("Added tree:\n"+trees[i]);
 		}
 		for(int i=0;i<flowers.length;i++) {
 			allPlants.add(flowers[i]);
+			//System.out.println("Added flower:\n"+flowers[i]);
+		}
+		
+		System.out.println("NOT EMPTY HERE");
+		for (Plant p : allPlants) {
+			System.out.println(p);
 		}
 
 	}
@@ -804,7 +812,7 @@ public class Model implements Serializable{
 		// in lexical order
 	    public int compare(Plant a, Plant b) 
 	    { 
-	        return a.getColor().compareTo(b.getColor()); 
+	        return a.getColor().toLowerCase().compareTo(b.getColor().toLowerCase()); 
 	    } 
 	} 
 	
@@ -842,7 +850,7 @@ public class Model implements Serializable{
 	public ArrayList<Plant> filterByColor(ArrayList<Plant> a, String color){
 		//Iterate over list and if doesn't match color add to the otherColors Arr via getter
 		for(Plant p: a) {
-			if(!p.getColor().equals(color)) {
+			if(!p.getColor().toLowerCase().equals(color.toLowerCase())) {
 				otherColors.add(p);
 			}
 		}
@@ -854,7 +862,7 @@ public class Model implements Serializable{
 		userColorPlants.addAll(a);
 		
 		for(Plant p: a) {
-			if(p.getColor().equals(color)) {
+			if(p.getColor().toLowerCase().equals(color.toLowerCase())) {
 				userColorPlants.add(p);
 			}
 		}
@@ -1008,7 +1016,7 @@ public class Model implements Serializable{
 		ArrayList<Plant> typeArr = new ArrayList<Plant>();
 		//typeArr.addAll(a);
 		for(Plant p: a) {
-			if(p.getName().contentEquals(type)) {
+			if(p.getHabit().toLowerCase().contentEquals(type.toLowerCase())) {
 				typeArr.add(p);
 			}
 		}
