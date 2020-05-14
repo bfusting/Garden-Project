@@ -425,6 +425,10 @@ public class Plant extends AddOn{
 	    { 
 	        return a.getBloomTime().compareTo(b.getBloomTime()); 
 	    } 
-	} 
+	}
+	
+	public String[] getSeasonsImgArr() {
+		return seasonsImgArr;
+	}
 	
 }//Plant

@@ -1053,7 +1053,7 @@ public class Model implements Serializable{
 		if (!tile.isActive()) {
 			addOnImgName="inactive";
 		} else if (p!=null) {
-			addOnImgName=p.getSeasonImages()[userPrefSeason.ordinal()];
+			addOnImgName=p.getSeasonsImgArr()[userPrefSeason.ordinal()];
 		} else if (tile.getAddOn()!=null) {
 			addOnImgName = tile.getAddOn().getName();
 		} 
