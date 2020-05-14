@@ -52,4 +52,8 @@ public class AddOn implements Serializable{
 	public String getDescription(){
 		return this.description;
 	}
+
+	public boolean equals(Plant p) {
+		return this.name.equals(p.name);
+	}
 }

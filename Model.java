@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -59,6 +60,8 @@ public class Model implements Serializable{
 	private ArrayList<Plant> otherLight;
 	private ArrayList<Plant> otherWater;
 	
+	// represents all the plants used in the garden
+	private HashSet<Plant> usedPlants = new HashSet<Plant>();
 	
 	private String userTemplate;
 	// Prefs given by user

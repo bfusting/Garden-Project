@@ -426,6 +426,16 @@ public class Plant extends AddOn{
 	    { 
 	        return a.getBloomTime().compareTo(b.getBloomTime()); 
 	    } 
-	} 
+	}
+	
+	@Override
+	public boolean equals(Plant p) {
+		return this.latinName.equals(p.latinName);
+	}
+	
+	@Override
+	public int hashCode() {
+		return (this.latinName.length() * this.waterNeed) % this.sunLightNeed;
+	}
 	
 }//Plant
