@@ -239,10 +239,10 @@ public class View extends Application{
 			finalViewScreen.showScreen();
 			break;
 		case "infoTipsScreen":
-			infoTipsScreen.setPreviousScreen(currentPrimaryScreen);
-			currentPrimaryScreen = infoTipsScreen;
-			infoTipsScreen.showScreen();
-//			infoTipsScreen.showInfoTips(primaryStage);
+			//infoTipsScreen.setPreviousScreen(currentPrimaryScreen);
+			//currentPrimaryScreen = infoTipsScreen;
+			//infoTipsScreen.showScreen();
+			infoTipsScreen.showInfoTips();
 			break;
 		case "preferencesScreen":
 			currentPrimaryScreen = preferencesScreen;

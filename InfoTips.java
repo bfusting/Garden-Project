@@ -32,7 +32,7 @@ import javafx.scene.text.Text;
  *
  */
 
-public class InfoTips extends Screen{
+public class InfoTips {
 	
 	private final int HEIGHT = 500;
 	private final int WIDTH = 250;
@@ -145,12 +145,13 @@ public class InfoTips extends Screen{
 		
 		Scene scene = new Scene(root, WIDTH, HEIGHT);
 		stage.setScene(scene);
+		stage.show();
 		
 		
 	}
 		
 
-	@Override
+	/*@Override
 	public void showScreen() {
 		//should consolidate into one showScreen method
 		showInfoTips();
@@ -162,7 +163,7 @@ public class InfoTips extends Screen{
 	@Override
 	public void closeScreen() {
 		stage.close();
-	}
+	}*/
 	
 		
 }
