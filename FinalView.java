@@ -28,7 +28,7 @@ public class FinalView extends Screen {
 	private GardenPlot plotIdea3;
 	private AnchorPane root;
 	private Scene finalViewScene;
-	private Stage primaryStage;
+	private Stage theStage;
 	private Controller c;
 	
 	private GridPane originalGP;
@@ -44,7 +44,7 @@ public class FinalView extends Screen {
 	
 	public FinalView(Controller controller, Stage s) {
 		this.c = controller;
-		primaryStage = s;
+		theStage = s;
 	}
 	
 	public void setOriginalPlot(GardenPlot ogPlot) {
@@ -131,8 +131,8 @@ public class FinalView extends Screen {
 		Button exit = new Button("Exit");
 		//Binding Event handlers to buttons
 		
-		edit.setOnMouseClicked(c.getDesignTime());
-		//edit.setOnMouseClicked(c.getBackBTN());
+		//edit.setOnMouseClicked(c.getDesignTime());
+		edit.setOnMouseClicked(c.getBackBTN());
 		
 		infoTips.setOnMouseClicked(c.getInfoTipsBTN());
 		viewSeasons.setOnMouseClicked(c.getViewSeasonsBTN());
@@ -165,7 +165,7 @@ public class FinalView extends Screen {
 //		Label fv = new Label ("This is final view");
 //		AnchorPane.setTopAnchor(fv, 100.0);
 		// setting up seasonsGP with controller
-				originalGP = new GridPane();
+				/*(originalGP = new GridPane();
 				
 				// setting up the seasonGP with the information from DesignGarden
 				for (int i = 0; i < c.getView().getDesignGardenScreen().getLength(); i++) {
@@ -184,6 +184,11 @@ public class FinalView extends Screen {
 		root.setTopAnchor(originalGP, 100.0);
 		root.setLeftAnchor(originalGP, 150.0);
 		
+		root.getChildren().addAll(r1,originalGP);*/
+		
+		originalGP = View.drawGrid(c);
+		AnchorPane.setTopAnchor(originalGP, 100.0);
+		AnchorPane.setLeftAnchor(originalGP, 150.0);
 		root.getChildren().addAll(r1,originalGP);
 		finalViewScene = new Scene(root, canvasWidth, canvasHeight);
 		
@@ -235,7 +240,8 @@ public class FinalView extends Screen {
 	@Override
 	public void showScreen() {
 		//should combine these into one show method
-		showFinalView(primaryStage);
+		showFinalView(theStage);
+		
 	}
 	
 	@Override

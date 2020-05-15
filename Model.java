@@ -422,16 +422,16 @@ public class Model implements Serializable{
 		// sets up the array by filter to appropriate type then filtering to all of
 		// of flowerArr then
 		setFlowerArr(filterByType(allPlants,flower));
-		flowerArr.addAll(filterByColor(flowerArr,userPrefColor));
-		flowerArr.addAll(filterByBloomTime(flowerArr,userPrefSeason));
-		flowerArr.addAll(filterByLight(flowerArr,userPrefLight));
-		flowerArr.addAll(filterByWater(flowerArr,userPrefWater));
+		//flowerArr.addAll(filterByColor(flowerArr,userPrefColor));
+		//flowerArr.addAll(filterByBloomTime(flowerArr,userPrefSeason));
+		//flowerArr.addAll(filterByLight(flowerArr,userPrefLight));
+		//flowerArr.addAll(filterByWater(flowerArr,userPrefWater));
 		
 		// Adding rest of the unsorted lists back into flowerArr
-		flowerArr.addAll(otherColors);
-		flowerArr.addAll(otherSeasons);
-		flowerArr.addAll(otherLight);
-		flowerArr.addAll(otherWater);
+		//flowerArr.addAll(otherColors);
+		//flowerArr.addAll(otherSeasons);
+		//flowerArr.addAll(otherLight);
+		//flowerArr.addAll(otherWater);
 		
 		// clearing other arrays
 		clearOthers();

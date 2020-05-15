@@ -1158,6 +1158,7 @@ public class Controller{
 	ArrayList<Plant> temp = new ArrayList<Plant>();
 	switch(t) {
 	case 0: temp.addAll(model.getFlowerArr());
+	
 	break;
 	case 1: temp.addAll(model.getTreeArr());
 	break;

@@ -307,7 +307,9 @@ public class DesignGarden extends Screen{
 		for(int i=0;i<selectionSize;i++) {
 			
 			//setting up
-			tabArr[i] = new Tab(tabNames[i]);
+			Tab tab = new Tab(tabNames[i]);
+			tab.setClosable(false);
+			tabArr[i] = tab;
 			tabArr[i].setContent(gpArr[i]);
 			
 			// max size of items
