@@ -132,28 +132,25 @@ public class View extends Application{
 		primaryStage.setOnCloseRequest(con.getExitStage());
 		
 		mainMenuScreen = new MainMenu(con,primaryStage);
-		
 		instructionsScreen = new Instructions();
-	
 		exitScreen = new Exit(con);
+		finalViewScreen = new FinalView(con,primaryStage);
+		infoTipsScreen = new InfoTips(con);
+		seasonViewScreen = new SeasonView(con);
+		recommendationsScreen = new Recommendations(con);
 		
 		createNew();
 		
 		
 		
 		
-		finalViewScreen = new FinalView(con,primaryStage);
-		finalViewScreen.setPreviousScreen(designGardenScreen);
+		
+		//finalViewScreen.setPreviousScreen(designGardenScreen);
 		
 		
 		
-		infoTipsScreen = new InfoTips(con);
 		
-		seasonViewScreen = new SeasonView(con);
-		
-		
-		recommendationsScreen = new Recommendations(con);
-		recommendationsScreen.setPreviousScreen(designGardenScreen);
+		//recommendationsScreen.setPreviousScreen(designGardenScreen);
 		
 		
 		currentPrimaryScreen = mainMenuScreen;
@@ -430,6 +427,10 @@ public class View extends Application{
 		preferencesScreen.setPreviousScreen(chooseTemplateScreen);
 		designGardenScreen = new DesignGarden(con,primaryStage);
 		designGardenScreen.setPreviousScreen(preferencesScreen);
+		
+		finalViewScreen.setPreviousScreen(designGardenScreen);
+		recommendationsScreen.setPreviousScreen(designGardenScreen);
+		
 	}
 		
 	public SeasonView getSeasonViewScreen() {
