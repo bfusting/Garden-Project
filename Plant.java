@@ -13,13 +13,25 @@ public class Plant extends AddOn{
 	private int sunLightNeed;
 	private double plantHeight;
 	private int locationPref;
+<<<<<<< HEAD
 	private Seasons bloomTime;
+=======
+	
+	private Seasons bloomTime;
+	private String bloomTimeStr;
+	
+>>>>>>> 0de95504b203ed8778be6c97ce943dd6df0d9354
 	private boolean provideShade;
 	
 	private String waterNeedStr;
 	private String sunlightNeedStr;
 	private String sizeStr;
 	
+	private String springImgStr;
+	private String summerImgStr;
+	private String autumnImgStr;
+	private String winterImgStr;
+	private String[] seasonsImgArr;
 	
 	private int size;
 	private String habit;
@@ -49,23 +61,46 @@ public class Plant extends AddOn{
 		
 	}
 	
-	public Plant(String name, String latinName, String color, String bloomTime,
-			String habit, String size, String waterNeed, String sunLightNeed, String soilMoisture, String animalsFedStr) {
+	public Plant(String name, String latinName, String color, String bloomTimeStr,
+			String habit, int size, int waterNeed, int sunLightNeed, String soilMoisture, String animalsFedStr, String[] seasonsImgArr) {
 		this.name = name;
 		this.color = color;
-		this.bloomTime = bloomTime;
+		this.bloomTimeStr = bloomTimeStr;
+		
+		if (bloomTimeStr.toLowerCase().equals("fall")) {
+			this.bloomTimeStr="Autumn";
+		}
+		
+		//temporarily setting null values
+		if (color.equals("null")|| color==null) {
+			this.color = "Red";
+		}
+		if (this.bloomTimeStr.equals("null") || bloomTimeStr==null) {
+			this.bloomTimeStr="Spring";
+		}
+		
+		//
+		bloomTime = Seasons.valueOf(this.bloomTimeStr.toUpperCase());
 		this.latinName = latinName;
-		this.sunlightNeedStr = sunLightNeed;
-		this.waterNeedStr = waterNeed;
-		this.sizeStr = size;
+		this.sunLightNeed = sunLightNeed;
+		this.waterNeed = waterNeed;
+		this.size = size;
 		this.habit = habit;
 		this.soilMoisture = soilMoisture;
 		this.animalsFedStr = animalsFedStr;
-		
+		this.seasonsImgArr = seasonsImgArr;
+/*		this.springImgStr = spring;
+		this.summerImgStr = summer;
+		this.autumnImgStr = autumn;
+		this.winterImgStr = winter;
+*/		
 	}
+<<<<<<< HEAD
 	
 	
 	
+=======
+>>>>>>> 0de95504b203ed8778be6c97ce943dd6df0d9354
 	/**
 	 * Constructor for the Plant class. Initializes the characteristics and requirements for the plant
 	 * and the arrays of Strings containing the urls for the images of the plant at different ages and in
@@ -100,6 +135,39 @@ public class Plant extends AddOn{
 	}
 	
 
+<<<<<<< HEAD
+=======
+	private static Plant[] addPlant(Plant[] plants, Plant plantToAdd) {
+	    Plant[] newPlants = new Plant[plants.length + 1];
+	    System.arraycopy(plants, 0, newPlants, 0, plants.length);
+	    newPlants[newPlants.length - 1] = plantToAdd;
+
+	    return newPlants;
+	}
+	
+/*    public String toString() {
+        return "Name: " + name + "\n" + "Latin Name: " + latinName + "\n" + "Plant color: " + color + "\n" + "Bloom Time String: "+ bloomTimeStr+ "\n"+
+    "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + "Height: " + size + "\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
+        		sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" +"Animals Fed: " + animalsFedStr + "\n"+ "Seasons String Img Array: " + 
+        		seasonsImgArr[0]+", " + seasonsImgArr[1]+", " +seasonsImgArr[2]+", " +seasonsImgArr[3]+", " + "\n" + "\n";
+    }
+	
+*/
+	public String toString() {
+		return "Plant color: " + color + "\n" + 
+    "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + "Height: " + size + "\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
+        		sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" +"Animals Fed: " + animalsFedStr + "\n" + "\n";
+	}
+	
+    public String getName() {
+    	return name;
+    }
+    
+    public String getLatinName() {
+    	return latinName;
+    }
+
+>>>>>>> 0de95504b203ed8778be6c97ce943dd6df0d9354
 	/**
 	 * Gets the String describing the color of the plant.
 	 * 
@@ -398,6 +466,23 @@ public class Plant extends AddOn{
 	    { 
 	        return a.getBloomTime().compareTo(b.getBloomTime()); 
 	    } 
-	} 
+	}
+    public String[] getSeasonsImgArr() {
+	return seasonsImgArr;
+    }
+    
+    public String getHabit() {
+	return habit;
+    }
+
+	@Override
+	public boolean equals(Plant p) {
+		return this.latinName.equals(p.latinName);
+	}
+	
+	@Override
+	public int hashCode() {
+		return (this.latinName.length() * this.waterNeed) % this.sunLightNeed;
+	}
 	
 }//Plant

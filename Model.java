@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -58,6 +59,8 @@ public class Model implements Serializable{
 	private ArrayList<Plant> otherLight;
 	private ArrayList<Plant> otherWater;
 	
+	// represents all the plants used in the garden
+	private static HashSet<Plant> usedPlants = new HashSet<Plant>();
 	
 	private String userTemplate;
 	// Prefs given by user
@@ -90,7 +93,49 @@ public class Model implements Serializable{
 		userPlot = null;
 		userTemplate = "";
 		prefsSet = 0;
+<<<<<<< HEAD
 
+=======
+		
+		
+		flowerArr = new ArrayList<Plant>();
+		shrubArr= new ArrayList<Plant>();
+		treeArr=new ArrayList<Plant>();
+		underGrowthArr = new ArrayList<Plant>();
+		
+		
+		
+		
+		// holds all scenery items like dirt to branchs
+		sceneryArr = new ArrayList<AddOn>();
+		AddOn bench = new AddOn("Bench",1,"A bench to sit on....duh");
+		sceneryArr.add(bench);
+				
+		// holds all plants in program ---> Used on creation only
+		allPlants = new ArrayList<Plant>();
+				
+		//Used for filtering methods to hold other vars
+		otherColors = new ArrayList<Plant>();
+		otherSeasons = new ArrayList<Plant>();
+		otherLight = new ArrayList<Plant>();
+		otherWater = new ArrayList<Plant>();
+				
+		// Prefs passed in by user
+		userPrefColor = "";
+		userPrefSeason = null;
+		userPrefLight = 0;
+		userPrefWater = 0;
+				
+		// user defined length and width
+		userLength = 0;
+		userWidth = 0;
+				
+		// Range of values to filter functions thats it
+		lowBound = 0;
+		highBound = 0;
+		
+		
+>>>>>>> 0de95504b203ed8778be6c97ce943dd6df0d9354
 		createArrs();
 		
 
@@ -206,6 +251,7 @@ public class Model implements Serializable{
 	//	underGrowthArr.add(milkWeed);
 		underGrowthArr.add(maidenhairFern);
 		underGrowthArr.add(blackstemSpleenwort);
+<<<<<<< HEAD
 		
 		// holds all scenery items like dirt to branchs
 		sceneryArr = new ArrayList<AddOn>();
@@ -220,23 +266,20 @@ public class Model implements Serializable{
 		otherSeasons = new ArrayList<Plant>();
 		otherLight = new ArrayList<Plant>();
 		otherWater = new ArrayList<Plant>();
+=======
+*/		
+>>>>>>> 0de95504b203ed8778be6c97ce943dd6df0d9354
 		
-		// Prefs passed in by user
-		userPrefColor = "";
-		userPrefSeason = null;
-		userPrefLight = 0;
-		userPrefWater = 0;
-		
-		// user defined length and width
-		userLength = 0;
-		userWidth = 0;
-		
-		// Range of values to filter functions thats it
-		lowBound = 0;
-		highBound = 0;
 	}//Model()
 	
+<<<<<<< HEAD
 
+=======
+	public static HashSet<Plant> getUsedPlants(){
+		return usedPlants;
+	}
+	
+>>>>>>> 0de95504b203ed8778be6c97ce943dd6df0d9354
 	private void createArrs() {
 
 //	    Scanner input;
@@ -255,19 +298,27 @@ public class Model implements Serializable{
 					String name = buffReader.readLine();
 					String latinName = buffReader.readLine();
 					String color = buffReader.readLine();
-					String bloomTime = buffReader.readLine();
+					String bloomTimeStr = buffReader.readLine();
 					String habit = buffReader.readLine();
 					String sizeStr = buffReader.readLine();
 					String waterNeedStr = buffReader.readLine();
 					String sunlightNeedStr = buffReader.readLine();
 					String soilMoisture = buffReader.readLine();
 					String animalsFedStr = buffReader.readLine();
+					String spring = buffReader.readLine();
+					String summer = buffReader.readLine();
+					String autumn = buffReader.readLine();
+					String winter = buffReader.readLine();
+					
+					String[] seasonsArr = {spring,summer,autumn,winter};
 					
 					int size = Integer.parseInt(sizeStr);
 			        int waterNeed = Integer.parseInt(waterNeedStr);
 			        int sunlightNeed = Integer.parseInt(sunlightNeedStr);
 			        
-		        	Plant newPlant = new Plant(name, latinName, color, bloomTime, habit, size, waterNeed, sunlightNeed, soilMoisture, animalsFedStr);
+
+		        	Plant newPlant = new Plant(name, latinName, color, bloomTimeStr, habit, size, waterNeed, sunlightNeed, soilMoisture, animalsFedStr, seasonsArr);
+
 			        if (i==0) {
 			        	plants = addPlant(plants, newPlant);
 			        } else if (i==1) {
@@ -314,7 +365,7 @@ public class Model implements Serializable{
 			        }
 			    }
 */
-			    for (Plant plant : plants) {
+			   /* for (Plant plant : plants) {
 			        System.out.println(plant);
 			    }
 			    for (Plant tree : trees) {
@@ -322,7 +373,7 @@ public class Model implements Serializable{
 			    }
 			    for (Plant flower : flowers) {
 			    	System.out.println(flower);
-			    }
+			    }*/
 			}
 
 		    
@@ -332,6 +383,23 @@ public class Model implements Serializable{
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		for (int i=0;i<plants.length;i++) {
+			allPlants.add(plants[i]);
+			//System.out.println("Added plant:\n"+plants[i]);
+		}
+		for (int i=0;i<trees.length;i++) {
+			allPlants.add(trees[i]);
+			//System.out.println("Added tree:\n"+trees[i]);
+		}
+		for(int i=0;i<flowers.length;i++) {
+			allPlants.add(flowers[i]);
+			//System.out.println("Added flower:\n"+flowers[i]);
+		}
+		
+		System.out.println("NOT EMPTY HERE");
+		for (Plant p : allPlants) {
+			System.out.println(p);
 		}
 
 	}
@@ -379,7 +447,7 @@ public class Model implements Serializable{
 	public void updateArrs() {
 		// sets up the array by filter to appropriate type then filtering to all of
 		// of flowerArr then
-		setFlowerArr(filterByType(flowerArr,flower));
+		setFlowerArr(filterByType(allPlants,flower));
 		flowerArr.addAll(filterByColor(flowerArr,userPrefColor));
 		flowerArr.addAll(filterByBloomTime(flowerArr,userPrefSeason));
 		flowerArr.addAll(filterByLight(flowerArr,userPrefLight));
@@ -396,7 +464,7 @@ public class Model implements Serializable{
 		
 		// sets up the array by filter to appropriate type then filtering to all of
 		// of shrubArr
-		setShrubArr(filterByType(shrubArr,shrub));
+		setShrubArr(filterByType(allPlants,shrub));
 		shrubArr.addAll(filterByColor(shrubArr,userPrefColor));
 		shrubArr.addAll(filterByBloomTime(shrubArr,userPrefSeason));
 		shrubArr.addAll(filterByLight(shrubArr,userPrefLight));
@@ -413,7 +481,7 @@ public class Model implements Serializable{
 		
 		// sets up the array by filter to appropriate type then filtering to all of
 		// of treeArr
-		setTreeArr(filterByType(treeArr,tree));
+		setTreeArr(filterByType(allPlants,tree));
 		treeArr.addAll(filterByColor(treeArr,userPrefColor));
 		treeArr.addAll(filterByBloomTime(treeArr,userPrefSeason));
 		treeArr.addAll(filterByLight(treeArr,userPrefLight));
@@ -430,7 +498,7 @@ public class Model implements Serializable{
 		
 		// sets up the array by filter to appropriate type then filtering to all of
 		// of underGrowth Arr
-		setUnderGrowthArr((filterByType(underGrowthArr,undergrowth)));
+		setUnderGrowthArr((filterByType(allPlants,undergrowth)));
 		underGrowthArr.addAll(filterByColor(underGrowthArr,userPrefColor));
 		underGrowthArr.addAll(filterByBloomTime(underGrowthArr,userPrefSeason));
 		underGrowthArr.addAll(filterByLight(underGrowthArr,userPrefLight));
@@ -777,7 +845,7 @@ public class Model implements Serializable{
 		// in lexical order
 	    public int compare(Plant a, Plant b) 
 	    { 
-	        return a.getColor().compareTo(b.getColor()); 
+	        return a.getColor().toLowerCase().compareTo(b.getColor().toLowerCase()); 
 	    } 
 	} 
 	
@@ -815,7 +883,7 @@ public class Model implements Serializable{
 	public ArrayList<Plant> filterByColor(ArrayList<Plant> a, String color){
 		//Iterate over list and if doesn't match color add to the otherColors Arr via getter
 		for(Plant p: a) {
-			if(!p.getColor().equals(color)) {
+			if(!p.getColor().toLowerCase().equals(color.toLowerCase())) {
 				otherColors.add(p);
 			}
 		}
@@ -825,9 +893,12 @@ public class Model implements Serializable{
 		// filters the arrayList taken in, makes copy so a is not disturbed
 		ArrayList<Plant> userColorPlants = new ArrayList<Plant>();
 		userColorPlants.addAll(a);
-		//streams the plants, filters by color, then adds them back to list
-		userColorPlants.stream().filter(p -> p.getColor().equals(color))
-		.collect(Collectors.toList());
+		
+		for(Plant p: a) {
+			if(p.getColor().toLowerCase().equals(color.toLowerCase())) {
+				userColorPlants.add(p);
+			}
+		}
 		return userColorPlants;
 	}//filterByColor
 	
@@ -856,10 +927,13 @@ public class Model implements Serializable{
 		otherSeasons.sort(new SortbyBloomTime());
 		
 		ArrayList<Plant> userBloomPlants = new ArrayList<Plant>();
-		userBloomPlants.addAll(a);
+		//userBloomPlants.addAll(a);
 		//streams the plants, filters by BloomTime, then adds them back to list
-		userBloomPlants.stream().filter(p -> p.getBloomTime().equals(season))
-		.collect(Collectors.toList());
+		for(Plant p: a) {
+			if(p.getBloomTime().equals(season)) {
+				userBloomPlants.add(p);
+			}
+		}
 		return userBloomPlants;
 	}//fliterByBloomTime
 	
@@ -896,10 +970,13 @@ public class Model implements Serializable{
 		otherWater.sort(new SortbyWaterNeed());
 	
 		ArrayList<Plant> userWaterPlants = new ArrayList<Plant>();
-		userWaterPlants.addAll(a);
+		//userWaterPlants.addAll(a);
 		//streams the plants, filters by BloomTime, then adds them back to list
-		userWaterPlants.stream().filter(p -> p.getWaterNeed() >= lowBound
-				&& p.getWaterNeed() <= highBound).collect(Collectors.toList());
+		for(Plant p: a) {
+			if(p.getWaterNeed() >= lowBound && p.getWaterNeed() <= highBound) {
+				otherWater.add(p);
+			}
+		}
 		return userWaterPlants;
 	}//filterByWater
 	
@@ -936,10 +1013,17 @@ public class Model implements Serializable{
 		otherLight.sort(new SortbyLightNeed());
 	
 		ArrayList<Plant> userLightPlants = new ArrayList<Plant>();
-		userLightPlants.addAll(a);
+		//userLightPlants.addAll(a);
 		//streams the plants, filters by BloomTime, then adds them back to list
+		/*
 		userLightPlants.stream().filter(p -> p.getSunLightNeed() >= lowBound
 				&& p.getSunLightNeed() <= highBound).collect(Collectors.toList());
+				*/
+		for(Plant p: a) {
+			if(p.getSunLightNeed() >= lowBound && p.getSunLightNeed() <= highBound) {
+				userLightPlants.add(p);
+			}
+		}
 		return userLightPlants;
 	}//filterByLight
 	
@@ -963,9 +1047,14 @@ public class Model implements Serializable{
 	 */
 	public ArrayList<Plant> filterByType(ArrayList<Plant> a, String type){
 		ArrayList<Plant> typeArr = new ArrayList<Plant>();
-		typeArr.addAll(a);
+		//typeArr.addAll(a);
+		for(Plant p: a) {
+			if(p.getHabit().toLowerCase().contentEquals(type.toLowerCase())) {
+				typeArr.add(p);
+			}
+		}
 		//streams the plants, filters by BloomTime, then adds them back to list
-		typeArr.stream().filter(p -> p.getPlantType().equals(type)).collect(Collectors.toList());
+		//typeArr.stream().filter(p -> p.getPlantType().equals(type)).collect(Collectors.toList());
 		return typeArr;
 	}//filterByType
 	
@@ -1015,6 +1104,23 @@ public class Model implements Serializable{
 	
 	public boolean necessaryPrefsSet() {
 		return !(userPrefColor.equals("") || userPrefSeason==null || userPrefLight==0 || userPrefWater==0 );
+	}
+	
+	public String getTileContentsName(int x, int y) {
+		GardenTile tile = userPlot.getLayout()[x][y];
+		
+		String addOnImgName = "";
+		
+		Plant p = tile.getPlant();
+		if (!tile.isActive()) {
+			addOnImgName="inactive";
+		} else if (p!=null) {
+			addOnImgName=p.getSeasonsImgArr()[userPrefSeason.ordinal()];
+		} else if (tile.getAddOn()!=null) {
+			addOnImgName = tile.getAddOn().getName();
+		} 
+		
+		return addOnImgName;
 	}
 	// then getters and setters for new attributes
 }//Modeld

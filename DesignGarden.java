@@ -144,7 +144,7 @@ public class DesignGarden extends Screen{
 		this.c = controller;
 		theStage = s;
 		
-		
+		plot = new GridPane();
 
 
 
@@ -440,9 +440,9 @@ plantsGP.setMaxSize(selectionGPsize, selectionGPsize);
 //adding row
 plantsGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 
-String[] flower = {"Plant Pictures/Red_Willow.jpg",
-		"Plant Pictures/Seaside_GoldenRod.jpg",
-		"Plant Pictures/Pear_Thorn.jpg"};
+String[] flower = {"PlantPictures/Red_Willow.jpg",
+		"PlantPictures/Seaside_GoldenRod.jpg",
+		"PlantPictures/Pear_Thorn.jpg"};
 
 pSelectionArr = new ArrayList<ImageView>();
 //setting up with each different picture
@@ -485,7 +485,7 @@ shrubs = new Tab("Shrubs");
 
 shrubs.setContent(shrubsGP);
 
-String[] shrub = {"Plant Pictures/Maidenhair_Fern.jpg","Plant Pictures/Sweet_Shrub.jpg"};
+String[] shrub = {"PlantPictures/Maidenhair_Fern.jpg","PlantPictures/Sweet_Shrub.jpg"};
 
 shrubSelArr = new ArrayList<ImageView>();
 //setting up with each different picture
@@ -532,7 +532,7 @@ underGP.setMaxSize(selectionGPsize, selectionGPsize);
 //adding row
 underGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 
-String[] under = {"Plant Pictures/Fillaree.jpg","Plant Pictures/Blackstem_Spleenwort.jpg"};
+String[] under = {"PlantPictures/Fillaree.jpg","PlantPictures/Blackstem_Spleenwort.jpg"};
 
 underSelArr = new ArrayList<ImageView>();
 //setting up with each different picture
@@ -580,7 +580,7 @@ treesGP.setMaxSize(selectionGPsize, selectionGPsize);
 //adding row
 treesGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 
-String[] tree = {"Plant Pictures/Box_Elder.jpg","Plant Pictures/Cigar_Tree.jpg"};
+String[] tree = {"PlantPictures/Box_Elder.jpg","PlantPictures/Cigar_Tree.jpg"};
 
 treeSelArr = new ArrayList<ImageView>();
 //setting up with each different picture
@@ -856,8 +856,9 @@ Label emptySpace5 = new Label("		");
 
 // Replace with vars so works better
 //FitHeight and FitWidth should take in var constraints
-plot = new GridPane();
-soil = new ImageView[length][width];
+//plot = new GridPane();
+plot = View.drawGrid(c);
+/*soil = new ImageView[length][width];
 for(int i=0; i<length; i++) {
 	for(int j=0; j<width; j++) {
 		soil[i][j] = new ImageView(new Image("img/soil.jpg"));
@@ -866,8 +867,14 @@ for(int i=0; i<length; i++) {
 		soil[i][j].setFitWidth(89);
 		plot.add(soil[i][j], i, j,1,1);
 	}
-}
-
+/
+	for (int i=0;i<c.getLengthFromModel();i++) {
+		for (int j=0; j<c.getWidthFromModel();j++) {
+				drawTile(i,j,c.getModel().get)
+			
+			
+		}
+	}*/
 
 
 /*
@@ -906,7 +913,7 @@ for (int i = 0; i < width; i++) {
 plot.setOnDragOver(c.getDetectDrag());
 plot.setOnDragDropped(c.getDetectDragDrop());
 
-plot.setGridLinesVisible(true);
+//plot.setGridLinesVisible(true);
 
 root.setTopAnchor(plot, 200.0);
 root.setLeftAnchor(plot, 40.0);
@@ -1099,6 +1106,42 @@ designGardenScene = new Scene(root,1200,800);
 		}
 	}//setUpTabs*/
 
+	/*public void drawTile(int row, int col,String addOnImgName) {
+		ImageView soilImg = new ImageView(new Image("img/soil.jpg"));
+		soilImg.setPreserveRatio(true);
+		soilImg.setFitHeight(89);
+		soilImg.setFitWidth(89);
+		plot.add(soilImg, col, row,1,1);
+		
+		if  (addOnImgName.equals("inactive")) {
+			//soilImg.setVisible(false);
+			plot.getChildren().remove(soilImg);
+		}
+		else if (!addOnImgName.equals("")) {
+			plot.add(new ImageView(new Image(addOnImgName)), col, row, 1,1);
+		}
+	}*/
 	
+	/*public void drawGridPane() {
+		for (int i=0;i<c.getLengthFromModel();i++) {
+			for (int j=0; j<c.getWidthFromModel();j++) {
+				ImageView soilImg = new ImageView(new Image("img/soil.jpg"));
+				soilImg.setPreserveRatio(true);
+				soilImg.setFitHeight(89);
+				soilImg.setFitWidth(89);
+				plot.add(soilImg, j, i,1,1);
+				
+				if  (addOnImgName.equals("inactive")) {
+					//soilImg.setVisible(false);
+					plot.getChildren().remove(soilImg);
+				}
+				else if (!addOnImgName.equals("")) {
+					plot.add(new ImageView(new Image(addOnImgName)), j, i, 1,1);
+				}
+				
+				
+			}
+		}
+	}*/
 	
 }

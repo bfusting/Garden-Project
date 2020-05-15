@@ -9,6 +9,10 @@ Flower
 5
 dry/moist
 null
+PlantPictures/Pale_Purple_Coneflower.jpg
+PlantPictures/Pale_Purple_Coneflower.jpg
+PlantPictures/Pale_Purple_Coneflower.jpg
+PlantPictures/Pale_Purple_Coneflower.jpg
 
 Seaside Goldenrod
 Solidago Sempervirens
@@ -20,6 +24,10 @@ Flower
 5
 moist
 null
+PlantPictures/Seaside_GoldenRod.jpg
+PlantPictures/Seaside_GoldenRod.jpg
+PlantPictures/Seaside_GoldenRod.jpg
+PlantPictures/Seaside_GoldenRod.jpg
 
 Fillaree
 Geraniaceae Erodium texanum
@@ -31,6 +39,10 @@ Flower
 5
 dry
 null
+PlantPictures/Fillaree.jpg
+PlantPictures/Fillaree.jpg
+PlantPictures/Fillaree.jpg
+PlantPictures/Fillaree.jpg
 	
 Star Grass
 Liliaceae Aletris aurea
@@ -42,6 +54,10 @@ Flower
 4
 null
 null
+PlantPictures/Star_Grass.jpg
+PlantPictures/Star_Grass.jpg
+PlantPictures/Star_Grass.jpg
+PlantPictures/Star_Grass.jpg
 
 NarrowLeaf Onion
 Allium amplectens
@@ -53,6 +69,10 @@ Flower
 3
 null
 null
+PlantPictures/Narrowleaf_Onion.jpg
+PlantPictures/Narrowleaf_Onion.jpg
+PlantPictures/Narrowleaf_Onion.jpg
+PlantPictures/Narrowleaf_Onion.jpg
 
 Pear Thorn
 Crataegus calpodenron
@@ -64,6 +84,10 @@ Flower
 3
 null
 null
+PlantPictures/Pear_Thorn.jpg
+PlantPictures/Pear_Thorn.jpg
+PlantPictures/Pear_Thorn.jpg
+PlantPictures/Pear_Thorn.jpg
 	
 White Snakeroot
 Ageratina Altissim
@@ -74,4 +98,8 @@ Flower
 1
 4
 null
-null	
+null
+PlantPictures/White_Snakeroot.jpg
+PlantPictures/White_Snakeroot.jpg
+PlantPictures/White_Snakeroot.jpg
+PlantPictures/White_Snakeroot.jpg

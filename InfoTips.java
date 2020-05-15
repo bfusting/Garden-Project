@@ -1,11 +1,24 @@
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 
+import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 
 //Updated: 4/25 9:52
@@ -19,16 +32,14 @@ import javafx.scene.layout.AnchorPane;
  *
  */
 
-public class InfoTips extends Screen{
-	private Scene infoTipsScene;
-	private Label color;
-	private Label waterNeed;
-	private Label bloomTime;
-	private Label sunlightNeeded;
-	private Label plantHeight;
-	private Label provideShade;
-	private Label plantType;
-	private Label animalsFed;
+public class InfoTips {
+	
+	private final int HEIGHT = 500;
+	private final int WIDTH = 250;
+	private Controller c;
+	private Stage stage;
+	
+	private HashSet<Plant> hs;
 	
 	
 	/**
@@ -44,7 +55,7 @@ public class InfoTips extends Screen{
 	 * @param animals List of animals that feed off this plant
 	 */
 	
-	public InfoTips(String col, int water, Date bloom, int sun, double height, boolean shade, String type, ArrayList<String> animals) {
+/*	public InfoTips(String col, int water, Date bloom, int sun, double height, boolean shade, String type, ArrayList<String> animals) {
 		color = new Label(col);
 		waterNeed = new Label(String.valueOf(water));
 		bloomTime = new Label(bloom.toString());
@@ -71,6 +82,10 @@ public class InfoTips extends Screen{
 		animalsFed = new Label(b);
 				
 	}
+*/	
+	public InfoTips(Controller controller) {
+		this.c = controller;
+	}
 	
 	/**
 	 * Default constructor just to work in view for now
@@ -78,7 +93,7 @@ public class InfoTips extends Screen{
 	 * Made by Malachi
 	 * -Kelsey Approved
 	 */
-	public InfoTips() {
+/*	public InfoTips() {
 		color = null;
 		waterNeed = null;
 		bloomTime = null;
@@ -88,26 +103,69 @@ public class InfoTips extends Screen{
 		plantType = null;
 		animalsFed = null;
 	}
-	
+*/	
 	/**
 	 * Organizes all of the labels of plant attributes
 	 * 
 	 * @param stage The stage of InfoTips' scene
 	 */
 	
-	public void showInfoTips(Stage stage) {
+	public void showInfoTips() {
+		Accordion acc = new Accordion();
+
 		
-		AnchorPane root = new AnchorPane();
-		Label it = new Label ("Info and Tips");
-		AnchorPane.setTopAnchor(it, 100.0);
-		AnchorPane.setLeftAnchor(it, 235.0);
-		root.getChildren().add(it);
-		infoTipsScene = new Scene(root, 500.0, 500.0);
+		hs = Model.getUsedPlants();
+//		ArrayList<Text> texts = new ArrayList<Text>();
+
+		for (Plant p : hs) {
+
+			String name = p.getName();
+			String latinName = p.getLatinName();
+			String titleStr = name + " - " + latinName;
+			String body = p.toString();
+			
+			Text bodyText = new Text(body);
+
+			TitledPane tp = new TitledPane();
+			tp.setText(titleStr);
+			tp.setContent(bodyText);
+			
+			acc.getPanes().add(tp);
+
+		}		
+		stage = new Stage();
+		stage.setTitle("Info and Tips");
 		
-		stage.setTitle("InfoTips");
-		stage.setScene(infoTipsScene);
+		
+		BorderPane root = new BorderPane();
+		root.getChildren().add(acc);
+		
+		root.setBackground(new Background(new BackgroundFill(Color.DARKOLIVEGREEN,CornerRadii.EMPTY,Insets.EMPTY)));
+		
+		
+		Scene scene = new Scene(root, WIDTH, HEIGHT);
+		stage.setScene(scene);
 		stage.show();
+		
+		
+	}
+		
+
+	/*@Override
+	public void showScreen() {
+		//should consolidate into one showScreen method
+		showInfoTips();
+		stage.show();
+		stage.toFront();
 		
 	}
 	
+	@Override
+	public void closeScreen() {
+		stage.close();
+	}*/
+	
+		
 }
+	
+

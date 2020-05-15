@@ -67,6 +67,7 @@ public class Controller{
 	 */
 	public Controller(View passedInView) {
 		model = new Model();
+		
 		this.view = passedInView;
 		DEBUG = true;
 	}//Controller
@@ -262,20 +263,22 @@ public class Controller{
 	 */
 	public void designTime(MouseEvent event) {
 		int circleSize = 7;
+		int maxRows = 4;
 		
-		if (model.getUserTemplate().equals("triangle")) {
+		if (model.getUserTemplate().toLowerCase().equals("triangle")) {
+			model.setUserLength(Math.min(model.getUserLength(), maxRows ));
 			model.setUserWidth(2*model.getUserLength());
 		}
-		else if (model.getUserTemplate().equals("circle")) {
+		else if (model.getUserTemplate().toLowerCase().equals("circle")) {
 			model.setUserLength(circleSize);
 			model.setUserWidth(circleSize);
-			System.out.println("rewriting length and width");
 		}
 		
 		
 		System.out.println("Final preferences:\nColor: "+model.getUserPrefColor()+", Season: "+model.getUserPrefSeason()+", Light level: "+model.getUserPrefLight()+"\nWater level: "+model.getUserPrefWater()+", Length: "+ model.getUserLength()+", Width: "+model.getUserWidth());
 		
 		model.createUserPlot();
+		model.updateArrs();
 		System.out.println("Make Garden");
 		//view.showDesignGardenScreen();
 		view.show("designGardenScreen");
@@ -550,6 +553,10 @@ public class Controller{
 		Node n = event.getPickResult().getIntersectedNode();
 		if(DEBUG) {System.out.println(n.toString());}
 		ArrayList<Plant> tempArrayList = this.changeTabIndex();
+		//ArrayList<Plant> tempArrayList = new ArrayList<Plant>(); test to see if allPlants still had elements
+		//tempArrayList.addAll(model.getAllPlants());
+		
+		
 		int index = view.getDesignGardenScreen().getGridPaneInd();
 		int circleIndex = view.getDesignGardenScreen().getSelectGardenType().
 			    getSelectionModel().getSelectedIndex();
@@ -570,6 +577,7 @@ public class Controller{
 			//adding test to see if index is holding plants or addons
 			//switched
 			model.getUserPlot().getLayout()[rowIndex][colIndex].setPlant(tempArrayList.get(index));
+			model.getUsedPlants().add(tempArrayList.get(index));
 			//int index = this.methodName; used to pull from designGarden array
 			worked = true;
 		}
@@ -880,6 +888,7 @@ public class Controller{
 					view.show("preferencesScreen");
 				}*/
 				if (model.getUserPlot()!=null) {
+					view.createNew();
 					view.show("designGardenScreen");
 				} else {
 					view.createNew();
@@ -1146,14 +1155,19 @@ public class Controller{
 	// get the current tab selected in design garden
 	int t = view.getDesignGardenScreen().getSelectGardenType().
 	    getSelectionModel().getSelectedIndex();
+	ArrayList<Plant> temp = new ArrayList<Plant>();
 	switch(t) {
-	case 0: return model.getFlowerArr();
-	case 1: return model.getTreeArr();
-	case 2: return model.getShrubArr();
-	case 3: return model.getUnderGrowth();
-	case 4: return model.getShrubArr();
+	case 0: temp.addAll(model.getFlowerArr());
+	break;
+	case 1: temp.addAll(model.getTreeArr());
+	break;
+	case 2: temp.addAll(model.getShrubArr());
+	break;
+	case 3: temp.addAll(model.getUnderGrowth());
+	break;
+	
 	}//switch
-	return null;
+	return temp;
     }
     
     /**
@@ -1257,7 +1271,10 @@ public class Controller{
     public int getWidthFromModel() {
 	return model.getUserWidth();
     }
-    
+    public String getImgNameFromModel(int x,int y) {
+         return model.getTileContentsName(x,y);
+    }
+
     /**
      * Takes in a parameter of an image which will be used to set the pattern of the 
      * circle to the passed in image. Int i represents which tab is selected from 
