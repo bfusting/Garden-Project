@@ -38,7 +38,7 @@ public class Plant extends AddOn{
 	private String soilMoisture;
 	
 	private String[] ageImages;
-	private String[] seasonImages;
+	//private String[] seasonImages;
 	
 	private String plantType;
 	
@@ -106,7 +106,7 @@ public class Plant extends AddOn{
 	 * and the arrays of Strings containing the urls for the images of the plant at different ages and in
 	 * different seasons.
 	 */
-	public Plant(String name, int tileSize, String description, String color, int waterNeed, int sunLightNeed, double plantHeight, int locationPref,
+	/*public Plant(String name, int tileSize, String description, String color, int waterNeed, int sunLightNeed, double plantHeight, int locationPref,
 			Seasons bloomTime, boolean provideShade, String[] ageImages, String[] season, String plantType, 
 			ArrayList<String> animalsFed, ArrayList<String> compatiblePlants) {
 		super(name,tileSize,description);
@@ -126,7 +126,7 @@ public class Plant extends AddOn{
 		this.compatiblePlants = compatiblePlants;
 		
 		
-	}
+	}*/
 	
 	
 	
@@ -154,9 +154,11 @@ public class Plant extends AddOn{
 	
 */
 	public String toString() {
-		return "Plant color: " + color + "\n" + 
+		return "Name: " + name + "\n" + "Latin Name: " + latinName + "\n" +"Plant color: " + color + "\n" + 
     "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + "Height: " + size + "\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
-        		sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" +"Animals Fed: " + animalsFedStr + "\n" + "\n";
+        		sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" +"Animals Fed: " + animalsFedStr + "\n"+ "Seasons String Img Array: " + 
+        		seasonsImgArr[0]+", " + seasonsImgArr[1]+", " +seasonsImgArr[2]+", " +seasonsImgArr[3]+", " + "\n" + "\n";
+    
 	}
 	
     public String getName() {
@@ -285,15 +287,10 @@ public class Plant extends AddOn{
 		this.provideShade = provideShade;
 	}
 
-	/**
-	 * Returns the urls for the images of the plant in each season in a String array.
-	 * season
-	 * @return seasonImages an array of Strings containing the urls for the images of the
-	 * plant in each season.
-	 */
-	public String[] getSeasonImages() {
+	
+	/*public String[] getSeasonImages() {
 		return seasonImages;
-	}
+	}*/
 
 	/**
 	 * Sets the String array containing the urls for the images of the plant in each season.
@@ -301,9 +298,9 @@ public class Plant extends AddOn{
 	 * @param seasonImages an array of Strings containing the urls for the images of the
 	 * plant in each season.
 	 */
-	public void setSeasonImages(String[] seasonImages) {
+	/*public void setSeasonImages(String[] seasonImages) {
 		this.seasonImages = seasonImages;
-	}
+	}*/
 	
 	/**
 	 * Returns the urls for the images of the plant at different growth stages in a String array.
@@ -467,6 +464,14 @@ public class Plant extends AddOn{
 	        return a.getBloomTime().compareTo(b.getBloomTime()); 
 	    } 
 	}
+	
+	/**
+	 * Returns the urls for the images of the plant in each season in a String array, in order 
+	 * corresponding to the Seasons enum.
+	 * 
+	 * @return seasonsImgArr an array of Strings containing the urls for the images of the
+	 * plant in each season.
+	 */
     public String[] getSeasonsImgArr() {
 	return seasonsImgArr;
     }

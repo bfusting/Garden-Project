@@ -237,12 +237,10 @@ public class Recommendations extends Screen{
 		texts.add(new Text("Shrub"));
 		texts.add(new Text("Flower"));
 
-		texts.add(new Text("Undergrowth"));
 		
 		TitledPane treeTest = null;
 		TitledPane shrubTest = null;
 		TitledPane flowerTest = null;
-		TitledPane underGrowthTest = null;
 		
 		
 		
@@ -291,18 +289,7 @@ public class Recommendations extends Screen{
 			flowerTest = new TitledPane("Flowers", new Text("No Recommendations"));
 		}
 		
-		try {
-			for(int i = 0; i < getRecUndergrowth().length; i++) {
-				if(getRecUndergrowth()[i] != null) {
-					underGrowths = underGrowths + getRecUndergrowth()[i].getName() + "\n";
-				}
-			}
-			
-			underGrowthTest = new TitledPane("Undergrowth", new Text(underGrowths));
-		}
-		catch(Exception e) {
-			underGrowthTest = new TitledPane("Undergrowth", new Text("No Recommendations"));
-		}
+		
 		for(Text t : texts) {
 			AnchorPane.setLeftAnchor(t, 5.0);
 			AnchorPane.setRightAnchor(t, 5.0);
@@ -317,7 +304,7 @@ public class Recommendations extends Screen{
 	
 	
 	
-	accord.getPanes().addAll(treeTest, flowerTest, shrubTest, underGrowthTest);
+	accord.getPanes().addAll(treeTest, flowerTest, shrubTest);
 
 	
 	
@@ -470,43 +457,5 @@ public class Recommendations extends Screen{
 	}
 
 	
-	/**
-	 * 
-	 * @return
-	 */
-	public Plant[] getRecUndergrowth() {
-		Plant[] rec = new Plant[10];
-		int count = 0;
-		for(Plant p : this.c.getModel().getUnderGrowth()) {
-			if(p.getColor() == this.c.getModel().getUserPrefColor()) {
-				rec[count] = p;
-				count++;
-			}
-		}
-		
-		for(Plant p : this.c.getModel().getUnderGrowth()) {
-			if(p.getBloomTime() == this.c.getModel().getUserPrefSeason()) {
-				rec[count] = p;
-				count++;
-			}
-		}
-		
-		for(Plant p : this.c.getModel().getUnderGrowth()) {
-			if(p.getSunLightNeed() == this.c.getModel().getUserPrefLight()) {
-				rec[count] = p;
-				count++;
-			}
-		}
-		
-		for(Plant p : this.c.getModel().getUnderGrowth()) {
-			if(p.getWaterNeed() == this.c.getModel().getUserPrefWater()) {
-				rec[count] = p;
-				count++;
-			}
-		}
-		
-		
-		return rec;
-		
-	}
+	
 }

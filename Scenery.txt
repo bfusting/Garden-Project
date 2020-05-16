@@ -1,0 +1,36 @@
+
+otherAddOns/greyhouse-removebg-preview-removebg-preview.png
+A building with a grey roof.
+35
+
+otherAddOns/orangehouse.png
+A building with an orange roof.
+40
+
+otherAddOns/redhouse-removebg-preview.png
+A building with a red roof.
+50
+
+otherAddOns/rock-removebg-preview.png
+A fairly large rock.
+28
+
+otherAddOns/animated-water-fountain.png
+A stone water fountain.
+32
+
+otherAddOns/pond.png
+A pond with encircled by a rock bed.
+30
+
+otherAddOns/pool.jpeg
+A large pool of water.
+45
+
+otherAddOns/bluetenniscourt.jpeg
+A blue tennis court.
+45
+
+otherAddOns/tenniscourt-removebg-preview.png
+A green tennis court.
+45

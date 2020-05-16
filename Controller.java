@@ -552,7 +552,7 @@ public class Controller{
 		//Node n = event.getPickResult().getIntersectedNode();
 		Node n = event.getPickResult().getIntersectedNode();
 		if(DEBUG) {System.out.println(n.toString());}
-		ArrayList<Plant> tempArrayList = this.changeTabIndex();
+		
 		//ArrayList<Plant> tempArrayList = new ArrayList<Plant>(); test to see if allPlants still had elements
 		//tempArrayList.addAll(model.getAllPlants());
 		
@@ -562,23 +562,30 @@ public class Controller{
 			    getSelectionModel().getSelectedIndex();
 		if(n != view.getDesignGardenScreen().getPlot() && db.hasImage() && 
 				view.getDesignGardenScreen().getHoverEditTile() == false) {
-			// View side of plant drop
-			//ImageView iv = new ImageView(db.getImage());
-			//iv.setPreserveRatio(true);
-	    	//iv.setFitHeight(100);
+			// dropping plants
 			Circle c = new Circle();
 			c = this.createCirlceSizes(db.getImage(), circleIndex);
+			// dropping paths
+			ImageView imgV = new ImageView();
+			imgV = createSquareSize(db.getImage());
+			// getting rows and columns to drop into gridPane
 			Integer colIndex = GridPane.getColumnIndex(n);
 	    	Integer rowIndex = GridPane.getRowIndex(n);
 			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
-			view.getDesignGardenScreen().getPlot().add(c, colIndex, rowIndex, 1, 1);//add(iv, column, row);
+			if(circleIndex<=2) { // drag and drop circle
+				view.getDesignGardenScreen().getPlot().add(c, colIndex, rowIndex, 1, 1);//add(iv, column, row);
+			}
+			else { // add square image to path
+				view.getDesignGardenScreen().getPlot().add(imgV, colIndex,rowIndex,1,1);
+			}
 			// Model side of plant drop
 
 			//adding test to see if index is holding plants or addons
 			//switched
-			model.getUserPlot().getLayout()[rowIndex][colIndex].setPlant(tempArrayList.get(index));
-			model.getUsedPlants().add(tempArrayList.get(index));
+			//model.getUserPlot().getLayout()[rowIndex][colIndex].setPlant(tempArrayList.get(index));
+			//model.getUsedPlants().add(tempArrayList.get(index));
 			//int index = this.methodName; used to pull from designGarden array
+			changeTabIndex(rowIndex,colIndex,index);
 			worked = true;
 		}
 		else if(n != view.getDesignGardenScreen().getPlot() && db.hasImage() &&
@@ -1151,21 +1158,35 @@ public class Controller{
      * @return arrayList of plants from model. If none are available returns null
      * @see Controller#detectDragDrop(DragEvent)
      */
-    public ArrayList<Plant> changeTabIndex() {
+    public ArrayList<AddOn> changeTabIndex(int rowIndex,int colIndex,int index) {
 	// get the current tab selected in design garden
 	int t = view.getDesignGardenScreen().getSelectGardenType().
 	    getSelectionModel().getSelectedIndex();
-	ArrayList<Plant> temp = new ArrayList<Plant>();
+	ArrayList<AddOn> temp = new ArrayList<AddOn>();
+	GardenTile tile = model.getUserPlot().getLayout()[rowIndex][colIndex];
 	switch(t) {
-	case 0: temp.addAll(model.getFlowerArr());
-	break;
-	case 1: temp.addAll(model.getTreeArr());
-	break;
-	case 2: temp.addAll(model.getShrubArr());
-	break;
-	case 3: temp.addAll(model.getUnderGrowth());
-	break;
-	
+	case 0:
+		temp.addAll(model.getFlowerArr());
+		tile.setPlant((Plant)temp.get(index));
+		model.getUsedPlants().add((Plant)temp.get(index));
+		break;
+	case 1: 
+		temp.addAll(model.getTreeArr());
+		tile.setPlant((Plant)temp.get(index));
+		model.getUsedPlants().add((Plant)temp.get(index));
+		break;
+	case 2:
+		temp.addAll(model.getShrubArr());
+		tile.setPlant((Plant)temp.get(index));
+		model.getUsedPlants().add((Plant)temp.get(index));
+		break;
+	case 3:
+		temp.addAll(model.getPathwaysArr());
+		tile.setAddOn(temp.get(index));
+		break;
+	case 4:
+		temp.addAll(model.getSceneryArr());
+		tile.setAddOn(temp.get(index));
 	}//switch
 	return temp;
     }
@@ -1291,8 +1312,10 @@ public class Controller{
      * @see #detectDragDrop(DragEvent)
      */
     public Circle createCirlceSizes(Image img, int i) {
+    	double tileSize = 89.0;
     	//depending on what tab index is selected determines size
     	if(DEBUG) {System.out.println("Index Selected: " + i);}
+    	// used for dragging in plants
     	Circle c = new Circle();
     	switch(i) {
     	// used to drop plants circle size
@@ -1302,13 +1325,68 @@ public class Controller{
     	// used to drop shrubs circle size
     	case 2: c.setRadius(30);c.setFill(new ImagePattern(img)); return c;
     	// used to drop undergrowth circle size
-    	case 3: c.setRadius(25);c.setFill(new ImagePattern(img)); return c;
-    	// used to drop paths and other items
-    	case 4: c.setRadius(45);c.setFill(new ImagePattern(img)); return c;
-    	case 5: c.setRadius(45);c.setFill(new ImagePattern(img)); return c;
-    	//default: c.setRadius(45);c.setFill(new ImagePattern(img));
+    	case 3: break;
+    	case 4: break;
     	}
     	return null;
+    }
+    
+    /*
+     * Sets the DesignGarden screen's String arrays of image names corresponding to the selection of images to be dropped.
+     */
+    public void setSelectionArrs() {
+		int currSeasonIdx = model.getUserPrefSeason().ordinal();
+    	ArrayList<Plant> flowers = model.getFlowerArr();
+		ArrayList<Plant> trees = model.getTreeArr();
+		ArrayList<Plant> shrubs = model.getShrubArr();
+		ArrayList<AddOn> paths = model.getPathwaysArr();
+		ArrayList<AddOn> scenery = model.getSceneryArr();
+		String[] flowerImgNames= new String[flowers.size()];
+		String[] treeImgNames= new String[trees.size()];
+		String[] shrubImgNames = new String[shrubs.size()];
+		String[] pathImgNames = new String[paths.size()];
+		String[] sceneryImgNames = new String[scenery.size()];
+		
+		for (int i=0;i<flowers.size();i++) {
+			flowerImgNames[i]=flowers.get(i).getSeasonsImgArr()[currSeasonIdx];
+		}
+		for (int i=0;i<trees.size();i++) {
+			treeImgNames[i]=trees.get(i).getSeasonsImgArr()[currSeasonIdx];
+		}
+		for (int i=0;i<shrubs.size();i++) {
+			shrubImgNames[i]=shrubs.get(i).getSeasonsImgArr()[currSeasonIdx];
+		}
+		for (int i=0;i<paths.size();i++) {
+			pathImgNames[i]=paths.get(i).getName();
+		}
+		for (int i=0;i<scenery.size();i++) {
+			sceneryImgNames[i]=scenery.get(i).getName();
+		}
+		
+		
+		
+		view.getDesignGardenScreen().setSelectionArrays(flowerImgNames, treeImgNames, shrubImgNames,pathImgNames,sceneryImgNames);
+		
+		//System.out.println("Flowers:");
+		//System.out.println(flowers.toString());
+	}
+    
+    /**
+     * Takes in an Image to resize as an ImageView and returns an ImageView which will
+     * be added to the designGarden for paths and the other items as well.
+     * 
+     * @param img image take in in to create imageView from
+     * @return ImageView created which will be dragged and dropped onto the DesignGarden
+     * @see #detectDragDrop(DragEvent)
+     */
+    public ImageView createSquareSize(Image img) {
+    	double tileSize = 89.0;
+    	// used for dragging in everything thats not plants
+    	ImageView imgV = new ImageView(img);
+    	imgV.setPreserveRatio(true);
+    	imgV.setFitHeight(tileSize);
+    	imgV.setFitWidth(tileSize);
+    	return imgV;
     }
 }//Controller
 

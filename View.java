@@ -4,6 +4,7 @@ import java.util.HashSet;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Control;
 import javafx.scene.image.Image;
@@ -132,28 +133,25 @@ public class View extends Application{
 		primaryStage.setOnCloseRequest(con.getExitStage());
 		
 		mainMenuScreen = new MainMenu(con,primaryStage);
-		
 		instructionsScreen = new Instructions();
-	
 		exitScreen = new Exit(con);
+		finalViewScreen = new FinalView(con,primaryStage);
+		infoTipsScreen = new InfoTips(con);
+		seasonViewScreen = new SeasonView(con);
+		recommendationsScreen = new Recommendations(con);
 		
 		createNew();
 		
 		
 		
 		
-		finalViewScreen = new FinalView(con,primaryStage);
-		finalViewScreen.setPreviousScreen(designGardenScreen);
+		
+		//finalViewScreen.setPreviousScreen(designGardenScreen);
 		
 		
 		
-		infoTipsScreen = new InfoTips(con);
 		
-		seasonViewScreen = new SeasonView(con);
-		
-		
-		recommendationsScreen = new Recommendations(con);
-		recommendationsScreen.setPreviousScreen(designGardenScreen);
+		//recommendationsScreen.setPreviousScreen(designGardenScreen);
 		
 		
 		currentPrimaryScreen = mainMenuScreen;
@@ -430,6 +428,10 @@ public class View extends Application{
 		preferencesScreen.setPreviousScreen(chooseTemplateScreen);
 		designGardenScreen = new DesignGarden(con,primaryStage);
 		designGardenScreen.setPreviousScreen(preferencesScreen);
+		
+		finalViewScreen.setPreviousScreen(designGardenScreen);
+		recommendationsScreen.setPreviousScreen(designGardenScreen);
+		
 	}
 		
 	public SeasonView getSeasonViewScreen() {
@@ -453,14 +455,18 @@ public class View extends Application{
 					gp.add(soilImg, j, i,1,1);
 					
 					gp.setGridLinesVisible(false);
-					
+					//gp.setAlignment(Pos.BASELINE_CENTER);
+					gp.setPadding(new Insets(10));
 					String addOnImgName = con.getImgNameFromModel(i, j);
 					if  (addOnImgName.equals("inactive")) {
 						
 						gp.getChildren().remove(soilImg);
 					}
-					else if (!addOnImgName.equals("")) {
-						gp.add(new ImageView(new Image(addOnImgName)), j, i, 1,1);
+					else if (!addOnImgName.equals("") && addOnImgName!=null && !addOnImgName.equals("null")) {
+						ImageView plantIV = new ImageView(new Image(addOnImgName));
+						plantIV.setFitHeight(80);
+						plantIV.setFitWidth(80);
+						gp.add(plantIV, j, i, 1,1);
 					}
 					
 					
@@ -469,5 +475,7 @@ public class View extends Application{
 		return gp;
 		
 	}
+	
+	
 	
 }
