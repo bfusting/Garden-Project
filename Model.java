@@ -50,8 +50,8 @@ public class Model implements Serializable{
 	private ArrayList<Plant> flowerArr;
 	private ArrayList<Plant> shrubArr;
 	private ArrayList<Plant> treeArr;
-	private ArrayList<Plant> underGrowthArr;
 	private ArrayList<AddOn> sceneryArr;
+	private ArrayList<AddOn> pathwaysArr;
 	private ArrayList<Plant> allPlants;
 	
 	// Used to hold other "removed" plants while filtering
@@ -82,7 +82,7 @@ public class Model implements Serializable{
 	private final String flower = "Flower";
 	private final String shrub = "Shrub";
 	private final String tree = "Tree";
-	private final String undergrowth = "UnderGrowth";
+	
 	
 	/**
 	 * Constructor where the ArrayLists are initialized for space and
@@ -99,15 +99,13 @@ public class Model implements Serializable{
 		flowerArr = new ArrayList<Plant>();
 		shrubArr= new ArrayList<Plant>();
 		treeArr=new ArrayList<Plant>();
-		underGrowthArr = new ArrayList<Plant>();
-		
-		
 		
 		
 		// holds all scenery items like dirt to branchs
+		pathwaysArr= new ArrayList<AddOn>();
 		sceneryArr = new ArrayList<AddOn>();
-		AddOn bench = new AddOn("Bench",1,"A bench to sit on....duh");
-		sceneryArr.add(bench);
+		//AddOn bench = new AddOn("Bench",1,"A bench to sit on....duh");
+		//sceneryArr.add(bench);
 				
 		// holds all plants in program ---> Used on creation only
 		allPlants = new ArrayList<Plant>();
@@ -259,13 +257,13 @@ public class Model implements Serializable{
 
 //	    Scanner input;
 		BufferedReader buffReader;
-	    String[] textFileStrings = {"GardenPlant.txt","GardenTree.txt","GardenFlower.txt"};
+	    String[] textFileStrings = {"GardenPlant.txt","GardenTree.txt","GardenFlower.txt","Pathways.txt","Scenery.txt"};
 	    Plant[] plants = new Plant[0];
 	    Plant[] trees = new Plant[0];
 	    Plant[] flowers = new Plant[0];
 	    
 		try {
-			for(int i=0;i<textFileStrings.length;i++) {
+			for(int i=0;i<textFileStrings.length-2;i++) {
 				
 				buffReader = new BufferedReader(new InputStreamReader(new FileInputStream(textFileStrings[i]))); 
 //				String line = buffReader.readLine(); 
@@ -303,6 +301,8 @@ public class Model implements Serializable{
 			        }
 			        
 				}
+				
+				
 
 
 				
@@ -350,8 +350,30 @@ public class Model implements Serializable{
 			    	System.out.println(flower);
 			    }*/
 			}
-
-		    
+			//
+			for (int i=textFileStrings.length-2;i<textFileStrings.length;i++) {
+				buffReader = new BufferedReader(new InputStreamReader(new FileInputStream(textFileStrings[i]))); 
+//				
+				while (buffReader.readLine() != null) {
+					String addOnImgName = buffReader.readLine();
+					String description = buffReader.readLine();
+					int size;
+					
+					
+					if (i==3) {
+						size = 45;
+						AddOn extra = new AddOn(addOnImgName,size,description);
+						pathwaysArr.add(extra);
+					} else if (i==4) {
+						size = Integer.parseInt(buffReader.readLine());
+						AddOn extra = new AddOn(addOnImgName,size,description);
+						sceneryArr.add(extra);
+					}
+					
+				}
+			}
+			System.out.println(pathwaysArr);
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -372,10 +394,6 @@ public class Model implements Serializable{
 			//System.out.println("Added flower:\n"+flowers[i]);
 		}
 		
-		System.out.println("NOT EMPTY HERE");
-		for (Plant p : allPlants) {
-			System.out.println(p);
-		}
 
 	}
 	
@@ -470,22 +488,6 @@ public class Model implements Serializable{
 		// clearing other arrays
 		clearOthers();
 		
-		// sets up the array by filter to appropriate type then filtering to all of
-		// of underGrowth Arr
-		setUnderGrowthArr((filterByType(allPlants,undergrowth)));
-		underGrowthArr.addAll(filterByColor(underGrowthArr,userPrefColor));
-		underGrowthArr.addAll(filterByBloomTime(underGrowthArr,userPrefSeason));
-		underGrowthArr.addAll(filterByLight(underGrowthArr,userPrefLight));
-		underGrowthArr.addAll(filterByWater(underGrowthArr,userPrefWater));
-		
-		// Adding rest of the unsorted lists back into underGrowthArr
-		underGrowthArr.addAll(otherColors);
-		underGrowthArr.addAll(otherSeasons);
-		underGrowthArr.addAll(otherLight);
-		underGrowthArr.addAll(otherWater);
-		
-		// clearing other arrays
-		clearOthers();
 		
 	}//updateArrs
 	
@@ -537,16 +539,7 @@ public class Model implements Serializable{
 		return treeArr;
 	}
 	
-	/**
-	 *Returns a arrayList of Plants
-	 *<p>
-	 *getter for UnderGrowth Array List
-	 *
-	 * @return UnderGrowth UnderGrowth List of what the user is currently seeing
-	 */
-	public ArrayList<Plant> getUnderGrowth(){
-		return underGrowthArr;
-	}
+	
 	
 	/**
 	 * Returns the altPlots attribute from model, which will be used
@@ -650,16 +643,6 @@ public class Model implements Serializable{
 		treeArr = a;
 	}
 	
-	/**
-	 * Takes in ArrayList of type Plant and sets the UnderGrowthArray to the new array
-	 * <p>
-	 * Used as a setter for the UnderGrowthArr
-	 * 
-	 * @param a new ArrayList used to set UnderGrowthArr
-	 */
-	public void setUnderGrowthArr(ArrayList<Plant> a) {
-		underGrowthArr = a;
-	}
 	
 	/**
 	 * Takes in a GardenPlot p and sets userPlot to the new plot.
@@ -1095,6 +1078,14 @@ public class Model implements Serializable{
 		} 
 		
 		return addOnImgName;
+	}
+	
+	/**
+	 * Returns the property pathwaysArr, which holds all the AddOns that will go into the pathways tab in DesignGarden.
+	 * @return
+	 */
+	public ArrayList<AddOn> getPathwaysArr() {
+		return pathwaysArr;
 	}
 	// then getters and setters for new attributes
 }//Modeld

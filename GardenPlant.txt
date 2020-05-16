@@ -14,21 +14,6 @@ PlantPictures/Sweet_Fern.jpg
 PlantPictures/Sweet_Fern.jpg
 PlantPictures/Sweet_Fern.jpg
 
-Orange MilkWeed
-Asclepias Tuberosa
-Orange
-Summer
-Shrub
-3
-1
-5
-Dry, Moist
-Butterflies + Honey + BumbleBees
-PlantPictures/Orange_milkweed.jpg
-PlantPictures/Orange_milkweed.jpg
-PlantPictures/Orange_milkweed.jpg
-PlantPictures/Orange_milkweed.jpg
-
 Seaside Alder
 Alnus Maritima
 yellow

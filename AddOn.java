@@ -20,7 +20,6 @@ public class AddOn implements Serializable{
 	 * 
 	 * @param n name
 	 * @param tS tileSize
-	 * @param d description
 	 */
 	public AddOn(String n, int tS, String d) {
 		this.name = n;
@@ -55,5 +54,10 @@ public class AddOn implements Serializable{
 
 	public boolean equals(Plant p) {
 		return this.name.equals(p.name);
+	}
+	
+	@Override
+	public String toString() {
+		return "Name: "+name+"\nTile size: "+tileSize+"\nDescription: "+description;
 	}
 }

@@ -1,0 +1,30 @@
+
+pathways/brickpathhorizontal.jpeg
+A horizontal brick path.
+
+pathways/brickpathvertical.jpeg
+A vertical brick path.
+
+pathways/bridgehorizontal.png
+A horizontal bridge.
+
+pathways/bridgevertical.png
+A vertical bridge.
+
+pathways/dirthpathhorizontal.png
+A horizontal dirt path.
+
+pathways/dirthpathvertical.png
+A vertical dirt path.
+
+pathways/stonepathhorizontal.jpeg
+A horizontal stone path.
+
+pathways/stonepathvertical.jpeg
+A vertical stone path.
+
+pathways/tiledpathhorizontal.jpeg
+A horizontal tiled path.
+
+pathways/tiledpathvertical.jpeg
+A vertical tiled path.
