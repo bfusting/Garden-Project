@@ -14,8 +14,10 @@ public class Plant extends AddOn{
 	private double plantHeight;
 	private int locationPref;
 
-	private String animalsFedStr;
+
+	
 	private Seasons bloomTime;
+
 
 	
 	private String bloomTimeStr;
@@ -41,6 +43,7 @@ public class Plant extends AddOn{
 	private String[] seasonImages;
 	
 	private String plantType;
+	private String animalsFedStr;
 	
 	private ArrayList<String> animalsFed = new ArrayList();
 	private ArrayList<String> compatiblePlants = new ArrayList();
@@ -160,6 +163,7 @@ public class Plant extends AddOn{
     public String getLatinName() {
     	return latinName;
     }
+
 
 	/**
 	 * Gets the String describing the color of the plant.

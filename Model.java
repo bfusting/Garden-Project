@@ -244,12 +244,13 @@ public class Model implements Serializable{
 		treeArr.add(juneBush);
 		treeArr.add(narrowleafCottonwood);
 		
-		underGrowthArr = new ArrayList<Plant>();
-	//	underGrowthArr.add(milkWeed);
-		underGrowthArr.add(maidenhairFern);
-		underGrowthArr.add(blackstemSpleenwort);
 
-	
+		
+		// holds all scenery items like dirt to branchs
+		sceneryArr = new ArrayList<AddOn>();
+		bench = new AddOn("Bench",1,"A bench to sit on....duh");
+		sceneryArr.add(bench);
+
 		
 		// holds all plants in program ---> Used on creation only
 		allPlants = new ArrayList<Plant>();
