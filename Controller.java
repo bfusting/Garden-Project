@@ -562,16 +562,22 @@ public class Controller{
 			    getSelectionModel().getSelectedIndex();
 		if(n != view.getDesignGardenScreen().getPlot() && db.hasImage() && 
 				view.getDesignGardenScreen().getHoverEditTile() == false) {
-			// View side of plant drop
-			//ImageView iv = new ImageView(db.getImage());
-			//iv.setPreserveRatio(true);
-	    	//iv.setFitHeight(100);
+			// dropping plants
 			Circle c = new Circle();
 			c = this.createCirlceSizes(db.getImage(), circleIndex);
+			// dropping paths
+			ImageView imgV = new ImageView();
+			imgV = createSquareSize(db.getImage());
+			// getting rows and columns to drop into gridPane
 			Integer colIndex = GridPane.getColumnIndex(n);
 	    	Integer rowIndex = GridPane.getRowIndex(n);
 			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
-			view.getDesignGardenScreen().getPlot().add(c, colIndex, rowIndex, 1, 1);//add(iv, column, row);
+			if(circleIndex<=2) { // drag and drop circle
+				view.getDesignGardenScreen().getPlot().add(c, colIndex, rowIndex, 1, 1);//add(iv, column, row);
+			}
+			else { // add square image to path
+				view.getDesignGardenScreen().getPlot().add(imgV, colIndex,rowIndex,1,1);
+			}
 			// Model side of plant drop
 
 			//adding test to see if index is holding plants or addons
@@ -1306,8 +1312,10 @@ public class Controller{
      * @see #detectDragDrop(DragEvent)
      */
     public Circle createCirlceSizes(Image img, int i) {
+    	double tileSize = 89.0;
     	//depending on what tab index is selected determines size
     	if(DEBUG) {System.out.println("Index Selected: " + i);}
+    	// used for dragging in plants
     	Circle c = new Circle();
     	switch(i) {
     	// used to drop plants circle size
@@ -1317,11 +1325,8 @@ public class Controller{
     	// used to drop shrubs circle size
     	case 2: c.setRadius(30);c.setFill(new ImagePattern(img)); return c;
     	// used to drop undergrowth circle size
-    	case 3: c.setRadius(25);c.setFill(new ImagePattern(img)); return c;
-    	// used to drop paths and other items
-    	case 4: c.setRadius(45);c.setFill(new ImagePattern(img)); return c;
-    	case 5: c.setRadius(45);c.setFill(new ImagePattern(img)); return c;
-    	//default: c.setRadius(45);c.setFill(new ImagePattern(img));
+    	case 3: break;
+    	case 4: break;
     	}
     	return null;
     }
@@ -1365,6 +1370,24 @@ public class Controller{
 		//System.out.println("Flowers:");
 		//System.out.println(flowers.toString());
 	}
+    
+    /**
+     * Takes in an Image to resize as an ImageView and returns an ImageView which will
+     * be added to the designGarden for paths and the other items as well.
+     * 
+     * @param img image take in in to create imageView from
+     * @return ImageView created which will be dragged and dropped onto the DesignGarden
+     * @see #detectDragDrop(DragEvent)
+     */
+    public ImageView createSquareSize(Image img) {
+    	double tileSize = 89.0;
+    	// used for dragging in everything thats not plants
+    	ImageView imgV = new ImageView(img);
+    	imgV.setPreserveRatio(true);
+    	imgV.setFitHeight(tileSize);
+    	imgV.setFitWidth(tileSize);
+    	return imgV;
+    }
 }//Controller
 
 
