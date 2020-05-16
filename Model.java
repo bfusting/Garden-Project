@@ -51,6 +51,7 @@ public class Model implements Serializable{
 	private ArrayList<Plant> shrubArr;
 	private ArrayList<Plant> treeArr;
 	private ArrayList<AddOn> sceneryArr;
+	private ArrayList<AddOn> pathwaysArr;
 	private ArrayList<Plant> allPlants;
 	
 	// Used to hold other "removed" plants while filtering
@@ -99,10 +100,12 @@ public class Model implements Serializable{
 		shrubArr= new ArrayList<Plant>();
 		treeArr=new ArrayList<Plant>();
 		
+		
 		// holds all scenery items like dirt to branchs
+		pathwaysArr= new ArrayList<AddOn>();
 		sceneryArr = new ArrayList<AddOn>();
-		AddOn bench = new AddOn("Bench",1,"A bench to sit on....duh");
-		sceneryArr.add(bench);
+		//AddOn bench = new AddOn("Bench",1,"A bench to sit on....duh");
+		//sceneryArr.add(bench);
 				
 		// holds all plants in program ---> Used on creation only
 		allPlants = new ArrayList<Plant>();
@@ -254,13 +257,13 @@ public class Model implements Serializable{
 
 //	    Scanner input;
 		BufferedReader buffReader;
-	    String[] textFileStrings = {"GardenPlant.txt","GardenTree.txt","GardenFlower.txt"};
+	    String[] textFileStrings = {"GardenPlant.txt","GardenTree.txt","GardenFlower.txt","Pathways.txt","Scenery.txt"};
 	    Plant[] plants = new Plant[0];
 	    Plant[] trees = new Plant[0];
 	    Plant[] flowers = new Plant[0];
 	    
 		try {
-			for(int i=0;i<textFileStrings.length;i++) {
+			for(int i=0;i<textFileStrings.length-2;i++) {
 				
 				buffReader = new BufferedReader(new InputStreamReader(new FileInputStream(textFileStrings[i]))); 
 //				String line = buffReader.readLine(); 
@@ -298,6 +301,8 @@ public class Model implements Serializable{
 			        }
 			        
 				}
+				
+				
 
 
 				
@@ -345,8 +350,30 @@ public class Model implements Serializable{
 			    	System.out.println(flower);
 			    }*/
 			}
-
-		    
+			//
+			for (int i=textFileStrings.length-2;i<textFileStrings.length;i++) {
+				buffReader = new BufferedReader(new InputStreamReader(new FileInputStream(textFileStrings[i]))); 
+//				
+				while (buffReader.readLine() != null) {
+					String addOnImgName = buffReader.readLine();
+					String description = buffReader.readLine();
+					int size;
+					
+					
+					if (i==3) {
+						size = 45;
+						AddOn extra = new AddOn(addOnImgName,size,description);
+						pathwaysArr.add(extra);
+					} else if (i==4) {
+						size = Integer.parseInt(buffReader.readLine());
+						AddOn extra = new AddOn(addOnImgName,size,description);
+						sceneryArr.add(extra);
+					}
+					
+				}
+			}
+			System.out.println(pathwaysArr);
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -367,10 +394,6 @@ public class Model implements Serializable{
 			//System.out.println("Added flower:\n"+flowers[i]);
 		}
 		
-		System.out.println("NOT EMPTY HERE");
-		for (Plant p : allPlants) {
-			System.out.println(p);
-		}
 
 	}
 	
@@ -1055,6 +1078,14 @@ public class Model implements Serializable{
 		} 
 		
 		return addOnImgName;
+	}
+	
+	/**
+	 * Returns the property pathwaysArr, which holds all the AddOns that will go into the pathways tab in DesignGarden.
+	 * @return
+	 */
+	public ArrayList<AddOn> getPathwaysArr() {
+		return pathwaysArr;
 	}
 	// then getters and setters for new attributes
 }//Modeld

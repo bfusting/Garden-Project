@@ -146,6 +146,8 @@ public class DesignGarden extends Screen{
 	private String[] flower;
 	private String[] tree;
 	private String[] shrub;
+	private String[] path;
+	private String[] other;
 	
 	public DesignGarden(Controller controller,Stage s) {
 		this.c = controller;
@@ -543,6 +545,8 @@ shrubsGP.setGridLinesVisible(true);
 trees = new Tab("Trees");
 trees.setClosable(false);
 ScrollPane treesSP = new ScrollPane();
+treesSP.setVbarPolicy(ScrollBarPolicy.NEVER);
+treesSP.setHbarPolicy(ScrollBarPolicy.ALWAYS);
 treesSP.setContent(treesGP);
 trees.setContent(treesSP);
 
@@ -591,25 +595,43 @@ treesGP.setGridLinesVisible(true);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 pathways = new Tab("Pathways");
-pathways.setContent(pathsGP);
+pathways.setClosable(false);
+ScrollPane pathwaysSP = new ScrollPane();
+pathwaysSP.setVbarPolicy(ScrollBarPolicy.NEVER);
+pathwaysSP.setHbarPolicy(ScrollBarPolicy.ALWAYS);
+pathwaysSP.setContent(pathsGP);
+pathways.setContent(pathwaysSP);
 
-ArrayList<ImageView> backdropColor5 = new ArrayList<ImageView>();
+/*ArrayList<ImageView> backdropColor5 = new ArrayList<ImageView>();
 for(int i=0; i<selectionSize;i++) {
 	ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
 	imv1.setPreserveRatio(true);
 	imv1.setFitHeight(100);
 	imv1.setFitWidth(100);
 	backdropColor5.add(imv1);
-}
+}*/
 
 // max size of items
 pathsGP.setMaxSize(selectionGPsize, selectionGPsize);
 //adding row
 pathsGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
-for (int i = 0; i < selectionSize; i++) {
-     ColumnConstraints column = new ColumnConstraints(selectionGPsize);
+pathsGP.setBackground(new Background(new BackgroundFill(Color.web("#DEDEDE"), CornerRadii.EMPTY, Insets.EMPTY)));
+
+
+for (int i = 0; i < path.length; i++) {
+	Image img = new Image(path[i]);
+	ImageView imgV = new ImageView(img);
+	imgV.setPreserveRatio(true);
+	imgV.setFitHeight(100-15);
+	imgV.setFitWidth(100-15);
+	imgV.setOnDragDetected(c.getStartDrag()); 
+	
+	ColumnConstraints column = new ColumnConstraints(selectionGPsize);
      pathsGP.getColumnConstraints().add(column);
-     pathsGP.add(backdropColor5.get(i), i, 0,1,1);
+     HBox hbox = new HBox(imgV);
+     hbox.setPadding(selectionGPInsets);
+     hbox.setAlignment(Pos.CENTER);
+     pathsGP.add(hbox, i, 0,1,1);
 }
 
 pathsGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
@@ -617,7 +639,7 @@ pathsGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlan
 pathsGP.setGridLinesVisible(true);
 
 // setting up paths Arraylist of images to be displayed
-ArrayList<ImageView> pathsArr = new ArrayList<ImageView>();
+/*ArrayList<ImageView> pathsArr = new ArrayList<ImageView>();
 String pathImgs[] = {"img/dirtPath.jpg","img/stonePath.jpg","img/brickPath.jpg"};
 for(int i=0; i<selectionSize/2;i++) {
 	ImageView imv = new ImageView(pathImgs[i]);
@@ -627,30 +649,49 @@ for(int i=0; i<selectionSize/2;i++) {
 	imv.setOnDragDetected(c.getStartDrag());
 	pathsArr.add(imv);
 	pathsGP.add(imv, i, 0);
-}
+}*/
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 otherOptions = new Tab("Other");
-otherOptions.setContent(otherGP);
+otherOptions.setClosable(false);
+ScrollPane otherSP = new ScrollPane();
+otherSP.setVbarPolicy(ScrollBarPolicy.NEVER);
+otherSP.setHbarPolicy(ScrollBarPolicy.ALWAYS);
+otherSP.setContent(otherGP);
+otherOptions.setContent(otherSP);
 
-ArrayList<ImageView> backdropColor6 = new ArrayList<ImageView>();
+/*ArrayList<ImageView> backdropColor6 = new ArrayList<ImageView>();
 for(int i=0; i<selectionSize;i++) {
 	ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
 	imv1.setPreserveRatio(true);
 	imv1.setFitHeight(100);
 	imv1.setFitWidth(100);
 	backdropColor6.add(imv1);
-}
+}*/
 
 // max size of items
 otherGP.setMaxSize(selectionGPsize, selectionGPsize);
 //adding row
 otherGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
-for (int i = 0; i < selectionSize; i++) {
-     ColumnConstraints column = new ColumnConstraints(selectionGPsize);
-     otherGP.getColumnConstraints().add(column);
-     otherGP.add(backdropColor6.get(i), i, 0,1,1);
+otherGP.setBackground(new Background(new BackgroundFill(Color.web("#CDCECE"), CornerRadii.EMPTY, Insets.EMPTY)));
+for (int i = 0; i < other.length; i++) {
+    
+     
+    Image img = new Image(other[i]);
+ 	ImageView imgV = new ImageView(img);
+ 	imgV.setPreserveRatio(true);
+ 	imgV.setFitHeight(100-15);
+ 	imgV.setFitWidth(100-15);
+ 	imgV.setOnDragDetected(c.getStartDrag()); 
+ 	
+ 	ColumnConstraints column = new ColumnConstraints(selectionGPsize);
+      otherGP.getColumnConstraints().add(column);
+      HBox hbox = new HBox(imgV);
+      hbox.setPadding(selectionGPInsets);
+      hbox.setAlignment(Pos.CENTER);
+      otherGP.add(hbox, i, 0,1,1);
+   
 }
 
 otherGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
@@ -658,7 +699,7 @@ otherGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlan
 otherGP.setGridLinesVisible(true);
 
 // setting up paths Arraylist of images to be displayed
-String otherImgs[] = {"img/rock.jpg","img/tikihut.jpg","img/sheshed.jpg",
+/*String otherImgs[] = {"img/rock.jpg","img/tikihut.jpg","img/sheshed.jpg",
 		"img/flamingo.jpg","img/fountain.jpg"};
 for(int i=0; i<selectionSize-1;i++) {
 	ImageView imv = new ImageView(otherImgs[i]);
@@ -667,7 +708,7 @@ for(int i=0; i<selectionSize-1;i++) {
 	imv.setFitWidth(selectionGPsize*.9);
 	imv.setOnDragDetected(c.getStartDrag());
 	otherGP.add(imv, i, 0);
-}
+}*/
 
 // Done setting up tabs
 
@@ -1130,10 +1171,12 @@ designGardenScene = new Scene(root,1200,800);
 	 * @param tree the String[] containing the names of the images for Plants of habit 'Tree' in the user chosen season.
 	 * @param shrub the String[] containing the names of the images for Plants of habit 'Shrub' in the user chosen season.
 	 */
-	public void setSelectionArrays(String[] flower,String[] tree, String[] shrub ) {
+	public void setSelectionArrays(String[] flower,String[] tree, String[] shrub,String[] path,String[]other ) {
 		this.flower = flower;
 		this.tree = tree;
 		this.shrub = shrub;
+		this.path = path;
+		this.other = other;
 	}
 	
 }

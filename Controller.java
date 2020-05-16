@@ -552,7 +552,7 @@ public class Controller{
 		//Node n = event.getPickResult().getIntersectedNode();
 		Node n = event.getPickResult().getIntersectedNode();
 		if(DEBUG) {System.out.println(n.toString());}
-		ArrayList<Plant> tempArrayList = this.changeTabIndex();
+		
 		//ArrayList<Plant> tempArrayList = new ArrayList<Plant>(); test to see if allPlants still had elements
 		//tempArrayList.addAll(model.getAllPlants());
 		
@@ -576,9 +576,10 @@ public class Controller{
 
 			//adding test to see if index is holding plants or addons
 			//switched
-			model.getUserPlot().getLayout()[rowIndex][colIndex].setPlant(tempArrayList.get(index));
-			model.getUsedPlants().add(tempArrayList.get(index));
+			//model.getUserPlot().getLayout()[rowIndex][colIndex].setPlant(tempArrayList.get(index));
+			//model.getUsedPlants().add(tempArrayList.get(index));
 			//int index = this.methodName; used to pull from designGarden array
+			changeTabIndex(rowIndex,colIndex,index);
 			worked = true;
 		}
 		else if(n != view.getDesignGardenScreen().getPlot() && db.hasImage() &&
@@ -1151,19 +1152,35 @@ public class Controller{
      * @return arrayList of plants from model. If none are available returns null
      * @see Controller#detectDragDrop(DragEvent)
      */
-    public ArrayList<Plant> changeTabIndex() {
+    public ArrayList<AddOn> changeTabIndex(int rowIndex,int colIndex,int index) {
 	// get the current tab selected in design garden
 	int t = view.getDesignGardenScreen().getSelectGardenType().
 	    getSelectionModel().getSelectedIndex();
-	ArrayList<Plant> temp = new ArrayList<Plant>();
+	ArrayList<AddOn> temp = new ArrayList<AddOn>();
+	GardenTile tile = model.getUserPlot().getLayout()[rowIndex][colIndex];
 	switch(t) {
-	case 0: temp.addAll(model.getFlowerArr());
-	
-	break;
-	case 1: temp.addAll(model.getTreeArr());
-	break;
-	case 2: temp.addAll(model.getShrubArr());
-	break;
+	case 0:
+		temp.addAll(model.getFlowerArr());
+		tile.setPlant((Plant)temp.get(index));
+		model.getUsedPlants().add((Plant)temp.get(index));
+		break;
+	case 1: 
+		temp.addAll(model.getTreeArr());
+		tile.setPlant((Plant)temp.get(index));
+		model.getUsedPlants().add((Plant)temp.get(index));
+		break;
+	case 2:
+		temp.addAll(model.getShrubArr());
+		tile.setPlant((Plant)temp.get(index));
+		model.getUsedPlants().add((Plant)temp.get(index));
+		break;
+	case 3:
+		temp.addAll(model.getPathwaysArr());
+		tile.setAddOn(temp.get(index));
+		break;
+	case 4:
+		temp.addAll(model.getSceneryArr());
+		tile.setAddOn(temp.get(index));
 	}//switch
 	return temp;
     }
@@ -1317,10 +1334,13 @@ public class Controller{
     	ArrayList<Plant> flowers = model.getFlowerArr();
 		ArrayList<Plant> trees = model.getTreeArr();
 		ArrayList<Plant> shrubs = model.getShrubArr();
-		
+		ArrayList<AddOn> paths = model.getPathwaysArr();
+		ArrayList<AddOn> scenery = model.getSceneryArr();
 		String[] flowerImgNames= new String[flowers.size()];
 		String[] treeImgNames= new String[trees.size()];
 		String[] shrubImgNames = new String[shrubs.size()];
+		String[] pathImgNames = new String[paths.size()];
+		String[] sceneryImgNames = new String[scenery.size()];
 		
 		for (int i=0;i<flowers.size();i++) {
 			flowerImgNames[i]=flowers.get(i).getSeasonsImgArr()[currSeasonIdx];
@@ -1331,9 +1351,16 @@ public class Controller{
 		for (int i=0;i<shrubs.size();i++) {
 			shrubImgNames[i]=shrubs.get(i).getSeasonsImgArr()[currSeasonIdx];
 		}
+		for (int i=0;i<paths.size();i++) {
+			pathImgNames[i]=paths.get(i).getName();
+		}
+		for (int i=0;i<scenery.size();i++) {
+			sceneryImgNames[i]=scenery.get(i).getName();
+		}
 		
 		
-		view.getDesignGardenScreen().setSelectionArrays(flowerImgNames, treeImgNames, shrubImgNames);
+		
+		view.getDesignGardenScreen().setSelectionArrays(flowerImgNames, treeImgNames, shrubImgNames,pathImgNames,sceneryImgNames);
 		
 		//System.out.println("Flowers:");
 		//System.out.println(flowers.toString());
