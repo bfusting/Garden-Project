@@ -50,7 +50,6 @@ public class Model implements Serializable{
 	private ArrayList<Plant> flowerArr;
 	private ArrayList<Plant> shrubArr;
 	private ArrayList<Plant> treeArr;
-	private ArrayList<Plant> underGrowthArr;
 	private ArrayList<AddOn> sceneryArr;
 	private ArrayList<Plant> allPlants;
 	
@@ -82,7 +81,7 @@ public class Model implements Serializable{
 	private final String flower = "Flower";
 	private final String shrub = "Shrub";
 	private final String tree = "Tree";
-	private final String undergrowth = "UnderGrowth";
+	
 	
 	/**
 	 * Constructor where the ArrayLists are initialized for space and
@@ -99,10 +98,6 @@ public class Model implements Serializable{
 		flowerArr = new ArrayList<Plant>();
 		shrubArr= new ArrayList<Plant>();
 		treeArr=new ArrayList<Plant>();
-		underGrowthArr = new ArrayList<Plant>();
-		
-		
-		
 		
 		// holds all scenery items like dirt to branchs
 		sceneryArr = new ArrayList<AddOn>();
@@ -470,22 +465,6 @@ public class Model implements Serializable{
 		// clearing other arrays
 		clearOthers();
 		
-		// sets up the array by filter to appropriate type then filtering to all of
-		// of underGrowth Arr
-		setUnderGrowthArr((filterByType(allPlants,undergrowth)));
-		underGrowthArr.addAll(filterByColor(underGrowthArr,userPrefColor));
-		underGrowthArr.addAll(filterByBloomTime(underGrowthArr,userPrefSeason));
-		underGrowthArr.addAll(filterByLight(underGrowthArr,userPrefLight));
-		underGrowthArr.addAll(filterByWater(underGrowthArr,userPrefWater));
-		
-		// Adding rest of the unsorted lists back into underGrowthArr
-		underGrowthArr.addAll(otherColors);
-		underGrowthArr.addAll(otherSeasons);
-		underGrowthArr.addAll(otherLight);
-		underGrowthArr.addAll(otherWater);
-		
-		// clearing other arrays
-		clearOthers();
 		
 	}//updateArrs
 	
@@ -537,16 +516,7 @@ public class Model implements Serializable{
 		return treeArr;
 	}
 	
-	/**
-	 *Returns a arrayList of Plants
-	 *<p>
-	 *getter for UnderGrowth Array List
-	 *
-	 * @return UnderGrowth UnderGrowth List of what the user is currently seeing
-	 */
-	public ArrayList<Plant> getUnderGrowth(){
-		return underGrowthArr;
-	}
+	
 	
 	/**
 	 * Returns the altPlots attribute from model, which will be used
@@ -650,16 +620,6 @@ public class Model implements Serializable{
 		treeArr = a;
 	}
 	
-	/**
-	 * Takes in ArrayList of type Plant and sets the UnderGrowthArray to the new array
-	 * <p>
-	 * Used as a setter for the UnderGrowthArr
-	 * 
-	 * @param a new ArrayList used to set UnderGrowthArr
-	 */
-	public void setUnderGrowthArr(ArrayList<Plant> a) {
-		underGrowthArr = a;
-	}
 	
 	/**
 	 * Takes in a GardenPlot p and sets userPlot to the new plot.

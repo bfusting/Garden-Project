@@ -1164,9 +1164,6 @@ public class Controller{
 	break;
 	case 2: temp.addAll(model.getShrubArr());
 	break;
-	case 3: temp.addAll(model.getUnderGrowth());
-	break;
-	
 	}//switch
 	return temp;
     }
@@ -1335,7 +1332,8 @@ public class Controller{
 			shrubImgNames[i]=shrubs.get(i).getSeasonsImgArr()[currSeasonIdx];
 		}
 		
-		view.getDesignGardenScreen().setSelectionArrays(flowerImgNames, treeImgNames, shrubImgNames, null);
+		
+		view.getDesignGardenScreen().setSelectionArrays(flowerImgNames, treeImgNames, shrubImgNames);
 		
 		//System.out.println("Flowers:");
 		//System.out.println(flowers.toString());

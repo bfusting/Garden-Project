@@ -58,7 +58,7 @@ public class DesignGarden extends Screen{
 	// need to make initlaize in show
 	private ArrayList<ImageView> shrubSelArr;
 	private ArrayList<ImageView> treeSelArr;
-	private ArrayList<ImageView> underSelArr;
+	//private ArrayList<ImageView> underSelArr;
 	// just drops a general addon into model
 	// add case in controller so it works
 	private ArrayList<ImageView> otherSelctionArr;
@@ -73,7 +73,6 @@ public class DesignGarden extends Screen{
 	private Tab plants;
 	private Tab trees;
 	private Tab shrubs;
-	private Tab undergrowth;
 	private Tab pathways;
 	private Tab otherOptions;
 
@@ -104,7 +103,6 @@ public class DesignGarden extends Screen{
 	GridPane plantsGP = new GridPane();
 	GridPane treesGP = new GridPane();
 	GridPane shrubsGP = new GridPane();
-	GridPane underGP = new GridPane();
 	GridPane pathsGP = new GridPane();
 	GridPane otherGP = new GridPane();
 	
@@ -143,7 +141,6 @@ public class DesignGarden extends Screen{
 	private String[] flower;
 	private String[] tree;
 	private String[] shrub;
-	private String[] under;
 	
 	public DesignGarden(Controller controller,Stage s) {
 		this.c = controller;
@@ -254,9 +251,7 @@ public class DesignGarden extends Screen{
 	public GridPane getShrubsGP() {
 		return shrubsGP;
 	}
-	public GridPane getUnderGP() {
-		return underGP;
-	}
+	
 	public GridPane getPathsGP() {
 		return pathsGP;
 	}
@@ -295,9 +290,9 @@ public class DesignGarden extends Screen{
 	
 	public void setUpTabs() {
 		// arrays to traverse the gridPanes and their respective names
-		Tab tabArr[] = {plants,trees,shrubs,undergrowth,pathways,otherOptions};
-		GridPane gpArr[] = {plantsGP,treesGP,shrubsGP,underGP,pathsGP,otherGP};
-		String tabNames[] = {"Plants","Trees","Shrubs","Undergrowth","Pathways","Other"};
+		Tab tabArr[] = {plants,trees,shrubs,pathways,otherOptions};
+		GridPane gpArr[] = {plantsGP,treesGP,shrubsGP,pathsGP,otherGP};
+		String tabNames[] = {"Plants","Trees","Shrubs","Pathways","Other"};
 		ImageView backdrop[][] = new ImageView[selectionSize][selectionSize];
 		ArrayList<ImageView> backdropColor = new ArrayList<ImageView>();
 		for(int i=0; i<selectionSize;i++) {
@@ -309,6 +304,9 @@ public class DesignGarden extends Screen{
 				backdrop[i][j] = imv1;
 			}//for
 		}//for
+		
+		
+		
 		for(int i=0;i<selectionSize;i++) {
 			
 			//setting up
@@ -333,6 +331,8 @@ public class DesignGarden extends Screen{
 			
 			selectGardenType.getTabs().add(tabArr[i]);
 		}
+		
+		plants.setClosable(false);
 	}//setUpTabs
 
 	public void drawScene() {
@@ -522,54 +522,6 @@ shrubsGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPla
 
 shrubsGP.setGridLinesVisible(true);
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-ArrayList<ImageView> backdropColor3 = new ArrayList<ImageView>();
-for(int i=0; i<selectionSize;i++) {
-	ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
-	imv1.setPreserveRatio(true);
-	imv1.setFitHeight(100);
-	imv1.setFitWidth(100);
-	backdropColor3.add(imv1);
-}
-
-undergrowth = new Tab("Undergrowth");
-
-undergrowth.setContent(underGP);
-
-// max size of items
-underGP.setMaxSize(selectionGPsize, selectionGPsize);
-//adding row
-underGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
-
-String[] under = {"PlantPictures/Fillaree.jpg","PlantPictures/Blackstem_Spleenwort.jpg"};
-
-underSelArr = new ArrayList<ImageView>();
-//setting up with each different picture
-for(int i=0; i<under.length;i++) {
-	Image img = new Image(under[i]);
-	ImageView imgV = new ImageView(img);
-	imgV.setPreserveRatio(true);
-	imgV.setFitHeight(100);
-	imgV.setFitWidth(100);
-	imgV.setOnDragDetected(c.getStartDrag());
-	underSelArr.add(imgV);
-}
-
-//adding row
-//underGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
-for (int i = 0; i < selectionSize; i++) {
-     ColumnConstraints column = new ColumnConstraints(selectionGPsize);
-     underGP.getColumnConstraints().add(column);
-     underGP.add(backdropColor3.get(i), i, 0,1,1);
-     if(i<under.length) {
-    	 underGP.add(underSelArr.get(i), i, 0,1,1);
-     }
-}
-
-underGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
-
-underGP.setGridLinesVisible(true);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -801,7 +753,7 @@ for (int i = (0 + otherArrInd); i<(5+otherArrInd); i++) {
 
 //otherOptions.setContent(otherTP);
 
-selectGardenType.getTabs().addAll( plants, trees, shrubs, undergrowth, pathways, otherOptions);
+selectGardenType.getTabs().addAll( plants, trees, shrubs, pathways, otherOptions);
 
 AnchorPane.setTopAnchor(selectGardenType, 40.0);
 AnchorPane.setLeftAnchor(selectGardenType, 40.0);
@@ -1029,9 +981,7 @@ designGardenScene = new Scene(root,1200,800);
 	public GridPane getShrubsGP() {
 		return shrubsGP;
 	}
-	public GridPane getUnderGP() {
-		return underGP;
-	}
+	
 	public GridPane getPathsGP() {
 		return pathsGP;
 	}
@@ -1159,13 +1109,11 @@ designGardenScene = new Scene(root,1200,800);
 	 * @param flower the String[] containing the names of the images for Plants of habit 'Flower' in the user chosen season.
 	 * @param tree the String[] containing the names of the images for Plants of habit 'Tree' in the user chosen season.
 	 * @param shrub the String[] containing the names of the images for Plants of habit 'Shrub' in the user chosen season.
-	 * @param under the String[] containing the names of the images for Plants of habit 'Undergrowth' in the user chosen season.
 	 */
-	public void setSelectionArrays(String[] flower,String[] tree, String[] shrub, String[] under ) {
+	public void setSelectionArrays(String[] flower,String[] tree, String[] shrub ) {
 		this.flower = flower;
 		this.tree = tree;
 		this.shrub = shrub;
-		//this.under = under;
 	}
 	
 }

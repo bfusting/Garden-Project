@@ -168,9 +168,6 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 						result[i] = temp.getShrubArr().get(0);
 					}
 					
-					if(pA.getPlantType() == "UnderGrowth") {
-						result[i] = temp.getUnderGrowth().get(0);
-					}
 					
 				}
 				
