@@ -1,14 +1,18 @@
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -82,8 +86,8 @@ public class DesignGarden extends Screen{
 	private Button save;
 	private Button finalView;
 	
-	private Button indexLeft;
-	private Button indexRight;
+	//private Button indexLeft;
+	//private Button indexRight;
 	
 	private int seasonIndexer;
 	private Text plantInfo;
@@ -386,7 +390,7 @@ for(int i=0; i<selectionSize/2;i++) {
 */
 
 // setting up backupDrop with 6 images since that is the size of each gridPane
-for(int i=0; i<selectionSize;i++) {
+for(int i=0; i<flower.length;i++) {
 	ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
 	imv1.setPreserveRatio(true);
 	imv1.setFitHeight(100);
@@ -398,18 +402,18 @@ for(int i=0; i<selectionSize;i++) {
 //AnchorPane root = new AnchorPane();
 root = new AnchorPane();
 
-indexLeft = new Button("<<<");
+/*indexLeft = new Button("<<<");
 indexRight = new Button(">>>");
 
 AnchorPane.setLeftAnchor(indexLeft, 10.0);
 AnchorPane.setLeftAnchor(indexRight, 810.00);
 AnchorPane.setTopAnchor(indexLeft, 120.0);
-AnchorPane.setTopAnchor(indexRight,120.0);
+AnchorPane.setTopAnchor(indexRight,120.0);*/
 
 //Tab Pane at top of screen to select plants/trees/paths/other
 selectGardenType = new TabPane();
-selectGardenType.setMinSize(800.0,400.0);
-selectGardenType.setMaxSize(800.0, 400.0);
+selectGardenType.setMinSize(selectionGPsize*8,150);
+selectGardenType.setMaxSize(selectionGPsize*8, 150);
 
 
 //creating GridPanes for tab content
@@ -440,14 +444,21 @@ otherGP.add(other3, 2, 1);
 */	
 
 plants = new Tab("Plants");
-
+plants.setClosable(false);
 //setting up the Plant selection gridPane
-plants.setContent(plantsGP);
+ScrollPane plantsSP = new ScrollPane();
+plantsSP.setPrefSize(selectionGPsize, selectionGPsize*3);
+plantsSP.setContent(plantsGP);
+plantsSP.setVbarPolicy(ScrollBarPolicy.NEVER);
+plantsSP.setHbarPolicy(ScrollBarPolicy.ALWAYS);
+plants.setContent(plantsSP);
+plantsGP.setAlignment(Pos.CENTER);
 
 // max size of items
 plantsGP.setMaxSize(selectionGPsize, selectionGPsize);
 //adding row
 plantsGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
+plantsGP.setBackground(new Background(new BackgroundFill(Color.web("#c4c4cc"), CornerRadii.EMPTY, Insets.EMPTY)));
 
 /*String[] flower = {"PlantPictures/Red_Willow.jpg",
 		"PlantPictures/Seaside_GoldenRod.jpg",
@@ -466,13 +477,13 @@ for(int i=0; i<flower.length;i++) {
 	pSelectionArr.add(imgV);
 }
 
-for (int i = 0; i < selectionSize; i++) {
+for (int i = 0; i < flower.length; i++) {
      ColumnConstraints column = new ColumnConstraints(selectionGPsize);
      plantsGP.getColumnConstraints().add(column);
-     plantsGP.add(backdropColor.get(i), i, 0,1,1);
-     if(i<flower.length) {
-    	 plantsGP.add(pSelectionArr.get(i), i, 0,1,1);
-     }
+     //plantsGP.add(backdropColor.get(i), i, 0,1,1);
+     
+   	 plantsGP.add(pSelectionArr.get(i), i, 0,1,1);
+     
 }
 
 plantsGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
@@ -881,8 +892,8 @@ root.setTopAnchor(plot, 200.0);
 root.setLeftAnchor(plot, 40.0);
 
 
-root.getChildren().addAll(apButtons, selectGardenType, plot, indexLeft, indexRight);
-
+//root.getChildren().addAll(apButtons, selectGardenType, plot, indexLeft, indexRight);
+root.getChildren().addAll(apButtons, selectGardenType, plot);
 designGardenScene = new Scene(root,1200,800);
 
 
