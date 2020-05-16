@@ -140,6 +140,11 @@ public class DesignGarden extends Screen{
 	
 	private boolean shown = false;
 	
+	private String[] flower;
+	private String[] tree;
+	private String[] shrub;
+	private String[] under;
+	
 	public DesignGarden(Controller controller,Stage s) {
 		this.c = controller;
 		theStage = s;
@@ -331,6 +336,8 @@ public class DesignGarden extends Screen{
 	}//setUpTabs
 
 	public void drawScene() {
+		c.setSelectionArrs();
+		//
 		System.out.println("drawing scene");
 		length = c.getWidthFromModel();
 		width = c.getLengthFromModel();
@@ -442,9 +449,10 @@ plantsGP.setMaxSize(selectionGPsize, selectionGPsize);
 //adding row
 plantsGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 
-String[] flower = {"PlantPictures/Red_Willow.jpg",
+/*String[] flower = {"PlantPictures/Red_Willow.jpg",
 		"PlantPictures/Seaside_GoldenRod.jpg",
-		"PlantPictures/Pear_Thorn.jpg"};
+		"PlantPictures/Pear_Thorn.jpg"};*/
+
 
 pSelectionArr = new ArrayList<ImageView>();
 //setting up with each different picture
@@ -487,7 +495,7 @@ shrubs = new Tab("Shrubs");
 
 shrubs.setContent(shrubsGP);
 
-String[] shrub = {"PlantPictures/Maidenhair_Fern.jpg","PlantPictures/Sweet_Shrub.jpg"};
+//String[] shrub = {"PlantPictures/Maidenhair_Fern.jpg","PlantPictures/Sweet_Shrub.jpg"};
 
 shrubSelArr = new ArrayList<ImageView>();
 //setting up with each different picture
@@ -582,7 +590,7 @@ treesGP.setMaxSize(selectionGPsize, selectionGPsize);
 //adding row
 treesGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 
-String[] tree = {"PlantPictures/Box_Elder.jpg","PlantPictures/Cigar_Tree.jpg"};
+//String[] tree = {"PlantPictures/Box_Elder.jpg","PlantPictures/Cigar_Tree.jpg"};
 
 treeSelArr = new ArrayList<ImageView>();
 //setting up with each different picture
@@ -1145,5 +1153,19 @@ designGardenScene = new Scene(root,1200,800);
 			}
 		}
 	}*/
+	
+	/**
+	 * Sets the arrays of image names for each plant tab with the given String arrays.
+	 * @param flower the String[] containing the names of the images for Plants of habit 'Flower' in the user chosen season.
+	 * @param tree the String[] containing the names of the images for Plants of habit 'Tree' in the user chosen season.
+	 * @param shrub the String[] containing the names of the images for Plants of habit 'Shrub' in the user chosen season.
+	 * @param under the String[] containing the names of the images for Plants of habit 'Undergrowth' in the user chosen season.
+	 */
+	public void setSelectionArrays(String[] flower,String[] tree, String[] shrub, String[] under ) {
+		this.flower = flower;
+		this.tree = tree;
+		this.shrub = shrub;
+		//this.under = under;
+	}
 	
 }

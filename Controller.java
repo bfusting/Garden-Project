@@ -1311,6 +1311,35 @@ public class Controller{
     	}
     	return null;
     }
+    
+    /*
+     * Sets the DesignGarden screen's String arrays of image names corresponding to the selection of images to be dropped.
+     */
+    public void setSelectionArrs() {
+		int currSeasonIdx = model.getUserPrefSeason().ordinal();
+    	ArrayList<Plant> flowers = model.getFlowerArr();
+		ArrayList<Plant> trees = model.getTreeArr();
+		ArrayList<Plant> shrubs = model.getShrubArr();
+		
+		String[] flowerImgNames= new String[flowers.size()];
+		String[] treeImgNames= new String[trees.size()];
+		String[] shrubImgNames = new String[shrubs.size()];
+		
+		for (int i=0;i<flowers.size();i++) {
+			flowerImgNames[i]=flowers.get(i).getSeasonsImgArr()[currSeasonIdx];
+		}
+		for (int i=0;i<trees.size();i++) {
+			treeImgNames[i]=trees.get(i).getSeasonsImgArr()[currSeasonIdx];
+		}
+		for (int i=0;i<shrubs.size();i++) {
+			shrubImgNames[i]=shrubs.get(i).getSeasonsImgArr()[currSeasonIdx];
+		}
+		
+		view.getDesignGardenScreen().setSelectionArrays(flowerImgNames, treeImgNames, shrubImgNames, null);
+		
+		//System.out.println("Flowers:");
+		//System.out.println(flowers.toString());
+	}
 }//Controller
 
 
