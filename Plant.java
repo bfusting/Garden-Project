@@ -13,14 +13,11 @@ public class Plant extends AddOn{
 	private int sunLightNeed;
 	private double plantHeight;
 	private int locationPref;
-<<<<<<< HEAD
-	private Seasons bloomTime;
-=======
-	
+
 	private Seasons bloomTime;
 	private String bloomTimeStr;
 	
->>>>>>> 0de95504b203ed8778be6c97ce943dd6df0d9354
+
 	private boolean provideShade;
 	
 	private String waterNeedStr;
@@ -32,7 +29,7 @@ public class Plant extends AddOn{
 	private String autumnImgStr;
 	private String winterImgStr;
 	private String[] seasonsImgArr;
-	
+	private String animalsFedStr;
 	private int size;
 	private String habit;
 	private String soilMoisture;
@@ -95,12 +92,7 @@ public class Plant extends AddOn{
 		this.winterImgStr = winter;
 */		
 	}
-<<<<<<< HEAD
-	
-	
-	
-=======
->>>>>>> 0de95504b203ed8778be6c97ce943dd6df0d9354
+
 	/**
 	 * Constructor for the Plant class. Initializes the characteristics and requirements for the plant
 	 * and the arrays of Strings containing the urls for the images of the plant at different ages and in
@@ -134,9 +126,6 @@ public class Plant extends AddOn{
 		
 	}
 	
-
-<<<<<<< HEAD
-=======
 	private static Plant[] addPlant(Plant[] plants, Plant plantToAdd) {
 	    Plant[] newPlants = new Plant[plants.length + 1];
 	    System.arraycopy(plants, 0, newPlants, 0, plants.length);
@@ -169,7 +158,7 @@ public class Plant extends AddOn{
     	return latinName;
     }
 
->>>>>>> 0de95504b203ed8778be6c97ce943dd6df0d9354
+
 	/**
 	 * Gets the String describing the color of the plant.
 	 * 

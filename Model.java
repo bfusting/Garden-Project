@@ -93,9 +93,7 @@ public class Model implements Serializable{
 		userPlot = null;
 		userTemplate = "";
 		prefsSet = 0;
-<<<<<<< HEAD
 
-=======
 		
 		
 		flowerArr = new ArrayList<Plant>();
@@ -133,7 +131,7 @@ public class Model implements Serializable{
 		highBound = 0;
 		
 		
->>>>>>> 0de95504b203ed8778be6c97ce943dd6df0d9354
+
 		createArrs();
 		
 
@@ -245,12 +243,7 @@ public class Model implements Serializable{
 		treeArr.add(juneBush);
 		treeArr.add(narrowleafCottonwood);
 		
-		underGrowthArr = new ArrayList<Plant>();
-	//	underGrowthArr.add(milkWeed);
-		underGrowthArr.add(maidenhairFern);
-		underGrowthArr.add(blackstemSpleenwort);
-<<<<<<< HEAD
-		
+
 		// holds all scenery items like dirt to branchs
 		sceneryArr = new ArrayList<AddOn>();
 		AddOn bench = new AddOn("Bench",1,"A bench to sit on....duh");
@@ -264,20 +257,15 @@ public class Model implements Serializable{
 		otherSeasons = new ArrayList<Plant>();
 		otherLight = new ArrayList<Plant>();
 		otherWater = new ArrayList<Plant>();
-=======
-*/		
->>>>>>> 0de95504b203ed8778be6c97ce943dd6df0d9354
+
 		
 	}//Model()
 	
-<<<<<<< HEAD
-
-=======
 	public static HashSet<Plant> getUsedPlants(){
 		return usedPlants;
 	}
 	
->>>>>>> 0de95504b203ed8778be6c97ce943dd6df0d9354
+
 	private void createArrs() {
 
 //	    Scanner input;
