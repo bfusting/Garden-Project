@@ -440,7 +440,7 @@ public class Model implements Serializable{
 		// sets up the array by filter to appropriate type then filtering to all of
 		// of flowerArr then
 		setFlowerArr(filterByType(allPlants,flower));
-		//flowerArr.addAll(filterByColor(flowerArr,userPrefColor));
+		setFlowerArr(filterByColor(flowerArr,userPrefColor));
 		//flowerArr.addAll(filterByBloomTime(flowerArr,userPrefSeason));
 		//flowerArr.addAll(filterByLight(flowerArr,userPrefLight));
 		//flowerArr.addAll(filterByWater(flowerArr,userPrefWater));
@@ -849,13 +849,13 @@ public class Model implements Serializable{
 		
 		// filters the arrayList taken in, makes copy so a is not disturbed
 		ArrayList<Plant> userColorPlants = new ArrayList<Plant>();
-		userColorPlants.addAll(a);
 		
 		for(Plant p: a) {
 			if(p.getColor().toLowerCase().equals(color.toLowerCase())) {
 				userColorPlants.add(p);
 			}
 		}
+		userColorPlants.addAll(otherColors);
 		return userColorPlants;
 	}//filterByColor
 	
