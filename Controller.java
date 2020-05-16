@@ -577,7 +577,11 @@ public class Controller{
 			//adding test to see if index is holding plants or addons
 			//switched
 			model.getUserPlot().getLayout()[rowIndex][colIndex].setPlant(tempArrayList.get(index));
+			//Adding to hashSet
+			if(DEBUG) {System.out.println("Adding to HashSet: " + tempArrayList.get(index).toString());}
 			model.getUsedPlants().add(tempArrayList.get(index));
+			//printing hashSet contents
+			if(DEBUG) {System.out.println("HashSet Contents:" + "\n" + model.getUsedPlants().toString());}
 			//int index = this.methodName; used to pull from designGarden array
 			worked = true;
 		}
