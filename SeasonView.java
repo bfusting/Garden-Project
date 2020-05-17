@@ -127,6 +127,7 @@ public class SeasonView extends Screen{
 		closeBTN = new Button("Close SeasonView");
 		
 		// Binding buttons to event handlers (Event handler for each season)
+		springBTN.setOnMouseClicked(c.getClickOnViewSpring());
 		closeBTN.setOnMouseClicked(c.getClickOnCloseSeasons());
 		
 		// Anchoring in AnchorPane at the bottom via for loop
@@ -184,7 +185,7 @@ public class SeasonView extends Screen{
 		stage.setTitle("Winter");
 	}
 	
-	public GridPane getSeasonGP() {
-		return seasonGP;
+	public void setSeasonGP(GridPane newGP) {
+		seasonGP = newGP;
 	}
 }

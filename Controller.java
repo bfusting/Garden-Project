@@ -1462,10 +1462,30 @@ public class Controller{
     	}
     }
     
+    /**
+     * Takes in an mouseEvent for a button so when the button of ViewSpring
+     * is clicked sets the title, sets the season In Model and then redraws
+     * the gridPane in seasonView.
+     * 
+     * @see SeasonView#setTitleToSpring()
+     * @see SeasonView#setSeasonGP(GridPane)
+     * @see SeasonView
+     */
     public void clickOnViewSpring(MouseEvent event) {
     	view.getSeasonViewScreen().setTitleToSpring();
     	model.setUserPrefSeason(Seasons.SPRING);
-    	
+    	if(DEBUG) {System.out.println("Current Season: " + model.getUserPrefSeason());}
+    	view.getSeasonViewScreen().setSeasonGP(view.drawGrid(this, false));
+    }
+    
+    /**
+     * Getter for clickOnViewSpring method in controller
+     * 
+     * @return MouseEvent handler for viewSpring button in SeasonView
+     * @see Controller#clickOnViewSpring(MouseEvent)
+     */
+    public EventHandler<MouseEvent> getClickOnViewSpring(){
+    	return event -> clickOnViewSpring((MouseEvent)event);
     }
 }//Controller
 
