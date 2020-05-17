@@ -256,7 +256,7 @@ public class DesignGarden extends Screen{
 	
 	@Override
 	public String toString() {
-		return "Design Garden";
+		return "Design Mode";
 	}
 	
 	@Override
@@ -269,7 +269,7 @@ public class DesignGarden extends Screen{
 			plot.getChildren().forEach(cell -> cell.setOnMouseClicked(c.getGardenTileClicked()));
 		}
 		
-		theStage.setTitle("Design Garden");
+		theStage.setTitle("Design Mode");
 		theStage.setScene(designGardenScene);
 		theStage.show();
 		

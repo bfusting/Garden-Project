@@ -592,6 +592,7 @@ public class Controller{
 			//model.getUsedPlants().add(tempArrayList.get(index));
 			//int index = this.methodName; used to pull from designGarden array
 			changeTabIndex(rowIndex,colIndex,index);
+			System.out.println(Model.getUsedPlants());
 			worked = true;
 		}
 		else if(n != view.getDesignGardenScreen().getPlot() && db.hasImage() &&
@@ -1452,8 +1453,12 @@ public class Controller{
     public void removeFromTile(MouseEvent event) {
     	if (event.getClickCount()==2) {
     		Node n = (Node) event.getSource();
+    		GardenTile tile = model.getUserPlot().getLayout()[GridPane.getRowIndex(n)][GridPane.getColumnIndex(n)];
+    		if (tile.getPlant()!=null) {
+    			model.getUsedPlants().remove(tile.getPlant());
+    		}
     		view.getDesignGardenScreen().getPlot().getChildren().remove(n);
-    		model.getUserPlot().getLayout()[GridPane.getRowIndex(n)][GridPane.getColumnIndex(n)].setEmpty();
+    		tile.setEmpty();
     	}
     }
 }//Controller
