@@ -54,11 +54,11 @@ public class Model implements Serializable{
 	private ArrayList<AddOn> pathwaysArr;
 	private ArrayList<Plant> allPlants;
 	
-	// Used to hold other "removed" flowers while filtering
-	private ArrayList<Plant> otherFlowerColors;
-	private ArrayList<Plant> otherFlowerSeasons;
-	private ArrayList<Plant> otherFlowerLight;
-	private ArrayList<Plant> otherFlowerWater;
+	// Used to hold other "removed" plants while filtering
+	private ArrayList<Plant> otherColors;
+	private ArrayList<Plant> otherSeasons;
+	private ArrayList<Plant> otherLight;
+	private ArrayList<Plant> otherWater;
 	
 	// represents all the plants used in the garden
 	private static HashSet<Plant> usedPlants = new HashSet<Plant>();
@@ -111,10 +111,10 @@ public class Model implements Serializable{
 		allPlants = new ArrayList<Plant>();
 				
 		//Used for filtering methods to hold other vars
-		otherFlowerColors = new ArrayList<Plant>();
-		otherFlowerSeasons = new ArrayList<Plant>();
-		otherFlowerLight = new ArrayList<Plant>();
-		otherFlowerWater = new ArrayList<Plant>();
+		otherColors = new ArrayList<Plant>();
+		otherSeasons = new ArrayList<Plant>();
+		otherLight = new ArrayList<Plant>();
+		otherWater = new ArrayList<Plant>();
 				
 		// Prefs passed in by user
 		userPrefColor = "";
@@ -442,7 +442,7 @@ public class Model implements Serializable{
 		setFlowerArr(filterByType(allPlants,flower));
 		setFlowerArr(filterByColor(flowerArr,userPrefColor));
 		setFlowerArr(filterByBloomTime(flowerArr,userPrefSeason));
-		//flowerArr.addAll(filterByLight(flowerArr,userPrefLight));
+		//setFlowerArr(filterByLight(flowerArr,userPrefLight));
 		//flowerArr.addAll(filterByWater(flowerArr,userPrefWater));
 		
 		// Adding rest of the unsorted lists back into flowerArr
@@ -457,10 +457,10 @@ public class Model implements Serializable{
 		// sets up the array by filter to appropriate type then filtering to all of
 		// of shrubArr
 		setShrubArr(filterByType(allPlants,shrub));
-		shrubArr.addAll(filterByColor(shrubArr,userPrefColor));
-		shrubArr.addAll(filterByBloomTime(shrubArr,userPrefSeason));
-		shrubArr.addAll(filterByLight(shrubArr,userPrefLight));
-		shrubArr.addAll(filterByWater(shrubArr,userPrefWater));
+		setShrubArr(filterByColor(shrubArr,userPrefColor));
+		//shrubArr.addAll(filterByBloomTime(shrubArr,userPrefSeason));
+		//shrubArr.addAll(filterByLight(shrubArr,userPrefLight));
+		//shrubArr.addAll(filterByWater(shrubArr,userPrefWater));
 		
 		// Adding rest of the unsorted lists back into shrubArr
 		shrubArr.addAll(otherColors);
@@ -909,15 +909,6 @@ public class Model implements Serializable{
 	 * @return a filtered ArrayList by Plant waterReq
 	 */
 	public ArrayList<Plant> filterByWater(ArrayList<Plant> a, int waterReq){
-		// switch statement to setup range (if 0 range is 0-2, if five range is 3-5)
-		switch(waterReq) {
-			case 0: lowBound = 0; highBound = 2; break;
-			case 5: lowBound = 3; highBound = 5; break;
-			default: lowBound = waterReq-1;highBound = waterReq+1;
-		}//switch
-		
-		//Iterate over list and if water int isn't
-		//range add to the otherWater Arr via getter
 		for(Plant p: a) {
 			if(!(p.getWaterNeed() >= lowBound) && !(p.getWaterNeed() <= highBound)) {
 				otherWater.add(p);
@@ -952,17 +943,8 @@ public class Model implements Serializable{
 	 * @return a filtered ArrayList by Plant waterReq
 	 */
 	public ArrayList<Plant> filterByLight(ArrayList<Plant> a, int lightReq){
-		// switch statement to setup range (if 0 range is 0-2, if five range is 3-5)
-		switch(lightReq) {
-			case 0: lowBound = 0; highBound = 2; break;
-			case 5: lowBound = 3; highBound = 5; break;
-			default: lowBound = lightReq-1;highBound = lightReq+1;
-		}//switch
-		
-		//Iterate over list and if light int isn't
-		//range add to the otherLight Arr via getter
 		for(Plant p: a) {
-			if(!(p.getSunLightNeed() >= lowBound) && !(p.getSunLightNeed() <= highBound)) {
+			if(p.getSunLightNeed() != lightReq) {
 				otherLight.add(p);
 			}
 		}
@@ -970,14 +952,9 @@ public class Model implements Serializable{
 		otherLight.sort(new SortbyLightNeed());
 	
 		ArrayList<Plant> userLightPlants = new ArrayList<Plant>();
-		//userLightPlants.addAll(a);
-		//streams the plants, filters by BloomTime, then adds them back to list
-		/*
-		userLightPlants.stream().filter(p -> p.getSunLightNeed() >= lowBound
-				&& p.getSunLightNeed() <= highBound).collect(Collectors.toList());
-				*/
+
 		for(Plant p: a) {
-			if(p.getSunLightNeed() >= lowBound && p.getSunLightNeed() <= highBound) {
+			if(p.getSunLightNeed() == lightReq) {
 				userLightPlants.add(p);
 			}
 		}
@@ -1014,6 +991,17 @@ public class Model implements Serializable{
 		//typeArr.stream().filter(p -> p.getPlantType().equals(type)).collect(Collectors.toList());
 		return typeArr;
 	}//filterByType
+	
+	/**
+	 * Used to empty the otherArrays such as light/water/seasons and color between each
+	 * filter so no wrong types are in each list
+	 */
+	public void clearOthers() {
+		otherColors.clear();
+		otherSeasons.clear();
+		otherLight.clear();
+		otherWater.clear();
+	}
 	
 	/**
 	 * Sets the property userTemplate, a string representing the template shape chosen by the user that
