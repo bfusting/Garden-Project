@@ -442,14 +442,14 @@ public class Model implements Serializable{
 		setFlowerArr(filterByType(allPlants,flower));
 		setFlowerArr(filterByColor(flowerArr,userPrefColor));
 		setFlowerArr(filterByBloomTime(flowerArr,userPrefSeason));
-		//setFlowerArr(filterByLight(flowerArr,userPrefLight));
-		//flowerArr.addAll(filterByWater(flowerArr,userPrefWater));
+		setFlowerArr(filterByLight(flowerArr,userPrefLight));
+		setFlowerArr(filterByWater(flowerArr,userPrefWater));
 		
 		// Adding rest of the unsorted lists back into flowerArr
-		//flowerArr.addAll(otherColors);
-		//flowerArr.addAll(otherSeasons);
-		//flowerArr.addAll(otherLight);
-		//flowerArr.addAll(otherWater);
+		flowerArr.addAll(otherWater);
+		flowerArr.addAll(otherLight);
+		flowerArr.addAll(otherSeasons);
+		flowerArr.addAll(otherColors);
 		
 		// clearing other arrays
 		clearOthers();
@@ -910,7 +910,7 @@ public class Model implements Serializable{
 	 */
 	public ArrayList<Plant> filterByWater(ArrayList<Plant> a, int waterReq){
 		for(Plant p: a) {
-			if(!(p.getWaterNeed() >= lowBound) && !(p.getWaterNeed() <= highBound)) {
+			if(p.getWaterNeed() != waterReq) {
 				otherWater.add(p);
 			}
 		}
@@ -921,7 +921,7 @@ public class Model implements Serializable{
 		//userWaterPlants.addAll(a);
 		//streams the plants, filters by BloomTime, then adds them back to list
 		for(Plant p: a) {
-			if(p.getWaterNeed() >= lowBound && p.getWaterNeed() <= highBound) {
+			if(p.getWaterNeed() == waterReq) {
 				otherWater.add(p);
 			}
 		}
