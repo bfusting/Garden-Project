@@ -111,14 +111,20 @@ public class InfoTips {
 	 */
 	
 	public void showInfoTips() {
-		Accordion acc = new Accordion();
-
+/*		Accordion acc = new Accordion();
+		stage = new Stage();
+		stage.setTitle("Info and Tips");
 		
-		hs = Model.getUsedPlants();
+		AnchorPane root = new AnchorPane();
+		root.setBackground(new Background(new BackgroundFill(Color.DARKOLIVEGREEN,CornerRadii.EMPTY,Insets.EMPTY)));
+	
+
 //		ArrayList<Text> texts = new ArrayList<Text>();
 
-		for (Plant p : hs) {
+/*		for (Plant p : Model.getUsedPlants()) {
 
+			System.out.println(p);
+			
 			String name = p.getName();
 			String latinName = p.getLatinName();
 			String titleStr = name + " - " + latinName;
@@ -133,25 +139,88 @@ public class InfoTips {
 			acc.getPanes().add(tp);
 
 		}		
+		
+//		String[] body = new String[]{};
+		Text[] body = new Text[] {};
+		String[] titles = new String[] {};
+		
+		for (Plant p : Model.getUsedPlants()) {
+			int i = 0;
+			String name = p.getName();
+			String latinName = p.getLatinName();
+			String titleStr = name + " - " + latinName;
+			titles[i] = titleStr;
+//			body[i] = new Text(p.toString());
+			i++;
+		}
+		TitledPane[] tps = new TitledPane[titles.length];
+		
+		for (int i = 0; i<titles.length; i++) {
+//			tps[i] = new TitledPane(titles[i],body[i]);
+			tps[i] = new TitledPane(titles[i], new Text("Testing"));
+		}
+		
+		acc.getPanes().addAll(tps);
+		acc.setExpandedPane(tps[0]);
+		
+		AnchorPane.setTopAnchor(tps[0], 5.0);
+		AnchorPane.setLeftAnchor(tps[0], 5.0);
+
+
+		root.getChildren().add(acc);
+*/		
 		stage = new Stage();
 		stage.setTitle("Info and Tips");
+		AnchorPane root = new AnchorPane();
+
+
 		
+		ArrayList<String> titles = new ArrayList<String>();
+		ArrayList<Text> texts = new ArrayList<Text>();
+		ArrayList<TitledPane> tps = new ArrayList<TitledPane>();
 		
-		BorderPane root = new BorderPane();
-		root.getChildren().add(acc);
+		ArrayList<AnchorPane> aps = new ArrayList<AnchorPane>();
+		
+		Accordion acc = new Accordion();
+		
+		for (Plant p : Model.getUsedPlants()) {
+			String name = p.getName();
+			String latinName = p.getLatinName();
+			String titleStr = name + " - " + latinName;
+
+			titles.add(titleStr);
+//			texts.add(new Text(p.toString()));
+			Text bodyTxt = new Text(p.toString());
+			AnchorPane ap = new AnchorPane();
+			ap.getChildren().add(bodyTxt);
+			ap.setLeftAnchor(bodyTxt, 5.0);
+			ap.setTopAnchor(bodyTxt, 5.0);
+			aps.add(ap);
+		}
+		
+		for (int i = 0; i < titles.size(); i++) {
+			tps.add( new TitledPane(titles.get(i),aps.get(i)));
+		}
+		acc.getPanes().addAll(tps);
+		acc.setExpandedPane(tps.get(0));
+		acc.setMinWidth(WIDTH-10.0);
 		
 		root.setBackground(new Background(new BackgroundFill(Color.DARKOLIVEGREEN,CornerRadii.EMPTY,Insets.EMPTY)));
 		
-		
-		Scene scene = new Scene(root, WIDTH, HEIGHT);
+		AnchorPane.setTopAnchor(acc, 5.0);
+		AnchorPane.setLeftAnchor(acc, 5.0);
+
+		root.getChildren().add(acc);
+
+		Scene scene = new Scene(root,WIDTH+50.0,HEIGHT+50.0);
 		stage.setScene(scene);
-		stage.show();
+	//	stage.show();
 		
 		
 	}
 		
 
-	/*@Override
+//	@Override
 	public void showScreen() {
 		//should consolidate into one showScreen method
 		showInfoTips();
@@ -160,10 +229,10 @@ public class InfoTips {
 		
 	}
 	
-	@Override
+//	@Override
 	public void closeScreen() {
 		stage.close();
-	}*/
+	}
 	
 		
 }

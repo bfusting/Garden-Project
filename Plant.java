@@ -140,12 +140,59 @@ public class Plant extends AddOn{
     }
 	
 */
+	
+	//Not pretty, I know
+	
 	public String toString() {
-		return "Name: " + name + "\n" + "Latin Name: " + latinName + "\n" +"Plant color: " + color + "\n" + 
-    "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + "Height: " + size + "\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
-        		sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" +"Animals Fed: " + animalsFedStr + "\n"+ "Seasons String Img Array: " + 
-        		seasonsImgArr[0]+", " + seasonsImgArr[1]+", " +seasonsImgArr[2]+", " +seasonsImgArr[3]+", " + "\n" + "\n";
-    
+		String returningStr = null;
+		
+		if (this.getSize() == 0) {
+			if (this.getSoilMoisture().contentEquals("null")) {
+				if (this.getAnimalsFedStr().equals("null")) {
+					returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + 
+							"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
+			        		sunLightNeed + "\n" ;
+				} else {
+					returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
+			        		sunLightNeed + "\n" +"Animals Fed: " + animalsFedStr + "\n";
+				}
+			}  else if (this.getAnimalsFedStr().equals("null")) {
+				returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
+		        		sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" ;
+			}
+		} else if (animalsFedStr.contentEquals("null")){
+			if (soilMoisture.contentEquals("null")) {
+				returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + 
+						"Height: " + size + " ft" +"\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
+		        		sunLightNeed + "\n" ;
+			} else {
+				returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + 
+						"Height: " + size + " ft" + "\n" + "Water need: " +waterNeed + "\n" +  "Light Requirements: " +
+						sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" ;
+			}
+		} else if (soilMoisture.contentEquals("null")) {
+			returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + 
+					"Height: " + size + " ft"+ "\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
+	        		sunLightNeed + "\n" +"Animals Fed: " + animalsFedStr + "\n";
+		} else {
+			returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + 
+				"Height: " + size + " ft"+ "\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
+        		sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" +"Animals Fed: " + animalsFedStr + "\n";
+		}
+		
+		return returningStr;
+	}
+	
+	public int getSize() {
+		return size;
+	}
+	
+	public String getSoilMoisture() {
+		return soilMoisture;
+	}
+	
+	public String getAnimalsFedStr() {
+		return animalsFedStr;
 	}
 	
     public String getName() {
