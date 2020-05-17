@@ -89,6 +89,9 @@ public class View extends Application{
 	
 	static final Font backNextBTNFont = Font.font("Verdana",FontWeight.BOLD,FontPosture.ITALIC,20);
 	
+	private final static String activeSoilImgName = "img/soil.jpg";
+	private final static String inactiveSoilImgName = "img/soilinactive.jpeg";
+	
 	private FileChooser fileChooser;
 	
 	/**
@@ -413,6 +416,15 @@ public class View extends Application{
 		return String.valueOf(currentPrimaryScreen);
 	}
 	
+	/**
+	 * Passes the user preferences to the preferences screen to set up the Screen when loading a saved design with unfinished preferences.
+	 * @param colorPref The user preferred color for the plants.
+	 * @param seasonPref The user preferred season to view the plants in while designing.
+	 * @param waterPref The general water availability specified by the user.
+	 * @param lightPref The general light availability specified by the user.
+	 * @param lengthPref The length of the garden if rectangular, or the number of rows if triangular.
+	 * @param widthPref The width of the garden.
+	 */
 	public void loadPreferences(String colorPref, String seasonPref, int waterPref,int lightPref, int lengthPref, int widthPref) {
 		
 		preferencesScreen.setValues(colorPref,seasonPref,waterPref,lightPref,lengthPref,widthPref);
@@ -433,25 +445,38 @@ public class View extends Application{
 		recommendationsScreen.setPreviousScreen(designGardenScreen);
 		
 	}
-		
+	
+	/**
+	 * Returns the SeasonView Screen.
+	 * @return the SeasonView Screen.
+	 * @see SeasonView
+	 */
 	public SeasonView getSeasonViewScreen() {
 		return seasonViewScreen;
 	}
 	
+	/**
+	 * Returns the FinalView Screen.
+	 * @return the FinalView Screen.
+	 * 
+	 * @see FinalView
+	 */
 	public FinalView getFinalViewScreen() {
 		return finalViewScreen;
 	}
 	
-	public static GridPane drawGrid(Controller con) {
+	
+	public static GridPane drawGrid(Controller con,boolean drawInactiveTiles) {
 		GridPane gp = new GridPane();
-		
+		int soilImgSize = 89;
+		int plantImgSize = 80;
 		
 		for (int i=0;i<con.getLengthFromModel();i++) {
 			for (int j=0; j<con.getWidthFromModel();j++) {
-				ImageView soilImg = new ImageView(new Image("img/soil.jpg"));
+				ImageView soilImg = new ImageView(new Image(activeSoilImgName));
 					soilImg.setPreserveRatio(true);
-					soilImg.setFitHeight(89);
-					soilImg.setFitWidth(89);
+					soilImg.setFitHeight(soilImgSize);
+					soilImg.setFitWidth(soilImgSize);
 					gp.add(soilImg, j, i,1,1);
 					
 					gp.setGridLinesVisible(false);
@@ -459,13 +484,20 @@ public class View extends Application{
 					gp.setPadding(new Insets(10));
 					String addOnImgName = con.getImgNameFromModel(i, j);
 					if  (addOnImgName.equals("inactive")) {
-						
+						if (drawInactiveTiles && con.getTemplateFromModel().toLowerCase().equals("custom")) {
+							ImageView inactiveSoilImg = new ImageView(new Image(inactiveSoilImgName));
+							inactiveSoilImg.setPreserveRatio(true);
+							inactiveSoilImg.setFitHeight(soilImgSize);
+							inactiveSoilImg.setFitWidth(soilImgSize);
+							gp.add(inactiveSoilImg, j, i,1,1);
+						} else {
 						gp.getChildren().remove(soilImg);
+						}
 					}
 					else if (!addOnImgName.equals("") && addOnImgName!=null && !addOnImgName.equals("null")) {
 						ImageView plantIV = new ImageView(new Image(addOnImgName));
-						plantIV.setFitHeight(80);
-						plantIV.setFitWidth(80);
+						plantIV.setFitHeight(plantImgSize);
+						plantIV.setFitWidth(plantImgSize);
 						gp.add(plantIV, j, i, 1,1);
 					}
 					
@@ -474,6 +506,25 @@ public class View extends Application{
 			}
 		return gp;
 		
+	}
+	
+	/**
+	 * Changes the given empty soil ImageView in the DesignGarden screen's GridPane to the image for an active tile 
+	 * if the boolean 'active' is true or for an inactive tile is active is false. To be called by the controller when
+	 * the user has chosen the custom template and clicks an empty tile.
+	 * 
+	 * @param soilIV the ImageView being set with a new Image.
+	 * @param active a boolean, true if soilIV is being set with the Image for an active tile and false if
+	 * it is being set with the Image for an inactive tile.
+	 */
+	public void setActiveImg(ImageView soilIV,boolean active) {
+		
+		if (active) {
+			soilIV.setImage(new Image(activeSoilImgName));
+		}
+		else {
+			soilIV.setImage(new Image(inactiveSoilImgName));
+		}
 	}
 	
 	
