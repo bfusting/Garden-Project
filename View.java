@@ -466,16 +466,17 @@ public class View extends Application{
 	}
 	
 	
-	public static GridPane drawGrid(Controller con) {
+	public static GridPane drawGrid(Controller con,boolean drawInactiveTiles) {
 		GridPane gp = new GridPane();
-		
+		int soilImgSize = 89;
+		int plantImgSize = 80;
 		
 		for (int i=0;i<con.getLengthFromModel();i++) {
 			for (int j=0; j<con.getWidthFromModel();j++) {
 				ImageView soilImg = new ImageView(new Image(activeSoilImgName));
 					soilImg.setPreserveRatio(true);
-					soilImg.setFitHeight(89);
-					soilImg.setFitWidth(89);
+					soilImg.setFitHeight(soilImgSize);
+					soilImg.setFitWidth(soilImgSize);
 					gp.add(soilImg, j, i,1,1);
 					
 					gp.setGridLinesVisible(false);
@@ -483,13 +484,20 @@ public class View extends Application{
 					gp.setPadding(new Insets(10));
 					String addOnImgName = con.getImgNameFromModel(i, j);
 					if  (addOnImgName.equals("inactive")) {
-						
+						if (drawInactiveTiles) {
+							ImageView inactiveSoilImg = new ImageView(new Image(inactiveSoilImgName));
+							inactiveSoilImg.setPreserveRatio(true);
+							inactiveSoilImg.setFitHeight(soilImgSize);
+							inactiveSoilImg.setFitWidth(soilImgSize);
+							gp.add(inactiveSoilImg, j, i,1,1);
+						} else {
 						gp.getChildren().remove(soilImg);
+						}
 					}
 					else if (!addOnImgName.equals("") && addOnImgName!=null && !addOnImgName.equals("null")) {
 						ImageView plantIV = new ImageView(new Image(addOnImgName));
-						plantIV.setFitHeight(80);
-						plantIV.setFitWidth(80);
+						plantIV.setFitHeight(plantImgSize);
+						plantIV.setFitWidth(plantImgSize);
 						gp.add(plantIV, j, i, 1,1);
 					}
 					

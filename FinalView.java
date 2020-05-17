@@ -45,6 +45,7 @@ public class FinalView extends Screen {
 	public FinalView(Controller controller, Stage s) {
 		this.c = controller;
 		theStage = s;
+		root = new AnchorPane();
 	}
 	
 	public void setOriginalPlot(GardenPlot ogPlot) {
@@ -186,7 +187,7 @@ public class FinalView extends Screen {
 		
 		root.getChildren().addAll(r1,originalGP);*/
 		
-		originalGP = View.drawGrid(c);
+		originalGP = View.drawGrid(c,false);
 		AnchorPane.setTopAnchor(originalGP, 100.0);
 		AnchorPane.setLeftAnchor(originalGP, 150.0);
 		root.getChildren().addAll(r1,originalGP);
