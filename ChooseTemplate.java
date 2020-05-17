@@ -236,6 +236,7 @@ public class ChooseTemplate extends Screen {
 	
 	@Override
 	public void showScreen() {
+		Instructions.setHighlightedSection(0);
 		theStage.setTitle("Choose a Template");
 		theStage.setScene(chooseTemplateScene);
 	}

@@ -231,17 +231,14 @@ public class View extends Application{
 			break;
 		case "chooseTemplateScreen":
 			currentPrimaryScreen = chooseTemplateScreen;
-			instructionsScreen.setHighlightedSection(0);
 			chooseTemplateScreen.showScreen();
 			break;
 		case "designGardenScreen":
 			currentPrimaryScreen = designGardenScreen;
-			instructionsScreen.setHighlightedSection(2);
 			designGardenScreen.showScreen();
 			break;
 		case "finalViewScreen":
 			currentPrimaryScreen = finalViewScreen;
-			instructionsScreen.setHighlightedSection(3);
 			finalViewScreen.showScreen();
 			break;
 		case "infoTipsScreen":

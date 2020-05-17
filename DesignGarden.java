@@ -86,6 +86,7 @@ public class DesignGarden extends Screen{
 	private Button infoTips;
 	private Button save;
 	private Button finalView;
+	private Button instructions;
 	
 	private Scene designGardenScene;
 	
@@ -261,6 +262,7 @@ public class DesignGarden extends Screen{
 	
 	@Override
 	public void showScreen() {
+		Instructions.setHighlightedSection(2);
 		if (!shown) {
 			drawScene();
 			shown = true;
@@ -608,12 +610,14 @@ changeSeasons = new Button("Change Seasons");
 infoTips = new Button("Info and Tips");
 save = new Button("Save Garden");
 finalView = new Button("Finish");
+instructions = new Button("Instructions");
 
 recommendations.setMinSize(200.0,40.0);
 changeSeasons.setMinSize(200.0,40.0);
 infoTips.setMinSize(200.0,40.0);
 save.setMinSize(200.0, 40.0);
 finalView.setMinSize(200.0, 40.0);
+instructions.setMinSize(200.0, 40.0);
 
 //click recommendations button
 
@@ -635,23 +639,27 @@ save.setOnMouseClicked(c.getSaveBTN());
 
 finalView.setOnMouseClicked(c.getFinalViewBTN());
 
+//Instructions Button
+instructions.setOnMouseClicked(c.getInstructionShow());
+
 AnchorPane apButtons = new AnchorPane();
 Label tileEditors = new Label("Tile Editors");
 Label otherFeaturesLabel = new Label("Other Features: ");
-apButtons.setTopAnchor(otherFeaturesLabel, 60.0);
-apButtons.setTopAnchor(recommendations, 120.0);
-apButtons.setTopAnchor(changeSeasons, 180.0);
-apButtons.setTopAnchor(infoTips, 240.0);
-apButtons.setTopAnchor(save, 300.0);
-apButtons.setTopAnchor(finalView, 360.0);
-apButtons.setTopAnchor(tileEditors, 420.0);
-apButtons.setTopAnchor(tileEditingGP, 440.0);
+AnchorPane.setTopAnchor(otherFeaturesLabel, 60.0);
+AnchorPane.setTopAnchor(recommendations, 120.0);
+AnchorPane.setTopAnchor(changeSeasons, 180.0);
+AnchorPane.setTopAnchor(infoTips, 240.0);
+AnchorPane.setTopAnchor(save, 300.0);
+AnchorPane.setTopAnchor(finalView, 360.0);
+AnchorPane.setTopAnchor(instructions, 420.0);
+AnchorPane.setTopAnchor(tileEditors, 480.0);
+AnchorPane.setTopAnchor(tileEditingGP, 500.0);
 
-apButtons.getChildren().addAll(recommendations, changeSeasons, otherFeaturesLabel, infoTips, save, finalView,tileEditors,tileEditingGP);
+apButtons.getChildren().addAll(recommendations, changeSeasons, otherFeaturesLabel, infoTips, save, finalView,instructions,tileEditors,tileEditingGP);
 
 
-root.setTopAnchor(apButtons, 40.0);
-root.setRightAnchor(apButtons, 60.0);
+AnchorPane.setTopAnchor(apButtons, 40.0);
+AnchorPane.setRightAnchor(apButtons, 60.0);
 
 Label emptySpace = new Label("		");
 Label emptySpace2 = new Label("		");

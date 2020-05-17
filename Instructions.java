@@ -44,8 +44,8 @@ public class Instructions extends Screen {
 	private final int dimensions = 500;
 	private final double distFromSide = 5.0;
 	private ArrayList<Text> texts;
-	private ArrayList<TitledPane> panes;
-	private int fontSize = 12;
+	private static ArrayList<TitledPane> panes;
+	private static int fontSize = 12;
 	
 	
 	/**
@@ -136,7 +136,7 @@ public class Instructions extends Screen {
 		instructionsStage.close();
 	}
 	
-	public void setHighlightedSection(int screenIdx) {
+	public static void setHighlightedSection(int screenIdx) {
 		for (int i=0;i<panes.size();i++) {
 			if (i==screenIdx) {
 				panes.get(i).setFont(Font.font("Verdana",FontWeight.BOLD,fontSize));

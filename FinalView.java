@@ -110,7 +110,6 @@ public class FinalView extends Screen {
 	 */
 	public void showFinalView(Stage stage) {
 		
-		
 		root = new AnchorPane();
 		
 		// creating OriginalGP Plot + making it move
@@ -240,6 +239,7 @@ public class FinalView extends Screen {
 	
 	@Override
 	public void showScreen() {
+		Instructions.setHighlightedSection(3);
 		//should combine these into one show method
 		showFinalView(theStage);
 		
