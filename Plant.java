@@ -42,6 +42,12 @@ public class Plant extends AddOn{
 	private ArrayList<String> animalsFed = new ArrayList();
 	private ArrayList<String> compatiblePlants = new ArrayList();
 	
+	private String waterStr;
+	private String sunStr;
+	
+	private String[] waterStrArr = {"Low","Low/medium","Medium","Medium/High","High"};
+	private String[] sunStrArr = {"Completely Shaded","Mostly Shaded", "Partial Shade", "Sunny / Partial shade", "Completely Sunny"};
+	
 	
 	public Plant(String name, String latinName, String color, Seasons bloomTime,
 			String habit, int size, int waterNeed, int sunLightNeed, String soilMoisture, ArrayList<String> animalsFed) {
@@ -86,11 +92,15 @@ public class Plant extends AddOn{
 		this.soilMoisture = soilMoisture;
 		this.animalsFedStr = animalsFedStr;
 		this.seasonsImgArr = seasonsImgArr;
-/*		this.springImgStr = spring;
-		this.summerImgStr = summer;
-		this.autumnImgStr = autumn;
-		this.winterImgStr = winter;
-*/		
+		
+		for (int i=1; i<6; i++) {
+			if (waterNeed == i) {
+				this.waterStr = waterStrArr[i-1];
+			}
+			if (sunLightNeed == i) {
+				this.sunStr = sunStrArr[i-1];
+			}
+		}	
 	}
 	/**
 	 * Constructor for the Plant class. Initializes the characteristics and requirements for the plant
@@ -118,12 +128,6 @@ public class Plant extends AddOn{
 		
 		
 	}*/
-	
-	public Plant() {
-		
-	}
-	
-
 	private static Plant[] addPlant(Plant[] plants, Plant plantToAdd) {
 	    Plant[] newPlants = new Plant[plants.length + 1];
 	    System.arraycopy(plants, 0, newPlants, 0, plants.length);
@@ -131,18 +135,16 @@ public class Plant extends AddOn{
 
 	    return newPlants;
 	}
-	
 /*    public String toString() {
         return "Name: " + name + "\n" + "Latin Name: " + latinName + "\n" + "Plant color: " + color + "\n" + "Bloom Time String: "+ bloomTimeStr+ "\n"+
     "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + "Height: " + size + "\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
         		sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" +"Animals Fed: " + animalsFedStr + "\n"+ "Seasons String Img Array: " + 
         		seasonsImgArr[0]+", " + seasonsImgArr[1]+", " +seasonsImgArr[2]+", " +seasonsImgArr[3]+", " + "\n" + "\n";
     }
-	
 */
 	
-	//Not pretty, I know
 	
+	//Not pretty, I know
 	public String toString() {
 		String returningStr = null;
 		
@@ -150,36 +152,35 @@ public class Plant extends AddOn{
 			if (this.getSoilMoisture().contentEquals("null")) {
 				if (this.getAnimalsFedStr().equals("null")) {
 					returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + 
-							"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
-			        		sunLightNeed + "\n" ;
+							"Water need: " +waterStr + "\n" +  "Light Requirements: " +
+			        		sunStr + "\n" ;
 				} else {
-					returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
-			        		sunLightNeed + "\n" +"Animals Fed: " + animalsFedStr + "\n";
+					returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" +"Water need: " +waterStr + "\n" +  "Light Requirements: " +
+			        		sunStr + "\n" +"Animals Fed: " + animalsFedStr + "\n";
 				}
 			}  else if (this.getAnimalsFedStr().equals("null")) {
-				returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
-		        		sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" ;
+				returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" +"Water need: " +waterStr + "\n" +  "Light Requirements: " +
+		        		sunStr + "\n" +"Soil Moisture: " + soilMoisture + "\n" ;
 			}
 		} else if (animalsFedStr.contentEquals("null")){
 			if (soilMoisture.contentEquals("null")) {
 				returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + 
-						"Height: " + size + " ft" +"\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
-		        		sunLightNeed + "\n" ;
+						"Height: " + size + " ft" +"\n" +"Water need: " +waterStr + "\n" +  "Light Requirements: " +
+		        		sunStr + "\n" ;
 			} else {
 				returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + 
-						"Height: " + size + " ft" + "\n" + "Water need: " +waterNeed + "\n" +  "Light Requirements: " +
-						sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" ;
+						"Height: " + size + " ft" + "\n" + "Water need: " +waterStr + "\n" +  "Light Requirements: " +
+						sunStr + "\n" +"Soil Moisture: " + soilMoisture + "\n" ;
 			}
 		} else if (soilMoisture.contentEquals("null")) {
 			returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + 
-					"Height: " + size + " ft"+ "\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
-	        		sunLightNeed + "\n" +"Animals Fed: " + animalsFedStr + "\n";
+					"Height: " + size + " ft"+ "\n" +"Water need: " +waterStr + "\n" +  "Light Requirements: " +
+	        		sunStr + "\n" +"Animals Fed: " + animalsFedStr + "\n";
 		} else {
 			returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + 
-				"Height: " + size + " ft"+ "\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
-        		sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" +"Animals Fed: " + animalsFedStr + "\n";
+				"Height: " + size + " ft"+ "\n" +"Water need: " +waterStr + "\n" +  "Light Requirements: " +
+        		sunStr + "\n" +"Soil Moisture: " + soilMoisture + "\n" +"Animals Fed: " + animalsFedStr + "\n";
 		}
-		
 		return returningStr;
 	}
 	
