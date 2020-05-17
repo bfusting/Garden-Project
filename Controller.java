@@ -1163,8 +1163,8 @@ public class Controller{
 	break;
 	case 2: temp.addAll(model.getShrubArr());
 	break;
-	case 3: temp.addAll(model.getUnderGrowth());
-	break;
+	//case 3: temp.addAll(model.getUnderGrowth());
+	//break;
 	
 	}//switch
 	return temp;

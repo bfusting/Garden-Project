@@ -41,131 +41,83 @@ public class InfoTips {
 	
 	private HashSet<Plant> hs;
 	
-	
 	/**
-	 * Constructor that takes properties of the plant
+	 * Constructor of InfoTips that takes in a controller
 	 * 
-	 * @param col Color of the plant
-	 * @param water Amount of water needed by the plant
-	 * @param bloom Date of the plant's specific bloom time
-	 * @param sun Amount of sun needed
-	 * @param height Height of the plant in bloom
-	 * @param shade Amount of shade needed by the plant
-	 * @param type Type of plant
-	 * @param animals List of animals that feed off this plant
+	 * @param controller
 	 */
-	
-/*	public InfoTips(String col, int water, Date bloom, int sun, double height, boolean shade, String type, ArrayList<String> animals) {
-		color = new Label(col);
-		waterNeed = new Label(String.valueOf(water));
-		bloomTime = new Label(bloom.toString());
-		sunlightNeeded = new Label(String.valueOf(sun));
-		plantHeight = new Label(String.valueOf(height));
-		
-		String yesShade = "There is shade provided.";
-		String noShade = "There is no shade provided.";
-		
-		if (shade) {
-			provideShade = new Label(yesShade);
-		} else {
-			provideShade = new Label(noShade);
-		}
-		
-		plantType = new Label(type);
-		
-		String b = "";
-		
-		for(String a : animals) {
-			b = b + a + " , ";
-		}
-		
-		animalsFed = new Label(b);
-				
-	}
-*/	
 	public InfoTips(Controller controller) {
 		this.c = controller;
 	}
 	
 	/**
-	 * Default constructor just to work in view for now
-	 * not used in real project after Alpha
-	 * Made by Malachi
-	 * -Kelsey Approved
-	 */
-/*	public InfoTips() {
-		color = null;
-		waterNeed = null;
-		bloomTime = null;
-		sunlightNeeded = null;
-		plantHeight = null;
-		provideShade = null;
-		plantType = null;
-		animalsFed = null;
-	}
-*/	
-	/**
-	 * Organizes all of the labels of plant attributes
+	 * Displays info for all plants already in garden
 	 * 
-	 * @param stage The stage of InfoTips' scene
 	 */
 	
-	public void showInfoTips() {
-		Accordion acc = new Accordion();
+	public void showInfoTips() {	
+		stage = new Stage();
+		stage.setTitle("Info and Tips");
+		AnchorPane root = new AnchorPane();
 
+		ArrayList<String> titles = new ArrayList<String>();
+		ArrayList<Text> texts = new ArrayList<Text>();
+		ArrayList<TitledPane> tps = new ArrayList<TitledPane>();
+		ArrayList<AnchorPane> aps = new ArrayList<AnchorPane>();
 		
-		hs = Model.getUsedPlants();
-//		ArrayList<Text> texts = new ArrayList<Text>();
-
-		for (Plant p : hs) {
-
+		Accordion acc = new Accordion();
+		
+		for (Plant p : Model.getUsedPlants()) {
 			String name = p.getName();
 			String latinName = p.getLatinName();
 			String titleStr = name + " - " + latinName;
-			String body = p.toString();
-			
-			Text bodyText = new Text(body);
 
-			TitledPane tp = new TitledPane();
-			tp.setText(titleStr);
-			tp.setContent(bodyText);
-			
-			acc.getPanes().add(tp);
-
-		}		
-		stage = new Stage();
-		stage.setTitle("Info and Tips");
+			titles.add(titleStr);
+//			texts.add(new Text(p.toString()));
+			Text bodyTxt = new Text(p.toString());
+			AnchorPane ap = new AnchorPane();
+			ap.getChildren().add(bodyTxt);
+			ap.setLeftAnchor(bodyTxt, 5.0);
+			ap.setTopAnchor(bodyTxt, 5.0);
+			aps.add(ap);
+		}
+		for (int i = 0; i < titles.size(); i++) {
+			tps.add( new TitledPane(titles.get(i),aps.get(i)));
+		}
 		
+		acc.getPanes().addAll(tps);
 		
-		BorderPane root = new BorderPane();
-		root.getChildren().add(acc);
+		if (!tps.isEmpty()) {
+			acc.setExpandedPane(tps.get(0));
+		} else {
+			Text isEmptyTxt = new Text("Please drag a plant into your garden");
+			AnchorPane.setTopAnchor(isEmptyTxt, 10.0);
+			AnchorPane.setLeftAnchor(isEmptyTxt, 5.0);
+			root.getChildren().add(isEmptyTxt);
+		}
+		acc.setMinWidth(WIDTH-10.0);
 		
 		root.setBackground(new Background(new BackgroundFill(Color.DARKOLIVEGREEN,CornerRadii.EMPTY,Insets.EMPTY)));
 		
-		
-		Scene scene = new Scene(root, WIDTH, HEIGHT);
+		AnchorPane.setTopAnchor(acc, 5.0);
+		AnchorPane.setLeftAnchor(acc, 5.0);
+
+		root.getChildren().add(acc);
+
+		Scene scene = new Scene(root,WIDTH+50.0,HEIGHT+50.0);
 		stage.setScene(scene);
-		stage.show();
-		
-		
 	}
 		
-
-	/*@Override
+//	@Override
 	public void showScreen() {
 		//should consolidate into one showScreen method
 		showInfoTips();
 		stage.show();
 		stage.toFront();
-		
 	}
 	
-	@Override
+//	@Override
 	public void closeScreen() {
 		stage.close();
-	}*/
-	
-		
+	}
 }
-	
-

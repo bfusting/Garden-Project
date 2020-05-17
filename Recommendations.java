@@ -237,60 +237,177 @@ public class Recommendations extends Screen{
 		texts.add(new Text("Shrub"));
 		texts.add(new Text("Flower"));
 
-		texts.add(new Text("Undergrowth"));
 		
-		TitledPane treeTest = null;
+		
 		TitledPane shrubTest = null;
-		TitledPane flowerTest = null;
 		
 		
+		TitledPane tree1 = null;
+		TitledPane tree2 = null;
+		TitledPane tree3 = null;
+		TitledPane tree4 = null;
+		TitledPane tree5 = null;
 		
+		TitledPane flower1 = null;
+		TitledPane flower2 = null;
+		TitledPane flower3 = null;
+		TitledPane flower4 = null;
+		TitledPane flower5 = null;
 		
-		String trees = "";
-		String shrubs = "";
-		String flowers = "";
+		TitledPane shrub1 = null;
+		TitledPane shrub2 = null;
+		TitledPane shrub3 = null;
+		TitledPane shrub4 = null;
+		TitledPane shrub5 = null;
 		
-		
+		//Creating Tree TItledPanes
 		try {
-			
-			for(int i = 0; i < getRecTrees().length; i++) {
-			if(getRecTrees()[i] != null) {
-				trees = trees + getRecTrees()[i].getName() + "\n";
-				}
-			}
-			
-			treeTest = new TitledPane("Trees", new Text(trees));
+			Plant t = getRecTrees()[0];
+			 tree1 = new TitledPane(t.getName(), new Text(t.getLatinName()
+					 + "\n Color: " + t.getColor() + "\n Bloom Time: " + t.getBloomTime().toString()));
 		}
 		catch(Exception e) {
-			treeTest = new TitledPane("Trees", new Text("No Recommendations"));
+			 tree1 = null;
 		}
-		
 		try {
-			for(int i = 0; i < getRecShrubs().length; i++) {
-				if(getRecShrubs()[i] != null) {
-					shrubs = shrubs + getRecShrubs()[i].getName() + "\n";
-				}
-			
-			}
-			
-			shrubTest = new TitledPane("Shrubs", new Text(shrubs));
+			Plant t = getRecTrees()[1];
+			 tree2 = new TitledPane(t.getName(), new Text(t.getLatinName()
+					 + "\n Color: " + t.getColor() + "\n Bloom Time: " + t.getBloomTime().toString()));
 		}
 		catch(Exception e) {
-			shrubTest = new TitledPane("Shrubs", new Text("No Recommendations"));
+			 tree2 = null;
+		}
+		try {
+			Plant t = getRecTrees()[2];
+			 tree3 = new TitledPane(t.getName(), new Text(t.getLatinName()
+					 + "\n Color: " + t.getColor() + "\n Bloom Time: " + t.getBloomTime().toString()));
+		}
+		catch(Exception e) {
+			 tree3 = null;
+		}
+		try {
+			Plant t = getRecTrees()[3];
+			 tree4 = new TitledPane(t.getName(), new Text(t.getLatinName()
+					 + "\n Color: " + t.getColor() + "\n Bloom Time: " + t.getBloomTime().toString()));
+		}
+		catch(Exception e) {
+			 tree4 = null;
+		}
+		try {
+			Plant t = getRecTrees()[4];
+			 tree5 = new TitledPane(t.getName(), new Text(t.getLatinName()
+					 + "\n Color: " + t.getColor() + "\n Bloom Time: " + t.getBloomTime().toString()));
+		}
+		catch(Exception e) {
+			 tree5 = null;
 		}
 		
+		
+		//Creating FLower TItlePanes
 		try {
-			for(int i = 0; i < getRecFlowers().length; i++) {
-				if(getRecFlowers()[i] != null) {
-					flowers = flowers + getRecFlowers()[i].getName() + "\n";
-				}
-			}
-			
-			flowerTest = new TitledPane("Flowers", new Text(flowers));
+			Plant f = getRecFlowers()[0];
+			flower1 = new TitledPane(getRecFlowers()[0].getName(), new Text(getRecFlowers()[0].getLatinName()
+					 + "\n Color: " + f.getColor() + "\n Bloom Time: " + f.getBloomTime().toString()));
 		}
-		catch(Exception e){
-			flowerTest = new TitledPane("Flowers", new Text("No Recommendations"));
+		catch(Exception e) {
+			 flower1 = null;
 		}
+		try {
+			Plant f = getRecFlowers()[1];
+			 flower2 = new TitledPane(f.getName(), new Text(f.getLatinName()
+					 + "\n Color: " + f.getColor() + "\n Bloom Time: " + f.getBloomTime().toString()));
+		}
+		catch(Exception e) {
+			 flower2 = null;
+		}
+		try {
+			Plant f = getRecFlowers()[2];
+			 flower3 = new TitledPane(f.getName(), new Text(f.getLatinName()
+					 + "\n Color: " + f.getColor() + "\n Bloom Time: " + f.getBloomTime().toString()));
+		}
+		catch(Exception e) {
+			 flower3 = null;
+		}
+		try {
+			Plant f = getRecFlowers()[3];
+			 flower4 = new TitledPane(f.getName(), new Text(f.getLatinName()
+					 + "\n Color: " + f.getColor() + "\n Bloom Time: " + f.getBloomTime().toString()));
+		}
+		catch(Exception e) {
+			 flower4 = null;
+		}
+		try {
+			Plant f = getRecFlowers()[4];
+			 flower5 = new TitledPane(f.getName(), new Text(f.getLatinName()
+					 + "\n Color: " + f.getColor() + "\n Bloom Time: " + f.getBloomTime().toString()));
+		}
+		catch(Exception e) {
+			 flower5 = null;
+		}
+		
+		//Creating panes for Shrubs
+		try {
+			Plant s = getRecShrubs()[0];
+			shrub1 = new TitledPane(s.getName(), new Text(s.getLatinName()
+					+ "\n Color: " + s.getColor() + "\n Bloom Time: " + s.getBloomTime().toString()));
+		}
+		catch(Exception e) {
+			 shrub1 = null;
+		}
+		try {
+			Plant s = getRecShrubs()[1];
+			 shrub2 = new TitledPane(s.getName(), new Text(s.getLatinName()
+					 + "\n Color: " + s.getColor() + "\n Bloom Time: " + s.getBloomTime().toString()));
+		}
+		catch(Exception e) {
+			 shrub2 = null;
+		}
+		try {
+			Plant s = getRecShrubs()[2];
+			 shrub3 = new TitledPane(s.getName(), new Text(s.getLatinName()
+					 + "\n Color: " + s.getColor() + "\n Bloom Time:" + s.getBloomTime().toString()));
+		}
+		catch(Exception e) {
+			 shrub3 = null;
+		}
+		try {
+			Plant s = getRecShrubs()[3];
+			 shrub4 = new TitledPane(s.getName(), new Text(s.getLatinName()
+					 + "\n Color: " + s.getColor() + "\n Bloom Time:" + s.getBloomTime().toString()));
+		}
+		catch(Exception e) {
+			 shrub4 = null;
+		}
+		try {
+			Plant s = getRecShrubs()[4];
+			 shrub5 = new TitledPane(s.getName(), new Text(s.getLatinName()
+					 + "\n Color: " + s.getColor() + "\n Bloom Time:" + s.getBloomTime().toString()));
+		}
+		catch(Exception e) {
+			 shrub5 = null;
+		}
+		
+		ArrayList<TitledPane> paneList = new ArrayList<TitledPane>();
+		
+		paneList.add(tree1);
+		paneList.add(tree2);
+		paneList.add(tree3);
+		paneList.add(tree4);
+		paneList.add(tree5);
+		paneList.add(flower1);
+		paneList.add(flower2);
+		paneList.add(flower3);
+		paneList.add(flower4);
+		paneList.add(flower5);
+		paneList.add(shrub1);
+		paneList.add(shrub2);
+		paneList.add(shrub3);
+		paneList.add(shrub4);
+		paneList.add(shrub5);
+		
+		
+		
+		
 		
 		
 		for(Text t : texts) {
@@ -306,9 +423,11 @@ public class Recommendations extends Screen{
 	
 	
 	
-	
-	accord.getPanes().addAll(treeTest, flowerTest, shrubTest);
-
+	for(TitledPane tp : paneList) {
+		if(tp != null) {
+			accord.getPanes().add(tp);
+		}
+	}
 	
 	
 	stage = new Stage();
@@ -345,14 +464,13 @@ public class Recommendations extends Screen{
 	 * returns rec - the 2D array of recommended addOns
 	 */
 	public Plant[] getRecFlowers() {
-		Plant[] rec = new Plant[10];
+		Plant[] rec = new Plant[5];
 		int count = 0;
-		for(Plant p : this.c.getModel().getTreeArr()) {
+		for(Plant p : this.c.getModel().getFlowerArr()) {
 			if(p.getColor() == this.c.getModel().getUserPrefColor()) {
 				rec[count] = p;
 				count++;
 			}
-		
 		}
 		
 		for(Plant p : this.c.getModel().getFlowerArr()) {
@@ -380,35 +498,35 @@ public class Recommendations extends Screen{
 	}
 	
 	/**
-	 * Creates a Plant array of trees based on Models treeArray
+	 * 
 	 * @return
 	 */
 	public Plant[] getRecTrees() {
-		Plant[] rec = new Plant[10];
+		Plant[] rec = new Plant[5];
 		int count = 0;
 		for(Plant p : this.c.getModel().getTreeArr()) {
-			if(p.getColor() == this.c.getModel().getUserPrefColor() && count < 10) {
+			if(p.getColor() == this.c.getModel().getUserPrefColor() && count < 5) {
 				rec[count] = p;
 				count++;
 			}
 		}
 		
 		for(Plant p : this.c.getModel().getTreeArr()) {
-			if(p.getBloomTime() == this.c.getModel().getUserPrefSeason() && count < 10) {
+			if(p.getBloomTime() == this.c.getModel().getUserPrefSeason() && count < 5) {
 				rec[count] = p;
 				count++;
 			}
 		}
 		
 		for(Plant p : this.c.getModel().getTreeArr()) {
-			if(p.getSunLightNeed() == this.c.getModel().getUserPrefLight() && count < 10) {
+			if(p.getSunLightNeed() == this.c.getModel().getUserPrefLight() && count < 5) {
 				rec[count] = p;
 				count++;
 			}
 		}
 		
 		for(Plant p : this.c.getModel().getTreeArr()) {
-			if(p.getWaterNeed() == this.c.getModel().getUserPrefWater() && count < 10) {
+			if(p.getWaterNeed() == this.c.getModel().getUserPrefWater() && count < 5) {
 				rec[count] = p;
 				count++;
 			}
@@ -421,11 +539,11 @@ public class Recommendations extends Screen{
 	}
 	
 	/**
-	 * Creates a Plant array of shrubs from Model's shrubArray
+	 * 
 	 * @return
 	 */
 	public Plant[] getRecShrubs() {
-		Plant[] rec = new Plant[10];
+		Plant[] rec = new Plant[5];
 		int count = 0;
 		for(Plant p : this.c.getModel().getShrubArr()) {
 			if(p.getColor() == this.c.getModel().getUserPrefColor()) {
@@ -461,5 +579,5 @@ public class Recommendations extends Screen{
 	}
 
 	
-
+	
 }

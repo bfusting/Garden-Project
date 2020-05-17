@@ -13,16 +13,10 @@ public class Plant extends AddOn{
 	private int sunLightNeed;
 	private double plantHeight;
 	private int locationPref;
-
-
 	
 	private Seasons bloomTime;
-
-
-	
 	private String bloomTimeStr;
 	
-
 	private boolean provideShade;
 	
 	private String waterNeedStr;
@@ -38,15 +32,21 @@ public class Plant extends AddOn{
 	private int size;
 	private String habit;
 	private String soilMoisture;
+	private String animalsFedStr;
 	
 	private String[] ageImages;
-	private String[] seasonImages;
+	//private String[] seasonImages;
 	
 	private String plantType;
-	private String animalsFedStr;
 	
 	private ArrayList<String> animalsFed = new ArrayList();
 	private ArrayList<String> compatiblePlants = new ArrayList();
+	
+	private String waterStr;
+	private String sunStr;
+	
+	private String[] waterStrArr = {"Low","Low/medium","Medium","Medium/High","High"};
+	private String[] sunStrArr = {"Completely Shaded","Mostly Shaded", "Partial Shade", "Sunny / Partial shade", "Completely Sunny"};
 	
 	
 	public Plant(String name, String latinName, String color, Seasons bloomTime,
@@ -92,19 +92,22 @@ public class Plant extends AddOn{
 		this.soilMoisture = soilMoisture;
 		this.animalsFedStr = animalsFedStr;
 		this.seasonsImgArr = seasonsImgArr;
-/*		this.springImgStr = spring;
-		this.summerImgStr = summer;
-		this.autumnImgStr = autumn;
-		this.winterImgStr = winter;
-*/		
+		
+		for (int i=1; i<6; i++) {
+			if (waterNeed == i) {
+				this.waterStr = waterStrArr[i-1];
+			}
+			if (sunLightNeed == i) {
+				this.sunStr = sunStrArr[i-1];
+			}
+		}	
 	}
-
 	/**
 	 * Constructor for the Plant class. Initializes the characteristics and requirements for the plant
 	 * and the arrays of Strings containing the urls for the images of the plant at different ages and in
 	 * different seasons.
 	 */
-	public Plant(String name, int tileSize, String description, String color, int waterNeed, int sunLightNeed, double plantHeight, int locationPref,
+	/*public Plant(String name, int tileSize, String description, String color, int waterNeed, int sunLightNeed, double plantHeight, int locationPref,
 			Seasons bloomTime, boolean provideShade, String[] ageImages, String[] season, String plantType, 
 			ArrayList<String> animalsFed, ArrayList<String> compatiblePlants) {
 		super(name,tileSize,description);
@@ -124,16 +127,7 @@ public class Plant extends AddOn{
 		this.compatiblePlants = compatiblePlants;
 		
 		
-	}
-	
-	
-	
-	public Plant() {
-		
-	}
-	
-
-
+	}*/
 	private static Plant[] addPlant(Plant[] plants, Plant plantToAdd) {
 	    Plant[] newPlants = new Plant[plants.length + 1];
 	    System.arraycopy(plants, 0, newPlants, 0, plants.length);
@@ -141,19 +135,65 @@ public class Plant extends AddOn{
 
 	    return newPlants;
 	}
-	
 /*    public String toString() {
         return "Name: " + name + "\n" + "Latin Name: " + latinName + "\n" + "Plant color: " + color + "\n" + "Bloom Time String: "+ bloomTimeStr+ "\n"+
     "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + "Height: " + size + "\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
         		sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" +"Animals Fed: " + animalsFedStr + "\n"+ "Seasons String Img Array: " + 
         		seasonsImgArr[0]+", " + seasonsImgArr[1]+", " +seasonsImgArr[2]+", " +seasonsImgArr[3]+", " + "\n" + "\n";
     }
-	
 */
+	
+	
+	//Not pretty, I know
 	public String toString() {
-		return "Plant color: " + color + "\n" + 
-    "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + "Height: " + size + "\n" +"Water need: " +waterNeed + "\n" +  "Light Requirements: " +
-        		sunLightNeed + "\n" +"Soil Moisture: " + soilMoisture + "\n" +"Animals Fed: " + animalsFedStr + "\n" + "\n";
+		String returningStr = null;
+		
+		if (this.getSize() == 0) {
+			if (this.getSoilMoisture().contentEquals("null")) {
+				if (this.getAnimalsFedStr().equals("null")) {
+					returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + 
+							"Water need: " +waterStr + "\n" +  "Light Requirements: " +
+			        		sunStr + "\n" ;
+				} else {
+					returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" +"Water need: " +waterStr + "\n" +  "Light Requirements: " +
+			        		sunStr + "\n" +"Animals Fed: " + animalsFedStr + "\n";
+				}
+			}  else if (this.getAnimalsFedStr().equals("null")) {
+				returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" +"Water need: " +waterStr + "\n" +  "Light Requirements: " +
+		        		sunStr + "\n" +"Soil Moisture: " + soilMoisture + "\n" ;
+			}
+		} else if (animalsFedStr.contentEquals("null")){
+			if (soilMoisture.contentEquals("null")) {
+				returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + 
+						"Height: " + size + " ft" +"\n" +"Water need: " +waterStr + "\n" +  "Light Requirements: " +
+		        		sunStr + "\n" ;
+			} else {
+				returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + 
+						"Height: " + size + " ft" + "\n" + "Water need: " +waterStr + "\n" +  "Light Requirements: " +
+						sunStr + "\n" +"Soil Moisture: " + soilMoisture + "\n" ;
+			}
+		} else if (soilMoisture.contentEquals("null")) {
+			returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + 
+					"Height: " + size + " ft"+ "\n" +"Water need: " +waterStr + "\n" +  "Light Requirements: " +
+	        		sunStr + "\n" +"Animals Fed: " + animalsFedStr + "\n";
+		} else {
+			returningStr= "Plant color: " + color + "\n" + "Bloom Time: " + bloomTime + "\n" + "Habit: " + habit + "\n" + 
+				"Height: " + size + " ft"+ "\n" +"Water need: " +waterStr + "\n" +  "Light Requirements: " +
+        		sunStr + "\n" +"Soil Moisture: " + soilMoisture + "\n" +"Animals Fed: " + animalsFedStr + "\n";
+		}
+		return returningStr;
+	}
+	
+	public int getSize() {
+		return size;
+	}
+	
+	public String getSoilMoisture() {
+		return soilMoisture;
+	}
+	
+	public String getAnimalsFedStr() {
+		return animalsFedStr;
 	}
 	
     public String getName() {
@@ -163,7 +203,6 @@ public class Plant extends AddOn{
     public String getLatinName() {
     	return latinName;
     }
-
 
 	/**
 	 * Gets the String describing the color of the plant.
@@ -282,15 +321,10 @@ public class Plant extends AddOn{
 		this.provideShade = provideShade;
 	}
 
-	/**
-	 * Returns the urls for the images of the plant in each season in a String array.
-	 * season
-	 * @return seasonImages an array of Strings containing the urls for the images of the
-	 * plant in each season.
-	 */
-	public String[] getSeasonImages() {
+	
+	/*public String[] getSeasonImages() {
 		return seasonImages;
-	}
+	}*/
 
 	/**
 	 * Sets the String array containing the urls for the images of the plant in each season.
@@ -298,9 +332,9 @@ public class Plant extends AddOn{
 	 * @param seasonImages an array of Strings containing the urls for the images of the
 	 * plant in each season.
 	 */
-	public void setSeasonImages(String[] seasonImages) {
+	/*public void setSeasonImages(String[] seasonImages) {
 		this.seasonImages = seasonImages;
-	}
+	}*/
 	
 	/**
 	 * Returns the urls for the images of the plant at different growth stages in a String array.
@@ -464,6 +498,14 @@ public class Plant extends AddOn{
 	        return a.getBloomTime().compareTo(b.getBloomTime()); 
 	    } 
 	}
+	
+	/**
+	 * Returns the urls for the images of the plant in each season in a String array, in order 
+	 * corresponding to the Seasons enum.
+	 * 
+	 * @return seasonsImgArr an array of Strings containing the urls for the images of the
+	 * plant in each season.
+	 */
     public String[] getSeasonsImgArr() {
 	return seasonsImgArr;
     }
