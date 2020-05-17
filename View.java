@@ -249,6 +249,7 @@ public class View extends Application{
 			break;
 		case "preferencesScreen":
 			currentPrimaryScreen = preferencesScreen;
+			instructionsScreen.setHighlightedSection(1);
 			preferencesScreen.showScreen();
 			break;
 		case "saveGarden":
