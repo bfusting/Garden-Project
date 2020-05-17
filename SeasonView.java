@@ -54,12 +54,6 @@ public class SeasonView extends Screen{
 	// displays current gridpane from designGarden
 	private GridPane seasonGP;
 	
-	// used to change between various seasons by setting various scenes
-	private Scene springView;
-	private Scene summerView;
-	private Scene fallView;
-	private Scene winterView;
-	
 	// Buttons used to swap between seasons
 	private Button springBTN;
 	private Button summerBTN;
@@ -70,6 +64,9 @@ public class SeasonView extends Screen{
 	// used to display stage
 	private Controller c;
 	private Stage stage;
+	
+	// used to show inactive square or not
+	private final boolean showInactiveTiles = false;
 	
 	/**
 	 * Basic default constructor for the SeasonView when trying 
@@ -94,31 +91,13 @@ public class SeasonView extends Screen{
 		root = new AnchorPane();
 		
 		// setting up seasonsGP with controller
-		seasonGP = new GridPane();
-		
-		// setting up the seasonGP with the information from DesignGarden
-		for (int i = 0; i < c.getView().getDesignGardenScreen().getLength(); i++) {
-		     ColumnConstraints column = new ColumnConstraints(c.getView().getDesignGardenScreen()
-		    		 .getColConstraint());
-		     seasonGP.getColumnConstraints().add(column);
-		 }
-		for (int i = 0; i < c.getView().getDesignGardenScreen().getWidth(); i++) {
-		     RowConstraints row = new RowConstraints(c.getView().getDesignGardenScreen()
-		    		 .getRowConstraint());
-		     seasonGP.getRowConstraints().add(row);
-		 }
+		seasonGP = View.drawGrid(c, showInactiveTiles);
 		
 		// Fetching the url of an image test
 		ImageView img = new ImageView("img/dirtPath.jpg");
 		int substringInd = img.getImage().impl_getUrl().indexOf("team-11-3");
 		System.out.println(substringInd);
 		System.out.println(img.getImage().impl_getUrl().substring(substringInd));
-		
-		//creating images in the gridpane via url
-		for(int i=0; i< c.getView().getDesignGardenScreen().getPlot()
-				.getChildren().size();i++) {
-			// fill in body here
-		}//for
 		
 		// dummy variable to see where to place future gridPane
 		Rectangle backdrop = new Rectangle(overlapPoint,bottomAnchorPoint,
@@ -207,9 +186,7 @@ public class SeasonView extends Screen{
 	}
 	
 	public void closeSeasons() {
-		// adding elements back into gridPane
-		c.getView().getDesignGardenScreen().getPlot().getChildren().
-		addAll(seasonGP.getChildren());
+		// set back to original season in here
 		stage.close();
 	}
 }
