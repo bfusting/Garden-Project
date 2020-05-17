@@ -62,10 +62,28 @@ public class Instructions extends Screen {
 		texts.add(chooseTemplateText);
 		
 		
-		Text enteringPreferencesText= new Text("Here is where it will explain how to enter land characteristics and the meaning\nof each one, as well as personal preferences.");
+		Text enteringPreferencesText= new Text("Once a template is selected the Preferences screen will appear. Each preferences screen \nwill have the following in common:\n\n" +
+		"Preferred Color: The color of plants that are most desirable to you\n\n" + "Prefered Bloom Season: The season which your preferred plants will bloom in\n\n"
+				+ "Light Availability: How much light your plants require to live. \n1 means they "
+				+ "need minmal light to live. \n3 is a happy medium of partial shade to live\n5 means the plant needs constant sunlight\n\n"
+				+ "Water Availability: How much water your plants require to live. \n1 means they need minmal water to thrive\n"
+				+ "3 means the plant needs a decent amount of water to live\n"
+				+ "5 means the plant needs copious amounts of water to live\n\n"
+				+ "For each template there may be different preferences which are listed below.\n\n"
+				+ "SQUARE OR CUSTOM:\nWidth: the width of your garden in feet\nLength: the length of your garden\n\n"
+				+ "TRIANGE: The number of rows you would like to have in your triangle plot");
 		texts.add(enteringPreferencesText);
 		
-		Text designModeText = new Text("Here is where it will explain how the add plants to the garden and the other\nfeatures available in editing mode, such as viewing information on the\nselected plant.");
+		Text designModeText = new Text("Once in the GardenDesigner you will be presented the following:\n\n" 
+				+ "SELECTION TABS: Within the tabs are the plants you can drag and drop into your garden\nthese plants are" +
+				"filtered so the ones you prefer are near the front of the selection.\n\n"
+				+ "DRAG N' DROP: From the selection tabs you can click, hold the button down and \nrelease on the garden plot\n"
+				+ "\nTILE EDITORS: Drag and drop these images to alter the condition of a garden tile.\n\t Water Drops: Drop the water drops to make a tile wetter\n"
+				+ "\t Cracked Soil: Drop the cracked soil to make a location drier\n\t Sun: Drop to increase the amount of sunlight a tile is receiving\n\t"
+				+ " Dark Sun: Drop to add shade to a certain tile\n\n" 
+				+ "REMOVING PLANTS: Double click on a dropped plant to remove it from the plot\n\n"
+				+ "CUSTOM GARDEN: When the Custom template is choosen from the Templates section you \ncan click on the soil to activate(solid) "
+				+ "or deactivate(transparent) the tile");
 		texts.add(designModeText);
 		
 		Text alternateVersionsText = new Text("Here is where it will explain how to view, edit and save generated alternate\nversions of an unfinished garden design.");
