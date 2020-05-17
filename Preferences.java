@@ -62,9 +62,6 @@ import javafx.scene.Scene;
  */
 public class Preferences extends Screen{
 	private ComboBox<String> bloomTime;
-	//private ComboBox<String> waterReq;
-	//private ComboBox<String> lightReq;
-	//private ColorPicker color;
 	private ComboBox<String> color;
 	private ComboBox<String> season;
 	private Slider light;
@@ -347,7 +344,6 @@ public class Preferences extends Screen{
 		startCreating.setMinSize(180, 70);
 		startCreating.setFont(View.backNextBTNFont);
 		
-		AnchorPane aPane = new AnchorPane();
 		color = new ComboBox<String>();
 		color.setEditable(false);
 		color.setMinSize(150, 25);

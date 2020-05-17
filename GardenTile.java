@@ -298,6 +298,7 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	 */
 	public void setPlant(Plant p) {
 		this.plant = p;
+		isEmpty = false;
 	}
 
 	/**

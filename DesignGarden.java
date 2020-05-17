@@ -87,23 +87,10 @@ public class DesignGarden extends Screen{
 	private Button save;
 	private Button finalView;
 	
-	//private Button indexLeft;
-	//private Button indexRight;
-	
-	private int seasonIndexer;
-	private Text plantInfo;
-	private ArrayList<Image> imagesUsed;
-	
-	private Button plantSelectRight;
-	private Button plantSelectLeft;
-	
 	private Scene designGardenScene;
 	
-	// Why is this there
-	private GardenPlot gardenPlot;
 	private GridPane plot;
 	
-	private ImageView[][] soil;
 	
 	GridPane plantsGP = new GridPane();
 	GridPane treesGP = new GridPane();
@@ -142,6 +129,7 @@ public class DesignGarden extends Screen{
 	private boolean hoverEditTile = false;
 	
 	private boolean shown = false;
+	private boolean customMode = false;
 	
 	private String[] flower;
 	private String[] tree;
@@ -277,6 +265,10 @@ public class DesignGarden extends Screen{
 			drawScene();
 			shown = true;
 		}
+		if (customMode) {
+			showCustomMode();
+		}
+		
 		theStage.setTitle("Design Garden");
 		theStage.setScene(designGardenScene);
 		theStage.show();
@@ -348,7 +340,7 @@ public class DesignGarden extends Screen{
 		System.out.println("drawing scene");
 		length = c.getWidthFromModel();
 		width = c.getLengthFromModel();
-		gardenPlot = c.getModel().getUserPlot();
+		//gardenPlot = c.getModel().getUserPlot();
 		Insets selectionGPInsets = new Insets(7.5);
 		
 		// setting up tileEditingGP
@@ -379,73 +371,21 @@ public class DesignGarden extends Screen{
 // EventHandler to listen to which row, column its on
 tileEditingGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
 
-// setting up paths images
-/*
-String pathImgs[] = {"img/dirtPath.jpg","img/stonePath.jpg","img/brickPath.jpg"};
-for(int i=0; i<selectionSize/2;i++) {
-	ImageView imv = new ImageView(pathImgs[i]);
-	imv.setPreserveRatio(true);
-	imv.setFitHeight(selectionGPsize);
-	imv.setFitWidth(selectionGPsize);
-	imv.setOnDragDetected(c.getStartDrag());
-	pathsArr.add(imv);
-	//pathsGP.add(imv, i, 0);
-}
-*/
 
-// setting up backupDrop with 6 images since that is the size of each gridPane
-/*for(int i=0; i<flower.length;i++) {
-	ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
-	imv1.setPreserveRatio(true);
-	imv1.setFitHeight(100);
-	imv1.setFitWidth(100);
-	backdropColor.add(imv1);
-}*/
+
+
 
 //root AnchorPane
 //AnchorPane root = new AnchorPane();
 root = new AnchorPane();
 
-/*indexLeft = new Button("<<<");
-indexRight = new Button(">>>");
 
-AnchorPane.setLeftAnchor(indexLeft, 10.0);
-AnchorPane.setLeftAnchor(indexRight, 810.00);
-AnchorPane.setTopAnchor(indexLeft, 120.0);
-AnchorPane.setTopAnchor(indexRight,120.0);*/
 
 //Tab Pane at top of screen to select plants/trees/paths/other
 selectGardenType = new TabPane();
 selectGardenType.setMinSize(selectionGPsize*8,150);
 selectGardenType.setMaxSize(selectionGPsize*8, 150);
 
-
-//creating GridPanes for tab content
-/*		
-Label p1 = new Label("Milkweed		");
-plantsGP.add(p1,0,1);
-Label p2 = new Label("Plant2	");
-plantsGP.add(p2,1,1);
-Label p3 = new Label("Plant3	");
-plantsGP.add(p3,2,1);
-
-Label t1 = new Label("Maple		");
-Label t2 = new Label("Birch		");
-treesGP.add(t1,0,1);
-treesGP.add(t2,1,1);
-
-Label path1 = new Label("Stone path		");
-Label path2 = new Label("Gravel path		");
-pathsGP.add(path1, 0, 1);
-pathsGP.add(path2, 1, 1);
-
-Label other1 = new Label("Rock 		");
-Label other2 = new Label("Tiki hut		");
-Label other3 = new Label("She-shed		");
-otherGP.add(other1, 0, 1);
-otherGP.add(other2, 1, 1);
-otherGP.add(other3, 2, 1);
-*/	
 
 plants = new Tab("Plants");
 plants.setClosable(false);
@@ -491,15 +431,6 @@ plantsGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPla
 plantsGP.setGridLinesVisible(true);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*ArrayList<ImageView> backdropColor2 = new ArrayList<ImageView>();
-for(int i=0; i<selectionSize;i++) {
-	ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
-	imv1.setPreserveRatio(true);
-	imv1.setFitHeight(100);
-	imv1.setFitWidth(100);
-	backdropColor2.add(imv1);
-}*/
 
 shrubs = new Tab("Shrubs");
 //setting up the Plant selection gridPane
@@ -550,14 +481,6 @@ treesSP.setHbarPolicy(ScrollBarPolicy.ALWAYS);
 treesSP.setContent(treesGP);
 trees.setContent(treesSP);
 
-/*ArrayList<ImageView> backdropColor4 = new ArrayList<ImageView>();
-for(int i=0; i<selectionSize;i++) {
-	ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
-	imv1.setPreserveRatio(true);
-	imv1.setFitHeight(100);
-	imv1.setFitWidth(100);
-	backdropColor4.add(imv1);
-}*/
 
 // max size of items
 treesGP.setMaxSize(selectionGPsize, selectionGPsize);
@@ -602,14 +525,7 @@ pathwaysSP.setHbarPolicy(ScrollBarPolicy.ALWAYS);
 pathwaysSP.setContent(pathsGP);
 pathways.setContent(pathwaysSP);
 
-/*ArrayList<ImageView> backdropColor5 = new ArrayList<ImageView>();
-for(int i=0; i<selectionSize;i++) {
-	ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
-	imv1.setPreserveRatio(true);
-	imv1.setFitHeight(100);
-	imv1.setFitWidth(100);
-	backdropColor5.add(imv1);
-}*/
+
 
 // max size of items
 pathsGP.setMaxSize(selectionGPsize, selectionGPsize);
@@ -638,18 +554,7 @@ pathsGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlan
 
 pathsGP.setGridLinesVisible(true);
 
-// setting up paths Arraylist of images to be displayed
-/*ArrayList<ImageView> pathsArr = new ArrayList<ImageView>();
-String pathImgs[] = {"img/dirtPath.jpg","img/stonePath.jpg","img/brickPath.jpg"};
-for(int i=0; i<selectionSize/2;i++) {
-	ImageView imv = new ImageView(pathImgs[i]);
-	imv.setPreserveRatio(false);
-	imv.setFitHeight(selectionGPsize*.9);
-	imv.setFitWidth(selectionGPsize*.9);
-	imv.setOnDragDetected(c.getStartDrag());
-	pathsArr.add(imv);
-	pathsGP.add(imv, i, 0);
-}*/
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -661,14 +566,7 @@ otherSP.setHbarPolicy(ScrollBarPolicy.ALWAYS);
 otherSP.setContent(otherGP);
 otherOptions.setContent(otherSP);
 
-/*ArrayList<ImageView> backdropColor6 = new ArrayList<ImageView>();
-for(int i=0; i<selectionSize;i++) {
-	ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
-	imv1.setPreserveRatio(true);
-	imv1.setFitHeight(100);
-	imv1.setFitWidth(100);
-	backdropColor6.add(imv1);
-}*/
+
 
 // max size of items
 otherGP.setMaxSize(selectionGPsize, selectionGPsize);
@@ -698,17 +596,6 @@ otherGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlan
 
 otherGP.setGridLinesVisible(true);
 
-// setting up paths Arraylist of images to be displayed
-/*String otherImgs[] = {"img/rock.jpg","img/tikihut.jpg","img/sheshed.jpg",
-		"img/flamingo.jpg","img/fountain.jpg"};
-for(int i=0; i<selectionSize-1;i++) {
-	ImageView imv = new ImageView(otherImgs[i]);
-	imv.setPreserveRatio(false);
-	imv.setFitHeight(selectionGPsize*.9);
-	imv.setFitWidth(selectionGPsize*.9);
-	imv.setOnDragDetected(c.getStartDrag());
-	otherGP.add(imv, i, 0);
-}*/
 
 // Done setting up tabs
 
@@ -757,7 +644,7 @@ for (ImageView iv : pSelectionArr) {
 plants.setContent(plantTP);
 */
 
-ImageView ivt1 = new ImageView();
+/*ImageView ivt1 = new ImageView();
 Image imt1 = new Image(getClass().getResourceAsStream("/BlackGumTreecopy.png"));
 
 ImageView ivt2 = new ImageView();
@@ -813,7 +700,7 @@ for (int i = (0 + otherArrInd); i<(5+otherArrInd); i++) {
 //otherTP.getChildren().addAll(new Label("Rock"), new Label("Tiki hut"), new Label("She-shed"), new Label("Bright pink flamingo"), new Label("Fountain"), new Label("General Building"));
 
 //otherOptions.setContent(otherTP);
-
+*/
 selectGardenType.getTabs().addAll( plants, trees, shrubs, pathways, otherOptions);
 
 AnchorPane.setTopAnchor(selectGardenType, 40.0);
@@ -944,7 +831,7 @@ root.setLeftAnchor(plot, 40.0);
 
 //root.getChildren().addAll(apButtons, selectGardenType, plot, indexLeft, indexRight);
 root.getChildren().addAll(apButtons, selectGardenType, plot);
-designGardenScene = new Scene(root,1200,800);
+designGardenScene = new Scene(root,View.primarySceneWidth,View.primarySceneHeight);
 
 
 
@@ -1166,7 +1053,8 @@ designGardenScene = new Scene(root,1200,800);
 	}*/
 	
 	/**
-	 * Sets the arrays of image names for each plant tab with the given String arrays.
+	 * Sets the arrays of image names for each plant tab with the given String arrays and sets custom mode depending on whether
+	 * user has chosen the 'custom' template.
 	 * @param flower the String[] containing the names of the images for Plants of habit 'Flower' in the user chosen season.
 	 * @param tree the String[] containing the names of the images for Plants of habit 'Tree' in the user chosen season.
 	 * @param shrub the String[] containing the names of the images for Plants of habit 'Shrub' in the user chosen season.
@@ -1177,6 +1065,16 @@ designGardenScene = new Scene(root,1200,800);
 		this.shrub = shrub;
 		this.path = path;
 		this.other = other;
+		
+		customMode = c.getTemplateFromModel().toLowerCase().equals("custom");
+	}
+	
+	public void showCustomMode() {
+		plot.getChildren().forEach(cell -> cell.setOnMouseClicked(c.getGardenTileClicked()));
+		
+		
+		
+		
 	}
 	
 }

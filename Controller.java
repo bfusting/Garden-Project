@@ -1365,6 +1365,32 @@ public class Controller{
 		//System.out.println("Flowers:");
 		//System.out.println(flowers.toString());
 	}
+    
+    /**
+     * Returns an EventHandler to bind to the MouseEvent listener for the tiles on the DesignGarden Screen.
+     * @return An EventHandler to bind to the listeners for the tiles in the garden grid.
+     */
+    public EventHandler<MouseEvent> getGardenTileClicked() {
+    	return event -> gardenTileClicked((MouseEvent)event);
+    }
+    
+    
+    public void gardenTileClicked(MouseEvent event) {
+    	ImageView n = (ImageView) event.getSource();
+    	int rowIdx = GridPane.getRowIndex(n);
+    	int colIdx = GridPane.getColumnIndex(n);
+    	GardenTile clickedTile = model.getUserPlot().getLayout()[rowIdx][colIdx];
+    	
+    	if (clickedTile.getIsActive() && clickedTile.isEmpty()) {
+    		clickedTile.setIsActive(false);
+    		view.setActiveImg(n, false);
+    		//do something to make it fade
+    	} else if (!clickedTile.getIsActive() && clickedTile.isEmpty()) {
+    		clickedTile.setIsActive(true);
+    		view.setActiveImg(n, true);
+    	} 
+    
+    }
 }//Controller
 
 
