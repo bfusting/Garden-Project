@@ -54,12 +54,6 @@ public class SeasonView extends Screen{
 	// displays current gridpane from designGarden
 	private GridPane seasonGP;
 	
-	// used to change between various seasons by setting various scenes
-	private Scene springView;
-	private Scene summerView;
-	private Scene fallView;
-	private Scene winterView;
-	
 	// Buttons used to swap between seasons
 	private Button springBTN;
 	private Button summerBTN;
@@ -71,6 +65,11 @@ public class SeasonView extends Screen{
 	private Controller c;
 	private Stage stage;
 	
+	// used to show inactive square or not
+	private final boolean showInactiveTiles = false;
+	
+	// holds the season when SeasonView starts
+	private Seasons startingSeason;
 	/**
 	 * Basic default constructor for the SeasonView when trying 
 	 * to be created by any other class
@@ -94,31 +93,10 @@ public class SeasonView extends Screen{
 		root = new AnchorPane();
 		
 		// setting up seasonsGP with controller
-		seasonGP = new GridPane();
+		seasonGP = View.drawGrid(c, showInactiveTiles);
 		
-		// setting up the seasonGP with the information from DesignGarden
-		for (int i = 0; i < c.getView().getDesignGardenScreen().getLength(); i++) {
-		     ColumnConstraints column = new ColumnConstraints(c.getView().getDesignGardenScreen()
-		    		 .getColConstraint());
-		     seasonGP.getColumnConstraints().add(column);
-		 }
-		for (int i = 0; i < c.getView().getDesignGardenScreen().getWidth(); i++) {
-		     RowConstraints row = new RowConstraints(c.getView().getDesignGardenScreen()
-		    		 .getRowConstraint());
-		     seasonGP.getRowConstraints().add(row);
-		 }
-		
-		// Fetching the url of an image test
-		ImageView img = new ImageView("img/dirtPath.jpg");
-		int substringInd = img.getImage().impl_getUrl().indexOf("team-11-3");
-		System.out.println(substringInd);
-		System.out.println(img.getImage().impl_getUrl().substring(substringInd));
-		
-		//creating images in the gridpane via url
-		for(int i=0; i< c.getView().getDesignGardenScreen().getPlot()
-				.getChildren().size();i++) {
-			// fill in body here
-		}//for
+		//setting Startingseason to the one in Model
+		startingSeason = c.getModel().getUserPrefSeason();
 		
 		// dummy variable to see where to place future gridPane
 		Rectangle backdrop = new Rectangle(overlapPoint,bottomAnchorPoint,
@@ -132,9 +110,6 @@ public class SeasonView extends Screen{
 		root.getChildren().add(backdrop);
 		
 		// overlaying seasonsGP onto backdrop rectangle
-		seasonGP.setGridLinesVisible(true);
-		seasonGP.getChildren().addAll(c.getView().getDesignGardenScreen()
-				.getPlot().getChildren());
 		root.setLeftAnchor(seasonGP,overlapPoint);
 		root.getChildren().add(seasonGP);
 		
@@ -146,6 +121,10 @@ public class SeasonView extends Screen{
 		closeBTN = new Button("Close SeasonView");
 		
 		// Binding buttons to event handlers (Event handler for each season)
+		springBTN.setOnMouseClicked(c.getClickOnViewSpring());
+		summerBTN.setOnMouseClicked(c.getClickOnViewSummer());
+		fallBTN.setOnMouseClicked(c.getClickOnViewFall());
+		winterBTN.setOnMouseClicked(c.getClickOnViewWinter());
 		closeBTN.setOnMouseClicked(c.getClickOnCloseSeasons());
 		
 		// Anchoring in AnchorPane at the bottom via for loop
@@ -182,34 +161,30 @@ public class SeasonView extends Screen{
 		stage.close();
 	}
 	
-	public void setToSpring() {
-		stage.setTitle("Spring");
-		// change color of plants using 
-		// use color adjust to possible alter plants colors
-	}
-	
-	public void setToSummer() {
-		stage.setTitle("Summer");
-		// change color of plants using 
-		// use color adjust to possible alter plants colors
-	}
-	
-	public void setToFall() {
-		stage.setTitle("Fall");
-		// change color of plants using 
-		// use color adjust to possible alter plants colors
-	}
-	
-	public void setToWinter() {
-		stage.setTitle("Winter");
-		// change color of plants using 
-		// use color adjust to possible alter plants colors
-	}
-	
 	public void closeSeasons() {
-		// adding elements back into gridPane
-		c.getView().getDesignGardenScreen().getPlot().getChildren().
-		addAll(seasonGP.getChildren());
+		// set back to original season in here
+		c.getModel().setUserPrefSeason(startingSeason);
+		System.out.println("Closing Stage: " + c.getModel().getUserPrefSeason());
 		stage.close();
+	}
+	
+	public void setTitleToSpring() {
+		stage.setTitle("Spring");
+	}
+
+	public void setTitleToSummer() {
+		stage.setTitle("Summer");
+	}
+	
+	public void setTitleToFall() {
+		stage.setTitle("Fall");
+	}
+	
+	public void setTitleToWinter() {
+		stage.setTitle("Winter");
+	}
+	
+	public void setSeasonGP(GridPane newGP) {
+		seasonGP = newGP;
 	}
 }

@@ -1461,6 +1461,116 @@ public class Controller{
     		tile.setEmpty();
     	}
     }
+    
+    /**
+     * Takes in an mouseEvent for a button so when the button of ViewSpring
+     * is clicked sets the title, sets the season In Model and then redraws
+     * the gridPane in seasonView.
+     * 
+     * @see SeasonView#setTitleToSpring()
+     * @see SeasonView#setSeasonGP(GridPane)
+     * @see SeasonView
+     */
+    public void clickOnViewSpring(MouseEvent event) {
+    	view.getSeasonViewScreen().setTitleToSpring();
+    	model.setUserPrefSeason(Seasons.SPRING);
+    	if(DEBUG) {System.out.println("Current Season: " + model.getUserPrefSeason());}
+    	view.getSeasonViewScreen().setSeasonGP(view.drawGrid(this, false));
+    }
+    
+    /**
+     * Getter for clickOnViewSpring method in controller
+     * 
+     * @return MouseEvent handler for viewSpring button in SeasonView
+     * @see Controller#clickOnViewSpring(MouseEvent)
+     */
+    public EventHandler<MouseEvent> getClickOnViewSpring(){
+    	return event -> clickOnViewSpring((MouseEvent)event);
+    }
+    
+    /**
+     * Takes in an mouseEvent for a button so when the button of ViewSummer
+     * is clicked sets the title, sets the season In Model and then redraws
+     * the gridPane in seasonView.
+     * 
+     * @param event a MouseEvent when clicking on a button
+     * 
+     * @see SeasonView#setTitleToSummer()
+     * @see SeasonView#setSeasonGP(GridPane)
+     * @see SeasonView
+     */
+    public void clickOnViewSummer(MouseEvent event) {
+    	view.getSeasonViewScreen().setTitleToSummer();
+    	model.setUserPrefSeason(Seasons.SUMMER);
+    	if(DEBUG) {System.out.println("Current Season: " + model.getUserPrefSeason());}
+    	view.getSeasonViewScreen().setSeasonGP(view.drawGrid(this, false));
+    }
+    
+    /**
+     * Getter for clickOnViewSummer method in controller
+     * 
+     * @return MouseEvent handler for viewSummer button in SeasonView
+     * @see Controller#clickOnViewSummer(MouseEvent)
+     */
+    public EventHandler<MouseEvent> getClickOnViewSummer(){
+    	return event -> clickOnViewSummer((MouseEvent)event);
+    }
+    
+    /**
+     * Takes in an mouseEvent for a button so when the button of ViewFall
+     * is clicked sets the title, sets the season In Model and then redraws
+     * the gridPane in seasonView.
+     * 
+     * @param event a MouseEvent when clicking on a button
+     * 
+     * @see SeasonView#setTitleToFall()
+     * @see SeasonView#setSeasonGP(GridPane)
+     * @see SeasonView
+     */
+    public void clickOnViewFall(MouseEvent event) {
+    	view.getSeasonViewScreen().setTitleToFall();
+    	model.setUserPrefSeason(Seasons.AUTUMN);
+    	if(DEBUG) {System.out.println("Current Season: " + model.getUserPrefSeason());}
+    	view.getSeasonViewScreen().setSeasonGP(view.drawGrid(this, false));
+    }
+    
+    /**
+     * Getter for clickOnViewFall method in controller
+     * 
+     * @return MouseEvent handler for viewFall button in SeasonView
+     * @see Controller#clickOnViewFall(MouseEvent)
+     */
+    public EventHandler<MouseEvent> getClickOnViewFall(){
+    	return event -> clickOnViewFall((MouseEvent)event);
+    }
+    
+    /**
+     * Takes in an mouseEvent for a button so when the button of ViewWinter
+     * is clicked sets the title, sets the season In Model and then redraws
+     * the gridPane in seasonView.
+     * 
+     * @param event a MouseEvent when clicking on a button
+     * 
+     * @see SeasonView#setTitleToWinter()
+     * @see SeasonView#setSeasonGP(GridPane)
+     * @see SeasonView
+     */
+    public void clickOnViewWinter(MouseEvent event) {
+    	view.getSeasonViewScreen().setTitleToWinter();
+    	model.setUserPrefSeason(Seasons.WINTER);
+    	if(DEBUG) {System.out.println("Current Season: " + model.getUserPrefSeason());}
+    	view.getSeasonViewScreen().setSeasonGP(view.drawGrid(this, false));
+    }
+    
+    /**
+     * Getter for clickOnViewWinter method in controller
+     * 
+     * @return MouseEvent handler for viewWinter button in SeasonView
+     * @see Controller#clickOnViewWinter(MouseEvent)
+     */
+    public EventHandler<MouseEvent> getClickOnViewWinter(){
+    	return event -> clickOnViewWinter((MouseEvent)event);
+    }
 }//Controller
 
 
