@@ -242,14 +242,14 @@ public class Recommendations extends Screen{
 		TitledPane treeTest = null;
 		TitledPane shrubTest = null;
 		TitledPane flowerTest = null;
-		TitledPane underGrowthTest = null;
+		
 		
 		
 		
 		String trees = "";
 		String shrubs = "";
 		String flowers = "";
-		String underGrowths = "";
+		
 		
 		try {
 			
@@ -270,6 +270,7 @@ public class Recommendations extends Screen{
 				if(getRecShrubs()[i] != null) {
 					shrubs = shrubs + getRecShrubs()[i].getName() + "\n";
 				}
+			
 			}
 			
 			shrubTest = new TitledPane("Shrubs", new Text(shrubs));
@@ -291,18 +292,7 @@ public class Recommendations extends Screen{
 			flowerTest = new TitledPane("Flowers", new Text("No Recommendations"));
 		}
 		
-		try {
-			for(int i = 0; i < getRecUndergrowth().length; i++) {
-				if(getRecUndergrowth()[i] != null) {
-					underGrowths = underGrowths + getRecUndergrowth()[i].getName() + "\n";
-				}
-			}
-			
-			underGrowthTest = new TitledPane("Undergrowth", new Text(underGrowths));
-		}
-		catch(Exception e) {
-			underGrowthTest = new TitledPane("Undergrowth", new Text("No Recommendations"));
-		}
+		
 		for(Text t : texts) {
 			AnchorPane.setLeftAnchor(t, 5.0);
 			AnchorPane.setRightAnchor(t, 5.0);
@@ -317,7 +307,7 @@ public class Recommendations extends Screen{
 	
 	
 	
-	accord.getPanes().addAll(treeTest, flowerTest, shrubTest, underGrowthTest);
+	accord.getPanes().addAll(treeTest, flowerTest, shrubTest);
 
 	
 	
@@ -357,11 +347,12 @@ public class Recommendations extends Screen{
 	public Plant[] getRecFlowers() {
 		Plant[] rec = new Plant[10];
 		int count = 0;
-		for(Plant p : this.c.getModel().getFlowerArr()) {
+		for(Plant p : this.c.getModel().getTreeArr()) {
 			if(p.getColor() == this.c.getModel().getUserPrefColor()) {
 				rec[count] = p;
 				count++;
 			}
+		
 		}
 		
 		for(Plant p : this.c.getModel().getFlowerArr()) {
@@ -389,7 +380,7 @@ public class Recommendations extends Screen{
 	}
 	
 	/**
-	 * 
+	 * Creates a Plant array of trees based on Models treeArray
 	 * @return
 	 */
 	public Plant[] getRecTrees() {
@@ -430,7 +421,7 @@ public class Recommendations extends Screen{
 	}
 	
 	/**
-	 * 
+	 * Creates a Plant array of shrubs from Model's shrubArray
 	 * @return
 	 */
 	public Plant[] getRecShrubs() {
@@ -470,43 +461,5 @@ public class Recommendations extends Screen{
 	}
 
 	
-	/**
-	 * 
-	 * @return
-	 */
-	public Plant[] getRecUndergrowth() {
-		Plant[] rec = new Plant[10];
-		int count = 0;
-		for(Plant p : this.c.getModel().getUnderGrowth()) {
-			if(p.getColor() == this.c.getModel().getUserPrefColor()) {
-				rec[count] = p;
-				count++;
-			}
-		}
-		
-		for(Plant p : this.c.getModel().getUnderGrowth()) {
-			if(p.getBloomTime() == this.c.getModel().getUserPrefSeason()) {
-				rec[count] = p;
-				count++;
-			}
-		}
-		
-		for(Plant p : this.c.getModel().getUnderGrowth()) {
-			if(p.getSunLightNeed() == this.c.getModel().getUserPrefLight()) {
-				rec[count] = p;
-				count++;
-			}
-		}
-		
-		for(Plant p : this.c.getModel().getUnderGrowth()) {
-			if(p.getWaterNeed() == this.c.getModel().getUserPrefWater()) {
-				rec[count] = p;
-				count++;
-			}
-		}
-		
-		
-		return rec;
-		
-	}
+
 }

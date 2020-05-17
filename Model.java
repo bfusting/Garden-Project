@@ -246,7 +246,7 @@ public class Model implements Serializable{
 		
 
 		
-		// holds all scenery items like dirt to branchs
+		// holds all scenery items like dirt to branch's
 		sceneryArr = new ArrayList<AddOn>();
 		bench = new AddOn("Bench",1,"A bench to sit on....duh");
 		sceneryArr.add(bench);
