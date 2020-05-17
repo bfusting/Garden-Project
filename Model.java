@@ -458,15 +458,15 @@ public class Model implements Serializable{
 		// of shrubArr
 		setShrubArr(filterByType(allPlants,shrub));
 		setShrubArr(filterByColor(shrubArr,userPrefColor));
-		//shrubArr.addAll(filterByBloomTime(shrubArr,userPrefSeason));
-		//shrubArr.addAll(filterByLight(shrubArr,userPrefLight));
-		//shrubArr.addAll(filterByWater(shrubArr,userPrefWater));
+		setShrubArr(filterByBloomTime(shrubArr,userPrefSeason));
+		setShrubArr(filterByLight(shrubArr,userPrefLight));
+		setShrubArr(filterByWater(shrubArr,userPrefWater));
 		
 		// Adding rest of the unsorted lists back into shrubArr
-		shrubArr.addAll(otherColors);
-		shrubArr.addAll(otherSeasons);
-		shrubArr.addAll(otherLight);
 		shrubArr.addAll(otherWater);
+		shrubArr.addAll(otherLight);
+		shrubArr.addAll(otherSeasons);
+		shrubArr.addAll(otherColors);
 		
 		// clearing other arrays
 		clearOthers();
@@ -474,16 +474,16 @@ public class Model implements Serializable{
 		// sets up the array by filter to appropriate type then filtering to all of
 		// of treeArr
 		setTreeArr(filterByType(allPlants,tree));
-		treeArr.addAll(filterByColor(treeArr,userPrefColor));
-		treeArr.addAll(filterByBloomTime(treeArr,userPrefSeason));
-		treeArr.addAll(filterByLight(treeArr,userPrefLight));
-		treeArr.addAll(filterByWater(treeArr,userPrefWater));
+		setTreeArr(filterByColor(treeArr,userPrefColor));
+		setTreeArr(filterByBloomTime(treeArr,userPrefSeason));
+		setTreeArr(filterByLight(treeArr,userPrefLight));
+		setTreeArr(filterByWater(treeArr,userPrefWater));
 		
 		// Adding rest of the unsorted lists back into treeArr
-		treeArr.addAll(otherColors);
-		treeArr.addAll(otherSeasons);
-		treeArr.addAll(otherLight);
 		treeArr.addAll(otherWater);
+		treeArr.addAll(otherLight);
+		treeArr.addAll(otherSeasons);
+		treeArr.addAll(otherColors);
 		
 		// clearing other arrays
 		clearOthers();
