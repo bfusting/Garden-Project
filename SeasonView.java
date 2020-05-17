@@ -130,6 +130,7 @@ public class SeasonView extends Screen{
 		springBTN.setOnMouseClicked(c.getClickOnViewSpring());
 		summerBTN.setOnMouseClicked(c.getClickOnViewSummer());
 		fallBTN.setOnMouseClicked(c.getClickOnViewFall());
+		winterBTN.setOnMouseClicked(c.getClickOnViewWinter());
 		closeBTN.setOnMouseClicked(c.getClickOnCloseSeasons());
 		
 		// Anchoring in AnchorPane at the bottom via for loop
