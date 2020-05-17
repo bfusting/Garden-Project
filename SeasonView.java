@@ -98,12 +98,6 @@ public class SeasonView extends Screen{
 		//setting Startingseason to the one in Model
 		startingSeason = c.getModel().getUserPrefSeason();
 		
-		// Fetching the url of an image test
-		ImageView img = new ImageView("img/dirtPath.jpg");
-		int substringInd = img.getImage().impl_getUrl().indexOf("team-11-3");
-		System.out.println(substringInd);
-		System.out.println(img.getImage().impl_getUrl().substring(substringInd));
-		
 		// dummy variable to see where to place future gridPane
 		Rectangle backdrop = new Rectangle(overlapPoint,bottomAnchorPoint,
 				overlapPoint*5,bottomAnchorPoint*5);
@@ -169,6 +163,8 @@ public class SeasonView extends Screen{
 	
 	public void closeSeasons() {
 		// set back to original season in here
+		c.getModel().setUserPrefSeason(startingSeason);
+		System.out.println("Closing Stage: " + c.getModel().getUserPrefSeason());
 		stage.close();
 	}
 	
