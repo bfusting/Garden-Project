@@ -51,7 +51,9 @@ public class Instructions extends Screen {
 	public Instructions() {
 		ArrayList<Text> texts = new ArrayList<Text>();
 		
-		Text chooseTemplateText = new Text("Here is where it will explain how to choose a template. You can choose a \npreset rectangular, square or circular plot or draw the parameters yourself.");
+		Text chooseTemplateText = new Text("To choose a template, click on a shape, then click 'To Preferences' to enter\nmore information about the garden, including the template dimensions if\nselecting a Square, Triangle or Custom plot."
+				+ "\n\nSQUARE: For a rectangular or square grid with maximum dimensions of 6x9.\n\nCIRCLE: For a circular garden in a 5x5 grid. \n\nTRIANGLE: For a triangular grid with up to 4 rows."
+				+ "\n\nCUSTOM: For a rectangular or square grid with maximum dimensions of 6x9,\nto be drawn into custom shapes when in Design Mode.See 'Editing Your\nGarden Design' for more details on drawing a custom shape.");
 		texts.add(chooseTemplateText);
 		
 		
@@ -93,7 +95,7 @@ public class Instructions extends Screen {
 		root.setBackground(new Background(new BackgroundFill(Color.DARKOLIVEGREEN,CornerRadii.EMPTY,Insets.EMPTY)));
 		
 		
-		TitledPane choosingTemplatePane = new TitledPane("Choosing a Template or Drawing a Custom Plot",chooseTemplateAP);
+		TitledPane choosingTemplatePane = new TitledPane("Choosing a Template",chooseTemplateAP);
 		TitledPane enteringPreferencesPane = new TitledPane("Entering Garden Characteristics and Preferences", enterPrefsAP);
 		TitledPane designModePane = new TitledPane("Editing Your Garden Design",designModeAP);
 		TitledPane alternateVersionsPane = new TitledPane("Saving and Editing Alternate Versions",altVersionsAP);
@@ -101,8 +103,6 @@ public class Instructions extends Screen {
 		TitledPane loadingGardenPane = new TitledPane("Loading an Existing Garden Design", loadGardenAP);
 		
 		accord.getPanes().addAll(choosingTemplatePane,enteringPreferencesPane,designModePane,alternateVersionsPane,infoTipsPane,loadingGardenPane);
-		
-		
 		
 		
 		instructionsStage = new Stage();
@@ -124,7 +124,9 @@ public class Instructions extends Screen {
 		instructionsStage.close();
 	}
 	
-	
+	public void setHighlightedSection(String currentScreen) {
+		
+	}
 	
 	
 	
