@@ -68,12 +68,15 @@ public class SeasonView extends Screen{
 	// used to show inactive square or not
 	private final boolean showInactiveTiles = false;
 	
+	// holds the season when SeasonView starts
+	private Seasons startingSeason;
 	/**
 	 * Basic default constructor for the SeasonView when trying 
 	 * to be created by any other class
 	 */
 	public SeasonView(Controller controller) {
 		c = controller;
+		startingSeason = c.getModel().getUserPrefSeason();
 	}
 
 	/**
@@ -111,9 +114,6 @@ public class SeasonView extends Screen{
 		root.getChildren().add(backdrop);
 		
 		// overlaying seasonsGP onto backdrop rectangle
-		seasonGP.setGridLinesVisible(true);
-		seasonGP.getChildren().addAll(c.getView().getDesignGardenScreen()
-				.getPlot().getChildren());
 		root.setLeftAnchor(seasonGP,overlapPoint);
 		root.getChildren().add(seasonGP);
 		
