@@ -83,13 +83,18 @@ public class Instructions extends Screen {
 				+ " Dark Sun: Drop to add shade to a certain tile\n\n" 
 				+ "REMOVING PLANTS: Double click on a dropped plant to remove it from the plot\n\n"
 				+ "CUSTOM GARDEN: When the Custom template is choosen from the Templates section you \ncan click on the soil to activate(solid) "
-				+ "or deactivate(transparent) the tile");
+				+ "or deactivate(transparent) the tile. When a tile is deactivated you cannot drop a plant onto the area");
 		texts.add(designModeText);
 		
 		Text alternateVersionsText = new Text("Here is where it will explain how to view, edit and save generated alternate\nversions of an unfinished garden design.");
 		texts.add(alternateVersionsText);
 		
-		Text infoTipsText = new Text("Here is where it will explain where to find info and maintenance tips on the\nplants currently in the garden design.");
+		Text infoTipsText = new Text("INFO & TIPS: When dragging and dropping plants into the garden\n"
+				+ "the Info and Tips section will be updated as the user adds or removes plants\nfrom their garden. \n\nEach tab follows this format:\n"
+				+ "\tTitle: Common Name - Latin Name\n\tPlant Color: Color varities the plant comes in\n\tBloom Time: Season the plant blooms in\n\t"
+				+ "Habit: How the plant is catergorized (Flower,Tree,Shrub)\n\tWater need: How much water the plant needs\n\tLight Requirements: How much light the plnat needs to live\n\n"
+				+ "RECOMMENDATIONS: Based upon the preferences inputted each tab follows the following format:\n\t"
+				+ "Title: Common Name\n\tPicture: Picture of the plant\n\tLatin Name: Latin name of the plant\n\tColor: Colors the plant comes in\n\tBloom Time: The season the plant blooms in if any");
 		texts.add(infoTipsText);
 		
 		Text loadGardenText = new Text("Here is where it will explain how to load in an exisiting Garden and how to\nsave a design after editing.");
