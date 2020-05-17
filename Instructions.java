@@ -9,6 +9,8 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -41,7 +43,9 @@ public class Instructions extends Screen {
 	private Stage instructionsStage;
 	private final int dimensions = 500;
 	private final double distFromSide = 5.0;
-	
+	private ArrayList<Text> texts;
+	private ArrayList<TitledPane> panes;
+	private int fontSize = 12;
 	
 	
 	/**
@@ -49,7 +53,8 @@ public class Instructions extends Screen {
 	 * anchors them to a new Scene and sets a new Stage with it.
 	 */
 	public Instructions() {
-		ArrayList<Text> texts = new ArrayList<Text>();
+		texts = new ArrayList<Text>();
+		panes = new ArrayList<TitledPane>();
 		
 		Text chooseTemplateText = new Text("To choose a template, click on a shape, then click 'To Preferences' to enter\nmore information about the garden, including the template dimensions if\nselecting a Square, Triangle or Custom plot."
 				+ "\n\nSQUARE: For a rectangular or square grid with maximum dimensions of 6x9.\n\nCIRCLE: For a circular garden in a 5x5 grid. \n\nTRIANGLE: For a triangular grid with up to 4 rows."
@@ -72,8 +77,8 @@ public class Instructions extends Screen {
 		Text loadGardenText = new Text("Here is where it will explain how to load in an exisiting Garden and how to\nsave a design after editing.");
 		texts.add(loadGardenText);
 		
-		
-		
+		Text seasonViewText = new Text("Here is where it will explain how to view different seasons.");
+		texts.add(seasonViewText);
 		
 		for (Text t: texts) {
 			AnchorPane.setLeftAnchor(t, distFromSide);
@@ -86,9 +91,7 @@ public class Instructions extends Screen {
 		AnchorPane altVersionsAP = new AnchorPane(alternateVersionsText);
 		AnchorPane infoTipsAP = new AnchorPane(infoTipsText);
 		AnchorPane loadGardenAP = new AnchorPane(loadGardenText);
-		
-		
-	
+		AnchorPane seasonViewAP = new AnchorPane(seasonViewText);
 		
 		Accordion accord = new Accordion();
 		VBox root = new VBox(accord);
@@ -96,13 +99,22 @@ public class Instructions extends Screen {
 		
 		
 		TitledPane choosingTemplatePane = new TitledPane("Choosing a Template",chooseTemplateAP);
+		panes.add(choosingTemplatePane);
 		TitledPane enteringPreferencesPane = new TitledPane("Entering Garden Characteristics and Preferences", enterPrefsAP);
+		panes.add(enteringPreferencesPane);
 		TitledPane designModePane = new TitledPane("Editing Your Garden Design",designModeAP);
+		panes.add(designModePane);
 		TitledPane alternateVersionsPane = new TitledPane("Saving and Editing Alternate Versions",altVersionsAP);
-		TitledPane infoTipsPane = new TitledPane("Viewing Plant Info and Maintenance Tips",infoTipsAP);
+		panes.add(alternateVersionsPane);
+		TitledPane infoTipsPane = new TitledPane("Viewing Plant Info and Recommendations",infoTipsAP);
+		panes.add(infoTipsPane);
 		TitledPane loadingGardenPane = new TitledPane("Loading an Existing Garden Design", loadGardenAP);
+		panes.add(loadingGardenPane);
+		TitledPane seasonViewPane = new TitledPane("Viewing Your Garden in Different Seasons",seasonViewAP);
+		panes.add(seasonViewPane);
+		panes.forEach(cell -> cell.setFont(Font.font("Verdana",FontWeight.NORMAL,fontSize)));
 		
-		accord.getPanes().addAll(choosingTemplatePane,enteringPreferencesPane,designModePane,alternateVersionsPane,infoTipsPane,loadingGardenPane);
+		accord.getPanes().addAll(panes);
 		
 		
 		instructionsStage = new Stage();
@@ -124,8 +136,21 @@ public class Instructions extends Screen {
 		instructionsStage.close();
 	}
 	
-	public void setHighlightedSection(String currentScreen) {
-		
+	public void setHighlightedSection(int screenIdx) {
+		for (int i=0;i<panes.size();i++) {
+			if (i==screenIdx) {
+				panes.get(i).setFont(Font.font("Verdana",FontWeight.BOLD,fontSize));
+			} else {
+				panes.get(i).setFont(Font.font("Verdana",FontWeight.NORMAL,fontSize));
+			}
+		}
+		if (screenIdx==2) {
+			panes.get(4).setFont(Font.font("Verdana",FontWeight.BOLD,fontSize));
+		}else if (screenIdx==3) {
+			panes.get(4).setFont(Font.font("Verdana",FontWeight.BOLD,fontSize));
+			panes.get(3).setFont(Font.font("Verdana",FontWeight.BOLD,fontSize));
+			panes.get(6).setFont(Font.font("Verdana",FontWeight.BOLD,fontSize));
+		}
 	}
 	
 	
