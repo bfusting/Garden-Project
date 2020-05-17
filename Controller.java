@@ -560,22 +560,28 @@ public class Controller{
 		int index = view.getDesignGardenScreen().getGridPaneInd();
 		int circleIndex = view.getDesignGardenScreen().getSelectGardenType().
 			    getSelectionModel().getSelectedIndex();
+		// getting rows and columns to drop into gridPane
+		Integer colIndex = GridPane.getColumnIndex(n);
+		Integer rowIndex = GridPane.getRowIndex(n);
+		GardenTile tile = model.getUserPlot().getLayout()[rowIndex][colIndex];
+		if (tile.isEmpty() && tile.isActive()) {
 		if(n != view.getDesignGardenScreen().getPlot() && db.hasImage() && 
 				view.getDesignGardenScreen().getHoverEditTile() == false) {
-			// dropping plants
-			Circle c = new Circle();
-			c = this.createCirlceSizes(db.getImage(), circleIndex);
-			// dropping paths
-			ImageView imgV = new ImageView();
-			imgV = createSquareSize(db.getImage());
-			// getting rows and columns to drop into gridPane
-			Integer colIndex = GridPane.getColumnIndex(n);
-	    	Integer rowIndex = GridPane.getRowIndex(n);
+			
+
 			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
 			if(circleIndex<=2) { // drag and drop circle
+				// dropping plants
+				Circle c = new Circle();
+				c = this.createCirlceSizes(db.getImage(), circleIndex);
+				c.setOnMouseClicked(getRemoveFromTile());
 				view.getDesignGardenScreen().getPlot().add(c, colIndex, rowIndex, 1, 1);//add(iv, column, row);
 			}
 			else { // add square image to path
+				// dropping paths
+				ImageView imgV = new ImageView();
+				imgV = createSquareSize(db.getImage());
+				imgV.setOnMouseClicked(getRemoveFromTile());
 				view.getDesignGardenScreen().getPlot().add(imgV, colIndex,rowIndex,1,1);
 			}
 			// Model side of plant drop
@@ -591,23 +597,22 @@ public class Controller{
 		else if(n != view.getDesignGardenScreen().getPlot() && db.hasImage() &&
 				view.getDesignGardenScreen().getHoverEditTile() == true) {
 			view.getDesignGardenScreen().setHoverEditTile(false);
-			Integer colIndex = GridPane.getColumnIndex(n);
-			Integer rowIndex = GridPane.getRowIndex(n);
+			
 			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
 			//int index = view.getDesignGardenScreen().getGridPaneInd();//items held in gridpane of 4. 0 is add water, 1 is less water, 2 is add sun, 3 is remove water
 			switch(index) {
 			// increases wetness of tile
-			case 0: model.getUserPlot().getLayout()[rowIndex][colIndex].setWaterLevel(
-					model.getUserPlot().getLayout()[rowIndex][colIndex].getWaterLevel()+1);
+			case 0: tile.setWaterLevel(
+					tile.getWaterLevel()+1);
 			// less water of tile dropped on
-			case 1: model.getUserPlot().getLayout()[rowIndex][colIndex].setWaterLevel(
-				model.getUserPlot().getLayout()[rowIndex][colIndex].getWaterLevel()-1);
+			case 1: tile.setWaterLevel(
+				tile.getWaterLevel()-1);
 			// more light of tile dropped on 
-			case 2: model.getUserPlot().getLayout()[rowIndex][colIndex].setSunLightLevel(
-					model.getUserPlot().getLayout()[rowIndex][colIndex].getSunLightLevel()+1);
+			case 2: tile.setSunLightLevel(
+					tile.getSunLightLevel()+1);
 			// less light of tile dropped on
-			case 3: model.getUserPlot().getLayout()[rowIndex][colIndex].setSunLightLevel(
-				model.getUserPlot().getLayout()[rowIndex][colIndex].getSunLightLevel()-1);
+			case 3: tile.setSunLightLevel(
+				tile.getSunLightLevel()-1);
 			//default: 
 				//if(DEBUG) {System.out.println("Failed to place tile editor");}
 				//view.getDesignGardenScreen().setHoverEditTile(false);
@@ -619,6 +624,7 @@ public class Controller{
 		event.setDropCompleted(worked);
 		if(DEBUG) {System.out.println("Dropped Successfully");}
 		event.consume();
+		}
 	}//detectDragDrop
 	
 	/**
@@ -1280,20 +1286,42 @@ public class Controller{
     public EventHandler<MouseEvent> getClickOnCloseSeasons(){
     	return event -> clickOnCloseSeasons((MouseEvent)event);
     }
-
+    
+    /**
+     * Gets the user selected template from model.
+     * @return A String representing the template chosen.
+     * @see Model#getUserTemplate()
+     */
     public String getTemplateFromModel() {
 	return model.getUserTemplate();
     }
-
+    
+    /**
+     * Gets the length of the garden from Model.
+     * @return An int, the length attribute in model.
+     * @see Model#getUserLength()
+     */
     public int getLengthFromModel() {
 	return model.getUserLength();
     }
 
+    /**
+     * Gets the width of the garden from Model.
+     * @return An int, the width attribute in model.
+     */
     public int getWidthFromModel() {
 	return model.getUserWidth();
     }
-    public String getImgNameFromModel(int x,int y) {
-         return model.getTileContentsName(x,y);
+    
+    /**
+     * Returns the String containing the filename of the image representing the plant at the given location in 
+     * the garden grid.
+     * @param x The row coordinate in the user plot.
+     * @param y The column coordinate in the user plot.
+     * @return A String containing the name of the image representing the AddOn at the given location.
+     */
+    public String getImgNameFromModel(int row,int col) {
+         return model.getTileContentsName(row,col);
     }
 
     /**
@@ -1325,13 +1353,11 @@ public class Controller{
     	// used to drop shrubs circle size
     	case 2: c.setRadius(30);c.setFill(new ImagePattern(img)); return c;
     	// used to drop undergrowth circle size
-    	case 3: break;
-    	case 4: break;
     	}
     	return null;
     }
     
-    /*
+    /**
      * Sets the DesignGarden screen's String arrays of image names corresponding to the selection of images to be dropped.
      */
     public void setSelectionArrs() {
@@ -1363,21 +1389,17 @@ public class Controller{
 			sceneryImgNames[i]=scenery.get(i).getName();
 		}
 		
-		
-		
 		view.getDesignGardenScreen().setSelectionArrays(flowerImgNames, treeImgNames, shrubImgNames,pathImgNames,sceneryImgNames);
 		
-		//System.out.println("Flowers:");
-		//System.out.println(flowers.toString());
 	}
-/**
-* Takes in an Image to resize as an ImageView and returns an ImageView which will
-* be added to the designGarden for paths and the other items as well.
-* 
-* @param img image take in in to create imageView from
-* @return ImageView created which will be dragged and dropped onto the DesignGarden
-* @see #detectDragDrop(DragEvent)
-*/
+    /**
+     * Takes in an Image to resize as an ImageView and returns an ImageView which will
+     * be added to the designGarden for paths and the other items as well.
+     * 
+     * @param img image take in in to create imageView from
+     * @return ImageView created which will be dragged and dropped onto the DesignGarden
+     * @see #detectDragDrop(DragEvent)
+     */
     public ImageView createSquareSize(Image img) {
     double tileSize = 89.0;
     // used for dragging in everything thats not plants
@@ -1412,6 +1434,27 @@ public class Controller{
     		view.setActiveImg(n, true);
     	} 
     
+    }
+    
+    /**
+     * Returns an EventHandler to bind to the MouseEvent listener for the plant or AddOn ImageViews added to the grid
+     * in designGarden.
+     * @return An EventHandler for MouseEvents to bind to the AddOn ImageViews added to the grid in DesignGarden.
+     */
+    public EventHandler<MouseEvent> getRemoveFromTile() {
+    	return event -> removeFromTile((MouseEvent)event);
+    }
+    
+    /**
+     * Removes the plant from the grid in DesignGarden when the user clicks on it twice.
+     * @param event
+     */
+    public void removeFromTile(MouseEvent event) {
+    	if (event.getClickCount()==2) {
+    		Node n = (Node) event.getSource();
+    		view.getDesignGardenScreen().getPlot().getChildren().remove(n);
+    		model.getUserPlot().getLayout()[GridPane.getRowIndex(n)][GridPane.getColumnIndex(n)].setEmpty();
+    	}
     }
 }//Controller
 

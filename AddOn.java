@@ -58,6 +58,6 @@ public class AddOn implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "Name: "+name+"\nTile size: "+tileSize+"\nDescription: "+description;
+		return "Name: "+name+"\nDescription: "+description;
 	}
 }

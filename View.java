@@ -469,7 +469,7 @@ public class View extends Application{
 	public static GridPane drawGrid(Controller con,boolean drawInactiveTiles) {
 		GridPane gp = new GridPane();
 		int soilImgSize = 89;
-		int plantImgSize = 80;
+		int AddOnImgSize = 80;
 		
 		for (int i=0;i<con.getLengthFromModel();i++) {
 			for (int j=0; j<con.getWidthFromModel();j++) {
@@ -495,10 +495,11 @@ public class View extends Application{
 						}
 					}
 					else if (!addOnImgName.equals("") && addOnImgName!=null && !addOnImgName.equals("null")) {
-						ImageView plantIV = new ImageView(new Image(addOnImgName));
-						plantIV.setFitHeight(plantImgSize);
-						plantIV.setFitWidth(plantImgSize);
-						gp.add(plantIV, j, i, 1,1);
+						ImageView addOnIV = new ImageView(new Image(addOnImgName));
+						addOnIV.setFitHeight(AddOnImgSize);
+						addOnIV.setFitWidth(AddOnImgSize);
+						addOnIV.setOnMouseClicked(con.getRemoveFromTile());
+						gp.add(addOnIV, j, i, 1,1);
 					}
 					
 					

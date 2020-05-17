@@ -372,7 +372,7 @@ public class Model implements Serializable{
 					
 				}
 			}
-			System.out.println(pathwaysArr);
+			
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -1040,8 +1040,8 @@ public class Model implements Serializable{
 		return !(userPrefColor.equals("") || userPrefSeason==null || userPrefLight==0 || userPrefWater==0 );
 	}
 	
-	public String getTileContentsName(int x, int y) {
-		GardenTile tile = userPlot.getLayout()[x][y];
+	public String getTileContentsName(int row, int col) {
+		GardenTile tile = userPlot.getLayout()[row][col];
 		
 		String addOnImgName = "";
 		

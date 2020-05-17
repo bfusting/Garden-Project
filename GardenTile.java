@@ -290,6 +290,7 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	 */
 	public void setAddOn(AddOn addOn) {
 		this.addOn = addOn;
+		isEmpty = false;
 	}
 	
 	/**
@@ -328,8 +329,10 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	 * 
 	 * @param isEmpty
 	 */
-	public void setEmpty(boolean isEmpty) {
-		this.isEmpty = isEmpty;
+	public void setEmpty() {
+		isEmpty = true;
+		addOn=null;
+		plant=null;
 	}
 
 	/**
