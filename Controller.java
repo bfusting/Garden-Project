@@ -1461,6 +1461,12 @@ public class Controller{
     		tile.setEmpty();
     	}
     }
+    
+    public void clickOnViewSpring(MouseEvent event) {
+    	view.getSeasonViewScreen().setTitleToSpring();
+    	model.setUserPrefSeason(Seasons.SPRING);
+    	
+    }
 }//Controller
 
 

@@ -76,7 +76,6 @@ public class SeasonView extends Screen{
 	 */
 	public SeasonView(Controller controller) {
 		c = controller;
-		startingSeason = c.getModel().getUserPrefSeason();
 	}
 
 	/**
@@ -95,6 +94,9 @@ public class SeasonView extends Screen{
 		
 		// setting up seasonsGP with controller
 		seasonGP = View.drawGrid(c, showInactiveTiles);
+		
+		//setting Startingseason to the one in Model
+		startingSeason = c.getModel().getUserPrefSeason();
 		
 		// Fetching the url of an image test
 		ImageView img = new ImageView("img/dirtPath.jpg");
@@ -161,32 +163,28 @@ public class SeasonView extends Screen{
 		stage.close();
 	}
 	
-	public void setToSpring() {
-		stage.setTitle("Spring");
-		// change color of plants using 
-		// use color adjust to possible alter plants colors
-	}
-	
-	public void setToSummer() {
-		stage.setTitle("Summer");
-		// change color of plants using 
-		// use color adjust to possible alter plants colors
-	}
-	
-	public void setToFall() {
-		stage.setTitle("Fall");
-		// change color of plants using 
-		// use color adjust to possible alter plants colors
-	}
-	
-	public void setToWinter() {
-		stage.setTitle("Winter");
-		// change color of plants using 
-		// use color adjust to possible alter plants colors
-	}
-	
 	public void closeSeasons() {
 		// set back to original season in here
 		stage.close();
+	}
+	
+	public void setTitleToSpring() {
+		stage.setTitle("Spring");
+	}
+
+	public void setTitleToSummer() {
+		stage.setTitle("Summer");
+	}
+	
+	public void setTitleToFall() {
+		stage.setTitle("Fall");
+	}
+	
+	public void setTitleToWinter() {
+		stage.setTitle("Winter");
+	}
+	
+	public GridPane getSeasonGP() {
+		return seasonGP;
 	}
 }
