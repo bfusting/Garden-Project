@@ -54,11 +54,11 @@ public class Model implements Serializable{
 	private ArrayList<AddOn> pathwaysArr;
 	private ArrayList<Plant> allPlants;
 	
-	// Used to hold other "removed" plants while filtering
-	private ArrayList<Plant> otherColors;
-	private ArrayList<Plant> otherSeasons;
-	private ArrayList<Plant> otherLight;
-	private ArrayList<Plant> otherWater;
+	// Used to hold other "removed" flowers while filtering
+	private ArrayList<Plant> otherFlowerColors;
+	private ArrayList<Plant> otherFlowerSeasons;
+	private ArrayList<Plant> otherFlowerLight;
+	private ArrayList<Plant> otherFlowerWater;
 	
 	// represents all the plants used in the garden
 	private static HashSet<Plant> usedPlants = new HashSet<Plant>();
@@ -111,10 +111,10 @@ public class Model implements Serializable{
 		allPlants = new ArrayList<Plant>();
 				
 		//Used for filtering methods to hold other vars
-		otherColors = new ArrayList<Plant>();
-		otherSeasons = new ArrayList<Plant>();
-		otherLight = new ArrayList<Plant>();
-		otherWater = new ArrayList<Plant>();
+		otherFlowerColors = new ArrayList<Plant>();
+		otherFlowerSeasons = new ArrayList<Plant>();
+		otherFlowerLight = new ArrayList<Plant>();
+		otherFlowerWater = new ArrayList<Plant>();
 				
 		// Prefs passed in by user
 		userPrefColor = "";
@@ -441,7 +441,7 @@ public class Model implements Serializable{
 		// of flowerArr then
 		setFlowerArr(filterByType(allPlants,flower));
 		setFlowerArr(filterByColor(flowerArr,userPrefColor));
-		//flowerArr.addAll(filterByBloomTime(flowerArr,userPrefSeason));
+		setFlowerArr(filterByBloomTime(flowerArr,userPrefSeason));
 		//flowerArr.addAll(filterByLight(flowerArr,userPrefLight));
 		//flowerArr.addAll(filterByWater(flowerArr,userPrefWater));
 		
@@ -855,7 +855,7 @@ public class Model implements Serializable{
 				userColorPlants.add(p);
 			}
 		}
-		userColorPlants.addAll(otherColors);
+		//userColorPlants.addAll(otherColors);
 		return userColorPlants;
 	}//filterByColor
 	
@@ -1014,17 +1014,6 @@ public class Model implements Serializable{
 		//typeArr.stream().filter(p -> p.getPlantType().equals(type)).collect(Collectors.toList());
 		return typeArr;
 	}//filterByType
-	
-	/**
-	 * Used to empty the otherArrays such as light/water/seasons and color between each
-	 * filter so no wrong types are in each list
-	 */
-	public void clearOthers() {
-		otherColors.clear();
-		otherSeasons.clear();
-		otherLight.clear();
-		otherWater.clear();
-	}
 	
 	/**
 	 * Sets the property userTemplate, a string representing the template shape chosen by the user that
