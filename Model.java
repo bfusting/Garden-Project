@@ -1,11 +1,13 @@
 import static org.junit.jupiter.api.DynamicTest.stream;
 
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,10 +15,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
-
-
 
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
@@ -94,6 +93,7 @@ public class Model implements Serializable{
 		userPlot = null;
 		userTemplate = "";
 		prefsSet = 0;
+
 		
 		
 		flowerArr = new ArrayList<Plant>();
@@ -131,13 +131,15 @@ public class Model implements Serializable{
 		highBound = 0;
 		
 		
+
 		createArrs();
 		
+
 		// Creating temp Plants for Bradley to use in methods, remove later
 		
 		
 		//These Plants have the incorrect constructor
-		/*
+		/**
 		Plant purpleConeFlower = new Plant("Purple Cone Flower", 1, "cone flower", 
 				"purple", 0, 0, 0, 0, "Autumn", false, null, null, "Flower", null, null);
 		
@@ -153,7 +155,7 @@ public class Model implements Serializable{
 				2.00, 0, "Summer", false, null, null, "UnderGrowth", null, null);
 		
 		*/
-/*		
+		
 		Plant fillaree = new Plant("Fillaree", "eraniaceae Erodium texanum", "Red", 
 				Seasons.SPRING, "", 0, 1, 5, "Dry", new ArrayList<String>());
 		
@@ -241,11 +243,21 @@ public class Model implements Serializable{
 		treeArr.add(juneBush);
 		treeArr.add(narrowleafCottonwood);
 		
-		underGrowthArr = new ArrayList<Plant>();
-	//	underGrowthArr.add(milkWeed);
-		underGrowthArr.add(maidenhairFern);
-		underGrowthArr.add(blackstemSpleenwort);
-*/		
+
+		// holds all scenery items like dirt to branchs
+		sceneryArr = new ArrayList<AddOn>();
+		AddOn bench = new AddOn("Bench",1,"A bench to sit on....duh");
+		sceneryArr.add(bench);
+		
+		// holds all plants in program ---> Used on creation only
+		allPlants = new ArrayList<Plant>();
+		
+		//Used for filtering methods to hold other vars
+		otherColors = new ArrayList<Plant>();
+		otherSeasons = new ArrayList<Plant>();
+		otherLight = new ArrayList<Plant>();
+		otherWater = new ArrayList<Plant>();
+
 		
 	}//Model()
 	
@@ -253,6 +265,7 @@ public class Model implements Serializable{
 		return usedPlants;
 	}
 	
+
 	private void createArrs() {
 
 //	    Scanner input;
@@ -405,6 +418,7 @@ public class Model implements Serializable{
 	    return newPlants;
 	}
 	
+
 	/**
 	 * Used to generate alternate GardenPlots for the Final View
 	 * since they are generated. Calls the GardenPlot constructor
