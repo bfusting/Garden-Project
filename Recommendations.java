@@ -247,7 +247,7 @@ public class Recommendations extends Screen{
 		String trees = "";
 		String shrubs = "";
 		String flowers = "";
-		//String underGrowths = "";
+		String underGrowths = "";
 		
 		try {
 			
