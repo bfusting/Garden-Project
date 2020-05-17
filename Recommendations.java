@@ -14,7 +14,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.*;
 import javafx.scene.control.TitledPane;
-
+import javafx.scene.shape.Circle;
+import javafx.scene.paint.*;
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
 *  Class Section: foo11
@@ -263,40 +264,56 @@ public class Recommendations extends Screen{
 		//Creating Tree TItledPanes
 		try {
 			Plant t = getRecTrees()[0];
-			 tree1 = new TitledPane(t.getName(), new Text(t.getLatinName()
-					 + "\n Color: " + t.getColor() + "\n Bloom Time: " + t.getBloomTime().toString()));
+			Circle plantC = new Circle(20, new ImagePattern(new Image(t.getSeasonsImgArr()[0])));
+			Group groupTest = new Group(plantC, new Text("\n\n" + t.getLatinName()
+					 + "\nColor: " + t.getColor() + "\nBloom Time: " + t.getBloomTime().toString()));
+			
+			 tree1 = new TitledPane(t.getName(), groupTest);
+			 
 		}
 		catch(Exception e) {
 			 tree1 = null;
 		}
 		try {
 			Plant t = getRecTrees()[1];
-			 tree2 = new TitledPane(t.getName(), new Text(t.getLatinName()
-					 + "\n Color: " + t.getColor() + "\n Bloom Time: " + t.getBloomTime().toString()));
+			Circle plantC = new Circle(20, new ImagePattern(new Image(t.getSeasonsImgArr()[0])));
+			Group groupTest = new Group(plantC, new Text("\n\n" + t.getLatinName()
+					 + "\nColor: " + t.getColor() + "\nBloom Time: " + t.getBloomTime().toString()));
+			
+			 tree2 = new TitledPane(t.getName(), groupTest);
 		}
 		catch(Exception e) {
 			 tree2 = null;
 		}
 		try {
 			Plant t = getRecTrees()[2];
-			 tree3 = new TitledPane(t.getName(), new Text(t.getLatinName()
-					 + "\n Color: " + t.getColor() + "\n Bloom Time: " + t.getBloomTime().toString()));
+			Circle plantC = new Circle(20, new ImagePattern(new Image(t.getSeasonsImgArr()[0])));
+			Group groupTest = new Group(plantC, new Text("\n\n" + t.getLatinName()
+					 + "\nColor: " + t.getColor() + "\nBloom Time: " + t.getBloomTime().toString()));
+			
+			 tree3 = new TitledPane(t.getName(), groupTest);
 		}
 		catch(Exception e) {
 			 tree3 = null;
 		}
 		try {
 			Plant t = getRecTrees()[3];
-			 tree4 = new TitledPane(t.getName(), new Text(t.getLatinName()
-					 + "\n Color: " + t.getColor() + "\n Bloom Time: " + t.getBloomTime().toString()));
+			Circle plantC = new Circle(20, new ImagePattern(new Image(t.getSeasonsImgArr()[0])));
+			Group groupTest = new Group(plantC, new Text("\n\n" + t.getLatinName()
+					 + "\nColor: " + t.getColor() + "\nBloom Time: " + t.getBloomTime().toString()));
+			
+			 tree4 = new TitledPane(t.getName(), groupTest);
 		}
 		catch(Exception e) {
 			 tree4 = null;
 		}
 		try {
 			Plant t = getRecTrees()[4];
-			 tree5 = new TitledPane(t.getName(), new Text(t.getLatinName()
-					 + "\n Color: " + t.getColor() + "\n Bloom Time: " + t.getBloomTime().toString()));
+			Circle plantC = new Circle(20, new ImagePattern(new Image(t.getSeasonsImgArr()[0])));
+			Group groupTest = new Group(plantC, new Text("\n\n" + t.getLatinName()
+					 + "\nColor: " + t.getColor() + "\nBloom Time: " + t.getBloomTime().toString()));
+			
+			 tree5 = new TitledPane(t.getName(), groupTest);
 		}
 		catch(Exception e) {
 			 tree5 = null;
@@ -306,40 +323,55 @@ public class Recommendations extends Screen{
 		//Creating FLower TItlePanes
 		try {
 			Plant f = getRecFlowers()[0];
-			flower1 = new TitledPane(getRecFlowers()[0].getName(), new Text(getRecFlowers()[0].getLatinName()
-					 + "\n Color: " + f.getColor() + "\n Bloom Time: " + f.getBloomTime().toString()));
+			Circle plantC = new Circle(20, new ImagePattern(new Image(f.getSeasonsImgArr()[0])));
+			Group groupTest = new Group(plantC, new Text("\n\n" + f.getLatinName()
+					 + "\nColor: " + f.getColor() + "\nBloom Time: " + f.getBloomTime().toString()));
+			
+			 flower1 = new TitledPane(f.getName(), groupTest);
 		}
 		catch(Exception e) {
 			 flower1 = null;
 		}
 		try {
 			Plant f = getRecFlowers()[1];
-			 flower2 = new TitledPane(f.getName(), new Text(f.getLatinName()
-					 + "\n Color: " + f.getColor() + "\n Bloom Time: " + f.getBloomTime().toString()));
+			Circle plantC = new Circle(20, new ImagePattern(new Image(f.getSeasonsImgArr()[0])));
+			Group groupTest = new Group(plantC, new Text("\n\n" + f.getLatinName()
+					 + "\nColor: " + f.getColor() + "\nBloom Time: " + f.getBloomTime().toString()));
+			
+			 flower2 = new TitledPane(f.getName(), groupTest);
 		}
 		catch(Exception e) {
 			 flower2 = null;
 		}
 		try {
 			Plant f = getRecFlowers()[2];
-			 flower3 = new TitledPane(f.getName(), new Text(f.getLatinName()
-					 + "\n Color: " + f.getColor() + "\n Bloom Time: " + f.getBloomTime().toString()));
+			Circle plantC = new Circle(20, new ImagePattern(new Image(f.getSeasonsImgArr()[0])));
+			Group groupTest = new Group(plantC, new Text("\n\n" + f.getLatinName()
+					 + "\nColor: " + f.getColor() + "\nBloom Time: " + f.getBloomTime().toString()));
+			
+			 flower3 = new TitledPane(f.getName(), groupTest);
 		}
 		catch(Exception e) {
 			 flower3 = null;
 		}
 		try {
 			Plant f = getRecFlowers()[3];
-			 flower4 = new TitledPane(f.getName(), new Text(f.getLatinName()
-					 + "\n Color: " + f.getColor() + "\n Bloom Time: " + f.getBloomTime().toString()));
+			Circle plantC = new Circle(20, new ImagePattern(new Image(f.getSeasonsImgArr()[0])));
+			Group groupTest = new Group(plantC, new Text("\n\n" + f.getLatinName()
+					 + "\nColor: " + f.getColor() + "\nBloom Time: " + f.getBloomTime().toString()));
+			
+			 flower4 = new TitledPane(f.getName(), groupTest);
 		}
 		catch(Exception e) {
 			 flower4 = null;
 		}
 		try {
 			Plant f = getRecFlowers()[4];
-			 flower5 = new TitledPane(f.getName(), new Text(f.getLatinName()
-					 + "\n Color: " + f.getColor() + "\n Bloom Time: " + f.getBloomTime().toString()));
+			Circle plantC = new Circle(20, new ImagePattern(new Image(f.getSeasonsImgArr()[0])));
+			Group groupTest = new Group(plantC, new Text("\n\n" + f.getLatinName()
+					 + "\nColor: " + f.getColor() + "\nBloom Time: " + f.getBloomTime().toString()));
+			
+			 flower5 = new TitledPane(f.getName(), groupTest);
 		}
 		catch(Exception e) {
 			 flower5 = null;
@@ -348,40 +380,55 @@ public class Recommendations extends Screen{
 		//Creating panes for Shrubs
 		try {
 			Plant s = getRecShrubs()[0];
-			shrub1 = new TitledPane(s.getName(), new Text(s.getLatinName()
-					+ "\n Color: " + s.getColor() + "\n Bloom Time: " + s.getBloomTime().toString()));
+			Circle plantC = new Circle(20, new ImagePattern(new Image(s.getSeasonsImgArr()[0])));
+			Group groupTest = new Group(plantC, new Text("\n\n" + s.getLatinName()
+					 + "\nColor: " + s.getColor() + "\nBloom Time: " + s.getBloomTime().toString()));
+			
+			 shrub1 = new TitledPane(s.getName(), groupTest);
 		}
 		catch(Exception e) {
 			 shrub1 = null;
 		}
 		try {
 			Plant s = getRecShrubs()[1];
-			 shrub2 = new TitledPane(s.getName(), new Text(s.getLatinName()
-					 + "\n Color: " + s.getColor() + "\n Bloom Time: " + s.getBloomTime().toString()));
+			Circle plantC = new Circle(20, new ImagePattern(new Image(s.getSeasonsImgArr()[0])));
+			Group groupTest = new Group(plantC, new Text("\n\n" + s.getLatinName()
+					 + "\nColor: " + s.getColor() + "\nBloom Time: " + s.getBloomTime().toString()));
+			
+			 shrub2 = new TitledPane(s.getName(), groupTest);
 		}
 		catch(Exception e) {
 			 shrub2 = null;
 		}
 		try {
 			Plant s = getRecShrubs()[2];
-			 shrub3 = new TitledPane(s.getName(), new Text(s.getLatinName()
-					 + "\n Color: " + s.getColor() + "\n Bloom Time:" + s.getBloomTime().toString()));
+			Circle plantC = new Circle(20, new ImagePattern(new Image(s.getSeasonsImgArr()[0])));
+			Group groupTest = new Group(plantC, new Text("\n\n" + s.getLatinName()
+					 + "\nColor: " + s.getColor() + "\nBloom Time: " + s.getBloomTime().toString()));
+			
+			 shrub3 = new TitledPane(s.getName(), groupTest);
 		}
 		catch(Exception e) {
 			 shrub3 = null;
 		}
 		try {
 			Plant s = getRecShrubs()[3];
-			 shrub4 = new TitledPane(s.getName(), new Text(s.getLatinName()
-					 + "\n Color: " + s.getColor() + "\n Bloom Time:" + s.getBloomTime().toString()));
+			Circle plantC = new Circle(20, new ImagePattern(new Image(s.getSeasonsImgArr()[0])));
+			Group groupTest = new Group(plantC, new Text("\n\n" + s.getLatinName()
+					 + "\nColor: " + s.getColor() + "\nBloom Time: " + s.getBloomTime().toString()));
+			
+			 shrub4 = new TitledPane(s.getName(), groupTest);
 		}
 		catch(Exception e) {
 			 shrub4 = null;
 		}
 		try {
 			Plant s = getRecShrubs()[4];
-			 shrub5 = new TitledPane(s.getName(), new Text(s.getLatinName()
-					 + "\n Color: " + s.getColor() + "\n Bloom Time:" + s.getBloomTime().toString()));
+			Circle plantC = new Circle(20, new ImagePattern(new Image(s.getSeasonsImgArr()[0])));
+			Group groupTest = new Group(plantC, new Text("\n\n" + s.getLatinName()
+					 + "\nColor: " + s.getColor() + "\nBloom Time: " + s.getBloomTime().toString()));
+			
+			 shrub5 = new TitledPane(s.getName(), groupTest);
 		}
 		catch(Exception e) {
 			 shrub5 = null;
