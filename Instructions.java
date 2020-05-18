@@ -96,12 +96,12 @@ public class Instructions extends Screen {
 				+ "Title: Common Name\n\tPicture: Picture of the plant.\n\tLatin Name: Latin name of the plant.\n\tColor: Colors the plant comes in.\n\tBloom Time: The season the plant blooms in, if any.");
 		texts.add(infoTipsText);
 		
-		Text loadGardenText = new Text("SAVING: Click on the save button and specify a file name and location to save your\nnewly made masterpiece.\n" +
+		Text loadGardenText = new Text("SAVING: Click on the save button and specify a file name and location to save\nyour newly made masterpiece.\n" +
 		"\nLOADING: From the Main Menu, click on 'Load Garden,' select a file and\nedit it to your hearts content.");
 		texts.add(loadGardenText);
 		
 		Text seasonViewText = new Text("In the Garden Designer, click on the 'View Seasons' button. A new screen will\npop up to show your garden in alternate seasons. "
-				+ "\n\nClick on each 'View Season' button to see how the garden would look in each\nseason\n\n"
+				+ "\n\nClick on each 'View Season' button to see how the garden would look in each\nseason.\n\n"
 				+ "Once you are done looking at the seasons, click on the 'Close SeasonView'\nbutton to return.");
 		texts.add(seasonViewText);
 		
