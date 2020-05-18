@@ -139,7 +139,7 @@ public class View extends Application{
 		instructionsScreen = new Instructions();
 		exitScreen = new Exit(con);
 		finalViewScreen = new FinalView(con,primaryStage);
-		infoTipsScreen = new InfoTips(con);
+		infoTipsScreen = new InfoTips();
 		seasonViewScreen = new SeasonView(con);
 		recommendationsScreen = new Recommendations(con);
 		
@@ -222,11 +222,9 @@ public class View extends Application{
 			}
 			currentPrimaryScreen = mainMenuScreen;
 			mainMenuScreen.showScreen();
-			//createNew();
 			break;
 		case "instructionsScreen":
-			//instructionsScreen.setPreviousScreen(currentPrimaryScreen);
-			//currentPrimaryScreen = instructionsScreen;
+			
 			instructionsScreen.showScreen();
 			break;
 		case "chooseTemplateScreen":
@@ -242,14 +240,10 @@ public class View extends Application{
 			finalViewScreen.showScreen();
 			break;
 		case "infoTipsScreen":
-			//infoTipsScreen.setPreviousScreen(currentPrimaryScreen);
-			infoTipsScreen = new InfoTips(con);
-			infoTipsScreen.showScreen();
-			//infoTipsScreen.showInfoTips();
+			infoTipsScreen.showInfoTips();
 			break;
 		case "preferencesScreen":
 			currentPrimaryScreen = preferencesScreen;
-			instructionsScreen.setHighlightedSection(1);
 			preferencesScreen.showScreen();
 			break;
 		case "saveGarden":
@@ -277,7 +271,6 @@ public class View extends Application{
 			if (con.loadGarden(showSaveLoad(false))) {
 				show("designGardenScreen");
 			}
-			//might delete
 			break;
 			
 		case "seasonViewScreen":
@@ -286,8 +279,7 @@ public class View extends Application{
 			seasonViewScreen.showScreen();
 			break;
 		case "recommendationsScreen":
-			//why is it like this? Why are you creating a new one?
-			recommendationsScreen = new Recommendations(con);
+			//recommendationsScreen = new Recommendations(con);
 			recommendationsScreen.showScreen();
 			break;
 		case "exitScreen":

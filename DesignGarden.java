@@ -650,8 +650,8 @@ AnchorPane.setTopAnchor(recommendations, 120.0);
 AnchorPane.setTopAnchor(changeSeasons, 180.0);
 AnchorPane.setTopAnchor(infoTips, 240.0);
 AnchorPane.setTopAnchor(save, 300.0);
-AnchorPane.setTopAnchor(finalView, 360.0);
-AnchorPane.setTopAnchor(instructions, 420.0);
+AnchorPane.setTopAnchor(instructions, 360.0);
+AnchorPane.setTopAnchor(finalView, 420.0);
 AnchorPane.setTopAnchor(tileEditors, 480.0);
 AnchorPane.setTopAnchor(tileEditingGP, 500.0);
 

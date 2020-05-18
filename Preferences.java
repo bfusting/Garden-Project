@@ -285,6 +285,7 @@ public class Preferences extends Screen{
 	
 	@Override
 	public void showScreen() {
+		Instructions.setHighlightedSection(1);
 		String template = c.getTemplateFromModel();
 		
 		if (template.equals("triangle")) {

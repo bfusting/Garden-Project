@@ -36,18 +36,25 @@ public class InfoTips {
 	
 	private final int HEIGHT = 500;
 	private final int WIDTH = 250;
-	private Controller c;
+	
 	private Stage stage;
 	
+	
 	private HashSet<Plant> hs;
+	private AnchorPane root;
+	private Accordion acc;
 	
 	/**
 	 * Constructor of InfoTips that takes in a controller
 	 * 
 	 * @param controller
 	 */
-	public InfoTips(Controller controller) {
-		this.c = controller;
+	public InfoTips() {
+		
+		stage = new Stage();
+		stage.setTitle("Info and Tips");
+		
+		
 	}
 	
 	/**
@@ -56,16 +63,15 @@ public class InfoTips {
 	 */
 	
 	public void showInfoTips() {	
-		stage = new Stage();
-		stage.setTitle("Info and Tips");
-		AnchorPane root = new AnchorPane();
+		root = new AnchorPane();
+		acc = new Accordion();
 
 		ArrayList<String> titles = new ArrayList<String>();
 		ArrayList<Text> texts = new ArrayList<Text>();
 		ArrayList<TitledPane> tps = new ArrayList<TitledPane>();
 		ArrayList<AnchorPane> aps = new ArrayList<AnchorPane>();
 		
-		Accordion acc = new Accordion();
+		
 		
 		for (Plant p : Model.getUsedPlants()) {
 			String name = p.getName();
@@ -77,8 +83,8 @@ public class InfoTips {
 			Text bodyTxt = new Text(p.toString());
 			AnchorPane ap = new AnchorPane();
 			ap.getChildren().add(bodyTxt);
-			ap.setLeftAnchor(bodyTxt, 5.0);
-			ap.setTopAnchor(bodyTxt, 5.0);
+			AnchorPane.setLeftAnchor(bodyTxt, 5.0);
+			AnchorPane.setTopAnchor(bodyTxt, 5.0);
 			aps.add(ap);
 		}
 		for (int i = 0; i < titles.size(); i++) {
@@ -106,15 +112,10 @@ public class InfoTips {
 
 		Scene scene = new Scene(root,WIDTH+50.0,HEIGHT+50.0);
 		stage.setScene(scene);
+		stage.show();
 	}
 		
-//	@Override
-	public void showScreen() {
-		//should consolidate into one showScreen method
-		showInfoTips();
-		stage.show();
-		stage.toFront();
-	}
+
 	
 //	@Override
 	public void closeScreen() {

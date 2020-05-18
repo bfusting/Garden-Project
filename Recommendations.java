@@ -105,7 +105,8 @@ public class Recommendations extends Screen{
 		animalsFed = new ArrayList<String>();
 		c = controller;
 		
-		
+		stage = new Stage();
+		stage.setTitle("Recommendations");
 			
        
 		
@@ -477,8 +478,7 @@ public class Recommendations extends Screen{
 	}
 	
 	
-	stage = new Stage();
-	stage.setTitle("Recommendations");
+	
 	BorderPane bPane = new BorderPane();
 	bPane.setCenter(recommendationMessage);
 	Scene scene = new Scene(root, WIDTH, HEIGHT);

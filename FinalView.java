@@ -45,7 +45,63 @@ public class FinalView extends Screen {
 	public FinalView(Controller controller, Stage s) {
 		this.c = controller;
 		theStage = s;
+		
 		root = new AnchorPane();
+		
+		// creating OriginalGP Plot + making it move
+		originalGP = new GridPane();
+		
+		
+
+		Rectangle r1 = new Rectangle(150, 100, 900, 500);
+		r1.setStroke(Color.LIGHTGRAY);
+		r1.setFill(Color.LIGHTGRAY);
+		r1.setStrokeWidth(1);
+		
+//		AnchorPane buttons = new AnchorPane();
+		
+		edit = new Button("Edit");
+		infoTips = new Button("Info and Tips");
+		viewSeasons = new Button("View Seasons");
+		save = new Button("Save");
+		Button exit = new Button("Exit");
+		Button instructions = new Button("Instructions");
+		//Binding Event handlers to buttons
+		
+		//edit.setOnMouseClicked(c.getDesignTime());
+		edit.setOnMouseClicked(c.getBackBTN());
+		
+		infoTips.setOnMouseClicked(c.getInfoTipsBTN());
+		viewSeasons.setOnMouseClicked(c.getViewSeasonsBTN());
+		save.setOnMouseClicked(c.getSaveBTN());
+		exit.setOnMouseClicked(c.getExit());
+		instructions.setOnMouseClicked(c.getInstructionShow());
+		
+		Button mainMenu = new Button("Main Menu");
+		mainMenu.setOnMouseClicked(c.getMainMenuWarning());
+
+		root.setBottomAnchor(edit, 150.0);
+		root.setBottomAnchor(viewSeasons, 150.0);
+		root.setBottomAnchor(infoTips, 150.0);
+		root.setBottomAnchor(save, 150.0);
+		root.setBottomAnchor(exit, 150.0);
+		root.setBottomAnchor(mainMenu, 150.0);
+		
+		root.setLeftAnchor(edit, 200.0);
+		root.setLeftAnchor(viewSeasons, 350.0);
+		root.setLeftAnchor(infoTips, 550.0);
+		root.setLeftAnchor(save, 780.0);
+		root.setLeftAnchor(exit, 980.0);
+		root.setLeftAnchor(mainMenu,1080.0);
+		
+		root.getChildren().addAll(edit, viewSeasons, infoTips, save,exit,mainMenu,instructions);
+		
+		
+		//originalGP = View.drawGrid(c,false);
+		
+		//root.getChildren().addAll(r1,originalGP);
+		root.getChildren().add(r1);
+		finalViewScene = new Scene(root, canvasWidth, canvasHeight);
 	}
 	
 	public void setOriginalPlot(GardenPlot ogPlot) {
@@ -102,102 +158,7 @@ public class FinalView extends Screen {
 		this.plotIdea3 = plot3;
 	}
 	
-	/**
-	 * 
-	 * Contains the buttons and views of the final garden options.
-	 * 
-	 * @param stage The stage for finalView's scene.
-	 */
-	public void showFinalView(Stage stage) {
-		
-		root = new AnchorPane();
-		
-		// creating OriginalGP Plot + making it move
-		//originalGP = new GridPane();
-		
-		
-
-		Rectangle r1 = new Rectangle(150, 100, 900, 500);
-		r1.setStroke(Color.LIGHTGRAY);
-		r1.setFill(Color.LIGHTGRAY);
-		r1.setStrokeWidth(1);
-		
-//		AnchorPane buttons = new AnchorPane();
-		
-		edit = new Button("Edit");
-		infoTips = new Button("Info and Tips");
-		viewSeasons = new Button("View Seasons");
-		save = new Button("Save");
-		Button exit = new Button("Exit");
-		//Binding Event handlers to buttons
-		
-		//edit.setOnMouseClicked(c.getDesignTime());
-		edit.setOnMouseClicked(c.getBackBTN());
-		
-		infoTips.setOnMouseClicked(c.getInfoTipsBTN());
-		viewSeasons.setOnMouseClicked(c.getViewSeasonsBTN());
-		save.setOnMouseClicked(c.getSaveBTN());
-		exit.setOnMouseClicked(c.getExit());
-		
-		
-		Button mainMenu = new Button("Main Menu");
-		mainMenu.setOnMouseClicked(c.getMainMenuWarning());
-
-		root.setBottomAnchor(edit, 150.0);
-		root.setBottomAnchor(viewSeasons, 150.0);
-		root.setBottomAnchor(infoTips, 150.0);
-		root.setBottomAnchor(save, 150.0);
-		root.setBottomAnchor(exit, 150.0);
-		root.setBottomAnchor(mainMenu, 150.0);
-		
-		root.setLeftAnchor(edit, 200.0);
-		root.setLeftAnchor(viewSeasons, 350.0);
-		root.setLeftAnchor(infoTips, 550.0);
-		root.setLeftAnchor(save, 780.0);
-		root.setLeftAnchor(exit, 980.0);
-		root.setLeftAnchor(mainMenu,1080.0);
-		
-		root.getChildren().addAll(edit, viewSeasons, infoTips, save,exit,mainMenu);
-		
-		
-
-		
-//		Label fv = new Label ("This is final view");
-//		AnchorPane.setTopAnchor(fv, 100.0);
-		// setting up seasonsGP with controller
-				/*(originalGP = new GridPane();
-				
-				// setting up the seasonGP with the information from DesignGarden
-				for (int i = 0; i < c.getView().getDesignGardenScreen().getLength(); i++) {
-				     ColumnConstraints column = new ColumnConstraints(c.getView().getDesignGardenScreen()
-				    		 .getColConstraint());
-				     originalGP.getColumnConstraints().add(column);
-				 }
-				for (int i = 0; i < c.getView().getDesignGardenScreen().getWidth(); i++) {
-				     RowConstraints row = new RowConstraints(c.getView().getDesignGardenScreen()
-				    		 .getRowConstraint());
-				     originalGP.getRowConstraints().add(row);
-				 }
-				
-				originalGP.getChildren().addAll(c.getView().getDesignGardenScreen()
-						.getPlot().getChildren());
-		root.setTopAnchor(originalGP, 100.0);
-		root.setLeftAnchor(originalGP, 150.0);
-		
-		root.getChildren().addAll(r1,originalGP);*/
-		
-		originalGP = View.drawGrid(c,false);
-		AnchorPane.setTopAnchor(originalGP, 100.0);
-		AnchorPane.setLeftAnchor(originalGP, 150.0);
-		root.getChildren().addAll(r1,originalGP);
-		finalViewScene = new Scene(root, canvasWidth, canvasHeight);
-		
-		stage.setTitle("Final View");
-		stage.setScene(finalViewScene);
-		stage.show();
-		
-	}
-
+	
 	/**
 	 * 
 	 * @return edit - The Edit button
@@ -240,8 +201,12 @@ public class FinalView extends Screen {
 	@Override
 	public void showScreen() {
 		Instructions.setHighlightedSection(3);
-		//should combine these into one show method
-		showFinalView(theStage);
+		originalGP = View.drawGrid(c, false);
+		AnchorPane.setTopAnchor(originalGP, 100.0);
+		AnchorPane.setLeftAnchor(originalGP, 150.0);
+		root.getChildren().add(originalGP);
+		theStage.setTitle("Final View");
+		theStage.setScene(finalViewScene);
 		
 	}
 	
@@ -250,8 +215,6 @@ public class FinalView extends Screen {
 		return "Final View";
 	}
 	
-	public GridPane getOriginalGP() {
-		return originalGP;
-	}
+
 
 }
