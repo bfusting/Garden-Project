@@ -137,7 +137,7 @@ public class MainMenu extends Screen {
 	public void showScreen() {
 		super.setPreviousScreen(this);
 		primaryStage.setTitle("Garden Designer");
-		Instructions.setHighlightedSection(5);
+		Instructions.setHighlightedSection(4);
 		primaryStage.setScene(mainMenuScene);
 	}
 	

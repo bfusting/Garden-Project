@@ -41,7 +41,8 @@ import javafx.stage.Stage;
 
 public class Instructions extends Screen {
 	private Stage instructionsStage;
-	private final int dimensions = 500;
+	private final int height=600;
+	private final int width=500;
 	private final double distFromSide = 5.0;
 	private ArrayList<Text> texts;
 	private static ArrayList<TitledPane> panes;
@@ -62,48 +63,46 @@ public class Instructions extends Screen {
 		texts.add(chooseTemplateText);
 		
 		
-		Text enteringPreferencesText= new Text("Once a template is selected the Preferences screen will appear. Each preferences screen \nwill have the following in common:\n\n" +
-		"Preferred Color: The color of plants that are most desirable to you\n\n" + "Prefered Bloom Season: The season which your preferred plants will bloom in\n\n"
+		Text enteringPreferencesText= new Text("Once a template is selected the Preferences screen will appear. Each\npreferences screen will have the following in common:\n\n" +
+		"Preferred Color: The color of plants that are most desirable to you.\n\n" + "Prefered Bloom Season: The season which your preferred plants will bloom in.\n\n"
 				+ "Light Availability: How much light your plants require to live. \n1 means they "
-				+ "need minmal light to live. \n3 is a happy medium of partial shade to live\n5 means the plant needs constant sunlight\n\n"
-				+ "Water Availability: How much water your plants require to live. \n1 means they need minmal water to thrive\n"
-				+ "3 means the plant needs a decent amount of water to live\n"
-				+ "5 means the plant needs copious amounts of water to live\n\n"
+				+ "need minimal light to live. \n3 is a happy medium of partial shade to live.\n5 means the plant needs constant sunlight\n\n"
+				+ "Water Availability: How much water your plants require to live. \n1 means they need minimal water to thrive.\n"
+				+ "3 means the plant needs a decent amount of water to live.\n"
+				+ "5 means the plant needs copious amounts of water to live.\n\n"
 				+ "For each template there may be different preferences which are listed below.\n\n"
-				+ "SQUARE OR CUSTOM:\nWidth: the width of your garden in feet\nLength: the length of your garden\n\n"
-				+ "TRIANGE: The number of rows you would like to have in your triangle plot");
+				+ "SQUARE OR CUSTOM:\nWidth: the width of your garden in feet.\nLength: the length of your garden.\n\n"
+				+ "TRIANGLE: The number of rows you would like to have in your triangular plot.");
 		texts.add(enteringPreferencesText);
 		
 		Text designModeText = new Text("Once in the GardenDesigner you will be presented the following:\n\n" 
-				+ "SELECTION TABS: Within the tabs are the plants you can drag and drop into your garden\nthese plants are" +
-				"filtered so the ones you prefer are near the front of the selection.\n\n"
-				+ "DRAG N' DROP: From the selection tabs you can click, hold the button down and \nrelease on the garden plot\n"
-				+ "\nTILE EDITORS: Drag and drop these images to alter the condition of a garden tile.\n\t Water Drops: Drop the water drops to make a tile wetter\n"
-				+ "\t Cracked Soil: Drop the cracked soil to make a location drier\n\t Sun: Drop to increase the amount of sunlight a tile is receiving\n\t"
-				+ " Dark Sun: Drop to add shade to a certain tile\n\n" 
-				+ "REMOVING PLANTS: Double click on a dropped plant to remove it from the plot\n\n"
-				+ "CUSTOM GARDEN: When the Custom template is choosen from the Templates section you \ncan click on the soil to activate(solid) "
-				+ "or deactivate(transparent) the tile. When a tile is deactivated you cannot drop a plant onto the area");
+				+ "SELECTION TABS: Within the tabs are the plants you can drag and drop into\nyour garden. These plants are" +
+				"filtered so the ones you prefer are near the front\nof the selection.\n\n"
+				+ "DRAG N' DROP: From the selection tabs you can click, hold the button down\n and release on the garden plot.\n"
+				+ "\nTILE EDITORS: Drag and drop these images to alter the condition of a garden\ntile.\n\t Water Drops: Drop the water drops to make a tile wetter.\n"
+				+ "\t Cracked Soil: Drop the cracked soil to make a location drier.\n\t Sun: Drop to increase the amount of sunlight a tile is receiving.\n\t"
+				+ " Dark Sun: Drop to add shade to a certain tile.\n\n" 
+				+ "REMOVING PLANTS: Double click on a dropped plant to remove it from the\nplot.\n\n"
+				+ "CUSTOM GARDEN: When the Custom template is chosen from the\nTemplates section, you can click on the soil to activate (solid) "
+				+ "or deactivate\n(translucent) the tile. When a tile is deactivated you cannot drop a plant onto\nthe area and it will disappear in the Final View.");
 		texts.add(designModeText);
 		
-		Text alternateVersionsText = new Text("Here is where it will explain how to view, edit and save generated alternate\nversions of an unfinished garden design.");
-		texts.add(alternateVersionsText);
 		
 		Text infoTipsText = new Text("INFO & TIPS: When dragging and dropping plants into the garden\n"
 				+ "the Info and Tips section will be updated as the user adds or removes plants\nfrom their garden. \n\nEach tab follows this format:\n"
-				+ "\tTitle: Common Name - Latin Name\n\tPlant Color: Color varities the plant comes in\n\tBloom Time: Season the plant blooms in\n\t"
-				+ "Habit: How the plant is catergorized (Flower,Tree,Shrub)\n\tWater need: How much water the plant needs\n\tLight Requirements: How much light the plnat needs to live\n\n"
-				+ "RECOMMENDATIONS: Based upon the preferences inputted each tab follows the following format:\n\t"
-				+ "Title: Common Name\n\tPicture: Picture of the plant\n\tLatin Name: Latin name of the plant\n\tColor: Colors the plant comes in\n\tBloom Time: The season the plant blooms in if any");
+				+ "\tTitle: Common Name - Latin Name\n\tPlant Color: Color varieties the plant comes in.\n\tBloom Time: Season the plant blooms in.\n\t"
+				+ "Habit: How the plant is catergorized (Flower,Tree,Shrub).\n\tWater need: How much water the plant needs.\n\tLight Requirements: How much light the plant needs to live.\n\n"
+				+ "RECOMMENDATIONS: Based upon the preferences input. Each tab follows\nthis format:\n\t"
+				+ "Title: Common Name\n\tPicture: Picture of the plant.\n\tLatin Name: Latin name of the plant.\n\tColor: Colors the plant comes in.\n\tBloom Time: The season the plant blooms in, if any.");
 		texts.add(infoTipsText);
 		
-		Text loadGardenText = new Text("SAVING: Click on the save button and name your newly made masterpiece\n" +
-		"\nLOADING: From the main menu click on Load Garden and choose your unfinshed work and\nedit it to your hearts content");
+		Text loadGardenText = new Text("SAVING: Click on the save button and specify a file name and location to save your\nnewly made masterpiece.\n" +
+		"\nLOADING: From the Main Menu, click on 'Load Garden,' select a file and\nedit it to your hearts content.");
 		texts.add(loadGardenText);
 		
-		Text seasonViewText = new Text("In the Garden Designer click on the View Seasons button. A new screen will pop up\nto view your garden in alternate seasons. "
-				+ "\n\nClick on each view seasons button to see how the garden would look in each season\n\n"
-				+ "Once you are done looking at the seasons click on the Close SeasonView button");
+		Text seasonViewText = new Text("In the Garden Designer, click on the 'View Seasons' button. A new screen will\npop up to show your garden in alternate seasons. "
+				+ "\n\nClick on each 'View Season' button to see how the garden would look in each\nseason\n\n"
+				+ "Once you are done looking at the seasons, click on the 'Close SeasonView'\nbutton to return.");
 		texts.add(seasonViewText);
 		
 		for (Text t: texts) {
@@ -114,7 +113,6 @@ public class Instructions extends Screen {
 		AnchorPane chooseTemplateAP = new AnchorPane(chooseTemplateText);
 		AnchorPane enterPrefsAP = new AnchorPane(enteringPreferencesText);
 		AnchorPane designModeAP = new AnchorPane(designModeText);
-		AnchorPane altVersionsAP = new AnchorPane(alternateVersionsText);
 		AnchorPane infoTipsAP = new AnchorPane(infoTipsText);
 		AnchorPane loadGardenAP = new AnchorPane(loadGardenText);
 		AnchorPane seasonViewAP = new AnchorPane(seasonViewText);
@@ -130,8 +128,6 @@ public class Instructions extends Screen {
 		panes.add(enteringPreferencesPane);
 		TitledPane designModePane = new TitledPane("Editing Your Garden Design",designModeAP);
 		panes.add(designModePane);
-		TitledPane alternateVersionsPane = new TitledPane("Saving and Editing Alternate Versions",altVersionsAP);
-		panes.add(alternateVersionsPane);
 		TitledPane infoTipsPane = new TitledPane("Viewing Plant Info and Recommendations",infoTipsAP);
 		panes.add(infoTipsPane);
 		TitledPane loadingGardenPane = new TitledPane("Saving and Loading an Existing Garden Design", loadGardenAP);
@@ -144,7 +140,7 @@ public class Instructions extends Screen {
 		
 		
 		instructionsStage = new Stage();
-		instructionsStage.setScene(new Scene(root,dimensions,dimensions));
+		instructionsStage.setScene(new Scene(root,width,height));
 		instructionsStage.setTitle("Instructions");
 		
 	}
@@ -161,7 +157,10 @@ public class Instructions extends Screen {
 	public void closeScreen() {
 		instructionsStage.close();
 	}
-	
+	/**
+	 * Bolds the titles of the relevant sections of the instructions depending on where the user is in the application.
+	 * @param screenIdx the index of the section to highlight corresponding to the ArrayList of TitledPanes.
+	 */
 	public static void setHighlightedSection(int screenIdx) {
 		for (int i=0;i<panes.size();i++) {
 			if (i==screenIdx) {
@@ -171,11 +170,12 @@ public class Instructions extends Screen {
 			}
 		}
 		if (screenIdx==2) {
+			panes.get(3).setFont(Font.font("Verdana",FontWeight.BOLD,fontSize));
 			panes.get(4).setFont(Font.font("Verdana",FontWeight.BOLD,fontSize));
 		}else if (screenIdx==3) {
 			panes.get(4).setFont(Font.font("Verdana",FontWeight.BOLD,fontSize));
 			panes.get(3).setFont(Font.font("Verdana",FontWeight.BOLD,fontSize));
-			panes.get(6).setFont(Font.font("Verdana",FontWeight.BOLD,fontSize));
+			panes.get(5).setFont(Font.font("Verdana",FontWeight.BOLD,fontSize));
 		}
 	}
 	
