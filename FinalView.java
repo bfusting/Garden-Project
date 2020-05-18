@@ -88,7 +88,9 @@ public class FinalView extends Screen {
 		root.setBottomAnchor(save, buttonsBottom);
 		root.setBottomAnchor(exit, buttonsBottom);
 		root.setBottomAnchor(mainMenu, buttonsBottom);
+		root.setBottomAnchor(instructions, buttonsBottom);
 		
+		root.setLeftAnchor(instructions,50.0);
 		root.setLeftAnchor(edit, 200.0);
 		root.setLeftAnchor(viewSeasons, 350.0);
 		root.setLeftAnchor(infoTips, 550.0);
