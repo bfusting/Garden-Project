@@ -140,6 +140,7 @@ public class Instructions extends Screen {
 		
 		
 		instructionsStage = new Stage();
+		instructionsStage.setResizable(false);
 		instructionsStage.setScene(new Scene(root,width,height));
 		instructionsStage.setTitle("Instructions");
 		
