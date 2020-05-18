@@ -79,13 +79,15 @@ public class FinalView extends Screen {
 		
 		Button mainMenu = new Button("Main Menu");
 		mainMenu.setOnMouseClicked(c.getMainMenuWarning());
+		
+		double buttonsBottom = 75.0;
 
-		root.setBottomAnchor(edit, 150.0);
-		root.setBottomAnchor(viewSeasons, 150.0);
-		root.setBottomAnchor(infoTips, 150.0);
-		root.setBottomAnchor(save, 150.0);
-		root.setBottomAnchor(exit, 150.0);
-		root.setBottomAnchor(mainMenu, 150.0);
+		root.setBottomAnchor(edit, buttonsBottom);
+		root.setBottomAnchor(viewSeasons, buttonsBottom);
+		root.setBottomAnchor(infoTips, buttonsBottom);
+		root.setBottomAnchor(save, buttonsBottom);
+		root.setBottomAnchor(exit, buttonsBottom);
+		root.setBottomAnchor(mainMenu, buttonsBottom);
 		
 		root.setLeftAnchor(edit, 200.0);
 		root.setLeftAnchor(viewSeasons, 350.0);

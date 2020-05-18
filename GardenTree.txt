@@ -9,7 +9,7 @@ Tree
 3
 dry
 null
-PlantPictures/Southern_Sugar_Maple.jpg
+PlantPictures/Southern_Sugar_MapleSpring.jpg
 PlantPictures/Southern_Sugar_Maple.jpg
 PlantPictures/Southern_Sugar_Maple.jpg
 PlantPictures/Southern_Sugar_Maple.jpg
@@ -24,7 +24,7 @@ Tree
 3
 Wet
 null
-PlantPictures/Narrowleaf_Cottonwood.jpg
+PlantPictures/Narrowleaf_CottonwoodSpring.jpg
 PlantPictures/Narrowleaf_Cottonwood.jpg
 PlantPictures/Narrowleaf_Cottonwood.jpg
 PlantPictures/Narrowleaf_Cottonwood.jpg
@@ -39,7 +39,7 @@ Tree
 5
 null
 null
-PlantPictures/Box_Elder.jpg
+PlantPictures/Box_ElderSpring.jpg
 PlantPictures/Box_Elder.jpg
 PlantPictures/Box_Elder.jpg
 PlantPictures/Box_Elder.jpg
@@ -69,7 +69,7 @@ Tree
 4
 null
 null
-PlantPictures/Junebush.jpg
+PlantPictures/JunebushSpring.jpg
 PlantPictures/Junebush.jpg
 PlantPictures/Junebush.jpg
 PlantPictures/Junebush.jpg
@@ -85,9 +85,9 @@ Tree
 null
 null
 PlantPictures/White_Birch.jpg
-PlantPictures/White_Birch.jpg
-PlantPictures/White_Birch.jpg
-PlantPictures/White_Birch.jpg
+PlantPictures/White_BirchNotSpring.jpg
+PlantPictures/White_BirchNotSpring.jpg
+PlantPictures/White_BirchNotSpring.jpg
 
 Cigar Tree
 Catalpa bignonioides
@@ -99,7 +99,7 @@ Tree
 4
 null
 null
+PlantPictures/Cigar_TreeNotSummer.jpg
 PlantPictures/Cigar_Tree.jpg
-PlantPictures/Cigar_Tree.jpg
-PlantPictures/Cigar_Tree.jpg
-PlantPictures/Cigar_Tree.jpg
+PlantPictures/Cigar_TreeNotSummer.jpg
+PlantPictures/Cigar_TreeNotSummer.jpg
