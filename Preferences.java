@@ -54,10 +54,11 @@ import javafx.scene.Scene;
 //Updated: 4/26 5:08 >>updated by TJ 4/30 made it extend Screen
 
 /**
- * 
+ * @author Takiyah Price
  * @author Kelsey McRae
  * <br> 
- * <br> The view that gets the user's preferences for plant selection
+ * <br> The Screen in which the user selects their preferred plant color and bloom season and enters the length, width, light
+ * and water availability of their garden.
  *
  */
 public class Preferences extends Screen{
@@ -77,9 +78,9 @@ public class Preferences extends Screen{
 	
 	private Button startCreating;
 	private Button back;
-	private String backBTNText;
+	private Text prefsSetText;
 	
-	private final Border unfinishedPrefBorder = new Border(new BorderStroke(View.settingsBorderColor,BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(2.0)));
+	private final Border unfinishedPrefBorder = new Border(new BorderStroke(Color.MEDIUMVIOLETRED,BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(2.0)));
 	
 	
 	private Controller c;
@@ -93,242 +94,7 @@ public class Preferences extends Screen{
 	public Preferences(Controller controller,Stage theStage) {
 		this.c = controller;
 		stage = theStage;
-		temp();
-		//
-		/*back = new Button("Back to Templates");
-		back.setOnMouseClicked(c.getBackBTN());
 		
-		startCreating = new Button("Start Creating");
-		startCreating.setOnMouseClicked(c.getDesignTime());
-		startCreating.setDisable(true);
-		
-		
-		AnchorPane aPane = new AnchorPane();
-		color = new ComboBox<String>();
-		color.setEditable(true);
-		color.getItems().addAll("Red","Green","Purple","Blue","Orange","Yellow","Pink","White");
-		color.setOnAction(c.getPreferenceChanged());
-		color.setBorder(unfinishedPrefBorder);
-		
-		season = new ComboBox<String>();
-		season.getItems().addAll("Spring","Summer","Autumn","Winter");
-		season.setOnAction(c.getPreferenceChanged());
-		season.setBorder(unfinishedPrefBorder);
-		
-		light = new Slider();
-		light.addEventHandler(MouseEvent.MOUSE_CLICKED, c.getMouseClicked());
-		
-		water = new Slider();
-		water.addEventHandler(MouseEvent.MOUSE_CLICKED, c.getMouseClicked());
-		
-		width = new Slider();
-		width.addEventHandler(MouseEvent.MOUSE_CLICKED, c.getMouseClicked());
-		
-		length = new Slider();
-		length.addEventHandler(MouseEvent.MOUSE_CLICKED, c.getMouseClicked());
-		
-		
-		
-		Slider[] sliders = new Slider[]{light,water,length,width};
-		for (Slider s : sliders) {
-			s.setBorder(unfinishedPrefBorder);
-			s.setMin(1);
-			s.setMax(5);
-			s.setShowTickMarks(true);
-			s.setMajorTickUnit(1);
-			s.setBlockIncrement(5);
-			s.setSnapToTicks(true);
-			s.setShowTickLabels(true);
-		}
-		
-    
-    	Button mainMenu = new Button("Main Menu");
-    	mainMenu.setOnMouseClicked(c.getMainMenuWarning());
-		double lAnchors = 600.0;
-		
-		AnchorPane.setTopAnchor(color, 50.0);
-		AnchorPane.setTopAnchor(season, 150.0);
-		AnchorPane.setTopAnchor(light, 250.0);
-		AnchorPane.setTopAnchor(water, 350.0);
-		AnchorPane.setTopAnchor(length, 450.0);
-		AnchorPane.setTopAnchor(width, 550.0);
-		AnchorPane.setTopAnchor(startCreating, 650.0);
-		AnchorPane.setTopAnchor(mainMenu, 650.0);
-		AnchorPane.setLeftAnchor(color, lAnchors);
-		AnchorPane.setLeftAnchor(season, lAnchors);
-		AnchorPane.setLeftAnchor(light, lAnchors);
-		AnchorPane.setLeftAnchor(water, lAnchors);
-		AnchorPane.setLeftAnchor(length, lAnchors);
-		AnchorPane.setLeftAnchor(width, lAnchors);
-		AnchorPane.setLeftAnchor(startCreating, lAnchors);
-		AnchorPane.setLeftAnchor(mainMenu, 400.0);
-		
-		Label colorL = new Label("Preferred Color: ");
-		Label seasonL = new Label("Preferred bloom season: ");
-		Label lightL = new Label("Light availability: ");
-		Label waterL = new Label("Water availability: ");
-		lengthText = "Enter the length of your available garden space (ft): ";
-		lengthL = new Label(lengthText);
-		widthL = new Label("Width (ft): ");
-		
-		double labelAnchors = 350.0;
-		AnchorPane.setTopAnchor(colorL, 50.0);
-		AnchorPane.setTopAnchor(seasonL, 150.0);
-		AnchorPane.setTopAnchor(lightL, 250.0);
-		AnchorPane.setTopAnchor(waterL, 350.0);
-		AnchorPane.setTopAnchor(lengthL, 450.0);
-		AnchorPane.setTopAnchor(widthL, 550.0);
-		AnchorPane.setLeftAnchor(colorL, labelAnchors);
-		AnchorPane.setLeftAnchor(seasonL, labelAnchors);
-		AnchorPane.setLeftAnchor(lightL, labelAnchors);
-		AnchorPane.setLeftAnchor(waterL, labelAnchors);
-		AnchorPane.setLeftAnchor(lengthL, labelAnchors-150.0);
-		AnchorPane.setLeftAnchor(widthL, labelAnchors+75.0);
-		
-		
-		
-		//Button mainMenu = new Button("Main Menu");
-		
-		aPane.getChildren().addAll(color,season,light,water,length,width,back,startCreating,mainMenu, colorL, seasonL, lightL, waterL, lengthL, widthL);
-		preferencesScene = new Scene(aPane,View.primarySceneWidth,View.primarySceneHeight);
-		stage.setScene(preferencesScene);
-		*/
-		
-	}
-	
-	public int getTotalPrefs() {
-		return totalPrefs;
-	}
-	
-	/**
-	 * 
-	 * Asks the user for the length and width of their future garden space
-	 */
-	public void askSize() {
-		
-	}
-
-	/**
-	 * 
-	 * @return bloomTime The time of year the plant is in bloom
-	 */
-	public ComboBox<String> getBloomTime() {
-		return bloomTime;
-	}
-	
-	/**
-	 * 
-	 * @return waterReq The amount of water required for the plant
-	 */
-	/*public ComboBox<String> getWaterReq() {
-		return waterReq;
-	}*/
-	
-	/**
-	 * 
-	 * @return LightReq The amount of light required for the plant
-	 */
-	/*public ComboBox<String> getLightReq() {
-		return lightReq;
-	}*/
-	
-	/**
-	 * 
-	 * @return color The color of the plant
-	 */
-	//public ColorPicker getColor() {
-		//return color;
-	//}
-	
-/*	/**
-	 * 
-	 * @return gardenLength The length of the garden space
-	 *
-	public int getGardenLength() {
-		return gardenLength;
-	}
-	
-	/**
-	 * 
-	 * @return gardenWidth The width of the garden space
-	 *
-	public int getGardenWidth() {
-		return gardenWidth;
-	}
-*/	
-	/*
-	/**
-	 * Uses all of the combo boxes the user will use to select preferences
-	 * 
-	 * @param stage The stage for Preferences' scene
-	 
-	public void showPreferences(Stage stage) {
-		
-		
-		
-		stage.show();
-		
-	}*/
-	
-	/**
-	 * 
-	 * @return startCreating - The Start Creating button that takes you to DesignGarden
-	 */
-	public Button getStartCreating() {
-		return startCreating;
-	}
-	
-	@Override
-	public String toString() {
-		return "Preferences";
-	}
-	
-	@Override
-	public void showScreen() {
-		Instructions.setHighlightedSection(1);
-		String template = c.getTemplateFromModel();
-		
-		if (template.equals("triangle")) {
-			length.setVisible(true);
-			length.setMax(4);
-			width.setVisible(false);
-			lengthL.setVisible(true);
-			widthL.setVisible(false);
-			lengthL.setText("Number of Rows: ");
-			totalPrefs=5;	
-		} 
-		else if (template.equals("circle")) {
-		
-			width.setVisible(false);
-			length.setVisible(false);
-			widthL.setVisible(false);
-			lengthL.setVisible(false);
-			totalPrefs=4;
-		}
-		else if (template.equals("square") || template.equals("custom")) {
-			width.setVisible(true);
-			width.setMax(9);
-			length.setVisible(true);
-			length.setMax(6);
-			widthL.setVisible(true);
-			lengthL.setVisible(true);
-			lengthL.setText(lengthText);
-			totalPrefs=6;
-		}
-		
-		if (!c.verifySettings()) {
-			startCreating.setDisable(true);
-		} else {
-			startCreating.setDisable(false);
-		}
-		
-		back.setText("Selected: "+template.toUpperCase()+"\n\nBack to Templates");
-		
-		stage.setTitle("Preferences");
-		stage.setScene(preferencesScene);
-	}
-	
-	public void temp() {
 		int borderWidth = 50;
 		Color borderColor = Color.web("#122310");
 		lengthText = "Enter the length of your \navailable garden space (ft): ";
@@ -399,24 +165,6 @@ public class Preferences extends Screen{
     	instructions.setOnMouseClicked(c.getInstructionShow());
     	instructions.setMinSize(160, 60);
     	instructions.setFont(Font.font("Verdana",15));
-    	/*double lAnchors = 600.0;
-		
-		AnchorPane.setTopAnchor(color, 50.0);
-		AnchorPane.setTopAnchor(season, 150.0);
-		AnchorPane.setTopAnchor(light, 250.0);
-		AnchorPane.setTopAnchor(water, 350.0);
-		AnchorPane.setTopAnchor(length, 450.0);
-		AnchorPane.setTopAnchor(width, 550.0);
-		AnchorPane.setTopAnchor(startCreating, 650.0);
-		AnchorPane.setTopAnchor(mainMenu, 650.0);
-		AnchorPane.setLeftAnchor(color, lAnchors);
-		AnchorPane.setLeftAnchor(season, lAnchors);
-		AnchorPane.setLeftAnchor(light, lAnchors);
-		AnchorPane.setLeftAnchor(water, lAnchors);
-		AnchorPane.setLeftAnchor(length, lAnchors);
-		AnchorPane.setLeftAnchor(width, lAnchors);
-		AnchorPane.setLeftAnchor(startCreating, lAnchors);
-		AnchorPane.setLeftAnchor(mainMenu, 400.0);*/
 		
 		Font font = new Font(16);
     	Text colorL = new Text("Preferred Color: ");
@@ -433,13 +181,6 @@ public class Preferences extends Screen{
     	widthL = new Text("Width (ft): ");
     	widthL.setFont(font);
     	
-		//Label colorL = new Label("Preferred Color: ");
-		//Label seasonL = new Label("Preferred bloom season: ");
-		//Label lightL = new Label("Light availability: ");
-		//Label waterL = new Label("Water availability: ");
-		//lengthText = "Enter the length of your available garden space (ft): ";
-		//lengthL = new Label(lengthText);
-		//widthL = new Label("Width (ft): ");
 		
 		Color bg1 =  Color.web("#8fc36f");
 		
@@ -460,6 +201,13 @@ public class Preferences extends Screen{
 		instructionText.setTextAlignment(TextAlignment.CENTER);
 		instructionText.setX(140);
 		instructionText.setY(105);
+		
+		prefsSetText = new Text("Total Preferences Set: 0"+"/"+totalPrefs);
+		prefsSetText.setFont(Font.font("Verdana",FontWeight.BOLD,15));
+		prefsSetText.setTextAlignment(TextAlignment.CENTER);
+		prefsSetText.setX(140);
+		prefsSetText.setY(130);
+		
 		
 		gPane.setMinSize(1160, 760);
 		gPane.setMaxSize(1160, 760);
@@ -516,49 +264,9 @@ public class Preferences extends Screen{
 		gPane.add(sideBTNPane, 3, 0);
 		
 		Group root = new Group();
-		root.getChildren().addAll(hBox,divider,instructionCircle,instructionText);
-		
-		/*double labelAnchors = 350.0;
-		AnchorPane.setTopAnchor(colorL, 50.0);
-		AnchorPane.setTopAnchor(seasonL, 150.0);
-		AnchorPane.setTopAnchor(lightL, 250.0);
-		AnchorPane.setTopAnchor(waterL, 350.0);
-		AnchorPane.setTopAnchor(lengthL, 450.0);
-		AnchorPane.setTopAnchor(widthL, 550.0);
-		AnchorPane.setLeftAnchor(colorL, labelAnchors);
-		AnchorPane.setLeftAnchor(seasonL, labelAnchors);
-		AnchorPane.setLeftAnchor(lightL, labelAnchors);
-		AnchorPane.setLeftAnchor(waterL, labelAnchors);
-		AnchorPane.setLeftAnchor(lengthL, labelAnchors-150.0);
-		AnchorPane.setLeftAnchor(widthL, labelAnchors+75.0);*/
+		root.getChildren().addAll(hBox,divider,instructionCircle,instructionText,prefsSetText);
 		
 		
-		
-		//Button mainMenu = new Button("Main Menu");
-		
-		//aPane.getChildren().addAll(color,season,light,water,length,width,back,startCreating,mainMenu, colorL, seasonL, lightL, waterL, lengthL, widthL);
-		
-		/*TilePane left = new TilePane(colorL, seasonL,lightL,waterL,lengthL,widthL);
-		left.setVgap(80);
-		//left.setHgap(290);
-		left.setMinWidth(580);
-		left.setMaxWidth(580);
-		//left.setAlignment(Pos.CENTER);
-		left.setTileAlignment(Pos.CENTER_RIGHT);
-		TilePane right = new TilePane(color,season,light,water,length,width);
-		right.setVgap(80);
-		//right.setHgap(290);
-		right.setMinWidth(580);
-		right.setMaxWidth(580);
-		left.setTileAlignment(Pos.CENTER);*/
-		
-		/*ColumnConstraints colCon = new ColumnConstraints(530);
-		gPane.getColumnConstraints().add(colCon);
-		gPane.getRowConstraints().add(new RowConstraints(660));
-		
-		gPane.add(aPane, 0, 0);*/
-		
-		//preferencesScene = new Scene(aPane,View.primarySceneWidth,View.primarySceneHeight);
 		preferencesScene = new Scene(root,View.primarySceneWidth,View.primarySceneHeight);
 	
 		stage.setScene(preferencesScene);
@@ -567,6 +275,68 @@ public class Preferences extends Screen{
 		
 	}
 	
+	/** 
+	 * Returns the total preferences to be entered.
+	 * @param An int, the total preferences to be entered.
+	 */
+	public int getTotalPrefs() {
+		return totalPrefs;
+	}
+	
+	@Override
+	public String toString() {
+		return "Preferences";
+	}
+	
+	@Override
+	public void showScreen() {
+		Instructions.setHighlightedSection(1);
+		String template = c.getTemplateFromModel();
+		
+		if (template.equals("triangle")) {
+			length.setVisible(true);
+			length.setMax(4);
+			width.setVisible(false);
+			lengthL.setVisible(true);
+			widthL.setVisible(false);
+			lengthL.setText("Number of Rows: ");
+			totalPrefs=5;	
+		} 
+		else if (template.equals("circle")) {
+		
+			width.setVisible(false);
+			length.setVisible(false);
+			widthL.setVisible(false);
+			lengthL.setVisible(false);
+			totalPrefs=4;
+		}
+		else if (template.equals("square") || template.equals("custom")) {
+			width.setVisible(true);
+			width.setMax(9);
+			length.setVisible(true);
+			length.setMax(6);
+			widthL.setVisible(true);
+			lengthL.setVisible(true);
+			lengthL.setText(lengthText);
+			totalPrefs=6;
+		}
+		
+		if (!c.verifySettings()) {
+			startCreating.setDisable(true);
+		} else {
+			startCreating.setDisable(false);
+		}
+		prefsSetText.setText("Total Preferences Set: "+Math.min(c.getPrefsSet(),totalPrefs)+"/"+totalPrefs);
+		back.setText("Selected: "+template.toUpperCase()+"\n\nBack to Templates");
+		
+		stage.setTitle("Preferences");
+		stage.setScene(preferencesScene);
+	}
+	
+	
+	/**
+	 * Enables the 'Start Creating' Button once all preferences have been set.
+	 */
 	public void allowStartCreating() {
 		startCreating.setDisable(false);
 		
@@ -618,6 +388,15 @@ public class Preferences extends Screen{
 		
 	}
 	
+	/**
+	 * Restores the values the user has selected when loading saved preferences.
+	 * @param colorPref The user's preferred plant color.
+	 * @param seasonPref The user's preferred bloom season.
+	 * @param waterPref The light availability of the garden.
+	 * @param lightPref The water availability of the garden.
+	 * @param lengthPref The length of the garden.
+	 * @param widthPref The width of the garden.
+	 */
 	public void setValues(String colorPref, String seasonPref, int waterPref,int lightPref, int lengthPref, int widthPref) {
 		color.setValue(colorPref);
 		season.setValue(seasonPref);
@@ -663,6 +442,13 @@ public class Preferences extends Screen{
 		}
 	}
 	
+	/** 
+	 * Changes the count for the total preferences set as the user enters information.
+	 */
+	public void changePrefsSetText() {
+		prefsSetText.setText("Total Preferences Set: "+Math.min(c.getPrefsSet(),totalPrefs)+"/"+totalPrefs);
+	}
+		
 	
 }
 

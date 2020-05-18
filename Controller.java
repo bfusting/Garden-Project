@@ -1073,9 +1073,7 @@ public class Controller{
 	}
 	
 	public void preferenceChanged(ActionEvent event) {
-		view.mouseClicked(event.getSource());
-		
-		
+		view.mouseClicked(event.getSource());	
 	}
 	/**
 	 * Sends the preference modified from its default value to Model.
@@ -1095,31 +1093,7 @@ public class Controller{
 		model.setUserLength(length);
 		model.setUserWidth(width);
 		
-		/*if (season!=null) {
-			model.setUserPrefSeason(season);
-			System.out.println("Season preference sent to model: "+ season);
-		}
-		if (!(color.equals(""))) {
-			model.setUserPrefColor(color);
-			System.out.println("Color preference sent to model: "+ color);
-		}
-		if (light!=0) {
-			model.setUserPrefLight(light);
-			System.out.println("Light preference sent to model: "+ light);
-		}
-		if (water!=0) {
-			model.setUserPrefWater(water);
-			System.out.println("Water preference sent to model: "+water);
-		}
 		
-		if (length!=0) {
-			model.setUserLength(length);
-			System.out.println("Length preference sent to model: "+ length);
-		}
-		if (width!=0) {
-			model.setUserWidth(width);
-			System.out.println("Width preference sent to model: "+ width);
-		}*/
 		System.out.println("Total prefs set: "+model.getPrefsSet());
 	}
 	
@@ -1127,13 +1101,14 @@ public class Controller{
 	 * Returns the number of preference properties that have been set in Model.
 	 * @return an int, the number of preferences that have been modified from their default value.
 	 */
-	/*public int getPrefsSet() {
+	public int getPrefsSet() {
 		return model.getPrefsSet();
-	}*/
+	}
 	
 	public boolean verifySettings() {
 		return (model.necessaryPrefsSet() && model.getPrefsSet()>=view.getCurrentTotalPrefs());
 	}
+	
 
     public void mouseEnterPlantSelection(MouseEvent event) {
 	Node n = (Node)event.getSource();

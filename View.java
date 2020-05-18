@@ -374,10 +374,11 @@ public class View extends Application{
 	public void mouseClicked(Object o) {
 		if (currentPrimaryScreen.equals(chooseTemplateScreen)) {
 			chooseTemplateScreen.mouseClicked((Shape) o);
+			preferencesScreen.changePrefsSetText();
 		}
 		else if (currentPrimaryScreen.equals(preferencesScreen)) {
-			//prefs.add((Node) o);
 			preferencesScreen.sendPreference((Control) o);
+			preferencesScreen.changePrefsSetText();
 			if (con.verifySettings()) {
 				preferencesScreen.allowStartCreating();
 			}
