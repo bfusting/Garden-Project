@@ -63,7 +63,7 @@ public class Instructions extends Screen {
 		texts.add(chooseTemplateText);
 		
 		
-		Text enteringPreferencesText= new Text("Once a template is selected the Preferences screen will appear. Each\npreferences screen will have the following in common:\n\n" +
+		Text enteringPreferencesText= new Text("Once a template is selected the Preferences screen will appear. Unset\npreferences are shown in red and must be set before proceeding. Each\npreferences screen will have the following in common:\n\n" +
 		"Preferred Color: The color of plants that are most desirable to you.\n\n" + "Prefered Bloom Season: The season which your preferred plants will bloom in.\n\n"
 				+ "Light Availability: How much light your plants require to live. \n1 means they "
 				+ "need minimal light to live. \n3 is a happy medium of partial shade to live.\n5 means the plant needs constant sunlight\n\n"
