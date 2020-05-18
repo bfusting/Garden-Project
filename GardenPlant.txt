@@ -10,7 +10,7 @@ Shrub
 Dry
 Butterflies
 PlantPictures/Sweet_Fern.jpg
-PlantPictures/Sweet_Fern.jpg
+PlantPictures/Sweet_FernSummer.jpg
 PlantPictures/Sweet_Fern.jpg
 PlantPictures/Sweet_Fern.jpg
 
@@ -26,7 +26,7 @@ null
 null
 PlantPictures/Seaside_Alder.jpg
 PlantPictures/Seaside_Alder.jpg
-PlantPictures/Seaside_Alder.jpg
+PlantPictures/Seaside_AlderFall.jpg
 PlantPictures/Seaside_Alder.jpg
 
 Red Chokeberry
@@ -55,7 +55,7 @@ Shrub
 null
 null
 PlantPictures/Sweet_Shrub.jpg
-PlantPictures/Sweet_Shrub.jpg
+PlantPictures/Sweet_ShrubSummer.jpg
 PlantPictures/Sweet_Shrub.jpg
 PlantPictures/Sweet_Shrub.jpg
 
@@ -69,7 +69,7 @@ Shrub
 4
 null
 null
-PlantPictures/New_Jersey_Tea.jpg
+PlantPictures/New_Jersey_TeaSpring.jpg
 PlantPictures/New_Jersey_Tea.jpg
 PlantPictures/New_Jersey_Tea.jpg
 PlantPictures/New_Jersey_Tea.jpg
@@ -85,7 +85,7 @@ Shrub
 null
 null
 PlantPictures/American_Hazelnut.jpg
-PlantPictures/American_Hazelnut.jpg
+PlantPictures/American_HazelnutSummer.jpg
 PlantPictures/American_Hazelnut.jpg
 PlantPictures/American_Hazelnut.jpg
 
@@ -99,7 +99,7 @@ Tree
 4
 null
 null
-PlantPictures/Red_WIllow.jpg
+PlantPictures/Red_WIllowSpring.jpg
 PlantPictures/Red_WIllow.jpg
 PlantPictures/Red_WIllow.jpg
 PlantPictures/Red_WIllow.jpg
@@ -115,7 +115,7 @@ Shrub
 null
 null
 PlantPictures/Maidenhair_Fern.jpg
-PlantPictures/Maidenhair_Fern.jpg
+PlantPictures/Maidenhair_FernSummer.jpg
 PlantPictures/Maidenhair_Fern.jpg
 PlantPictures/Maidenhair_Fern.jpg
 

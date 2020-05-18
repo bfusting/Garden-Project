@@ -1,6 +1,6 @@
 
 Pale Purple ConeFlower
-Chenacea Pallida
+Echinacea Pallida
 pink/purple
 Summer
 Flower
@@ -10,9 +10,9 @@ Flower
 dry/moist
 null
 PlantPictures/Pale_Purple_Coneflower.jpg
-PlantPictures/Pale_Purple_Coneflower.jpg
-PlantPictures/Pale_Purple_Coneflower.jpg
-PlantPictures/Pale_Purple_Coneflower.jpg
+PlantPictures/Pale_Purple_ConeflowerSpring.jpg
+PlantPictures/Pale_Purple_ConeflowerSpring.jpg
+PlantPictures/Pale_Purple_ConeflowerSpring.jpg
 
 Seaside Goldenrod
 Solidago Sempervirens
@@ -26,7 +26,7 @@ moist
 null
 PlantPictures/Seaside_GoldenRod.jpg
 PlantPictures/Seaside_GoldenRod.jpg
-PlantPictures/Seaside_GoldenRod.jpg
+PlantPictures/Seaside_GoldenRodFall.jpg
 PlantPictures/Seaside_GoldenRod.jpg
 
 Fillaree
@@ -39,7 +39,7 @@ Flower
 5
 dry
 null
-PlantPictures/Fillaree.jpg
+PlantPictures/FillareeSpring.jpg
 PlantPictures/Fillaree.jpg
 PlantPictures/Fillaree.jpg
 PlantPictures/Fillaree.jpg
@@ -55,7 +55,7 @@ Flower
 null
 null
 PlantPictures/Star_Grass.jpg
-PlantPictures/Star_Grass.jpg
+PlantPictures/Star_GrassSummer.jpg
 PlantPictures/Star_Grass.jpg
 PlantPictures/Star_Grass.jpg
 
@@ -70,7 +70,7 @@ Flower
 null
 null
 PlantPictures/Narrowleaf_Onion.jpg
-PlantPictures/Narrowleaf_Onion.jpg
+PlantPictures/Narrowleaf_OnionSummer.jpg
 PlantPictures/Narrowleaf_Onion.jpg
 PlantPictures/Narrowleaf_Onion.jpg
 
@@ -85,7 +85,7 @@ Flower
 null
 null
 PlantPictures/Pear_Thorn.jpg
-PlantPictures/Pear_Thorn.jpg
+PlantPictures/Pear_ThornSummer.jpg
 PlantPictures/Pear_Thorn.jpg
 PlantPictures/Pear_Thorn.jpg
 	
@@ -101,5 +101,5 @@ null
 null
 PlantPictures/White_Snakeroot.jpg
 PlantPictures/White_Snakeroot.jpg
-PlantPictures/White_Snakeroot.jpg
+PlantPictures/White_SnakerootFall.jpg
 PlantPictures/White_Snakeroot.jpg
