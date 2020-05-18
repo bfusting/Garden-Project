@@ -97,10 +97,13 @@ public class Instructions extends Screen {
 				+ "Title: Common Name\n\tPicture: Picture of the plant\n\tLatin Name: Latin name of the plant\n\tColor: Colors the plant comes in\n\tBloom Time: The season the plant blooms in if any");
 		texts.add(infoTipsText);
 		
-		Text loadGardenText = new Text("Here is where it will explain how to load in an exisiting Garden and how to\nsave a design after editing.");
+		Text loadGardenText = new Text("SAVING: Click on the save button and name your newly made masterpiece\n" +
+		"\nLOADING: From the main menu click on Load Garden and choose your unfinshed work and\nedit it to your hearts content");
 		texts.add(loadGardenText);
 		
-		Text seasonViewText = new Text("Here is where it will explain how to view different seasons.");
+		Text seasonViewText = new Text("In the Garden Designer click on the View Seasons button. A new screen will pop up\nto view your garden in alternate seasons. "
+				+ "\n\nClick on each view seasons button to see how the garden would look in each season\n\n"
+				+ "Once you are done looking at the seasons click on the Close SeasonView button");
 		texts.add(seasonViewText);
 		
 		for (Text t: texts) {
@@ -131,7 +134,7 @@ public class Instructions extends Screen {
 		panes.add(alternateVersionsPane);
 		TitledPane infoTipsPane = new TitledPane("Viewing Plant Info and Recommendations",infoTipsAP);
 		panes.add(infoTipsPane);
-		TitledPane loadingGardenPane = new TitledPane("Loading an Existing Garden Design", loadGardenAP);
+		TitledPane loadingGardenPane = new TitledPane("Saving and Loading an Existing Garden Design", loadGardenAP);
 		panes.add(loadingGardenPane);
 		TitledPane seasonViewPane = new TitledPane("Viewing Your Garden in Different Seasons",seasonViewAP);
 		panes.add(seasonViewPane);
