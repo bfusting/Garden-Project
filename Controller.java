@@ -1475,7 +1475,8 @@ public class Controller{
     	view.getSeasonViewScreen().setTitleToSpring();
     	model.setUserPrefSeason(Seasons.SPRING);
     	if(DEBUG) {System.out.println("Current Season: " + model.getUserPrefSeason());}
-    	view.getSeasonViewScreen().setSeasonGP(view.drawGrid(this, false));
+    	//view.getSeasonViewScreen().setSeasonGP(view.drawGrid(this, false));
+    	view.getSeasonViewScreen().showScreen();
     }
     
     /**
@@ -1504,6 +1505,7 @@ public class Controller{
     	model.setUserPrefSeason(Seasons.SUMMER);
     	if(DEBUG) {System.out.println("Current Season: " + model.getUserPrefSeason());}
     	view.getSeasonViewScreen().setSeasonGP(view.drawGrid(this, false));
+    	view.getSeasonViewScreen().showScreen();
     }
     
     /**
@@ -1532,6 +1534,7 @@ public class Controller{
     	model.setUserPrefSeason(Seasons.AUTUMN);
     	if(DEBUG) {System.out.println("Current Season: " + model.getUserPrefSeason());}
     	view.getSeasonViewScreen().setSeasonGP(view.drawGrid(this, false));
+    	view.getSeasonViewScreen().showScreen();
     }
     
     /**
@@ -1560,6 +1563,7 @@ public class Controller{
     	model.setUserPrefSeason(Seasons.WINTER);
     	if(DEBUG) {System.out.println("Current Season: " + model.getUserPrefSeason());}
     	view.getSeasonViewScreen().setSeasonGP(view.drawGrid(this, false));
+    	view.getSeasonViewScreen().showScreen();
     }
     
     /**

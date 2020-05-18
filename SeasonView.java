@@ -64,7 +64,7 @@ public class SeasonView extends Screen{
 	// used to display stage
 	private Controller c;
 	private Stage stage;
-	
+	private Scene scene;
 	// used to show inactive square or not
 	private final boolean showInactiveTiles = false;
 	
@@ -76,6 +76,8 @@ public class SeasonView extends Screen{
 	 */
 	public SeasonView(Controller controller) {
 		c = controller;
+		//Creating new instances of images
+		stage = new Stage();
 	}
 
 	/**
@@ -86,12 +88,8 @@ public class SeasonView extends Screen{
 	//Use after alpha
 	//public void ShowSeasonView(Stage primaryStage){
 	public void ShowSeasonView(){
-		//Creating new instances of images
-		stage = new Stage();
-		
-		// creating a new instance
+		// creating a new instance of anchorPane
 		root = new AnchorPane();
-		
 		// setting up seasonsGP with controller
 		seasonGP = View.drawGrid(c, showInactiveTiles);
 		
@@ -140,12 +138,13 @@ public class SeasonView extends Screen{
 			root.setLeftAnchor(btnArr[i], btmPlaceArr[i]);
 		}
 		
+		
 		//adding buttons to the anchorpane
 		root.getChildren().addAll(springBTN,summerBTN,fallBTN,winterBTN,closeBTN);
 		
 		// Setting the Scene with AnchorPane
-		Scene scene = new Scene(root,HEIGHT,WIDTH);
-		stage.setTitle("SeasonView");
+		scene = new Scene(root,HEIGHT,WIDTH);
+		//stage.setTitle("SeasonView");
 		stage.setScene(scene);
 		stage.show();
 	}
