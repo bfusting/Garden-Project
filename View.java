@@ -347,6 +347,7 @@ public class View extends Application{
 			chooseTemplateScreen.mouseInside((Shape) o);
 		}
 		
+		
 	}
 	
 	/**

@@ -31,6 +31,7 @@ import javafx.scene.shape.CubicCurve;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -137,6 +138,9 @@ public class DesignGarden extends Screen{
 	private String[] shrub;
 	private String[] path;
 	private String[] other;
+	
+	private Popup infoPopup;
+	private Label infoLabel;
 	
 	public DesignGarden(Controller controller,Stage s) {
 		this.c = controller;
@@ -342,6 +346,20 @@ public class DesignGarden extends Screen{
 		System.out.println("drawing scene");
 		length = c.getWidthFromModel();
 		width = c.getLengthFromModel();
+		
+		infoPopup = new Popup();
+		infoLabel = new Label();
+		infoLabel.setBackground(View.settingsBackground);
+		infoLabel.setMinSize(320,200);
+		infoLabel.setAlignment(Pos.CENTER);
+		infoPopup.getContent().add(infoLabel);
+		//infoPopup.setAutoHide(true);
+		infoPopup.setAnchorX(1000);
+		infoPopup.setAnchorY(700);
+		
+		
+		
+		
 		//gardenPlot = c.getModel().getUserPlot();
 		Insets selectionGPInsets = new Insets(7.5);
 		
@@ -729,6 +747,26 @@ designGardenScene = new Scene(root,View.primarySceneWidth,View.primarySceneHeigh
 		this.other = other;
 		
 		customMode = c.getTemplateFromModel().toLowerCase().equals("custom");
+	}
+	
+	/**
+	 * Shows the information for the plant or addOn in the selection panes when hovered over.
+	 * @param description
+	 */
+	public void showAddOnInfo(String description) {
+		infoPopup.getContent().remove(infoLabel);
+		infoLabel.setText(description);
+		infoPopup.getContent().add(infoLabel);
+		
+		infoPopup.show(theStage);
+		
+	}
+	
+	/**
+	 * Hides the popup for the Plant or AddOn information.
+	 */
+	public void hideAddOnInfo() {
+		infoPopup.hide();
 	}
 	
 	

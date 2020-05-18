@@ -859,6 +859,7 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void finalViewBTN(MouseEvent event) {
+		view.getDesignGardenScreen().hideAddOnInfo();
 		view.show("finalViewScreen");
 	}
 	
@@ -1120,7 +1121,43 @@ public class Controller{
 	    view.getDesignGardenScreen().setHoverEditTile(true);
 	    if(DEBUG) {System.out.println("bool set to true");}
 	}
+	System.out.println("Index "+view.getDesignGardenScreen().getSelectGardenType().
+		    getSelectionModel().getSelectedIndex());
+	
+    
+    int tabidx = view.getDesignGardenScreen().getSelectGardenType().getSelectionModel().getSelectedIndex();
+    
+    if (tabidx<=2) {
+    	Plant p=null;
+    switch (tabidx) {
+    case 0:
+    	 p = model.getFlowerArr().get(col);
+    	break;
+    case 1:
+    	p = model.getTreeArr().get(col);
+    	break;
+    case 2:
+    	p = model.getShrubArr().get(col);
+    	break;
     }
+    view.getDesignGardenScreen().showAddOnInfo("Name: "+p.getName()+"\n"+p.toString());
+    }
+    else if (tabidx<=4) {
+    	AddOn a = null;
+    	switch(tabidx) {
+    	case 3:
+    		a = model.getPathwaysArr().get(col);
+    		break;
+    	case 4:
+    		a = model.getSceneryArr().get(col);
+    		break;
+    	}
+    	view.getDesignGardenScreen().showAddOnInfo(a.getDescription());
+    }
+    
+}
+    	
+    
     
     /**
      * 
@@ -1150,17 +1187,17 @@ public class Controller{
 	case 0:
 		temp.addAll(model.getFlowerArr());
 		tile.setPlant((Plant)temp.get(index));
-		model.getUsedPlants().add((Plant)temp.get(index));
+		Model.getUsedPlants().add((Plant)temp.get(index));
 		break;
 	case 1: 
 		temp.addAll(model.getTreeArr());
 		tile.setPlant((Plant)temp.get(index));
-		model.getUsedPlants().add((Plant)temp.get(index));
+		Model.getUsedPlants().add((Plant)temp.get(index));
 		break;
 	case 2:
 		temp.addAll(model.getShrubArr());
 		tile.setPlant((Plant)temp.get(index));
-		model.getUsedPlants().add((Plant)temp.get(index));
+		Model.getUsedPlants().add((Plant)temp.get(index));
 		break;
 	case 3:
 		temp.addAll(model.getPathwaysArr());
