@@ -445,11 +445,7 @@ public class Controller{
         content.putImage(n.getImage());
         dBoard.setContent(content);
         
-        //System.out.println("Dragging tile editor index: "+GridPane.getColumnIndex((Node)event.getSource()));
-        if(dBoard.hasImage() &&
-				view.getDesignGardenScreen().getHoverEditTile() == true) {
-        view.getDesignGardenScreen().setDraggedTileEditorIdx(GridPane.getColumnIndex((Node)event.getSource()));
-        }
+        
         event.consume();
 	}//startDrag
 	
@@ -1445,7 +1441,7 @@ public class Controller{
     
     
     public void gardenTileClicked(MouseEvent event) {
-    	if (event.getSource().getClass().equals(ImageView.class)) {
+    	if (event.getSource().getClass().equals(ImageView.class) && event.getClickCount()==1) {
     	ImageView n = (ImageView) event.getSource();
     	int rowIdx = GridPane.getRowIndex(n);
     	int colIdx = GridPane.getColumnIndex(n);
@@ -1458,8 +1454,10 @@ public class Controller{
     	} else if (!clickedTile.getIsActive() && clickedTile.isEmpty()) {
     		clickedTile.setIsActive(true);
     		view.setActiveImg(n, true);
-    	} 
     	}
+    	
+    	}
+    	
     
     }
     
@@ -1486,6 +1484,7 @@ public class Controller{
     		view.getDesignGardenScreen().getPlot().getChildren().remove(n);
     		tile.setEmpty();
     	}
+    	System.out.println("clicked");
     }
     
     /**

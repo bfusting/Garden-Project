@@ -139,8 +139,7 @@ public class View extends Application{
 		instructionsScreen = new Instructions();
 		exitScreen = new Exit(con);
 		finalViewScreen = new FinalView(con,primaryStage);
-		infoTipsScreen = new InfoTips();
-		//seasonViewScreen = new SeasonView(con);
+		
 		recommendationsScreen = new Recommendations(con);
 		
 		createNew();
@@ -439,6 +438,7 @@ public class View extends Application{
 		finalViewScreen.setPreviousScreen(designGardenScreen);
 		recommendationsScreen.setPreviousScreen(designGardenScreen);
 		seasonViewScreen = new SeasonView(con);
+		infoTipsScreen = new InfoTips();
 		
 	}
 	
@@ -495,7 +495,7 @@ public class View extends Application{
 						ImageView addOnIV = new ImageView(new Image(addOnImgName));
 						addOnIV.setFitHeight(AddOnImgSize);
 						addOnIV.setFitWidth(AddOnImgSize);
-						if (drawInactiveTiles) {addOnIV.setOnMouseClicked(con.getRemoveFromTile()); }
+						//addOnIV.setOnMouseClicked(con.getRemoveFromTile());
 						gp.add(addOnIV, j, i, 1,1);
 					}
 					

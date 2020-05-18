@@ -15,6 +15,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -272,10 +273,11 @@ public class DesignGarden extends Screen{
 		if (!shown) {
 			drawScene();
 			shown = true;
+			if (customMode) {
+				plot.getChildren().forEach(cell -> cell.setOnMouseClicked(c.getGardenTileClicked()));
+			}
 		}
-		if (customMode) {
-			plot.getChildren().forEach(cell -> cell.setOnMouseClicked(c.getGardenTileClicked()));
-		}
+		plot.getChildren().forEach(cell->cell.addEventHandler(MouseEvent.MOUSE_CLICKED, c.getRemoveFromTile()));
 		plot.getChildren().forEach(cell->cell.setOnMouseEntered(c.getHoverEmptyTiles()));
 		//plot.getChildren().forEach(cell->cell.setOnDragDropped(null));
 		
