@@ -9,10 +9,10 @@ Flower
 5
 dry/moist
 null
+PlantPictures/Pale_Purple_Coneflower.jpg
 PlantPictures/Pale_Purple_ConeflowerSpring.jpg
-PlantPictures/Pale_Purple_Coneflower.jpg
-PlantPictures/Pale_Purple_Coneflower.jpg
-PlantPictures/Pale_Purple_Coneflower.jpg
+PlantPictures/Pale_Purple_ConeflowerSpring.jpg
+PlantPictures/Pale_Purple_ConeflowerSpring.jpg
 
 Seaside Goldenrod
 Solidago Sempervirens
@@ -55,7 +55,7 @@ Flower
 null
 null
 PlantPictures/Star_Grass.jpg
-PlantPictures/Star_Grass.jpg
+PlantPictures/Star_GrassSummer.jpg
 PlantPictures/Star_Grass.jpg
 PlantPictures/Star_Grass.jpg
 
@@ -70,7 +70,7 @@ Flower
 null
 null
 PlantPictures/Narrowleaf_Onion.jpg
-PlantPictures/Narrowleaf_Onion.jpg
+PlantPictures/Narrowleaf_OnionSummer.jpg
 PlantPictures/Narrowleaf_Onion.jpg
 PlantPictures/Narrowleaf_Onion.jpg
 
@@ -85,7 +85,7 @@ Flower
 null
 null
 PlantPictures/Pear_Thorn.jpg
-PlantPictures/Pear_Thorn.jpg
+PlantPictures/Pear_ThornSummer.jpg
 PlantPictures/Pear_Thorn.jpg
 PlantPictures/Pear_Thorn.jpg
 	
@@ -101,5 +101,5 @@ null
 null
 PlantPictures/White_Snakeroot.jpg
 PlantPictures/White_Snakeroot.jpg
-PlantPictures/White_Snakeroot.jpg
+PlantPictures/White_SnakerootFall.jpg
 PlantPictures/White_Snakeroot.jpg
