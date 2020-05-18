@@ -11,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /*
@@ -67,6 +68,7 @@ public class SeasonView extends Screen{
 	private Scene scene;
 	// used to show inactive square or not
 	private final boolean showInactiveTiles = false;
+	private boolean shown;
 	
 	// holds the season when SeasonView starts
 	private Seasons startingSeason;
@@ -78,81 +80,85 @@ public class SeasonView extends Screen{
 		c = controller;
 		//Creating new instances of images
 		stage = new Stage();
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.setOnCloseRequest(c.getSeasonViewCloseRequest());
+		shown= false;
+		
+		// creating a new instance of anchorPane
+				root = new AnchorPane();
+				// setting up seasonsGP with controller
+				//seasonGP = View.drawGrid(c, showInactiveTiles);
+				
+				//setting Startingseason to the one in Model
+				//startingSeason = c.getModel().getUserPrefSeason();
+				
+				// dummy variable to see where to place future gridPane
+				Rectangle backdrop = new Rectangle(overlapPoint,bottomAnchorPoint,
+						overlapPoint*5,bottomAnchorPoint*5);
+				backdrop.setStroke(Color.LIGHTGRAY);
+				backdrop.setFill(Color.LIGHTGRAY);
+				backdrop.setStrokeWidth(1);
+				
+				// used to anchor the rectangle above buttons, can use for gridPane
+				AnchorPane.setTopAnchor(backdrop, topAnchorPoint);
+				root.getChildren().add(backdrop);
+				
+				
+				
+				// Buttons initilization to have their own labels
+				springBTN = new Button("View Spring");
+				summerBTN = new Button("View Summer");
+				fallBTN = new Button("View Fall");
+				winterBTN = new Button("View Winter");
+				closeBTN = new Button("Close SeasonView");
+				
+				// Binding buttons to event handlers (Event handler for each season)
+				springBTN.setOnMouseClicked(c.getClickOnViewSpring());
+				summerBTN.setOnMouseClicked(c.getClickOnViewSummer());
+				fallBTN.setOnMouseClicked(c.getClickOnViewFall());
+				winterBTN.setOnMouseClicked(c.getClickOnViewWinter());
+				closeBTN.setOnMouseClicked(c.getClickOnCloseSeasons());
+				
+				// Anchoring in AnchorPane at the bottom via for loop
+				Button btnArr[] = {springBTN,summerBTN,fallBTN,winterBTN,closeBTN};
+				for(int i=0;i<btnArr.length;i++) {
+					AnchorPane.setBottomAnchor(btnArr[i], bottomAnchorPoint);
+				}
+				
+				// Anchoring Buttons in AnchorPane from left to right
+				double btmPlaceArr[] = {leftAnchorPoint,leftAnchorPoint+125,
+						leftAnchorPoint+250,leftAnchorPoint+375,leftAnchorPoint+500};
+				for(int i=0;i<btnArr.length;i++) {
+					AnchorPane.setLeftAnchor(btnArr[i], btmPlaceArr[i]);
+				}
+				
+				
+				//adding buttons to the anchorpane
+				root.getChildren().addAll(springBTN,summerBTN,fallBTN,winterBTN,closeBTN);
+				
+				// Setting the Scene with AnchorPane
+				scene = new Scene(root,HEIGHT,WIDTH);
+				stage.setTitle("Season View");
 	}
 
-	/**
-	 * Used to create a new popup window of the stage and adds the
-	 * features such as the back button and a pane within the borderpane center
-	 * to the currentView
-	 */
-	//Use after alpha
-	//public void ShowSeasonView(Stage primaryStage){
-	public void ShowSeasonView(){
-		// creating a new instance of anchorPane
-		root = new AnchorPane();
-		// setting up seasonsGP with controller
-		seasonGP = View.drawGrid(c, showInactiveTiles);
-		
-		//setting Startingseason to the one in Model
-		startingSeason = c.getModel().getUserPrefSeason();
-		
-		// dummy variable to see where to place future gridPane
-		Rectangle backdrop = new Rectangle(overlapPoint,bottomAnchorPoint,
-				overlapPoint*5,bottomAnchorPoint*5);
-		backdrop.setStroke(Color.LIGHTGRAY);
-		backdrop.setFill(Color.LIGHTGRAY);
-		backdrop.setStrokeWidth(1);
-		
-		// used to anchor the rectangle above buttons, can use for gridPane
-		root.setTopAnchor(backdrop, topAnchorPoint);
-		root.getChildren().add(backdrop);
-		
-		// overlaying seasonsGP onto backdrop rectangle
-		root.setLeftAnchor(seasonGP,overlapPoint);
-		root.getChildren().add(seasonGP);
-		
-		// Buttons initilization to have their own labels
-		springBTN = new Button("View Spring");
-		summerBTN = new Button("View Summer");
-		fallBTN = new Button("View Fall");
-		winterBTN = new Button("View Winter");
-		closeBTN = new Button("Close SeasonView");
-		
-		// Binding buttons to event handlers (Event handler for each season)
-		springBTN.setOnMouseClicked(c.getClickOnViewSpring());
-		summerBTN.setOnMouseClicked(c.getClickOnViewSummer());
-		fallBTN.setOnMouseClicked(c.getClickOnViewFall());
-		winterBTN.setOnMouseClicked(c.getClickOnViewWinter());
-		closeBTN.setOnMouseClicked(c.getClickOnCloseSeasons());
-		
-		// Anchoring in AnchorPane at the bottom via for loop
-		Button btnArr[] = {springBTN,summerBTN,fallBTN,winterBTN,closeBTN};
-		for(int i=0;i<btnArr.length;i++) {
-			root.setBottomAnchor(btnArr[i], bottomAnchorPoint);
-		}
-		
-		// Anchoring Buttons in AnchorPane from left to right
-		double btmPlaceArr[] = {leftAnchorPoint,leftAnchorPoint+125,
-				leftAnchorPoint+250,leftAnchorPoint+375,leftAnchorPoint+500};
-		for(int i=0;i<btnArr.length;i++) {
-			root.setLeftAnchor(btnArr[i], btmPlaceArr[i]);
-		}
-		
-		
-		//adding buttons to the anchorpane
-		root.getChildren().addAll(springBTN,summerBTN,fallBTN,winterBTN,closeBTN);
-		
-		// Setting the Scene with AnchorPane
-		scene = new Scene(root,HEIGHT,WIDTH);
-		//stage.setTitle("SeasonView");
-		stage.setScene(scene);
-		stage.show();
-	}
+	
 	
 	@Override
 	public void showScreen() {
-		//need to consolidate into one showScreen() method
-		ShowSeasonView();
+		if (!shown) {
+			startingSeason=c.getModel().getUserPrefSeason();
+			shown = true;
+		}
+		root.getChildren().remove(seasonGP);
+		seasonGP=View.drawGrid(c, showInactiveTiles);
+		
+		// overlaying seasonsGP onto backdrop rectangle
+		AnchorPane.setLeftAnchor(seasonGP,overlapPoint);
+		
+		root.getChildren().add(seasonGP);
+		stage.setScene(scene);
+		stage.show();
+		
 	}
 	
 	@Override
@@ -160,30 +166,41 @@ public class SeasonView extends Screen{
 		stage.close();
 	}
 	
-	public void closeSeasons() {
+	@Override
+	public void closeScreen() {
 		// set back to original season in here
 		c.getModel().setUserPrefSeason(startingSeason);
-		System.out.println("Closing Stage: " + c.getModel().getUserPrefSeason());
+		System.out.println("Closing Stage: " + startingSeason);
 		stage.close();
 	}
 	
+	/**
+	 * Sets the stage's title to Spring when the user views the spring version of their design.
+	 */
 	public void setTitleToSpring() {
 		stage.setTitle("Spring");
 	}
-
+	
+	/**
+	 * Sets the stage's title to Summer when the user views the summer version of their design.
+	 */
 	public void setTitleToSummer() {
 		stage.setTitle("Summer");
 	}
 	
+	/**
+	 * Sets the stage's title to Fall when the user views the fall version of their design.
+	 */
 	public void setTitleToFall() {
 		stage.setTitle("Fall");
 	}
 	
+	/**
+	 * Sets the stage's title to Winter when the user views the winter version of their design.
+	 */
 	public void setTitleToWinter() {
 		stage.setTitle("Winter");
 	}
 	
-	public void setSeasonGP(GridPane newGP) {
-		seasonGP = newGP;
-	}
+	
 }

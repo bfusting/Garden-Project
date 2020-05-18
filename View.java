@@ -140,7 +140,7 @@ public class View extends Application{
 		exitScreen = new Exit(con);
 		finalViewScreen = new FinalView(con,primaryStage);
 		infoTipsScreen = new InfoTips();
-		seasonViewScreen = new SeasonView(con);
+		//seasonViewScreen = new SeasonView(con);
 		recommendationsScreen = new Recommendations(con);
 		
 		createNew();
@@ -437,6 +437,7 @@ public class View extends Application{
 		
 		finalViewScreen.setPreviousScreen(designGardenScreen);
 		recommendationsScreen.setPreviousScreen(designGardenScreen);
+		seasonViewScreen = new SeasonView(con);
 		
 	}
 	

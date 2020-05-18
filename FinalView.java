@@ -201,6 +201,7 @@ public class FinalView extends Screen {
 	@Override
 	public void showScreen() {
 		Instructions.setHighlightedSection(3);
+		root.getChildren().remove(originalGP);
 		originalGP = View.drawGrid(c, false);
 		AnchorPane.setTopAnchor(originalGP, 100.0);
 		AnchorPane.setLeftAnchor(originalGP, 150.0);

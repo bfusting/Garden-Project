@@ -1245,7 +1245,7 @@ public class Controller{
      * @see DesignGarden
      */
     public void clickOnCloseSeasons(MouseEvent event) {
-    	view.getSeasonViewScreen().closeSeasons();
+    	view.getSeasonViewScreen().closeScreen();
     }
     
     /**
@@ -1430,7 +1430,7 @@ public class Controller{
     		Node n = (Node) event.getSource();
     		GardenTile tile = model.getUserPlot().getLayout()[GridPane.getRowIndex(n)][GridPane.getColumnIndex(n)];
     		if (tile.getPlant()!=null) {
-    			model.getUsedPlants().remove(tile.getPlant());
+    			Model.getUsedPlants().remove(tile.getPlant());
     		}
     		view.getDesignGardenScreen().getPlot().getChildren().remove(n);
     		tile.setEmpty();
@@ -1479,7 +1479,7 @@ public class Controller{
     	view.getSeasonViewScreen().setTitleToSummer();
     	model.setUserPrefSeason(Seasons.SUMMER);
     	if(DEBUG) {System.out.println("Current Season: " + model.getUserPrefSeason());}
-    	view.getSeasonViewScreen().setSeasonGP(view.drawGrid(this, false));
+    	//view.getSeasonViewScreen().setSeasonGP(view.drawGrid(this, false));
     	view.getSeasonViewScreen().showScreen();
     }
     
@@ -1508,7 +1508,7 @@ public class Controller{
     	view.getSeasonViewScreen().setTitleToFall();
     	model.setUserPrefSeason(Seasons.AUTUMN);
     	if(DEBUG) {System.out.println("Current Season: " + model.getUserPrefSeason());}
-    	view.getSeasonViewScreen().setSeasonGP(view.drawGrid(this, false));
+    	//view.getSeasonViewScreen().setSeasonGP(view.drawGrid(this, false));
     	view.getSeasonViewScreen().showScreen();
     }
     
@@ -1537,7 +1537,7 @@ public class Controller{
     	view.getSeasonViewScreen().setTitleToWinter();
     	model.setUserPrefSeason(Seasons.WINTER);
     	if(DEBUG) {System.out.println("Current Season: " + model.getUserPrefSeason());}
-    	view.getSeasonViewScreen().setSeasonGP(view.drawGrid(this, false));
+    	//view.getSeasonViewScreen().setSeasonGP(view.drawGrid(this, false));
     	view.getSeasonViewScreen().showScreen();
     }
     
@@ -1549,6 +1549,14 @@ public class Controller{
      */
     public EventHandler<MouseEvent> getClickOnViewWinter(){
     	return event -> clickOnViewWinter((MouseEvent)event);
+    }
+    
+    public EventHandler<WindowEvent> getSeasonViewCloseRequest() {
+    	return event -> seasonViewCloseRequest((WindowEvent) event);
+    }
+    
+    public void seasonViewCloseRequest(WindowEvent event) {
+    	view.getSeasonViewScreen().closeScreen();
     }
 }//Controller
 
