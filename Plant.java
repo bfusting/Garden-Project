@@ -45,8 +45,8 @@ public class Plant extends AddOn{
 	private String waterStr;
 	private String sunStr;
 	
-	private String[] waterStrArr = {"Low","Low/medium","Medium","Medium/High","High"};
-	private String[] sunStrArr = {"Completely Shaded","Mostly Shaded", "Partial Shade", "Sunny / Partial shade", "Completely Sunny"};
+	private static String[] waterStrArr = {"Low","Low/medium","Medium","Medium/High","High"};
+	private static String[] sunStrArr = {"Completely Shaded","Mostly Shaded", "Partial Shade", "Sunny / Partial shade", "Completely Sunny"};
 	
 	
 	public Plant(String name, String latinName, String color, Seasons bloomTime,
@@ -522,6 +522,13 @@ public class Plant extends AddOn{
 	@Override
 	public int hashCode() {
 		return (this.latinName.length() * this.waterNeed) % this.sunLightNeed;
+	}
+	
+	public static String[] getWaterStrArr() {
+		return waterStrArr;
+	}
+	public static String[] getSunStrArr() {
+		return sunStrArr;
 	}
 	
 }//Plant

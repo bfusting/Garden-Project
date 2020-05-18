@@ -279,6 +279,7 @@ public class Controller{
 		
 		model.createUserPlot();
 		model.updateArrs();
+		model.updateGardenTileSettings();
 		System.out.println("Make Garden");
 		//view.showDesignGardenScreen();
 		view.show("designGardenScreen");
@@ -444,6 +445,11 @@ public class Controller{
         content.putImage(n.getImage());
         dBoard.setContent(content);
         
+        //System.out.println("Dragging tile editor index: "+GridPane.getColumnIndex((Node)event.getSource()));
+        if(dBoard.hasImage() &&
+				view.getDesignGardenScreen().getHoverEditTile() == true) {
+        view.getDesignGardenScreen().setDraggedTileEditorIdx(GridPane.getColumnIndex((Node)event.getSource()));
+        }
         event.consume();
 	}//startDrag
 	
@@ -480,6 +486,7 @@ public class Controller{
         		&& event.getDragboard().hasImage()) {
             event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
         }
+        
         event.consume();
 		//System.out.println("Tiles should be detecting drag events");
 	}//detectDrag
@@ -495,7 +502,7 @@ public class Controller{
 	 * @see DesignGarden
 	 * @see DetectDrag
 	 */
-	public EventHandler getDetectDrag() {
+	public EventHandler<DragEvent> getDetectDrag() {
 		return event -> detectDrag((DragEvent)event);
 	}//getDetectDrag
 	
@@ -553,8 +560,7 @@ public class Controller{
 		Node n = event.getPickResult().getIntersectedNode();
 		if(DEBUG) {System.out.println(n.toString());}
 		
-		//ArrayList<Plant> tempArrayList = new ArrayList<Plant>(); test to see if allPlants still had elements
-		//tempArrayList.addAll(model.getAllPlants());
+		
 		
 		
 		int index = view.getDesignGardenScreen().getGridPaneInd();
@@ -601,19 +607,25 @@ public class Controller{
 			
 			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
 			//int index = view.getDesignGardenScreen().getGridPaneInd();//items held in gridpane of 4. 0 is add water, 1 is less water, 2 is add sun, 3 is remove water
-			switch(index) {
+			int editorIdx = view.getDesignGardenScreen().getDraggedTileEditorIdx();
+			System.out.println("Dropped Tile editor index "+editorIdx );
+			switch(editorIdx) {
 			// increases wetness of tile
 			case 0: tile.setWaterLevel(
 					tile.getWaterLevel()+1);
+					break;
 			// less water of tile dropped on
 			case 1: tile.setWaterLevel(
 				tile.getWaterLevel()-1);
+				break;
 			// more light of tile dropped on 
 			case 2: tile.setSunLightLevel(
 					tile.getSunLightLevel()+1);
+					break;
 			// less light of tile dropped on
 			case 3: tile.setSunLightLevel(
 				tile.getSunLightLevel()-1);
+				break;
 			//default: 
 				//if(DEBUG) {System.out.println("Failed to place tile editor");}
 				//view.getDesignGardenScreen().setHoverEditTile(false);
@@ -1433,6 +1445,7 @@ public class Controller{
     
     
     public void gardenTileClicked(MouseEvent event) {
+    	if (event.getSource().getClass().equals(ImageView.class)) {
     	ImageView n = (ImageView) event.getSource();
     	int rowIdx = GridPane.getRowIndex(n);
     	int colIdx = GridPane.getColumnIndex(n);
@@ -1446,6 +1459,7 @@ public class Controller{
     		clickedTile.setIsActive(true);
     		view.setActiveImg(n, true);
     	} 
+    	}
     
     }
     
@@ -1594,6 +1608,50 @@ public class Controller{
     
     public void seasonViewCloseRequest(WindowEvent event) {
     	view.getSeasonViewScreen().closeScreen();
+    }
+    
+    public EventHandler<MouseEvent> getHoverEmptyTiles() {
+    	return event -> hoverEmptyTiles((MouseEvent)event);
+    }
+    
+    public void hoverEmptyTiles(MouseEvent event) {
+    	Node n = (Node)event.getSource();
+    	Integer row = GridPane.getRowIndex(n);
+    	Integer col = GridPane.getColumnIndex(n);
+    	GardenTile tile = model.getUserPlot().getLayout()[row][col];
+    	
+    	
+    	if (tile.isActive() && tile.isEmpty()) {
+    		String recs = model.getRecs(row, col);
+    		if (recs.equals("")) {
+    			recs="No plants match these sunlight\nand water levels.";
+    		}
+    		view.getDesignGardenScreen().showAddOnInfo(tile.toString()+"\nRecommendations:\n"+recs);
+    	}
+    	//System.out.println(recs);
+    }
+    
+    public void startDragForTileEditors(MouseEvent event) {
+		ImageView n = (ImageView)event.getSource();
+
+        Dragboard dBoard = n.startDragAndDrop(TransferMode.ANY);
+
+        //Use clipboard to copy data the add to Dragboard
+        ClipboardContent content = new ClipboardContent();
+        //Need to edit to pull in right plant from model when dragging
+        content.putImage(n.getImage());
+        dBoard.setContent(content);
+        
+        //System.out.println("Dragging tile editor index: "+GridPane.getColumnIndex((Node)event.getSource()));
+        if(dBoard.hasImage() &&
+				view.getDesignGardenScreen().getHoverEditTile() == true) {
+        view.getDesignGardenScreen().setDraggedTileEditorIdx(GridPane.getColumnIndex((Node)event.getSource()));
+        }
+        event.consume();
+	}
+    
+    public EventHandler<MouseEvent> getStartDragForTileEditors() {
+    	return event -> startDragForTileEditors((MouseEvent) event);
     }
 }//Controller
 

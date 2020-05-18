@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /*
 *  Authors: Team 11-3: Bradley Fusting, Takiyah Price, Kelsey McRae, Malachi Parks
@@ -257,7 +258,8 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	 * @param waterLevel
 	 */
 	public void setWaterLevel(int waterLevel) {
-		this.waterLevel = waterLevel;
+		this.waterLevel = Math.max(1, waterLevel);
+		this.waterLevel = Math.min(this.waterLevel, 5);
 	}
 
 	/**
@@ -273,7 +275,8 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	 * @param sunLightLevel
 	 */
 	public void setSunLightLevel(int sunLightLevel) {
-		this.sunLightLevel = sunLightLevel;
+		this.sunLightLevel = Math.max(0,sunLightLevel);
+		this.sunLightLevel = Math.min(this.sunLightLevel, 5);
 	}
 
 	/**
@@ -369,5 +372,14 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	public void setyLoc(int yLoc) {
 		this.yLoc = yLoc;
 	}
-
+	
+	@Override
+	public String toString() {
+		String waterL = Plant.getWaterStrArr()[waterLevel-1];
+		String sunL = Plant.getSunStrArr()[sunLightLevel-1];
+		
+		return "Location: ("+xLoc+","+yLoc+")\nWater level: "+waterL+"\nSunlight level: "+sunL;
+	}
+	
+	
 }

@@ -1064,5 +1064,32 @@ public class Model implements Serializable{
 	public ArrayList<AddOn> getPathwaysArr() {
 		return pathwaysArr;
 	}
+	
+	/**
+	 * Updates the tiles in the userPlot with the chosen light and water availability.
+	 */
+	public void updateGardenTileSettings() {
+		for (int i=0;i<userLength;i++) {
+			for (int j=0;j<userWidth;j++) {
+				GardenTile tile =userPlot.getLayout()[i][j];
+				tile.setSunLightLevel(userPrefLight);
+				tile.setWaterLevel(userPrefWater);
+			}
+		}
+	}
+	
+	public String getRecs(int x,int y) {
+		GardenTile tile = userPlot.getLayout()[x][y];
+		String recs="";
+		
+		for (int i=0;i<5; i++) {
+			Plant p = allPlants.get(i);
+			if (p.getSunLightNeed()==tile.getSunLightLevel() && p.getWaterNeed()==tile.getWaterLevel()) {
+				recs+=p.getName()+" ("+p.getHabit()+")"+"\n";
+			}
+		}
+		
+		return recs;
+	}
 	// then getters and setters for new attributes
 }//Modeld

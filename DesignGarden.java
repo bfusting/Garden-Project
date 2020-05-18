@@ -142,12 +142,14 @@ public class DesignGarden extends Screen{
 	private Popup infoPopup;
 	private Label infoLabel;
 	
+	private int draggedTileEditorIdx;
+	
 	public DesignGarden(Controller controller,Stage s) {
 		this.c = controller;
 		theStage = s;
 		
 		plot = new GridPane();
-
+		draggedTileEditorIdx=0;
 
 
 
@@ -274,6 +276,8 @@ public class DesignGarden extends Screen{
 		if (customMode) {
 			plot.getChildren().forEach(cell -> cell.setOnMouseClicked(c.getGardenTileClicked()));
 		}
+		plot.getChildren().forEach(cell->cell.setOnMouseEntered(c.getHoverEmptyTiles()));
+		//plot.getChildren().forEach(cell->cell.setOnDragDropped(null));
 		
 		theStage.setTitle("Design Mode");
 		theStage.setScene(designGardenScene);
@@ -377,7 +381,7 @@ public class DesignGarden extends Screen{
 			tileEdit.add(imgV);
 		}
 		
-		tileEdit.forEach(imgV -> imgV.setOnDragDetected(c.getStartDrag()));
+		tileEdit.forEach(imgV -> imgV.setOnDragDetected(c.getStartDragForTileEditors()));
 		
 		tileEditingGP.setMaxSize(maxTileEditSize,maxTileEditSize);
 		//adding row
@@ -390,7 +394,7 @@ public class DesignGarden extends Screen{
 
 // EventHandler to listen to which row, column its on
 tileEditingGP.getChildren().forEach(cell -> cell.setOnMouseEntered(c.getMouseEnterPlantSelection()));
-
+//tileEditingGP.getChildren().forEach(cell -> cell.setOnDragDetected(c.getDragTileEditors()));
 
 
 
@@ -767,6 +771,14 @@ designGardenScene = new Scene(root,View.primarySceneWidth,View.primarySceneHeigh
 	 */
 	public void hideAddOnInfo() {
 		infoPopup.hide();
+	}
+	
+	public void setDraggedTileEditorIdx(int idx) {
+		draggedTileEditorIdx=idx;
+	}
+	
+	public int getDraggedTileEditorIdx() {
+		return draggedTileEditorIdx;
 	}
 	
 	

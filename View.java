@@ -481,6 +481,7 @@ public class View extends Application{
 					String addOnImgName = con.getImgNameFromModel(i, j);
 					if  (addOnImgName.equals("inactive")) {
 						if (drawInactiveTiles && con.getTemplateFromModel().toLowerCase().equals("custom")) {
+							gp.getChildren().remove(soilImg);
 							ImageView inactiveSoilImg = new ImageView(new Image(inactiveSoilImgName));
 							inactiveSoilImg.setPreserveRatio(true);
 							inactiveSoilImg.setFitHeight(soilImgSize);
@@ -494,13 +495,14 @@ public class View extends Application{
 						ImageView addOnIV = new ImageView(new Image(addOnImgName));
 						addOnIV.setFitHeight(AddOnImgSize);
 						addOnIV.setFitWidth(AddOnImgSize);
-						addOnIV.setOnMouseClicked(con.getRemoveFromTile());
+						if (drawInactiveTiles) {addOnIV.setOnMouseClicked(con.getRemoveFromTile()); }
 						gp.add(addOnIV, j, i, 1,1);
 					}
 					
 					
 				}
 			}
+		
 		return gp;
 		
 	}
