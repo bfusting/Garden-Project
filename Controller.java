@@ -893,24 +893,41 @@ public class Controller{
 	}
 	
 	/**
+	 * Returns an Event Handler to bind to an eventListener for the
+	 * Mouse listener on DesignGarden page
+	 * <p>
+	 * Used to access the Tiles in Design Garden method and bind it using a
+	 * lambda function to an eventListner
 	 * 
-	 * @return
+	 * @return EventHandler used to bind to listeners
+	 * @see DesignGarden
 	 */
 	public EventHandler<MouseEvent> getMouseEnter() {
 		return event -> mouseEnter((MouseEvent) event);
 	}
 	
 	/**
+	 * Takes in a mouseEvent named event and passes it to the method
+	 * mouseEntered in View which when hovering on the Template selections
+	 * will make a border appear around the item selected.
 	 * 
-	 * @param event
+	 * @param event MouseEvent of hovering over template choice
+	 * @see View#mouseEntered(Object)
 	 */
 	public void mouseEnter(MouseEvent event) {
 		view.mouseEntered(event.getSource());
 	}
 	
 	/**
+	 * Returns an Event Handler to bind to an eventListener for the
+	 * Mouse listener on Template page
+	 * <p>
+	 * Used to access the tile in Template buttons and bind it using a
+	 * lambda function to an eventListner
 	 * 
-	 * @return
+	 * @return EventHandler used to bind to listeners
+	 * @see ChooseTemplate
+	 * @see Controller#getMouseExit()
 	 */
 	public EventHandler<MouseEvent> getMouseExit() {
 		return event -> mouseExit((MouseEvent)event);
