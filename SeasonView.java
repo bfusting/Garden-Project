@@ -38,8 +38,6 @@ import javafx.stage.Stage;
  *
  */
 public class SeasonView extends Screen{
-	// make it so one label which changes depending on season?
-	// full screen season view?
 	private final static int HEIGHT = 1000;
 	private final static int WIDTH = 1200;
 	
@@ -86,12 +84,7 @@ public class SeasonView extends Screen{
 		
 		// creating a new instance of anchorPane
 				root = new AnchorPane();
-				// setting up seasonsGP with controller
-				//seasonGP = View.drawGrid(c, showInactiveTiles);
-				
-				//setting Startingseason to the one in Model
-				//startingSeason = c.getModel().getUserPrefSeason();
-				
+
 				// dummy variable to see where to place future gridPane
 				Rectangle backdrop = new Rectangle(overlapPoint,bottomAnchorPoint,
 						overlapPoint*5,bottomAnchorPoint*5);
@@ -103,9 +96,7 @@ public class SeasonView extends Screen{
 				AnchorPane.setTopAnchor(backdrop, topAnchorPoint);
 				root.getChildren().add(backdrop);
 				
-				
-				
-				// Buttons initilization to have their own labels
+				// Buttons initialization to have their own labels
 				springBTN = new Button("View Spring");
 				summerBTN = new Button("View Summer");
 				fallBTN = new Button("View Fall");
@@ -133,7 +124,7 @@ public class SeasonView extends Screen{
 				}
 				
 				
-				//adding buttons to the anchorpane
+				//adding buttons to the Anchor pane
 				root.getChildren().addAll(springBTN,summerBTN,fallBTN,winterBTN,closeBTN);
 				
 				// Setting the Scene with AnchorPane
@@ -143,6 +134,13 @@ public class SeasonView extends Screen{
 
 	
 	
+	/**
+	 * Upon start, if the screen isn't show the method will pull in the users
+	 * preferred season and set it to the startingSeason. Then will set shown to 
+	 * true. Removes the gridpane and redraws it using the drawGrid method in view.
+	 * Reanchors the grid pane over the rectangle then adds it to the scene and shows
+	 * the scene. 
+	 */
 	@Override
 	public void showScreen() {
 		if (!shown) {
