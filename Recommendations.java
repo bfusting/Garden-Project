@@ -39,19 +39,14 @@ import javafx.scene.paint.*;
  *
  */
 public class Recommendations extends Screen{
-	private String weRecommendMessage;
-	private Label recommendationMessage;
-	private Image plantImage;
-	private String name;
-	private Seasons bloomTime;
-	private int light;
-	private int water;
-	private ArrayList<String> animalsFed;
+	
 	private final int HEIGHT = 500;
 	private final int WIDTH = 250;
 	private Controller c;
 	private Stage stage;
 	private ArrayList<String> plantNames;
+	private String weRecommendMessage;
+	private Label recommendationMessage;
 	/** USE THIS ONE AFTER ALPHA
 	 * Takes in an image i which is the image of a plant
 	 * date which is a date of when the plant comes into bloom
@@ -97,12 +92,7 @@ public class Recommendations extends Screen{
 		weRecommendMessage = "This is where Recommendations will go based on GardenPlot";
 		// Chanege message above
 		recommendationMessage = new Label(weRecommendMessage);
-		plantImage = null;
-		bloomTime = null;
-		name = null;
-		light = 0;
-		water = 0;
-		animalsFed = new ArrayList<String>();
+	
 		c = controller;
 		
 		
@@ -111,114 +101,6 @@ public class Recommendations extends Screen{
 		
 	}//Recommendations
 	
-	/**
-	 * Returns the message used to set the label in the Recommendations View
-	 * <p>
-	 * Getter for Recommendation Message
-	 * 
-	 * @return String representing the static message saying "We recommend the user
-	 * chooses these plants based upon preferences and gardenType"
-	 * @see recommendationMessaage
-	 */
-	public String getWeRecommendationMessage() {
-		return weRecommendMessage;
-	}
-	
-	/**
-	 * Takes in a new string which is the new Recommendations message for the 
-	 * Recommendations Page
-	 * <p>
-	 * Setter for WeRecommendationMessage
-	 * 
-	 * @param s new string to set the Recommendations view message
-	 * @see recommendationMessage
-	 */
-	public void setWeRecommendationMessage(String s) {
-		weRecommendMessage = s;
-	}
-	
-	/**
-	 * Returns the image of the plant in recommendations - would return the 
-	 * plantImage attribute. PlantImage will be used in an ImageView
-	 * <p>
-	 * Getter for plantImage Attribute
-	 * 
-	 * @return plantImage which is the image of a plant used in recommendations
-	 * @see ImageView
-	 * @see Image
-	 */
-	public Image getPlantImage() {
-		return plantImage;
-	}
-	
-	/**
-	 * Returns a string representing the latin name of the plant
-	 * <p>
-	 * Getter for name attribute
-	 * 
-	 * @return string representing the name of the plant recommended
-	 * @Plant
-	 */
-	public String getName() {
-		return "hi";
-	}
-	
-	/**
-	 * Returns a Seasons Enumeration representing when the bloom time of the plant begins
-	 * <p>
-	 * Getter for bloomTime attribute
-	 * 
-	 * @return date representing the beginning bloom time of the plant
-	 * @see Plant
-	 */
-	public Seasons getBloomTime() {
-		return bloomTime;
-	}
-	
-	/**
-	 * Returns a int representing the light amount the plant requires to function.
-	 * The range is from 0 which is minimal light to 5 which is max light. All information
-	 * should correlate to a plant
-	 * <p>
-	 * Getter for light attribute
-	 * 
-	 * @return int representing light requirement
-	 * @see Plant
-	 */
-	public int getLightReq() {
-		return light;
-	}
-	
-	/**
-	 * Returns a int representing the water amount the plant requires to function.
-	 * The range is from 0 which is minimal water to 5 which is max water. All information
-	 * should correlate to a plant
-	 * <p>
-	 * Getter for water attribute
-	 * 
-	 * @return int representing water requirement
-	 * @see Plant
-	 */
-	public int getWaterReq() {
-		return water;
-	}
-	
-	/**
-	 * Returns a ArrayList of Strings representing the animals the plant feeds
-	 * in the ecosystem. Correlates to the animals feed by a specific plant within 
-	 * the plant class
-	 * <p>
-	 * Getter for animalsFed attribute
-	 * 
-	 * @return ArrayList of animals feed by plant
-	 * @see Plant
-	 */
-	public ArrayList<String> getAnimalsFed(){
-		ArrayList<String> aList = new ArrayList<String>();
-		aList.add("Dog");
-		aList.add("Cat");
-		return aList;
-	}
 	
 	/**
 	 * Takes in a stage which is used to create the Recommendations window in JavaFX.
@@ -506,7 +388,7 @@ public class Recommendations extends Screen{
 	
 	
 	/**
-	 * Creates and returns a 2D array of recommended addons to be displayed on the Recommendations screen
+	 * Creates an array of Plants consisting of only Flowers.  The plants should match somewhat the preferences of the user
 	 * @return
 	 * returns rec - the 2D array of recommended addOns
 	 */
@@ -545,7 +427,7 @@ public class Recommendations extends Screen{
 	}
 	
 	/**
-	 * 
+	 * Creates an array of Plants consisting of only Trees.  The plants should match somewhat the preferences of the user
 	 * @return
 	 */
 	public Plant[] getRecTrees() {
@@ -586,7 +468,7 @@ public class Recommendations extends Screen{
 	}
 	
 	/**
-	 * 
+	 * Creates an array of Plants consisting of only shrubs.  The plants should match somewhat the preferences of the user
 	 * @return
 	 */
 	public Plant[] getRecShrubs() {
