@@ -145,8 +145,8 @@ public class Model implements Serializable{
 	}
 	
 	/**
-	 * Uses a buffered reader and reades in from the GardenPlant.txt
-	 * GardenTree.txt and GardenFlower.txt and creates plants based upon
+	 * Uses a buffered reader to read GardenPlant.txt
+	 * GardenTree.txt and GardenFlower.txt and create plants from
 	 * what is read within those files
 	 * 
 	 * @author Kelsey McRae
@@ -186,7 +186,6 @@ public class Model implements Serializable{
 					int size = Integer.parseInt(sizeStr);
 			        int waterNeed = Integer.parseInt(waterNeedStr);
 			        int sunlightNeed = Integer.parseInt(sunlightNeedStr);
-			        
 
 		        	Plant newPlant = new Plant(name, latinName, color, bloomTimeStr, habit, size, waterNeed, sunlightNeed, soilMoisture, animalsFedStr, seasonsArr);
 
@@ -197,7 +196,6 @@ public class Model implements Serializable{
 			        } else if (i==2) {
 			        	flowers = addPlant(flowers, newPlant);
 			        }
-			        
 				}
 			}
 			
@@ -209,7 +207,6 @@ public class Model implements Serializable{
 					String description = buffReader.readLine();
 					int size;
 					
-					
 					if (i==3) {
 						size = 45;
 						AddOn extra = new AddOn(addOnImgName,size,description);
@@ -219,10 +216,8 @@ public class Model implements Serializable{
 						AddOn extra = new AddOn(addOnImgName,size,description);
 						sceneryArr.add(extra);
 					}
-					
 				}
 			}
-			
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -241,10 +236,11 @@ public class Model implements Serializable{
 	}
 	
 	/**
+	 * Adds a specified plant to the specified array
 	 * 
-	 * @param plantsArr
-	 * @param plantToAdd
-	 * @return
+	 * @param plantsArr - an array of plants
+	 * @param plantToAdd - a plant object
+	 * @return newPlants - the new, updated plant array
 	 */
     private static Plant[] addPlant(Plant[] plantsArr, Plant plantToAdd) {
 	    Plant[] newPlants = new Plant[plantsArr.length + 1];
@@ -337,10 +333,7 @@ public class Model implements Serializable{
 		// clearing other arrays
 		clearOthers();
 		
-		
 	}//updateArrs
-	
-	
 	
 	////////////////////////////		GETTERS UNDERNEATH			////////////////////////////
 	
@@ -387,8 +380,6 @@ public class Model implements Serializable{
 	public ArrayList<Plant> getTreeArr() {
 		return treeArr;
 	}
-	
-	
 	
 	/**
 	 * Returns the altPlots attribute from model, which will be used
@@ -491,7 +482,6 @@ public class Model implements Serializable{
 	public void setTreeArr(ArrayList<Plant> a) {
 		treeArr = a;
 	}
-	
 	
 	/**
 	 * Takes in a GardenPlot p and sets userPlot to the new plot.

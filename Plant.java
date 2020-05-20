@@ -64,6 +64,21 @@ public class Plant extends AddOn{
 		
 	}
 	
+	/**
+	 * A constructor for plant including an array of season images. Used to read in from text file and create new plant arrays.
+	 * 
+	 * @param name
+	 * @param latinName
+	 * @param color
+	 * @param bloomTimeStr
+	 * @param habit
+	 * @param size
+	 * @param waterNeed
+	 * @param sunLightNeed
+	 * @param soilMoisture
+	 * @param animalsFedStr
+	 * @param seasonsImgArr
+	 */
 	public Plant(String name, String latinName, String color, String bloomTimeStr,
 			String habit, int size, int waterNeed, int sunLightNeed, String soilMoisture, String animalsFedStr, String[] seasonsImgArr) {
 		this.name = name;
@@ -82,7 +97,6 @@ public class Plant extends AddOn{
 			this.bloomTimeStr="Spring";
 		}
 		
-		//
 		bloomTime = Seasons.valueOf(this.bloomTimeStr.toUpperCase());
 		this.latinName = latinName;
 		this.sunLightNeed = sunLightNeed;
@@ -93,6 +107,7 @@ public class Plant extends AddOn{
 		this.animalsFedStr = animalsFedStr;
 		this.seasonsImgArr = seasonsImgArr;
 		
+		//Changing water and sun need integers to strings for user understanding
 		for (int i=1; i<6; i++) {
 			if (waterNeed == i) {
 				this.waterStr = waterStrArr[i-1];
@@ -125,8 +140,6 @@ public class Plant extends AddOn{
 		this.plantType = plantType;
 		this.animalsFed = animalsFed;
 		this.compatiblePlants = compatiblePlants;
-		
-		
 	}*/
 	private static Plant[] addPlant(Plant[] plants, Plant plantToAdd) {
 	    Plant[] newPlants = new Plant[plants.length + 1];
@@ -143,8 +156,11 @@ public class Plant extends AddOn{
     }
 */
 	
-	
-	//Not pretty, I know
+	/**
+	 * To string method, returns the string based on which plant attributes are available for the plant
+	 * 
+	 * @return returningStr - the String listing all available plant attributes except name
+	 */
 	public String toString() {
 		String returningStr = null;
 		
@@ -184,22 +200,47 @@ public class Plant extends AddOn{
 		return returningStr;
 	}
 	
+	/**
+	 * Gets the maximum height of the plant
+	 * 
+	 * @return size
+	 */
 	public int getSize() {
 		return size;
 	}
 	
+	/**
+	 * Gets the required soil moisture of the plant
+	 * 
+	 * @return soilMoisture
+	 */
 	public String getSoilMoisture() {
 		return soilMoisture;
 	}
 	
+	/**
+	 * Gets the list of animals the plant feeds/benefits
+	 * 
+	 * @return animalsFedStr;
+	 */
 	public String getAnimalsFedStr() {
 		return animalsFedStr;
 	}
 	
+	/**
+	 * Gets the name of the plant (non-latin)
+	 * 
+	 * @return name
+	 */
     public String getName() {
     	return name;
     }
     
+    /**
+     * Gets the Latin name of the plant
+     * 
+     * @return latinName
+     */
     public String getLatinName() {
     	return latinName;
     }

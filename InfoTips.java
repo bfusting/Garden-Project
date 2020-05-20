@@ -28,7 +28,7 @@ import javafx.scene.text.Text;
  * @author Kelsey McRae
  * 
  * <br> 
- * <br> Takes the attributes of the plant and shows them to the user when hovered over or clicked on.
+ * <br> Takes the attributes of the plant and shows them to the user when clicking on the Info and Tips button.
  *
  */
 
@@ -38,7 +38,6 @@ public class InfoTips {
 	private final int WIDTH = 250;
 	
 	private Stage stage;
-	
 	
 	private HashSet<Plant> hs;
 	private AnchorPane root;
@@ -53,8 +52,6 @@ public class InfoTips {
 		
 		stage = new Stage();
 		stage.setTitle("Info and Tips");
-		
-		
 	}
 	
 	/**
@@ -70,8 +67,6 @@ public class InfoTips {
 		ArrayList<Text> texts = new ArrayList<Text>();
 		ArrayList<TitledPane> tps = new ArrayList<TitledPane>();
 		ArrayList<AnchorPane> aps = new ArrayList<AnchorPane>();
-		
-		
 		
 		for (Plant p : Model.getUsedPlants()) {
 			String name = p.getName();
@@ -114,9 +109,11 @@ public class InfoTips {
 		stage.setScene(scene);
 		stage.show();
 	}
-		
-
 	
+	/**
+	 * Closes the screen
+	 */
+		
 //	@Override
 	public void closeScreen() {
 		stage.close();
