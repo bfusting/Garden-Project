@@ -47,45 +47,14 @@ public class Recommendations extends Screen{
 	private ArrayList<String> plantNames;
 	private String weRecommendMessage;
 	private Label recommendationMessage;
-	/** USE THIS ONE AFTER ALPHA
-	 * Takes in an image i which is the image of a plant
-	 * date which is a date of when the plant comes into bloom
-	 * lightNeed which is rated on a scale of 0-5 where 0 means no light where 5 needs a lot of light
-	 * waterNeed which is rated on a scale of 0-5 where 0 means no water where 5 needs a lot of water
-	 * <p>
-	 * The constructor to create the Recommendations view
-	 * 
-	 * @param i Image of the plant recommended
-	 * @param givenName name of the plant
-	 * @param lightNeed light need of the plant recommended
-	 * @param waterNeed water need of the plant recommended
-	 * @see Recommendations
-	 */
-	/*
-	public Recommendations(Image i, String givenName, Date date, int lightNeed, int waterNeed) {
-		weRecommendMessage = "Hello World";
-		// Chanege message above
-		recommendationMessage = new Label(weRecommendMessage);
-		plantImage = i;
-		bloomTime = date;
-		name = givenName;
-		light = lightNeed;
-		water = waterNeed;
-		animalsFed = new ArrayList<String>();
-	}//Recommendations
+	
 	
 	/** USE THIS ONE AFTER ALPHA
-	 * Takes in an image i which is the image of a plant
-	 * date which is a date of when the plant comes into bloom
-	 * lightNeed which is rated on a scale of 0-5 where 0 means no light where 5 needs a lot of light
-	 * waterNeed which is rated on a scale of 0-5 where 0 means no water where 5 needs a lot of water
 	 * <p>
 	 * The constructor to create the Recommendations view
 	 * 
-	 * @param i Image of the plant recommended
-	 * @param givenName name of the plant
-	 * @param lightNeed light need of the plant recommended
-	 * @param waterNeed water need of the plant recommended
+	 * 
+	 * @param controller 
 	 * @see Recommendations
 	 */
 	public Recommendations(Controller controller) {
@@ -103,13 +72,10 @@ public class Recommendations extends Screen{
 	
 	
 	/**
-	 * Takes in a stage which is used to create the Recommendations window in JavaFX.
-	 * <p>
-	 * showRecommendations is used to pop open a new window in JavaFX and then sets the 
-	 * center of the border pane to the recommendation message (may swap to the top later on)
-	 * and then shows the scene
+	 * Creates 15 TitledPanes to display Recommended plants in along with
+	 * a picture of each plant and other plant data
 	 * 
-	 * @param stage primary stage used of the window view
+	 * 
 	 * @see Stage
 	 * @see Scene
 	 */
