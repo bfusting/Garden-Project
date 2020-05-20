@@ -477,14 +477,12 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void detectDrag(DragEvent event) {
-		// copy in Kelsey's DesignGarden thingy
         if (event.getGestureSource() != event.getTarget()
         		&& event.getDragboard().hasImage()) {
             event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
         }
         
         event.consume();
-		//System.out.println("Tiles should be detecting drag events");
 	}//detectDrag
 	
 	/**
@@ -555,10 +553,6 @@ public class Controller{
 		//Node n = event.getPickResult().getIntersectedNode();
 		Node n = event.getPickResult().getIntersectedNode();
 		if(DEBUG) {System.out.println(n.toString());}
-		
-		
-		
-		
 		int index = view.getDesignGardenScreen().getGridPaneInd();
 		int circleIndex = view.getDesignGardenScreen().getSelectGardenType().
 			    getSelectionModel().getSelectedIndex();
@@ -569,8 +563,6 @@ public class Controller{
 		if (tile.isEmpty() && tile.isActive()) {
 		if(n != view.getDesignGardenScreen().getPlot() && db.hasImage() && 
 				view.getDesignGardenScreen().getHoverEditTile() == false) {
-			
-
 			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
 			if(circleIndex<=2) { // drag and drop circle
 				// dropping plants
@@ -587,12 +579,6 @@ public class Controller{
 				view.getDesignGardenScreen().getPlot().add(imgV, colIndex,rowIndex,1,1);
 			}
 			// Model side of plant drop
-
-			//adding test to see if index is holding plants or addons
-			//switched
-			//model.getUserPlot().getLayout()[rowIndex][colIndex].setPlant(tempArrayList.get(index));
-			//model.getUsedPlants().add(tempArrayList.get(index));
-			//int index = this.methodName; used to pull from designGarden array
 			changeTabIndex(rowIndex,colIndex,index);
 			System.out.println(Model.getUsedPlants());
 			worked = true;
@@ -651,67 +637,6 @@ public class Controller{
 		return event -> detectDragDrop((DragEvent)event);
 	}//getDetectDragDrop
 	
-	
-	/**
-	 * Takes in a ScrollEvent to know when the pane within the Info/Tips
-	 * view is being scrolled up or down to view more information
-	 * <p>
-	 * Reads the direction of the mouse and scrolls up or down accordingly
-	 * using scroll methods
-	 * 
-	 * @param event Scrollevent of moving up or down
-	 * @see Info/Tips
-	 */
-	public void scrollPage(ScrollEvent event) {
-		System.out.println("Should scroll page for information");
-	}//scrollPage
-	
-	/**
-	 * Returns an Event Handler to bind to an eventListener for the
-	 * Scroll listener on DesignGarden
-	 * <p>
-	 * Used to access the scrollPage method and bind it using a
-	 * lambda function to an eventListner
-	 * 
-	 * @return EventHandler used to bind to listeners
-	 * @see InfoTips
-	 * @see scrollPage
-	 */
-	public EventHandler<ScrollEvent> getScrollPage() {
-		return event -> scrollPage((ScrollEvent)event);
-	}//getScrollPage
-	
-	
-	/**
-	 * Takes in a MouseEvent to know when the Edit is clicked on the 
-	 * FinalView screen
-	 * <p>
-	 * Uses Seralizable to load in the information into the model and the view
-	 * accordingly
-	 * 
-	 * @param event MouseEvent to know when the edit Btn is clicked
-	 * @see FinalView
-	 */
-	public void editBTN(MouseEvent event) {
-		System.out.println("Loads In information");
-	}//editBTN
-	
-	/**
-	 * Returns an Event Handler to bind to an eventListener for the
-	 * Mouse listener on FinalView
-	 * <p>
-	 * Used to access the editBTN method and bind it using a
-	 * lambda function to an eventListner
-	 * 
-	 * @return EventHandler used to bind to listeners
-	 * @see FinalView
-	 * @see editBTN
-	 */
-	public EventHandler<MouseEvent> getEditBTN() {
-		return event -> editBTN((MouseEvent)event);
-	}//getEditBTN
-	
-	
 	/**
 	 * Takes in a MouseEvent to know when the save is clicked on the 
 	 * FinalView screen
@@ -725,14 +650,6 @@ public class Controller{
 	public void saveBTN(MouseEvent event) {
 		System.out.println("SAVE OFTEN");
 		view.show("saveGarden");
-		
-		/*File file = view.showSaveGardenScreen();
-		if (file!=null) {
-			//write model and view stuff to the file
-		} else {
-			view.goToLastScreen();
-		}*/
-
 	}//saveBTN
 	
 	/**
@@ -761,7 +678,6 @@ public class Controller{
 	 * @see DesignGarden
 	 */
 	public void infoTipsBTN(MouseEvent event) {
-		//view.showInfoTipsScreen();
 		view.show("infoTipsScreen");
 	}//infoTipsBTN
 	
@@ -843,20 +759,6 @@ public class Controller{
 		return event -> viewSeasonsBTN((MouseEvent)event);
 	}//getViewSeasonsBTN
 	
-	/*
-	 * 
-	 *
-	 * Filechooser to choose where the user wants to save the information
-	 * then using Serializable to save the information to a file
-	 * 
-	 * @see FinalView
-	 
-	public void saveGarden() {
-		System.out.println("Open fileChooser and Save file");
-		//dont need this
-		
-	}*/
-	
 	/**
 	 * Takes in a MouseEvent to know when the a finalView button 
 	 * is clicked in DesignGarden
@@ -896,20 +798,12 @@ public class Controller{
 		if (file!=null) {
 			try (FileInputStream fis = new FileInputStream(file);
 				ObjectInputStream ois = new ObjectInputStream(fis);) {
-				
-				
+
 				model = (Model) ois.readObject();
 				
-				System.out.println("Loading...Shape: "+ model.getUserTemplate()+" Color:  "+model.getUserPrefColor()+", Season: "+model.getUserPrefSeason()+", Light level: "+model.getUserPrefLight()+"\nWater level: "+model.getUserPrefWater()+", Length: "+ model.getUserLength()+", Width: "+model.getUserWidth()+"\n total Prefs Set: "+model.getPrefsSet());
-				/*if (model.verifyUserPrefsSet()) {
-					System.out.println("File loaded. Time to design!!");
-					
-					view.show("designGardenScreen");
-				} else {
-					
-					view.loadPreferences(model.getUserPrefColor(),model.getUserPrefSeason()!=null ? model.getUserPrefSeason().name() : "", model.getUserPrefWater(), model.getUserPrefLight(), model.getUserLength(), model.getUserWidth());
-					view.show("preferencesScreen");
-				}*/
+				System.out.println("Loading...Shape: "+ model.getUserTemplate()+" Color:  "+model.getUserPrefColor()+", Season: "+model.getUserPrefSeason()
+				+", Light level: "+model.getUserPrefLight()+"\nWater level: "+model.getUserPrefWater()+", Length: "+ model.getUserLength()
+				+", Width: "+model.getUserWidth()+"\n total Prefs Set: "+model.getPrefsSet());
 				if (model.getUserPlot()!=null) {
 					view.createNew();
 					view.show("designGardenScreen");
@@ -918,8 +812,6 @@ public class Controller{
 					view.loadPreferences(model.getUserPrefColor(),model.getUserPrefSeason()!=null ? model.getUserPrefSeason().name() : "", model.getUserPrefWater(), model.getUserPrefLight(), model.getUserLength(), model.getUserWidth());
 					view.show("preferencesScreen");
 				}
-				
-				
 				return true;
 			}
 			catch (InvalidClassException e) {
@@ -1455,10 +1347,7 @@ public class Controller{
     		clickedTile.setIsActive(true);
     		view.setActiveImg(n, true);
     	}
-    	
     	}
-    	
-    
     }
     
     /**
@@ -1627,7 +1516,6 @@ public class Controller{
     		}
     		view.getDesignGardenScreen().showAddOnInfo(tile.toString()+"\nRecommendations:\n"+recs);
     	}
-    	//System.out.println(recs);
     }
     
     public void startDragForTileEditors(MouseEvent event) {
