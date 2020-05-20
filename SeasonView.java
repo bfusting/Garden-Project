@@ -140,6 +140,7 @@ public class SeasonView extends Screen{
 	 * true. Removes the gridpane and redraws it using the drawGrid method in view.
 	 * Reanchors the grid pane over the rectangle then adds it to the scene and shows
 	 * the scene. 
+	 * 
 	 */
 	@Override
 	public void showScreen() {
@@ -159,11 +160,10 @@ public class SeasonView extends Screen{
 		
 	}
 	
-	@Override
-	public void goToPreviousScreen() {
-		stage.close();
-	}
-	
+	/**
+	 * Sets back the userPrefSeason in Model to the starting season then closes
+	 * the stage.
+	 */
 	@Override
 	public void closeScreen() {
 		// set back to original season in here
