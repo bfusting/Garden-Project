@@ -117,53 +117,8 @@ public class GardenPlot implements Serializable{
 				layout[i][k] = new GardenTile(i, k);
 			}
 		}
-		
-		
-		
-		/*//Row 1
-		GardenTile gT1 = new GardenTile(0,0);
-		GardenTile gT2 = new GardenTile(1,0);
-		GardenTile gT3 = new GardenTile(2,0);
-		GardenTile gT4 = new GardenTile(3,0);
-		GardenTile gT5 = new GardenTile(4,0);
-		
-		//Row 2
-		GardenTile gT6 = new GardenTile(0,1);
-		GardenTile gT7 = new GardenTile(1,1);
-		GardenTile gT8 = new GardenTile(2,1);
-		GardenTile gT9 = new GardenTile(3,1);
-		GardenTile gT10 = new GardenTile(4,1);
-		
-		//Row 3
-		GardenTile gT11 = new GardenTile(0,2);
-		GardenTile gT12 = new GardenTile(1,2);
-		GardenTile gT13 = new GardenTile(2,2);
-		GardenTile gT14 = new GardenTile(3,2);
-		GardenTile gT15 = new GardenTile(4,2);
-		
-		//Row 4
-		GardenTile gT16 = new GardenTile(0,3);
-		GardenTile gT17 = new GardenTile(1,3);
-		GardenTile gT18 = new GardenTile(2,3);
-		GardenTile gT19 = new GardenTile(3,3);
-		GardenTile gT20 = new GardenTile(4,3);
-		
-		//Row 5
-		GardenTile gT21 = new GardenTile(0,3);
-		GardenTile gT22 = new GardenTile(1,3);
-		GardenTile gT23 = new GardenTile(2,3);
-		GardenTile gT24 = new GardenTile(3,3);
-		GardenTile gT25 = new GardenTile(4,3);
-		
-		GardenTile[][] layout = {{gT1, gT2, gT3, gT4, gT5},
-								{gT6, gT7, gT8, gT9, gT10},
-								{gT11, gT12, gT13, gT14, gT15},
-								{gT16, gT17, gT18, gT19, gT20},
-								{gT21, gT22, gT23, gT24, gT25}};
-		this.shape = "square";
-		return layout;*/
-		
-								}
+
+	}
 		
 		
 	
@@ -206,10 +161,6 @@ public class GardenPlot implements Serializable{
 			}
 		}
 		
-		
-		
-		
-		
 		return result;
 	}
 	
@@ -245,10 +196,7 @@ public class GardenPlot implements Serializable{
 			System.out.println();
 			
 		}
-		
-		
-				
-		
+	
 	}
 	
 	/**
@@ -278,8 +226,6 @@ public class GardenPlot implements Serializable{
 		GardenTile gT13 = new GardenTile(3,1);
 		GardenTile gT14 = new GardenTile(4,1, false);
 		
-		
-		
 		//Row 3
 		GardenTile gT15 = new GardenTile(1,3);
 		GardenTile gT16 = new GardenTile(2,3);
@@ -288,8 +234,6 @@ public class GardenPlot implements Serializable{
 		GardenTile gT19 = new GardenTile(0,2);
 		GardenTile gT20 = new GardenTile(1,2);
 		GardenTile gT21 = new GardenTile(2,2);
-		
-		
 		
 		//Row 4
 		GardenTile gT22 = new GardenTile(3,2);
@@ -341,10 +285,6 @@ public class GardenPlot implements Serializable{
 		length = 7;
 		width = 7;
 	}
-	
-	
-	
-	
 	
 	/**
 	 * 
@@ -519,12 +459,6 @@ public class GardenPlot implements Serializable{
 		return true;
 }
 		
-		
-		
-		
-		
-	
-	
 	/**
 	 * Fills empty tiles in the layout with AddOns based on recommendations
 	 * 
@@ -588,10 +522,7 @@ public class GardenPlot implements Serializable{
 							catch(ArrayIndexOutOfBoundsException e) {
 								arr[3] = null;
 							}
-							
-							
 							return arr;
-							
 						}
 					}
 				}

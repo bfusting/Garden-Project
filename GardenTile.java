@@ -185,10 +185,6 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 			return null;
 		}
 		
-		
-	
-	
-	
 	/**
 	 * Checks if the AddOn's are the same
 	 * @param a
