@@ -87,9 +87,9 @@ public class GardenPlot implements Serializable{
 	 * Creates a 2D GardenTile array with inputs for width and height of the plot
 	 * 
 	 * 
-	 * @param width
-	 * @param height
-	 * @return
+	 * @param width - the width of the plot
+	 * @param height - the height of the plot
+	 * @return result - the 2D array of tiles making up the plot
 	 */
 	public GardenTile[][] makeSizeSquare(int length, int width){
 		GardenTile[][] result = new GardenTile[length][width];
@@ -107,7 +107,7 @@ public class GardenPlot implements Serializable{
 	 * Creates a square 5x5 2D GardenTile array for the layout.
 	 * Also initializes all gardenTiles with x and y values
 	 * @return
-	 * returns the array for this.layout
+	 * returns layout - the array for this.layout
 	 */
 	public void makeSquare(){
 		layout = new GardenTile[length][width];
@@ -169,10 +169,14 @@ public class GardenPlot implements Serializable{
 	
 	
 	/**
+	 * Returns a triangle of a custom size
 	 * 
-	 * @param width
-	 * @param height
-	 * @return
+	 * <p>
+	 * 
+	 * Used for the triangle template of gardenPlot
+	 * 
+	 * @param rows - the number of rows in your triangle
+	 * @return result - the 2D array of tiles making the triangle plot
 	 */
 	public GardenTile[][] makeSizeTriangle(int rows){
 		rows*=2;
@@ -212,8 +216,9 @@ public class GardenPlot implements Serializable{
 	/**
 	 * Creates a 2D array of garden tiles and deactivates specific tiles in order to create a triangle shape
 	 * for the layout.
-	 * @return
-	 * returns a 2D gardenTIle array for this.layout
+	 * <p>
+	 * Used to create the triangle used for triangle shaped gardenPlots
+	 * 
 	 */
 	public void makeTriangle(){
 		
@@ -242,75 +247,6 @@ public class GardenPlot implements Serializable{
 		}
 		
 		
-			/*//Row 1
-				GardenTile gT1 = new GardenTile(0,0, false);
-				GardenTile gT2 = new GardenTile(1,0, false);
-				GardenTile gT3 = new GardenTile(2,0, false);
-				GardenTile gT4 = new GardenTile(3,0, false);
-				GardenTile gT5 = new GardenTile(4,0);
-				GardenTile gTa = new GardenTile(1,3, false);
-				GardenTile gTb = new GardenTile(2,3, false);
-				GardenTile gTc = new GardenTile(3,3, false);
-				GardenTile gTd = new GardenTile(4,3, false);
-				
-				
-				//Row 2
-				GardenTile gT6 = new GardenTile(0,1, false);
-				GardenTile gT7 = new GardenTile(1,1, false);
-				GardenTile gT8 = new GardenTile(2,1, false);
-				GardenTile gT9 = new GardenTile(3,1);
-				GardenTile gT10 = new GardenTile(4,1);
-				GardenTile gT0a = new GardenTile(1,3);
-				GardenTile gT0b = new GardenTile(2,3, false);
-				GardenTile gT0c = new GardenTile(3,3, false);
-				GardenTile gT0d = new GardenTile(4,3, false);
-				
-				
-				//Row 3
-				GardenTile gT11 = new GardenTile(0,2, false);
-				GardenTile gT12 = new GardenTile(1,2, false);
-				GardenTile gT13 = new GardenTile(2,2);
-				GardenTile gT14 = new GardenTile(3,2);
-				GardenTile gT15 = new GardenTile(4,2);
-				GardenTile gT1a = new GardenTile(1,3);
-				GardenTile gT1b = new GardenTile(2,3);
-				GardenTile gT1c = new GardenTile(3,3, false);
-				GardenTile gT1d = new GardenTile(4,3, false);
-				
-				
-				//Row 4
-				GardenTile gT16 = new GardenTile(0,3, false);
-				GardenTile gT17 = new GardenTile(1,3);
-				GardenTile gT18 = new GardenTile(2,3);
-				GardenTile gT19 = new GardenTile(3,3);
-				GardenTile gT20 = new GardenTile(4,3);
-				GardenTile gT2a = new GardenTile(1,3);
-				GardenTile gT2b = new GardenTile(2,3);
-				GardenTile gT2c = new GardenTile(3,3);
-				GardenTile gT2d = new GardenTile(4,3, false);
-				
-				
-				
-				//Row 5
-				GardenTile gT21 = new GardenTile(0,4);
-				GardenTile gT22 = new GardenTile(1,4);
-				GardenTile gT23 = new GardenTile(2,4);
-				GardenTile gT24 = new GardenTile(3,4);
-				GardenTile gT25 = new GardenTile(4,4);
-				GardenTile gT26 = new GardenTile(5,4);
-				GardenTile gT27 = new GardenTile(5,4);
-				GardenTile gT28 = new GardenTile(6,4);
-				GardenTile gT29 = new GardenTile(7,4);
-				
-		GardenTile[][] result = {{gT1, gT2, gT3, gT4, gT5, gTa, gTb, gTc, gTd},
-								 {gT6, gT7, gT8, gT9, gT10, gT0a, gT0b, gT0c, gT0d},
-								 {gT11, gT12, gT13, gT14, gT15, gT1a, gT1b, gT1c, gT1d},
-								 {gT16, gT17, gT18, gT19, gT20, gT2a, gT2b, gT2c, gT2d},
-								 {gT21, gT22, gT23, gT24, gT25, gT26, gT27, gT28, gT29}};
-		
-		this.shape = "triangle";
-		return result;
-		*/
 				
 		
 	}
@@ -523,10 +459,11 @@ public class GardenPlot implements Serializable{
 	}
 	
 	/**
-	 * Checks if surrounding tiles are empty
+	 * Tests if surrounding tiles have AddOn's or not
 	 * 
-	 * @param x 
-	 * @param y
+	 * <p>
+	 * @param x - x position of desired tile
+	 * @param y - y position of desired tile
 	 * @return
 	 * Returns true if there are no AddOns in surrounding tiles
 	 */
@@ -590,6 +527,7 @@ public class GardenPlot implements Serializable{
 	
 	/**
 	 * Fills empty tiles in the layout with AddOns based on recommendations
+	 * 
 	 */
 	public void fillEmpty() {
 		//Traverses Every Garden Tile
@@ -607,7 +545,13 @@ public class GardenPlot implements Serializable{
 	
 	
 	/**
+	 * Returns an array of AddOn's that are in surrounding tiles
 	 * 
+	 * <p> 
+	 * 
+	 * used to get information about surrounding tiles
+	 * @param x - x position of desired tile
+	 * @param y - y position of surrounding tile
 	 * @return
 	 * Returns an array of AddOns that are in the surrounding GardenTiles
 	 */
