@@ -30,13 +30,11 @@ import javafx.scene.paint.*;
 */
 
 /**
+ * <p>
+ * Used in the designGarden page.  Creates a new window displaying 
+ * recommended plants based on user preferences.
  * 
- * @author Malachi Parks 
  * 
- * Used in the Design Garden tab, by clicking the recommendations button
- * reviews what plants the users should place in their garden based upon
- * the garden requirements and plant preferences
- *
  */
 public class Recommendations extends Screen{
 	
@@ -49,17 +47,16 @@ public class Recommendations extends Screen{
 	private Label recommendationMessage;
 	
 	
-	/** USE THIS ONE AFTER ALPHA
-	 * <p>
-	 * The constructor to create the Recommendations view
-	 * 
+	/** 
+	 * Constructor for the recommendations class.
+	 * Sets default display messages and sets the controller
 	 * 
 	 * @param controller 
 	 * @see Recommendations
 	 */
 	public Recommendations(Controller controller) {
 		weRecommendMessage = "This is where Recommendations will go based on GardenPlot";
-		// Chanege message above
+		// Change message above
 		recommendationMessage = new Label(weRecommendMessage);
 	
 		c = controller;
@@ -72,9 +69,8 @@ public class Recommendations extends Screen{
 	
 	
 	/**
-	 * Creates 15 TitledPanes to display Recommended plants in along with
-	 * a picture of each plant and other plant data
-	 * 
+	 * Creates a display of TitledPanes showing up to 15 plants
+	 * with data and pictures for each.
 	 * 
 	 * @see Stage
 	 * @see Scene
@@ -354,9 +350,14 @@ public class Recommendations extends Screen{
 	
 	
 	/**
-	 * Creates an array of Plants consisting of only Flowers.  The plants should match somewhat the preferences of the user
-	 * @return
-	 * returns rec - the 2D array of recommended addOns
+	 * Returns an array of Plants consisting of only Flowers.  
+	 * The plants should match somewhat the preferences of the user
+	 * 
+	 * <p>
+	 * used to determine which flowers should be displayed in recommended page
+	 * 
+	 * @return rec the array of flowers
+	 * 
 	 */
 	public Plant[] getRecFlowers() {
 		Plant[] rec = new Plant[5];
@@ -393,8 +394,13 @@ public class Recommendations extends Screen{
 	}
 	
 	/**
-	 * Creates an array of Plants consisting of only Trees.  The plants should match somewhat the preferences of the user
-	 * @return
+	  Returns an array of Plants consisting of only trees.  
+	 * The plants should match somewhat the preferences of the user
+	 * 
+	 * <p>
+	 * used to determine which trees should be displayed in recommended page
+	 * 
+	 * @return rec the array of trees
 	 */
 	public Plant[] getRecTrees() {
 		Plant[] rec = new Plant[5];
@@ -434,8 +440,13 @@ public class Recommendations extends Screen{
 	}
 	
 	/**
-	 * Creates an array of Plants consisting of only shrubs.  The plants should match somewhat the preferences of the user
-	 * @return
+	 * Returns an array of Plants consisting of only shrubs.  
+	 * The plants should match somewhat the preferences of the user
+	 * 
+	 * <p>
+	 * used to determine which shrubs should be displayed in recommended page
+	 * 
+	 * @return rec the array of shrubs
 	 */
 	public Plant[] getRecShrubs() {
 		Plant[] rec = new Plant[5];
