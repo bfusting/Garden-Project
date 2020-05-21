@@ -15,10 +15,11 @@ import java.util.ArrayList;
 */
 
 /**
- * 
- * @author Bradley
  * The GardenTile Object which makes up the individual squares on the GardenPlot.
  * They can hold AddOns and contain properties like water and light level as well as soil type 
+ * <p>
+ * @author Bradley
+ * 
  *
  *
  */

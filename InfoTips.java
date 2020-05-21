@@ -24,12 +24,10 @@ import javafx.scene.text.Text;
 //Updated: 4/25 9:52
 
 /**
- * 
+ * Takes the attributes of the plant and shows them to the user when clicking on the Info and Tips button.
+ * <br>
+ * <br>
  * @author Kelsey McRae
- * 
- * <br> 
- * <br> Takes the attributes of the plant and shows them to the user when clicking on the Info and Tips button.
- *
  */
 
 public class InfoTips {

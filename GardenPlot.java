@@ -14,7 +14,14 @@
 import java.util.*;
 import java.io.*;
 /**
- * 
+ * Used to represent the entirety of the Garden Plot in a two dimensional array.
+ * The layout is a 2D array of GardenTiles which have attributes such as 
+ * a Plant or Addon attribute (depending on what is dragged and dropped on the space). 
+ * These tiles will also be the inactive or active depending on custom size. The length
+ * and width are both ints representing the length and width of the garden in ints.
+ * Shape is the shape of the garden passed in by templates, while season is the 
+ * season of the garden.
+ * <p>
  * @author Bradley Fusting
  *
  */

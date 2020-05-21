@@ -3,7 +3,19 @@ import java.util.Date;
 import java.util.*;
 import java.io.*;
 
-
+/**
+ * Plant class represents various kinds of plants from Milkweed to Southern Golden Rod. 
+ * The class contains a Latin name which a string which is the Latin name of the plant.
+ * The color of the plant, which is a string, represents the colors the plant can come in.
+ * Integers waterNeed/sunLighNeed represent how much water/light the plant need to survive.
+ * Locaiton Pref, an int, represents where in the Garden Plot plants would like to be 
+ * located. BloomTime and BloomTime str represent what season the plants are in currently
+ * while the seasonImgStr representes different image URLS used to load in pictures of plants
+ * from GardenPlant.txt GardenFlower.txt, and GardenTree.txt
+ * <p>
+ * @author Bradley Fusting
+ *
+ */
 public class Plant extends AddOn{
 	private static final long serialVersionUID = 998480235L;
 	

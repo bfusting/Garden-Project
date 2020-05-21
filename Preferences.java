@@ -54,11 +54,12 @@ import javafx.scene.Scene;
 //Updated: 4/26 5:08 >>updated by TJ 4/30 made it extend Screen
 
 /**
- * @author Takiyah Price
- * @author Kelsey McRae
- * <br> 
- * <br> The Screen in which the user selects their preferred plant color and bloom season and enters the length, width, light
+ * The Screen in which the user selects their preferred plant color and bloom season and enters the length, width, light
  * and water availability of their garden.
+ * <br>
+ * <br>
+ * @author Takiyah Price
+ * @author Kelsey McRae> 
  *
  */
 public class Preferences extends Screen{

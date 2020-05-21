@@ -1,5 +1,17 @@
 import java.io.Serializable;
 
+/**
+ * Parent to the Plant class, the Addon Class represents items other than plants 
+ * such as houses, benches, ponds, etc. 
+ * <p>
+ * Holds attribute name, which is the name of the feature being dropped. Tilesize,
+ * the size an object will take up in the grid. Description will be a string
+ * which represents what the object actualy does. All Addon's are created through 
+ * a buffered Reader from the scenery.txt and Pathways.txt
+ * 
+ * @author Bradley Fusting
+ *
+ */
 public class AddOn implements Serializable{
 	private static final long serialVersionUID = 38L;
 	

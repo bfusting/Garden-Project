@@ -47,11 +47,12 @@ import javafx.scene.layout.CornerRadii;
 //Updated: 4.28 8:01pm
 
 /**
+ *  The view in which the user designs their garden by dragging and dropping plants, trees, pathways, and other options.
+ * Also contains buttons for recommendations, change of seasons, and plant info.
+ * <br>
+ * <br>
  * 
  * @author Kelsey McRae
- * <br> 
- * <br> The view in which the user designs their garden by dragging and dropping plants, trees, pathways, and other options.
- * Also contains buttons for recommendations, change of seasons, and plant info.
  *
  */
 
