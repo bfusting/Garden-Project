@@ -34,7 +34,6 @@ import javafx.stage.Stage;
  * @see Screen
  * @author Takiyah Price
  */
-//last edited: 5-2-20 5:38PM
 
 public class MainMenu extends Screen {
 	private Button createNewGardenButton;
@@ -69,7 +68,6 @@ public class MainMenu extends Screen {
 	 * @param s the Stage that will be set with the Scene created
 	 */
 	public MainMenu(Controller c, Stage s) {
-		//Create Buttons and Background
 		createNewGardenButton = new Button("Create New Garden");
 		createNewGardenButton.setMinSize(buttonWidth, buttonHeight);
 		createNewGardenButton.setOnMouseClicked(c.getCreateNewGarden());
@@ -98,8 +96,6 @@ public class MainMenu extends Screen {
 		
 		
 		bPane = new BorderPane();
-		
-		
 		
 		AnchorPane buttonAP = new AnchorPane();
 		AnchorPane.setTopAnchor(createNewGardenButton,cnDistFromTop);
@@ -130,8 +126,6 @@ public class MainMenu extends Screen {
 		
 	}
 	
-	
-
 	
 	@Override
 	public void showScreen() {

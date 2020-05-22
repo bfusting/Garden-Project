@@ -56,19 +56,14 @@ import javafx.scene.layout.CornerRadii;
  */
 
 public class DesignGarden extends Screen{
-	//	private int selectionArrLen;
-	//	private int selectionArrWid;
-
-	private ArrayList<Label> otherArr;
+	
 	private ArrayList<ImageView> pSelectionArr;
-	// Kelsey I (Malachi Added these so each plant type has it's own picture array)
-	// need to make initlaize in show
+	
 	private ArrayList<ImageView> shrubSelArr;
 	private ArrayList<ImageView> treeSelArr;
 	//private ArrayList<ImageView> underSelArr;
 	// just drops a general addon into model
 	// add case in controller so it works
-	private ArrayList<ImageView> otherSelctionArr;
 	
 	private int otherArrInd = 0;
 	private int pSelectionArrInd = 0;
@@ -693,7 +688,7 @@ Label emptySpace5 = new Label("		");
 
 plot = View.drawGrid(c,true);
 plot.setMaxSize(300.0, 300.0);
-//plot.setMinSize(200.0, 200.0);
+
 for (int i = 0; i < length; i++) {
      ColumnConstraints column = new ColumnConstraints(90);
      plot.getColumnConstraints().add(column);
@@ -707,13 +702,10 @@ for (int i = 0; i < width; i++) {
 plot.setOnDragOver(c.getDetectDrag());
 plot.setOnDragDropped(c.getDetectDragDrop());
 
-//plot.setGridLinesVisible(true);
 
 AnchorPane.setTopAnchor(plot, 200.0);
 AnchorPane.setLeftAnchor(plot, 40.0);
 
-
-//root.getChildren().addAll(apButtons, selectGardenType, plot, indexLeft, indexRight);
 root.getChildren().addAll(apButtons, selectGardenType, plot);
 designGardenScene = new Scene(root,View.primarySceneWidth,View.primarySceneHeight);
 
@@ -721,8 +713,6 @@ designGardenScene = new Scene(root,View.primarySceneWidth,View.primarySceneHeigh
 
 }
 
-	
-	
 	public int getLength() {
 		return length;
 	}
@@ -775,10 +765,20 @@ designGardenScene = new Scene(root,View.primarySceneWidth,View.primarySceneHeigh
 		infoPopup.hide();
 	}
 	
+	/**
+	 * Sets the index of the tile editor that was dragged onto the grid. To be set by the Controller when the user starts a drag event
+	 * on a tile.
+	 * @param idx The index of the tile editor being dragged onto the grid.
+	 * @see Controller#getStartDragForTileEditors()
+	 */
 	public void setDraggedTileEditorIdx(int idx) {
 		draggedTileEditorIdx=idx;
 	}
 	
+	/**
+	 * Gets the index of the tile editor that was dragged onto the grid.
+	 * @return the index of the tile editor that was dragged onto the grid.
+	 */
 	public int getDraggedTileEditorIdx() {
 		return draggedTileEditorIdx;
 	}

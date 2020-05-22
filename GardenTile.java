@@ -275,7 +275,7 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	 * @param sunLightLevel
 	 */
 	public void setSunLightLevel(int sunLightLevel) {
-		this.sunLightLevel = Math.max(0,sunLightLevel);
+		this.sunLightLevel = Math.max(1,sunLightLevel);
 		this.sunLightLevel = Math.min(this.sunLightLevel, 5);
 	}
 

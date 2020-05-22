@@ -61,8 +61,7 @@ import javafx.scene.Scene;
  * and water availability of their garden.
  *
  */
-public class Preferences extends Screen{
-	private ComboBox<String> bloomTime;
+public class Preferences extends Screen {
 	private ComboBox<String> color;
 	private ComboBox<String> season;
 	private Slider light;
@@ -96,11 +95,12 @@ public class Preferences extends Screen{
 		stage = theStage;
 		
 		int borderWidth = 50;
+		int backBTNFontSize = 12;
 		Color borderColor = Color.web("#122310");
 		lengthText = "Enter the length of your \navailable garden space (ft): ";
 		
 		back = new Button();
-		back.setFont(Font.font("Verdana",FontWeight.BOLD,FontPosture.ITALIC,12));
+		back.setFont(Font.font("Verdana",FontWeight.BOLD,FontPosture.ITALIC,backBTNFontSize));
 		
 		back.setMinSize(180, 70);
 		back.setOnMouseClicked(c.getBackBTN());

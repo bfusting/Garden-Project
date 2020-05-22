@@ -40,12 +40,11 @@ import javafx.scene.layout.*;
 *  
 */
 
-//Last edited 5-4-20 12:58AM
 
 /**
  * 
- * View that handles the creation and presentation of the screen containing Buttons
- * for choosing a square, circular or triangular garden layout or drawing the perimeter
+ * Screen that handles the creation and presentation of the screen containing shapes that the user
+ * can select to choose a square, circular or triangular garden layout or drawing the perimeter
  * manually. 
  * 
  * @author Takiyah Price
@@ -141,7 +140,6 @@ public class ChooseTemplate extends Screen {
 		circle = new Circle(templateDimension/2,templateColor);
 		initTemplate(circle);
 		
-		//will be a custom shape, placeholder rectangle for now
 		custom = new Rectangle(templateDimension,templateDimension);
 		initTemplate(custom);
 		
@@ -220,10 +218,6 @@ public class ChooseTemplate extends Screen {
 		
 		chooseTemplateScene = new Scene(root,View.primarySceneWidth,View.primarySceneHeight);
 		
-		
-		
-		
-		
 	}
 	
 	
@@ -240,18 +234,6 @@ public class ChooseTemplate extends Screen {
 		theStage.setTitle("Choose a Template");
 		theStage.setScene(chooseTemplateScene);
 	}
-	
-	public void drawCircle() {
-		SVGPath svg = new SVGPath();
-		Group root = new Group(svg);
-		
-		svg.setContent("M 600 400 A 50 50 0 1 1 725 400 A 50 50 0 1 1 600 400");
-		svg.setFill(Color.DARKOLIVEGREEN);
-		svg.setStroke(Color.BLACK);
-		Scene circleScene = new Scene(root,View.primarySceneWidth,View.primarySceneHeight);
-		theStage.setScene(circleScene);
-	}
-	
 	
 	
 	/**
@@ -339,6 +321,7 @@ public class ChooseTemplate extends Screen {
 	 * 
 	 * @see Controller#getMouseEnter()
 	 * @see Controller#getMouseExit()
+	 * @see Controller#getMouseClicked()
 	 */
 	public void initTemplate(Shape s) {
 		s.setOnMouseEntered(con.getMouseEnter());

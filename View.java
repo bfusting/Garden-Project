@@ -50,7 +50,6 @@ import javafx.stage.Stage;
  * @author Takiyah Price 
  */
 
-//last edited: 5-10-20 7:00PM
 
 
 public class View extends Application{
@@ -82,11 +81,6 @@ public class View extends Application{
 	static final Background settingsBackground = new Background(new BackgroundFill(View.settingsBackgroundColor, CornerRadii.EMPTY, new Insets(borderWidth)));
 	static final Image settingsAccentImg = new Image("img/v850-sasi-13.jpg");
 	
-	static final Color designingBorderColor = Color.web("#194f3a");
-	static final Color designingBackgroundColor = Color.web("#a3dcbc");
-	static final Image designingAccentImg = new Image("img/v698-bb-2-leaves_1.jpg");
-	static final Background designBackground = new Background(new BackgroundFill(designingBackgroundColor,CornerRadii.EMPTY,Insets.EMPTY));
-	
 	static final Font backNextBTNFont = Font.font("Verdana",FontWeight.BOLD,FontPosture.ITALIC,20);
 	
 	private final static String activeSoilImgName = "img/soil.jpg";
@@ -108,29 +102,25 @@ public class View extends Application{
 	}
 	
 	/**
-	 * Takes in the parameter tofu which is a Array of strings passed into the main 
-	 * method and used within the program
+	 * Calls launch to start the application.
 	 * <p>
-	 * Main runs the whole program, usually launchs everything however for now just prints 
-	 * a simple statement.
 	 * 
 	 * @param tofu string array of arguments
-	 * @see main
 	 */
 	public static void main(String[] tofu) {
 		launch();
 	}//main
 	
-	@Override
+	
 	/**
 	 * Takes in parameter theStage and uses it to initialize its reference to the primary Stage
 	 * <p>
 	 * Start is used to for the start of the program where it starts with the main menu
 	 * 
-	 * @param theStage primary stage which will be set with mainMenuScreen's scene
+	 * @param theStage The primary stage, which will be set with mainMenuScreen's scene.
 	 */
+	@Override
 	public void start(Stage theStage) {
-		
 		
 		primaryStage = theStage;
 		primaryStage.setOnCloseRequest(con.getExitStage());
@@ -143,41 +133,21 @@ public class View extends Application{
 		recommendationsScreen = new Recommendations(con);
 		
 		createNew();
-		
-		
-		
-		
-		
-		//finalViewScreen.setPreviousScreen(designGardenScreen);
-		
-		
-		
-		
-		//recommendationsScreen.setPreviousScreen(designGardenScreen);
-		
-		
+
 		currentPrimaryScreen = mainMenuScreen;
 		
-		
-		System.out.println("Set the stage for el Main Menu");
 		mainMenuScreen.showScreen();
 		
 		primaryStage.show();
-		
-		
-		
-		
+
 	}
 	
 	
 	/**
 	 * Closes the application, meaning all windows are closed.
 	 */
-	public void exit() {
-		System.out.println("Close all the windows");
-		
+	public void exit() {	
 		Platform.exit();
-		
 	}
 	
 	
@@ -186,7 +156,7 @@ public class View extends Application{
 	 * Returns the designGardenScreen, which handles the screen for editing the garden.
 	 * 
 	 * @return the Screen designGardenScreen, which handles the Scene and visual components of the screen
-	 * where the user can edit their garden
+	 * where the user can edit their garden.
 	 */
 	public DesignGarden getDesignGardenScreen() {
 		return designGardenScreen;
@@ -204,7 +174,7 @@ public class View extends Application{
 	
 	/**
 	 * Makes the Screen specified by the given String visible to the user by invoking
-	 * the necessary Screen's showScreen method.
+	 * the necessary Screen's showScreen method, and handles the presentation of the save and load dialogs.
 	 * 
 	 * @param screen the String representing the name of the Screen to be shown
 	 * 
@@ -212,7 +182,6 @@ public class View extends Application{
 	 * @see Screen#showScreen()
 	 */
 	public void show(String screen) {
-		
 		
 		switch (screen) {
 		case "mainMenuScreen":
@@ -278,7 +247,6 @@ public class View extends Application{
 			seasonViewScreen.showScreen();
 			break;
 		case "recommendationsScreen":
-			//recommendationsScreen = new Recommendations(con);
 			recommendationsScreen.showScreen();
 			break;
 		case "exitScreen":
@@ -346,7 +314,6 @@ public class View extends Application{
 			chooseTemplateScreen.mouseInside((Shape) o);
 		}
 		
-		
 	}
 	
 	/**
@@ -385,6 +352,10 @@ public class View extends Application{
 		}
 	}
 	
+	/**
+	 * Returns the total preferences that need to be filled from preferencesScreen.
+	 * @return the total preferences that need to filled based on the template currently chosen.
+	 */
 	public int getCurrentTotalPrefs() {
 		return preferencesScreen.getTotalPrefs();
 	}
@@ -396,7 +367,6 @@ public class View extends Application{
 	 * @return the name of the selected template as a String.
 	 * 
 	 * @see ChooseTemplate#getSelectedTemplate()
-	 * @see GardenPlot#shape
 	 */
 	public String sendTemplate() {
 		return chooseTemplateScreen.getSelectedTemplate();
@@ -425,7 +395,7 @@ public class View extends Application{
 	}
 	
 	/**
-	 * Reinstantiates the templates, preferences and design Screens. To be called when the user clicks the 'Create New Garden' button from the main menu.
+	 * Reinstantiates the templates, preferences, design, final view, recommendations, and season view Screens as well as infoTips. To be called when the user clicks the 'Create New Garden' button from the main menu.
 	 */
 	public void createNew() {
 		chooseTemplateScreen = new ChooseTemplate(con,primaryStage);
@@ -461,12 +431,18 @@ public class View extends Application{
 		return finalViewScreen;
 	}
 	
-	
+	/**
+	 * Creates the GridPane representing the garden based on the GardenPlot in Model, drawing in inactive tiles if the grid is
+	 * to be used in the design mode or removing the inactive tiles if the grid is to be used in the final view or season view.
+	 * @param con The Controller, which handles the flow of information between the View and Model.
+	 * @param drawInactiveTiles A boolean indicating whether to add the image for inactive tiles or to remove the space entirely.
+	 * @return A GridPane, in which the user will drag plants into or view in different seasons.
+	 */
 	public static GridPane drawGrid(Controller con,boolean drawInactiveTiles) {
 		GridPane gp = new GridPane();
 		int soilImgSize = 89;
 		int AddOnImgSize = 80;
-		
+		int padding = 10;
 		for (int i=0;i<con.getLengthFromModel();i++) {
 			for (int j=0; j<con.getWidthFromModel();j++) {
 				ImageView soilImg = new ImageView(new Image(activeSoilImgName));
@@ -476,8 +452,7 @@ public class View extends Application{
 					gp.add(soilImg, j, i,1,1);
 					
 					gp.setGridLinesVisible(false);
-					//gp.setAlignment(Pos.BASELINE_CENTER);
-					gp.setPadding(new Insets(10));
+					gp.setPadding(new Insets(padding));
 					String addOnImgName = con.getImgNameFromModel(i, j);
 					if  (addOnImgName.equals("inactive")) {
 						if (drawInactiveTiles && con.getTemplateFromModel().toLowerCase().equals("custom")) {
@@ -495,11 +470,8 @@ public class View extends Application{
 						ImageView addOnIV = new ImageView(new Image(addOnImgName));
 						addOnIV.setFitHeight(AddOnImgSize);
 						addOnIV.setFitWidth(AddOnImgSize);
-						//addOnIV.setOnMouseClicked(con.getRemoveFromTile());
 						gp.add(addOnIV, j, i, 1,1);
 					}
-					
-					
 				}
 			}
 		
@@ -525,7 +497,5 @@ public class View extends Application{
 			soilIV.setImage(new Image(inactiveSoilImgName));
 		}
 	}
-	
-	
 	
 }
