@@ -146,13 +146,19 @@ public class Instructions extends Screen {
 	}
 	
 	
-	
+	/**
+	 * Overrides Screen showScreen. Pop up the instructions screen and moves
+	 * it to the front. 
+	 */
 	@Override
 	public void showScreen() {
 		instructionsStage.show();
 		instructionsStage.toFront();
 	}
 	
+	/**
+	 * Overrides Screen showScreen. closes the instruction screen stage. 
+	 */
 	@Override
 	public void closeScreen() {
 		instructionsStage.close();

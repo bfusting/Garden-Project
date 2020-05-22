@@ -133,126 +133,24 @@ public class Model implements Serializable{
 		
 		createArrs();
 		
-		// Creating temp Plants for Bradley to use in methods, remove later
-		
-		
-		//These Plants have the incorrect constructor
-		/*
-		Plant purpleConeFlower = new Plant("Purple Cone Flower", 1, "cone flower", 
-				"purple", 0, 0, 0, 0, "Autumn", false, null, null, "Flower", null, null);
-		
-		Plant goldenRod = new Plant("Golden Rod", "Solidago Sempervirens", "Yellow", "Autumn", "", 0, 3, 5, "Moist", new ArrayList<String>());
-		
-		Plant sugarMaple = new Plant("Sugar Maple", 4, "Maple Tree", "Yellow", 3, 0,
-				0, 0, "Summer", true, null, null, "Tree", null, null);
-		
-		Plant sweetFern = new Plant("Sweet Fern", 1, "Fern Variant", "White",
-				3, 2, 3.0, 0, "Spring", false, null, null, "Shrub", null, null);
-
-		Plant milkWeed = new Plant("Milkweed", 1, "Common Milkweed", "Orange", 4, 2, 
-				2.00, 0, "Summer", false, null, null, "UnderGrowth", null, null);
-		
-		*/
-/*		
-		Plant fillaree = new Plant("Fillaree", "eraniaceae Erodium texanum", "Red", 
-				Seasons.SPRING, "", 0, 1, 5, "Dry", new ArrayList<String>());
-		
-		Plant starGrass = new Plant("Star Grass", "Liliaceae Aletris aurea", "Yellow",
-				Seasons.SUMMER, "", 0, 3, 3, "", new ArrayList<String>());
-		
-		Plant narrowLeafOnion = new Plant("Narrowleaf Onion","Allium amplectens", "White", 
-				Seasons.SPRING, "", 0, 3, 3, "", new ArrayList<String>());
-		
-		Plant pearThorn = new Plant("Pear Thorn", "Crataegus calpodenron", "White",
-				Seasons.SUMMER, "", 0, 3, 3, "", new ArrayList<String>());
-		
-		Plant whiteSnakeroot = new Plant("White Snakeroot", "Ageratina Altissim", "White",
-				Seasons.SUMMER, "", 0, 1, 3, "", new ArrayList<String>());
-		
-		// Trees
-		Plant narrowleafCottonwood = new Plant("Narrowleaf Cottonwood", "Populus Angustifloia", "White",
-				Seasons.SPRING, "", 0, 5, 3, "", new ArrayList<String>());
-		
-		Plant boxElder = new Plant("Box Elder", "Acer negundo", "Yellow",
-				Seasons.SPRING, "", 0, 3, 5, "", new ArrayList<String>());
-		
-		Plant blackMaple = new Plant("Black Maple", "Acer nigrum", "Yellow",
-				Seasons.SPRING, "", 0, 3, 3, "", new ArrayList<String>());
-		
-		Plant juneBush = new Plant("Junebush", "Amelanchier canadensis", "White",
-				Seasons.SPRING, "", 0, 3, 4, "", new ArrayList<String>());
-		
-		Plant whiteBirch = new Plant("White Birch", "Betula poulifolia", "Green",
-				Seasons.SPRING, "", 0, 1, 3, "", new ArrayList<String>());
-		
-		Plant cigarTree = new Plant("Cigar Tree"," Amelanchier canadensis", "White", 
-				Seasons.SUMMER, "", 0, 1, 1, "", new ArrayList<String>());
-		
-		
-		//Shrubs
-		Plant seasideAlder = new Plant("Seaside Alder", "Alnus Maritima", "Yellow",
-				Seasons.SUMMER,"", 0, 5, 3, "", new ArrayList<String>());
-		
-		Plant redChokeberry = new Plant("Red Chokeberry", "Aronia arbutifolia", "White",
-				Seasons.SPRING, "", 0, 5, 5, "", new ArrayList<String>());
-		
-		Plant sweetShrub = new Plant("Sweet Shrub", "Calycanthus floridus", "Red",
-				Seasons.SPRING, "", 0, 3, 3, "Moist", new ArrayList<String>());
-		
-		Plant newJerseyTea = new Plant("New Jersey Tea", "Ceanothus americanus", "White",
-				Seasons.SPRING, "", 0, 1, 2, "", new ArrayList<String>());
-		
-		Plant americanHazelnut = new Plant("American Hazelnut", "Corylus americana", "White",
-				Seasons.SPRING, "", 0, 3, 2, "", new ArrayList<String>());
-		
-		Plant redWillow = new Plant("Red Willow", "Cornus amomum", "White",
-				Seasons.SPRING, "", 0, 5, 3, "", new ArrayList<String>());
-		
-		Plant maidenhairFern = new Plant("Maidenhair Fern", "Adiantum pedatum", "",
-				null, "", 0, 3, 3, "", new ArrayList<String>());
-		
-		Plant blackstemSpleenwort = new Plant("Blackstem Spleenwort", "Asplenium Resiliens", "",
-				null, "", 0, 3, 2, "", new ArrayList<String>());
-				
-		flowerArr = new ArrayList<Plant>();
-	//	flowerArr.add(purpleConeFlower);
-	//	flowerArr.add(goldenRod);
-		flowerArr.add(pearThorn);
-		flowerArr.add(whiteSnakeroot);
-		flowerArr.add(starGrass);
-		flowerArr.add(narrowLeafOnion);
-		flowerArr.add(fillaree);
-		
-		shrubArr = new ArrayList<Plant>();
-		//shrubArr.add(sweetFern);
-		shrubArr.add(seasideAlder);
-		shrubArr.add(redChokeberry);
-		shrubArr.add(newJerseyTea);
-		shrubArr.add(americanHazelnut);
-		shrubArr.add(redWillow);
-	
-		
-		treeArr = new ArrayList<Plant>();
-		//treeArr.add(sugarMaple);
-		treeArr.add(cigarTree);
-		treeArr.add(whiteBirch);
-		treeArr.add(boxElder);
-		treeArr.add(blackMaple);
-		treeArr.add(juneBush);
-		treeArr.add(narrowleafCottonwood);
-		
-		underGrowthArr = new ArrayList<Plant>();
-	//	underGrowthArr.add(milkWeed);
-		underGrowthArr.add(maidenhairFern);
-		underGrowthArr.add(blackstemSpleenwort);
-*/		
-		
 	}//Model()
 	
+	/**
+	 * Getter for hashSet of usedPlants in the Garden Plot
+	 * 
+	 * @return Hashset of used plants to be passed to InfoTips
+	 */
 	public static HashSet<Plant> getUsedPlants(){
 		return usedPlants;
 	}
 	
+	/**
+	 * Uses a buffered reader to read GardenPlant.txt
+	 * GardenTree.txt and GardenFlower.txt and create plants from
+	 * what is read within those files
+	 * 
+	 * @author Kelsey McRae
+	 */
 	private void createArrs() {
 
 //	    Scanner input;
@@ -288,7 +186,6 @@ public class Model implements Serializable{
 					int size = Integer.parseInt(sizeStr);
 			        int waterNeed = Integer.parseInt(waterNeedStr);
 			        int sunlightNeed = Integer.parseInt(sunlightNeedStr);
-			        
 
 		        	Plant newPlant = new Plant(name, latinName, color, bloomTimeStr, habit, size, waterNeed, sunlightNeed, soilMoisture, animalsFedStr, seasonsArr);
 
@@ -299,66 +196,16 @@ public class Model implements Serializable{
 			        } else if (i==2) {
 			        	flowers = addPlant(flowers, newPlant);
 			        }
-			        
 				}
-				
-				
-
-
-				
-/*				input = new Scanner(new File(textFileStrings[i]));
-			    input.useDelimiter("\n");
-			    
-			  
-			    Plant[] plants = new Plant[0];
-			    Plant[] trees = new Plant[0];
-			    
-			    while(input.hasNext()) {
-			        String name = input.next();
-			        String latinName = input.next();
-			        String color = input.next();
-			        String bloomTime = input.next();
-			        String habit = input.next();
-			        int size = input.nextInt();
-			        int waterNeed = input.nextInt();
-			        int sunlightNeed = input.nextInt();
-//			        String sizeStr = input.next();
-//			        String waterNeedStr = input.next();
-//			        String sunlightNeedStr = input.next();
-			        String soilMoisture = input.next();
-			        String animalsFedStr = input.next();
-			        
-//			        int size = Integer.parseInt(sizeStr);
-//			        int waterNeed = Integer.parseInt(waterNeedStr);
-//			        int sunlightNeed = Integer.parseInt(sunlightNeedStr);
-			        
-		        	Plant newPlant = new Plant(name, latinName, color, bloomTime, habit, size, waterNeed, sunlightNeed, soilMoisture, animalsFedStr);
-			        if (i==0) {
-			        	plants = addPlant(plants, newPlant);
-			        } else if (i==1) {
-			        	trees = addPlant(trees, newPlant);
-			        }
-			    }
-*/
-			   /* for (Plant plant : plants) {
-			        System.out.println(plant);
-			    }
-			    for (Plant tree : trees) {
-			    	System.out.println(tree);
-			    }
-			    for (Plant flower : flowers) {
-			    	System.out.println(flower);
-			    }*/
 			}
-			//
+			
 			for (int i=textFileStrings.length-2;i<textFileStrings.length;i++) {
 				buffReader = new BufferedReader(new InputStreamReader(new FileInputStream(textFileStrings[i]))); 
-//				
+			
 				while (buffReader.readLine() != null) {
 					String addOnImgName = buffReader.readLine();
 					String description = buffReader.readLine();
 					int size;
-					
 					
 					if (i==3) {
 						size = 45;
@@ -369,34 +216,32 @@ public class Model implements Serializable{
 						AddOn extra = new AddOn(addOnImgName,size,description);
 						sceneryArr.add(extra);
 					}
-					
 				}
 			}
 			
-			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		for (int i=0;i<plants.length;i++) {
 			allPlants.add(plants[i]);
-			//System.out.println("Added plant:\n"+plants[i]);
 		}
 		for (int i=0;i<trees.length;i++) {
 			allPlants.add(trees[i]);
-			//System.out.println("Added tree:\n"+trees[i]);
 		}
 		for(int i=0;i<flowers.length;i++) {
 			allPlants.add(flowers[i]);
-			//System.out.println("Added flower:\n"+flowers[i]);
 		}
-		
-
 	}
 	
+	/**
+	 * Adds a specified plant to the specified array
+	 * 
+	 * @param plantsArr - an array of plants
+	 * @param plantToAdd - a plant object
+	 * @return newPlants - the new, updated plant array
+	 */
     private static Plant[] addPlant(Plant[] plantsArr, Plant plantToAdd) {
 	    Plant[] newPlants = new Plant[plantsArr.length + 1];
 	    System.arraycopy(plantsArr, 0, newPlants, 0, plantsArr.length);
@@ -488,10 +333,7 @@ public class Model implements Serializable{
 		// clearing other arrays
 		clearOthers();
 		
-		
 	}//updateArrs
-	
-	
 	
 	////////////////////////////		GETTERS UNDERNEATH			////////////////////////////
 	
@@ -538,8 +380,6 @@ public class Model implements Serializable{
 	public ArrayList<Plant> getTreeArr() {
 		return treeArr;
 	}
-	
-	
 	
 	/**
 	 * Returns the altPlots attribute from model, which will be used
@@ -642,7 +482,6 @@ public class Model implements Serializable{
 	public void setTreeArr(ArrayList<Plant> a) {
 		treeArr = a;
 	}
-	
 	
 	/**
 	 * Takes in a GardenPlot p and sets userPlot to the new plot.

@@ -2,11 +2,3 @@
 *~
 bin/
 *.gitignore
-*.orig
-*.html
-*.js
-*.css
-*.zip
-element-list
-resources/
-script-dir/

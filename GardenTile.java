@@ -15,10 +15,11 @@ import java.util.ArrayList;
 */
 
 /**
- * 
- * @author Bradley
  * The GardenTile Object which makes up the individual squares on the GardenPlot.
  * They can hold AddOns and contain properties like water and light level as well as soil type 
+ * <p>
+ * @author Bradley
+ * 
  *
  *
  */
@@ -27,13 +28,9 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	
 	private int xLoc;
 	private int yLoc;
-
 	private String blankImage;
-	
 	private boolean isActive;
-	
 	private boolean isEmpty;
-	
 	private String soilType;
 	
 	/**
@@ -53,7 +50,9 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	private Plant plant = null;
 	
 	/**
-	 * Constructor setting variables to default settings
+	 * Constructor setting variables to default settings 
+	 * boolean values set to true, ints set to 0,
+	 * and strings set to the empty string
 	 */
 	public GardenTile() {
 		isActive = true;
@@ -63,9 +62,11 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 		sunLightLevel = 0;
 	}
 		/**
-		 * Constructor With x and y parameters
-		 * @param x
-		 * @param y
+		 * Constructor for the GardenTile class with x and y parameters
+		 * <p>
+		 * 
+		 * @param x - x position of tile
+		 * @param y - position of tile
 		 */
 		public GardenTile(int x, int y) {
 		isActive = true;
@@ -79,9 +80,10 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 		
 		/**
 		 * Constructor With x and y parameters and a Soil type parameter
-		 * @param x
-		 * @param y
-		 * @param sT soil type
+		 * <p>
+		 * @param x - x position of tile
+		 * @param y - y position of tile
+		 * @param sT - soil type 
 		 */
 		public GardenTile(int x, int y, String sT) {
 			isActive = true;
@@ -94,10 +96,11 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 		}
 		
 		/**
-		 * Constructor With x and y parameters and a Soil type parameter
-		 * @param x
-		 * @param y
-		 * @param active
+		 * Constructor With x and y parameters and a boolean for the active parameter
+		 * <p>
+		 * @param x - x position of tile
+		 * @param y - y position of tile
+		 * @param active - whether or not this tile is active
 		 */
 		public GardenTile(int x, int y, boolean active) {
 			isActive = active;
@@ -122,7 +125,7 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	/**
 	 * adds an AddOn to the GardenTile
 	 * 
-	 * @param a 
+	 * @param a - AddOn to be set to this.addOn
 	 */
 	public void add(AddOn a) {
 		this.addOn = a;
@@ -141,9 +144,13 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	//temp is being used while we have temporary plant objects in the Model class.  Will remove later
 	//private Model temp = new Model();
 	private Model temp = null;
+	
+	
 	/**\
-	 * 
-	 * @return
+	 * Returns an array of recommended plants based on surrounding tile information
+	 * <p>
+	 * @param arr - an array of AddOn's that surround this tile
+	 * @return result - 
 	 * Returns an array of Plants that should be used in this GardenTile
 	 */
 	public Plant[] getRecommendations(AddOn[] arr) {
@@ -179,10 +186,6 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 			return null;
 		}
 		
-		
-	
-	
-	
 	/**
 	 * Checks if the AddOn's are the same
 	 * @param a

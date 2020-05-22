@@ -54,11 +54,12 @@ import javafx.scene.Scene;
 //Updated: 4/26 5:08 >>updated by TJ 4/30 made it extend Screen
 
 /**
- * @author Takiyah Price
- * @author Kelsey McRae
- * <br> 
- * <br> The Screen in which the user selects their preferred plant color and bloom season and enters the length, width, light
+ * The Screen in which the user selects their preferred plant color and bloom season and enters the length, width, light
  * and water availability of their garden.
+ * <br>
+ * <br>
+ * @author Takiyah Price
+ * @author Kelsey McRae> 
  *
  */
 public class Preferences extends Screen {
@@ -81,14 +82,18 @@ public class Preferences extends Screen {
 	
 	private final Border unfinishedPrefBorder = new Border(new BorderStroke(Color.MEDIUMVIOLETRED,BorderStrokeStyle.SOLID,CornerRadii.EMPTY,new BorderWidths(2.0)));
 	
-	
 	private Controller c;
 	Stage stage;
-	
 	
 	private Text lengthL;
 	private Text widthL;
 	
+	/**
+	 * Constructor for preferences takes in a controller and stage
+	 * 
+	 * @param controller
+	 * @param theStage
+	 */
 	
 	public Preferences(Controller controller,Stage theStage) {
 		this.c = controller;
@@ -134,8 +139,6 @@ public class Preferences extends Screen {
 		length = new Slider();
 		length.addEventHandler(MouseEvent.MOUSE_CLICKED, c.getMouseClicked());
 		
-		
-		
 		Slider[] sliders = new Slider[]{light,water,length,width};
 		for (Slider s : sliders) {
 			s.setBorder(unfinishedPrefBorder);
@@ -148,9 +151,6 @@ public class Preferences extends Screen {
 			s.setShowTickLabels(true);
 		}
 		
-    
-   
-
     	Button mainMenu = new Button("Main Menu");
     	mainMenu.setOnMouseClicked(c.getMainMenuWarning());
     	mainMenu.setMinSize(160, 60);
@@ -181,7 +181,6 @@ public class Preferences extends Screen {
     	widthL = new Text("Width (ft): ");
     	widthL.setFont(font);
     	
-		
 		Color bg1 =  Color.web("#8fc36f");
 		
 		GridPane gPane = new GridPane();
@@ -208,12 +207,10 @@ public class Preferences extends Screen {
 		prefsSetText.setX(140);
 		prefsSetText.setY(130);
 		
-		
 		gPane.setMinSize(1160, 760);
 		gPane.setMaxSize(1160, 760);
 		
 		gPane.setBackground(View.settingsBackground);
-		
 		
 		BorderWidths bw = new BorderWidths(borderWidth);
 		gPane.setBorder(new Border(new BorderImage(View.settingsAccentImg, bw, null, bw, false, BorderRepeat.ROUND,BorderRepeat.REPEAT)));
@@ -224,7 +221,6 @@ public class Preferences extends Screen {
 		
 		hBox.setMinSize(View.primarySceneWidth, View.primarySceneHeight);
 		
-		
 		VBox labelBox = new VBox(75);
 		labelBox.setAlignment(Pos.BASELINE_RIGHT);
 		labelBox.getChildren().addAll(colorL,seasonL,lightL,waterL,lengthL,widthL);
@@ -232,7 +228,6 @@ public class Preferences extends Screen {
 		
 		gPane.getColumnConstraints().addAll(new ColumnConstraints(200),new ColumnConstraints(270),new ColumnConstraints(250),new ColumnConstraints(340));
 		gPane.getRowConstraints().add(new RowConstraints(660));
-		
 		
 		VBox backBTNBox = new VBox(back);
 		backBTNBox.setAlignment(Pos.BOTTOM_CENTER);
@@ -257,7 +252,6 @@ public class Preferences extends Screen {
 		
 		sideBTNPane.getChildren().addAll(sideBTNBox,startCreating);
 		
-		
 		gPane.add(backBTNBox, 0, 0);
 		gPane.add(labelBox, 1, 0);
 		gPane.add(controlsBox, 2, 0);
@@ -266,18 +260,13 @@ public class Preferences extends Screen {
 		Group root = new Group();
 		root.getChildren().addAll(hBox,divider,instructionCircle,instructionText,prefsSetText);
 		
-		
 		preferencesScene = new Scene(root,View.primarySceneWidth,View.primarySceneHeight);
 	
 		stage.setScene(preferencesScene);
-		
-		
-		
 	}
 	
 	/** 
 	 * Returns the total preferences to be entered.
-	 * @param An int, the total preferences to be entered.
 	 */
 	public int getTotalPrefs() {
 		return totalPrefs;
@@ -333,13 +322,11 @@ public class Preferences extends Screen {
 		stage.setScene(preferencesScene);
 	}
 	
-	
 	/**
 	 * Enables the 'Start Creating' Button once all preferences have been set.
 	 */
 	public void allowStartCreating() {
 		startCreating.setDisable(false);
-		
 		
 	}
 	
@@ -347,7 +334,6 @@ public class Preferences extends Screen {
 	 * Sends the values of the Nodes on this Screen when the user clicks the 'Start Creating' button to the Controller.
 	 */
 	public void sendPreference(Control control) {
-		
 		
 		if (control.equals(color)) {
 			String colPref = color.getValue();
@@ -385,7 +371,6 @@ public class Preferences extends Screen {
 			width.setBorder(Border.EMPTY);
 			System.out.println("Width sent: "+ widthPref);
 		}
-		
 	}
 	
 	/**
@@ -447,8 +432,5 @@ public class Preferences extends Screen {
 	 */
 	public void changePrefsSetText() {
 		prefsSetText.setText("Total Preferences Set: "+Math.min(c.getPrefsSet(),totalPrefs)+"/"+totalPrefs);
-	}
-		
-	
+	}	
 }
-

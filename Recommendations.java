@@ -30,205 +30,48 @@ import javafx.scene.paint.*;
 */
 
 /**
+ * <p>
+ * Used in the designGarden page.  Creates a new window displaying 
+ * recommended plants based on user preferences.
  * 
- * @author Malachi Parks 
  * 
- * Used in the Design Garden tab, by clicking the recommendations button
- * reviews what plants the users should place in their garden based upon
- * the garden requirements and plant preferences
- *
  */
 public class Recommendations extends Screen{
-	private String weRecommendMessage;
-	private Label recommendationMessage;
-	private Image plantImage;
-	private String name;
-	private Seasons bloomTime;
-	private int light;
-	private int water;
-	private ArrayList<String> animalsFed;
+	
 	private final int HEIGHT = 500;
 	private final int WIDTH = 250;
 	private Controller c;
 	private Stage stage;
 	private ArrayList<String> plantNames;
-	/** USE THIS ONE AFTER ALPHA
-	 * Takes in an image i which is the image of a plant
-	 * date which is a date of when the plant comes into bloom
-	 * lightNeed which is rated on a scale of 0-5 where 0 means no light where 5 needs a lot of light
-	 * waterNeed which is rated on a scale of 0-5 where 0 means no water where 5 needs a lot of water
-	 * <p>
-	 * The constructor to create the Recommendations view
-	 * 
-	 * @param i Image of the plant recommended
-	 * @param givenName name of the plant
-	 * @param lightNeed light need of the plant recommended
-	 * @param waterNeed water need of the plant recommended
-	 * @see Recommendations
-	 */
-	/*
-	public Recommendations(Image i, String givenName, Date date, int lightNeed, int waterNeed) {
-		weRecommendMessage = "Hello World";
-		// Chanege message above
-		recommendationMessage = new Label(weRecommendMessage);
-		plantImage = i;
-		bloomTime = date;
-		name = givenName;
-		light = lightNeed;
-		water = waterNeed;
-		animalsFed = new ArrayList<String>();
-	}//Recommendations
+	private String weRecommendMessage;
+	private Label recommendationMessage;
 	
-	/** USE THIS ONE AFTER ALPHA
-	 * Takes in an image i which is the image of a plant
-	 * date which is a date of when the plant comes into bloom
-	 * lightNeed which is rated on a scale of 0-5 where 0 means no light where 5 needs a lot of light
-	 * waterNeed which is rated on a scale of 0-5 where 0 means no water where 5 needs a lot of water
-	 * <p>
-	 * The constructor to create the Recommendations view
+	
+	/** 
+	 * Constructor for the recommendations class.
+	 * Sets default display messages and sets the controller
 	 * 
-	 * @param i Image of the plant recommended
-	 * @param givenName name of the plant
-	 * @param lightNeed light need of the plant recommended
-	 * @param waterNeed water need of the plant recommended
+	 * @param controller 
 	 * @see Recommendations
 	 */
 	public Recommendations(Controller controller) {
 		weRecommendMessage = "This is where Recommendations will go based on GardenPlot";
-		// Chanege message above
+		// Change message above
 		recommendationMessage = new Label(weRecommendMessage);
-		plantImage = null;
-		bloomTime = null;
-		name = null;
-		light = 0;
-		water = 0;
-		animalsFed = new ArrayList<String>();
+	
 		c = controller;
 		
-		stage = new Stage();
-		stage.setTitle("Recommendations");
+		
 			
        
 		
 	}//Recommendations
 	
-	/**
-	 * Returns the message used to set the label in the Recommendations View
-	 * <p>
-	 * Getter for Recommendation Message
-	 * 
-	 * @return String representing the static message saying "We recommend the user
-	 * chooses these plants based upon preferences and gardenType"
-	 * @see recommendationMessaage
-	 */
-	public String getWeRecommendationMessage() {
-		return weRecommendMessage;
-	}
 	
 	/**
-	 * Takes in a new string which is the new Recommendations message for the 
-	 * Recommendations Page
-	 * <p>
-	 * Setter for WeRecommendationMessage
+	 * Creates a display of TitledPanes showing up to 15 plants
+	 * with data and pictures for each.
 	 * 
-	 * @param s new string to set the Recommendations view message
-	 * @see recommendationMessage
-	 */
-	public void setWeRecommendationMessage(String s) {
-		weRecommendMessage = s;
-	}
-	
-	/**
-	 * Returns the image of the plant in recommendations - would return the 
-	 * plantImage attribute. PlantImage will be used in an ImageView
-	 * <p>
-	 * Getter for plantImage Attribute
-	 * 
-	 * @return plantImage which is the image of a plant used in recommendations
-	 * @see ImageView
-	 * @see Image
-	 */
-	public Image getPlantImage() {
-		return plantImage;
-	}
-	
-	/**
-	 * Returns a string representing the latin name of the plant
-	 * <p>
-	 * Getter for name attribute
-	 * 
-	 * @return string representing the name of the plant recommended
-	 * @Plant
-	 */
-	public String getName() {
-		return "hi";
-	}
-	
-	/**
-	 * Returns a Seasons Enumeration representing when the bloom time of the plant begins
-	 * <p>
-	 * Getter for bloomTime attribute
-	 * 
-	 * @return date representing the beginning bloom time of the plant
-	 * @see Plant
-	 */
-	public Seasons getBloomTime() {
-		return bloomTime;
-	}
-	
-	/**
-	 * Returns a int representing the light amount the plant requires to function.
-	 * The range is from 0 which is minimal light to 5 which is max light. All information
-	 * should correlate to a plant
-	 * <p>
-	 * Getter for light attribute
-	 * 
-	 * @return int representing light requirement
-	 * @see Plant
-	 */
-	public int getLightReq() {
-		return light;
-	}
-	
-	/**
-	 * Returns a int representing the water amount the plant requires to function.
-	 * The range is from 0 which is minimal water to 5 which is max water. All information
-	 * should correlate to a plant
-	 * <p>
-	 * Getter for water attribute
-	 * 
-	 * @return int representing water requirement
-	 * @see Plant
-	 */
-	public int getWaterReq() {
-		return water;
-	}
-	
-	/**
-	 * Returns a ArrayList of Strings representing the animals the plant feeds
-	 * in the ecosystem. Correlates to the animals feed by a specific plant within 
-	 * the plant class
-	 * <p>
-	 * Getter for animalsFed attribute
-	 * 
-	 * @return ArrayList of animals feed by plant
-	 * @see Plant
-	 */
-	public ArrayList<String> getAnimalsFed(){
-		ArrayList<String> aList = new ArrayList<String>();
-		aList.add("Dog");
-		aList.add("Cat");
-		return aList;
-	}
-	
-	/**
-	 * Takes in a stage which is used to create the Recommendations window in JavaFX.
-	 * <p>
-	 * showRecommendations is used to pop open a new window in JavaFX and then sets the 
-	 * center of the border pane to the recommendation message (may swap to the top later on)
-	 * and then shows the scene
-	 * 
-	 * @param stage primary stage used of the window view
 	 * @see Stage
 	 * @see Scene
 	 */
@@ -478,7 +321,8 @@ public class Recommendations extends Screen{
 	}
 	
 	
-	
+	stage = new Stage();
+	stage.setTitle("Recommendations");
 	BorderPane bPane = new BorderPane();
 	bPane.setCenter(recommendationMessage);
 	Scene scene = new Scene(root, WIDTH, HEIGHT);
@@ -506,9 +350,14 @@ public class Recommendations extends Screen{
 	
 	
 	/**
-	 * Creates and returns a 2D array of recommended addons to be displayed on the Recommendations screen
-	 * @return
-	 * returns rec - the 2D array of recommended addOns
+	 * Returns an array of Plants consisting of only Flowers.  
+	 * The plants should match somewhat the preferences of the user
+	 * 
+	 * <p>
+	 * used to determine which flowers should be displayed in recommended page
+	 * 
+	 * @return rec the array of flowers
+	 * 
 	 */
 	public Plant[] getRecFlowers() {
 		Plant[] rec = new Plant[5];
@@ -545,8 +394,13 @@ public class Recommendations extends Screen{
 	}
 	
 	/**
+	  Returns an array of Plants consisting of only trees.  
+	 * The plants should match somewhat the preferences of the user
 	 * 
-	 * @return
+	 * <p>
+	 * used to determine which trees should be displayed in recommended page
+	 * 
+	 * @return rec the array of trees
 	 */
 	public Plant[] getRecTrees() {
 		Plant[] rec = new Plant[5];
@@ -586,8 +440,13 @@ public class Recommendations extends Screen{
 	}
 	
 	/**
+	 * Returns an array of Plants consisting of only shrubs.  
+	 * The plants should match somewhat the preferences of the user
 	 * 
-	 * @return
+	 * <p>
+	 * used to determine which shrubs should be displayed in recommended page
+	 * 
+	 * @return rec the array of shrubs
 	 */
 	public Plant[] getRecShrubs() {
 		Plant[] rec = new Plant[5];

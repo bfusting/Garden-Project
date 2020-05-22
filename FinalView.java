@@ -12,9 +12,10 @@ import javafx.scene.control.Label;
 //Updated: 4/25 9:52
 /**
  * 
- * @author Kelsey McRae
+ * The View that allow the user to see their final garden they created as well as alternate possible versions.
  * <br>
- * <br> The View that allow the user to see their final garden they created as well as alternate possible versions.
+ * <br>
+ * @author Kelsey McRae
  *
  */
 public class FinalView extends Screen {
