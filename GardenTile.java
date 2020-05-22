@@ -141,9 +141,6 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 		return this.addOn.getDescription();
 	}
 	
-	//temp is being used while we have temporary plant objects in the Model class.  Will remove later
-	//private Model temp = new Model();
-	private Model temp = null;
 	
 	
 	/**\
@@ -153,7 +150,7 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	 * @return result - 
 	 * Returns an array of Plants that should be used in this GardenTile
 	 */
-	public Plant[] getRecommendations(AddOn[] arr) {
+	/*public Plant[] getRecommendations(AddOn[] arr) {
 			//TODO:
 			//Have to test for each type of AddOn
 			//Order of AddOn's in arr are Tile to the left, then right, then above, then below
@@ -184,7 +181,7 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 			
 			
 			return null;
-		}
+		}*/
 		
 	/**
 	 * Checks if the AddOn's are the same
@@ -202,63 +199,37 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 		return 0;
 	}
 	
-	/**
-	 * Tests to see if the AddOn was placed in a valid spot.
-	 * 
-	 * @return
-	 */
-	public boolean validPlacement() {
-		if(this.addOn != null) {
-			return false;
-		}
-		else return true;
-	}
 	
 	/**
-	 * 
-	 * @return
+	 * Tells whether the tile is active.
+	 * @return a boolean indicating whether the tile is active.
 	 */
 	public boolean isActive(){
 		return this.isActive;
 	}
 	
 	/**
-	 * 
-	 * @return
-	 * 
+	 * Indicates whether the tile is empty.
+	 * @return a boolean, true if the tile is empty, false otherwise.
 	 * 
 	 */
 	public boolean isEmpty() {
 		return this.isEmpty;
 	}
 	
-	/**
-	 * 
-	 * @return
-	 */
-	public String getSoilType() {
-		return soilType;
-	}
+
 
 	/**
-	 * 
-	 * @param soilType
-	 */
-	public void setSoilType(String soilType) {
-		this.soilType = soilType;
-	}
-
-	/**
-	 * 
-	 * @return
+	 * Returns the water level of the tile.
+	 * @return the water level of the tile.
 	 */
 	public int getWaterLevel() {
 		return waterLevel;
 	}
 
 	/**
-	 * 
-	 * @param waterLevel
+	 * Sets the water level of the tile, keeping within 1-5 inclusive.
+	 * @param waterLevel the water level of the tile.
 	 */
 	public void setWaterLevel(int waterLevel) {
 		this.waterLevel = Math.max(1, waterLevel);
@@ -266,15 +237,15 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Returns the sunlight level of the tile.
+	 * @return the sunlight level of the tile.
 	 */
 	public int getSunLightLevel() {
 		return sunLightLevel;
 	}
 
 	/**
-	 * 
+	 * Sets the sunlight level with the given int, keeping within the range of 1-5 inclusive.
 	 * @param sunLightLevel
 	 */
 	public void setSunLightLevel(int sunLightLevel) {
@@ -283,16 +254,17 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Returns the AddOn contained in the tile.
+	 * @return the AddOn in the tile.
 	 */
 	public AddOn getAddOn() {
 		return addOn;
 	}
 
 	/**
-	 * 
-	 * @param addOn
+	 * Sets the addOn attribute with the given addOn and changes the attribute indicating whether the tile
+	 * is empty to false.
+	 * @param addOn the AddOn to be held in the tile.
 	 */
 	public void setAddOn(AddOn addOn) {
 		this.addOn = addOn;
@@ -300,8 +272,8 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	}
 	
 	/**
-	 * 
-	 * @param p
+	 * Sets the plant attribute to the given Plant and changes the attribute indicating whether the tile is empty to false.
+	 * @param p the Plant to be held in the tile.
 	 */
 	public void setPlant(Plant p) {
 		this.plant = p;
@@ -309,31 +281,23 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Returns the plant attribute.
+	 * @return the plant contained in the tile.
 	 */
 	public Plant getPlant() {
 		return this.plant;
 	}
 	/**
-	 * 
-	 * @param isActive
+	 * Sets the tile's activity.
+	 * @param isActive True if the tile is active, false otherwise.
 	 */
 	public void setIsActive(boolean isActive) {
 		this.isActive = isActive;
 	}
 	
-	/**
-	 * 
-	 * @return
-	 */
-	public boolean getIsActive() {
-		return this.isActive;
-	}
 
 	/**
-	 * 
-	 * @param isEmpty
+	 * Empties the tile by setting the property isEmpty to true and setting the addOn and plant attributes to null.
 	 */
 	public void setEmpty() {
 		isEmpty = true;
@@ -342,24 +306,24 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	}
 
 	/**
-	 * 
-	 * @return
+	 *  Gets the x position of the tile.
+	 * @return the x position of the tile.
 	 */
 	public int getxLoc() {
 		return xLoc;
 	}
 
 	/**
-	 * 
-	 * @param xLoc
+	 * Sets the x position of the tile.
+	 * @param xLoc the x position of the tile.
 	 */
 	public void setxLoc(int xLoc) {
 		this.xLoc = xLoc;
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Gets the y position of the tile.
+	 * @return the y position of the tile.
 	 * 
 	 */
 	public int getyLoc() {
@@ -367,9 +331,8 @@ public class GardenTile implements Comparable<AddOn>,Serializable {
 	}
 
 	/**
-	 * 
 	 * @param yLoc
-	 * sets the y position of the tile
+	 * Sets the y position of the tile.
 	 * 
 	 */
 	public void setyLoc(int yLoc) {

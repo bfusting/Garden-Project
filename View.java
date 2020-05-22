@@ -9,6 +9,9 @@ import javafx.scene.Node;
 import javafx.scene.control.Control;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
@@ -496,6 +499,26 @@ public class View extends Application{
 		else {
 			soilIV.setImage(new Image(inactiveSoilImgName));
 		}
+	}
+	
+	/**
+	 * Handles the visual effect of dragging the tile editor across the screen.
+	 * @param n the Node being dragged.
+	 */
+	public void dragTileEditors(Node n) {
+		ImageView iv = (ImageView) n;
+        Dragboard dBoard = iv.startDragAndDrop(TransferMode.ANY);
+
+        ClipboardContent content = new ClipboardContent();
+        content.putImage(iv.getImage());
+        dBoard.setContent(content);
+        
+       
+        if(dBoard.hasImage() &&
+				getDesignGardenScreen().getHoverEditTile() == true) {
+        getDesignGardenScreen().setDraggedTileEditorIdx(GridPane.getColumnIndex(n));
+        }
+        
 	}
 	
 }

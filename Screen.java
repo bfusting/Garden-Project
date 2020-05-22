@@ -20,7 +20,6 @@
  *
  */
 
-//last edited: 5-1-20 11:07AM
 
 public abstract class Screen {
 	

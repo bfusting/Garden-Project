@@ -250,31 +250,6 @@ public class Model implements Serializable{
 	    return newPlants;
 	}
 	
-	/**
-	 * Used to generate alternate GardenPlots for the Final View
-	 * since they are generated. Calls the GardenPlot constructor
-	 * then fills it by copying original array over. From there will 
-	 * autofill the rest of the spaces
-	 */
-	public void createGardenPlotAlts() {
-		System.out.println("Creating alternate gardens for final view");
-		
-		GardenPlot gP1 = new GardenPlot();
-		gP1.setLayout(userPlot.getLayout());
-		gP1.fillEmpty();
-		
-		GardenPlot gP2 = new GardenPlot();
-		gP2.setLayout(userPlot.getLayout());
-		gP2.fillEmpty();
-		
-		GardenPlot gP3 = new GardenPlot();
-		gP3.setLayout(userPlot.getLayout());
-		gP3.fillEmpty();
-		
-		this.altPlots.add(gP1);
-		this.altPlots.add(gP2);
-		this.altPlots.add(gP3);
-	}
 	
 	/**
 	 * Runs only once once the preferences page is complete transmitting the information
@@ -413,7 +388,7 @@ public class Model implements Serializable{
 	 * 
 	 * @return allPlants is an arrayList holding all the plants in the program
 	 */
-	//public ArrayList<Plant> getAllPlants(){
+	
 	public ArrayList<Plant> getAllPlants(){
 		return allPlants;
 	}
@@ -428,22 +403,42 @@ public class Model implements Serializable{
 		return userPrefColor;
 	}
 	
+	/**
+	 * Returns the user preferred season as a Seasons value.
+	 * @return a Seasons value, the user preferred season.
+	 */
 	public Seasons getUserPrefSeason() {
 		return userPrefSeason;
 	}
 	
+	/**
+	 * Returns the general light availability of the garden.
+	 * @return the light availability of the garden.
+	 */
 	public int getUserPrefLight() {
 		return userPrefLight;
 	}
 	
+	/**
+	 * Returns the general water availability of the garden.
+	 * @return the general water availability of the garden.
+	 */
 	public int getUserPrefWater() {
 		return userPrefWater;
 	}
 	
+	/**
+	 * The length of the garden.
+	 * @return an int, the length of the garden.
+	 */
 	public int getUserLength() {
 		return userLength;
 	}
 	
+	/**
+	 * Returns the width of the garden.
+	 * @return an int, the width of the garden.
+	 */
 	public int getUserWidth() {
 		return userWidth;
 	}
@@ -505,21 +500,28 @@ public class Model implements Serializable{
 		sceneryArr = a;
 	}
 	
+	/**
+	 * Sets the preferred color to the given String representing a new color if it is a valid value, updating
+	 * the number of preferences set if it is the first modification made.
+	 * @author Takiyah Price
+	 * @param newColor a String, the new color to change to.
+	 */
 	public void setUserPrefColor(String newColor) {
 		if (newColor!="") {
 			if (userPrefColor.equals("")) {
 				prefsSet++;
 			}
 			userPrefColor = newColor;
-			System.out.println("nc");
 		}
-		/*if (userPrefColor.equals("") && newColor!="") {
-			prefsSet++;
-			userPrefColor = newColor;
-		}*/
 		
 	}
 	
+	/**
+	 * Sets the preferred season to the given Seasons value if it is valid, updating the total preferences set
+	 * if it is the first modification made.
+	 * @param newSeason a Seasons, the new season to change to.
+	 * @author Takiyah Price
+	 */
 	public void setUserPrefSeason(Seasons newSeason) {
 		if (newSeason!=null) {
 			if (userPrefSeason==null) {
@@ -527,25 +529,30 @@ public class Model implements Serializable{
 			}
 			userPrefSeason=newSeason;
  		}
-		/*if (userPrefSeason==null && newSeason!=null) {
-			prefsSet++;
-			userPrefSeason = newSeason;
-		}*/
 		
 	}
 	
+	/**
+	 * Sets the preferred light availability to the given int if it is a valid value, updating the total preferences
+	 * set if it is the first modification made.
+	 * @param newLight An int, the new light availability value to change to.
+	 * 
+	 * @author Takiyah Price
+	 */
 	public void setUserPrefLight(int newLight) {
 		if (newLight!=0) {
 			if (userPrefLight==0) {prefsSet++;}
 			userPrefLight=newLight;
 		}
-		/*if (userPrefLight==0 && newLight!=0) {
-			prefsSet++;
-			userPrefLight = newLight;
-		}*/
 		
 	}
 	
+	/**
+	 * Sets the water availability to the given int if it is a valid value, updating the total preferences set if
+	 * it is the first modification made.
+	 * @param newWater An int, the new water availability value.
+	 * @author Takiyah Price
+	 */
 	public void setUserPrefWater(int newWater) {
 		if (newWater!=0) {
 			
@@ -555,28 +562,26 @@ public class Model implements Serializable{
 			userPrefWater=newWater;
 		}
 		
-		/*if (userPrefWater == 0 && newWater!=0) {
-			prefsSet++;
-			userPrefWater = newWater;
-		}*/
-		
 	}
 	
+	/**
+	 * Sets the length of the garden to the given int if it is valid, updating the total preferences set if it is the 
+	 * first modification made.
+	 * @param newLength an int, the new length to change the length to.
+	 * @author Takiyah Price
+	 */
 	void setUserLength(int newLength) {
 		if (newLength!=0) {
 			if (userLength==0) { prefsSet++;}
 			userLength = newLength;
 		}
-		/*if (userLength==0 && newLength!=0) {
-			prefsSet++;
-			userLength = newLength;
-		}*/
 		
 	}
 	
 	/**
 	 * Sets the property userWidth, ignoring if the default width has been passed in.
-	 * @param newWidth
+	 * @param newWidth an int, the new width value to change to.
+	 * @author Takiyah Price
 	 */
 	void setUserWidth(int newWidth) {
 		if (newWidth!=0) {
@@ -585,10 +590,6 @@ public class Model implements Serializable{
 			}
 			userWidth = newWidth;
 		}
-		/*if (userWidth==0 && newWidth!=0) {
-			prefsSet++;
-			userWidth = newWidth;
-		}*/
 		
 	}
 	
@@ -694,7 +695,6 @@ public class Model implements Serializable{
 				userColorPlants.add(p);
 			}
 		}
-		//userColorPlants.addAll(otherColors);
 		return userColorPlants;
 	}//filterByColor
 	
@@ -723,7 +723,6 @@ public class Model implements Serializable{
 		otherSeasons.sort(new SortbyBloomTime());
 		
 		ArrayList<Plant> userBloomPlants = new ArrayList<Plant>();
-		//userBloomPlants.addAll(a);
 		//streams the plants, filters by BloomTime, then adds them back to list
 		for(Plant p: a) {
 			if(p.getBloomTime().equals(season)) {
@@ -753,12 +752,9 @@ public class Model implements Serializable{
 				otherWater.add(p);
 			}
 		}
-		// user getter for otherWater Instead!
 		otherWater.sort(new SortbyWaterNeed());
 	
 		ArrayList<Plant> userWaterPlants = new ArrayList<Plant>();
-		//userWaterPlants.addAll(a);
-		//streams the plants, filters by BloomTime, then adds them back to list
 		for(Plant p: a) {
 			if(p.getWaterNeed() == waterReq) {
 				otherWater.add(p);
@@ -826,8 +822,7 @@ public class Model implements Serializable{
 				typeArr.add(p);
 			}
 		}
-		//streams the plants, filters by BloomTime, then adds them back to list
-		//typeArr.stream().filter(p -> p.getPlantType().equals(type)).collect(Collectors.toList());
+		
 		return typeArr;
 	}//filterByType
 	
@@ -853,7 +848,7 @@ public class Model implements Serializable{
 	
 	/**
 	 * Returns the property userTemplate, a string representing the template shape chosen by the user.
-	 * @return
+	 * @return a String representing the template shape chosen by the user.
 	 */
 	public String getUserTemplate() {
 		return userTemplate;
@@ -875,10 +870,25 @@ public class Model implements Serializable{
 		return prefsSet;
 	}
 	
+	/**
+	 * Returns a boolean indicating whether the 4 common user preferences needed for all the templates have been set.
+	 * @return true if the color, season, light and water levels have been set, false otherwise
+	 * 
+	 * @author Takiyah Price
+	 */
 	public boolean necessaryPrefsSet() {
 		return !(userPrefColor.equals("") || userPrefSeason==null || userPrefLight==0 || userPrefWater==0 );
 	}
 	
+	/**
+	 * Returns a String representing the contents of the GardenTile at the given location. "inactive" if the GardenTile is inactive,
+	 * the name of the image of the AddOn if it is not empty, or the empty String if it is empty.
+	 * @param row The row coordinate of the GardenTile to look at.
+	 * @param col The column coordinate of the GardenTile to look at.
+	 * @return a String representing the contents of the GardenTile at the given row and column.
+	 * 
+	 * @author Takiyah Price
+	 */
 	public String getTileContentsName(int row, int col) {
 		GardenTile tile = userPlot.getLayout()[row][col];
 		
@@ -898,7 +908,7 @@ public class Model implements Serializable{
 	
 	/**
 	 * Returns the property pathwaysArr, which holds all the AddOns that will go into the pathways tab in DesignGarden.
-	 * @return
+	 * @return the property pathwaysArr
 	 */
 	public ArrayList<AddOn> getPathwaysArr() {
 		return pathwaysArr;
@@ -906,6 +916,7 @@ public class Model implements Serializable{
 	
 	/**
 	 * Updates the tiles in the userPlot with the chosen light and water availability.
+	 * @author Takiyah Price
 	 */
 	public void updateGardenTileSettings() {
 		for (int i=0;i<userLength;i++) {
@@ -917,6 +928,16 @@ public class Model implements Serializable{
 		}
 	}
 	
+	/**
+	 * Returns a String representing the recommendations for the GardenTile at the given x and y coordinates. Recommendations based
+	 * upon whether any plants match the GardenTile's light and water levels.
+	 * @param x the row coordinate of the GardenTile.
+	 * @param y the the column coordinate of the GardenTile.
+	 * @return a String, a list of recommended plants for the GardenTile at the given coordinates, or the empty string if there are no mathching
+	 * plants.
+	 * 
+	 * @author Takiyah Price
+	 */
 	public String getRecs(int x,int y) {
 		GardenTile tile = userPlot.getLayout()[x][y];
 		String recs="";
@@ -930,5 +951,5 @@ public class Model implements Serializable{
 		
 		return recs;
 	}
-	// then getters and setters for new attributes
-}//Modeld
+	
+}//Model

@@ -37,35 +37,7 @@ public class GardenTileTest {
 		assertTrue(gT.getHighlightedTileInfo() == a.description);
 	}
 	
-	@Test
-	/**
-	 * Creates a GardenTile and an AddOn and tests if getRecommendations returns recommended plants
-	 */
-	void testGetRecommendations() {
-
-		GardenTile gT = new GardenTile();
-		AddOn a = new AddOn();
-		AddOn b = new AddOn();
-		AddOn[] arr = {b};
-		gT.add(a);
-		Plant[] p = {null, null, null, null, null};
-		assertTrue(gT.getRecommendations(arr) == p);
-		
-		
-	}
 	
 	
 	
-	@Test
-	/**
-	 * Creats a GardenTile and an Addon and tests to see if the validPlacement() returns true or false depending on the current AddOn
-	 */
-	void testValidPlacement() {
-		GardenTile gT = new GardenTile();
-		AddOn a = new AddOn();
-		assertTrue(gT.validPlacement()== true);
-		gT.add(a);
-		assertTrue(gT.validPlacement()== false);
-		
-	}
 }

@@ -1,14 +1,9 @@
 import java.util.ArrayList;
-import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -19,40 +14,26 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Arc;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.CubicCurve;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
-import javafx.scene.text.Text;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.CornerRadii;
 
-//import javafx.scene.shape.Shape.*;
 
-
-//Updated: 4.28 8:01pm
 
 /**
- *  The view in which the user designs their garden by dragging and dropping plants, trees, pathways, and other options.
+ *  The Screen in which the user designs their garden by dragging and dropping flowers, shrubs, trees, pathways, tile editors, and other options.
  * Also contains buttons for recommendations, change of seasons, and plant info.
  * <br>
  * <br>
  * 
  * @author Kelsey McRae
+ * @author Malachi Parks
+ * @author Takiyah Price
  *
  */
 
@@ -62,14 +43,10 @@ public class DesignGarden extends Screen{
 	
 	private ArrayList<ImageView> shrubSelArr;
 	private ArrayList<ImageView> treeSelArr;
-	//private ArrayList<ImageView> underSelArr;
-	// just drops a general addon into model
-	// add case in controller so it works
 	
 	private int otherArrInd = 0;
 	private int pSelectionArrInd = 0;
-	
-	// used by Controller to choose where in the array to pull plant from
+
 	private int gridPaneInd = 0;
 	
 	private TabPane selectGardenType;
@@ -99,27 +76,17 @@ public class DesignGarden extends Screen{
 	
 	GridPane tileEditingGP = new GridPane();
 	
-	//2d array 5x5 of GardenTile using GridPane
-	
 	private Stage theStage;
 	
 	private AnchorPane root;
 	
 	private Controller c;
-	
-	// length/width taken in by user preference
-	//private int length = 5;
-	//private int width = 5;
 	private int length;
 	private int width;
-	private double colConstraint = 90.0;
-	private double rowConstraint = 90.0;
+
 	private final int selectionSize = 6;
 	private final double maxTileEditSize = 50.0;
 	private final double selectionGPsize = 100.0;
-	
-	// Used as backdrops colors for selection gridpanes
-	private ArrayList<ImageView> backdropColor = new ArrayList<ImageView>();
 	
 	// used to hold images of more n less light and water
 	private ArrayList<ImageView> tileEdit = new ArrayList<ImageView>();
@@ -148,8 +115,6 @@ public class DesignGarden extends Screen{
 		plot = new GridPane();
 		draggedTileEditorIdx=0;
 
-
-
 }
 
 	
@@ -175,46 +140,25 @@ public class DesignGarden extends Screen{
 	public void setPSelectionArrInd(int newInd) {
 		this.pSelectionArrInd = newInd;
 	}
-	
-	
-/*	/**
-	 * Updates the viewable array of plants, trees, etc able to be dragged into the garden.
-	 *
-	public void updateSelectionIndex() {
 		
-	}
-*/	
-
-	
-	public Scene getDesignGardenScene() {
-		return designGardenScene;
-	}
-
 
 	/**
-	 * Creates the array of plants/trees/etc for the user to choose from based on local requirements and user preferences.
+	 * Returns DesignGarden's scene.
+	 * @return
 	 */
-	public void createImageArray() {
-		
-	}
+	//public Scene getDesignGardenScene() {
+	//	return designGardenScene;
+	//}
+
+
 	
 	public GridPane getPlot() {
 		return plot;
 	}
 	
-	
-	
-/*	/**
-	 * Opens the recommendations 
-	 *
-	public void openRecommendations() {
-		
-	}
-*/
-	
-	
 
-	public Button getRecommendationsBTTN() {
+
+	/*public Button getRecommendationsBTTN() {
 		return recommendations;
 	}
 	public Button getChangeSeasonsBTTN() {
@@ -222,7 +166,7 @@ public class DesignGarden extends Screen{
 	}
 	public Button getInfoTipsBTTN() {
 		return infoTips;
-	}
+	}*/
 	public TabPane getSelectGardenType() {
 		return selectGardenType;
 	}
@@ -275,7 +219,6 @@ public class DesignGarden extends Screen{
 		}
 		plot.getChildren().forEach(cell->cell.addEventHandler(MouseEvent.MOUSE_CLICKED, c.getRemoveFromTile()));
 		plot.getChildren().forEach(cell->cell.setOnMouseEntered(c.getHoverEmptyTiles()));
-		//plot.getChildren().forEach(cell->cell.setOnDragDropped(null));
 		
 		theStage.setTitle("Design Mode");
 		theStage.setScene(designGardenScene);
@@ -296,18 +239,18 @@ public class DesignGarden extends Screen{
 	}
 	
 	public void setUpTabs() {
+		
 		// arrays to traverse the gridPanes and their respective names
 		Tab tabArr[] = {plants,trees,shrubs,pathways,otherOptions};
 		GridPane gpArr[] = {plantsGP,treesGP,shrubsGP,pathsGP,otherGP};
 		String tabNames[] = {"Plants","Trees","Shrubs","Pathways","Other"};
 		ImageView backdrop[][] = new ImageView[selectionSize][selectionSize];
-		ArrayList<ImageView> backdropColor = new ArrayList<ImageView>();
 		for(int i=0; i<selectionSize;i++) {
 			for(int j=0; j<selectionSize;j++) {
 				ImageView imv1 = new ImageView("img/plantSelectionBackdrop.jpg");
 				imv1.setPreserveRatio(true);
-				imv1.setFitHeight(100);
-				imv1.setFitWidth(100);
+				imv1.setFitHeight(selectionGPsize);
+				imv1.setFitWidth(selectionGPsize);
 				backdrop[i][j] = imv1;
 			}//for
 		}//for
@@ -343,9 +286,9 @@ public class DesignGarden extends Screen{
 	}//setUpTabs
 
 	public void drawScene() {
+		int selectionImageDimensions = 85;
 		c.setSelectionArrs();
-		//
-		System.out.println("drawing scene");
+		
 		length = c.getWidthFromModel();
 		width = c.getLengthFromModel();
 		
@@ -431,8 +374,8 @@ for(int i=0; i<flower.length;i++) {
 	Image img = new Image(flower[i]);
 	ImageView imgV = new ImageView(img);
 	imgV.setPreserveRatio(true);
-	imgV.setFitHeight(100-15);
-	imgV.setFitWidth(100-15);
+	imgV.setFitHeight(selectionImageDimensions);
+	imgV.setFitWidth(selectionImageDimensions);
 	imgV.setOnDragDetected(c.getStartDrag());
 	pSelectionArr.add(imgV);
 }
@@ -471,8 +414,8 @@ for(int i=0; i<shrub.length;i++) {
 	Image img = new Image(shrub[i]);
 	ImageView imgV = new ImageView(img);
 	imgV.setPreserveRatio(true);
-	imgV.setFitHeight(100-15);
-	imgV.setFitWidth(100-15);
+	imgV.setFitHeight(selectionImageDimensions);
+	imgV.setFitWidth(selectionImageDimensions);
 	imgV.setOnDragDetected(c.getStartDrag());
 	shrubSelArr.add(imgV);
 }
@@ -481,7 +424,6 @@ shrubsGP.setBackground(new Background(new BackgroundFill(Color.web("#D4DCDB"), C
 for (int i = 0; i < shrub.length; i++) {
      ColumnConstraints column = new ColumnConstraints(selectionGPsize);
      shrubsGP.getColumnConstraints().add(column);
-     //shrubsGP.add(backdropColor2.get(i), i, 0,1,1);
      HBox hbox = new HBox(shrubSelArr.get(i));
      hbox.setAlignment(Pos.CENTER);
      hbox.setPadding(selectionGPInsets);
@@ -509,23 +451,20 @@ treesGP.setMaxSize(selectionGPsize, selectionGPsize);
 //adding row
 treesGP.getRowConstraints().add(new RowConstraints(selectionGPsize));
 treesGP.setBackground(new Background(new BackgroundFill(Color.web("#B1B1B2"), CornerRadii.EMPTY, Insets.EMPTY)));
-//String[] tree = {"PlantPictures/Box_Elder.jpg","PlantPictures/Cigar_Tree.jpg"};
 
 treeSelArr = new ArrayList<ImageView>();
-//setting up with each different picture
 for(int i=0; i<tree.length;i++) {
 	Image img = new Image(tree[i]);
 	ImageView imgV = new ImageView(img);
 	imgV.setPreserveRatio(true);
-	imgV.setFitHeight(100-15);
-	imgV.setFitWidth(100-15);
+	imgV.setFitHeight(selectionImageDimensions);
+	imgV.setFitWidth(selectionImageDimensions);
 	imgV.setOnDragDetected(c.getStartDrag());
 	treeSelArr.add(imgV);
 }
 for (int i = 0; i < tree.length; i++) {
      ColumnConstraints column = new ColumnConstraints(selectionGPsize);
      treesGP.getColumnConstraints().add(column);
-     //treesGP.add(backdropColor4.get(i), i, 0,1,1);
      HBox hbox = new HBox(treeSelArr.get(i));
      hbox.setPadding(selectionGPInsets);
      hbox.setAlignment(Pos.CENTER);
@@ -560,8 +499,8 @@ for (int i = 0; i < path.length; i++) {
 	Image img = new Image(path[i]);
 	ImageView imgV = new ImageView(img);
 	imgV.setPreserveRatio(true);
-	imgV.setFitHeight(100-15);
-	imgV.setFitWidth(100-15);
+	imgV.setFitHeight(selectionImageDimensions);
+	imgV.setFitWidth(selectionImageDimensions);
 	imgV.setOnDragDetected(c.getStartDrag()); 
 	
 	ColumnConstraints column = new ColumnConstraints(selectionGPsize);
@@ -601,8 +540,8 @@ for (int i = 0; i < other.length; i++) {
     Image img = new Image(other[i]);
  	ImageView imgV = new ImageView(img);
  	imgV.setPreserveRatio(true);
- 	imgV.setFitHeight(100-15);
- 	imgV.setFitWidth(100-15);
+ 	imgV.setFitHeight(selectionImageDimensions);
+ 	imgV.setFitWidth(selectionImageDimensions);
  	imgV.setOnDragDetected(c.getStartDrag()); 
  	
  	ColumnConstraints column = new ColumnConstraints(selectionGPsize);
@@ -639,27 +578,17 @@ save.setMinSize(200.0, 40.0);
 finalView.setMinSize(200.0, 40.0);
 instructions.setMinSize(200.0, 40.0);
 
-//click recommendations button
 
 recommendations.setOnMouseClicked(c.getRecommendationsBTN());
 
-//Change Seasons Button
-
 changeSeasons.setOnMouseClicked(c.getChangeSeasonsBTN());
-
-//InfoTips Button
 
 infoTips.setOnMouseClicked(c.getInfoTipsBTN());
 
-// Save Button
-
 save.setOnMouseClicked(c.getSaveBTN());
-
-// Finalview Button
 
 finalView.setOnMouseClicked(c.getFinalViewBTN());
 
-//Instructions Button
 instructions.setOnMouseClicked(c.getInstructionShow());
 
 AnchorPane apButtons = new AnchorPane();
@@ -680,12 +609,6 @@ apButtons.getChildren().addAll(recommendations, changeSeasons, otherFeaturesLabe
 
 AnchorPane.setTopAnchor(apButtons, 40.0);
 AnchorPane.setRightAnchor(apButtons, 60.0);
-
-Label emptySpace = new Label("		");
-Label emptySpace2 = new Label("		");
-Label emptySpace3 = new Label("		");
-Label emptySpace4 = new Label("		");
-Label emptySpace5 = new Label("		");
 
 plot = View.drawGrid(c,true);
 plot.setMaxSize(300.0, 300.0);
@@ -710,23 +633,8 @@ AnchorPane.setLeftAnchor(plot, 40.0);
 root.getChildren().addAll(apButtons, selectGardenType, plot);
 designGardenScene = new Scene(root,View.primarySceneWidth,View.primarySceneHeight);
 
-
-
 }
 
-	public int getLength() {
-		return length;
-	}
-	public int getWidth() {
-		return width;
-	}
-	public double getColConstraint(){
-		return colConstraint;
-	}
-	public double getRowConstraint() {
-		return rowConstraint;
-	}
-	
 	
 	
 	/**

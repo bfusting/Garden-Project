@@ -27,7 +27,6 @@ import javafx.stage.Stage;
 *  
 */
 
-//Last edited: 5-1-20 2:29AM
 
 /**
  * 

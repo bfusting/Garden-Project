@@ -551,7 +551,7 @@ public class Controller{
 	public void detectDragDrop(DragEvent event) {
 		Dragboard db = event.getDragboard();
 		boolean worked = false;
-		//Node n = event.getPickResult().getIntersectedNode();
+		
 		Node n = event.getPickResult().getIntersectedNode();
 		if(DEBUG) {System.out.println(n.toString());}
 		int index = view.getDesignGardenScreen().getGridPaneInd();
@@ -589,7 +589,7 @@ public class Controller{
 			view.getDesignGardenScreen().setHoverEditTile(false);
 			
 			if(DEBUG) {System.out.println("Column: " + colIndex + " Row: " + rowIndex);}
-			//int index = view.getDesignGardenScreen().getGridPaneInd();//items held in gridpane of 4. 0 is add water, 1 is less water, 2 is add sun, 3 is remove water
+			//items held in gridpane of 4. 0 is add water, 1 is less water, 2 is add sun, 3 is remove water
 			int editorIdx = view.getDesignGardenScreen().getDraggedTileEditorIdx();
 			System.out.println("Dropped Tile editor index "+editorIdx );
 			switch(editorIdx) {
@@ -1357,11 +1357,11 @@ public class Controller{
     	int colIdx = GridPane.getColumnIndex(n);
     	GardenTile clickedTile = model.getUserPlot().getLayout()[rowIdx][colIdx];
     	
-    	if (clickedTile.getIsActive() && clickedTile.isEmpty()) {
+    	if (clickedTile.isActive() && clickedTile.isEmpty()) {
     		clickedTile.setIsActive(false);
     		view.setActiveImg(n, false);
     		//do something to make it fade
-    	} else if (!clickedTile.getIsActive() && clickedTile.isEmpty()) {
+    	} else if (!clickedTile.isActive() && clickedTile.isEmpty()) {
     		clickedTile.setIsActive(true);
     		view.setActiveImg(n, true);
     	}
@@ -1494,7 +1494,6 @@ public class Controller{
     	view.getSeasonViewScreen().setTitleToWinter();
     	model.setUserPrefSeason(Seasons.WINTER);
     	if(DEBUG) {System.out.println("Current Season: " + model.getUserPrefSeason());}
-    	//view.getSeasonViewScreen().setSeasonGP(view.drawGrid(this, false));
     	view.getSeasonViewScreen().showScreen();
     }
     
@@ -1508,18 +1507,37 @@ public class Controller{
     	return event -> clickOnViewWinter((MouseEvent)event);
     }
     
+    /**
+     * Binds an event handler to the close button on season view's stage to be called when the user
+     * attempts to exit the window rather than using the close button.
+     * @return an Event Handler for closing season view's stage.
+     */
     public EventHandler<WindowEvent> getSeasonViewCloseRequest() {
     	return event -> seasonViewCloseRequest((WindowEvent) event);
     }
     
+    /**
+     * Handles the close request of the season view's stage by calling the season view screen's close method
+     * to ensure that the current season is reinstated when the user closes the stage instead of using the exit button.
+     * @param event a WindowEvent, the exit request for closing season view's stage.
+     * @see SeasonView#closeScreen()
+     */
     public void seasonViewCloseRequest(WindowEvent event) {
     	view.getSeasonViewScreen().closeScreen();
     }
     
+    /**
+     * Binds an Event Handler to the tiles in the GridPane representing the garden for when the user hovers over a tile.
+     * @return an Event Handler for when the user hovers over a tile.
+     */
     public EventHandler<MouseEvent> getHoverEmptyTiles() {
     	return event -> hoverEmptyTiles((MouseEvent)event);
     }
     
+    /**
+     * Checks if the user is hovering over an empty tile, and if so sends recommendations to be shown in the popup on the designGarden Screen.
+     * @param event
+     */
     public void hoverEmptyTiles(MouseEvent event) {
     	Node n = (Node)event.getSource();
     	Integer row = GridPane.getRowIndex(n);
@@ -1536,25 +1554,20 @@ public class Controller{
     	}
     }
     
+    /**
+     * Handles the dragging of the tile editors on the designGarden Screen by calling view's method for showing
+     * the tile editors being dragged across the screen.
+     * @param event
+     */
     public void startDragForTileEditors(MouseEvent event) {
-		ImageView n = (ImageView)event.getSource();
-
-        Dragboard dBoard = n.startDragAndDrop(TransferMode.ANY);
-
-        //Use clipboard to copy data the add to Dragboard
-        ClipboardContent content = new ClipboardContent();
-        //Need to edit to pull in right plant from model when dragging
-        content.putImage(n.getImage());
-        dBoard.setContent(content);
-        
-        //System.out.println("Dragging tile editor index: "+GridPane.getColumnIndex((Node)event.getSource()));
-        if(dBoard.hasImage() &&
-				view.getDesignGardenScreen().getHoverEditTile() == true) {
-        view.getDesignGardenScreen().setDraggedTileEditorIdx(GridPane.getColumnIndex((Node)event.getSource()));
-        }
+		view.dragTileEditors((ImageView)event.getSource());
         event.consume();
 	}
     
+    /**
+     * Binds the event handler startDragForTileEditors to the tile editors on the DesignGarden Screen.
+     * @return an Event Handler for when the user starts dragging a tile editor on the DesignGarden Screen.
+     */
     public EventHandler<MouseEvent> getStartDragForTileEditors() {
     	return event -> startDragForTileEditors((MouseEvent) event);
     }
